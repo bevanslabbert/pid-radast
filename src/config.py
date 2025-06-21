@@ -22,8 +22,8 @@ CLASSIFICATION_MODEL = {
     "output_dim": 5,
     "dropout_rate": 0.3,
     "learning_rate": 0.001,
-    "batch_size": 32,
-    "num_epochs": 50
+    "batch_size": 5,
+    "num_epochs": 10
 }
 
 # Diffusion model config
