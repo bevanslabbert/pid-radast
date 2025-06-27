@@ -22,7 +22,7 @@ CLASSIFICATION_MODEL = {
     "output_dim": 5,
     "dropout_rate": 0.3,
     "learning_rate": 0.001,
-    "batch_size": 5,
+    "batch_size": 2,
     "num_epochs": 10
 }
 
