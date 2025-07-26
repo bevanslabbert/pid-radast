@@ -5,11 +5,12 @@ from typing import Tuple
 import matplotlib.pyplot as plt
 import numpy as np
 import torchvision
+import torchvision.transforms as transforms
 
-__all__ = ['get_data', 'show_image']
+__all__ = ['get_data', 'show_image', 'get_data_loaders']
 
 # Returns tuple of train and test data as trainloader, already processed and ready for nn feeding
-def get_dataloaders(dataset, transform, batch_size=2) -> Tuple[DataLoader, DataLoader]:
+def get_data_loaders(dataset, transform, batch_size=2) -> Tuple[DataLoader, DataLoader]:
     match dataset.lower():
         case 'mirabest':
             # Generate trainloader and testloader
@@ -24,7 +25,11 @@ def get_dataloaders(dataset, transform, batch_size=2) -> Tuple[DataLoader, DataL
             raise ValueError(f'Value {dataset} does not exist in list of known datasets!')
 
 # returns data sets
-def get_data(dataset):
+def get_data(dataset,
+             transform=transforms.Compose([
+                transforms.ToTensor(), # to range [0,1]
+                transforms.Normalize([0.5], [0.5]) # 0 centers
+                ])):
     match dataset.lower():
         case 'mirabest':
             # Generate trainloader and testloader
