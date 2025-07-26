@@ -16,8 +16,8 @@ def optimize_parameters(config):
         train_,
         param_space=config,
         tune_config=tune.TuneConfig(
-            metric='val_loss',
-            mode='min',
+            metric='val_accuracy',
+            mode='max',
             num_samples=10,
         ),
         run_config=tune.RunConfig(
@@ -36,7 +36,7 @@ def train_(config):
 
     # extract inputs from config
     model_class = config["model_class"]
-    model = model_class()
+    model = model_class(config)
 
     criterion_class = config["criterion_class"]
     dataset = config["dataset"]
@@ -46,7 +46,7 @@ def train_(config):
     # attempt to set calculation to parallel gpu training
     device, model = set_gpu_parallel_training(model)
 
-    current_optimizer = config["optimizer"]
+    current_optimizer = config["optimizer_class"]
     current_lr = config["lr"]
     print(f'Using optimizer {current_optimizer}')
     print(f'Using lr {current_lr}')
@@ -107,6 +107,7 @@ def train_(config):
 
     val_loss = 0.0
     correct = 0
+    total = 0
 
     with torch.no_grad():
         for inputs, labels in valloader:
@@ -115,17 +116,21 @@ def train_(config):
             val_loss += loss.item()
             preds = outputs.argmax(dim=1)
             correct += (preds == labels).sum().item()
+            total += labels.size(0)
 
         tune.report({
-            "loss": training_loss,
-            "val_loss": val_loss/len(valloader)
+            "val_loss": val_loss,
+            "training_loss": training_loss,
+            "val_accuracy": correct/total
         })
 
 
-def get_best_config(model_class):
+def get_best_config(model_class, cwd):
 
     experimental_results_path = os.path.join(
-        os.getcwd(), "tuning_results", model_class.__name__)
+        cwd, "tuning_results", model_class.__name__)
+
+    print(f"Getting config from {experimental_results_path}")
 
     if not os.path.exists(experimental_results_path):
         raise FileExistsError(f"Parameter optimization not run for {
@@ -136,10 +141,7 @@ def get_best_config(model_class):
 
     result_grid = restored_tuner.get_results()
 
-    print(result_grid)
-    print(f"Best trial config: {result_grid.get_best_result()}")
-
-    return result_grid.get_best_result()
+    return result_grid.get_best_result().config
 
 
 def set_gpu_parallel_training(model):

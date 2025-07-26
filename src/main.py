@@ -1,5 +1,5 @@
-import os
 import sys
+import os
 from ray import tune
 from torch import nn
 import torch
@@ -13,19 +13,19 @@ if project_root not in sys.path:
 
 def main():
     config = {
-        'lr': tune.loguniform(1e-4, 1e-1),
-        'optimizer': tune.choice([torch.optim.AdamW, torch.optim.Adam]),
+        'lr': tune.loguniform(1e-4, 1e-2),
+        'optimizer_class': tune.choice([torch.optim.AdamW, torch.optim.Adam]),
         'model_class': ClassificationModel,
         'criterion_class': nn.CrossEntropyLoss,
         'dataset': 'MiraBest',
-        'batch_size': tune.choice([2, 4, 8, 16, 32])
+        'batch_size': tune.choice([8, 16])
     }
 
-    results = optimize_parameters(config)
+    best_result = optimize_parameters(config)
 
-    results = get_best_config(ClassificationModel)
-    print(results)
-    print(results.get_best_result().config)
+    # best_result = get_best_config(ClassificationModel, os.getcwd())
+
+    print(best_result)
 
 
 if __name__ == "__main__":
