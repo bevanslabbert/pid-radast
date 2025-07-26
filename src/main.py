@@ -13,7 +13,7 @@ if project_root not in sys.path:
 
 def main():
     config = {
-        'lr': tune.loguniform(1e-4, 1e-2),
+        'lr': tune.loguniform(1e-3, 1e-1),
         'optimizer_class': tune.choice([torch.optim.AdamW, torch.optim.Adam]),
         'model_class': ClassificationModel,
         'criterion_class': nn.CrossEntropyLoss,

@@ -18,7 +18,7 @@ def optimize_parameters(config):
         tune_config=tune.TuneConfig(
             metric='val_accuracy',
             mode='max',
-            num_samples=10,
+            num_samples=30,
         ),
         run_config=tune.RunConfig(
             name=config["model_class"].__name__,
