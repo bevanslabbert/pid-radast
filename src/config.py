@@ -23,7 +23,7 @@ CLASSIFICATION_MODEL = {
     "dropout_rate": 0.3,
     "learning_rate": 0.001,
     "batch_size": 2,
-    "num_epochs": 10
+    "num_epochs": 100
 }
 
 # Diffusion model config

@@ -1,0 +1,44 @@
+Failure # 1 (occurred at 2025-07-30_07-52-20)
+[36mray::ImplicitFunc.train()[39m (pid=28651, ip=127.0.0.1, actor_id=9d8b66da811b784a01ca4ea101000000, repr=train_)
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/ray/tune/trainable/trainable.py", line 331, in train
+    raise skipped from exception_cause(skipped)
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+                ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+                          ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/src/parameter_optimization/optimize.py", line 61, in train_
+    trainset, testset = get_data(dataset)
+                        ~~~~~~~~^^^^^^^^^
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/src/data/data.py", line 36, in get_data
+    trainset = MiraBest(root='./batches', train=True, download=True, transform=transform)
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/src/mirabest/MiraBest.py", line 69, in __init__
+    self.download()
+    ~~~~~~~~~~~~~^^
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/src/mirabest/MiraBest.py", line 159, in download
+    download_url(self.url, self.root, self.filename, self.tgz_md5)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/torchvision/datasets/utils.py", line 121, in download_url
+    url = _get_redirect_url(url, max_hops=max_redirect_hops)
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/torchvision/datasets/utils.py", line 66, in _get_redirect_url
+    with urllib.request.urlopen(urllib.request.Request(url, headers=headers)) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 489, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1348, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1322, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>

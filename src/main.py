@@ -1,5 +1,6 @@
 import sys
 import os
+import numpy as np
 from ray import tune
 from torch import nn
 import torch
@@ -13,7 +14,7 @@ if project_root not in sys.path:
 
 def main():
     config = {
-        'lr': tune.loguniform(1e-3, 1e-1),
+        'lr': tune.loguniform(1e-4, 1e-2),
         'optimizer_class': tune.choice([torch.optim.AdamW, torch.optim.Adam]),
         'model_class': ClassificationModel,
         'criterion_class': nn.CrossEntropyLoss,
@@ -21,10 +22,15 @@ def main():
         'batch_size': tune.choice([8, 16])
     }
 
-    best_result = optimize_parameters(config)
+    # Setting a global seed for reproducibility
+    def set_seed(seed):
+        torch.manual_seed(seed)
+        np.random.seed(seed)
 
-    # best_result = get_best_config(ClassificationModel, os.getcwd())
+    set_seed(42)
+    results = optimize_parameters(config)
 
+    best_result = get_best_config(ClassificationModel, os.getcwd())
     print(best_result)
 
 
