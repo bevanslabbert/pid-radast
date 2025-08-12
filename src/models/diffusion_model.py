@@ -1,59 +1,45 @@
 import torch
 from torch import nn
-import torch.nn.functional as F
+from diffusers import DDPMScheduler, UNet2DModel
 
+class ClassConditionedUnet(nn.Module):
+    def __init__(self, num_classes=10, class_emb_size=4):
+        super().__init__()
 
-class UNet(nn.Module):
-    def __init__(self, in_channels, out_channels, features=[64, 128, 256, 512]):
-        super(UNet, self).__init__()
+        # The embedding layer will map the class label to a vector of size class_emb_size
+        self.class_emb = nn.Embedding(num_classes, class_emb_size)
 
-        # Encoding: Downsampling layers
-        self.encoder = nn.ModuleList()
-        for feature in features:
-            self.encoder.append(self._conv_block(in_channels, feature))
-            in_channels = feature
-
-        # Bottleneck
-        self.bottleneck = self._conv_block(features[-1], features[-1] * 2)
-
-        # Decoder: Upsampling layer
-        self.decoder = nn.ModuleList()
-        for feature in reversed(features):
-            self.decoder.append(nn.ConvTranspose2d(
-                feature * 2, feature, kernel_size=2, stride=2))
-            self.decoder.append(self._conv_block(feature * 2, feature))
-
-        # Final output layer
-        self.final_layer = nn.Conv2d(features[0], out_channels, kernel_size=1)
-
-    def forward(self, x):
-        skip_connections = []
-
-        # Encoder pass
-        for layer in self.encoder:
-            x = layer(x)
-            skip_connections.append(x)
-            x = nn.MaxPool2d(kernel_size=2, stride=2)(x)
-
-        # Bottleneck
-        x = self.bottleneck(x)
-
-        # Decoder pass
-        skip_connections = skip_connections[::-1]
-        for idx in range(0, len(self.decoder), 2):
-            x = self.decoder[idx](0)
-            skip_connection = skip_connections[idx // 2]
-            x = torch.cat((skip_connection, x), dim=1)
-            x = self.decoder[idx + 1](x)
-
-        # final output
-        return self.final_layer(x)
-
-    @staticmethod
-    def _conv_block(in_channels, out_channels):
-        return nn.Sequential(
-            nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1),
-            nn.ReLU(),
-            nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1),
-            nn.ReLU(),
+        # Self.model is an unconditional UNet with extra input channels to accept the conditioning information (the class embedding)
+        self.model = UNet2DModel(
+            sample_size=28,  # the target image resolution
+            in_channels=1 + class_emb_size,  # Additional input channels for class cond.
+            out_channels=1,  # the number of output channels
+            layers_per_block=2,  # how many ResNet layers to use per UNet block
+            block_out_channels=(32, 64, 64),
+            down_block_types=(
+                "DownBlock2D",  # a regular ResNet downsampling block
+                "AttnDownBlock2D",  # a ResNet downsampling block with spatial self-attention
+                "AttnDownBlock2D",
+            ),
+            up_block_types=(
+                "AttnUpBlock2D",
+                "AttnUpBlock2D",  # a ResNet upsampling block with spatial self-attention
+                "UpBlock2D",  # a regular ResNet upsampling block
+            ),
         )
+
+    # Our forward method now takes the class labels as an additional argument
+    def forward(self, x, t, class_labels):
+        # Shape of x:
+        bs, ch, w, h = x.shape
+
+        # class conditioning in right shape to add as additional input channels
+        class_cond = self.class_emb(class_labels)  # Map to embedding dimension
+        class_cond = class_cond.view(bs, class_cond.shape[1], 1, 1).expand(bs, class_cond.shape[1], w, h)
+        # x is shape (bs, 1, 28, 28) and class_cond is now (bs, 4, 28, 28)
+
+        # Net input is now x and class cond concatenated together along dimension 1
+        net_input = torch.cat((x, class_cond), 1)  # (bs, 5, 28, 28)
+
+        # Feed this to the UNet alongside the timestep and return the prediction
+        return self.model(net_input, t).sample  # (bs, 1, 28, 28)
