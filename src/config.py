@@ -26,6 +26,10 @@ CLASSIFICATION_MODEL = {
     "num_epochs": 100
 }
 
+ROBUST_CLASSIFICATION_MODEL = {
+    "num_epochs": 10
+}
+
 # Diffusion model config
 DIFFUSION_MODEL = {
     "grid_size": 100,
