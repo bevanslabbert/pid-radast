@@ -11,7 +11,7 @@ class ClassConditionedUnet(nn.Module):
 
         # Self.model is an unconditional UNet with extra input channels to accept the conditioning information (the class embedding)
         self.model = UNet2DModel(
-            sample_size=28,  # the target image resolution
+            sample_size=150,  # the target image resolution
             in_channels=1 + class_emb_size,  # Additional input channels for class cond.
             out_channels=1,  # the number of output channels
             layers_per_block=2,  # how many ResNet layers to use per UNet block
