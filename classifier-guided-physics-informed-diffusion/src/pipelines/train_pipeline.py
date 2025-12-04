@@ -35,7 +35,7 @@ def train_classification(model, config, trainloader, valloader, device, resume):
     model.fc = nn.Linear(model.fc.in_features, num_classes)
 
     # initialize values
-		print(f"Setting model to {device}")
+    print(f"Setting model to {device}")
     model.to(device)
     num_epochs = config['training']['epochs']
     optimizer = torch.optim.Adam(model.parameters(), lr=config['training']['learning_rate'], weight_decay=config['training']['weight_decay'])
@@ -55,16 +55,16 @@ def train_classification(model, config, trainloader, valloader, device, resume):
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
-		print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
+        print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
     # train model
     for epoch in range(start_epoch, num_epochs):
         total_loss = 0.0
         model.train()
 
-		print(f"Epoch {epoch}")
+        print(f"Epoch {epoch}")
         for idx, batch in enumerate(trainloader):
-			print(f"Batch {batch}")
+            print(f"Batch {idx}")
             inputs = batch[0].to(device)
             labels = batch[1].to(device)
 
