@@ -10,29 +10,26 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2) -> Tuple[D
     Returns trainloader, valloader, and testloader.
     - Splits the training data into train and validation sets.
     """
-    match dataset.lower():
-        case 'mirabest':
-            # ---- Load full training and test sets ----
-            full_train_set = MiraBest(root='./batches', train=True, download=True, transform=transform)
-            testset = MiraBest(root='./batches', train=False, download=True, transform=transform)
+    if dataset.lower() == 'mirabest':
+        # ---- Load full training and test sets ----
+        full_train_set = MiraBest(root='./batches', train=True, download=True, transform=transform)
+        testset = MiraBest(root='./batches', train=False, download=True, transform=transform)
 
-            # ---- Create train/val split ----
-            total_train_size = len(full_train_set)
-            val_size = int(total_train_size * val_split)
-            train_size = total_train_size - val_size
+        # ---- Create train/val split ----
+        total_train_size = len(full_train_set)
+        val_size = int(total_train_size * val_split)
+        train_size = total_train_size - val_size
 
-            train_subset, val_subset = random_split(full_train_set, [train_size, val_size])
+        train_subset, val_subset = random_split(full_train_set, [train_size, val_size])
 
-            # ---- DataLoaders ----
-            trainloader = DataLoader(train_subset, batch_size=batch_size, shuffle=True, num_workers=2)
-            valloader = DataLoader(val_subset, batch_size=batch_size, shuffle=False, num_workers=2)
-            testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=2)
+        # ---- DataLoaders ----
+        trainloader = DataLoader(train_subset, batch_size=batch_size, shuffle=True, num_workers=2)
+        valloader = DataLoader(val_subset, batch_size=batch_size, shuffle=False, num_workers=2)
+        testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=2)
 
-            return trainloader, valloader, testloader
-        
-        case _:
-            raise ValueError(f"Dataset '{dataset}' is not supported!")
-
+        return trainloader, valloader, testloader
+    
+    raise ValueError(f"Dataset '{dataset}' is not supported!")
 
 def get_data(dataset,
              transform=transforms.Compose([
