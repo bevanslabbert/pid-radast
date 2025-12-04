@@ -167,8 +167,7 @@ def diffusion_model_training():
             optimizer.step()
 
             if batch_idx % 10 == 0:
-                print(f"Batch {batch_idx}/{len(trainloader)
-                                           } - Loss: {loss.item():.4f}")
+                print(f"Batch {batch_idx}/{len(trainloader)} - Loss: {loss.item():.4f}")
 
 
 def main():

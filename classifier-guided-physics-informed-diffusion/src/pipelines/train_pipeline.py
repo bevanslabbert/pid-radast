@@ -2,7 +2,7 @@ from src.utils.data import get_data_loaders
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
 import torchvision.transforms as transforms
-from torchvision.models import resnet50, ResNet50_Weights, resnet18, ResNet18_Weights
+from torchvision.models import resnet50, resnet18
 import torchvision
 import torch
 import torch.nn as nn
@@ -27,7 +27,7 @@ def evaluate_loss(model, dataloader, criterion, device='cpu'):
 def train_classification(model, config, trainloader, valloader, device, resume):
 
     # model definition
-    model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
+    model = resnet50(pretrained=True)
 
     num_classes = config['data']['num_classes']
 
