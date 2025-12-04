@@ -39,15 +39,14 @@ def get_data(dataset,
     """
         returns data sets
     """
-    match dataset.lower():
-        case 'mirabest':
-            # Generate trainloader and testloader
-            trainset = MiraBest(root='./batches', train=True,
-                                download=True, transform=transform)
-            testset = MiraBest(root='./batches', train=False,
-                               download=True, transform=transform)
+    if dataset.lower() == 'mirabest':
+        # Generate trainloader and testloader
+        trainset = MiraBest(root='./batches', train=True,
+                            download=True, transform=transform)
+        testset = MiraBest(root='./batches', train=False,
+                            download=True, transform=transform)
 
-            return trainset, testset
-        case _:
-            raise ValueError(
-                f'Value {dataset} does not exist in list of known datasets!')
+        return trainset, testset
+
+    raise ValueError(
+        f'Value {dataset} does not exist in list of known datasets!')
