@@ -11,11 +11,8 @@ def test_model(model_type, config, testloader, device, resume):
         evaluate_model_performance(model_type, config, testloader, device, resume)
 
 # evaluate model performance
-def evaluate_model_performance(model_type, config, testloader, device):
+def evaluate_model_performance(model_type, model, config, testloader, device):
     if model_type == 'classifier':
-        # model definition
-        model = resnet50(pretrained=True)
-
         num_classes = config['data']['num_classes']
 
         # replace last layer to match number of classes

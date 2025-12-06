@@ -68,7 +68,7 @@ def main():
         optimize_parameters(args.model, cfg)
     elif args.command == "train":
         model = train_model(args.model, cfg, trainloader, valloader, device, resume=args.resume)
-        evaluate_model_performance(args.model, model, testloader, device)
+        evaluate_model_performance(args.model, model, cfg, testloader, device)
     elif args.command == "test":
         test_model(args.model, cfg, testloader, device, args.checkpoint)
     else:
