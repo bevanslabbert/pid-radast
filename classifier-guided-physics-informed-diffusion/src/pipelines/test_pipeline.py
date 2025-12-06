@@ -1,5 +1,5 @@
 import torch
-from torchvision.models import resnet50, ResNet50_Weights
+from torchvision.models import resnet50
 import torchvision
 import torch
 import torch.nn as nn
@@ -14,7 +14,7 @@ def test_model(model_type, config, testloader, device, resume):
 def evaluate_model_performance(model_type, config, testloader, device, resume):
     if model_type == 'classifier':
         # model definition
-        model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
+        model = resnet50(pretrained=True)
 
         num_classes = config['data']['num_classes']
 
