@@ -43,6 +43,7 @@ def main():
 
     # Set device to GPU if available
     device = torch.device(cfg["device"] if torch.cuda.is_available() else "cpu")
+
     print(f"On device {device}")
     set_seed(cfg["seed"])
 
