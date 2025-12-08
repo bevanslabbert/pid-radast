@@ -1,4 +1,5 @@
 import torch
+import datetime
 from torchvision.models import resnet50
 import torchvision
 import torch
@@ -50,5 +51,4 @@ def evaluate_model_performance(model_type, model, config, testloader, device):
             disp = ConfusionMatrixDisplay(confusion_matrix=cm)
             disp.plot(cmap='Blues', xticks_rotation=45)
             plt.title("Confusion Matrix")
-            plt.show()
-
+            plt.savefig(f'results/{model_type}_{datetime.date.today().strftime("%Y-%m-%d")}_confusion_matrix.png')
