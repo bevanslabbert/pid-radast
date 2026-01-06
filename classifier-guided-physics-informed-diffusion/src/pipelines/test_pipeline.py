@@ -21,9 +21,10 @@ def evaluate_model_performance(model_type, model, config, testloader, device, re
         # replace last layer to match number of classes
         model.fc = nn.Linear(model.fc.in_features, num_classes)
 
-        checkpoint = torch.load('checkpoints/classifier.pth', map_location='cpu')
+        checkpoint = torch.load('checkpoints/classifier.pth', map_location=device)
         model.load_state_dict(checkpoint['model_state_dict'])
 
+        model.to_device(device)
         model.eval()
 
         correct = 0
