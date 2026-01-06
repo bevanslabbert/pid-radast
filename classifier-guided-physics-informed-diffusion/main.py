@@ -1,6 +1,8 @@
 import torch
 import numpy as np
 import argparse
+import os
+from datetime import datetime
 import torchvision.transforms as transforms
 from src.utils.config import load_config
 from src.pipelines.optimize_parameters_pipeline import optimize_parameters
@@ -67,13 +69,18 @@ def main():
         batch_size=cfg['data']['batch_size']
     )
 
+    # Ensure the results/model_type directory exists for saving results
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    result_directory = f'results/{args.model}/run_{timestamp}'
+    os.makedirs(result_directory, exist_ok=True)
+
     if args.command == "optimize":
-        optimize_parameters(args.model, cfg)
+        optimize_parameters(args.model, cfg, result_directory)
     elif args.command == "train":
-        model = train_model(args.model, cfg, trainloader, valloader, device, resume=args.resume)
-        evaluate_model_performance(args.model, model, cfg, testloader, device)
+        model = train_model(args.model, cfg, trainloader, valloader, device, result_directory, resume=args.resume)
+        evaluate_model_performance(args.model, model, cfg, testloader, device, result_directory)
     elif args.command == "test":
-        test_model(args.model, cfg, testloader, device, args.checkpoint)
+        test_model(args.model, cfg, testloader, device, args.checkpoint, result_directory)
     else:
         parser.print_help()
 

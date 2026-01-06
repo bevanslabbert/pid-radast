@@ -24,7 +24,7 @@ def evaluate_loss(model, dataloader, criterion, device='cpu'):
 
     return total_loss / len(dataloader)
 
-def train_classification(config, trainloader, valloader, device, resume):
+def train_classification(config, trainloader, valloader, device, result_directory, resume):
 
     # model definition
     model = resnet50(pretrained=True)
@@ -114,7 +114,7 @@ def train_classification(config, trainloader, valloader, device, resume):
 
     return model
 
-def train_diffusion(config, trainloader,  device, resume):
+def train_diffusion(config, trainloader,  device, result_directory, resume):
     # --- UNet that supports class conditioning ---
     unet = UNet2DConditionModel(
         sample_size=32,
@@ -175,7 +175,7 @@ def train_diffusion(config, trainloader,  device, resume):
 
     return unet
 
-def train_robust_classifier(config, trainloader, device, resume):
+def train_robust_classifier(config, trainloader, device, result_directory, resume):
     # model definition
     num_classes = config['data']['num_classes']
     rob_model = TimeDependentResNet(num_classes)
@@ -272,19 +272,16 @@ def train_robust_classifier(config, trainloader, device, resume):
     plt.legend()
     plt.grid(True)
 
-    # 1. SAVE FIRST (with an extension)
-    plt.savefig("./classifier_plot.png") 
-    
-    # 2. SHOW SECOND
-    plt.show() 
+    print(f'saving in {result_directory}/classifier_loss_plot.png')
+    plt.savefig(f'{result_directory}/classifier_loss_plot.png') 
 
     return rob_model
 
-def train_model(model, config, trainloader, valloader, device, resume):
+def train_model(model, config, trainloader, valloader, device, result_directory, resume):
     print(f"🚀 Training {model} for {config['training']['epochs']} epochs")
     if model == 'classifier':
-        return train_classification(config, trainloader, valloader, device, resume)
+        return train_classification(config, trainloader, valloader, device, result_directory, resume)
     elif model == 'robust_classifier':
-        return train_robust_classifier(config, trainloader, device, resume)
+        return train_robust_classifier(config, trainloader, device, result_directory, resume)
     elif model == 'diffuser':
-        return train_diffusion(config, trainloader, valloader, device, resume)
+        return train_diffusion(config, trainloader, valloader, device, result_directory, resume)

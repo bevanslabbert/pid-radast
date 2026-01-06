@@ -6,13 +6,15 @@ import torch
 import torch.nn as nn
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
+import os
 
-def test_model(model_type, config, testloader, device, resume):
+def test_model(model_type, config, testloader, device, result_directory, resume):
     if model_type == 'classifier':
-        evaluate_model_performance(model_type, config, testloader, device, resume)
+        evaluate_model_performance(model_type, config, testloader, device, result_directory, resume)
 
 # evaluate model performance
-def evaluate_model_performance(model_type, model, config, testloader, device):
+def evaluate_model_performance(model_type, model, config, testloader, device, result_directory):
+
     if model_type == 'classifier':
         num_classes = config['data']['num_classes']
 
@@ -51,4 +53,4 @@ def evaluate_model_performance(model_type, model, config, testloader, device):
             disp = ConfusionMatrixDisplay(confusion_matrix=cm)
             disp.plot(cmap='Blues', xticks_rotation=45)
             plt.title("Confusion Matrix")
-            plt.savefig(f'results/{model_type}_{datetime.date.today().strftime("%Y-%m-%d")}_confusion_matrix.png')
+            plt.savefig(f'{result_directory}/confusion_matrix.png')

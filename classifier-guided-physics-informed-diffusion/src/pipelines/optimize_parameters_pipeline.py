@@ -17,7 +17,7 @@ def set_gpu_parallel_training(model):
 
     return device, model
 
-def optimize_parameters(model_type, config):
+def optimize_parameters(model_type, config, result_directory):
     print(f"🚀 Starting {model_type} optimization")
 
     if model_type == "classifier":
