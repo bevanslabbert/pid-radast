@@ -24,7 +24,7 @@ def evaluate_loss(model, dataloader, criterion, device='cpu'):
 
     return total_loss / len(dataloader)
 
-def train_classification(model, config, trainloader, valloader, device, resume):
+def train_classification(config, trainloader, valloader, device, resume):
 
     # model definition
     model = resnet50(pretrained=True)
@@ -114,7 +114,7 @@ def train_classification(model, config, trainloader, valloader, device, resume):
 
     return model
 
-def train_diffusion(model, config, trainloader, valloader, device, resume):
+def train_diffusion(config, trainloader,  device, resume):
     # --- UNet that supports class conditioning ---
     unet = UNet2DConditionModel(
         sample_size=32,
@@ -175,7 +175,7 @@ def train_diffusion(model, config, trainloader, valloader, device, resume):
 
     return unet
 
-def train_robust_classifier(model, config, trainloader, valloader, device, resume):
+def train_robust_classifier(config, trainloader, device, resume):
     # model definition
     num_classes = config['data']['num_classes']
     rob_model = TimeDependentResNet(num_classes)
@@ -197,7 +197,7 @@ def train_robust_classifier(model, config, trainloader, valloader, device, resum
 
     if resume is not None and os.path.isfile(resume):
         checkpoint = torch.load(resume, map_location=device)
-        model.load_state_dict(checkpoint['model_state_dict'])
+        rob_model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
@@ -252,28 +252,39 @@ def train_robust_classifier(model, config, trainloader, valloader, device, resum
         # save checkpoint for resuming
         torch.save({
             'epoch': epoch,
-            'model_state_dict': model.state_dict(),
+            'model_state_dict': rob_model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
             'loss': loss
         }, f'checkpoints/robust_classifier.pth')
 
     plt.figure(figsize=(8, 5))
-    plt.plot(epoch_losses, label='Training Loss', marker='o')
-    plt.plot(val_losses, label='Validation Loss', marker='s')
+        
+    # Ensure we only plot the average losses per epoch
+    plt.plot(range(1, len(epoch_losses) + 1), epoch_losses, label='Training Loss', marker='o')
+    
+    # Only plot validation if there is actually data in it
+    if val_losses:
+        plt.plot(range(1, len(val_losses) + 1), val_losses, label='Validation Loss', marker='s')
+    
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.title('Training vs Validation Loss')
     plt.legend()
     plt.grid(True)
-    plt.show()
+
+    # 1. SAVE FIRST (with an extension)
+    plt.savefig("./classifier_plot.png") 
+    
+    # 2. SHOW SECOND
+    plt.show() 
 
     return rob_model
 
 def train_model(model, config, trainloader, valloader, device, resume):
     print(f"🚀 Training {model} for {config['training']['epochs']} epochs")
     if model == 'classifier':
-        return train_classification(model, config, trainloader, valloader, device, resume)
+        return train_classification(config, trainloader, valloader, device, resume)
     elif model == 'robust_classifier':
-        return train_robust_classifier(model, config, trainloader, valloader, device, resume)
+        return train_robust_classifier(config, trainloader, device, resume)
     elif model == 'diffuser':
-        return train_diffusion(model, config, trainloader, valloader, device, resume)
+        return train_diffusion(config, trainloader, valloader, device, resume)
