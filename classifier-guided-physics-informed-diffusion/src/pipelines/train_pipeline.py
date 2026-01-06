@@ -110,7 +110,9 @@ def train_classification(config, trainloader, valloader, device, result_director
     plt.title('Training vs Validation Loss')
     plt.legend()
     plt.grid(True)
-    plt.show()
+
+    print(f'saving in {result_directory}/classifier_loss_plot.png')
+    plt.savefig(f'{result_directory}/classifier_loss_plot.png') 
 
     return model
 
@@ -272,8 +274,8 @@ def train_robust_classifier(config, trainloader, device, result_directory, resum
     plt.legend()
     plt.grid(True)
 
-    print(f'saving in {result_directory}/classifier_loss_plot.png')
-    plt.savefig(f'{result_directory}/classifier_loss_plot.png') 
+    print(f'saving in {result_directory}/robust_classifier_loss_plot.png')
+    plt.savefig(f'{result_directory}/robust_classifier_loss_plot.png') 
 
     return rob_model
 
