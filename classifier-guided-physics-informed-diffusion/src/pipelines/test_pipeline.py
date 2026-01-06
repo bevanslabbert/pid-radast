@@ -8,14 +8,10 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import os
 
-def test_model(model_type, config, testloader, device, result_directory, resume):
-    if model_type == 'classifier':
-        evaluate_model_performance(model_type, config, testloader, device, result_directory, resume)
-
 # evaluate model performance
-def evaluate_model_performance(model_type, model, config, testloader, device, result_directory):
-
-    if model_type == 'classifier':
+def test_model(model_type, model, config, testloader, device, result_directory):
+    print(f'Testing model')
+    if model_type == 'robust_classifier' or model_type == 'classifier':
         num_classes = config['data']['num_classes']
 
         # replace last layer to match number of classes

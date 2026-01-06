@@ -206,7 +206,6 @@ def train_robust_classifier(config, trainloader, device, result_directory, resum
 
     # train model
     for epoch in range(start_epoch, num_epochs):
-        print(f"Epoch {epoch + 1}")
 
         total_loss = 0.0
         rob_model.train()
@@ -277,6 +276,7 @@ def train_robust_classifier(config, trainloader, device, result_directory, resum
     print(f'saving in {result_directory}/robust_classifier_loss_plot.png')
     plt.savefig(f'{result_directory}/robust_classifier_loss_plot.png') 
 
+    # torch.save(rob_model.state_dict(), f'{result_directory}/state_dict.pth') # save this config
     return rob_model
 
 def train_model(model, config, trainloader, valloader, device, result_directory, resume):

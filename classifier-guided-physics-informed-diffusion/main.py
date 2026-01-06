@@ -8,7 +8,6 @@ from src.utils.config import load_config
 from src.pipelines.optimize_parameters_pipeline import optimize_parameters
 from src.pipelines.train_pipeline import train_model
 from src.pipelines.test_pipeline import test_model
-from src.pipelines.test_pipeline import evaluate_model_performance
 from src.utils.data import get_data_loaders
 
 # Setting a global seed for reproducibility
@@ -78,8 +77,9 @@ def main():
         optimize_parameters(args.model, cfg, result_directory)
     elif args.command == "train":
         model = train_model(args.model, cfg, trainloader, valloader, device, result_directory, resume=args.resume)
-        evaluate_model_performance(args.model, model, cfg, testloader, device, result_directory)
+        test_model(args.model, model, cfg, testloader, device, result_directory)
     elif args.command == "test":
+        # TODO: need to get the trained model
         test_model(args.model, cfg, testloader, device, args.checkpoint, result_directory)
     else:
         parser.print_help()
