@@ -24,7 +24,7 @@ def evaluate_model_performance(model_type, model, config, testloader, device, re
         checkpoint = torch.load('checkpoints/classifier.pth', map_location=device)
         model.load_state_dict(checkpoint['model_state_dict'])
 
-        model.to_device(device)
+        model.to(device)
         model.eval()
 
         correct = 0
