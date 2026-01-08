@@ -144,6 +144,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
 
     # --- Training loop ---
     for epoch in range(num_epochs):
+        print(f'Epoch {epoch}')
         for images, labels in trainloader:
             images, labels = images.to(device), labels.to(device)
 
