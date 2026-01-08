@@ -117,13 +117,17 @@ def train_classification(config, trainloader, valloader, device, result_director
     return model
 
 def train_diffusion(config, trainloader, device, result_directory, resume):
+    torch.cuda.empty_cache()
+    import gc
+    gc.collect()
+
     # --- UNet that supports class conditioning ---
     unet = UNet2DConditionModel(
         sample_size=32,
         in_channels=3,
         out_channels=3,
         layers_per_block=2,
-        block_out_channels=(128, 128, 256, 256),
+        block_out_channels=(64, 64, 128, 256),
         down_block_types=("DownBlock2D", "DownBlock2D", "AttnDownBlock2D", "DownBlock2D"),
         up_block_types=("UpBlock2D", "AttnUpBlock2D", "UpBlock2D", "UpBlock2D"),
         cross_attention_dim=128,   # needed for conditioning
