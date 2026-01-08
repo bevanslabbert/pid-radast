@@ -163,7 +163,8 @@ def train_diffusion(config, trainloader,  device, result_directory, resume):
 
     unet.eval()
     with torch.no_grad():
-        label = torch.tensor([0] * 8, device=device)  # generate "class 3"
+        target_class = 3
+        label = torch.tensor([target_class] * 8, device=device)  # generate target class
         class_embeddings = class_emb(label)
 
         scheduler.set_timesteps(50)
@@ -173,7 +174,15 @@ def train_diffusion(config, trainloader,  device, result_directory, resume):
             noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample
             noisy = scheduler.step(noise_pred, t, noisy).prev_sample
 
-        # noisy now contains generated images
+    torchvision.utils.save_image(
+        noisy, 
+        f"{result_directory}/generated_class_{target_class}.png", 
+        nrow=2, 
+        normalize=True, 
+        value_range=(-1, 1)
+    )
+
+    print(f"✅ Generated images for class {target_class} saved to PNG.")
 
     return unet
 
