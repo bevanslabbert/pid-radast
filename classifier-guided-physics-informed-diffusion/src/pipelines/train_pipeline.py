@@ -170,7 +170,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
     with torch.no_grad():
         target_class = 1
         label = torch.tensor([target_class] * 8, device=device)  # generate target class
-        class_embeddings = class_emb(label)
+        class_embeddings = class_emb(label).unsqueeze(1)
 
         scheduler.set_timesteps(50)
         noisy = torch.randn(8, 3, 32, 32, device=device)
