@@ -136,8 +136,8 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
     scheduler = DDPMScheduler(num_train_timesteps=1000)
 
     # Embed class labels
-    num_classes = 2
-    num_epochs = 5
+    num_classes = config['data']['num_classes']
+    num_epochs = config['training']['epochs']
     class_emb = nn.Embedding(num_classes, 128).to(device)
 
     optimizer = torch.optim.AdamW(unet.parameters(), lr=1e-5)
@@ -168,7 +168,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
 
     unet.eval()
     with torch.no_grad():
-        target_class = 3
+        target_class = 1
         label = torch.tensor([target_class] * 8, device=device)  # generate target class
         class_embeddings = class_emb(label)
 
