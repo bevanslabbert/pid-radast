@@ -116,7 +116,7 @@ def train_classification(config, trainloader, valloader, device, result_director
 
     return model
 
-def train_diffusion(config, trainloader,  device, result_directory, resume):
+def train_diffusion(config, trainloader, device, result_directory, resume):
     # --- UNet that supports class conditioning ---
     unet = UNet2DConditionModel(
         sample_size=32,
@@ -295,4 +295,6 @@ def train_model(model, config, trainloader, valloader, device, result_directory,
     elif model == 'robust_classifier':
         return train_robust_classifier(config, trainloader, device, result_directory, resume)
     elif model == 'diffuser':
-        return train_diffusion(config, trainloader, valloader, device, result_directory, resume)
+        return train_diffusion(config, trainloader, device, result_directory, resume)
+    else:
+        raise f'Model {model} not supported ["diffuser", "robust_classifier, "classifier"]'
