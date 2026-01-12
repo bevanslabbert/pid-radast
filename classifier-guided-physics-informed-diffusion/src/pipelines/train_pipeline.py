@@ -52,7 +52,7 @@ def train_classification(config, trainloader, valloader, device, result_director
 
     start_epoch = 0
 
-    if resume is not None and resume == 'load':
+    if resume is not None and (resume == 'load' or resume == 'save'):
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -97,7 +97,7 @@ def train_classification(config, trainloader, valloader, device, result_director
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
 
         # save checkpoint for resuming
-        if not resume == None and resume == 'load' or resume == 'save':
+        if not resume == None and resume == 'save':
             save_checkpoint(
                 {
                     'epoch': epoch,
@@ -240,7 +240,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
 
     start_epoch = 0
 
-    if resume is not None and resume == 'load':
+    if resume is not None and (resume == 'load' or resume == 'save'):
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
         rob_model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -294,7 +294,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}')
 
         # save checkpoint for resuming
-        if not resume == None and resume == 'load' or resume == 'save':
+        if not resume == None and resume == 'save':
             save_checkpoint(
                 {
                     'epoch': epoch,
