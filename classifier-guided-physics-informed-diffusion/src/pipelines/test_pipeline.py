@@ -11,7 +11,7 @@ import os
 # evaluate model performance
 def test_model(model_type, model, config, testloader, device, result_directory):
     print(f'Testing model')
-    if model_type == 'robust_classifier' or model_type == 'classifier':
+    if model_type == 'robust_classification' or model_type == 'classification':
         num_classes = config['data']['num_classes']
 
         # replace last layer to match number of classes

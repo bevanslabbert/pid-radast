@@ -53,7 +53,7 @@ def train_classification(config, trainloader, valloader, device, result_director
     start_epoch = 0
 
     if resume is not None and resume == True:
-        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/{config.model}', device)
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
@@ -105,7 +105,7 @@ def train_classification(config, trainloader, valloader, device, result_director
                 'loss': loss,
                 'config': config
             },
-            f'{CHECKPOINT_DIR}/{config.model}'
+            f'{CHECKPOINT_DIR}/classification'
         )
 
     plt.figure(figsize=(8, 5))
@@ -149,7 +149,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
     optimizer = torch.optim.AdamW(unet.parameters(), lr=1e-5)
 
     if resume is not None and resume == True:
-        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/{config.model}', device)
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
         unet.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
@@ -188,7 +188,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
                 'loss': loss,
                 'config': config
             },
-            f'{CHECKPOINT_DIR}/{config.model}'
+            f'{CHECKPOINT_DIR}/diffusion'
         )
 
     unet.eval()
@@ -237,7 +237,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
     start_epoch = 0
 
     if resume is not None and resume == True:
-        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/{config.model}', device)
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
         rob_model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
@@ -298,7 +298,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
                 'loss': loss,
                 'config': config
             },
-            f'{CHECKPOINT_DIR}/{config.model}'
+            f'{CHECKPOINT_DIR}/robust_classification'
         )
 
     plt.figure(figsize=(8, 5))
