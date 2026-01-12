@@ -26,7 +26,7 @@ def evaluate_loss(model, dataloader, criterion, device='cpu'):
 
     return total_loss / len(dataloader)
 
-def train_classification(config, trainloader, valloader, device, result_directory, resume):
+def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
 
     # model definition
     model = resnet50(pretrained=True)
@@ -123,7 +123,7 @@ def train_classification(config, trainloader, valloader, device, result_director
 
     return model
 
-def train_diffusion(config, trainloader, device, result_directory, resume):
+def train_diffusion(config, trainloader, device, result_directory, resume, checkpoint):
     torch.cuda.empty_cache()
     import gc
     gc.collect()
@@ -220,7 +220,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
 
     return unet
 
-def train_robust_classification(config, trainloader, device, result_directory, resume):
+def train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint):
     # model definition
     num_classes = config['data']['num_classes']
     rob_model = TimeDependentResNet(num_classes)
@@ -327,13 +327,13 @@ def train_robust_classification(config, trainloader, device, result_directory, r
     # torch.save(rob_model.state_dict(), f'{result_directory}/state_dict.pth') # save this config
     return rob_model
 
-def train_model(model, config, trainloader, valloader, device, result_directory, resume):
+def train_model(model, config, trainloader, valloader, device, result_directory, resume, checkpoint):
     print(f"🚀 Training {model} for {config['training']['epochs']} epochs")
     if model == 'classification':
-        return train_classification(config, trainloader, valloader, device, result_directory, resume)
+        return train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint)
     elif model == 'robust_classification':
-        return train_robust_classification(config, trainloader, device, result_directory, resume)
+        return train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint)
     elif model == 'diffusion':
-        return train_diffusion(config, trainloader, device, result_directory, resume)
+        return train_diffusion(config, trainloader, device, result_directory, resume, checkpoint)
     else:
         raise f'Model {model} not supported ["diffusion", "robust_classification, "classification"]'
