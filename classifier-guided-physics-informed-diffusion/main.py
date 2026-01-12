@@ -9,6 +9,7 @@ from src.pipelines.optimize_parameters_pipeline import optimize_parameters
 from src.pipelines.train_pipeline import train_model
 from src.pipelines.test_pipeline import test_model
 from src.utils.data import get_data_loaders
+from src.utils.common import clear_gpu_memory
 
 # Setting a global seed for reproducibility
 def set_seed(seed):
@@ -16,6 +17,8 @@ def set_seed(seed):
     np.random.seed(seed)
 
 def main():
+
+    clear_gpu_memory()
 
     parser = argparse.ArgumentParser(description="Run experiments modularly.")
     subparsers = parser.add_subparsers(dest="command")
@@ -32,6 +35,7 @@ def main():
     train_parser.add_argument("--model", required=True, help="Model type: classifier, robust_classifier, diffusion, integrated_diffusion")
     train_parser.add_argument("--config", help="Path to config file")
     train_parser.add_argument("--resume", help="Optional checkpoint path to resume")
+    train_parser.add_argument("--checkpoint", help="Optional checkpoint path to save to")
     train_parser.add_argument("--dataset", help="Name of dataset to use")
 
     # --- Test command ---
