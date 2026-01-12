@@ -52,7 +52,7 @@ def train_classification(config, trainloader, valloader, device, result_director
 
     start_epoch = 0
 
-    if resume is not None and resume == True:
+    if resume is not None and resume == 'load':
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -97,16 +97,17 @@ def train_classification(config, trainloader, valloader, device, result_director
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
 
         # save checkpoint for resuming
-        save_checkpoint(
-            {
-                'epoch': epoch,
-                'model_state_dict': model.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'loss': loss,
-                'config': config
-            },
-            f'{CHECKPOINT_DIR}/classification'
-        )
+        if not resume == None and resume == 'load':
+            save_checkpoint(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'loss': loss,
+                    'config': config
+                },
+                f'{CHECKPOINT_DIR}/classification'
+            )
 
     plt.figure(figsize=(8, 5))
     plt.plot(epoch_losses, label='Training Loss', marker='o')
@@ -150,7 +151,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
 
     start_epoch = 0
 
-    if resume is not None and resume == True:
+    if resume is not None and resume == 'load':
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
         unet.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -182,16 +183,17 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
         print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
 
         # save checkpoint for resuming
-        save_checkpoint(
-            {
-                'epoch': epoch,
-                'model_state_dict': unet.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'loss': loss,
-                'config': config
-            },
-            f'{CHECKPOINT_DIR}/diffusion'
-        )
+        if not resume == None and resume == 'load':
+            save_checkpoint(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': unet.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'loss': loss,
+                    'config': config
+                },
+                f'{CHECKPOINT_DIR}/diffusion'
+            )
 
     unet.eval()
     with torch.no_grad():
@@ -238,7 +240,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
 
     start_epoch = 0
 
-    if resume is not None and resume == True:
+    if resume is not None and resume == 'load':
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
         rob_model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -292,16 +294,17 @@ def train_robust_classification(config, trainloader, device, result_directory, r
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}')
 
         # save checkpoint for resuming
-        save_checkpoint(
-            {
-                'epoch': epoch,
-                'model_state_dict': rob_model.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'loss': loss,
-                'config': config
-            },
-            f'{CHECKPOINT_DIR}/robust_classification'
-        )
+        if not resume == None and resume == 'load':
+            save_checkpoint(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': rob_model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'loss': loss,
+                    'config': config
+                },
+                f'{CHECKPOINT_DIR}/robust_classification'
+            )
 
     plt.figure(figsize=(8, 5))
         
