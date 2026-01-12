@@ -97,7 +97,7 @@ def train_classification(config, trainloader, valloader, device, result_director
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
 
         # save checkpoint for resuming
-        if not resume == None and resume == 'load':
+        if not resume == None and resume == 'load' or resume == 'save':
             save_checkpoint(
                 {
                     'epoch': epoch,
@@ -183,7 +183,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
         print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
 
         # save checkpoint for resuming
-        if not resume == None and resume == 'load':
+        if not resume == None and resume == 'load' or resume == 'save':
             save_checkpoint(
                 {
                     'epoch': epoch,
@@ -294,7 +294,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}')
 
         # save checkpoint for resuming
-        if not resume == None and resume == 'load':
+        if not resume == None and resume == 'load' or resume == 'save':
             save_checkpoint(
                 {
                     'epoch': epoch,
