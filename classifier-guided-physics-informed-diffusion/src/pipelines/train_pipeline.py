@@ -148,6 +148,8 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
 
     optimizer = torch.optim.AdamW(unet.parameters(), lr=1e-5)
 
+    start_epoch = 0
+
     if resume is not None and resume == True:
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
         unet.load_state_dict(checkpoint['model_state_dict'])
