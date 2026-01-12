@@ -54,20 +54,30 @@ def main():
     print(f"On device {device}")
     set_seed(cfg["seed"])
 
+    classification_transform = transforms.Compose([
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomVerticalFlip(p=0.5),
+        transforms.RandomRotation(30),
+        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
+        transforms.Grayscale(num_output_channels=3),  # Convert 1 channel → 3 channels
+        transforms.GaussianBlur(3),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ]),
+
+    diffusion_transform = transforms.Compose([
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomVerticalFlip(p=0.5),
+        transforms.RandomRotation(30),
+        transforms.Grayscale(num_output_channels=3),  # Convert 1 channel → 3 channels
+        transforms.ToTensor(),
+        transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+    ]),
 
     trainloader, valloader, testloader = get_data_loaders(
         args.dataset or "Mirabest",
-        transform = transforms.Compose([
-            transforms.RandomResizedCrop(224),
-            transforms.RandomHorizontalFlip(),
-            transforms.RandomVerticalFlip(p=0.5),
-            transforms.RandomRotation(30),
-            transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
-            transforms.Grayscale(num_output_channels=3),  # Convert 1 channel → 3 channels
-            transforms.GaussianBlur(3),
-            transforms.ToTensor(),
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-        ]),
+        transform = diffusion_transform, # TODO: make this take argument and adjust accordingly
         batch_size=cfg['data']['batch_size']
     )
 
