@@ -2,3 +2,4 @@
 venv
 # classifier-guided-physics-informed-diffusion/checkpoints/**
 *.pth
+*.pt

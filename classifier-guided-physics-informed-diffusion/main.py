@@ -30,7 +30,7 @@ def main():
     # --- Train command ---
     train_parser = subparsers.add_parser("train")
     train_parser.add_argument("--model", required=True, help="Model type: classifier, robust_classifier, diffusion, integrated_diffusion")
-    train_parser.add_argument("--config", required=True, help="Path to config file")
+    train_parser.add_argument("--config", help="Path to config file")
     train_parser.add_argument("--resume", help="Optional checkpoint path to resume")
     train_parser.add_argument("--dataset", help="Name of dataset to use")
 
@@ -38,15 +38,18 @@ def main():
     test_parser = subparsers.add_parser("test")
     test_parser.add_argument("--model", required=True)
     test_parser.add_argument("--checkpoint", required=False)
-    test_parser.add_argument("--config", required=True)
+    test_parser.add_argument("--config")
     test_parser.add_argument("--dataset", help="Name of dataset to use")
 
 
     args = parser.parse_args()
+
+    if not args.config:
+        args.config = f"config/{args.model}.yaml"
+
     cfg = load_config(args.config)
 
     # Set device to GPU if available
-    print(torch.cuda.is_available())
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"On device {device}")
     set_seed(cfg["seed"])

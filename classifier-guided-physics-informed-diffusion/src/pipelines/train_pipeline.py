@@ -1,4 +1,5 @@
 from src.utils.data import get_data_loaders
+from src.utils.checkpoint import save_checkpoint, load_checkpoint
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
 import torchvision.transforms as transforms
@@ -9,7 +10,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from diffusers import UNet2DConditionModel, DDPMScheduler
 import matplotlib.pyplot as plt
-import os
+
+CHECKPOINT_DIR = 'checkpoints'
  
 def evaluate_loss(model, dataloader, criterion, device='cpu'):
     model.eval()
@@ -50,8 +52,8 @@ def train_classification(config, trainloader, valloader, device, result_director
 
     start_epoch = 0
 
-    if resume is not None and os.path.isfile(resume):
-        checkpoint = torch.load(resume, map_location=device)
+    if resume is not None and resume == True:
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/{config.model}', device)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
@@ -95,12 +97,16 @@ def train_classification(config, trainloader, valloader, device, result_director
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
 
         # save checkpoint for resuming
-        torch.save({
-            'epoch': epoch,
-            'model_state_dict': model.state_dict(),
-            'optimizer_state_dict': optimizer.state_dict(),
-            'loss': loss
-        }, f'checkpoints/classifier.pth')
+        save_checkpoint(
+            {
+                'epoch': epoch,
+                'model_state_dict': model.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'loss': loss,
+                'config': config
+            },
+            f'{CHECKPOINT_DIR}/{config.model}'
+        )
 
     plt.figure(figsize=(8, 5))
     plt.plot(epoch_losses, label='Training Loss', marker='o')
@@ -142,8 +148,15 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
 
     optimizer = torch.optim.AdamW(unet.parameters(), lr=1e-5)
 
+    if resume is not None and resume == True:
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/{config.model}', device)
+        unet.load_state_dict(checkpoint['model_state_dict'])
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        start_epoch = checkpoint['epoch'] + 1
+        print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
+
     # --- Training loop ---
-    for epoch in range(num_epochs):
+    for epoch in range(start_epoch, num_epochs):
         print(f'Epoch {epoch}')
         for images, labels in trainloader:
             images, labels = images.to(device), labels.to(device)
@@ -165,6 +178,18 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
             optimizer.step()
 
         print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
+
+        # save checkpoint for resuming
+        save_checkpoint(
+            {
+                'epoch': epoch,
+                'model_state_dict': unet.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'loss': loss,
+                'config': config
+            },
+            f'{CHECKPOINT_DIR}/{config.model}'
+        )
 
     unet.eval()
     with torch.no_grad():
@@ -191,7 +216,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
 
     return unet
 
-def train_robust_classifier(config, trainloader, device, result_directory, resume):
+def train_robust_classification(config, trainloader, device, result_directory, resume):
     # model definition
     num_classes = config['data']['num_classes']
     rob_model = TimeDependentResNet(num_classes)
@@ -211,8 +236,8 @@ def train_robust_classifier(config, trainloader, device, result_directory, resum
 
     start_epoch = 0
 
-    if resume is not None and os.path.isfile(resume):
-        checkpoint = torch.load(resume, map_location=device)
+    if resume is not None and resume == True:
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/{config.model}', device)
         rob_model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
@@ -265,12 +290,16 @@ def train_robust_classifier(config, trainloader, device, result_directory, resum
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}')
 
         # save checkpoint for resuming
-        torch.save({
-            'epoch': epoch,
-            'model_state_dict': rob_model.state_dict(),
-            'optimizer_state_dict': optimizer.state_dict(),
-            'loss': loss
-        }, f'checkpoints/robust_classifier.pth')
+        save_checkpoint(
+            {
+                'epoch': epoch,
+                'model_state_dict': rob_model.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'loss': loss,
+                'config': config
+            },
+            f'{CHECKPOINT_DIR}/{config.model}'
+        )
 
     plt.figure(figsize=(8, 5))
         
@@ -295,11 +324,11 @@ def train_robust_classifier(config, trainloader, device, result_directory, resum
 
 def train_model(model, config, trainloader, valloader, device, result_directory, resume):
     print(f"🚀 Training {model} for {config['training']['epochs']} epochs")
-    if model == 'classifier':
+    if model == 'classification':
         return train_classification(config, trainloader, valloader, device, result_directory, resume)
-    elif model == 'robust_classifier':
-        return train_robust_classifier(config, trainloader, device, result_directory, resume)
-    elif model == 'diffuser':
+    elif model == 'robust_classification':
+        return train_robust_classification(config, trainloader, device, result_directory, resume)
+    elif model == 'diffusion':
         return train_diffusion(config, trainloader, device, result_directory, resume)
     else:
-        raise f'Model {model} not supported ["diffuser", "robust_classifier, "classifier"]'
+        raise f'Model {model} not supported ["diffusion", "robust_classification, "classification"]'
