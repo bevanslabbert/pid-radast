@@ -10,6 +10,7 @@ from src.pipelines.train_pipeline import train_model
 from src.pipelines.test_pipeline import test_model
 from src.utils.data import get_data_loaders
 from src.utils.common import clear_gpu_memory
+from src.utils.checkpoint import load_checkpoint
 
 # Setting a global seed for reproducibility
 def set_seed(seed):
