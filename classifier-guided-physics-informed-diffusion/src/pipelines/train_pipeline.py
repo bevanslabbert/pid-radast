@@ -198,7 +198,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
         class_embeddings = class_emb(label).unsqueeze(1)
 
         scheduler.set_timesteps(50)
-        noisy = torch.randn(8, 3, 150, 150, device=device)
+        noisy = torch.randn(8, 3, 128, 128, device=device)
 
         for t in scheduler.timesteps:
             noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample
