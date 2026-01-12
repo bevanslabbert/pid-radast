@@ -151,7 +151,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
 
     start_epoch = 0
 
-    if resume is not None and resume == 'load':
+    if resume is not None and (resume == 'load' or resume == 'save'):
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
         unet.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -183,7 +183,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume):
         print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
 
         # save checkpoint for resuming
-        if not resume == None and resume == 'load' or resume == 'save':
+        if not resume == None and resume == 'save':
             save_checkpoint(
                 {
                     'epoch': epoch,
