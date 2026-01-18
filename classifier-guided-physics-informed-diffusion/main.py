@@ -89,7 +89,7 @@ def main():
 
     trainloader, valloader, testloader = get_data_loaders(
         args.dataset or "Mirabest",
-        transform = diffusion_transform, # TODO: make this take argument and adjust accordingly
+        transform = diffusion_transform,
         batch_size=cfg['data']['batch_size']
     )
 
