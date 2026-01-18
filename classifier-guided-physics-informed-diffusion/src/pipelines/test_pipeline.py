@@ -78,7 +78,7 @@ def test_model(model_type, config, testloader, device, result_directory, model =
         ).to(device)
 
         state_dict = torch.load(f'checkpoints/diffusion/state.pt', map_location=device)
-        model.load_state_dict(state_dict)
+        model.load_state_dict(state_dict['model_state_dict'])
         model.to(device)
 
         model.eval()
