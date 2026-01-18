@@ -77,7 +77,7 @@ def test_model(model_type, config, testloader, device, result_directory, model =
             cross_attention_dim=128,   # needed for conditioning
         ).to(device)
 
-        state_dict = torch.load(f'checkpoints/diffusion.pth', map_location=device)
+        state_dict = torch.load(f'checkpoints/diffusion/state.pth', map_location=device)
         model.load_state_dict(state_dict)
         model.to(device)
 
