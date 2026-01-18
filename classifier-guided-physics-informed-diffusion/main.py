@@ -96,10 +96,10 @@ def main():
         optimize_parameters(args.model, cfg, result_directory)
     elif args.command == "train":
         model = train_model(args.model, cfg, trainloader, valloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint)
-        test_model(args.model, model, cfg, testloader, device, result_directory)
+        test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
     elif args.command == "test":
         # TODO: need to get the trained model
-        test_model(args.model, cfg, testloader, device, args.checkpoint, result_directory)
+        test_model(model_type=args.model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
     else:
         parser.print_help()
 
