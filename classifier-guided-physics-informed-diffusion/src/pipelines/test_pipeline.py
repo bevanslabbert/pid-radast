@@ -68,8 +68,8 @@ def test_model(model_type, config, testloader, device, result_directory, model =
         # --- UNet that supports class conditioning ---
         model = UNet2DConditionModel(
             sample_size=32,
-            in_channels=3,
-            out_channels=3,
+            in_channels=1,
+            out_channels=1,
             layers_per_block=2,
             block_out_channels=(64, 64, 128, 256),
             down_block_types=("DownBlock2D", "DownBlock2D", "AttnDownBlock2D", "DownBlock2D"),

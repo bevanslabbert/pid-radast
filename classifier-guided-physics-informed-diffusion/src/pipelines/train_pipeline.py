@@ -155,6 +155,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
         unet.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
@@ -189,6 +190,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
                     'epoch': epoch,
                     'model_state_dict': unet.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
+                    'class_emb_state_dict': class_emb.state_dict(),
                     'loss': loss,
                     'config': config
                 },
@@ -202,7 +204,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         class_embeddings = class_emb(label).unsqueeze(1)
 
         scheduler.set_timesteps(50)
-        noisy = torch.randn(8, 3, 224, 224, device=device)
+        noisy = torch.randn(8, 1, 224, 224, device=device)
 
         for t in scheduler.timesteps:
             noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample

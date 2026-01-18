@@ -24,27 +24,33 @@ def main():
     parser = argparse.ArgumentParser(description="Run experiments modularly.")
     subparsers = parser.add_subparsers(dest="command")
 
+    model_help = "[robust_classification | classification | diffusion ] The model type to perform the current action on"
+    config_help = "[string] Path to .yaml file to use for config [default: config/<model>.yaml]"
+    resume_help = "[True | False] Whether to resume training from last saved epoch"
+    checkpoint_help = "[True | False] Whether to save the training checkpoints"
+    dataset_help = "[mirabest] Which dataset to evaluate"
+
     # --- Optimize command ---
     optimize_parser = subparsers.add_parser("optimize")
-    optimize_parser.add_argument("--model", required=True)
+    optimize_parser.add_argument("--model", required=True, help=model_help)
     optimize_parser.add_argument("--checkpoint", required=False)
     optimize_parser.add_argument("--config", required=True)
-    optimize_parser.add_argument("--dataset", help="Name of dataset to use")
+    optimize_parser.add_argument("--dataset", help=dataset_help)
 
     # --- Train command ---
     train_parser = subparsers.add_parser("train")
-    train_parser.add_argument("--model", required=True, help="Model type: classifier, robust_classifier, diffusion, integrated_diffusion")
-    train_parser.add_argument("--config", help="Path to config file")
-    train_parser.add_argument("--resume", help="Optional checkpoint path to resume")
-    train_parser.add_argument("--checkpoint", help="Optional checkpoint path to save to")
-    train_parser.add_argument("--dataset", help="Name of dataset to use")
+    train_parser.add_argument("--model", required=True, help=model_help)
+    train_parser.add_argument("--config", help=config_help)
+    train_parser.add_argument("--resume", help=resume_help)
+    train_parser.add_argument("--checkpoint", help=checkpoint_help)
+    train_parser.add_argument("--dataset", help=dataset_help)
 
     # --- Test command ---
     test_parser = subparsers.add_parser("test")
-    test_parser.add_argument("--model", required=True)
-    test_parser.add_argument("--checkpoint", required=False)
-    test_parser.add_argument("--config")
-    test_parser.add_argument("--dataset", help="Name of dataset to use")
+    test_parser.add_argument("--model", required=True, help=model_help)
+    test_parser.add_argument("--checkpoint", required=False, help=checkpoint_help)
+    test_parser.add_argument("--config", help=config_help)
+    test_parser.add_argument("--dataset", help=dataset_help)
 
 
     args = parser.parse_args()
