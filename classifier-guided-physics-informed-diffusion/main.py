@@ -84,7 +84,7 @@ def main():
         transforms.RandomRotation(30),
         transforms.Grayscale(num_output_channels=1),  # greyscale
         transforms.ToTensor(),
-        transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+        transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
     trainloader, valloader, testloader = get_data_loaders(
