@@ -66,7 +66,7 @@ def test_model(model_type, config, testloader, device, result_directory, model =
         class_emb = nn.Embedding(num_classes, 128).to(device)
 
         # --- UNet that supports class conditioning ---
-        unet = UNet2DConditionModel(
+        model = UNet2DConditionModel(
             sample_size=32,
             in_channels=3,
             out_channels=3,
@@ -81,7 +81,7 @@ def test_model(model_type, config, testloader, device, result_directory, model =
         model.load_state_dict(state_dict)
         model.to(device)
 
-        unet.eval()
+        model.eval()
         with torch.no_grad():
             target_class = 1
             label = torch.tensor([target_class] * 8, device=device)  # generate target class
@@ -91,7 +91,7 @@ def test_model(model_type, config, testloader, device, result_directory, model =
             noisy = torch.randn(8, 3, 224, 224, device=device)
 
             for t in scheduler.timesteps:
-                noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample
+                noise_pred = model(noisy, t, encoder_hidden_states=class_embeddings).sample
                 noisy = scheduler.step(noise_pred, t, noisy).prev_sample
 
         torchvision.utils.save_image(
