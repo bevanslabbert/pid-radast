@@ -9,7 +9,7 @@ import torchvision
 from diffusers import UNet2DConditionModel, DDPMScheduler
 
 # evaluate model performance
-def test_model(model_type, model, config, testloader, device, result_directory):
+def test_model(model_type, config, testloader, device, result_directory, model = None):
     print(f'Testing model')
     if model_type == 'robust_classification' or model_type == 'classification':
         # TODO: Test this - added last
