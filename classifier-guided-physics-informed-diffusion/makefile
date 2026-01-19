@@ -58,7 +58,7 @@ htop:
 	htop
 
 gpu_job:
-	qsub -I -q gpu_1 -P CSCI1166 -l select=1:ncpus=9:ngpus=1 walltime=2:00:00
+	qsub -I -q gpu_1 -P CSCI1166 -l select=1:ncpus=9:ngpus=1 -l walltime=2:00:00
 
 cpu_job:
 	qsub -I -l select=1:ncpus=6:mpiprocs=6 -q serial -P CSCI1166 -l walltime=2:00:00 
