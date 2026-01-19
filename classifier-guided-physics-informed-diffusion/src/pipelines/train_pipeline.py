@@ -184,7 +184,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
 
         # save checkpoint for resuming
-        if not checkpoint == None and not resume == None:
+        if not checkpoint == None or not resume == None:
             save_checkpoint(
                 {
                     'epoch': epoch,
