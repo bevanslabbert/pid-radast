@@ -233,10 +233,10 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
 
     return unet
 
-def sample_from_model(model, scheduler, class_emb, num_samples, device, shape=(1, 224, 224)):
+def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 224, 224)):
     model.eval()
     # Random target labels for validation
-    labels = torch.randint(0, 10, (num_samples,), device=device) # Adjust 10 to your num_classes
+    labels = torch.randint(0, num_classes, (num_samples,), device=device)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
     scheduler.set_timesteps(50) # Use fewer steps for validation to save time
