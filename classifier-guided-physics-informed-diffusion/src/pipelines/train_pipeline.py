@@ -160,6 +160,10 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         start_epoch = checkpoint['epoch'] + 1
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
+
+    # Initialize (2048 is the standard feature dimension for Inception)
+    fid = FrechetInceptionDistance(feature=2048).to(device)
+
     # --- Training loop ---
     for epoch in range(start_epoch, num_epochs):
         unet.train()
@@ -182,9 +186,6 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-
-        # Initialize (2048 is the standard feature dimension for Inception)
-        fid = FrechetInceptionDistance(feature=2048).to(device)
 
         # --- Inside your validation block ---
         unet.eval()
