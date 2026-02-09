@@ -170,6 +170,9 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
     # --- Training loop ---
     for epoch in range(start_epoch, num_epochs):
         unet.train()
+        epoch_loss = 0
+        batch_count = 0
+
         print(f'Epoch {epoch}')
         for images, labels in trainloader:
             images, labels = images.to(device), labels.to(device)
