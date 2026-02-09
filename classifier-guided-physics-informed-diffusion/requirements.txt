@@ -10,3 +10,4 @@ diffusers
 tabulate
 astropy
 torchmetrics
+torchmetrics[image]
