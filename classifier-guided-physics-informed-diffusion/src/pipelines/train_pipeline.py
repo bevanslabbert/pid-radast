@@ -163,6 +163,10 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
     # Initialize (2048 is the standard feature dimension for Inception)
     fid = FrechetInceptionDistance(feature=2048).to(device)
 
+    loss_history = []
+    epochs_range = []
+    fid_history = []
+
     # --- Training loop ---
     for epoch in range(start_epoch, num_epochs):
         unet.train()
@@ -186,6 +190,13 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
             loss.backward()
             optimizer.step()
 
+            epoch_loss += loss.item()
+            batch_count += 1
+
+        avg_loss = epoch_loss / batch_count
+        loss_history.append(avg_loss)
+        epochs_range.append(epoch)
+
         # --- Inside your validation block ---
         unet.eval()
         with torch.no_grad():
@@ -207,7 +218,9 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
             fid.update(prepare_for_fid(real_images), real=True)
             fid.update(prepare_for_fid(fake_images), real=False)
 
-            print(f"FID Score: {fid.compute().item()}")
+            current_fid = fid.compute().item()
+            print(f"FID Score: {current_fid}")
+            fid_history.append(current_fid)
             fid.reset()
 
         print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
@@ -243,6 +256,8 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         value_range=(-1, 1)
     )
 
+    save_training_plot(epochs_range, loss_history, fid_history, result_directory)
+
     print(f"✅ Generated images saved to PNG.")
 
     return unet
@@ -267,6 +282,32 @@ def prepare_for_fid(t):
         t = (t + 1.0) / 2.0               # -1..1 -> 0..1
         t = (t * 255).clamp(0, 255)       # 0..1 -> 0..255
         return t.to(torch.uint8)          # Float -> Byte
+
+def save_training_plot(epochs, losses, fids, result_dir):
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+
+    # Primary axis: Loss
+    color = 'tab:blue'
+    ax1.set_xlabel('Epochs')
+    ax1.set_ylabel('MSE Loss', color=color)
+    ax1.plot(epochs, losses, color=color, linewidth=2, label='Training Loss')
+    ax1.tick_params(axis='y', labelcolor=color)
+    ax1.grid(True, alpha=0.3)
+
+    # Secondary axis: FID
+    ax2 = ax1.twinx()
+    color = 'tab:red'
+    ax2.set_ylabel('FID (Lower is better)', color=color)
+    ax2.plot(epochs, fids, color=color, linewidth=2, linestyle='--', label='FID Score')
+    ax2.tick_params(axis='y', labelcolor=color)
+
+    plt.title('Diffusion Training Efficiency: Loss vs. FID')
+    fig.tight_layout()
+    
+    plot_path = f"{result_dir}/training_metrics.png"
+    plt.savefig(plot_path)
+    plt.close()
+    print(f"📈 Efficiency graph saved to {plot_path}")
 
 def train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint):
     # model definition
