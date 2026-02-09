@@ -190,7 +190,14 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         unet.eval()
         with torch.no_grad():
             # 1. Generate fake images [B, 1, H, W]
-            fake_images = sample_from_model(unet, scheduler, class_emb, config['data']['batch_size'], device) 
+            fake_images = sample_from_model(
+                model=unet,
+                scheduler=scheduler,
+                class_emb=class_emb,
+                num_samples=config['data']['batch_size'],
+                num_classes=num_classes,
+                device=device
+            )
             
             # 2. Get a batch of real images [B, 1, H, W]
             real_images, _ = next(iter(trainloader))
@@ -219,10 +226,17 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
                 f'{CHECKPOINT_DIR}/diffusion'
             )
 
-    noisy = sample_from_model(unet, scheduler, class_emb, 8, device, (1, 244, 244))
+    images = sample_from_model(
+        model=unet,
+        scheduler=scheduler,
+        class_emb=class_emb,
+        num_samples=config['data']['batch_size'],
+        num_classes=num_classes,
+        device=device
+    )
 
     torchvision.utils.save_image(
-        noisy, 
+        images, 
         f"{result_directory}/generated_images.png", 
         nrow=2, 
         normalize=True, 
