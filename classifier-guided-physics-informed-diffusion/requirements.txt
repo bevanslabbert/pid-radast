@@ -9,3 +9,4 @@ scikit-learn
 diffusers
 tabulate
 astropy
+torchmetrics

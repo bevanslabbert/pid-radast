@@ -184,24 +184,24 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
             optimizer.step()
 
         # Initialize (2048 is the standard feature dimension for Inception)
-        # fid = FrechetInceptionDistance(feature=2048).to(device)
+        fid = FrechetInceptionDistance(feature=2048).to(device)
 
-        # # --- Inside your validation block ---
-        # unet.eval()
-        # with torch.no_grad():
-        #     # 1. Generate fake images [B, 1, H, W]
-        #     fake_images = sample_from_model(unet, ...) 
+        # --- Inside your validation block ---
+        unet.eval()
+        with torch.no_grad():
+            # 1. Generate fake images [B, 1, H, W]
+            fake_images = sample_from_model(unet, scheduler, class_embeddings, config['data']['batch_size'], device) 
             
-        #     # 2. Get a batch of real images [B, 1, H, W]
-        #     real_images, _ = next(iter(trainloader))
-        #     real_images = real_images.to(device)
+            # 2. Get a batch of real images [B, 1, H, W]
+            real_images, _ = next(iter(trainloader))
+            real_images = real_images.to(device)
 
-        #     # 3. Convert both to RGB for the FID metric
-        #     fid.update(real_images.repeat(1, 3, 1, 1), real=True)
-        #     fid.update(fake_images.repeat(1, 3, 1, 1), real=False)
+            # 3. Convert both to RGB for the FID metric
+            fid.update(real_images.repeat(1, 3, 1, 1), real=True)
+            fid.update(fake_images.repeat(1, 3, 1, 1), real=False)
 
-        #     print(f"FID Score: {fid.compute().item()}")
-        #     fid.reset()
+            print(f"FID Score: {fid.compute().item()}")
+            fid.reset()
 
         print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
 
@@ -219,30 +219,34 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
                 f'{CHECKPOINT_DIR}/diffusion'
             )
 
-    unet.eval()
-    with torch.no_grad():
-        target_class = 1
-        label = torch.tensor([target_class] * 8, device=device)  # generate target class
-        class_embeddings = class_emb(label).unsqueeze(1)
-
-        scheduler.set_timesteps(50)
-        noisy = torch.randn(8, 1, 224, 224, device=device)
-
-        for t in scheduler.timesteps:
-            noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample
-            noisy = scheduler.step(noise_pred, t, noisy).prev_sample
+    noisy = sample_from_model(unet, scheduler, class_embeddings, 8, device, (1, 244, 244))
 
     torchvision.utils.save_image(
         noisy, 
-        f"{result_directory}/generated_class_{target_class}.png", 
+        f"{result_directory}/generated_images.png", 
         nrow=2, 
         normalize=True, 
         value_range=(-1, 1)
     )
 
-    print(f"✅ Generated images for class {target_class} saved to PNG.")
+    print(f"✅ Generated images saved to PNG.")
 
     return unet
+
+def sample_from_model(model, scheduler, class_emb, num_samples, device, shape=(1, 224, 224)):
+    model.eval()
+    # Random target labels for validation
+    labels = torch.randint(0, 10, (num_samples,), device=device) # Adjust 10 to your num_classes
+    class_embeddings = class_emb(labels).unsqueeze(1)
+    
+    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
+    images = torch.randn((num_samples, *shape), device=device)
+    
+    for t in scheduler.timesteps:
+        with torch.no_grad():
+            noise_pred = model(images, t, encoder_hidden_states=class_embeddings).sample
+            images = scheduler.step(noise_pred, t, images).prev_sample
+    return images
 
 def train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint):
     # model definition
