@@ -160,7 +160,6 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         start_epoch = checkpoint['epoch'] + 1
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
-
     # Initialize (2048 is the standard feature dimension for Inception)
     fid = FrechetInceptionDistance(feature=2048).to(device)
 
@@ -205,8 +204,8 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
             real_images = real_images.to(device)
 
             # 3. Convert both to RGB for the FID metric
-            fid.update(real_images.repeat(1, 3, 1, 1), real=True)
-            fid.update(fake_images.repeat(1, 3, 1, 1), real=False)
+            fid.update(prepare_for_fid(real_images), real=True)
+            fid.update(prepare_for_fid(fake_images), real=False)
 
             print(f"FID Score: {fid.compute().item()}")
             fid.reset()
@@ -262,6 +261,12 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
             noise_pred = model(images, t, encoder_hidden_states=class_embeddings).sample
             images = scheduler.step(noise_pred, t, images).prev_sample
     return images
+
+def prepare_for_fid(t):
+        t = t.repeat(1, 3, 1, 1)          # 1 channel -> 3 channels
+        t = (t + 1.0) / 2.0               # -1..1 -> 0..1
+        t = (t * 255).clamp(0, 255)       # 0..1 -> 0..255
+        return t.to(torch.uint8)          # Float -> Byte
 
 def train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint):
     # model definition
