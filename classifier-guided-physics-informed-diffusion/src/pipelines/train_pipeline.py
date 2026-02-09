@@ -9,6 +9,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from diffusers import UNet2DConditionModel, DDPMScheduler
+from torchmetrics.image.fid import FrechetInceptionDistance
 import matplotlib.pyplot as plt
 
 CHECKPOINT_DIR = 'checkpoints'
@@ -130,7 +131,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
 
     # --- UNet that supports class conditioning ---
     unet = UNet2DConditionModel(
-        sample_size=32,
+        sample_size=224,
         in_channels=1,
         out_channels=1,
         layers_per_block=2,
@@ -161,6 +162,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
 
     # --- Training loop ---
     for epoch in range(start_epoch, num_epochs):
+        unet.train()
         print(f'Epoch {epoch}')
         for images, labels in trainloader:
             images, labels = images.to(device), labels.to(device)
@@ -180,6 +182,26 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+
+        # Initialize (2048 is the standard feature dimension for Inception)
+        # fid = FrechetInceptionDistance(feature=2048).to(device)
+
+        # # --- Inside your validation block ---
+        # unet.eval()
+        # with torch.no_grad():
+        #     # 1. Generate fake images [B, 1, H, W]
+        #     fake_images = sample_from_model(unet, ...) 
+            
+        #     # 2. Get a batch of real images [B, 1, H, W]
+        #     real_images, _ = next(iter(trainloader))
+        #     real_images = real_images.to(device)
+
+        #     # 3. Convert both to RGB for the FID metric
+        #     fid.update(real_images.repeat(1, 3, 1, 1), real=True)
+        #     fid.update(fake_images.repeat(1, 3, 1, 1), real=False)
+
+        #     print(f"FID Score: {fid.compute().item()}")
+        #     fid.reset()
 
         print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
 
@@ -328,6 +350,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
 
     # torch.save(rob_model.state_dict(), f'{result_directory}/state_dict.pth') # save this config
     return rob_model
+
 
 def train_model(model, config, trainloader, valloader, device, result_directory, resume, checkpoint):
     print(f"🚀 Training {model} for {config['training']['epochs']} epochs")
