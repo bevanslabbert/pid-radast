@@ -158,6 +158,9 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
+        loss_history = checkpoint['loss_history']
+        epochs_range = checkpoint['epochs_range']
+        fid_history = checkpoint['fid_history']
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
     # Initialize (2048 is the standard feature dimension for Inception)
@@ -237,7 +240,10 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
                     'optimizer_state_dict': optimizer.state_dict(),
                     'class_emb_state_dict': class_emb.state_dict(),
                     'loss': loss,
-                    'config': config
+                    'config': config,
+                    'loss_history': loss_history,
+                    'epochs_range': epochs_range,
+                    'fid_history': fid_history,
                 },
                 f'{CHECKPOINT_DIR}/diffusion'
             )
