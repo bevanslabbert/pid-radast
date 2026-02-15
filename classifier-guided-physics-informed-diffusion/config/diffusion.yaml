@@ -18,7 +18,7 @@ model:
 
 training:
   epochs: 5
-  learning_rate: 0.0005
+  learning_rate: 0.00005
   optimizer: adamw
   weight_decay: 0.01
   scheduler:
