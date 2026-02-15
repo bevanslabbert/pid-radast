@@ -9,7 +9,6 @@ data:
   input_size: 224
 
 model:
-  type: classifier # options: classifier, robust_classifier, diffuser, integrated_diffusion
   backbone: resnet50
   pretrained: true
   num_layers: 18

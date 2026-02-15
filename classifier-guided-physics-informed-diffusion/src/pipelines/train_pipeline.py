@@ -148,7 +148,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
     num_epochs = config['training']['epochs']
     class_emb = nn.Embedding(num_classes, 128).to(device)
 
-    optimizer = torch.optim.AdamW(unet.parameters(), lr=1e-5)
+    optimizer = torch.optim.AdamW(unet.parameters(), lr=float(config['training']['learning_rate']))
 
     start_epoch = 0
 
