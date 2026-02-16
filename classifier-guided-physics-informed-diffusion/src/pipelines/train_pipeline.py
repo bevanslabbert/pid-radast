@@ -277,7 +277,7 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
     labels = torch.randint(0, num_classes, (num_samples,), device=device)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
-    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
+    scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
     images = torch.randn((num_samples, *shape), device=device)
     
     for t in scheduler.timesteps:
