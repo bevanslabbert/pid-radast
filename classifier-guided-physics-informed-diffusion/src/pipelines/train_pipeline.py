@@ -286,7 +286,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         value_range=(-1, 1)
     )
 
-    save_training_plot(epochs_range, loss_history, fid_history, result_directory)
+    save_training_plot(epochs_range, loss_history, fid_history, val_loss_history, result_directory)
 
     print(f"✅ Generated images saved to PNG.")
 
@@ -313,31 +313,40 @@ def prepare_for_fid(t):
         t = (t * 255).clamp(0, 255)       # 0..1 -> 0..255
         return t.to(torch.uint8)          # Float -> Byte
 
-def save_training_plot(epochs, losses, fids, result_dir):
-    fig, ax1 = plt.subplots(figsize=(10, 6))
+def save_training_plot(epochs, losses, fids, val_losses, result_dir):
+    fig, ax1 = plt.subplots(figsize=(12, 7))
 
-    # Primary axis: Loss
-    color = 'tab:blue'
+    # Primary axis: Loss (Training and Validation)
     ax1.set_xlabel('Epochs')
-    ax1.set_ylabel('MSE Loss', color=color)
-    ax1.plot(epochs, losses, color=color, linewidth=2, label='Training Loss')
-    ax1.tick_params(axis='y', labelcolor=color)
-    ax1.grid(True, alpha=0.3)
+    ax1.set_ylabel('MSE Loss')
+    
+    # Plot Training Loss
+    lns1 = ax1.plot(epochs, losses, color='tab:blue', linewidth=2, label='Training Loss')
+    # Plot Validation Loss (dashed line, same color family)
+    lns2 = ax1.plot(epochs, val_losses, color='tab:cyan', linewidth=2, linestyle=':', label='Validation Loss')
+    
+    ax1.tick_params(axis='y')
+    ax1.grid(True, which='both', linestyle='--', alpha=0.5)
 
     # Secondary axis: FID
     ax2 = ax1.twinx()
-    color = 'tab:red'
-    ax2.set_ylabel('FID (Lower is better)', color=color)
-    ax2.plot(epochs, fids, color=color, linewidth=2, linestyle='--', label='FID Score')
-    ax2.tick_params(axis='y', labelcolor=color)
+    color_fid = 'tab:red'
+    ax2.set_ylabel('FID (Lower is better)', color=color_fid)
+    lns3 = ax2.plot(epochs, fids, color=color_fid, linewidth=2, linestyle='--', label='FID Score')
+    ax2.tick_params(axis='y', labelcolor=color_fid)
 
-    plt.title('Diffusion Training Efficiency: Loss vs. FID')
+    # Combine legends from both axes
+    lns = lns1 + lns2 + lns3
+    labs = [l.get_label() for l in lns]
+    ax1.legend(lns, labs, loc='upper right')
+
+    plt.title('Diffusion Training Metrics: Loss & FID Trends')
     fig.tight_layout()
     
     plot_path = f"{result_dir}/training_metrics.png"
-    plt.savefig(plot_path)
+    plt.savefig(plot_path, dpi=300)
     plt.close()
-    print(f"📈 Efficiency graph saved to {plot_path}")
+    print(f"📈  Efficiency graph saved to {plot_path}")
 
 def train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint):
     # model definition
