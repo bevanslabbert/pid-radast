@@ -124,7 +124,7 @@ def train_classification(config, trainloader, valloader, device, result_director
 
     return model
 
-def train_diffusion(config, trainloader, device, result_directory, resume, checkpoint):
+def train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint):
     torch.cuda.empty_cache()
     import gc
     gc.collect()
@@ -152,6 +152,11 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
 
     start_epoch = 0
 
+    loss_history = []
+    val_loss_history = []
+    epochs_range = []
+    fid_history = []
+
     if resume is not None:
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
         unet.load_state_dict(checkpoint['model_state_dict'])
@@ -159,16 +164,13 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
         class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
         loss_history = checkpoint['loss_history']
+        val_loss_history = checkpoint['val_loss_history']
         epochs_range = checkpoint['epochs_range']
         fid_history = checkpoint['fid_history']
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
     # Initialize (2048 is the standard feature dimension for Inception)
     fid = FrechetInceptionDistance(feature=2048).to(device)
-
-    loss_history = []
-    epochs_range = []
-    fid_history = []
 
     # --- Training loop ---
     for epoch in range(start_epoch, num_epochs):
@@ -205,31 +207,49 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
 
         # --- Inside your validation block ---
         unet.eval()
+        val_loss_accum = 0
+        
         with torch.no_grad():
-            # 1. Generate fake images [B, 1, H, W]
-            fake_images = sample_from_model(
-                model=unet,
-                scheduler=scheduler,
-                class_emb=class_emb,
-                num_samples=config['data']['batch_size'],
-                num_classes=num_classes,
-                device=device
-            )
-            
-            # 2. Get a batch of real images [B, 1, H, W]
-            real_images, _ = next(iter(trainloader))
-            real_images = real_images.to(device)
+            for i, (val_images, val_labels) in enumerate(testloader):
+                val_images, val_labels = val_images.to(device), val_labels.to(device)
+                batch_sz = val_images.size(0)
 
-            # 3. Convert both to RGB for the FID metric
-            fid.update(prepare_for_fid(real_images), real=True)
-            fid.update(prepare_for_fid(fake_images), real=False)
+                # 1. CALCULATE VAL LOSS (Fast)
+                t_val = torch.randint(0, scheduler.num_train_timesteps, (batch_sz,), device=device)
+                noise_val = torch.randn_like(val_images)
+                noisy_val = scheduler.add_noise(val_images, noise_val, t_val)
+                
+                class_emb_val = class_emb(val_labels).unsqueeze(1)
+                model_output = unet(noisy_val, t_val, encoder_hidden_states=class_emb_val).sample
+                
+                v_loss = F.mse_loss(model_output, noise_val)
+                val_loss_accum += v_loss.item()
 
+                # 2. CALCULATE FID (Slow - run on first few batches only)
+                if i < 4:  # Adjust this number based on your batch size
+                    fake_images = sample_from_model(
+                        model=unet,
+                        scheduler=scheduler,
+                        class_emb=class_emb,
+                        num_samples=batch_sz,
+                        num_classes=num_classes,
+                        device=device
+                    )
+                    
+                    fid.update(prepare_for_fid(val_images), real=True)
+                    fid.update(prepare_for_fid(fake_images), real=False)
+                    del fake_images # Free VRAM
+
+            # --- Finalize Metrics for the Epoch ---
+            avg_val_loss = val_loss_accum / len(testloader)
             current_fid = fid.compute().item()
-            print(f"FID Score: {current_fid}")
+            
+            print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f} | FID: {current_fid:.2f}")
+            
+            # Save to history
+            val_loss_history.append(avg_val_loss)
             fid_history.append(current_fid)
-            fid.reset()
-
-        print(f"Epoch {epoch+1}, loss={loss.item():.4f}")
+            fid.reset() # Important: reset for the next epoch
 
         # save checkpoint for resuming
         if not checkpoint == None or not resume == None:
@@ -242,6 +262,7 @@ def train_diffusion(config, trainloader, device, result_directory, resume, check
                     'loss': loss,
                     'config': config,
                     'loss_history': loss_history,
+                    'val_loss_history': val_loss_history,
                     'epochs_range': epochs_range,
                     'fid_history': fid_history,
                 },
@@ -277,7 +298,7 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
     labels = torch.randint(0, num_classes, (num_samples,), device=device)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
-    scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
+    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
     images = torch.randn((num_samples, *shape), device=device)
     
     for t in scheduler.timesteps:
@@ -426,13 +447,13 @@ def train_robust_classification(config, trainloader, device, result_directory, r
     return rob_model
 
 
-def train_model(model, config, trainloader, valloader, device, result_directory, resume, checkpoint):
+def train_model(model, config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint):
     print(f"🚀 Training {model} for {config['training']['epochs']} epochs")
     if model == 'classification':
         return train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint)
     elif model == 'robust_classification':
         return train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint)
     elif model == 'diffusion':
-        return train_diffusion(config, trainloader, device, result_directory, resume, checkpoint)
+        return train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint)
     else:
         raise f'Model {model} not supported ["diffusion", "robust_classification, "classification"]'

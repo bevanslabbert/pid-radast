@@ -101,7 +101,7 @@ def main():
     if args.command == "optimize":
         optimize_parameters(args.model, cfg, result_directory)
     elif args.command == "train":
-        model = train_model(args.model, cfg, trainloader, valloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint)
+        model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint)
         test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
     elif args.command == "test":
         # TODO: need to get the trained model
