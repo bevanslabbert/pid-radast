@@ -148,6 +148,12 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     num_epochs = config['training']['epochs']
     class_emb = nn.Embedding(num_classes, 128).to(device)
 
+    # optimizer resume logic
+    optimizer = torch.optim.AdamW(
+        list(unet.parameters()) + list(class_emb.parameters()), 
+        lr=float(config['training']['learning_rate'])
+    )
+
     start_epoch = 0
 
     loss_history = []
@@ -173,15 +179,6 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         epochs_range = checkpoint['epochs_range']
         fid_history = checkpoint['fid_history']
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
-
-    # optimizer resume logic
-    optimizer = torch.optim.AdamW(
-        list(unet.parameters()) + list(class_emb.parameters()), 
-        lr=float(config['training']['learning_rate'])
-    )
-
-    if resume is not None:
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 
     # Initialize (2048 is the standard feature dimension for Inception)
     fid = FrechetInceptionDistance(feature=2048).to(device)
