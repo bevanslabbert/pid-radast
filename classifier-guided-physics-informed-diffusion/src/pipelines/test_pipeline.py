@@ -7,6 +7,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import torchvision
 from diffusers import UNet2DConditionModel, DDPMScheduler
+from train_pipeline import sample_from_model
 
 # evaluate model performance
 def test_model(model_type, config, testloader, device, result_directory, model = None):
@@ -88,7 +89,7 @@ def test_model(model_type, config, testloader, device, result_directory, model =
             class_embeddings = class_emb(label).unsqueeze(1)
 
             scheduler.set_timesteps(50)
-            noisy = torch.randn(8, 3, 224, 224, device=device)
+            noisy = torch.randn(8, 1, 224, 224, device=device)
 
             for t in scheduler.timesteps:
                 noise_pred = model(noisy, t, encoder_hidden_states=class_embeddings).sample

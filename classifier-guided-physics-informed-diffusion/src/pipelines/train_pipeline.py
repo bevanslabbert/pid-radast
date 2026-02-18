@@ -296,6 +296,8 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
     model.eval()
     # Random target labels for validation
     labels = torch.randint(0, num_classes, (num_samples,), device=device)
+    print("Labels:")
+    print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
     scheduler.set_timesteps(50) # Use fewer steps for validation to save time
