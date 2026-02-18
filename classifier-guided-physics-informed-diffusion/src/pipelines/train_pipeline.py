@@ -159,10 +159,18 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
 
         if checkpoint.get('rng_state') is not None:
-            torch.set_rng_state(checkpoint['rng_state'])
+            # Force the state to the correct type for the CPU generator
+            rng_state = checkpoint['rng_state'].to('cpu').to(torch.uint8)
+            torch.set_rng_state(rng_state)
 
         if checkpoint.get('cuda_rng_state') is not None:
-            torch.cuda.set_rng_state(checkpoint['cuda_rng_state'])
+            # CUDA states can be a list (for multiple GPUs) or a single tensor
+            cuda_state = checkpoint['cuda_rng_state']
+            if isinstance(cuda_state, torch.Tensor):
+                torch.cuda.set_rng_state(cuda_state.to('cpu').to(torch.uint8))
+            else:
+                # If it's a list of states for multiple GPUs
+                torch.cuda.set_rng_state_all([s.to('cpu').to(torch.uint8) for s in cuda_state])
 
         unet.load_state_dict(checkpoint['model_state_dict'])
         # optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
