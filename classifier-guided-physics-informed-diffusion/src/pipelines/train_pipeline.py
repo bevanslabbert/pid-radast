@@ -148,8 +148,6 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     num_epochs = config['training']['epochs']
     class_emb = nn.Embedding(num_classes, 128).to(device)
 
-    optimizer = torch.optim.AdamW(unet.parameters(), lr=float(config['training']['learning_rate']))
-
     start_epoch = 0
 
     loss_history = []
@@ -159,6 +157,11 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
     if resume is not None:
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
+
+        torch.set_rng_state(checkpoint['rng_state'])
+        if checkpoint['cuda_rng_state'] is not None:
+            torch.cuda.set_rng_state(checkpoint['cuda_rng_state'])
+
         unet.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
@@ -168,6 +171,15 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         epochs_range = checkpoint['epochs_range']
         fid_history = checkpoint['fid_history']
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
+
+    # optimizer resume logic
+    optimizer = torch.optim.AdamW(
+        list(unet.parameters()) + list(class_emb.parameters()), 
+        lr=float(config['training']['learning_rate'])
+    )
+
+    if resume is not None:
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 
     # Initialize (2048 is the standard feature dimension for Inception)
     fid = FrechetInceptionDistance(feature=2048).to(device)
@@ -265,6 +277,8 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                     'val_loss_history': val_loss_history,
                     'epochs_range': epochs_range,
                     'fid_history': fid_history,
+                    'rng_state': torch.get_rng_state(),
+                    'cuda_rng_state': torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
                 },
                 f'{CHECKPOINT_DIR}/diffusion'
             )
