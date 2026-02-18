@@ -158,10 +158,10 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     if resume is not None:
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
 
-        if checkpoint['rng_state'] is not None:
+        if checkpoint.get('rng_state') is not None:
             torch.set_rng_state(checkpoint['rng_state'])
 
-        if checkpoint['cuda_rng_state'] is not None:
+        if checkpoint.get('cuda_rng_state') is not None:
             torch.cuda.set_rng_state(checkpoint['cuda_rng_state'])
 
         unet.load_state_dict(checkpoint['model_state_dict'])
