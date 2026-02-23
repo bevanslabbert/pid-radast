@@ -11,6 +11,7 @@ import torch.nn.functional as F
 from diffusers import UNet2DConditionModel, DDPMScheduler
 from torchmetrics.image.fid import FrechetInceptionDistance
 import matplotlib.pyplot as plt
+import os
 
 CHECKPOINT_DIR = 'checkpoints'
  
@@ -164,6 +165,12 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     epochs_range = []
     fid_history = []
 
+    # optimizer resume logic
+    optimizer = torch.optim.AdamW(
+        list(unet.parameters()) + list(class_emb.parameters()), 
+        lr=float(config['training']['learning_rate'])
+    )
+
     if resume is not None:
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
 
@@ -191,17 +198,8 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         fid_history = checkpoint['fid_history']
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
-    # optimizer resume logic
-    optimizer = torch.optim.AdamW(
-        list(unet.parameters()) + list(class_emb.parameters()), 
-        lr=float(config['training']['learning_rate'])
-    )
-
     if resume is not None:
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-
-    # Initialize (2048 is the standard feature dimension for Inception)
-    fid = FrechetInceptionDistance(feature=2048).to(device)
 
     # --- Training loop ---
     for epoch in range(start_epoch, num_epochs):
@@ -256,33 +254,13 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 v_loss = F.mse_loss(model_output, noise_val)
                 val_loss_accum += v_loss.item()
 
-                # # 2. CALCULATE FID (Slow - run on first few batches only)
-                # if i < 10:  # Increase this to use more images for a stable FID
-                #     fake_images = sample_from_model(
-                #         model=unet,
-                #         scheduler=scheduler,
-                #         class_emb=class_emb,
-                #         num_samples=batch_sz,
-                #         num_classes=num_classes,
-                #         device=device
-                #     )
-                    
-                #     # Update but don't compute yet
-                #     fid.update(prepare_for_fid(val_images), real=True)
-                #     fid.update(prepare_for_fid(fake_images), real=False)
-                #     del fake_images
-
             # --- Finalize Metrics for the Epoch ---
             avg_val_loss = val_loss_accum / len(testloader)
-            # current_fid = fid.compute().item()
             
-            # print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f} | FID: {current_fid:.2f}")
             print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f}")
             
             # Save to history
             val_loss_history.append(avg_val_loss)
-            # fid_history.append(current_fid)
-            # fid.reset() # Important: reset for the next epoch
 
         # save checkpoint for resuming
         if not checkpoint == None or not resume == None:
@@ -338,7 +316,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         value_range=(-1, 1)
     )
 
-    save_training_plot(epochs_range, loss_history, fid_history, val_loss_history, result_directory)
+    save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
 
     print(f"✅ Generated images saved to PNG.")
 
@@ -401,40 +379,34 @@ def prepare_for_fid(t):
         t = (t * 255).clamp(0, 255)       # 0..1 -> 0..255
         return t.to(torch.uint8)          # Float -> Byte
 
-def save_training_plot(epochs, losses, fids, val_losses, result_dir):
-    fig, ax1 = plt.subplots(figsize=(12, 7))
+def save_training_plot(epochs, losses, val_losses, result_dir="results"):
+    # Initialize the plot
+    fig, ax1 = plt.subplots(figsize=(10, 6))
 
-    # Primary axis: Loss (Training and Validation)
+    # Axis labels
     ax1.set_xlabel('Epochs')
     ax1.set_ylabel('MSE Loss')
     
-    # Plot Training Loss
-    lns1 = ax1.plot(epochs, losses, color='tab:blue', linewidth=2, label='Training Loss')
-    # Plot Validation Loss (dashed line, same color family)
-    lns2 = ax1.plot(epochs, val_losses, color='tab:cyan', linewidth=2, linestyle=':', label='Validation Loss')
+    # Plot Training Loss (solid line)
+    ax1.plot(epochs, losses, color='tab:blue', linewidth=2, label='Training Loss')
     
-    ax1.tick_params(axis='y')
+    # Plot Validation Loss (dotted line for distinction)
+    ax1.plot(epochs, val_losses, color='tab:cyan', linewidth=2, linestyle=':', label='Validation Loss')
+    
+    # Aesthetics
     ax1.grid(True, which='both', linestyle='--', alpha=0.5)
-
-    # Secondary axis: FID
-    ax2 = ax1.twinx()
-    color_fid = 'tab:red'
-    ax2.set_ylabel('FID (Lower is better)', color=color_fid)
-    lns3 = ax2.plot(epochs, fids, color=color_fid, linewidth=2, linestyle='--', label='FID Score')
-    ax2.tick_params(axis='y', labelcolor=color_fid)
-
-    # Combine legends from both axes
-    lns = lns1 + lns2 + lns3
-    labs = [l.get_label() for l in lns]
-    ax1.legend(lns, labs, loc='upper right')
-
-    plt.title('Diffusion Training Metrics: Loss & FID Trends')
-    fig.tight_layout()
+    ax1.legend(loc='upper right')
+    plt.title('Diffusion Training: MSE Loss Trends')
     
-    plot_path = f"{result_dir}/training_metrics.png"
+    # Layout and Saving
+    fig.tight_layout()
+    os.makedirs(result_dir, exist_ok=True)
+    
+    plot_path = os.path.join(result_dir, "training_metrics.png")
     plt.savefig(plot_path, dpi=300)
     plt.close()
-    print(f"📈  Efficiency graph saved to {plot_path}")
+    
+    print(f"📈 Loss graph saved to {plot_path}")
 
 def train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint):
     # model definition
