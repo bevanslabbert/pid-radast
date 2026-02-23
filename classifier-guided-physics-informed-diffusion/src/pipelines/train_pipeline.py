@@ -130,7 +130,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     gc.collect()
 
     unet = UNet2DConditionModel(
-        sample_size=150,
+        sample_size=config['data']['input_size'],
         in_channels=1,
         out_channels=1,
         layers_per_block=2,
@@ -345,7 +345,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
     model.eval()
     # Random target labels for validation
-    labels = torch.ones(num_samples, dtype=torch.long, device=device)
+    labels = torch.randint(0, num_classes, (num_samples,), device=device)
     print("Labels:")
     print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
