@@ -345,7 +345,24 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
     model.eval()
     # Random target labels for validation
-    labels = torch.zeros(num_samples, dtype=torch.long, device=device)
+    labels = torch.ones(num_samples, dtype=torch.long, device=device)
+    print("Labels:")
+    print(labels)
+    class_embeddings = class_emb(labels).unsqueeze(1)
+    
+    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
+    images = torch.randn((num_samples, *shape), device=device)
+    
+    for t in scheduler.timesteps:
+        with torch.no_grad():
+            noise_pred = model(images, t, encoder_hidden_states=class_embeddings).sample
+            images = scheduler.step(noise_pred, t, images).prev_sample
+    return images
+
+def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
+    model.eval()
+    # Random target labels for validation
+    labels = torch.zeros(0, num_classes, (num_samples,), device=device)
     print("Labels:")
     print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
