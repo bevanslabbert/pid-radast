@@ -304,7 +304,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 f'{CHECKPOINT_DIR}/diffusion'
             )
 
-    images = sample_from_model(
+    images = sample_from_model_zeros(
         model=unet,
         scheduler=scheduler,
         class_emb=class_emb,
@@ -362,11 +362,11 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
     return images
 
 def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
+    print("Generating class 0 images")
     model.eval()
+
     # Random target labels for validation
     labels = torch.zeros(num_classes, (num_samples,), device=device)
-    print("Labels:")
-    print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
     scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
@@ -379,11 +379,11 @@ def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classe
     return images
 
 def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
+    print("Generating class 1 images")
     model.eval()
+
     # Random target labels for validation
     labels = torch.ones(num_samples, dtype=torch.long, device=device)
-    print("Labels:")
-    print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
     scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
