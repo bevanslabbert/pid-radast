@@ -11,6 +11,7 @@ from src.pipelines.test_pipeline import test_model
 from src.utils.data import get_data_loaders
 from src.utils.common import clear_gpu_memory
 from src.utils.checkpoint import load_checkpoint
+from torchvision.utils import make_grid, save_image
 
 # Setting a global seed for reproducibility
 def set_seed(seed):
@@ -87,6 +88,7 @@ def main():
         transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
+    # debug
     trainloader, valloader, testloader = get_data_loaders(
         args.dataset or "Mirabest",
         transform = diffusion_transform,

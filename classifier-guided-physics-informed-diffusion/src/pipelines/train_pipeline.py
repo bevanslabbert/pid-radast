@@ -256,21 +256,21 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 v_loss = F.mse_loss(model_output, noise_val)
                 val_loss_accum += v_loss.item()
 
-                # 2. CALCULATE FID (Slow - run on first few batches only)
-                if i < 10:  # Increase this to use more images for a stable FID
-                    fake_images = sample_from_model(
-                        model=unet,
-                        scheduler=scheduler,
-                        class_emb=class_emb,
-                        num_samples=batch_sz,
-                        num_classes=num_classes,
-                        device=device
-                    )
+                # # 2. CALCULATE FID (Slow - run on first few batches only)
+                # if i < 10:  # Increase this to use more images for a stable FID
+                #     fake_images = sample_from_model(
+                #         model=unet,
+                #         scheduler=scheduler,
+                #         class_emb=class_emb,
+                #         num_samples=batch_sz,
+                #         num_classes=num_classes,
+                #         device=device
+                #     )
                     
-                    # Update but don't compute yet
-                    fid.update(prepare_for_fid(val_images), real=True)
-                    fid.update(prepare_for_fid(fake_images), real=False)
-                    del fake_images
+                #     # Update but don't compute yet
+                #     fid.update(prepare_for_fid(val_images), real=True)
+                #     fid.update(prepare_for_fid(fake_images), real=False)
+                #     del fake_images
 
             # --- Finalize Metrics for the Epoch ---
             avg_val_loss = val_loss_accum / len(testloader)
