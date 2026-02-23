@@ -78,7 +78,7 @@ def main():
     ])
 
     diffusion_transform = transforms.Compose([
-        transforms.Resize((224, 224)),
+        # transforms.Resize((224, 224)),
         transforms.RandomHorizontalFlip(),
         transforms.RandomVerticalFlip(p=0.5),
         transforms.RandomRotation(30),

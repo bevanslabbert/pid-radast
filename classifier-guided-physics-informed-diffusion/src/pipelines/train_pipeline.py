@@ -131,7 +131,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
     # --- UNet that supports class conditioning ---
     unet = UNet2DConditionModel(
-        sample_size=224,
+        sample_size=150,
         in_channels=1,
         out_channels=1,
         layers_per_block=2,
@@ -333,7 +333,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
     return unet
 
-def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 224, 224)):
+def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
     model.eval()
     # Random target labels for validation
     labels = torch.zeros(num_samples, dtype=torch.long, device=device)
@@ -350,7 +350,7 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
             images = scheduler.step(noise_pred, t, images).prev_sample
     return images
 
-def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 224, 224)):
+def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
     model.eval()
     # Random target labels for validation
     labels = torch.ones(num_samples, dtype=torch.long, device=device)
