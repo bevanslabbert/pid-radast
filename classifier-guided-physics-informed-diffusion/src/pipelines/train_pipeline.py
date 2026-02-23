@@ -363,7 +363,7 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
 def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
     model.eval()
     # Random target labels for validation
-    labels = torch.zeros(0, num_classes, (num_samples,), device=device)
+    labels = torch.zeros(num_classes, (num_samples,), device=device)
     print("Labels:")
     print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
