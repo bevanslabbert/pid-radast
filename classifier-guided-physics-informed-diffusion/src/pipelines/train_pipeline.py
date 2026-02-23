@@ -274,14 +274,15 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
             # --- Finalize Metrics for the Epoch ---
             avg_val_loss = val_loss_accum / len(testloader)
-            current_fid = fid.compute().item()
+            # current_fid = fid.compute().item()
             
-            print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f} | FID: {current_fid:.2f}")
+            # print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f} | FID: {current_fid:.2f}")
+            print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f}")
             
             # Save to history
             val_loss_history.append(avg_val_loss)
-            fid_history.append(current_fid)
-            fid.reset() # Important: reset for the next epoch
+            # fid_history.append(current_fid)
+            # fid.reset() # Important: reset for the next epoch
 
         # save checkpoint for resuming
         if not checkpoint == None or not resume == None:
