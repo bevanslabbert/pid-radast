@@ -17,7 +17,7 @@ model:
   checkpoint_dir: ./checkpoints
 
 training:
-  epochs: 2
+  epochs: 20
   learning_rate: 0.00005
   optimizer: adamw
   weight_decay: 0.01
