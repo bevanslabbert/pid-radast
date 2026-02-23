@@ -257,7 +257,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 val_loss_accum += v_loss.item()
 
                 # 2. CALCULATE FID (Slow - run on first few batches only)
-                if i < 4:  # Adjust this number based on your batch size
+                if i < 10:  # Increase this to use more images for a stable FID
                     fake_images = sample_from_model(
                         model=unet,
                         scheduler=scheduler,
@@ -267,9 +267,10 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                         device=device
                     )
                     
+                    # Update but don't compute yet
                     fid.update(prepare_for_fid(val_images), real=True)
                     fid.update(prepare_for_fid(fake_images), real=False)
-                    del fake_images # Free VRAM
+                    del fake_images
 
             # --- Finalize Metrics for the Epoch ---
             avg_val_loss = val_loss_accum / len(testloader)
@@ -367,7 +368,7 @@ def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classe
     print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
-    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
+    scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
     images = torch.randn((num_samples, *shape), device=device)
     
     for t in scheduler.timesteps:
@@ -384,7 +385,7 @@ def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes
     print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
-    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
+    scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
     images = torch.randn((num_samples, *shape), device=device)
     
     for t in scheduler.timesteps:

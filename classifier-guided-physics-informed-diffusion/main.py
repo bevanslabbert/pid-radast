@@ -93,6 +93,18 @@ def main():
         batch_size=cfg['data']['batch_size']
     )
 
+    unique_labels = set()
+
+    for _, labels in trainloader:
+        # Convert tensor labels to a list of Python integers and add to set
+        unique_labels.update(labels.tolist())
+
+    # Sort them for clarity
+    sorted_labels = sorted(list(unique_labels))
+
+    print(f"Total unique classes found: {len(sorted_labels)}")
+    print(f"Label IDs: {sorted_labels}")
+
     # Ensure the results/model_type directory exists for saving results
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     result_directory = f'results/{args.model}/run_{timestamp}'
