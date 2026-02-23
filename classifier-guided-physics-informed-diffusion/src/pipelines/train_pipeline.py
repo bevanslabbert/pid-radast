@@ -366,7 +366,7 @@ def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classe
     model.eval()
 
     # Random target labels for validation
-    labels = torch.zeros(num_classes, (num_samples,), device=device)
+    labels = torch.zeros(num_samples, dtype=torch.long, device=device)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
     scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
