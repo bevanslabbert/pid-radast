@@ -304,7 +304,24 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
     torchvision.utils.save_image(
         images, 
-        f"{result_directory}/generated_images.png", 
+        f"{result_directory}/generated_images_class_0.png", 
+        nrow=2, 
+        normalize=True, 
+        value_range=(-1, 1)
+    )
+
+    images = sample_from_model_ones(
+        model=unet,
+        scheduler=scheduler,
+        class_emb=class_emb,
+        num_samples=config['data']['batch_size'],
+        num_classes=num_classes,
+        device=device
+    )
+
+    torchvision.utils.save_image(
+        images, 
+        f"{result_directory}/generated_images_class_1.png", 
         nrow=2, 
         normalize=True, 
         value_range=(-1, 1)
@@ -319,7 +336,24 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 224, 224)):
     model.eval()
     # Random target labels for validation
-    labels = torch.randint(0, num_classes, (num_samples,), device=device)
+    labels = torch.zeros(num_samples, dtype=torch.long, device=device)
+    print("Labels:")
+    print(labels)
+    class_embeddings = class_emb(labels).unsqueeze(1)
+    
+    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
+    images = torch.randn((num_samples, *shape), device=device)
+    
+    for t in scheduler.timesteps:
+        with torch.no_grad():
+            noise_pred = model(images, t, encoder_hidden_states=class_embeddings).sample
+            images = scheduler.step(noise_pred, t, images).prev_sample
+    return images
+
+def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 224, 224)):
+    model.eval()
+    # Random target labels for validation
+    labels = torch.ones(num_samples, dtype=torch.long, device=device)
     print("Labels:")
     print(labels)
     class_embeddings = class_emb(labels).unsqueeze(1)
