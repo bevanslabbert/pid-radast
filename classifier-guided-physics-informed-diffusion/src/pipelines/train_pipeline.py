@@ -129,16 +129,25 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     import gc
     gc.collect()
 
-    # --- UNet that supports class conditioning ---
     unet = UNet2DConditionModel(
         sample_size=150,
         in_channels=1,
         out_channels=1,
         layers_per_block=2,
-        block_out_channels=(64, 64, 128, 256),
-        down_block_types=("DownBlock2D", "DownBlock2D", "AttnDownBlock2D", "DownBlock2D"),
-        up_block_types=("UpBlock2D", "AttnUpBlock2D", "UpBlock2D", "UpBlock2D"),
-        cross_attention_dim=128,   # needed for conditioning
+        block_out_channels=(64, 128, 256, 512), # Increased capacity for scientific data
+        down_block_types=(
+            "DownBlock2D",         # 150x150
+            "DownBlock2D",         # 75x75
+            "CrossAttnDownBlock2D", # 37x37 (Attention helps here)
+            "CrossAttnDownBlock2D", # 18x18
+        ),
+        up_block_types=(
+            "CrossAttnUpBlock2D",   # 18x18
+            "CrossAttnUpBlock2D",   # 37x37
+            "UpBlock2D",           # 75x75
+            "UpBlock2D",           # 150x150
+        ),
+        cross_attention_dim=128,
     ).to(device)
 
     scheduler = DDPMScheduler(num_train_timesteps=1000)
