@@ -79,13 +79,12 @@ def main():
     ])
 
     diffusion_transform = transforms.Compose([
-        # transforms.Resize((224, 224)),
+        transforms.Grayscale(num_output_channels=1),
+        # Use a slight crop instead of rotation to avoid "black corner" artifacts
+        transforms.RandomResizedCrop(150, scale=(0.95, 1.0), ratio=(1.0, 1.0)),
         transforms.RandomHorizontalFlip(),
-        transforms.RandomVerticalFlip(p=0.5),
-        transforms.RandomRotation(30),
-        transforms.Grayscale(num_output_channels=1),  # greyscale
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5], std=[0.5])
+        transforms.Normalize(mean=[0.5], std=[0.5]) 
     ])
 
     # debug

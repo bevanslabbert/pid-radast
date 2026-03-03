@@ -148,7 +148,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
             "UpBlock2D",           # 75x75
             "UpBlock2D",           # 150x150
         ),
-        cross_attention_dim=128,
+        cross_attention_dim=512,
     ).to(device)
 
     scheduler = DDPMScheduler(num_train_timesteps=1000)
@@ -347,7 +347,7 @@ def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classe
     labels = torch.zeros(num_samples, dtype=torch.long, device=device)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
-    scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
+    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
     images = torch.randn((num_samples, *shape), device=device)
     
     for t in scheduler.timesteps:
@@ -364,7 +364,7 @@ def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes
     labels = torch.ones(num_samples, dtype=torch.long, device=device)
     class_embeddings = class_emb(labels).unsqueeze(1)
     
-    scheduler.set_timesteps(1000) # Use fewer steps for validation to save time
+    scheduler.set_timesteps(50) # Use fewer steps for validation to save time
     images = torch.randn((num_samples, *shape), device=device)
     
     for t in scheduler.timesteps:
