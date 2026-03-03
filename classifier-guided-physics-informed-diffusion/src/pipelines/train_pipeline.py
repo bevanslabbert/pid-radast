@@ -154,7 +154,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     scheduler = DDPMScheduler(num_train_timesteps=1000)
 
     # Embed class labels
-    num_classes = config['data']['num_classes']
+    num_classes = config['data']['num_classes'] + 1 # to account for null class
     num_epochs = config['training']['epochs']
     class_emb = nn.Embedding(num_classes, 256).to(device)
 
@@ -211,12 +211,16 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         for images, labels in trainloader:
             images, labels = images.to(device), labels.to(device)
 
+            drop_mask = torch.rand(labels.shape, device=device) < 0.15
+            training_labels = labels.clone()
+            training_labels[drop_mask] = num_classes # Set to the 'null' class index
+
             t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
             noise = torch.randn_like(images)
             noisy_images = scheduler.add_noise(images, noise, t)
 
             # get class embeddings and add sequence dimension
-            class_embeddings = class_emb(labels).unsqueeze(1)  # (B, 1, D)
+            class_embeddings = class_emb(training_labels).unsqueeze(1)  # (B, 1, D)
 
             # predict noise conditioned on class
             model_output = unet(noisy_images, t, encoder_hidden_states=class_embeddings).sample
@@ -339,20 +343,35 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
             images = scheduler.step(noise_pred, t, images).prev_sample
     return images
 
-def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
+def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150), guidance_scale=7.5):
     print("Generating class 0 images")
     model.eval()
 
-    # Random target labels for validation
-    labels = torch.zeros(num_samples, dtype=torch.long, device=device)
-    class_embeddings = class_emb(labels).unsqueeze(1)
+    # 1. Prepare conditional (Class 0) and unconditional (Null Class) labels
+    cond_labels = torch.zeros(num_samples, dtype=torch.long, device=device)
+    uncond_labels = torch.full((num_samples,), num_classes, dtype=torch.long, device=device)
+    
+    cond_emb = class_emb(cond_labels).unsqueeze(1)
+    uncond_emb = class_emb(uncond_labels).unsqueeze(1)
     
     scheduler.set_timesteps(50) # Use fewer steps for validation to save time
     images = torch.randn((num_samples, *shape), device=device)
     
     for t in scheduler.timesteps:
+        # Expand images to run both cond and uncond in one batch
+        model_input = torch.cat([images] * 2)
+        combined_emb = torch.cat([uncond_emb, cond_emb])
+
         with torch.no_grad():
-            noise_pred = model(images, t, encoder_hidden_states=class_embeddings).sample
+            # Predict noise for both versions
+            output = model(model_input, t, encoder_hidden_states=combined_emb).sample
+            noise_pred_uncond, noise_pred_cond = output.chunk(2)
+
+            # 3. APPLY CFG MATH: Extrapolate away from 'uncond' towards 'cond'
+            # This sharpens the image and removes the "grey noise"
+            noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_cond - noise_pred_uncond)
+
+            # Step the scheduler
             images = scheduler.step(noise_pred, t, images).prev_sample
     return images
 
