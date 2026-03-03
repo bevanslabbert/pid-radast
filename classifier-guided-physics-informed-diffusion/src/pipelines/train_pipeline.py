@@ -211,9 +211,10 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         for images, labels in trainloader:
             images, labels = images.to(device), labels.to(device)
 
+            # dropout 15% of labels to train on unclassified images
             drop_mask = torch.rand(labels.shape, device=device) < 0.15
             training_labels = labels.clone()
-            training_labels[drop_mask] = num_classes # Set to the 'null' class index
+            training_labels[drop_mask] = num_classes
 
             t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
             noise = torch.randn_like(images)
@@ -265,6 +266,38 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
             
             # Save to history
             val_loss_history.append(avg_val_loss)
+
+        # save a sample image every x epochs
+        if epoch % 5 == 0:
+            unet.eval()
+            with torch.no_grad():
+                # 1. Generate images for both classes
+                # Assuming these return a batch of images [B, 1, 150, 150]
+                zero_images = sample_from_model_zeros(unet, scheduler, class_emb, 4, num_classes, device)
+                one_images = sample_from_model_ones(unet, scheduler, class_emb, 4, num_classes, device)
+
+                # 2. Combine into a single comparison plot
+                fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+                
+                # Helper to process tensors for plotting
+                def prep_for_plot(img_tensor):
+                    grid = torchvision.utils.make_grid(img_tensor, nrow=2, normalize=True, value_range=(-1, 1))
+                    return grid.permute(1, 2, 0).cpu().numpy()
+
+                # Display Class 0
+                axes[0].imshow(prep_for_plot(zero_images), cmap='gray')
+                axes[0].set_title(f"Class 0 (Epoch {epoch})")
+                axes[0].axis('off')
+
+                # Display Class 1
+                axes[1].imshow(prep_for_plot(one_images), cmap='gray')
+                axes[1].set_title(f"Class 1 (Epoch {epoch})")
+                axes[1].axis('off')
+
+                # 3. Save the single comparison file
+                plt.tight_layout()
+                plt.savefig(f"{result_directory}/comparison_epoch_{epoch}.png")
+                plt.close() # Important to avoid memory leaks
 
         # save checkpoint for resuming
         if not checkpoint == None or not resume == None:
@@ -375,20 +408,35 @@ def sample_from_model_zeros(model, scheduler, class_emb, num_samples, num_classe
             images = scheduler.step(noise_pred, t, images).prev_sample
     return images
 
-def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
+def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150), guidance_scale=7.5):
     print("Generating class 1 images")
     model.eval()
 
-    # Random target labels for validation
-    labels = torch.ones(num_samples, dtype=torch.long, device=device)
-    class_embeddings = class_emb(labels).unsqueeze(1)
+    # 1. Prepare conditional (Class 0) and unconditional (Null Class) labels
+    cond_labels = torch.ones(num_samples, dtype=torch.long, device=device)
+    uncond_labels = torch.full((num_samples,), num_classes, dtype=torch.long, device=device)
+    
+    cond_emb = class_emb(cond_labels).unsqueeze(1)
+    uncond_emb = class_emb(uncond_labels).unsqueeze(1)
     
     scheduler.set_timesteps(50) # Use fewer steps for validation to save time
     images = torch.randn((num_samples, *shape), device=device)
     
     for t in scheduler.timesteps:
+        # Expand images to run both cond and uncond in one batch
+        model_input = torch.cat([images] * 2)
+        combined_emb = torch.cat([uncond_emb, cond_emb])
+
         with torch.no_grad():
-            noise_pred = model(images, t, encoder_hidden_states=class_embeddings).sample
+            # Predict noise for both versions
+            output = model(model_input, t, encoder_hidden_states=combined_emb).sample
+            noise_pred_uncond, noise_pred_cond = output.chunk(2)
+
+            # 3. APPLY CFG MATH: Extrapolate away from 'uncond' towards 'cond'
+            # This sharpens the image and removes the "grey noise"
+            noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_cond - noise_pred_uncond)
+
+            # Step the scheduler
             images = scheduler.step(noise_pred, t, images).prev_sample
     return images
 

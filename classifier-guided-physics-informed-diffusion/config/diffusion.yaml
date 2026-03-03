@@ -17,9 +17,15 @@ model:
   checkpoint_dir: ./checkpoints
 
 training:
-  epochs: 200
+  epochs: 100
   learning_rate: 0.00005
   optimizer: adamw
+
+  # accelerator
+  mixed_precision: no
+  gradient_accumulation_steps: 4
+  output_dir: output
+
   weight_decay: 0.01
   scheduler:
     type: cosine
