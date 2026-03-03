@@ -80,8 +80,12 @@ def main():
 
     diffusion_transform = transforms.Compose([
         transforms.Grayscale(num_output_channels=1),
-        # Use a slight crop instead of rotation to avoid "black corner" artifacts
-        transforms.RandomResizedCrop(150, scale=(0.95, 1.0), ratio=(1.0, 1.0)),
+        # 1. Pad so corners don't get cut off during rotation
+        transforms.Pad(padding=30, fill=0, padding_mode='reflect'), 
+        # 2. Rotate freely
+        transforms.RandomRotation(180),
+        # 3. Crop back to your target 150x150
+        transforms.CenterCrop(150),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.5], std=[0.5]) 
