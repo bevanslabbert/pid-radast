@@ -65,7 +65,6 @@ def show_batch(dataloader, num_images=4):
 
    # 2. PRINT DIMENSIONS
     # Shape is [Batch Size, Channels, Height, Width]
-    print(f"Full Batch Shape: {images.shape}")
     print(f"Channels (3 for RGB, 1 for Gray): {images.shape[1]}")
     print(f"Height: {images.shape[2]} pixels")
     print(f"Width: {images.shape[3]} pixels") 
