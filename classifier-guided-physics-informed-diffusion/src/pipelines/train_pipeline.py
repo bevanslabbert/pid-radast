@@ -154,9 +154,9 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     scheduler = DDPMScheduler(num_train_timesteps=1000)
 
     # Embed class labels
-    num_classes = config['data']['num_classes'] + 1 # to account for null class
+    num_classes = config['data']['num_classes'] # to account for null class
     num_epochs = config['training']['epochs']
-    class_emb = nn.Embedding(num_classes, 256).to(device)
+    class_emb = nn.Embedding(num_classes + 1, 256).to(device)
 
     start_epoch = 0
 
