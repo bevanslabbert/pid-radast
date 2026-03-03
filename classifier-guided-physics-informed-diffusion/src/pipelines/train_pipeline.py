@@ -171,6 +171,12 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         lr=float(config['training']['learning_rate'])
     )
 
+    lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+        optimizer, 
+        T_max=num_epochs * len(trainloader), 
+        eta_min=1e-6
+    )
+
     if resume is not None:
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
 
@@ -191,6 +197,10 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         unet.load_state_dict(checkpoint['model_state_dict'])
         # optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
+
+        if 'scheduler_state_dict' in checkpoint:
+            scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+
         start_epoch = checkpoint['epoch'] + 1
         loss_history = checkpoint['loss_history']
         val_loss_history = checkpoint['val_loss_history']
@@ -231,6 +241,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            lr_scheduler.step()
 
             epoch_loss += loss.item()
             batch_count += 1
