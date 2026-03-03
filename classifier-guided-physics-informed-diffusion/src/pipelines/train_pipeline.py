@@ -268,37 +268,37 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
             val_loss_history.append(avg_val_loss)
 
         # save a sample image every x epochs
-    if epoch % 5 == 0:
-        unet.eval()
-        with torch.no_grad():
-            # 1. Generate images for both classes
-            # Assuming these return a batch of images [B, 1, 150, 150]
-            zero_images = sample_from_model_zeros(unet, scheduler, class_emb, 4, num_classes, device)
-            one_images = sample_from_model_ones(unet, scheduler, class_emb, 4, num_classes, device)
+        if epoch % 5 == 0:
+            unet.eval()
+            with torch.no_grad():
+                # 1. Generate images for both classes
+                # Assuming these return a batch of images [B, 1, 150, 150]
+                zero_images = sample_from_model_zeros(unet, scheduler, class_emb, 4, num_classes, device)
+                one_images = sample_from_model_ones(unet, scheduler, class_emb, 4, num_classes, device)
 
-            # 2. Combine into a single comparison plot
-            fig, axes = plt.subplots(1, 2, figsize=(10, 5))
-            
-            # Helper to process tensors for plotting
-            def prep_for_plot(img_tensor):
-                grid = torchvision.utils.make_grid(img_tensor, nrow=2, normalize=True, value_range=(-1, 1))
-                return grid.permute(1, 2, 0).cpu().numpy()
+                # 2. Combine into a single comparison plot
+                fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+                
+                # Helper to process tensors for plotting
+                def prep_for_plot(img_tensor):
+                    grid = torchvision.utils.make_grid(img_tensor, nrow=2, normalize=True, value_range=(-1, 1))
+                    return grid.permute(1, 2, 0).cpu().numpy()
 
-            # Display Class 0
-            axes[0].imshow(prep_for_plot(zero_images), cmap='gray')
-            axes[0].set_title(f"Class 0 (Epoch {epoch})")
-            axes[0].axis('off')
+                # Display Class 0
+                axes[0].imshow(prep_for_plot(zero_images), cmap='gray')
+                axes[0].set_title(f"Class 0 (Epoch {epoch})")
+                axes[0].axis('off')
 
-            # Display Class 1
-            axes[1].imshow(prep_for_plot(one_images), cmap='gray')
-            axes[1].set_title(f"Class 1 (Epoch {epoch})")
-            axes[1].axis('off')
+                # Display Class 1
+                axes[1].imshow(prep_for_plot(one_images), cmap='gray')
+                axes[1].set_title(f"Class 1 (Epoch {epoch})")
+                axes[1].axis('off')
 
-            # 3. Save the single comparison file
-            plt.tight_layout()
-            plt.savefig(f"{result_directory}/comparison_epoch_{epoch}.png")
-            plt.close() # Important to avoid memory leaks
-        unet.train()
+                # 3. Save the single comparison file
+                plt.tight_layout()
+                plt.savefig(f"{result_directory}/comparison_epoch_{epoch}.png")
+                plt.close() # Important to avoid memory leaks
+            unet.train()
 
         # save checkpoint for resuming
         if not checkpoint == None or not resume == None:
