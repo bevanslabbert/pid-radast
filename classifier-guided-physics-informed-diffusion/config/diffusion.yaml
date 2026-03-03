@@ -4,7 +4,7 @@ device: cuda
 
 data:
   num_classes: 2
-  batch_size: 8
+  batch_size: 16
   num_workers: 4
   input_size: 150
 
