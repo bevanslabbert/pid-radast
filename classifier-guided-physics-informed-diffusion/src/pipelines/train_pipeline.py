@@ -156,7 +156,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     # Embed class labels
     num_classes = config['data']['num_classes']
     num_epochs = config['training']['epochs']
-    class_emb = nn.Embedding(num_classes, 128).to(device)
+    class_emb = nn.Embedding(num_classes, 256).to(device)
 
     start_epoch = 0
 
