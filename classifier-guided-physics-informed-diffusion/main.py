@@ -98,6 +98,11 @@ def main():
         batch_size=cfg['data']['batch_size']
     )
 
+    total_images = len(trainloader.dataset)
+
+    total_batches = len(trainloader)
+
+    batch_size = trainloader.batch_size
     unique_labels = set()
 
     for _, labels in trainloader:
@@ -109,6 +114,8 @@ def main():
 
     print(f"Total unique classes found: {len(sorted_labels)}")
     print(f"Label IDs: {sorted_labels}")
+    print(f"Total images in dataset: {total_images}")
+    print(f"Total batches: {total_batches} (at batch size {batch_size})")
 
     # Ensure the results/model_type directory exists for saving results
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
