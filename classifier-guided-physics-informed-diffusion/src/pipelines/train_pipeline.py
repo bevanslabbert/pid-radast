@@ -148,7 +148,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
             "UpBlock2D",           # 75x75
             "UpBlock2D",           # 150x150
         ),
-        cross_attention_dim=512,
+        cross_attention_dim=256,
     ).to(device)
 
     scheduler = DDPMScheduler(num_train_timesteps=1000)
