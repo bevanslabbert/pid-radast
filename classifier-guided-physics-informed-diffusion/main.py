@@ -80,32 +80,14 @@ def main():
 
     diffusion_transform = transforms.Compose([
         transforms.Grayscale(num_output_channels=1),
-        
-        # 1. Elastic Transformation (The "Bent-Tail" Generator)
-        # This warps the jets slightly, simulating different plasma flows 
-        # without breaking the scientific "logic" of the galaxy.
-        transforms.RandomApply([
-            transforms.ElasticTransform(alpha=50.0, sigma=5.0)
-        ], p=0.3),
-
+        # 1. Pad so corners don't get cut off during rotation
         transforms.Pad(padding=30, fill=0, padding_mode='reflect'), 
+        # 2. Rotate freely
         transforms.RandomRotation(180),
+        # 3. Crop back to your target 150x150
         transforms.CenterCrop(150),
-        
-        # 2. Complete Flips (Space has no "up" or "right")
-        transforms.RandomHorizontalFlip(p=0.5),
-        transforms.RandomVerticalFlip(p=0.5), 
-
-        # 3. Perspective Distortion
-        # Simulates the galaxy being tilted at different angles relative to Earth.
-        transforms.RandomPerspective(distortion_scale=0.2, p=0.3, fill=0),
-
+        transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-
-        # 4. Random Erasing (Forces the model to "hallucinate" missing parts)
-        # If a lobe is missing, the model learns to reconstruct it based on the core.
-        transforms.RandomErasing(p=0.2, scale=(0.02, 0.1), ratio=(0.3, 3.3), value=-1.0),
-
         transforms.Normalize(mean=[0.5], std=[0.5]) 
     ])
 
