@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader
 from typing import Tuple
 from torch.utils.data import random_split
 import torchvision.transforms as transforms
-from src.datasets.mirabest.MiraBest import MiraBest
+from src.datasets.crumb.CRUMB import CRUMB
 import torchvision
 import numpy as np
 
@@ -13,10 +13,10 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2) -> Tuple[D
     - Splits the training data into train and validation sets.
     """
     print(f"Getting data loader {dataset}")
-    if dataset.lower() == 'mirabest':
+    if dataset.lower() == 'crumb':
         # ---- Load full training and test sets ----
-        full_train_set = MiraBest(root='./batches', train=True, download=True, transform=transform)
-        testset = MiraBest(root='./batches', train=False, download=True, transform=transform)
+        full_train_set = CRUMB(root='./batches', train=True, download=True, transform=transform)
+        testset = CRUMB(root='./batches', train=False, download=True, transform=transform)
 
         # ---- Create train/val split ----
         total_train_size = len(full_train_set)
@@ -44,12 +44,12 @@ def get_data(dataset,
     """
         returns data sets
     """
-    if dataset.lower() == 'mirabest':
+    if dataset.lower() == 'crumb':
         # Generate trainloader and testloader
-        trainset = MiraBest(root='./batches', train=True,
-                            download=True, transform=transform)
-        testset = MiraBest(root='./batches', train=False,
-                            download=True, transform=transform)
+        trainset = CRUMB(root='./batches', train=True,
+                         download=True, transform=transform)
+        testset = CRUMB(root='./batches', train=False,
+                        download=True, transform=transform)
 
         return trainset, testset
 

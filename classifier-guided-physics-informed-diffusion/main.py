@@ -29,7 +29,7 @@ def main():
     config_help = "[string] Path to .yaml file to use for config [default: config/<model>.yaml]"
     resume_help = "[True | False] Whether to resume training from last saved epoch"
     checkpoint_help = "[True | False] Whether to save the training checkpoints"
-    dataset_help = "[mirabest] Which dataset to evaluate"
+    dataset_help = "[crumb] Which dataset to evaluate"
 
     # --- Optimize command ---
     optimize_parser = subparsers.add_parser("optimize")
@@ -93,7 +93,7 @@ def main():
 
     # debug
     trainloader, valloader, testloader = get_data_loaders(
-        args.dataset or "Mirabest",
+        args.dataset or "crumb",
         transform = diffusion_transform,
         batch_size=cfg['data']['batch_size']
     )
@@ -114,7 +114,7 @@ def main():
 
     print(f"Total unique classes found: {len(sorted_labels)}")
     print(f"Label IDs: {sorted_labels}")
-    print(f"Total images in dataset: {total_images}")
+    print(f"Total images in dataset: {total_images + len(valloader.dataset) + len(testloader.dataset)}")
     print(f"Total batches: {total_batches} (at batch size {batch_size})")
 
     # Ensure the results/model_type directory exists for saving results
