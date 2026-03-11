@@ -29,14 +29,12 @@ def main():
     config_help = "[string] Path to .yaml file to use for config [default: config/<model>.yaml]"
     resume_help = "[True | False] Whether to resume training from last saved epoch"
     checkpoint_help = "[True | False] Whether to save the training checkpoints"
-    dataset_help = "[crumb] Which dataset to evaluate"
 
     # --- Optimize command ---
     optimize_parser = subparsers.add_parser("optimize")
     optimize_parser.add_argument("--model", required=True, help=model_help)
     optimize_parser.add_argument("--checkpoint", required=False)
     optimize_parser.add_argument("--config", required=True)
-    optimize_parser.add_argument("--dataset", help=dataset_help)
 
     # --- Train command ---
     train_parser = subparsers.add_parser("train")
@@ -44,14 +42,12 @@ def main():
     train_parser.add_argument("--config", help=config_help)
     train_parser.add_argument("--resume", help=resume_help)
     train_parser.add_argument("--checkpoint", help=checkpoint_help)
-    train_parser.add_argument("--dataset", help=dataset_help)
 
     # --- Test command ---
     test_parser = subparsers.add_parser("test")
     test_parser.add_argument("--model", required=True, help=model_help)
     test_parser.add_argument("--checkpoint", required=False, help=checkpoint_help)
     test_parser.add_argument("--config", help=config_help)
-    test_parser.add_argument("--dataset", help=dataset_help)
 
 
     args = parser.parse_args()
@@ -93,7 +89,7 @@ def main():
 
     # debug
     trainloader, valloader, testloader = get_data_loaders(
-        args.dataset or "crumb",
+        cfg['data']['dataset'],
         transform = diffusion_transform,
         batch_size=cfg['data']['batch_size']
     )
@@ -111,6 +107,8 @@ def main():
 
     # Sort them for clarity
     sorted_labels = sorted(list(unique_labels))
+
+    cfg['data']['num_classes'] = len(sorted_labels)
 
     print(f"Total unique classes found: {len(sorted_labels)}")
     print(f"Label IDs: {sorted_labels}")

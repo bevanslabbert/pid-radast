@@ -4,6 +4,7 @@ from typing import Tuple
 from torch.utils.data import random_split
 import torchvision.transforms as transforms
 from src.datasets.crumb.CRUMB import CRUMB
+from src.datasets.mirabest.MiraBest import MiraBest
 import torchvision
 import numpy as np
 
@@ -33,7 +34,25 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2) -> Tuple[D
         show_batch(trainloader)
 
         return trainloader, valloader, testloader
-    
+
+    if dataset.lower() == 'mirabest':
+        full_train_set = MiraBest(root='./batches', train=True, download=True, transform=transform)
+        testset = MiraBest(root='./batches', train=False, download=True, transform=transform)
+
+        total_train_size = len(full_train_set)
+        val_size = int(total_train_size * val_split)
+        train_size = total_train_size - val_size
+
+        train_subset, val_subset = random_split(full_train_set, [train_size, val_size])
+
+        trainloader = DataLoader(train_subset, batch_size=batch_size, shuffle=True, num_workers=2)
+        valloader = DataLoader(val_subset, batch_size=batch_size, shuffle=False, num_workers=2)
+        testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=2)
+
+        show_batch(trainloader)
+
+        return trainloader, valloader, testloader
+
     raise ValueError(f"Dataset '{dataset}' is not supported!")
 
 def get_data(dataset,
@@ -50,6 +69,14 @@ def get_data(dataset,
                          download=True, transform=transform)
         testset = CRUMB(root='./batches', train=False,
                         download=True, transform=transform)
+
+        return trainset, testset
+
+    if dataset.lower() == 'mirabest':
+        trainset = MiraBest(root='./batches', train=True,
+                            download=True, transform=transform)
+        testset = MiraBest(root='./batches', train=False,
+                           download=True, transform=transform)
 
         return trainset, testset
 
