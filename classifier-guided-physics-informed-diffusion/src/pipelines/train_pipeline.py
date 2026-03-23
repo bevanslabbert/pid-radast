@@ -268,7 +268,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
             val_loss_history.append(avg_val_loss)
 
         # save a sample image every x epochs
-        if epoch % 2 == 0:
+        if epoch % 5 == 0:
             unet.eval()
             with torch.no_grad():
                 # 1. Generate images for both classes
