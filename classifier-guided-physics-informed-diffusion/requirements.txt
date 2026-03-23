@@ -11,3 +11,5 @@ tabulate
 astropy
 torchmetrics
 torchmetrics[image]
+astropy
+astroquery
