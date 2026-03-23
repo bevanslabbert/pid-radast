@@ -354,6 +354,23 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         value_range=(-1, 1)
     )
 
+    images = sample_from_model(
+        model=unet,
+        scheduler=scheduler,
+        class_emb=class_emb,
+        num_samples=config['data']['batch_size'],
+        num_classes=num_classes,
+        device=device
+    )
+
+    torchvision.utils.save_image(
+        images, 
+        f"{result_directory}/generated_images_random_all_classes.png", 
+        nrow=2, 
+        normalize=True, 
+        value_range=(-1, 1)
+    )
+
     save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
 
     print(f"✅ Generated images saved to PNG.")
