@@ -3,7 +3,8 @@ seed: 42
 device: cuda
 
 data:
-  dataset: crumb
+  # dataset: crumb
+  dataset: mirabest
   batch_size: 8
   num_workers: 4
   input_size: 150

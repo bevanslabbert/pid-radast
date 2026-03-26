@@ -2,6 +2,7 @@ from src.utils.data import get_data_loaders
 from src.utils.checkpoint import save_checkpoint, load_checkpoint
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
+from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 import torchvision.transforms as transforms
 from torchvision.models import resnet50, resnet18
 import torchvision
@@ -11,6 +12,7 @@ import torch.nn.functional as F
 from diffusers import UNet2DConditionModel, DDPMScheduler
 from torchmetrics.image.fid import FrechetInceptionDistance
 import matplotlib.pyplot as plt
+import numpy as np
 import os
 
 CHECKPOINT_DIR = 'checkpoints'
@@ -125,7 +127,7 @@ def train_classification(config, trainloader, valloader, device, result_director
 
     return model
 
-def train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint):
+def train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=None):
     torch.cuda.empty_cache()
     import gc
     gc.collect()
@@ -320,60 +322,35 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 f'{CHECKPOINT_DIR}/diffusion'
             )
 
-    images = sample_from_model_zeros(
-        model=unet,
-        scheduler=scheduler,
-        class_emb=class_emb,
-        num_samples=config['data']['batch_size'],
-        num_classes=num_classes,
-        device=device
-    )
+    num_samples = config['data']['batch_size']
 
-    torchvision.utils.save_image(
-        images, 
-        f"{result_directory}/generated_images_class_0.png", 
-        nrow=2, 
-        normalize=True, 
-        value_range=(-1, 1)
-    )
+    class_0_images = sample_from_model_zeros(unet, scheduler, class_emb, num_samples, num_classes, device)
+    class_1_images = sample_from_model_ones(unet, scheduler, class_emb, num_samples, num_classes, device)
+    random_images  = sample_from_model(unet, scheduler, class_emb, num_samples, num_classes, device)
 
-    images = sample_from_model_ones(
-        model=unet,
-        scheduler=scheduler,
-        class_emb=class_emb,
-        num_samples=config['data']['batch_size'],
-        num_classes=num_classes,
-        device=device
-    )
+    # Always save PNG previews
+    torchvision.utils.save_image(class_0_images, f"{result_directory}/generated_images_class_0.png", nrow=2, normalize=True, value_range=(-1, 1))
+    torchvision.utils.save_image(class_1_images, f"{result_directory}/generated_images_class_1.png", nrow=2, normalize=True, value_range=(-1, 1))
+    torchvision.utils.save_image(random_images,  f"{result_directory}/generated_images_random_all_classes.png", nrow=2, normalize=True, value_range=(-1, 1))
 
-    torchvision.utils.save_image(
-        images, 
-        f"{result_directory}/generated_images_class_1.png", 
-        nrow=2, 
-        normalize=True, 
-        value_range=(-1, 1)
-    )
+    # If trained on FITS data, also save as FITS with inverted scaling
+    if isinstance(dataset, MiraBestFITS):
+        fits_dir = os.path.join(result_directory, 'generated_fits')
+        os.makedirs(fits_dir, exist_ok=True)
 
-    images = sample_from_model(
-        model=unet,
-        scheduler=scheduler,
-        class_emb=class_emb,
-        num_samples=config['data']['batch_size'],
-        num_classes=num_classes,
-        device=device
-    )
+        for class_idx, images in [(0, class_0_images), (1, class_1_images)]:
+            for i, img in enumerate(images):
+                # img shape: (1, H, W) tensor in [-1, 1]
+                norm_array = img.squeeze(0).cpu().numpy()          # (H, W)
+                jy_array = dataset.denormalise(norm_array)         # approximate Jy/beam
+                fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}.fits")
+                MiraBestFITS.write_fits(jy_array, fname)
 
-    torchvision.utils.save_image(
-        images, 
-        f"{result_directory}/generated_images_random_all_classes.png", 
-        nrow=2, 
-        normalize=True, 
-        value_range=(-1, 1)
-    )
+        print(f"FITS files saved to {fits_dir}")
 
     save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
 
-    print(f"✅ Generated images saved to PNG.")
+    print(f"Generated images saved.")
 
     return unet
 
@@ -601,13 +578,13 @@ def train_robust_classification(config, trainloader, device, result_directory, r
     return rob_model
 
 
-def train_model(model, config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint):
-    print(f"🚀 Training {model} for {config['training']['epochs']} epochs")
+def train_model(model, config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=None):
+    print(f"Training {model} for {config['training']['epochs']} epochs")
     if model == 'classification':
         return train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint)
     elif model == 'robust_classification':
         return train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint)
     elif model == 'diffusion':
-        return train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint)
+        return train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
     else:
         raise f'Model {model} not supported ["diffusion", "robust_classification, "classification"]'

@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Subset
 from typing import Tuple
 from torch.utils.data import random_split
 import torchvision.transforms as transforms
 from src.datasets.crumb.CRUMB import CRUMB
 from src.datasets.mirabest.MiraBest import MiraBest
+from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 import torchvision
 import numpy as np
 
@@ -52,6 +53,38 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2) -> Tuple[D
         show_batch(trainloader)
 
         return trainloader, valloader, testloader
+
+    if dataset.lower() == 'mirabest_fits':
+        fits_dir = 'src/datasets/mirabest/fits'
+        # FITS images are already float tensors normalized to [-1, 1].
+        # Use a tensor-compatible transform (resize + spatial augmentations).
+        fits_transform = transforms.Compose([
+            transforms.Resize(150, antialias=True),
+            transforms.RandomRotation(180),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomVerticalFlip(),
+        ])
+        full_dataset = MiraBestFITS(root=fits_dir, transform=fits_transform)
+
+        total = len(full_dataset)
+        val_size = int(total * val_split)
+        test_size = int(total * 0.1)
+        train_size = total - val_size - test_size
+
+        indices = list(range(total))
+        # Fixed seed for reproducible splits
+        rng = np.random.default_rng(42)
+        rng.shuffle(indices)
+
+        train_idx = indices[:train_size]
+        val_idx   = indices[train_size:train_size + val_size]
+        test_idx  = indices[train_size + val_size:]
+
+        trainloader = DataLoader(Subset(full_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2)
+        valloader   = DataLoader(Subset(full_dataset, val_idx),   batch_size=batch_size, shuffle=False, num_workers=2)
+        testloader  = DataLoader(Subset(full_dataset, test_idx),  batch_size=batch_size, shuffle=False, num_workers=2)
+
+        return trainloader, valloader, testloader, full_dataset
 
     raise ValueError(f"Dataset '{dataset}' is not supported!")
 
