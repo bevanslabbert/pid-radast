@@ -4,7 +4,7 @@ device: cuda
 
 data:
   # dataset: crumb
-  dataset: mirabest
+  dataset: mirabest_fits
   batch_size: 8
   num_workers: 4
   input_size: 150
@@ -18,7 +18,7 @@ model:
   checkpoint_dir: ./checkpoints
 
 training:
-  epochs: 100
+  epochs: 10
   learning_rate: 0.00001
   optimizer: adamw
 
