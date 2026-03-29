@@ -311,7 +311,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                             # img shape: (1, H, W) tensor in [-1, 1]
                             norm_array = img.squeeze(0).cpu().numpy()          # (H, W)
                             jy_array = dataset.denormalise(norm_array)         # approximate Jy/beam
-                            fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}.fits")
+                            fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}_{epoch}.fits")
                             MiraBestFITS.write_fits(jy_array, fname)
 
                     print(f"FITS files saved to {fits_dir}")
