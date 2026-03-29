@@ -87,12 +87,17 @@ def main():
         transforms.Normalize(mean=[0.5], std=[0.5]) 
     ])
 
-    # debug
-    trainloader, valloader, testloader = get_data_loaders(
+    result = get_data_loaders(
         cfg['data']['dataset'],
         transform = diffusion_transform,
         batch_size=cfg['data']['batch_size']
     )
+    # mirabest_fits returns a 4th value (the dataset object) for FITS inverse scaling
+    if len(result) == 4:
+        trainloader, valloader, testloader, fits_dataset = result
+    else:
+        trainloader, valloader, testloader = result
+        fits_dataset = None
 
     total_images = len(trainloader.dataset)
 
@@ -123,7 +128,7 @@ def main():
     if args.command == "optimize":
         optimize_parameters(args.model, cfg, result_directory)
     elif args.command == "train":
-        model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint)
+        model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset)
         test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
     elif args.command == "test":
         # TODO: need to get the trained model
