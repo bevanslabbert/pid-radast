@@ -300,6 +300,22 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 plt.tight_layout()
                 plt.savefig(f"{result_directory}/comparison_epoch_{epoch}.png")
                 plt.close() # Important to avoid memory leaks
+
+                # If trained on FITS data, also save as FITS with inverted scaling
+                if isinstance(dataset, MiraBestFITS):
+                    fits_dir = os.path.join(result_directory, 'generated_fits')
+                    os.makedirs(fits_dir, exist_ok=True)
+
+                    for class_idx, images in [(0, class_0_images), (1, class_1_images)]:
+                        for i, img in enumerate(images):
+                            # img shape: (1, H, W) tensor in [-1, 1]
+                            norm_array = img.squeeze(0).cpu().numpy()          # (H, W)
+                            jy_array = dataset.denormalise(norm_array)         # approximate Jy/beam
+                            fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}.fits")
+                            MiraBestFITS.write_fits(jy_array, fname)
+
+                    print(f"FITS files saved to {fits_dir}")
+
             unet.train()
 
         # save checkpoint for resuming
