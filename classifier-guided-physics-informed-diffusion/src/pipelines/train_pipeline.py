@@ -306,7 +306,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                     fits_dir = os.path.join(result_directory, 'generated_fits')
                     os.makedirs(fits_dir, exist_ok=True)
 
-                    for class_idx, images in [(0, class_0_images), (1, class_1_images)]:
+                    for class_idx, images in [(0, zero_images), (1, one_images)]:
                         for i, img in enumerate(images):
                             # img shape: (1, H, W) tensor in [-1, 1]
                             norm_array = img.squeeze(0).cpu().numpy()          # (H, W)
