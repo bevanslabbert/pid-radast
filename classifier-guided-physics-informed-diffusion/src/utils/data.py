@@ -59,8 +59,11 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2) -> Tuple[D
         # FITS images are already float tensors normalized to [-1, 1].
         # Use a tensor-compatible transform (resize + spatial augmentations).
         fits_transform = transforms.Compose([
-            transforms.Resize(150, antialias=True),
+            # Upscale to ceil(150 * sqrt(2)) = 213 so that a 150x150 centre crop
+            # contains only real image content after any rotation angle.
+            transforms.Resize(213, antialias=True),
             transforms.RandomRotation(180),
+            transforms.CenterCrop(150),
             transforms.RandomHorizontalFlip(),
             transforms.RandomVerticalFlip(),
         ])

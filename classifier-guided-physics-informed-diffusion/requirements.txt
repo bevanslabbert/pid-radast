@@ -1,9 +1,8 @@
 torch
 torchvision
 pandas
-np
-ray
 numpy
+pyhopper
 matplotlib
 scikit-learn
 diffusers
@@ -11,5 +10,4 @@ tabulate
 astropy
 torchmetrics
 torchmetrics[image]
-astropy
 astroquery

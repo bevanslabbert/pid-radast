@@ -34,7 +34,7 @@ def main():
     optimize_parser = subparsers.add_parser("optimize")
     optimize_parser.add_argument("--model", required=True, help=model_help)
     optimize_parser.add_argument("--checkpoint", required=False)
-    optimize_parser.add_argument("--config", required=True)
+    optimize_parser.add_argument("--config", required=False)
 
     # --- Train command ---
     train_parser = subparsers.add_parser("train")
@@ -76,15 +76,14 @@ def main():
 
     diffusion_transform = transforms.Compose([
         transforms.Grayscale(num_output_channels=1),
-        # 1. Pad so corners don't get cut off during rotation
-        transforms.Pad(padding=30, fill=0, padding_mode='reflect'), 
-        # 2. Rotate freely
+        # Upscale to ceil(150 * sqrt(2)) = 213 so that a 150x150 centre crop
+        # contains only real image content after any rotation angle.
+        transforms.Resize(213),
         transforms.RandomRotation(180),
-        # 3. Crop back to your target 150x150
         transforms.CenterCrop(150),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5], std=[0.5]) 
+        transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
     result = get_data_loaders(
@@ -126,7 +125,7 @@ def main():
     os.makedirs(result_directory, exist_ok=True)
 
     if args.command == "optimize":
-        optimize_parameters(args.model, cfg, result_directory)
+        optimize_parameters(args.model, cfg, trainloader, valloader, device, result_directory)
     elif args.command == "train":
         model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset)
         test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
