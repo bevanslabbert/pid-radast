@@ -112,7 +112,9 @@ def _objective_robust_classification(params, cfg, trainloader, valloader, device
 
 def _objective_diffusion(params, cfg, trainloader, valloader, device):
     num_classes = cfg['data']['num_classes']
-    label_dropout = params.get('label_dropout', 0.15)
+    label_dropout = params.get('label_dropout', cfg['training']['label_dropout'])
+    embedding_dim = int(params.get('embedding_dim', cfg['model']['embedding_dim']))
+    weight_decay = float(params.get('weight_decay', cfg['training']['weight_decay']))
 
     unet = UNet2DConditionModel(
         sample_size=cfg['data']['input_size'],
@@ -127,15 +129,16 @@ def _objective_diffusion(params, cfg, trainloader, valloader, device):
             "CrossAttnUpBlock2D", "CrossAttnUpBlock2D",
             "UpBlock2D", "UpBlock2D",
         ),
-        cross_attention_dim=256,
+        cross_attention_dim=embedding_dim,
     ).to(device)
 
-    scheduler = DDPMScheduler(num_train_timesteps=1000)
-    class_emb = nn.Embedding(num_classes + 1, 256).to(device)
+    scheduler = DDPMScheduler(num_train_timesteps=cfg['training']['num_train_timesteps'])
+    class_emb = nn.Embedding(num_classes + 1, embedding_dim).to(device)
 
     optimizer = torch.optim.AdamW(
         list(unet.parameters()) + list(class_emb.parameters()),
         lr=float(params.get('learning_rate', cfg['training']['learning_rate'])),
+        weight_decay=weight_decay,
     )
 
     for _ in range(TRIAL_EPOCHS):

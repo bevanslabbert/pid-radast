@@ -19,7 +19,9 @@ model:
 
 training:
   epochs: 200
-  learning_rate: 0.00001
+  learning_rate: 0.0001
+  label_dropout: 0.29869287822764246
+  num_train_timesteps: 1000
   optimizer: adamw
 
   # accelerator
@@ -42,6 +44,8 @@ optimization:
   parameters:
     learning_rate: { min: 0.000001, max: 0.0001, log: true }
     label_dropout:  { min: 0.05, max: 0.30 }
+    weight_decay:   { min: 0.0001, max: 0.1, log: true }
+    embedding_dim:  { choices: [128, 256, 512] }
 
 evaluation:
   metrics: [accuracy, precision, recall, f1]

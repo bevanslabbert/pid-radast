@@ -1,6 +1,7 @@
 from src.utils.data import get_data_loaders
 from src.utils.checkpoint import save_checkpoint, load_checkpoint
 from src.models.time_dependent_resnet import TimeDependentResNet
+from src.models.diffusion import build_diffusion_components, train_epoch, eval_epoch
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 import torchvision.transforms as transforms
@@ -9,7 +10,6 @@ import torchvision
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from diffusers import UNet2DConditionModel, DDPMScheduler
 from torchmetrics.image.fid import FrechetInceptionDistance
 import matplotlib.pyplot as plt
 import numpy as np
@@ -150,15 +150,15 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
             "UpBlock2D",           # 75x75
             "UpBlock2D",           # 150x150
         ),
-        cross_attention_dim=256,
+        cross_attention_dim=config['model']['embedding_dim'],
     ).to(device)
 
-    scheduler = DDPMScheduler(num_train_timesteps=1000)
+    scheduler = DDPMScheduler(num_train_timesteps=config['training']['num_train_timesteps'])
 
     # Embed class labels
     num_classes = config['data']['num_classes'] # to account for null class
     num_epochs = config['training']['epochs']
-    class_emb = nn.Embedding(num_classes + 1, 256).to(device)
+    class_emb = nn.Embedding(num_classes + 1, config['model']['embedding_dim']).to(device)
 
     start_epoch = 0
 
@@ -169,8 +169,9 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
     # optimizer resume logic
     optimizer = torch.optim.AdamW(
-        list(unet.parameters()) + list(class_emb.parameters()), 
-        lr=float(config['training']['learning_rate'])
+        list(unet.parameters()) + list(class_emb.parameters()),
+        lr=float(config['training']['learning_rate']),
+        weight_decay=float(config['training']['weight_decay']),
     )
 
     if resume is not None:
@@ -213,8 +214,8 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         for images, labels in trainloader:
             images, labels = images.to(device), labels.to(device)
 
-            # dropout 15% of labels to train on unclassified images
-            drop_mask = torch.rand(labels.shape, device=device) < 0.15
+            # dropout labels to train on unclassified images (classifier-free guidance)
+            drop_mask = torch.rand(labels.shape, device=device) < config['training']['label_dropout']
             training_labels = labels.clone()
             training_labels[drop_mask] = num_classes
 
