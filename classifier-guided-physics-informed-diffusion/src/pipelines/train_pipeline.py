@@ -2,6 +2,11 @@ from src.utils.data import get_data_loaders
 from src.utils.checkpoint import save_checkpoint, load_checkpoint
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.models.diffusion import build_diffusion_components, train_epoch, eval_epoch
+from diffusers import UNet2DConditionModel, DDPMScheduler
+from src.models.pid import (
+    estimate_x0, physics_loss, symmetry_loss, nonnegativity_loss,
+    sample_pid_zeros, sample_pid_ones,
+)
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 import torchvision.transforms as transforms
@@ -16,7 +21,7 @@ import numpy as np
 import os
 
 CHECKPOINT_DIR = 'checkpoints'
- 
+
 def evaluate_loss(model, dataloader, criterion, device='cpu'):
     model.eval()
     total_loss = 0.0
@@ -458,6 +463,72 @@ def prepare_for_fid(t):
         t = (t * 255).clamp(0, 255)       # 0..1 -> 0..255
         return t.to(torch.uint8)          # Float -> Byte
 
+def save_pid_training_plots(epochs, loss_history, val_loss_history,
+                            mse_history, sym_history, neg_history,
+                            compliance_epochs, pct_negative_history, sym_score_history,
+                            result_dir="results"):
+    """Save two figures summarising a PID training run.
+
+    Figure 1 — loss decomposition: total train/val loss plus the three
+    component losses (MSE, symmetry, non-negativity) on separate subplots so
+    it is easy to see which term is dominating and whether each is converging.
+
+    Figure 2 — physics compliance on generated samples: % negative pixels and
+    symmetry score measured every few epochs on actual generated images, showing
+    whether the constraints are working in practice and not just in the loss.
+    """
+    # --- Figure 1: loss decomposition ---
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    fig.suptitle('PID Training: Loss Decomposition', fontsize=14)
+
+    axes[0, 0].plot(epochs, loss_history, color='tab:blue', linewidth=2, label='Train')
+    axes[0, 0].plot(epochs, val_loss_history, color='tab:cyan', linewidth=2, linestyle=':', label='Val')
+    axes[0, 0].set_title('Total Loss')
+    axes[0, 0].set_xlabel('Epoch')
+    axes[0, 0].legend()
+    axes[0, 0].grid(True, linestyle='--', alpha=0.5)
+
+    axes[0, 1].plot(epochs, mse_history, color='tab:orange', linewidth=2)
+    axes[0, 1].set_title('MSE Loss (noise prediction)')
+    axes[0, 1].set_xlabel('Epoch')
+    axes[0, 1].grid(True, linestyle='--', alpha=0.5)
+
+    axes[1, 0].plot(epochs, sym_history, color='tab:green', linewidth=2)
+    axes[1, 0].set_title(f'Symmetry Loss (λ={sym_history[0]:.0e} scale)')
+    axes[1, 0].set_xlabel('Epoch')
+    axes[1, 0].grid(True, linestyle='--', alpha=0.5)
+
+    axes[1, 1].plot(epochs, neg_history, color='tab:red', linewidth=2)
+    axes[1, 1].set_title('Non-negativity Loss')
+    axes[1, 1].set_xlabel('Epoch')
+    axes[1, 1].grid(True, linestyle='--', alpha=0.5)
+
+    fig.tight_layout()
+    plt.savefig(os.path.join(result_dir, 'pid_loss_decomposition.png'), dpi=150)
+    plt.close()
+
+    # --- Figure 2: physics compliance on generated samples ---
+    if compliance_epochs:
+        fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+        fig.suptitle('PID Physics Compliance (generated images)', fontsize=14)
+
+        axes[0].plot(compliance_epochs, pct_negative_history, color='tab:red', linewidth=2, marker='o')
+        axes[0].set_title('% Negative Pixels')
+        axes[0].set_xlabel('Epoch')
+        axes[0].set_ylabel('% of pixels < 0')
+        axes[0].grid(True, linestyle='--', alpha=0.5)
+
+        axes[1].plot(compliance_epochs, sym_score_history, color='tab:green', linewidth=2, marker='o')
+        axes[1].set_title('Symmetry Score (lower = more symmetric)')
+        axes[1].set_xlabel('Epoch')
+        axes[1].set_ylabel('MSE(image, flipped)')
+        axes[1].grid(True, linestyle='--', alpha=0.5)
+
+        fig.tight_layout()
+        plt.savefig(os.path.join(result_dir, 'pid_physics_compliance.png'), dpi=150)
+        plt.close()
+
+
 def save_training_plot(epochs, losses, val_losses, result_dir="results"):
     # Initialize the plot
     fig, ax1 = plt.subplots(figsize=(10, 6))
@@ -595,6 +666,281 @@ def train_robust_classification(config, trainloader, device, result_directory, r
     return rob_model
 
 
+def train_pid(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=None):
+    """Physics-informed diffusion: standard DDPM + symmetry + non-negativity losses.
+
+    On top of the standard noise-prediction MSE, each training step:
+      1. Converts the noise prediction back to image space via estimate_x0.
+      2. Adds a symmetry penalty (H-flip + V-flip MSE) on that estimated image.
+      3. Adds a non-negativity penalty (ReLU on negative pixels) on that estimated image.
+
+    During sampling, the fully denoised image is clamped to >= 0 to remove
+    unphysical negative-flux pixels before saving.
+    """
+    torch.cuda.empty_cache()
+    import gc
+    gc.collect()
+
+    # reuse the same UNet architecture, scheduler, class embedding, and optimizer as train_diffusion
+    unet, scheduler, class_emb, optimizer = build_diffusion_components(config, {}, device)
+
+    # alphas_cumprod needed to convert noise predictions back to image space
+    alphas_cumprod = scheduler.alphas_cumprod.to(device)
+
+    num_classes = config['data']['num_classes']
+    num_epochs = config['training']['epochs']
+
+    # physics loss weights from config
+    lambda_sym = float(config['training'].get('lambda_sym', 0.1))
+    lambda_neg = float(config['training'].get('lambda_neg', 0.5))
+
+    start_epoch = 0
+    loss_history = []
+    val_loss_history = []
+    mse_history = []        # MSE component only (train)
+    sym_history = []        # weighted symmetry loss component (train)
+    neg_history = []        # weighted non-negativity loss component (train)
+    epochs_range = []
+    fid_history = []
+
+    # physics compliance measured on generated samples every 5 epochs
+    compliance_epochs = []
+    pct_negative_history = []   # % pixels < 0 in generated images
+    sym_score_history = []      # raw symmetry MSE on generated images
+
+    if resume is not None:
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/pid', device)
+
+        if checkpoint.get('rng_state') is not None:
+            rng_state = checkpoint['rng_state'].to('cpu').to(torch.uint8)
+            torch.set_rng_state(rng_state)
+
+        if checkpoint.get('cuda_rng_state') is not None:
+            cuda_state = checkpoint['cuda_rng_state']
+            if isinstance(cuda_state, torch.Tensor):
+                torch.cuda.set_rng_state(cuda_state.to('cpu').to(torch.uint8))
+            else:
+                torch.cuda.set_rng_state_all([s.to('cpu').to(torch.uint8) for s in cuda_state])
+
+        unet.load_state_dict(checkpoint['model_state_dict'])
+        class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
+        start_epoch = checkpoint['epoch'] + 1
+        loss_history = checkpoint['loss_history']
+        val_loss_history = checkpoint['val_loss_history']
+        mse_history = checkpoint.get('mse_history', [])
+        sym_history = checkpoint.get('sym_history', [])
+        neg_history = checkpoint.get('neg_history', [])
+        epochs_range = checkpoint['epochs_range']
+        fid_history = checkpoint['fid_history']
+        compliance_epochs = checkpoint.get('compliance_epochs', [])
+        pct_negative_history = checkpoint.get('pct_negative_history', [])
+        sym_score_history = checkpoint.get('sym_score_history', [])
+        print(f"Resumed from checkpoint (epoch {start_epoch})")
+
+    if resume is not None:
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+
+    for epoch in range(start_epoch, num_epochs):
+        unet.train()
+        epoch_loss = 0
+        batch_count = 0
+
+        print(f'Epoch {epoch}')
+
+        epoch_loss = 0
+        epoch_mse = 0
+        epoch_sym = 0
+        epoch_neg = 0
+
+        for images, labels in trainloader:
+            images, labels = images.to(device), labels.to(device)
+
+            # classifier-free guidance: randomly replace labels with null class
+            drop_mask = torch.rand(labels.shape, device=device) < config['training']['label_dropout']
+            training_labels = labels.clone()
+            training_labels[drop_mask] = num_classes
+
+            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
+            noise = torch.randn_like(images)
+            noisy_images = scheduler.add_noise(images, noise, t)
+
+            class_embeddings = class_emb(training_labels).unsqueeze(1)  # (B, 1, D)
+            noise_pred = unet(noisy_images, t, encoder_hidden_states=class_embeddings).sample
+
+            # standard diffusion MSE on noise prediction
+            mse = F.mse_loss(noise_pred, noise)
+
+            # convert noise prediction to image space and apply physics penalties
+            x_0_pred = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
+            sym = lambda_sym * symmetry_loss(x_0_pred)
+            neg = lambda_neg * nonnegativity_loss(x_0_pred)
+            loss = mse + sym + neg
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            epoch_loss += loss.item()
+            epoch_mse  += mse.item()
+            epoch_sym  += sym.item()
+            epoch_neg  += neg.item()
+            batch_count += 1
+
+        avg_loss = epoch_loss / batch_count
+        loss_history.append(avg_loss)
+        mse_history.append(epoch_mse / batch_count)
+        sym_history.append(epoch_sym / batch_count)
+        neg_history.append(epoch_neg / batch_count)
+        epochs_range.append(epoch)
+
+        unet.eval()
+        val_loss_accum = 0
+
+        with torch.no_grad():
+            for val_images, val_labels in testloader:
+                val_images, val_labels = val_images.to(device), val_labels.to(device)
+                batch_sz = val_images.size(0)
+
+                t_val = torch.randint(0, scheduler.num_train_timesteps, (batch_sz,), device=device)
+                noise_val = torch.randn_like(val_images)
+                noisy_val = scheduler.add_noise(val_images, noise_val, t_val)
+
+                class_emb_val = class_emb(val_labels).unsqueeze(1)
+                noise_pred_val = unet(noisy_val, t_val, encoder_hidden_states=class_emb_val).sample
+
+                # val loss includes physics terms so the metric is comparable to training loss
+                x_0_val = estimate_x0(noisy_val, noise_pred_val, alphas_cumprod, t_val)
+                v_loss = F.mse_loss(noise_pred_val, noise_val) + physics_loss(x_0_val, lambda_sym, lambda_neg)
+                val_loss_accum += v_loss.item()
+
+            avg_val_loss = val_loss_accum / len(testloader)
+            val_loss_history.append(avg_val_loss)
+            print(
+                f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val: {avg_val_loss:.6f} "
+                f"| MSE: {mse_history[-1]:.6f} | Sym: {sym_history[-1]:.6f} | Neg: {neg_history[-1]:.6f}"
+            )
+
+        # write all metrics to disk every epoch so the run can be inspected mid-training
+        import json
+        metrics = {
+            'epochs': epochs_range,
+            'loss': loss_history,
+            'val_loss': val_loss_history,
+            'mse': mse_history,
+            'sym': sym_history,
+            'neg': neg_history,
+            'compliance_epochs': compliance_epochs,
+            'pct_negative': pct_negative_history,
+            'sym_score': sym_score_history,
+        }
+        with open(os.path.join(result_directory, 'metrics.json'), 'w') as f:
+            json.dump(metrics, f, indent=2)
+
+        # save sample images every 5 epochs for visual progress checks
+        if epoch % 5 == 0:
+            unet.eval()
+            with torch.no_grad():
+                zero_images = sample_pid_zeros(unet, scheduler, class_emb, 4, num_classes, device)
+                one_images  = sample_pid_ones(unet, scheduler, class_emb, 4, num_classes, device)
+
+                fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+
+                def prep_for_plot(img_tensor):
+                    grid = torchvision.utils.make_grid(img_tensor, nrow=2, normalize=True, value_range=(-1, 1))
+                    return grid.permute(1, 2, 0).cpu().numpy()
+
+                axes[0].imshow(prep_for_plot(zero_images), cmap='gray')
+                axes[0].set_title(f"Class 0 FR-I (Epoch {epoch})")
+                axes[0].axis('off')
+
+                axes[1].imshow(prep_for_plot(one_images), cmap='gray')
+                axes[1].set_title(f"Class 1 FR-II (Epoch {epoch})")
+                axes[1].axis('off')
+
+                plt.tight_layout()
+                plt.savefig(f"{result_directory}/comparison_epoch_{epoch}.png")
+                plt.close()
+
+                # measure physics compliance on the generated samples
+                all_generated = torch.cat([zero_images, one_images], dim=0)
+                pct_neg = (all_generated < 0).float().mean().item() * 100
+                sym_score = symmetry_loss(all_generated).item()
+                compliance_epochs.append(epoch)
+                pct_negative_history.append(pct_neg)
+                sym_score_history.append(sym_score)
+                print(f"  Compliance — % negative pixels: {pct_neg:.2f}% | symmetry score: {sym_score:.6f}")
+
+                if isinstance(dataset, MiraBestFITS):
+                    fits_dir = os.path.join(result_directory, 'generated_fits')
+                    os.makedirs(fits_dir, exist_ok=True)
+
+                    for class_idx, imgs in [(0, zero_images), (1, one_images)]:
+                        for i, img in enumerate(imgs):
+                            norm_array = img.squeeze(0).cpu().numpy()
+                            jy_array = dataset.denormalise(norm_array)
+                            fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}_{epoch}.fits")
+                            MiraBestFITS.write_fits(jy_array, fname)
+
+                    print(f"FITS files saved to {fits_dir}")
+
+            unet.train()
+
+        if not checkpoint == None or not resume == None:
+            save_checkpoint(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': unet.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'class_emb_state_dict': class_emb.state_dict(),
+                    'loss': loss,
+                    'config': config,
+                    'loss_history': loss_history,
+                    'val_loss_history': val_loss_history,
+                    'mse_history': mse_history,
+                    'sym_history': sym_history,
+                    'neg_history': neg_history,
+                    'epochs_range': epochs_range,
+                    'fid_history': fid_history,
+                    'compliance_epochs': compliance_epochs,
+                    'pct_negative_history': pct_negative_history,
+                    'sym_score_history': sym_score_history,
+                    'rng_state': torch.get_rng_state(),
+                    'cuda_rng_state': torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
+                },
+                f'{CHECKPOINT_DIR}/pid'
+            )
+
+    num_samples = config['data']['batch_size']
+    class_0_images = sample_pid_zeros(unet, scheduler, class_emb, num_samples, num_classes, device)
+    class_1_images = sample_pid_ones(unet, scheduler, class_emb, num_samples, num_classes, device)
+
+    torchvision.utils.save_image(class_0_images, f"{result_directory}/generated_images_class_0.png", nrow=2, normalize=True, value_range=(-1, 1))
+    torchvision.utils.save_image(class_1_images, f"{result_directory}/generated_images_class_1.png", nrow=2, normalize=True, value_range=(-1, 1))
+
+    if isinstance(dataset, MiraBestFITS):
+        fits_dir = os.path.join(result_directory, 'generated_fits')
+        os.makedirs(fits_dir, exist_ok=True)
+
+        for class_idx, imgs in [(0, class_0_images), (1, class_1_images)]:
+            for i, img in enumerate(imgs):
+                norm_array = img.squeeze(0).cpu().numpy()
+                jy_array = dataset.denormalise(norm_array)
+                fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}.fits")
+                MiraBestFITS.write_fits(jy_array, fname)
+
+        print(f"FITS files saved to {fits_dir}")
+
+    save_pid_training_plots(
+        epochs_range, loss_history, val_loss_history,
+        mse_history, sym_history, neg_history,
+        compliance_epochs, pct_negative_history, sym_score_history,
+        result_directory,
+    )
+    print("Generated images saved.")
+
+    return unet
+
+
 def train_model(model, config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=None):
     print(f"Training {model} for {config['training']['epochs']} epochs")
     if model == 'classification':
@@ -603,5 +949,7 @@ def train_model(model, config, trainloader, valloader, testloader, device, resul
         return train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint)
     elif model == 'diffusion':
         return train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
+    elif model == 'pid':
+        return train_pid(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
     else:
-        raise f'Model {model} not supported ["diffusion", "robust_classification, "classification"]'
+        raise f'Model {model} not supported ["diffusion", "pid", "robust_classification", "classification"]'

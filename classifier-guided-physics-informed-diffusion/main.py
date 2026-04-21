@@ -25,7 +25,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run experiments modularly.")
     subparsers = parser.add_subparsers(dest="command")
 
-    model_help = "[robust_classification | classification | diffusion ] The model type to perform the current action on"
+    model_help = "[robust_classification | classification | diffusion | pid] The model type to perform the current action on"
     config_help = "[string] Path to .yaml file to use for config [default: config/<model>.yaml]"
     resume_help = "[True | False] Whether to resume training from last saved epoch"
     checkpoint_help = "[True | False] Whether to save the training checkpoints"
