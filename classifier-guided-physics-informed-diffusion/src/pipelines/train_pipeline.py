@@ -18,6 +18,7 @@ import torch.nn.functional as F
 from torchmetrics.image.fid import FrechetInceptionDistance
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 import os
 
 CHECKPOINT_DIR = 'checkpoints'
@@ -257,13 +258,13 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 batch_sz = val_images.size(0)
 
                 # 1. CALCULATE VAL LOSS (Fast)
-                t_val = torch.randint(0, scheduler.num_train_timesteps, (batch_sz,), device=device)
+                t_val = torch.linspace(0, scheduler.num_train_timesteps - 1, batch_sz, dtype=torch.long, device=device)
                 noise_val = torch.randn_like(val_images)
                 noisy_val = scheduler.add_noise(val_images, noise_val, t_val)
-                
+
                 class_emb_val = class_emb(val_labels).unsqueeze(1)
                 model_output = unet(noisy_val, t_val, encoder_hidden_states=class_emb_val).sample
-                
+
                 v_loss = F.mse_loss(model_output, noise_val)
                 val_loss_accum += v_loss.item()
 
@@ -566,10 +567,20 @@ def train_robust_classification(config, trainloader, device, result_directory, r
     # initialize values
     rob_model.to(device)
     num_epochs = config['training']['epochs']
-    num_timesteps = 1000
-    optimizer = torch.optim.Adam(rob_model.parameters(), lr=1e-4, weight_decay=1e-4)
+    num_timesteps = config['training'].get('num_timesteps', 1000)
+    optimizer = torch.optim.Adam(
+        rob_model.parameters(),
+        lr=float(config['training']['learning_rate']),
+        weight_decay=float(config['training']['weight_decay']),
+    )
     epoch_losses = []
     val_losses = []
+
+    pgd_cfg = config['training'].get('pgd', {})
+    pgd_epsilon     = float(pgd_cfg.get('epsilon',      0.03))
+    pgd_alpha       = float(pgd_cfg.get('alpha',        0.01))
+    pgd_num_steps   = int(pgd_cfg.get('num_steps',      10))
+    pgd_random_start = bool(pgd_cfg.get('random_start', True))
 
     # Define diffusion noise schedule (linear beta schedule)
     betas = torch.linspace(0.0001, 0.02, num_timesteps).to(device)
@@ -609,10 +620,11 @@ def train_robust_classification(config, trainloader, device, result_directory, r
             # Step 3: Apply adversarial attack with early stopping
             x_tilde = pgd_attack_early_stop(
                 rob_model, x_t, t, labels,
-                epsilon=0.03,
-                alpha=0.01,
-                num_steps=10,
-                random_start=False
+                epsilon=pgd_epsilon,
+                alpha=pgd_alpha,
+                num_steps=pgd_num_steps,
+                random_start=pgd_random_start,
+                clamp=(-1.0, 1.0),
             )
 
             # Step 4: Train on adversarial examples
@@ -632,7 +644,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}')
 
         # save checkpoint for resuming
-        if not checkpoint == None and not resume == None:
+        if not checkpoint == None or not resume == None:
             save_checkpoint(
                 {
                     'epoch': epoch,
@@ -801,7 +813,7 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
                 val_images, val_labels = val_images.to(device), val_labels.to(device)
                 batch_sz = val_images.size(0)
 
-                t_val = torch.randint(0, scheduler.num_train_timesteps, (batch_sz,), device=device)
+                t_val = torch.linspace(0, scheduler.num_train_timesteps - 1, batch_sz, dtype=torch.long, device=device)
                 noise_val = torch.randn_like(val_images)
                 noisy_val = scheduler.add_noise(val_images, noise_val, t_val)
 

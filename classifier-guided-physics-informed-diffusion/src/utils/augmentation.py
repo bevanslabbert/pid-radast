@@ -41,8 +41,9 @@ def pgd_attack_early_stop(model, x_t, t, y,
       y: true labels (long tensor, shape [B])
       epsilon, alpha: in pixel scale [0..1] (if your model uses normalized input, convert accordingly)
     """
-    # before attack
+    was_training = model.training
     model.eval()
+
     with torch.no_grad():
         clean_logits = model(x_t, t)
         clean_preds = clean_logits.argmax(dim=1)
@@ -50,7 +51,6 @@ def pgd_attack_early_stop(model, x_t, t, y,
     if device is None:
         device = x_t.device
     model = model.to(device)
-    model.eval()
 
     x_t = x_t.clone().detach().to(device)
     y = y.clone().detach().to(device)
@@ -107,6 +107,8 @@ def pgd_attack_early_stop(model, x_t, t, y,
             delta.requires_grad_(True)
 
     x_adv = torch.clamp(x_t + delta.detach(), clamp[0], clamp[1])
+    if was_training:
+        model.train()
     return x_adv
 
 def get_noisy_image(x, t, alphas_cumprod):

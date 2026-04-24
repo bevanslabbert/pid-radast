@@ -103,7 +103,8 @@ def eval_epoch(unet, scheduler, class_emb, loader, num_classes: int, device) -> 
     with torch.no_grad():
         for images, labels in loader:
             images, labels = images.to(device), labels.to(device)
-            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
+            batch_sz = images.size(0)
+            t = torch.linspace(0, scheduler.num_train_timesteps - 1, batch_sz, dtype=torch.long, device=device)
             noise = torch.randn_like(images)
             noisy = scheduler.add_noise(images, noise, t)
             pred = unet(noisy, t, encoder_hidden_states=class_emb(labels).unsqueeze(1)).sample

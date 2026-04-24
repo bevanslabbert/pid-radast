@@ -42,6 +42,8 @@ def main():
     train_parser.add_argument("--config", help=config_help)
     train_parser.add_argument("--resume", help=resume_help)
     train_parser.add_argument("--checkpoint", help=checkpoint_help)
+    train_parser.add_argument("--runs", type=int, default=1, help="[int] Number of independent runs (each uses a different seed)")
+    train_parser.add_argument("--seed", type=int, help="[int] Base seed for run 0; run i uses seed+i (overrides config seed)")
 
     # --- Test command ---
     test_parser = subparsers.add_parser("test")
@@ -119,17 +121,33 @@ def main():
     print(f"Total images in dataset: {total_images + len(valloader.dataset) + len(testloader.dataset)}")
     print(f"Total batches: {total_batches} (at batch size {batch_size})")
 
-    # Ensure the results/model_type directory exists for saving results
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    result_directory = f'results/{args.model}/run_{timestamp}'
-    os.makedirs(result_directory, exist_ok=True)
-
     if args.command == "optimize":
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        result_directory = f'results/{args.model}/run_{timestamp}'
+        os.makedirs(result_directory, exist_ok=True)
         optimize_parameters(args.model, cfg, trainloader, valloader, device, result_directory)
     elif args.command == "train":
-        model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset)
-        test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
+        num_runs = args.runs if args.runs is not None else 1
+        base_seed = args.seed if args.seed is not None else cfg["seed"]
+
+        for run_idx in range(num_runs):
+            seed = base_seed + run_idx
+            set_seed(seed)
+
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            result_directory = f'results/{args.model}/run_{timestamp}_seed{seed}'
+            os.makedirs(result_directory, exist_ok=True)
+
+            print(f"\n{'='*60}")
+            print(f"Run {run_idx + 1}/{num_runs}  |  seed={seed}  |  results -> {result_directory}")
+            print(f"{'='*60}\n")
+
+            model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset)
+            test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
     elif args.command == "test":
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        result_directory = f'results/{args.model}/run_{timestamp}'
+        os.makedirs(result_directory, exist_ok=True)
         # TODO: need to get the trained model
         test_model(model_type=args.model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
     else:

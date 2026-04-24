@@ -1,0 +1,32 @@
+experiment_name: mirabest_robust_classification_v1
+seed: 42
+device: cuda
+
+data:
+  dataset: mirabest
+  batch_size: 16
+  num_workers: 4
+  input_size: 150
+
+model:
+  backbone: resnet50
+  pretrained: true
+  checkpoint_dir: ./checkpoints
+
+training:
+  epochs: 30
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  num_timesteps: 1000
+
+  # PGD adversarial attack parameters
+  pgd:
+    epsilon: 0.03       # l-inf perturbation budget (in [-1,1] pixel space)
+    alpha: 0.01         # step size per PGD iteration
+    num_steps: 10       # max PGD iterations per batch
+    random_start: true  # random delta initialisation (stronger attacks; recommended)
+
+evaluation:
+  metrics: [accuracy, precision, recall, f1]
+  save_predictions: true
+  output_dir: ./results

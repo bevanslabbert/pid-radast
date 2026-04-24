@@ -18,6 +18,8 @@ class TimeDependentResNet(nn.Module):
     def __init__(self, num_classes, time_dim=128, pretrained=True):
         super().__init__()
         resnet = torchvision.models.resnet50(pretrained=pretrained)
+        # Replace first conv to accept 1-channel input (pretrained weights for this layer are discarded)
+        resnet.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
         modules = list(resnet.children())[:-1]  # remove final fc
         self.backbone = nn.Sequential(*modules)
         self.feature_dim = resnet.fc.in_features
