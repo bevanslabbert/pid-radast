@@ -64,9 +64,10 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         # This is the most important metric: x_0_pred passed to the classifier
         # during diffusion training always uses t=0.
         clean_acc, clean_preds, clean_labels = _eval_accuracy(rob_model, testloader, device)
+        clean_report = classification_report(clean_labels, clean_preds,
+                                             target_names=['FR-I', 'FR-II'], digits=3)
         print(f"\nClean accuracy (t=0): {clean_acc:.2f}%")
-        print(classification_report(clean_labels, clean_preds,
-                                    target_names=['FR-I', 'FR-II'], digits=3))
+        print(clean_report)
 
         cm = confusion_matrix(clean_labels, clean_preds)
         disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['FR-I', 'FR-II'])
@@ -124,9 +125,10 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
                 adv_labels_all.extend(labels.cpu().numpy())
 
         adv_acc = 100.0 * adv_correct / adv_total
+        adv_report = classification_report(adv_labels_all, adv_preds,
+                                           target_names=['FR-I', 'FR-II'], digits=3)
         print(f"\nAdversarial accuracy (PGD ε={pgd_epsilon}, steps={pgd_num_steps}): {adv_acc:.2f}%")
-        print(classification_report(adv_labels_all, adv_preds,
-                                    target_names=['FR-I', 'FR-II'], digits=3))
+        print(adv_report)
 
         cm_adv = confusion_matrix(adv_labels_all, adv_preds)
         disp_adv = ConfusionMatrixDisplay(confusion_matrix=cm_adv, display_labels=['FR-I', 'FR-II'])
@@ -134,6 +136,18 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         plt.title(f"Confusion Matrix — adversarial (PGD)  acc={adv_acc:.1f}%")
         plt.savefig(f'{result_directory}/confusion_matrix_adversarial.png', bbox_inches='tight')
         plt.close()
+
+        report_path = f'{result_directory}/classification_report.txt'
+        with open(report_path, 'w') as f:
+            f.write(f"Clean accuracy (t=0): {clean_acc:.2f}%\n\n")
+            f.write("--- Clean Classification Report ---\n")
+            f.write(clean_report)
+            f.write(f"\nRobustness curve (accuracy vs noise level):\n")
+            for t_val, acc in zip(noise_levels, noisy_accs):
+                f.write(f"  t={t_val:4d}  acc={acc:.2f}%\n")
+            f.write(f"\nAdversarial accuracy (PGD ε={pgd_epsilon}, steps={pgd_num_steps}): {adv_acc:.2f}%\n\n")
+            f.write("--- Adversarial Classification Report ---\n")
+            f.write(adv_report)
 
         print(f"\nSummary saved to {result_directory}/")
 
