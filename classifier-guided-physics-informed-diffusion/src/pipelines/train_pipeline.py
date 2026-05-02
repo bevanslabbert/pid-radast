@@ -606,13 +606,17 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
     alphas_cumprod = torch.cumprod(alphas, dim=0)
 
     start_epoch = 0
+    best_val_acc = 0.0
 
     if resume is not None:
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
         rob_model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        if checkpoint.get('scheduler_state_dict') is not None:
+            scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
-        print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
+        best_val_acc = checkpoint.get('best_val_acc', 0.0)
+        print(f"Resumed from checkpoint: epoch {start_epoch}, best val acc {best_val_acc:.1f}%")
 
     # train model
     for epoch in range(start_epoch, num_epochs):
@@ -677,7 +681,8 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
                 wrong_labels = labels[wrong_mask].tolist()
                 wrong_t      = t_train[wrong_mask].tolist()
 
-            status = f"  Batch {batch_idx:>3} | t={t_train.tolist()} | loss={loss.item():.4f} | acc={correct}/{batch_size}"
+            t_min, t_max = t_train.min().item(), t_train.max().item()
+            status = f"  Batch {batch_idx:>3} | t=[{t_min},{t_max}] | loss={loss.item():.4f} | acc={correct}/{batch_size}"
             if wrong_indices:
                 misses = ", ".join(
                     f"[{i}] pred={p} true={l} t={tv}"
@@ -686,7 +691,10 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
                 status += f" | MISCLASSIFIED: {misses}"
             print(status)
 
+        # read LR before stepping so the summary reflects this epoch's LR
+        current_lr = optimizer.param_groups[0]['lr']
         scheduler.step()
+
         avg_loss = total_loss / len(trainloader)
         epoch_losses.append(avg_loss)
 
@@ -707,7 +715,6 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
         avg_val_loss = val_loss_accum / len(valloader)
         val_acc = 100.0 * val_correct / val_total
         val_losses.append(avg_val_loss)
-        rob_model.train()
 
         if in_warmup:
             phase = "warmup"
@@ -715,20 +722,39 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
             phase = f"transition(ε={current_epsilon:.3f})"
         else:
             phase = "adversarial"
-        print(f'Epoch {epoch} [{phase}] | Loss: {avg_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.1f}% | LR: {scheduler.get_last_lr()[0]:.2e}')
+        print(f'Epoch {epoch} [{phase}] | Loss: {avg_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.1f}% | LR: {current_lr:.2e}')
 
-        # save checkpoint for resuming
+        # always save latest checkpoint for resuming
         if not checkpoint == None or not resume == None:
             save_checkpoint(
                 {
                     'epoch': epoch,
                     'model_state_dict': rob_model.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
+                    'scheduler_state_dict': scheduler.state_dict(),
                     'loss': loss,
-                    'config': config
+                    'config': config,
+                    'best_val_acc': best_val_acc,
                 },
                 f'{CHECKPOINT_DIR}/robust_classification'
             )
+
+        # save a separate best checkpoint so the peak model is never overwritten
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            save_checkpoint(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': rob_model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'scheduler_state_dict': scheduler.state_dict(),
+                    'loss': loss,
+                    'config': config,
+                    'best_val_acc': best_val_acc,
+                },
+                f'{CHECKPOINT_DIR}/robust_classification_best'
+            )
+            print(f"  ** New best val acc: {best_val_acc:.1f}% — saved to checkpoints/robust_classification_best")
 
     plt.figure(figsize=(8, 5))
         
