@@ -634,7 +634,7 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
         else:
             current_epsilon = pgd_epsilon
 
-        for batch in trainloader:
+        for batch_idx, batch in enumerate(trainloader):
             inputs = batch[0].to(device)
             labels = batch[1].to(device)
             batch_size = inputs.shape[0]
@@ -667,6 +667,24 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
             optimizer.step()
 
             total_loss += loss.item()
+
+            with torch.no_grad():
+                preds = logits.argmax(dim=1)
+                correct = (preds == labels).sum().item()
+                wrong_mask = preds != labels
+                wrong_indices = wrong_mask.nonzero(as_tuple=True)[0].tolist()
+                wrong_preds  = preds[wrong_mask].tolist()
+                wrong_labels = labels[wrong_mask].tolist()
+                wrong_t      = t_train[wrong_mask].tolist()
+
+            status = f"  Batch {batch_idx:>3} | t={t_train.tolist()} | loss={loss.item():.4f} | acc={correct}/{batch_size}"
+            if wrong_indices:
+                misses = ", ".join(
+                    f"[{i}] pred={p} true={l} t={tv}"
+                    for i, p, l, tv in zip(wrong_indices, wrong_preds, wrong_labels, wrong_t)
+                )
+                status += f" | MISCLASSIFIED: {misses}"
+            print(status)
 
         scheduler.step()
         avg_loss = total_loss / len(trainloader)
