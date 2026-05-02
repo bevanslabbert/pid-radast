@@ -1,33 +1,151 @@
 import torch
 from src.utils.checkpoint import load_checkpoint
+from src.models.time_dependent_resnet import TimeDependentResNet
+from src.utils.augmentation import pgd_attack_early_stop, get_noisy_image
 from torchvision.models import resnet50
 import torch
 import torch.nn as nn
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
 import matplotlib.pyplot as plt
+import numpy as np
 import torchvision
 from diffusers import UNet2DConditionModel, DDPMScheduler
 
+CHECKPOINT_DIR = 'checkpoints'
+
+def _eval_accuracy(model, loader, device, t_fixed=None, alphas_cumprod=None):
+    """Return (accuracy, all_preds, all_labels) for a single noise level."""
+    model.eval()
+    correct = 0
+    total = 0
+    all_preds = []
+    all_labels = []
+
+    with torch.no_grad():
+        for inputs, labels in loader:
+            inputs, labels = inputs.to(device), labels.to(device)
+            if t_fixed is not None:
+                t = torch.full((inputs.size(0),), t_fixed, dtype=torch.long, device=device)
+                inputs = get_noisy_image(inputs, t, alphas_cumprod)
+            else:
+                t = torch.zeros(inputs.size(0), dtype=torch.long, device=device)
+
+            outputs = model(inputs, t)
+            _, predicted = torch.max(outputs, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+            all_preds.extend(predicted.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+
+    return 100.0 * correct / total, all_preds, all_labels
+
 # evaluate model performance
-def test_model(model_type, config, testloader, device, result_directory, model = None):
+def test_model(model_type, config, testloader, device, result_directory, model=None):
     print(f'Testing model')
-    if model_type == 'robust_classification' or model_type == 'classification':
-        # TODO: Test this - added last
+    if model_type == 'robust_classification':
+        num_classes = config['data']['num_classes']
+        num_timesteps = config['training'].get('num_timesteps', 1000)
+        pgd_cfg = config['training'].get('pgd', {})
+        pgd_epsilon   = float(pgd_cfg.get('epsilon',    0.03))
+        pgd_alpha     = float(pgd_cfg.get('alpha',      0.01))
+        pgd_num_steps = int(pgd_cfg.get('num_steps',    20))
+
+        rob_model = TimeDependentResNet(num_classes, pretrained=False)
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
+        rob_model.load_state_dict(checkpoint['model_state_dict'])
+        rob_model.to(device)
+        rob_model.eval()
+
+        # noise schedule matching training
+        betas = torch.linspace(0.0001, 0.02, num_timesteps).to(device)
+        alphas_cumprod = torch.cumprod(1 - betas, dim=0)
+
+        # --- 1. Clean accuracy (t=0) ---
+        # This is the most important metric: x_0_pred passed to the classifier
+        # during diffusion training always uses t=0.
+        clean_acc, clean_preds, clean_labels = _eval_accuracy(rob_model, testloader, device)
+        print(f"\nClean accuracy (t=0): {clean_acc:.2f}%")
+        print(classification_report(clean_labels, clean_preds,
+                                    target_names=['FR-I', 'FR-II'], digits=3))
+
+        cm = confusion_matrix(clean_labels, clean_preds)
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['FR-I', 'FR-II'])
+        disp.plot(cmap='Blues')
+        plt.title(f"Confusion Matrix — clean (t=0)  acc={clean_acc:.1f}%")
+        plt.savefig(f'{result_directory}/confusion_matrix_clean.png', bbox_inches='tight')
+        plt.close()
+
+        # --- 2. Robustness curve: accuracy at increasing noise levels ---
+        noise_levels = [0, 100, 200, 300, 500, 700, 900]
+        noisy_accs = []
+        for t_val in noise_levels:
+            acc, _, _ = _eval_accuracy(rob_model, testloader, device,
+                                       t_fixed=t_val, alphas_cumprod=alphas_cumprod)
+            noisy_accs.append(acc)
+            print(f"  t={t_val:4d}  acc={acc:.2f}%")
+
+        plt.figure(figsize=(8, 5))
+        plt.plot(noise_levels, noisy_accs, marker='o', linewidth=2, color='tab:blue')
+        plt.axhline(50, color='gray', linestyle='--', linewidth=1, label='random chance')
+        plt.xlabel('Noise level (timestep t)')
+        plt.ylabel('Accuracy (%)')
+        plt.title('Robust Classifier: Accuracy vs Noise Level')
+        plt.ylim(0, 105)
+        plt.legend()
+        plt.grid(True, linestyle='--', alpha=0.5)
+        plt.savefig(f'{result_directory}/robustness_curve.png', bbox_inches='tight', dpi=150)
+        plt.close()
+
+        # --- 3. Adversarial accuracy at t=0 (PGD attack on clean images) ---
+        # Tests how much the adversarial training actually helped.
+        adv_correct = 0
+        adv_total = 0
+        adv_preds = []
+        adv_labels_all = []
+
+        for inputs, labels in testloader:
+            inputs, labels = inputs.to(device), labels.to(device)
+            t = torch.zeros(inputs.size(0), dtype=torch.long, device=device)
+
+            x_adv = pgd_attack_early_stop(
+                rob_model, inputs, t, labels,
+                epsilon=pgd_epsilon, alpha=pgd_alpha,
+                num_steps=pgd_num_steps, random_start=True,
+                clamp=(-1.0, 1.0),
+            )
+
+            rob_model.eval()
+            with torch.no_grad():
+                logits = rob_model(x_adv, t)
+                predicted = logits.argmax(dim=1)
+                adv_correct += (predicted == labels).sum().item()
+                adv_total += labels.size(0)
+                adv_preds.extend(predicted.cpu().numpy())
+                adv_labels_all.extend(labels.cpu().numpy())
+
+        adv_acc = 100.0 * adv_correct / adv_total
+        print(f"\nAdversarial accuracy (PGD ε={pgd_epsilon}, steps={pgd_num_steps}): {adv_acc:.2f}%")
+        print(classification_report(adv_labels_all, adv_preds,
+                                    target_names=['FR-I', 'FR-II'], digits=3))
+
+        cm_adv = confusion_matrix(adv_labels_all, adv_preds)
+        disp_adv = ConfusionMatrixDisplay(confusion_matrix=cm_adv, display_labels=['FR-I', 'FR-II'])
+        disp_adv.plot(cmap='Oranges')
+        plt.title(f"Confusion Matrix — adversarial (PGD)  acc={adv_acc:.1f}%")
+        plt.savefig(f'{result_directory}/confusion_matrix_adversarial.png', bbox_inches='tight')
+        plt.close()
+
+        print(f"\nSummary saved to {result_directory}/")
+
+    elif model_type == 'classification':
         model = resnet50(pretrained=True)
         optimizer = torch.optim.Adam(model.parameters(), lr=config['training']['learning_rate'], weight_decay=config['training']['weight_decay'])
 
-        checkpoint = load_checkpoint(f'checkpoints/{model_type}', device)
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
         model.load_state_dict(checkpoint['model_state_dict'])
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 
         num_classes = config['data']['num_classes']
-
-        # replace last layer to match number of classes
         model.fc = nn.Linear(model.fc.in_features, num_classes)
-
-        checkpoint = torch.load('checkpoints/classifier.pth', map_location=device)
-        model.load_state_dict(checkpoint['model_state_dict'])
-
         model.to(device)
         model.eval()
 
@@ -43,18 +161,13 @@ def test_model(model_type, config, testloader, device, result_directory, model =
                 _, predicted = torch.max(outputs.data, 1)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
-
-                # for confusion matrix
                 all_preds.extend(predicted.cpu().numpy())
                 all_labels.extend(labels.cpu().numpy())
 
             accuracy = 100 * correct / total
             print(f'Accuracy: {accuracy}%')
 
-            # Compute confusion matrix
             cm = confusion_matrix(all_labels, all_preds)
-
-            # Display confusion matrix
             disp = ConfusionMatrixDisplay(confusion_matrix=cm)
             disp.plot(cmap='Blues', xticks_rotation=45)
             plt.title("Confusion Matrix")
