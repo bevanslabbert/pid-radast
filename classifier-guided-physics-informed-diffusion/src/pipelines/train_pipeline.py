@@ -558,16 +558,18 @@ def save_training_plot(epochs, losses, val_losses, result_dir="results"):
     
     print(f"📈 Loss graph saved to {plot_path}")
 
-def train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint):
+def train_robust_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
     # model definition
     num_classes = config['data']['num_classes']
     rob_model = TimeDependentResNet(num_classes)
 
     # initialize values
     rob_model.to(device)
-    num_epochs = config['training']['epochs']
-    warmup_epochs = config['training'].get('warmup_epochs', 10)
-    num_timesteps = config['training'].get('num_timesteps', 1000)
+    num_epochs        = config['training']['epochs']
+    warmup_epochs     = config['training'].get('warmup_epochs',    20)
+    transition_epochs = config['training'].get('transition_epochs', 15)
+    label_smoothing   = float(config['training'].get('label_smoothing', 0.1))
+    num_timesteps     = config['training'].get('num_timesteps', 1000)
     optimizer = torch.optim.Adam(
         rob_model.parameters(),
         lr=float(config['training']['learning_rate']),
@@ -578,10 +580,10 @@ def train_robust_classification(config, trainloader, device, result_directory, r
     val_losses = []
 
     pgd_cfg = config['training'].get('pgd', {})
-    pgd_epsilon     = float(pgd_cfg.get('epsilon',      0.03))
-    pgd_alpha       = float(pgd_cfg.get('alpha',        0.01))
-    pgd_num_steps   = int(pgd_cfg.get('num_steps',      10))
-    pgd_random_start = bool(pgd_cfg.get('random_start', True))
+    pgd_epsilon      = float(pgd_cfg.get('epsilon',      0.03))
+    pgd_alpha        = float(pgd_cfg.get('alpha',        0.01))
+    pgd_num_steps    = int(pgd_cfg.get('num_steps',      10))
+    pgd_random_start = bool(pgd_cfg.get('random_start',  True))
 
     # Define diffusion noise schedule (linear beta schedule)
     betas = torch.linspace(0.0001, 0.02, num_timesteps).to(device)
@@ -603,33 +605,39 @@ def train_robust_classification(config, trainloader, device, result_directory, r
         total_loss = 0.0
         rob_model.train()
 
-        # Calculate current max timestep
+        # Calculate current max timestep for the noise curriculum
         max_t = get_max_timestep(epoch, num_epochs, num_timesteps)
 
-        in_warmup = epoch < warmup_epochs
+        in_warmup     = epoch < warmup_epochs
+        in_transition = warmup_epochs <= epoch < warmup_epochs + transition_epochs
 
-        for idx, batch in enumerate(trainloader):
+        # Progressive epsilon: ramp from 25% to 100% over the transition window.
+        # Full epsilon only kicks in after the transition completes.
+        if in_transition:
+            eps_scale = (epoch - warmup_epochs) / transition_epochs  # 0 → 1
+            current_epsilon = pgd_epsilon * (0.25 + 0.75 * eps_scale)
+        else:
+            current_epsilon = pgd_epsilon
+
+        for batch in trainloader:
             inputs = batch[0].to(device)
             labels = batch[1].to(device)
             batch_size = inputs.shape[0]
 
-            # Step 1: Sample random timesteps for each image
             t = torch.randint(0, max(1, max_t), (batch_size,), device=device)
-
-            # Step 2: Add Gaussian noise to create x_t
             x_t = get_noisy_image(inputs, t, alphas_cumprod)
 
-            # During warm-up train on clean images so the model learns basic
-            # classification before adversarial examples are introduced.
-            # After warm-up, apply PGD so the model learns adversarial robustness.
             if in_warmup:
+                # Clean images only — model learns basic FR-I/FR-II classification
+                # before any adversarial examples are introduced.
                 t_clean = torch.zeros(batch_size, dtype=torch.long, device=device)
                 x_train = get_noisy_image(inputs, t_clean, alphas_cumprod)
                 t_train = t_clean
             else:
+                # Transition or full adversarial — PGD with progressive epsilon.
                 x_train = pgd_attack_early_stop(
                     rob_model, x_t, t, labels,
-                    epsilon=pgd_epsilon,
+                    epsilon=current_epsilon,
                     alpha=pgd_alpha,
                     num_steps=pgd_num_steps,
                     random_start=pgd_random_start,
@@ -639,7 +647,7 @@ def train_robust_classification(config, trainloader, device, result_directory, r
 
             optimizer.zero_grad()
             logits = rob_model(x_train, t_train)
-            loss = F.cross_entropy(logits, labels)
+            loss = F.cross_entropy(logits, labels, label_smoothing=label_smoothing)
             loss.backward()
             optimizer.step()
 
@@ -649,8 +657,32 @@ def train_robust_classification(config, trainloader, device, result_directory, r
         avg_loss = total_loss / len(trainloader)
         epoch_losses.append(avg_loss)
 
-        phase = "warmup" if in_warmup else "adversarial"
-        print(f'Epoch {epoch} [{phase}] | Loss: {avg_loss:.4f} | LR: {scheduler.get_last_lr()[0]:.2e}')
+        # Validation — clean accuracy at t=0 on the held-out split
+        rob_model.eval()
+        val_loss_accum = 0.0
+        val_correct = 0
+        val_total = 0
+        with torch.no_grad():
+            for val_batch in valloader:
+                val_inputs = val_batch[0].to(device)
+                val_labels = val_batch[1].to(device)
+                t_val = torch.zeros(val_inputs.size(0), dtype=torch.long, device=device)
+                val_logits = rob_model(val_inputs, t_val)
+                val_loss_accum += F.cross_entropy(val_logits, val_labels, label_smoothing=label_smoothing).item()
+                val_correct += (val_logits.argmax(dim=1) == val_labels).sum().item()
+                val_total += val_labels.size(0)
+        avg_val_loss = val_loss_accum / len(valloader)
+        val_acc = 100.0 * val_correct / val_total
+        val_losses.append(avg_val_loss)
+        rob_model.train()
+
+        if in_warmup:
+            phase = "warmup"
+        elif in_transition:
+            phase = f"transition(ε={current_epsilon:.3f})"
+        else:
+            phase = "adversarial"
+        print(f'Epoch {epoch} [{phase}] | Loss: {avg_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.1f}% | LR: {scheduler.get_last_lr()[0]:.2e}')
 
         # save checkpoint for resuming
         if not checkpoint == None or not resume == None:
@@ -1222,7 +1254,7 @@ def train_model(model, config, trainloader, valloader, testloader, device, resul
     if model == 'classification':
         return train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint)
     elif model == 'robust_classification':
-        return train_robust_classification(config, trainloader, device, result_directory, resume, checkpoint)
+        return train_robust_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint)
     elif model == 'diffusion':
         return train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
     elif model == 'pid':
