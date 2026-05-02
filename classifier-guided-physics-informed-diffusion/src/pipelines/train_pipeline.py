@@ -566,12 +566,14 @@ def train_robust_classification(config, trainloader, device, result_directory, r
     # initialize values
     rob_model.to(device)
     num_epochs = config['training']['epochs']
+    warmup_epochs = config['training'].get('warmup_epochs', 10)
     num_timesteps = config['training'].get('num_timesteps', 1000)
     optimizer = torch.optim.Adam(
         rob_model.parameters(),
         lr=float(config['training']['learning_rate']),
         weight_decay=float(config['training']['weight_decay']),
     )
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs)
     epoch_losses = []
     val_losses = []
 
@@ -604,8 +606,9 @@ def train_robust_classification(config, trainloader, device, result_directory, r
         # Calculate current max timestep
         max_t = get_max_timestep(epoch, num_epochs, num_timesteps)
 
+        in_warmup = epoch < warmup_epochs
+
         for idx, batch in enumerate(trainloader):
-            print(f"Index {idx}")
             inputs = batch[0].to(device)
             labels = batch[1].to(device)
             batch_size = inputs.shape[0]
@@ -616,31 +619,38 @@ def train_robust_classification(config, trainloader, device, result_directory, r
             # Step 2: Add Gaussian noise to create x_t
             x_t = get_noisy_image(inputs, t, alphas_cumprod)
 
-            # Step 3: Apply adversarial attack with early stopping
-            x_tilde = pgd_attack_early_stop(
-                rob_model, x_t, t, labels,
-                epsilon=pgd_epsilon,
-                alpha=pgd_alpha,
-                num_steps=pgd_num_steps,
-                random_start=pgd_random_start,
-                clamp=(-1.0, 1.0),
-            )
+            # During warm-up train on clean images so the model learns basic
+            # classification before adversarial examples are introduced.
+            # After warm-up, apply PGD so the model learns adversarial robustness.
+            if in_warmup:
+                t_clean = torch.zeros(batch_size, dtype=torch.long, device=device)
+                x_train = get_noisy_image(inputs, t_clean, alphas_cumprod)
+                t_train = t_clean
+            else:
+                x_train = pgd_attack_early_stop(
+                    rob_model, x_t, t, labels,
+                    epsilon=pgd_epsilon,
+                    alpha=pgd_alpha,
+                    num_steps=pgd_num_steps,
+                    random_start=pgd_random_start,
+                    clamp=(-1.0, 1.0),
+                )
+                t_train = t
 
-            # Step 4: Train on adversarial examples
             optimizer.zero_grad()
-            logits = rob_model(x_tilde, t)
+            logits = rob_model(x_train, t_train)
             loss = F.cross_entropy(logits, labels)
-
-            # Step 5: Backward pass
             loss.backward()
             optimizer.step()
 
             total_loss += loss.item()
 
+        scheduler.step()
         avg_loss = total_loss / len(trainloader)
         epoch_losses.append(avg_loss)
 
-        print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}')
+        phase = "warmup" if in_warmup else "adversarial"
+        print(f'Epoch {epoch} [{phase}] | Loss: {avg_loss:.4f} | LR: {scheduler.get_last_lr()[0]:.2e}')
 
         # save checkpoint for resuming
         if not checkpoint == None or not resume == None:
