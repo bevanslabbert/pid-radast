@@ -458,6 +458,21 @@ def sample_from_model_ones(model, scheduler, class_emb, num_samples, num_classes
             images = scheduler.step(noise_pred, t, images).prev_sample
     return images
 
+def fits_to_linear(x_fits, dataset):
+    """Convert a FITS log-SNR normalised tensor to linear-normalised [-1, 1].
+
+    Fully differentiable — safe to use inside a training step where gradients
+    must flow back through x_0_pred to the UNet.
+
+    Derivation:
+      FITS normalisation: x = sign(snr) * log1p(|snr|) / peak_log
+      Inverse to Jy/beam: jy = sign(x) * expm1(|x| * peak_log) * noise_rms
+      Linear normalisation: divide by max Jy/beam = expm1(peak_log) * noise_rms
+      noise_rms cancels → x_linear = sign(x) * expm1(|x| * peak_log) / expm1(peak_log)
+    """
+    peak_log = dataset.median_peak_log
+    return torch.sign(x_fits) * torch.expm1(torch.abs(x_fits) * peak_log) / math.expm1(peak_log)
+
 def prepare_for_fid(t):
         t = t.repeat(1, 3, 1, 1)          # 1 channel -> 3 channels
         t = (t + 1.0) / 2.0               # -1..1 -> 0..1
@@ -628,11 +643,11 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
             x_t = get_noisy_image(inputs, t, alphas_cumprod)
 
             if in_warmup:
-                # Clean images only — model learns basic FR-I/FR-II classification
-                # before any adversarial examples are introduced.
-                t_clean = torch.zeros(batch_size, dtype=torch.long, device=device)
-                x_train = get_noisy_image(inputs, t_clean, alphas_cumprod)
-                t_train = t_clean
+                # Noisy images with the curriculum schedule but no adversarial attack.
+                # The model gradually learns to classify at increasing noise levels
+                # so that when PGD is introduced it has already seen that noise range.
+                x_train = x_t
+                t_train = t
             else:
                 # Transition or full adversarial — PGD with progressive epsilon.
                 x_train = pgd_attack_early_stop(
@@ -1102,7 +1117,12 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
             cls_loss = torch.tensor(0.0, device=device)
             if cls_mask.any():
                 t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
-                cls_logits = classifier(x_0_pred[cls_mask], t_clean)
+                cls_input = x_0_pred[cls_mask]
+                # FITS images are log-SNR normalised; convert to linear [-1,1] so the
+                # classifier (trained on standard MiraBest images) sees the same distribution.
+                if isinstance(dataset, MiraBestFITS):
+                    cls_input = fits_to_linear(cls_input, dataset)
+                cls_logits = classifier(cls_input, t_clean)
                 cls_loss = lambda_cls * F.cross_entropy(cls_logits, labels[cls_mask])
 
             loss = F.mse_loss(model_output, noise) + cls_loss
