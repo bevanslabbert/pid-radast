@@ -6,6 +6,7 @@ import torchvision.transforms as transforms
 from src.datasets.crumb.CRUMB import CRUMB
 from src.datasets.mirabest.MiraBest import MiraBest
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
+from src.datasets.mirabest.MiraBestPNG import MiraBestPNG
 import torchvision
 import numpy as np
 
@@ -88,6 +89,29 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2) -> Tuple[D
         testloader  = DataLoader(Subset(full_dataset, test_idx),  batch_size=batch_size, shuffle=False, num_workers=2)
 
         return trainloader, valloader, testloader, full_dataset
+
+    if dataset.lower() == 'mirabest_fits_png':
+        png_dir = 'src/datasets/mirabest/png'
+        full_dataset = MiraBestPNG(root=png_dir, transform=transform)
+
+        total = len(full_dataset)
+        val_size = int(total * val_split)
+        test_size = int(total * 0.1)
+        train_size = total - val_size - test_size
+
+        indices = list(range(total))
+        rng = np.random.default_rng(42)
+        rng.shuffle(indices)
+
+        train_idx = indices[:train_size]
+        val_idx   = indices[train_size:train_size + val_size]
+        test_idx  = indices[train_size + val_size:]
+
+        trainloader = DataLoader(Subset(full_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2)
+        valloader   = DataLoader(Subset(full_dataset, val_idx),   batch_size=batch_size, shuffle=False, num_workers=2)
+        testloader  = DataLoader(Subset(full_dataset, test_idx),  batch_size=batch_size, shuffle=False, num_workers=2)
+
+        return trainloader, valloader, testloader
 
     raise ValueError(f"Dataset '{dataset}' is not supported!")
 
