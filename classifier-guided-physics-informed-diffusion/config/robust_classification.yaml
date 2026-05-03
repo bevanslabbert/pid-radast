@@ -3,7 +3,7 @@ seed: 42
 device: cuda
 
 data:
-  dataset: mirabest_fits_png
+  dataset: mirabest_fits
   batch_size: 16
   num_workers: 4
   input_size: 150
@@ -15,19 +15,19 @@ model:
 
 training:
   epochs: 100
-  warmup_epochs: 20        # train on clean images only before adversarial training starts
-  transition_epochs: 15    # ramp epsilon from 25% to 100% before full adversarial training
-  label_smoothing: 0.1     # prevents overconfidence on the small MiraBest dataset
+  warmup_epochs: 20 # train on clean images only before adversarial training starts
+  transition_epochs: 15 # ramp epsilon from 25% to 100% before full adversarial training
+  label_smoothing: 0.1 # prevents overconfidence on the small MiraBest dataset
   learning_rate: 0.0001
   weight_decay: 0.0001
   num_timesteps: 1000
 
   # PGD adversarial attack parameters
   pgd:
-    epsilon: 0.03       # l-inf perturbation budget (in [-1,1] pixel space)
-    alpha: 0.01         # step size per PGD iteration
-    num_steps: 10       # max PGD iterations per batch
-    random_start: true  # random delta initialisation (stronger attacks; recommended)
+    epsilon: 0.03 # l-inf perturbation budget (in [-1,1] pixel space)
+    alpha: 0.01 # step size per PGD iteration
+    num_steps: 10 # max PGD iterations per batch
+    random_start: true # random delta initialisation (stronger attacks; recommended)
 
 evaluation:
   metrics: [accuracy, precision, recall, f1]
