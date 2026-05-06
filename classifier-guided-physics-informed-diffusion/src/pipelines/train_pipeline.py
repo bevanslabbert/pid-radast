@@ -373,6 +373,10 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
     save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
 
+    torch.save(
+        {'model_state_dict': unet.state_dict(), 'class_emb_state_dict': class_emb.state_dict(), 'config': config},
+        os.path.join(result_directory, 'final_weights.pt')
+    )
     print(f"Generated images saved.")
 
     return unet
@@ -772,9 +776,12 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
     plt.grid(True)
 
     print(f'saving in {result_directory}/robust_classifier_loss_plot.png')
-    plt.savefig(f'{result_directory}/robust_classifier_loss_plot.png') 
+    plt.savefig(f'{result_directory}/robust_classifier_loss_plot.png')
 
-    # torch.save(rob_model.state_dict(), f'{result_directory}/state_dict.pth') # save this config
+    torch.save(
+        {'model_state_dict': rob_model.state_dict(), 'config': config},
+        os.path.join(result_directory, 'final_weights.pt')
+    )
     return rob_model
 
 def train_pid(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=None):
@@ -1046,6 +1053,11 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
         mse_history, sym_history, neg_history,
         compliance_epochs, pct_negative_history, sym_score_history,
         result_directory,
+    )
+
+    torch.save(
+        {'model_state_dict': unet.state_dict(), 'class_emb_state_dict': class_emb.state_dict(), 'config': config},
+        os.path.join(result_directory, 'final_weights.pt')
     )
     print("Generated images saved.")
 

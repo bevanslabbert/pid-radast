@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -N pid_seed${SEED}
+#PBS -q gpu_1
+#PBS -P CSCI1166
+#PBS -l select=1:ncpus=9:ngpus=1
+#PBS -l walltime=8:00:00
+#PBS -o logs/pid_seed${SEED}.out
+#PBS -e logs/pid_seed${SEED}.err
+
+cd $PBS_O_WORKDIR
+module load chpc/python/3.9.6
+source .venv/bin/activate
+
+python main.py train \
+    --model pid \
+    --seed ${SEED} \
+    --runs 1 \
+    --checkpoint True
