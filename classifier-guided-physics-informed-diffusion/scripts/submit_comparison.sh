@@ -12,7 +12,7 @@
 
 set -e
 
-SEEDS=(42 43 44 45 46)
+SEEDS=(42 43 44)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(dirname "$SCRIPT_DIR")"
 
