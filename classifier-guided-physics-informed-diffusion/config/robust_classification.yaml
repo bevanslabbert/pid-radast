@@ -14,7 +14,7 @@ model:
   checkpoint_dir: ./checkpoints
 
 training:
-  epochs: 200
+  epochs: 300
   warmup_epochs: 20 # train on clean images only before adversarial training starts
   transition_epochs: 15 # ramp epsilon from 25% to 100% before full adversarial training
   label_smoothing: 0.1 # prevents overconfidence on the small MiraBest dataset
