@@ -1,0 +1,28 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mirabest_fits
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1221
+Total batches: 107 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=44  |  results -> results/diffusion/run_20260506_221659_seed44
+============================================================
+
+Training diffusion for 1 epochs
+Epoch 0
+Epoch 0 | Loss: 0.082671 | Val Loss: 0.162602
+Generating class 0 images
+Generating class 1 images
+FITS files saved to results/diffusion/run_20260506_221659_seed44/generated_fits
+--- Saved model to checkpoints/diffusion/state.pt ---
+Generating class 0 images
+Generating class 1 images
+Labels:
+tensor([1, 1, 1, 0, 1, 1, 0, 0], device='cuda:0')
+FITS files saved to results/diffusion/run_20260506_221659_seed44/generated_fits
+📈 Loss graph saved to results/diffusion/run_20260506_221659_seed44/training_metrics.png
+Generated images saved.
+Testing model
