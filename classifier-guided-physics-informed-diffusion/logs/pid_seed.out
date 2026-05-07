@@ -8,690 +8,690 @@ Total images in dataset: 1221
 Total batches: 107 (at batch size 8)
 
 ============================================================
-Run 1/1  |  seed=42  |  results -> results/pid/run_20260507_093605_seed42
+Run 1/1  |  seed=43  |  results -> results/pid/run_20260507_170453_seed43
 ============================================================
 
 Training pid for 200 epochs
 Epoch 0
-Epoch 0 | Loss: 0.142154 | Val: 0.192331 | MSE: 0.099162 | Sym: 0.021935 | Neg: 0.021057
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.013103
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 0 | Loss: 0.131063 | Val: 0.193670 | MSE: 0.092819 | Sym: 0.020607 | Neg: 0.017637
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.028796
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 1
-Epoch 1 | Loss: 0.054397 | Val: 0.179481 | MSE: 0.042716 | Sym: 0.006228 | Neg: 0.005452
+Epoch 1 | Loss: 0.050476 | Val: 0.184495 | MSE: 0.040117 | Sym: 0.005810 | Neg: 0.004548
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 2
-Epoch 2 | Loss: 0.049116 | Val: 0.173156 | MSE: 0.041407 | Sym: 0.003973 | Neg: 0.003736
+Epoch 2 | Loss: 0.042894 | Val: 0.173873 | MSE: 0.036577 | Sym: 0.003321 | Neg: 0.002996
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 3
-Epoch 3 | Loss: 0.035012 | Val: 0.170055 | MSE: 0.030578 | Sym: 0.002286 | Neg: 0.002148
+Epoch 3 | Loss: 0.041963 | Val: 0.170215 | MSE: 0.037289 | Sym: 0.002161 | Neg: 0.002512
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 4
-Epoch 4 | Loss: 0.035862 | Val: 0.168120 | MSE: 0.031929 | Sym: 0.001803 | Neg: 0.002130
+Epoch 4 | Loss: 0.043906 | Val: 0.162471 | MSE: 0.039255 | Sym: 0.002235 | Neg: 0.002416
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 5
-Epoch 5 | Loss: 0.034829 | Val: 0.166528 | MSE: 0.031055 | Sym: 0.001854 | Neg: 0.001921
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.015797
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 5 | Loss: 0.033683 | Val: 0.165598 | MSE: 0.030350 | Sym: 0.001515 | Neg: 0.001818
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.031824
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 6
-Epoch 6 | Loss: 0.038141 | Val: 0.162282 | MSE: 0.034313 | Sym: 0.001731 | Neg: 0.002097
+Epoch 6 | Loss: 0.037315 | Val: 0.163008 | MSE: 0.033894 | Sym: 0.001442 | Neg: 0.001979
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 7
-Epoch 7 | Loss: 0.034571 | Val: 0.169496 | MSE: 0.031041 | Sym: 0.001628 | Neg: 0.001902
+Epoch 7 | Loss: 0.034012 | Val: 0.164043 | MSE: 0.030754 | Sym: 0.001459 | Neg: 0.001799
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 8
-Epoch 8 | Loss: 0.035835 | Val: 0.164273 | MSE: 0.032542 | Sym: 0.001409 | Neg: 0.001885
+Epoch 8 | Loss: 0.030294 | Val: 0.164070 | MSE: 0.027089 | Sym: 0.001465 | Neg: 0.001740
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 9
-Epoch 9 | Loss: 0.032964 | Val: 0.159762 | MSE: 0.029964 | Sym: 0.001277 | Neg: 0.001722
+Epoch 9 | Loss: 0.032861 | Val: 0.161016 | MSE: 0.029594 | Sym: 0.001555 | Neg: 0.001712
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 10
-Epoch 10 | Loss: 0.034297 | Val: 0.164717 | MSE: 0.030949 | Sym: 0.001491 | Neg: 0.001857
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.013792
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 10 | Loss: 0.029878 | Val: 0.162468 | MSE: 0.027023 | Sym: 0.001210 | Neg: 0.001645
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.028105
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 11
-Epoch 11 | Loss: 0.030930 | Val: 0.157715 | MSE: 0.027980 | Sym: 0.001218 | Neg: 0.001731
+Epoch 11 | Loss: 0.031846 | Val: 0.163135 | MSE: 0.028803 | Sym: 0.001236 | Neg: 0.001807
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 12
-Epoch 12 | Loss: 0.027659 | Val: 0.159075 | MSE: 0.025081 | Sym: 0.001082 | Neg: 0.001495
+Epoch 12 | Loss: 0.035392 | Val: 0.163261 | MSE: 0.032273 | Sym: 0.001217 | Neg: 0.001902
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 13
-Epoch 13 | Loss: 0.035034 | Val: 0.164977 | MSE: 0.031855 | Sym: 0.001445 | Neg: 0.001733
+Epoch 13 | Loss: 0.031837 | Val: 0.160539 | MSE: 0.029019 | Sym: 0.001129 | Neg: 0.001688
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 14
-Epoch 14 | Loss: 0.027824 | Val: 0.160550 | MSE: 0.025159 | Sym: 0.001102 | Neg: 0.001563
+Epoch 14 | Loss: 0.030154 | Val: 0.160172 | MSE: 0.027355 | Sym: 0.001082 | Neg: 0.001717
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 15
-Epoch 15 | Loss: 0.031119 | Val: 0.160999 | MSE: 0.028408 | Sym: 0.001057 | Neg: 0.001655
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.014679
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 15 | Loss: 0.027970 | Val: 0.154996 | MSE: 0.025512 | Sym: 0.000932 | Neg: 0.001525
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.026145
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 16
-Epoch 16 | Loss: 0.028587 | Val: 0.156572 | MSE: 0.026241 | Sym: 0.000863 | Neg: 0.001484
+Epoch 16 | Loss: 0.039019 | Val: 0.155459 | MSE: 0.035683 | Sym: 0.001414 | Neg: 0.001922
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 17
-Epoch 17 | Loss: 0.034413 | Val: 0.156753 | MSE: 0.031223 | Sym: 0.001321 | Neg: 0.001869
+Epoch 17 | Loss: 0.032582 | Val: 0.155945 | MSE: 0.029827 | Sym: 0.001070 | Neg: 0.001684
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 18
-Epoch 18 | Loss: 0.032203 | Val: 0.159920 | MSE: 0.029074 | Sym: 0.001313 | Neg: 0.001817
+Epoch 18 | Loss: 0.037502 | Val: 0.162468 | MSE: 0.034595 | Sym: 0.001070 | Neg: 0.001837
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 19
-Epoch 19 | Loss: 0.032770 | Val: 0.155703 | MSE: 0.029999 | Sym: 0.000930 | Neg: 0.001840
+Epoch 19 | Loss: 0.027676 | Val: 0.157389 | MSE: 0.025170 | Sym: 0.000948 | Neg: 0.001558
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 20
-Epoch 20 | Loss: 0.031405 | Val: 0.156999 | MSE: 0.028512 | Sym: 0.001018 | Neg: 0.001875
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.017276
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 20 | Loss: 0.034151 | Val: 0.157296 | MSE: 0.030199 | Sym: 0.002219 | Neg: 0.001733
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.023875
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 21
-Epoch 21 | Loss: 0.028956 | Val: 0.159258 | MSE: 0.026524 | Sym: 0.000952 | Neg: 0.001481
+Epoch 21 | Loss: 0.026612 | Val: 0.158471 | MSE: 0.024195 | Sym: 0.000811 | Neg: 0.001606
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 22
-Epoch 22 | Loss: 0.028263 | Val: 0.155960 | MSE: 0.025901 | Sym: 0.000878 | Neg: 0.001483
+Epoch 22 | Loss: 0.033921 | Val: 0.159183 | MSE: 0.031297 | Sym: 0.000944 | Neg: 0.001679
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 23
-Epoch 23 | Loss: 0.038460 | Val: 0.158753 | MSE: 0.034444 | Sym: 0.001962 | Neg: 0.002054
+Epoch 23 | Loss: 0.032106 | Val: 0.154362 | MSE: 0.029576 | Sym: 0.000816 | Neg: 0.001714
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 24
-Epoch 24 | Loss: 0.031977 | Val: 0.157993 | MSE: 0.029473 | Sym: 0.000841 | Neg: 0.001663
+Epoch 24 | Loss: 0.027083 | Val: 0.156084 | MSE: 0.024747 | Sym: 0.000924 | Neg: 0.001412
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 25
-Epoch 25 | Loss: 0.028895 | Val: 0.155772 | MSE: 0.026470 | Sym: 0.000908 | Neg: 0.001517
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.013785
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 25 | Loss: 0.032881 | Val: 0.155423 | MSE: 0.029889 | Sym: 0.001278 | Neg: 0.001715
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.023341
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 26
-Epoch 26 | Loss: 0.029563 | Val: 0.157659 | MSE: 0.027225 | Sym: 0.000796 | Neg: 0.001542
+Epoch 26 | Loss: 0.039786 | Val: 0.157173 | MSE: 0.036908 | Sym: 0.000784 | Neg: 0.002094
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 27
-Epoch 27 | Loss: 0.030703 | Val: 0.154959 | MSE: 0.028183 | Sym: 0.000795 | Neg: 0.001725
+Epoch 27 | Loss: 0.033375 | Val: 0.154020 | MSE: 0.030883 | Sym: 0.000810 | Neg: 0.001682
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 28
-Epoch 28 | Loss: 0.032566 | Val: 0.165996 | MSE: 0.030106 | Sym: 0.000826 | Neg: 0.001634
+Epoch 28 | Loss: 0.036310 | Val: 0.155186 | MSE: 0.033646 | Sym: 0.000817 | Neg: 0.001846
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 29
-Epoch 29 | Loss: 0.030682 | Val: 0.157340 | MSE: 0.027782 | Sym: 0.001181 | Neg: 0.001720
+Epoch 29 | Loss: 0.026645 | Val: 0.154625 | MSE: 0.024380 | Sym: 0.000902 | Neg: 0.001363
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 30
-Epoch 30 | Loss: 0.036736 | Val: 0.153504 | MSE: 0.034187 | Sym: 0.000832 | Neg: 0.001717
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.017152
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 30 | Loss: 0.038224 | Val: 0.153703 | MSE: 0.035625 | Sym: 0.000746 | Neg: 0.001853
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.023466
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 31
-Epoch 31 | Loss: 0.032532 | Val: 0.155196 | MSE: 0.030130 | Sym: 0.000713 | Neg: 0.001689
+Epoch 31 | Loss: 0.030397 | Val: 0.153217 | MSE: 0.028171 | Sym: 0.000703 | Neg: 0.001523
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 32
-Epoch 32 | Loss: 0.032637 | Val: 0.153712 | MSE: 0.029916 | Sym: 0.001226 | Neg: 0.001494
+Epoch 32 | Loss: 0.032117 | Val: 0.155325 | MSE: 0.029140 | Sym: 0.001333 | Neg: 0.001645
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 33
-Epoch 33 | Loss: 0.030522 | Val: 0.153642 | MSE: 0.028068 | Sym: 0.000809 | Neg: 0.001645
+Epoch 33 | Loss: 0.028668 | Val: 0.158199 | MSE: 0.026074 | Sym: 0.000929 | Neg: 0.001665
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 34
-Epoch 34 | Loss: 0.029978 | Val: 0.156673 | MSE: 0.027449 | Sym: 0.000927 | Neg: 0.001601
+Epoch 34 | Loss: 0.035087 | Val: 0.156424 | MSE: 0.032419 | Sym: 0.000835 | Neg: 0.001833
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 35
-Epoch 35 | Loss: 0.027639 | Val: 0.153780 | MSE: 0.025350 | Sym: 0.000767 | Neg: 0.001522
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.015208
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 35 | Loss: 0.038552 | Val: 0.153500 | MSE: 0.035141 | Sym: 0.001588 | Neg: 0.001823
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.021026
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 36
-Epoch 36 | Loss: 0.033444 | Val: 0.153326 | MSE: 0.031011 | Sym: 0.000775 | Neg: 0.001659
+Epoch 36 | Loss: 0.036244 | Val: 0.153125 | MSE: 0.033339 | Sym: 0.001017 | Neg: 0.001888
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 37
-Epoch 37 | Loss: 0.042806 | Val: 0.156318 | MSE: 0.039558 | Sym: 0.001264 | Neg: 0.001985
+Epoch 37 | Loss: 0.036160 | Val: 0.156733 | MSE: 0.033775 | Sym: 0.000645 | Neg: 0.001741
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 38
-Epoch 38 | Loss: 0.030456 | Val: 0.151860 | MSE: 0.027390 | Sym: 0.001258 | Neg: 0.001807
+Epoch 38 | Loss: 0.029065 | Val: 0.157434 | MSE: 0.026590 | Sym: 0.000975 | Neg: 0.001500
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 39
-Epoch 39 | Loss: 0.034048 | Val: 0.152853 | MSE: 0.031514 | Sym: 0.000795 | Neg: 0.001739
+Epoch 39 | Loss: 0.033640 | Val: 0.152894 | MSE: 0.030668 | Sym: 0.001102 | Neg: 0.001870
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 40
-Epoch 40 | Loss: 0.027513 | Val: 0.152953 | MSE: 0.025478 | Sym: 0.000664 | Neg: 0.001372
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.017605
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 40 | Loss: 0.035867 | Val: 0.151350 | MSE: 0.033202 | Sym: 0.000740 | Neg: 0.001926
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.021314
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 41
-Epoch 41 | Loss: 0.031301 | Val: 0.153027 | MSE: 0.028884 | Sym: 0.000771 | Neg: 0.001645
+Epoch 41 | Loss: 0.031824 | Val: 0.154303 | MSE: 0.029401 | Sym: 0.000721 | Neg: 0.001702
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 42
-Epoch 42 | Loss: 0.030953 | Val: 0.157629 | MSE: 0.028642 | Sym: 0.000678 | Neg: 0.001633
+Epoch 42 | Loss: 0.030471 | Val: 0.155034 | MSE: 0.028217 | Sym: 0.000624 | Neg: 0.001631
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 43
-Epoch 43 | Loss: 0.032314 | Val: 0.157784 | MSE: 0.029983 | Sym: 0.000758 | Neg: 0.001572
+Epoch 43 | Loss: 0.037872 | Val: 0.151698 | MSE: 0.035403 | Sym: 0.000646 | Neg: 0.001824
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 44
-Epoch 44 | Loss: 0.033385 | Val: 0.153024 | MSE: 0.030952 | Sym: 0.000757 | Neg: 0.001675
+Epoch 44 | Loss: 0.031939 | Val: 0.153364 | MSE: 0.029607 | Sym: 0.000771 | Neg: 0.001561
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 45
-Epoch 45 | Loss: 0.031699 | Val: 0.155943 | MSE: 0.029525 | Sym: 0.000632 | Neg: 0.001542
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.015843
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 45 | Loss: 0.037610 | Val: 0.152876 | MSE: 0.034709 | Sym: 0.001118 | Neg: 0.001783
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.018245
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 46
-Epoch 46 | Loss: 0.039218 | Val: 0.152723 | MSE: 0.036585 | Sym: 0.000752 | Neg: 0.001881
+Epoch 46 | Loss: 0.020376 | Val: 0.151849 | MSE: 0.018517 | Sym: 0.000642 | Neg: 0.001216
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 47
-Epoch 47 | Loss: 0.043147 | Val: 0.155981 | MSE: 0.038095 | Sym: 0.002664 | Neg: 0.002387
+Epoch 47 | Loss: 0.033358 | Val: 0.157723 | MSE: 0.031007 | Sym: 0.000683 | Neg: 0.001668
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 48
-Epoch 48 | Loss: 0.022536 | Val: 0.154106 | MSE: 0.020501 | Sym: 0.000768 | Neg: 0.001266
+Epoch 48 | Loss: 0.039310 | Val: 0.165994 | MSE: 0.036362 | Sym: 0.001086 | Neg: 0.001862
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 49
-Epoch 49 | Loss: 0.028387 | Val: 0.153354 | MSE: 0.026006 | Sym: 0.000775 | Neg: 0.001606
+Epoch 49 | Loss: 0.028504 | Val: 0.151845 | MSE: 0.025424 | Sym: 0.001331 | Neg: 0.001750
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 50
-Epoch 50 | Loss: 0.031432 | Val: 0.153169 | MSE: 0.029229 | Sym: 0.000647 | Neg: 0.001556
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.012627
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 50 | Loss: 0.031661 | Val: 0.153174 | MSE: 0.029173 | Sym: 0.000898 | Neg: 0.001591
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.019226
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 51
-Epoch 51 | Loss: 0.031208 | Val: 0.154372 | MSE: 0.028952 | Sym: 0.000629 | Neg: 0.001626
+Epoch 51 | Loss: 0.031563 | Val: 0.150505 | MSE: 0.029116 | Sym: 0.000838 | Neg: 0.001609
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 52
-Epoch 52 | Loss: 0.035377 | Val: 0.151717 | MSE: 0.032914 | Sym: 0.000733 | Neg: 0.001730
+Epoch 52 | Loss: 0.038730 | Val: 0.154083 | MSE: 0.035392 | Sym: 0.001411 | Neg: 0.001927
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 53
-Epoch 53 | Loss: 0.031542 | Val: 0.151836 | MSE: 0.029243 | Sym: 0.000694 | Neg: 0.001605
+Epoch 53 | Loss: 0.032219 | Val: 0.154010 | MSE: 0.030019 | Sym: 0.000512 | Neg: 0.001687
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 54
-Epoch 54 | Loss: 0.034194 | Val: 0.152989 | MSE: 0.031813 | Sym: 0.000735 | Neg: 0.001646
+Epoch 54 | Loss: 0.034118 | Val: 0.154295 | MSE: 0.031769 | Sym: 0.000650 | Neg: 0.001699
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 55
-Epoch 55 | Loss: 0.035141 | Val: 0.154405 | MSE: 0.032876 | Sym: 0.000617 | Neg: 0.001648
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.012750
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 55 | Loss: 0.028553 | Val: 0.151674 | MSE: 0.026360 | Sym: 0.000640 | Neg: 0.001553
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.018882
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 56
-Epoch 56 | Loss: 0.029621 | Val: 0.152070 | MSE: 0.027530 | Sym: 0.000654 | Neg: 0.001438
+Epoch 56 | Loss: 0.027922 | Val: 0.152253 | MSE: 0.025835 | Sym: 0.000654 | Neg: 0.001433
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 57
-Epoch 57 | Loss: 0.034200 | Val: 0.152289 | MSE: 0.031321 | Sym: 0.001108 | Neg: 0.001771
+Epoch 57 | Loss: 0.025329 | Val: 0.155125 | MSE: 0.022854 | Sym: 0.001172 | Neg: 0.001303
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 58
-Epoch 58 | Loss: 0.029616 | Val: 0.155169 | MSE: 0.027502 | Sym: 0.000602 | Neg: 0.001513
+Epoch 58 | Loss: 0.035614 | Val: 0.150779 | MSE: 0.032632 | Sym: 0.001189 | Neg: 0.001793
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 59
-Epoch 59 | Loss: 0.035122 | Val: 0.156841 | MSE: 0.032655 | Sym: 0.000729 | Neg: 0.001738
+Epoch 59 | Loss: 0.032682 | Val: 0.152790 | MSE: 0.030266 | Sym: 0.000615 | Neg: 0.001801
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 60
-Epoch 60 | Loss: 0.033578 | Val: 0.156000 | MSE: 0.030911 | Sym: 0.001009 | Neg: 0.001659
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.012101
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 60 | Loss: 0.040980 | Val: 0.151746 | MSE: 0.037354 | Sym: 0.001563 | Neg: 0.002063
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.017374
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 61
-Epoch 61 | Loss: 0.029103 | Val: 0.154337 | MSE: 0.026659 | Sym: 0.000942 | Neg: 0.001503
+Epoch 61 | Loss: 0.024999 | Val: 0.153034 | MSE: 0.023025 | Sym: 0.000593 | Neg: 0.001381
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 62
-Epoch 62 | Loss: 0.031374 | Val: 0.153058 | MSE: 0.029024 | Sym: 0.000770 | Neg: 0.001579
+Epoch 62 | Loss: 0.027524 | Val: 0.151853 | MSE: 0.025291 | Sym: 0.000669 | Neg: 0.001564
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 63
-Epoch 63 | Loss: 0.031360 | Val: 0.151601 | MSE: 0.029292 | Sym: 0.000544 | Neg: 0.001525
+Epoch 63 | Loss: 0.028791 | Val: 0.152530 | MSE: 0.026608 | Sym: 0.000745 | Neg: 0.001439
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 64
-Epoch 64 | Loss: 0.033442 | Val: 0.151178 | MSE: 0.031202 | Sym: 0.000715 | Neg: 0.001525
+Epoch 64 | Loss: 0.026110 | Val: 0.151058 | MSE: 0.024015 | Sym: 0.000670 | Neg: 0.001425
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 65
-Epoch 65 | Loss: 0.035945 | Val: 0.156610 | MSE: 0.033489 | Sym: 0.000649 | Neg: 0.001807
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.015839
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 65 | Loss: 0.032824 | Val: 0.150310 | MSE: 0.030559 | Sym: 0.000565 | Neg: 0.001700
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.018428
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 66
-Epoch 66 | Loss: 0.032404 | Val: 0.150175 | MSE: 0.029485 | Sym: 0.001240 | Neg: 0.001678
+Epoch 66 | Loss: 0.028766 | Val: 0.150514 | MSE: 0.026726 | Sym: 0.000552 | Neg: 0.001488
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 67
-Epoch 67 | Loss: 0.029893 | Val: 0.151576 | MSE: 0.027666 | Sym: 0.000644 | Neg: 0.001582
+Epoch 67 | Loss: 0.031187 | Val: 0.151123 | MSE: 0.028796 | Sym: 0.000752 | Neg: 0.001640
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 68
-Epoch 68 | Loss: 0.041577 | Val: 0.151870 | MSE: 0.038256 | Sym: 0.001369 | Neg: 0.001951
+Epoch 68 | Loss: 0.029012 | Val: 0.151330 | MSE: 0.026448 | Sym: 0.001051 | Neg: 0.001514
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 69
-Epoch 69 | Loss: 0.028090 | Val: 0.154023 | MSE: 0.025885 | Sym: 0.000663 | Neg: 0.001542
+Epoch 69 | Loss: 0.032359 | Val: 0.152451 | MSE: 0.030116 | Sym: 0.000634 | Neg: 0.001609
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 70
-Epoch 70 | Loss: 0.028410 | Val: 0.150595 | MSE: 0.026027 | Sym: 0.000835 | Neg: 0.001548
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.014953
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 70 | Loss: 0.033750 | Val: 0.154812 | MSE: 0.031480 | Sym: 0.000639 | Neg: 0.001630
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.018848
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 71
-Epoch 71 | Loss: 0.028875 | Val: 0.151423 | MSE: 0.026674 | Sym: 0.000643 | Neg: 0.001557
+Epoch 71 | Loss: 0.032084 | Val: 0.153772 | MSE: 0.029774 | Sym: 0.000656 | Neg: 0.001654
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 72
-Epoch 72 | Loss: 0.028086 | Val: 0.150996 | MSE: 0.025884 | Sym: 0.000665 | Neg: 0.001537
+Epoch 72 | Loss: 0.028159 | Val: 0.152506 | MSE: 0.026035 | Sym: 0.000660 | Neg: 0.001464
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 73
-Epoch 73 | Loss: 0.030168 | Val: 0.151559 | MSE: 0.028011 | Sym: 0.000619 | Neg: 0.001538
+Epoch 73 | Loss: 0.031926 | Val: 0.153889 | MSE: 0.029330 | Sym: 0.000988 | Neg: 0.001608
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 74
-Epoch 74 | Loss: 0.031981 | Val: 0.157114 | MSE: 0.029641 | Sym: 0.000760 | Neg: 0.001580
+Epoch 74 | Loss: 0.030407 | Val: 0.152599 | MSE: 0.028286 | Sym: 0.000624 | Neg: 0.001497
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 75
-Epoch 75 | Loss: 0.038825 | Val: 0.153888 | MSE: 0.036099 | Sym: 0.000986 | Neg: 0.001740
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.013813
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 75 | Loss: 0.032362 | Val: 0.152424 | MSE: 0.029876 | Sym: 0.000674 | Neg: 0.001812
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.020536
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 76
-Epoch 76 | Loss: 0.028712 | Val: 0.149438 | MSE: 0.026547 | Sym: 0.000625 | Neg: 0.001540
+Epoch 76 | Loss: 0.024449 | Val: 0.152964 | MSE: 0.022388 | Sym: 0.000606 | Neg: 0.001454
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 77
-Epoch 77 | Loss: 0.030624 | Val: 0.150457 | MSE: 0.028665 | Sym: 0.000551 | Neg: 0.001407
+Epoch 77 | Loss: 0.026084 | Val: 0.151854 | MSE: 0.023974 | Sym: 0.000738 | Neg: 0.001371
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 78
-Epoch 78 | Loss: 0.038579 | Val: 0.152861 | MSE: 0.035379 | Sym: 0.001472 | Neg: 0.001728
+Epoch 78 | Loss: 0.035426 | Val: 0.148445 | MSE: 0.032871 | Sym: 0.000791 | Neg: 0.001763
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 79
-Epoch 79 | Loss: 0.034422 | Val: 0.150791 | MSE: 0.032067 | Sym: 0.000569 | Neg: 0.001785
+Epoch 79 | Loss: 0.026826 | Val: 0.150953 | MSE: 0.024819 | Sym: 0.000552 | Neg: 0.001456
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 80
-Epoch 80 | Loss: 0.030599 | Val: 0.151752 | MSE: 0.028381 | Sym: 0.000789 | Neg: 0.001429
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.016017
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 80 | Loss: 0.042980 | Val: 0.181108 | MSE: 0.037360 | Sym: 0.003286 | Neg: 0.002335
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.015801
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 81
-Epoch 81 | Loss: 0.028142 | Val: 0.153128 | MSE: 0.025907 | Sym: 0.000719 | Neg: 0.001516
+Epoch 81 | Loss: 0.032568 | Val: 0.152344 | MSE: 0.029295 | Sym: 0.001264 | Neg: 0.002009
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 82
-Epoch 82 | Loss: 0.025104 | Val: 0.150765 | MSE: 0.023209 | Sym: 0.000535 | Neg: 0.001360
+Epoch 82 | Loss: 0.032729 | Val: 0.152037 | MSE: 0.030219 | Sym: 0.000702 | Neg: 0.001807
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 83
-Epoch 83 | Loss: 0.026961 | Val: 0.151159 | MSE: 0.024825 | Sym: 0.000715 | Neg: 0.001422
+Epoch 83 | Loss: 0.028577 | Val: 0.150162 | MSE: 0.026301 | Sym: 0.000779 | Neg: 0.001498
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 84
-Epoch 84 | Loss: 0.032300 | Val: 0.150457 | MSE: 0.030011 | Sym: 0.000570 | Neg: 0.001720
+Epoch 84 | Loss: 0.024765 | Val: 0.153082 | MSE: 0.022833 | Sym: 0.000516 | Neg: 0.001416
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 85
-Epoch 85 | Loss: 0.032538 | Val: 0.149210 | MSE: 0.030337 | Sym: 0.000581 | Neg: 0.001619
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.015862
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 85 | Loss: 0.028337 | Val: 0.150026 | MSE: 0.026335 | Sym: 0.000647 | Neg: 0.001354
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.017476
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 86
-Epoch 86 | Loss: 0.031908 | Val: 0.157221 | MSE: 0.029623 | Sym: 0.000600 | Neg: 0.001685
+Epoch 86 | Loss: 0.035533 | Val: 0.149876 | MSE: 0.033276 | Sym: 0.000501 | Neg: 0.001756
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 87
-Epoch 87 | Loss: 0.032888 | Val: 0.151533 | MSE: 0.030542 | Sym: 0.000735 | Neg: 0.001611
+Epoch 87 | Loss: 0.028387 | Val: 0.149874 | MSE: 0.026468 | Sym: 0.000579 | Neg: 0.001340
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 88
-Epoch 88 | Loss: 0.026484 | Val: 0.151948 | MSE: 0.024538 | Sym: 0.000617 | Neg: 0.001328
+Epoch 88 | Loss: 0.037674 | Val: 0.149513 | MSE: 0.035203 | Sym: 0.000589 | Neg: 0.001882
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 89
-Epoch 89 | Loss: 0.032419 | Val: 0.153001 | MSE: 0.029750 | Sym: 0.001006 | Neg: 0.001663
+Epoch 89 | Loss: 0.033427 | Val: 0.148933 | MSE: 0.030604 | Sym: 0.001124 | Neg: 0.001699
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 90
-Epoch 90 | Loss: 0.032062 | Val: 0.151379 | MSE: 0.029769 | Sym: 0.000662 | Neg: 0.001631
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.013945
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 90 | Loss: 0.027618 | Val: 0.153078 | MSE: 0.025737 | Sym: 0.000497 | Neg: 0.001385
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.016843
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 91
-Epoch 91 | Loss: 0.030068 | Val: 0.151567 | MSE: 0.027973 | Sym: 0.000545 | Neg: 0.001550
+Epoch 91 | Loss: 0.027664 | Val: 0.152075 | MSE: 0.025582 | Sym: 0.000588 | Neg: 0.001494
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 92
-Epoch 92 | Loss: 0.034687 | Val: 0.150236 | MSE: 0.032162 | Sym: 0.000793 | Neg: 0.001731
+Epoch 92 | Loss: 0.028196 | Val: 0.151002 | MSE: 0.026179 | Sym: 0.000542 | Neg: 0.001474
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 93
-Epoch 93 | Loss: 0.028075 | Val: 0.155908 | MSE: 0.025930 | Sym: 0.000603 | Neg: 0.001542
+Epoch 93 | Loss: 0.029366 | Val: 0.151436 | MSE: 0.026856 | Sym: 0.001000 | Neg: 0.001510
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 94
-Epoch 94 | Loss: 0.031031 | Val: 0.151766 | MSE: 0.028535 | Sym: 0.000958 | Neg: 0.001539
+Epoch 94 | Loss: 0.030694 | Val: 0.151421 | MSE: 0.028677 | Sym: 0.000530 | Neg: 0.001487
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 95
-Epoch 95 | Loss: 0.034802 | Val: 0.159854 | MSE: 0.032576 | Sym: 0.000556 | Neg: 0.001671
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.018133
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 95 | Loss: 0.030826 | Val: 0.149891 | MSE: 0.028682 | Sym: 0.000622 | Neg: 0.001522
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.017339
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 96
-Epoch 96 | Loss: 0.026392 | Val: 0.155329 | MSE: 0.024225 | Sym: 0.000707 | Neg: 0.001460
+Epoch 96 | Loss: 0.030908 | Val: 0.149734 | MSE: 0.028764 | Sym: 0.000633 | Neg: 0.001511
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 97
-Epoch 97 | Loss: 0.028659 | Val: 0.156761 | MSE: 0.026656 | Sym: 0.000499 | Neg: 0.001504
+Epoch 97 | Loss: 0.036937 | Val: 0.151189 | MSE: 0.034529 | Sym: 0.000691 | Neg: 0.001717
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 98
-Epoch 98 | Loss: 0.030689 | Val: 0.150540 | MSE: 0.028491 | Sym: 0.000660 | Neg: 0.001539
+Epoch 98 | Loss: 0.028519 | Val: 0.152069 | MSE: 0.026442 | Sym: 0.000510 | Neg: 0.001567
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 99
-Epoch 99 | Loss: 0.036712 | Val: 0.148939 | MSE: 0.034348 | Sym: 0.000579 | Neg: 0.001785
+Epoch 99 | Loss: 0.033267 | Val: 0.151961 | MSE: 0.030792 | Sym: 0.000762 | Neg: 0.001713
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 100
-Epoch 100 | Loss: 0.035611 | Val: 0.149671 | MSE: 0.033238 | Sym: 0.000691 | Neg: 0.001682
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.016707
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 100 | Loss: 0.031561 | Val: 0.151747 | MSE: 0.029271 | Sym: 0.000610 | Neg: 0.001681
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.016669
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 101
-Epoch 101 | Loss: 0.029662 | Val: 0.149662 | MSE: 0.027702 | Sym: 0.000518 | Neg: 0.001443
+Epoch 101 | Loss: 0.029712 | Val: 0.149921 | MSE: 0.027456 | Sym: 0.000736 | Neg: 0.001520
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 102
-Epoch 102 | Loss: 0.034679 | Val: 0.151404 | MSE: 0.032308 | Sym: 0.000699 | Neg: 0.001672
+Epoch 102 | Loss: 0.030072 | Val: 0.152980 | MSE: 0.027639 | Sym: 0.000951 | Neg: 0.001482
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 103
-Epoch 103 | Loss: 0.028507 | Val: 0.153428 | MSE: 0.026068 | Sym: 0.000949 | Neg: 0.001490
+Epoch 103 | Loss: 0.033093 | Val: 0.149294 | MSE: 0.030941 | Sym: 0.000482 | Neg: 0.001671
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 104
-Epoch 104 | Loss: 0.032585 | Val: 0.147578 | MSE: 0.030257 | Sym: 0.000628 | Neg: 0.001701
+Epoch 104 | Loss: 0.035509 | Val: 0.149830 | MSE: 0.033222 | Sym: 0.000547 | Neg: 0.001740
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 105
-Epoch 105 | Loss: 0.034946 | Val: 0.151094 | MSE: 0.032605 | Sym: 0.000703 | Neg: 0.001638
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.018327
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 105 | Loss: 0.035849 | Val: 0.154373 | MSE: 0.033527 | Sym: 0.000658 | Neg: 0.001664
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.016185
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 106
-Epoch 106 | Loss: 0.029330 | Val: 0.152614 | MSE: 0.027296 | Sym: 0.000603 | Neg: 0.001431
+Epoch 106 | Loss: 0.025781 | Val: 0.152933 | MSE: 0.023442 | Sym: 0.000763 | Neg: 0.001577
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 107
-Epoch 107 | Loss: 0.036295 | Val: 0.150211 | MSE: 0.033067 | Sym: 0.001427 | Neg: 0.001800
+Epoch 107 | Loss: 0.033671 | Val: 0.152434 | MSE: 0.030566 | Sym: 0.001316 | Neg: 0.001790
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 108
-Epoch 108 | Loss: 0.025112 | Val: 0.149296 | MSE: 0.023119 | Sym: 0.000536 | Neg: 0.001457
+Epoch 108 | Loss: 0.024024 | Val: 0.147692 | MSE: 0.022144 | Sym: 0.000476 | Neg: 0.001404
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 109
-Epoch 109 | Loss: 0.040594 | Val: 0.150449 | MSE: 0.038073 | Sym: 0.000739 | Neg: 0.001783
+Epoch 109 | Loss: 0.029072 | Val: 0.151391 | MSE: 0.026919 | Sym: 0.000603 | Neg: 0.001551
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 110
-Epoch 110 | Loss: 0.028324 | Val: 0.150928 | MSE: 0.025913 | Sym: 0.000909 | Neg: 0.001501
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.015868
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 110 | Loss: 0.028454 | Val: 0.153275 | MSE: 0.026249 | Sym: 0.000690 | Neg: 0.001514
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.016509
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 111
-Epoch 111 | Loss: 0.026870 | Val: 0.149973 | MSE: 0.024881 | Sym: 0.000475 | Neg: 0.001514
+Epoch 111 | Loss: 0.031873 | Val: 0.150315 | MSE: 0.029906 | Sym: 0.000523 | Neg: 0.001444
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 112
-Epoch 112 | Loss: 0.030068 | Val: 0.147299 | MSE: 0.027759 | Sym: 0.000657 | Neg: 0.001652
+Epoch 112 | Loss: 0.030323 | Val: 0.150572 | MSE: 0.028247 | Sym: 0.000561 | Neg: 0.001515
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 113
-Epoch 113 | Loss: 0.028691 | Val: 0.150794 | MSE: 0.026757 | Sym: 0.000539 | Neg: 0.001395
+Epoch 113 | Loss: 0.037105 | Val: 0.152183 | MSE: 0.034822 | Sym: 0.000473 | Neg: 0.001810
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 114
-Epoch 114 | Loss: 0.026746 | Val: 0.149401 | MSE: 0.024947 | Sym: 0.000486 | Neg: 0.001313
+Epoch 114 | Loss: 0.030518 | Val: 0.149389 | MSE: 0.028362 | Sym: 0.000613 | Neg: 0.001543
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 115
-Epoch 115 | Loss: 0.028646 | Val: 0.150813 | MSE: 0.026686 | Sym: 0.000593 | Neg: 0.001368
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.018475
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 115 | Loss: 0.027203 | Val: 0.150309 | MSE: 0.025239 | Sym: 0.000542 | Neg: 0.001423
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.017394
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 116
-Epoch 116 | Loss: 0.029236 | Val: 0.149531 | MSE: 0.027186 | Sym: 0.000581 | Neg: 0.001469
+Epoch 116 | Loss: 0.028261 | Val: 0.151933 | MSE: 0.026140 | Sym: 0.000599 | Neg: 0.001522
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 117
-Epoch 117 | Loss: 0.033060 | Val: 0.153895 | MSE: 0.030091 | Sym: 0.001357 | Neg: 0.001613
+Epoch 117 | Loss: 0.028820 | Val: 0.153724 | MSE: 0.026736 | Sym: 0.000647 | Neg: 0.001437
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 118
-Epoch 118 | Loss: 0.029984 | Val: 0.151508 | MSE: 0.027834 | Sym: 0.000580 | Neg: 0.001570
+Epoch 118 | Loss: 0.026366 | Val: 0.150873 | MSE: 0.024344 | Sym: 0.000632 | Neg: 0.001390
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 119
-Epoch 119 | Loss: 0.032153 | Val: 0.150328 | MSE: 0.029983 | Sym: 0.000547 | Neg: 0.001623
+Epoch 119 | Loss: 0.031963 | Val: 0.148093 | MSE: 0.029818 | Sym: 0.000564 | Neg: 0.001580
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 120
-Epoch 120 | Loss: 0.028977 | Val: 0.148209 | MSE: 0.026868 | Sym: 0.000489 | Neg: 0.001619
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.018066
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 120 | Loss: 0.032556 | Val: 0.150105 | MSE: 0.030040 | Sym: 0.000869 | Neg: 0.001646
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.017210
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 121
-Epoch 121 | Loss: 0.028773 | Val: 0.148324 | MSE: 0.026944 | Sym: 0.000430 | Neg: 0.001398
+Epoch 121 | Loss: 0.032451 | Val: 0.150903 | MSE: 0.030041 | Sym: 0.000766 | Neg: 0.001644
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 122
-Epoch 122 | Loss: 0.032457 | Val: 0.151553 | MSE: 0.030371 | Sym: 0.000543 | Neg: 0.001543
+Epoch 122 | Loss: 0.029994 | Val: 0.151282 | MSE: 0.027819 | Sym: 0.000609 | Neg: 0.001566
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 123
-Epoch 123 | Loss: 0.029812 | Val: 0.149355 | MSE: 0.027540 | Sym: 0.000684 | Neg: 0.001588
+Epoch 123 | Loss: 0.024446 | Val: 0.150959 | MSE: 0.022658 | Sym: 0.000563 | Neg: 0.001225
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 124
-Epoch 124 | Loss: 0.031201 | Val: 0.150891 | MSE: 0.029007 | Sym: 0.000564 | Neg: 0.001631
+Epoch 124 | Loss: 0.036655 | Val: 0.147444 | MSE: 0.034185 | Sym: 0.000802 | Neg: 0.001667
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 125
-Epoch 125 | Loss: 0.033163 | Val: 0.151086 | MSE: 0.030859 | Sym: 0.000672 | Neg: 0.001633
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.016455
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 125 | Loss: 0.035076 | Val: 0.150440 | MSE: 0.032859 | Sym: 0.000577 | Neg: 0.001641
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.015334
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 126
-Epoch 126 | Loss: 0.033710 | Val: 0.151523 | MSE: 0.031496 | Sym: 0.000611 | Neg: 0.001603
+Epoch 126 | Loss: 0.031791 | Val: 0.149610 | MSE: 0.029791 | Sym: 0.000499 | Neg: 0.001501
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 127
-Epoch 127 | Loss: 0.035269 | Val: 0.147212 | MSE: 0.033006 | Sym: 0.000485 | Neg: 0.001778
+Epoch 127 | Loss: 0.029351 | Val: 0.146679 | MSE: 0.027212 | Sym: 0.000621 | Neg: 0.001519
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 128
-Epoch 128 | Loss: 0.028541 | Val: 0.149716 | MSE: 0.026249 | Sym: 0.000790 | Neg: 0.001502
+Epoch 128 | Loss: 0.038238 | Val: 0.150157 | MSE: 0.034981 | Sym: 0.001430 | Neg: 0.001827
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 129
-Epoch 129 | Loss: 0.032811 | Val: 0.153186 | MSE: 0.030659 | Sym: 0.000509 | Neg: 0.001644
+Epoch 129 | Loss: 0.030570 | Val: 0.149565 | MSE: 0.028353 | Sym: 0.000604 | Neg: 0.001612
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 130
-Epoch 130 | Loss: 0.025910 | Val: 0.149128 | MSE: 0.023920 | Sym: 0.000549 | Neg: 0.001441
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.017732
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 130 | Loss: 0.027254 | Val: 0.147965 | MSE: 0.025114 | Sym: 0.000648 | Neg: 0.001492
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.014842
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 131
-Epoch 131 | Loss: 0.031357 | Val: 0.150619 | MSE: 0.029151 | Sym: 0.000710 | Neg: 0.001496
+Epoch 131 | Loss: 0.028849 | Val: 0.149423 | MSE: 0.026557 | Sym: 0.000743 | Neg: 0.001549
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 132
-Epoch 132 | Loss: 0.032100 | Val: 0.150426 | MSE: 0.028905 | Sym: 0.001551 | Neg: 0.001643
+Epoch 132 | Loss: 0.033451 | Val: 0.150617 | MSE: 0.031222 | Sym: 0.000535 | Neg: 0.001693
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 133
-Epoch 133 | Loss: 0.028445 | Val: 0.149594 | MSE: 0.026285 | Sym: 0.000470 | Neg: 0.001689
+Epoch 133 | Loss: 0.030891 | Val: 0.149599 | MSE: 0.028849 | Sym: 0.000518 | Neg: 0.001523
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 134
-Epoch 134 | Loss: 0.026894 | Val: 0.151273 | MSE: 0.025017 | Sym: 0.000461 | Neg: 0.001416
+Epoch 134 | Loss: 0.027314 | Val: 0.149979 | MSE: 0.025496 | Sym: 0.000457 | Neg: 0.001361
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 135
-Epoch 135 | Loss: 0.031572 | Val: 0.149361 | MSE: 0.029397 | Sym: 0.000588 | Neg: 0.001586
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.018025
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 135 | Loss: 0.025210 | Val: 0.148973 | MSE: 0.023213 | Sym: 0.000640 | Neg: 0.001357
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.014075
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 136
-Epoch 136 | Loss: 0.032544 | Val: 0.149062 | MSE: 0.030262 | Sym: 0.000657 | Neg: 0.001625
+Epoch 136 | Loss: 0.034493 | Val: 0.155917 | MSE: 0.031976 | Sym: 0.000930 | Neg: 0.001587
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 137
-Epoch 137 | Loss: 0.028443 | Val: 0.147668 | MSE: 0.026476 | Sym: 0.000514 | Neg: 0.001453
+Epoch 137 | Loss: 0.027357 | Val: 0.150623 | MSE: 0.025037 | Sym: 0.000751 | Neg: 0.001568
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 138
-Epoch 138 | Loss: 0.028610 | Val: 0.148113 | MSE: 0.026626 | Sym: 0.000428 | Neg: 0.001556
+Epoch 138 | Loss: 0.037184 | Val: 0.150474 | MSE: 0.034826 | Sym: 0.000567 | Neg: 0.001791
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 139
-Epoch 139 | Loss: 0.033898 | Val: 0.151755 | MSE: 0.031638 | Sym: 0.000510 | Neg: 0.001750
+Epoch 139 | Loss: 0.033759 | Val: 0.148343 | MSE: 0.031575 | Sym: 0.000503 | Neg: 0.001681
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 140
-Epoch 140 | Loss: 0.024406 | Val: 0.147662 | MSE: 0.022631 | Sym: 0.000513 | Neg: 0.001261
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.019298
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 140 | Loss: 0.025686 | Val: 0.151252 | MSE: 0.023753 | Sym: 0.000522 | Neg: 0.001411
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.015596
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 141
-Epoch 141 | Loss: 0.036154 | Val: 0.147535 | MSE: 0.033824 | Sym: 0.000727 | Neg: 0.001603
+Epoch 141 | Loss: 0.025594 | Val: 0.151571 | MSE: 0.023468 | Sym: 0.000680 | Neg: 0.001446
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 142
-Epoch 142 | Loss: 0.026830 | Val: 0.149187 | MSE: 0.024884 | Sym: 0.000511 | Neg: 0.001435
+Epoch 142 | Loss: 0.032749 | Val: 0.151300 | MSE: 0.030407 | Sym: 0.000765 | Neg: 0.001577
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 143
-Epoch 143 | Loss: 0.033753 | Val: 0.148949 | MSE: 0.031382 | Sym: 0.000681 | Neg: 0.001690
+Epoch 143 | Loss: 0.033605 | Val: 0.147543 | MSE: 0.031367 | Sym: 0.000571 | Neg: 0.001667
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 144
-Epoch 144 | Loss: 0.034320 | Val: 0.150061 | MSE: 0.031972 | Sym: 0.000661 | Neg: 0.001686
+Epoch 144 | Loss: 0.031209 | Val: 0.149197 | MSE: 0.029052 | Sym: 0.000551 | Neg: 0.001606
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 145
-Epoch 145 | Loss: 0.030462 | Val: 0.148991 | MSE: 0.028422 | Sym: 0.000491 | Neg: 0.001548
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.019078
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 145 | Loss: 0.038010 | Val: 0.147381 | MSE: 0.035437 | Sym: 0.000848 | Neg: 0.001725
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.015823
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 146
-Epoch 146 | Loss: 0.037711 | Val: 0.148676 | MSE: 0.035358 | Sym: 0.000600 | Neg: 0.001753
+Epoch 146 | Loss: 0.026399 | Val: 0.150493 | MSE: 0.024379 | Sym: 0.000581 | Neg: 0.001439
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 147
-Epoch 147 | Loss: 0.027704 | Val: 0.155735 | MSE: 0.025795 | Sym: 0.000524 | Neg: 0.001385
+Epoch 147 | Loss: 0.034929 | Val: 0.151665 | MSE: 0.032356 | Sym: 0.000948 | Neg: 0.001625
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 148
-Epoch 148 | Loss: 0.032657 | Val: 0.149391 | MSE: 0.030483 | Sym: 0.000571 | Neg: 0.001603
+Epoch 148 | Loss: 0.027836 | Val: 0.149927 | MSE: 0.025847 | Sym: 0.000524 | Neg: 0.001464
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 149
-Epoch 149 | Loss: 0.025270 | Val: 0.148751 | MSE: 0.023369 | Sym: 0.000528 | Neg: 0.001372
+Epoch 149 | Loss: 0.028975 | Val: 0.149096 | MSE: 0.026668 | Sym: 0.000897 | Neg: 0.001411
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 150
-Epoch 150 | Loss: 0.028203 | Val: 0.147144 | MSE: 0.025726 | Sym: 0.001050 | Neg: 0.001426
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.019257
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 150 | Loss: 0.032121 | Val: 0.150228 | MSE: 0.029847 | Sym: 0.000604 | Neg: 0.001670
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.017062
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 151
-Epoch 151 | Loss: 0.029819 | Val: 0.148306 | MSE: 0.027968 | Sym: 0.000460 | Neg: 0.001391
+Epoch 151 | Loss: 0.030852 | Val: 0.150088 | MSE: 0.028775 | Sym: 0.000460 | Neg: 0.001618
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 152
-Epoch 152 | Loss: 0.032203 | Val: 0.148679 | MSE: 0.029881 | Sym: 0.000632 | Neg: 0.001689
+Epoch 152 | Loss: 0.031320 | Val: 0.150205 | MSE: 0.029319 | Sym: 0.000563 | Neg: 0.001438
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 153
-Epoch 153 | Loss: 0.031016 | Val: 0.146745 | MSE: 0.028892 | Sym: 0.000552 | Neg: 0.001573
+Epoch 153 | Loss: 0.026633 | Val: 0.150224 | MSE: 0.024816 | Sym: 0.000548 | Neg: 0.001268
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 154
-Epoch 154 | Loss: 0.028346 | Val: 0.145754 | MSE: 0.026478 | Sym: 0.000512 | Neg: 0.001356
+Epoch 154 | Loss: 0.030750 | Val: 0.152110 | MSE: 0.028611 | Sym: 0.000543 | Neg: 0.001596
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 155
-Epoch 155 | Loss: 0.026561 | Val: 0.147170 | MSE: 0.024646 | Sym: 0.000458 | Neg: 0.001457
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.020585
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 155 | Loss: 0.026489 | Val: 0.149432 | MSE: 0.024316 | Sym: 0.000780 | Neg: 0.001394
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.015534
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 156
-Epoch 156 | Loss: 0.034588 | Val: 0.149525 | MSE: 0.032337 | Sym: 0.000553 | Neg: 0.001698
+Epoch 156 | Loss: 0.034973 | Val: 0.150899 | MSE: 0.032438 | Sym: 0.000846 | Neg: 0.001689
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 157
-Epoch 157 | Loss: 0.028704 | Val: 0.147460 | MSE: 0.026584 | Sym: 0.000617 | Neg: 0.001504
+Epoch 157 | Loss: 0.032712 | Val: 0.148430 | MSE: 0.030376 | Sym: 0.000605 | Neg: 0.001731
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 158
-Epoch 158 | Loss: 0.030121 | Val: 0.146359 | MSE: 0.027864 | Sym: 0.000625 | Neg: 0.001632
+Epoch 158 | Loss: 0.033620 | Val: 0.150580 | MSE: 0.031508 | Sym: 0.000574 | Neg: 0.001538
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 159
-Epoch 159 | Loss: 0.029399 | Val: 0.151200 | MSE: 0.027053 | Sym: 0.000736 | Neg: 0.001610
+Epoch 159 | Loss: 0.029164 | Val: 0.148557 | MSE: 0.027104 | Sym: 0.000595 | Neg: 0.001466
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 160
-Epoch 160 | Loss: 0.026958 | Val: 0.149064 | MSE: 0.024947 | Sym: 0.000598 | Neg: 0.001413
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.020363
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 160 | Loss: 0.036361 | Val: 0.151623 | MSE: 0.033947 | Sym: 0.000633 | Neg: 0.001781
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.013482
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 161
-Epoch 161 | Loss: 0.032941 | Val: 0.149101 | MSE: 0.030625 | Sym: 0.000787 | Neg: 0.001529
+Epoch 161 | Loss: 0.029117 | Val: 0.175968 | MSE: 0.026645 | Sym: 0.000879 | Neg: 0.001593
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 162
-Epoch 162 | Loss: 0.033426 | Val: 0.191279 | MSE: 0.031136 | Sym: 0.000738 | Neg: 0.001553
+Epoch 162 | Loss: 0.037166 | Val: 0.147393 | MSE: 0.034302 | Sym: 0.000980 | Neg: 0.001884
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 163
-Epoch 163 | Loss: 0.035003 | Val: 0.149305 | MSE: 0.031957 | Sym: 0.001264 | Neg: 0.001782
+Epoch 163 | Loss: 0.031237 | Val: 0.148007 | MSE: 0.029222 | Sym: 0.000467 | Neg: 0.001548
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 164
-Epoch 164 | Loss: 0.026544 | Val: 0.148216 | MSE: 0.024574 | Sym: 0.000580 | Neg: 0.001389
+Epoch 164 | Loss: 0.027286 | Val: 0.149507 | MSE: 0.025117 | Sym: 0.000602 | Neg: 0.001568
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 165
-Epoch 165 | Loss: 0.032132 | Val: 0.148887 | MSE: 0.029828 | Sym: 0.000640 | Neg: 0.001664
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.023860
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 165 | Loss: 0.038143 | Val: 0.148714 | MSE: 0.035684 | Sym: 0.000596 | Neg: 0.001863
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.015748
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 166
-Epoch 166 | Loss: 0.032296 | Val: 0.161769 | MSE: 0.030113 | Sym: 0.000728 | Neg: 0.001455
+Epoch 166 | Loss: 0.035435 | Val: 0.149583 | MSE: 0.032521 | Sym: 0.001031 | Neg: 0.001883
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 167
-Epoch 167 | Loss: 0.030784 | Val: 0.148521 | MSE: 0.028496 | Sym: 0.000682 | Neg: 0.001606
+Epoch 167 | Loss: 0.027260 | Val: 0.146914 | MSE: 0.025241 | Sym: 0.000559 | Neg: 0.001460
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 168
-Epoch 168 | Loss: 0.030017 | Val: 0.149824 | MSE: 0.027992 | Sym: 0.000473 | Neg: 0.001552
+Epoch 168 | Loss: 0.025621 | Val: 0.150800 | MSE: 0.023782 | Sym: 0.000420 | Neg: 0.001419
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 169
-Epoch 169 | Loss: 0.029448 | Val: 0.148113 | MSE: 0.027347 | Sym: 0.000572 | Neg: 0.001529
+Epoch 169 | Loss: 0.027733 | Val: 0.148884 | MSE: 0.025689 | Sym: 0.000641 | Neg: 0.001403
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 170
-Epoch 170 | Loss: 0.024320 | Val: 0.148717 | MSE: 0.022471 | Sym: 0.000512 | Neg: 0.001337
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.022130
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 170 | Loss: 0.026662 | Val: 0.147227 | MSE: 0.024805 | Sym: 0.000522 | Neg: 0.001336
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.014792
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 171
-Epoch 171 | Loss: 0.029022 | Val: 0.150656 | MSE: 0.027155 | Sym: 0.000474 | Neg: 0.001393
+Epoch 171 | Loss: 0.029841 | Val: 0.148638 | MSE: 0.027675 | Sym: 0.000613 | Neg: 0.001553
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 172
-Epoch 172 | Loss: 0.028942 | Val: 0.150553 | MSE: 0.026819 | Sym: 0.000568 | Neg: 0.001555
+Epoch 172 | Loss: 0.033873 | Val: 0.148114 | MSE: 0.031675 | Sym: 0.000478 | Neg: 0.001720
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 173
-Epoch 173 | Loss: 0.027206 | Val: 0.148009 | MSE: 0.025266 | Sym: 0.000607 | Neg: 0.001334
+Epoch 173 | Loss: 0.027574 | Val: 0.147355 | MSE: 0.025544 | Sym: 0.000576 | Neg: 0.001453
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 174
-Epoch 174 | Loss: 0.032144 | Val: 0.159278 | MSE: 0.029818 | Sym: 0.000779 | Neg: 0.001547
+Epoch 174 | Loss: 0.031213 | Val: 0.149933 | MSE: 0.029016 | Sym: 0.000587 | Neg: 0.001610
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 175
-Epoch 175 | Loss: 0.032653 | Val: 0.148985 | MSE: 0.030176 | Sym: 0.000762 | Neg: 0.001715
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.026448
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 175 | Loss: 0.037033 | Val: 0.152712 | MSE: 0.034696 | Sym: 0.000700 | Neg: 0.001637
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.014652
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 176
-Epoch 176 | Loss: 0.030243 | Val: 0.149292 | MSE: 0.028166 | Sym: 0.000468 | Neg: 0.001608
+Epoch 176 | Loss: 0.031393 | Val: 0.149643 | MSE: 0.029233 | Sym: 0.000617 | Neg: 0.001544
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 177
-Epoch 177 | Loss: 0.027166 | Val: 0.151173 | MSE: 0.025184 | Sym: 0.000579 | Neg: 0.001403
+Epoch 177 | Loss: 0.028530 | Val: 0.151337 | MSE: 0.026357 | Sym: 0.000648 | Neg: 0.001525
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 178
-Epoch 178 | Loss: 0.027779 | Val: 0.147427 | MSE: 0.025987 | Sym: 0.000494 | Neg: 0.001298
+Epoch 178 | Loss: 0.030074 | Val: 0.147106 | MSE: 0.027853 | Sym: 0.000681 | Neg: 0.001539
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 179
-Epoch 179 | Loss: 0.028929 | Val: 0.149214 | MSE: 0.026919 | Sym: 0.000582 | Neg: 0.001428
+Epoch 179 | Loss: 0.028246 | Val: 0.149624 | MSE: 0.026150 | Sym: 0.000620 | Neg: 0.001476
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 180
-Epoch 180 | Loss: 0.030038 | Val: 0.148117 | MSE: 0.027940 | Sym: 0.000601 | Neg: 0.001497
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.022453
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 180 | Loss: 0.030524 | Val: 0.150203 | MSE: 0.028198 | Sym: 0.000708 | Neg: 0.001619
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.014689
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 181
-Epoch 181 | Loss: 0.040975 | Val: 0.149074 | MSE: 0.038471 | Sym: 0.000591 | Neg: 0.001914
+Epoch 181 | Loss: 0.032108 | Val: 0.149028 | MSE: 0.029810 | Sym: 0.000592 | Neg: 0.001707
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 182
-Epoch 182 | Loss: 0.034075 | Val: 0.147918 | MSE: 0.031799 | Sym: 0.000594 | Neg: 0.001682
+Epoch 182 | Loss: 0.025501 | Val: 0.149586 | MSE: 0.023701 | Sym: 0.000481 | Neg: 0.001319
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 183
-Epoch 183 | Loss: 0.033982 | Val: 0.150313 | MSE: 0.031590 | Sym: 0.000774 | Neg: 0.001617
+Epoch 183 | Loss: 0.029368 | Val: 0.150665 | MSE: 0.027360 | Sym: 0.000504 | Neg: 0.001503
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 184
-Epoch 184 | Loss: 0.024483 | Val: 0.148700 | MSE: 0.022629 | Sym: 0.000453 | Neg: 0.001401
+Epoch 184 | Loss: 0.030538 | Val: 0.148672 | MSE: 0.028533 | Sym: 0.000458 | Neg: 0.001546
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 185
-Epoch 185 | Loss: 0.031828 | Val: 0.149701 | MSE: 0.029679 | Sym: 0.000644 | Neg: 0.001505
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.022438
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 185 | Loss: 0.029282 | Val: 0.148860 | MSE: 0.027049 | Sym: 0.000683 | Neg: 0.001550
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.013885
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 186
-Epoch 186 | Loss: 0.029816 | Val: 0.149008 | MSE: 0.027782 | Sym: 0.000486 | Neg: 0.001548
+Epoch 186 | Loss: 0.030500 | Val: 0.150030 | MSE: 0.028228 | Sym: 0.000690 | Neg: 0.001582
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 187
-Epoch 187 | Loss: 0.029258 | Val: 0.158546 | MSE: 0.027121 | Sym: 0.000644 | Neg: 0.001493
+Epoch 187 | Loss: 0.033174 | Val: 0.153348 | MSE: 0.030949 | Sym: 0.000537 | Neg: 0.001688
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 188
-Epoch 188 | Loss: 0.027293 | Val: 0.149742 | MSE: 0.024908 | Sym: 0.000740 | Neg: 0.001645
+Epoch 188 | Loss: 0.025074 | Val: 0.150412 | MSE: 0.023414 | Sym: 0.000398 | Neg: 0.001262
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 189
-Epoch 189 | Loss: 0.029507 | Val: 0.147148 | MSE: 0.027389 | Sym: 0.000548 | Neg: 0.001570
+Epoch 189 | Loss: 0.027728 | Val: 0.149583 | MSE: 0.025707 | Sym: 0.000460 | Neg: 0.001561
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 190
-Epoch 190 | Loss: 0.026947 | Val: 0.149579 | MSE: 0.024806 | Sym: 0.000543 | Neg: 0.001598
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.024163
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 190 | Loss: 0.030435 | Val: 0.148762 | MSE: 0.028377 | Sym: 0.000558 | Neg: 0.001500
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.015509
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 191
-Epoch 191 | Loss: 0.027269 | Val: 0.149606 | MSE: 0.025354 | Sym: 0.000485 | Neg: 0.001430
+Epoch 191 | Loss: 0.035667 | Val: 0.151207 | MSE: 0.032440 | Sym: 0.001419 | Neg: 0.001807
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 192
-Epoch 192 | Loss: 0.028924 | Val: 0.150268 | MSE: 0.026575 | Sym: 0.000828 | Neg: 0.001521
+Epoch 192 | Loss: 0.031863 | Val: 0.148084 | MSE: 0.029605 | Sym: 0.000585 | Neg: 0.001674
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 193
-Epoch 193 | Loss: 0.029868 | Val: 0.150467 | MSE: 0.027728 | Sym: 0.000495 | Neg: 0.001645
+Epoch 193 | Loss: 0.033399 | Val: 0.148160 | MSE: 0.031209 | Sym: 0.000443 | Neg: 0.001747
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 194
-Epoch 194 | Loss: 0.030629 | Val: 0.149699 | MSE: 0.028508 | Sym: 0.000555 | Neg: 0.001565
+Epoch 194 | Loss: 0.028326 | Val: 0.146473 | MSE: 0.026436 | Sym: 0.000477 | Neg: 0.001413
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 195
-Epoch 195 | Loss: 0.023196 | Val: 0.149543 | MSE: 0.021406 | Sym: 0.000557 | Neg: 0.001233
-  Compliance — % negative pixels: 0.00% | symmetry score: 0.023996
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+Epoch 195 | Loss: 0.031318 | Val: 0.148076 | MSE: 0.029160 | Sym: 0.000573 | Neg: 0.001584
+  Compliance — % negative pixels: 0.00% | symmetry score: 0.017091
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 196
-Epoch 196 | Loss: 0.024601 | Val: 0.153857 | MSE: 0.022741 | Sym: 0.000499 | Neg: 0.001361
+Epoch 196 | Loss: 0.031274 | Val: 0.149356 | MSE: 0.029171 | Sym: 0.000596 | Neg: 0.001507
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 197
-Epoch 197 | Loss: 0.028643 | Val: 0.149105 | MSE: 0.026434 | Sym: 0.000536 | Neg: 0.001673
+Epoch 197 | Loss: 0.035984 | Val: 0.149038 | MSE: 0.033226 | Sym: 0.000992 | Neg: 0.001767
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 198
-Epoch 198 | Loss: 0.027096 | Val: 0.149227 | MSE: 0.024993 | Sym: 0.000675 | Neg: 0.001428
+Epoch 198 | Loss: 0.031077 | Val: 0.149323 | MSE: 0.028794 | Sym: 0.000715 | Neg: 0.001568
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 199
-Epoch 199 | Loss: 0.027012 | Val: 0.149214 | MSE: 0.025159 | Sym: 0.000439 | Neg: 0.001414
+Epoch 199 | Loss: 0.031378 | Val: 0.149589 | MSE: 0.029344 | Sym: 0.000452 | Neg: 0.001582
 --- Saved model to checkpoints/pid/state.pt ---
-FITS files saved to results/pid/run_20260507_093605_seed42/generated_fits
+FITS files saved to results/pid/run_20260507_170453_seed43/generated_fits
 Generated images saved.
 Testing model
