@@ -3,7 +3,7 @@ seed: 42
 device: cuda
 
 data:
-  dataset: mirabest_fits_png
+  dataset: crumb
   batch_size: 16
   num_workers: 4
   input_size: 150

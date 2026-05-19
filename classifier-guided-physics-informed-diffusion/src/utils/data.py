@@ -19,21 +19,25 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2) -> Tuple[D
     if dataset.lower() == 'crumb':
         # ---- Load full training and test sets ----
         full_train_set = CRUMB(root='./batches', train=True, download=True, transform=transform)
-        testset = CRUMB(root='./batches', train=False, download=True, transform=transform)
+        full_test_set = CRUMB(root='./batches', train=False, download=True, transform=transform)
+
+        # ---- Filter out hybrid sources (class 2) to align with MiraBest binary classes ----
+        train_indices = [i for i, t in enumerate(full_train_set.targets) if t != 2]
+        test_indices = [i for i, t in enumerate(full_test_set.targets) if t != 2]
+
+        binary_train_set = Subset(full_train_set, train_indices)
+        binary_test_set = Subset(full_test_set, test_indices)
 
         # ---- Create train/val split ----
-        total_train_size = len(full_train_set)
-        val_size = int(total_train_size * val_split)
-        train_size = total_train_size - val_size
+        val_size = int(len(binary_train_set) * val_split)
+        train_size = len(binary_train_set) - val_size
 
-        train_subset, val_subset = random_split(full_train_set, [train_size, val_size])
+        train_subset, val_subset = random_split(binary_train_set, [train_size, val_size])
 
         # ---- DataLoaders ----
         trainloader = DataLoader(train_subset, batch_size=batch_size, shuffle=True, num_workers=2)
         valloader = DataLoader(val_subset, batch_size=batch_size, shuffle=False, num_workers=2)
-        testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=2)
-
-        show_batch(trainloader)
+        testloader = DataLoader(binary_test_set, batch_size=batch_size, shuffle=False, num_workers=2)
 
         return trainloader, valloader, testloader
 
