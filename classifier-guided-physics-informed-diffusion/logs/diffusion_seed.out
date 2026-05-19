@@ -8,7 +8,7 @@ Total images in dataset: 1221
 Total batches: 107 (at batch size 8)
 
 ============================================================
-Run 1/1  |  seed=44  |  results -> results/diffusion/run_20260507_093858_seed44
+Run 1/1  |  seed=44  |  results -> results/diffusion/run_20260515_180925_seed44
 ============================================================
 
 Training diffusion for 200 epochs
@@ -16,7 +16,7 @@ Epoch 0
 Epoch 0 | Loss: 0.082671 | Val Loss: 0.162602
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 1
 Epoch 1 | Loss: 0.038525 | Val Loss: 0.165514
@@ -34,7 +34,7 @@ Epoch 5
 Epoch 5 | Loss: 0.027758 | Val Loss: 0.151693
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 6
 Epoch 6 | Loss: 0.025350 | Val Loss: 0.153096
@@ -46,697 +46,697 @@ Epoch 8
 Epoch 8 | Loss: 0.024066 | Val Loss: 0.149794
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 9
-Epoch 9 | Loss: 0.023008 | Val Loss: 0.150170
+Epoch 9 | Loss: 0.023008 | Val Loss: 0.150166
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 10
-Epoch 10 | Loss: 0.029390 | Val Loss: 0.150747
+Epoch 10 | Loss: 0.029394 | Val Loss: 0.150734
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 11
-Epoch 11 | Loss: 0.028636 | Val Loss: 0.147698
+Epoch 11 | Loss: 0.028633 | Val Loss: 0.147680
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 12
-Epoch 12 | Loss: 0.023203 | Val Loss: 0.149617
+Epoch 12 | Loss: 0.023197 | Val Loss: 0.149626
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 13
-Epoch 13 | Loss: 0.030314 | Val Loss: 0.148540
+Epoch 13 | Loss: 0.030312 | Val Loss: 0.148539
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 14
-Epoch 14 | Loss: 0.029002 | Val Loss: 0.150775
+Epoch 14 | Loss: 0.028989 | Val Loss: 0.150601
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 15
-Epoch 15 | Loss: 0.033543 | Val Loss: 0.148291
+Epoch 15 | Loss: 0.033499 | Val Loss: 0.148353
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 16
-Epoch 16 | Loss: 0.028187 | Val Loss: 0.150304
+Epoch 16 | Loss: 0.028185 | Val Loss: 0.150262
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 17
-Epoch 17 | Loss: 0.022857 | Val Loss: 0.146550
+Epoch 17 | Loss: 0.022847 | Val Loss: 0.146609
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 18
-Epoch 18 | Loss: 0.022430 | Val Loss: 0.144807
+Epoch 18 | Loss: 0.022406 | Val Loss: 0.144813
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 19
-Epoch 19 | Loss: 0.027245 | Val Loss: 0.146139
+Epoch 19 | Loss: 0.027241 | Val Loss: 0.146198
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 20
-Epoch 20 | Loss: 0.026450 | Val Loss: 0.148473
+Epoch 20 | Loss: 0.026444 | Val Loss: 0.148559
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 21
-Epoch 21 | Loss: 0.026785 | Val Loss: 0.146850
+Epoch 21 | Loss: 0.026783 | Val Loss: 0.146953
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 22
-Epoch 22 | Loss: 0.028863 | Val Loss: 0.149102
+Epoch 22 | Loss: 0.028859 | Val Loss: 0.149137
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 23
-Epoch 23 | Loss: 0.027455 | Val Loss: 0.152995
+Epoch 23 | Loss: 0.027470 | Val Loss: 0.153331
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 24
-Epoch 24 | Loss: 0.025108 | Val Loss: 0.147053
+Epoch 24 | Loss: 0.025089 | Val Loss: 0.147041
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 25
-Epoch 25 | Loss: 0.026714 | Val Loss: 0.146642
+Epoch 25 | Loss: 0.026715 | Val Loss: 0.146696
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 26
-Epoch 26 | Loss: 0.034260 | Val Loss: 0.148847
+Epoch 26 | Loss: 0.034249 | Val Loss: 0.148784
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 27
-Epoch 27 | Loss: 0.022257 | Val Loss: 0.145798
+Epoch 27 | Loss: 0.022263 | Val Loss: 0.145816
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 28
-Epoch 28 | Loss: 0.029687 | Val Loss: 0.146087
+Epoch 28 | Loss: 0.029689 | Val Loss: 0.146118
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 29
-Epoch 29 | Loss: 0.028139 | Val Loss: 0.147065
+Epoch 29 | Loss: 0.028140 | Val Loss: 0.147103
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 30
-Epoch 30 | Loss: 0.031788 | Val Loss: 0.145131
+Epoch 30 | Loss: 0.031785 | Val Loss: 0.145140
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 31
-Epoch 31 | Loss: 0.028314 | Val Loss: 0.146972
+Epoch 31 | Loss: 0.028318 | Val Loss: 0.146895
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 32
-Epoch 32 | Loss: 0.018691 | Val Loss: 0.146004
+Epoch 32 | Loss: 0.018695 | Val Loss: 0.146009
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 33
-Epoch 33 | Loss: 0.029464 | Val Loss: 0.146891
+Epoch 33 | Loss: 0.029469 | Val Loss: 0.146923
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 34
-Epoch 34 | Loss: 0.026362 | Val Loss: 0.148638
+Epoch 34 | Loss: 0.026358 | Val Loss: 0.148734
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 35
-Epoch 35 | Loss: 0.031398 | Val Loss: 0.145531
+Epoch 35 | Loss: 0.031400 | Val Loss: 0.145588
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 36
-Epoch 36 | Loss: 0.025548 | Val Loss: 0.148165
+Epoch 36 | Loss: 0.025551 | Val Loss: 0.148202
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 37
-Epoch 37 | Loss: 0.025031 | Val Loss: 0.145118
+Epoch 37 | Loss: 0.025031 | Val Loss: 0.145111
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 38
-Epoch 38 | Loss: 0.028300 | Val Loss: 0.145619
+Epoch 38 | Loss: 0.028297 | Val Loss: 0.145614
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 39
-Epoch 39 | Loss: 0.027854 | Val Loss: 0.148365
+Epoch 39 | Loss: 0.027852 | Val Loss: 0.148411
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 40
-Epoch 40 | Loss: 0.029458 | Val Loss: 0.144692
+Epoch 40 | Loss: 0.029465 | Val Loss: 0.144671
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 41
-Epoch 41 | Loss: 0.022208 | Val Loss: 0.144975
+Epoch 41 | Loss: 0.022208 | Val Loss: 0.144952
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 42
-Epoch 42 | Loss: 0.025425 | Val Loss: 0.145034
+Epoch 42 | Loss: 0.025415 | Val Loss: 0.145030
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 43
-Epoch 43 | Loss: 0.028458 | Val Loss: 0.145864
+Epoch 43 | Loss: 0.028473 | Val Loss: 0.145965
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 44
-Epoch 44 | Loss: 0.025567 | Val Loss: 0.144641
+Epoch 44 | Loss: 0.025582 | Val Loss: 0.144748
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 45
-Epoch 45 | Loss: 0.028102 | Val Loss: 0.144225
+Epoch 45 | Loss: 0.028106 | Val Loss: 0.144286
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 46
-Epoch 46 | Loss: 0.029600 | Val Loss: 0.144485
+Epoch 46 | Loss: 0.029605 | Val Loss: 0.144547
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 47
-Epoch 47 | Loss: 0.026264 | Val Loss: 0.145543
+Epoch 47 | Loss: 0.026245 | Val Loss: 0.145786
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 48
-Epoch 48 | Loss: 0.025831 | Val Loss: 0.144507
+Epoch 48 | Loss: 0.025824 | Val Loss: 0.144421
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 49
-Epoch 49 | Loss: 0.029187 | Val Loss: 0.144640
+Epoch 49 | Loss: 0.029179 | Val Loss: 0.144612
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 50
-Epoch 50 | Loss: 0.021329 | Val Loss: 0.144366
+Epoch 50 | Loss: 0.021328 | Val Loss: 0.144344
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 51
-Epoch 51 | Loss: 0.033471 | Val Loss: 0.144976
+Epoch 51 | Loss: 0.033470 | Val Loss: 0.144656
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 52
-Epoch 52 | Loss: 0.026375 | Val Loss: 0.144854
+Epoch 52 | Loss: 0.026353 | Val Loss: 0.144692
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 53
-Epoch 53 | Loss: 0.024054 | Val Loss: 0.144137
+Epoch 53 | Loss: 0.024067 | Val Loss: 0.144098
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 54
-Epoch 54 | Loss: 0.024084 | Val Loss: 0.143598
+Epoch 54 | Loss: 0.024093 | Val Loss: 0.143530
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 55
-Epoch 55 | Loss: 0.023239 | Val Loss: 0.147109
+Epoch 55 | Loss: 0.023247 | Val Loss: 0.146978
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 56
-Epoch 56 | Loss: 0.025256 | Val Loss: 0.143555
+Epoch 56 | Loss: 0.025256 | Val Loss: 0.143547
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 57
-Epoch 57 | Loss: 0.028680 | Val Loss: 0.144020
+Epoch 57 | Loss: 0.028687 | Val Loss: 0.143956
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 58
-Epoch 58 | Loss: 0.028565 | Val Loss: 0.143591
+Epoch 58 | Loss: 0.028565 | Val Loss: 0.143555
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 59
-Epoch 59 | Loss: 0.027318 | Val Loss: 0.146975
+Epoch 59 | Loss: 0.027318 | Val Loss: 0.146961
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 60
-Epoch 60 | Loss: 0.033183 | Val Loss: 0.144275
+Epoch 60 | Loss: 0.033184 | Val Loss: 0.144344
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 61
-Epoch 61 | Loss: 0.026350 | Val Loss: 0.143501
+Epoch 61 | Loss: 0.026349 | Val Loss: 0.143521
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 62
-Epoch 62 | Loss: 0.021419 | Val Loss: 0.144875
+Epoch 62 | Loss: 0.021421 | Val Loss: 0.144903
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 63
-Epoch 63 | Loss: 0.029395 | Val Loss: 0.143648
+Epoch 63 | Loss: 0.029395 | Val Loss: 0.143676
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 64
-Epoch 64 | Loss: 0.027537 | Val Loss: 0.147149
+Epoch 64 | Loss: 0.027537 | Val Loss: 0.147200
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 65
-Epoch 65 | Loss: 0.027286 | Val Loss: 0.145752
+Epoch 65 | Loss: 0.027283 | Val Loss: 0.145679
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 66
-Epoch 66 | Loss: 0.026607 | Val Loss: 0.145453
+Epoch 66 | Loss: 0.026615 | Val Loss: 0.145476
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 67
-Epoch 67 | Loss: 0.030071 | Val Loss: 0.143284
+Epoch 67 | Loss: 0.030072 | Val Loss: 0.143319
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 68
-Epoch 68 | Loss: 0.026695 | Val Loss: 0.146004
+Epoch 68 | Loss: 0.026689 | Val Loss: 0.145994
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 69
-Epoch 69 | Loss: 0.031303 | Val Loss: 0.145411
+Epoch 69 | Loss: 0.031301 | Val Loss: 0.145389
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 70
-Epoch 70 | Loss: 0.029074 | Val Loss: 0.144754
+Epoch 70 | Loss: 0.029074 | Val Loss: 0.144720
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 71
-Epoch 71 | Loss: 0.029011 | Val Loss: 0.145425
+Epoch 71 | Loss: 0.029010 | Val Loss: 0.145438
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 72
-Epoch 72 | Loss: 0.026444 | Val Loss: 0.143887
+Epoch 72 | Loss: 0.026444 | Val Loss: 0.143851
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 73
-Epoch 73 | Loss: 0.027419 | Val Loss: 0.147358
+Epoch 73 | Loss: 0.027412 | Val Loss: 0.147163
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 74
-Epoch 74 | Loss: 0.023286 | Val Loss: 0.143519
+Epoch 74 | Loss: 0.023278 | Val Loss: 0.143541
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 75
-Epoch 75 | Loss: 0.027315 | Val Loss: 0.144857
+Epoch 75 | Loss: 0.027312 | Val Loss: 0.144822
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 76
-Epoch 76 | Loss: 0.029368 | Val Loss: 0.143989
+Epoch 76 | Loss: 0.029360 | Val Loss: 0.143972
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 77
-Epoch 77 | Loss: 0.023078 | Val Loss: 0.144839
+Epoch 77 | Loss: 0.023076 | Val Loss: 0.144838
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 78
-Epoch 78 | Loss: 0.032665 | Val Loss: 0.143803
+Epoch 78 | Loss: 0.032660 | Val Loss: 0.143790
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 79
-Epoch 79 | Loss: 0.026911 | Val Loss: 0.149564
+Epoch 79 | Loss: 0.026902 | Val Loss: 0.149794
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 80
-Epoch 80 | Loss: 0.026454 | Val Loss: 0.147525
+Epoch 80 | Loss: 0.026445 | Val Loss: 0.147684
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 81
-Epoch 81 | Loss: 0.029013 | Val Loss: 0.146075
+Epoch 81 | Loss: 0.029009 | Val Loss: 0.146111
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 82
-Epoch 82 | Loss: 0.030331 | Val Loss: 0.143469
+Epoch 82 | Loss: 0.030326 | Val Loss: 0.143468
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 83
-Epoch 83 | Loss: 0.026214 | Val Loss: 0.143745
+Epoch 83 | Loss: 0.026215 | Val Loss: 0.143745
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 84
-Epoch 84 | Loss: 0.024373 | Val Loss: 0.143571
+Epoch 84 | Loss: 0.024365 | Val Loss: 0.143499
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 85
-Epoch 85 | Loss: 0.030342 | Val Loss: 0.145331
+Epoch 85 | Loss: 0.030329 | Val Loss: 0.145280
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 86
-Epoch 86 | Loss: 0.028168 | Val Loss: 0.142477
+Epoch 86 | Loss: 0.028165 | Val Loss: 0.142473
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 87
-Epoch 87 | Loss: 0.023974 | Val Loss: 0.143717
+Epoch 87 | Loss: 0.023968 | Val Loss: 0.143737
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 88
-Epoch 88 | Loss: 0.027046 | Val Loss: 0.143774
+Epoch 88 | Loss: 0.027029 | Val Loss: 0.143801
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 89
-Epoch 89 | Loss: 0.026928 | Val Loss: 0.141840
+Epoch 89 | Loss: 0.026913 | Val Loss: 0.141822
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 90
-Epoch 90 | Loss: 0.027948 | Val Loss: 0.142839
+Epoch 90 | Loss: 0.027940 | Val Loss: 0.142922
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 91
-Epoch 91 | Loss: 0.026381 | Val Loss: 0.141436
+Epoch 91 | Loss: 0.026363 | Val Loss: 0.141415
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 92
-Epoch 92 | Loss: 0.022084 | Val Loss: 0.144502
+Epoch 92 | Loss: 0.022064 | Val Loss: 0.144555
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 93
-Epoch 93 | Loss: 0.027039 | Val Loss: 0.141185
+Epoch 93 | Loss: 0.027000 | Val Loss: 0.141147
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 94
-Epoch 94 | Loss: 0.021381 | Val Loss: 0.145444
+Epoch 94 | Loss: 0.021357 | Val Loss: 0.145396
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 95
-Epoch 95 | Loss: 0.026805 | Val Loss: 0.141743
+Epoch 95 | Loss: 0.026802 | Val Loss: 0.141685
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 96
-Epoch 96 | Loss: 0.023716 | Val Loss: 0.145700
+Epoch 96 | Loss: 0.023684 | Val Loss: 0.145614
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 97
-Epoch 97 | Loss: 0.021654 | Val Loss: 0.142439
+Epoch 97 | Loss: 0.021654 | Val Loss: 0.142478
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 98
-Epoch 98 | Loss: 0.027638 | Val Loss: 0.144251
+Epoch 98 | Loss: 0.027633 | Val Loss: 0.144257
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 99
-Epoch 99 | Loss: 0.027334 | Val Loss: 0.144087
+Epoch 99 | Loss: 0.027344 | Val Loss: 0.144146
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 100
-Epoch 100 | Loss: 0.029052 | Val Loss: 0.142943
+Epoch 100 | Loss: 0.029042 | Val Loss: 0.142843
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 101
-Epoch 101 | Loss: 0.022985 | Val Loss: 0.143581
+Epoch 101 | Loss: 0.022972 | Val Loss: 0.143603
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 102
-Epoch 102 | Loss: 0.033549 | Val Loss: 0.142673
+Epoch 102 | Loss: 0.033553 | Val Loss: 0.142658
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 103
-Epoch 103 | Loss: 0.024663 | Val Loss: 0.143265
+Epoch 103 | Loss: 0.024655 | Val Loss: 0.143274
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 104
-Epoch 104 | Loss: 0.025450 | Val Loss: 0.145455
+Epoch 104 | Loss: 0.025446 | Val Loss: 0.145411
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 105
-Epoch 105 | Loss: 0.029218 | Val Loss: 0.143011
+Epoch 105 | Loss: 0.029208 | Val Loss: 0.142961
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 106
-Epoch 106 | Loss: 0.027485 | Val Loss: 0.145400
+Epoch 106 | Loss: 0.027467 | Val Loss: 0.145494
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 107
-Epoch 107 | Loss: 0.024705 | Val Loss: 0.143694
+Epoch 107 | Loss: 0.024685 | Val Loss: 0.143693
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 108
-Epoch 108 | Loss: 0.026954 | Val Loss: 0.142502
+Epoch 108 | Loss: 0.026905 | Val Loss: 0.142475
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 109
-Epoch 109 | Loss: 0.029643 | Val Loss: 0.146145
+Epoch 109 | Loss: 0.029610 | Val Loss: 0.146069
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 110
-Epoch 110 | Loss: 0.026537 | Val Loss: 0.146721
+Epoch 110 | Loss: 0.026473 | Val Loss: 0.146693
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 111
-Epoch 111 | Loss: 0.027567 | Val Loss: 0.142282
+Epoch 111 | Loss: 0.027506 | Val Loss: 0.142234
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 112
-Epoch 112 | Loss: 0.036475 | Val Loss: 0.143601
+Epoch 112 | Loss: 0.036388 | Val Loss: 0.143429
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 113
-Epoch 113 | Loss: 0.024951 | Val Loss: 0.141902
+Epoch 113 | Loss: 0.024909 | Val Loss: 0.141550
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 114
-Epoch 114 | Loss: 0.032762 | Val Loss: 0.145705
+Epoch 114 | Loss: 0.032706 | Val Loss: 0.145403
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 115
-Epoch 115 | Loss: 0.026397 | Val Loss: 0.143233
+Epoch 115 | Loss: 0.026352 | Val Loss: 0.143205
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 116
-Epoch 116 | Loss: 0.026080 | Val Loss: 0.141496
+Epoch 116 | Loss: 0.026019 | Val Loss: 0.141501
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 117
-Epoch 117 | Loss: 0.028836 | Val Loss: 0.144710
+Epoch 117 | Loss: 0.028766 | Val Loss: 0.144610
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 118
-Epoch 118 | Loss: 0.024406 | Val Loss: 0.144789
+Epoch 118 | Loss: 0.024316 | Val Loss: 0.144769
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 119
-Epoch 119 | Loss: 0.025558 | Val Loss: 0.142989
+Epoch 119 | Loss: 0.025516 | Val Loss: 0.142999
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 120
-Epoch 120 | Loss: 0.022420 | Val Loss: 0.143951
+Epoch 120 | Loss: 0.022363 | Val Loss: 0.143948
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 121
-Epoch 121 | Loss: 0.029367 | Val Loss: 0.143386
+Epoch 121 | Loss: 0.029324 | Val Loss: 0.143307
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 122
-Epoch 122 | Loss: 0.026407 | Val Loss: 0.143025
+Epoch 122 | Loss: 0.026382 | Val Loss: 0.143142
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 123
-Epoch 123 | Loss: 0.028103 | Val Loss: 0.144489
+Epoch 123 | Loss: 0.028082 | Val Loss: 0.144520
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 124
-Epoch 124 | Loss: 0.024788 | Val Loss: 0.141384
+Epoch 124 | Loss: 0.024802 | Val Loss: 0.141391
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 125
-Epoch 125 | Loss: 0.025882 | Val Loss: 0.144626
+Epoch 125 | Loss: 0.025862 | Val Loss: 0.144623
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 126
-Epoch 126 | Loss: 0.027241 | Val Loss: 0.142551
+Epoch 126 | Loss: 0.027228 | Val Loss: 0.142499
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 127
-Epoch 127 | Loss: 0.025216 | Val Loss: 0.140913
+Epoch 127 | Loss: 0.025211 | Val Loss: 0.140930
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 128
-Epoch 128 | Loss: 0.022430 | Val Loss: 0.143569
+Epoch 128 | Loss: 0.022424 | Val Loss: 0.143594
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 129
-Epoch 129 | Loss: 0.024311 | Val Loss: 0.144265
+Epoch 129 | Loss: 0.024310 | Val Loss: 0.144267
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 130
-Epoch 130 | Loss: 0.027096 | Val Loss: 0.144110
+Epoch 130 | Loss: 0.027077 | Val Loss: 0.144091
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 131
-Epoch 131 | Loss: 0.026424 | Val Loss: 0.143359
+Epoch 131 | Loss: 0.026398 | Val Loss: 0.143448
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 132
-Epoch 132 | Loss: 0.028044 | Val Loss: 0.143313
+Epoch 132 | Loss: 0.028044 | Val Loss: 0.143314
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 133
-Epoch 133 | Loss: 0.026314 | Val Loss: 0.142438
+Epoch 133 | Loss: 0.026301 | Val Loss: 0.142497
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 134
-Epoch 134 | Loss: 0.024708 | Val Loss: 0.142461
+Epoch 134 | Loss: 0.024708 | Val Loss: 0.142505
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 135
-Epoch 135 | Loss: 0.024866 | Val Loss: 0.145937
+Epoch 135 | Loss: 0.024851 | Val Loss: 0.145876
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 136
-Epoch 136 | Loss: 0.022134 | Val Loss: 0.144970
+Epoch 136 | Loss: 0.022094 | Val Loss: 0.144969
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 137
-Epoch 137 | Loss: 0.028262 | Val Loss: 0.143894
+Epoch 137 | Loss: 0.028279 | Val Loss: 0.143904
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 138
-Epoch 138 | Loss: 0.026734 | Val Loss: 0.144985
+Epoch 138 | Loss: 0.026651 | Val Loss: 0.144983
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 139
-Epoch 139 | Loss: 0.028585 | Val Loss: 0.142930
+Epoch 139 | Loss: 0.028544 | Val Loss: 0.142951
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 140
-Epoch 140 | Loss: 0.028989 | Val Loss: 0.142885
+Epoch 140 | Loss: 0.028944 | Val Loss: 0.142895
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 141
-Epoch 141 | Loss: 0.027759 | Val Loss: 0.144340
+Epoch 141 | Loss: 0.027679 | Val Loss: 0.144531
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 142
-Epoch 142 | Loss: 0.032775 | Val Loss: 0.144426
+Epoch 142 | Loss: 0.032694 | Val Loss: 0.144347
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 143
-Epoch 143 | Loss: 0.026198 | Val Loss: 0.145617
+Epoch 143 | Loss: 0.026156 | Val Loss: 0.145523
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 144
-Epoch 144 | Loss: 0.028819 | Val Loss: 0.143873
+Epoch 144 | Loss: 0.028767 | Val Loss: 0.143844
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 145
-Epoch 145 | Loss: 0.029281 | Val Loss: 0.143686
+Epoch 145 | Loss: 0.029264 | Val Loss: 0.143663
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 146
-Epoch 146 | Loss: 0.028883 | Val Loss: 0.144693
+Epoch 146 | Loss: 0.028883 | Val Loss: 0.144708
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 147
-Epoch 147 | Loss: 0.021861 | Val Loss: 0.143471
+Epoch 147 | Loss: 0.021851 | Val Loss: 0.143487
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 148
-Epoch 148 | Loss: 0.027181 | Val Loss: 0.141253
+Epoch 148 | Loss: 0.027179 | Val Loss: 0.141222
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 149
-Epoch 149 | Loss: 0.028354 | Val Loss: 0.142701
+Epoch 149 | Loss: 0.028345 | Val Loss: 0.142657
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 150
-Epoch 150 | Loss: 0.026773 | Val Loss: 0.142878
+Epoch 150 | Loss: 0.026741 | Val Loss: 0.142790
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 151
-Epoch 151 | Loss: 0.029337 | Val Loss: 0.142994
+Epoch 151 | Loss: 0.029275 | Val Loss: 0.142553
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 152
-Epoch 152 | Loss: 0.029771 | Val Loss: 0.140387
+Epoch 152 | Loss: 0.029866 | Val Loss: 0.140326
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 153
-Epoch 153 | Loss: 0.023319 | Val Loss: 0.142311
+Epoch 153 | Loss: 0.023283 | Val Loss: 0.142202
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 154
-Epoch 154 | Loss: 0.024892 | Val Loss: 0.144325
+Epoch 154 | Loss: 0.024873 | Val Loss: 0.144298
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 155
-Epoch 155 | Loss: 0.023885 | Val Loss: 0.141837
+Epoch 155 | Loss: 0.023877 | Val Loss: 0.141725
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 156
-Epoch 156 | Loss: 0.022322 | Val Loss: 0.144499
+Epoch 156 | Loss: 0.022322 | Val Loss: 0.144464
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 157
-Epoch 157 | Loss: 0.020981 | Val Loss: 0.144009
+Epoch 157 | Loss: 0.020965 | Val Loss: 0.143954
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 158
-Epoch 158 | Loss: 0.029195 | Val Loss: 0.140731
+Epoch 158 | Loss: 0.029143 | Val Loss: 0.140707
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 159
-Epoch 159 | Loss: 0.022159 | Val Loss: 0.143289
+Epoch 159 | Loss: 0.022098 | Val Loss: 0.143304
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 160
-Epoch 160 | Loss: 0.024455 | Val Loss: 0.139831
+Epoch 160 | Loss: 0.024439 | Val Loss: 0.139796
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 161
-Epoch 161 | Loss: 0.023554 | Val Loss: 0.143182
+Epoch 161 | Loss: 0.023569 | Val Loss: 0.143291
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 162
-Epoch 162 | Loss: 0.030552 | Val Loss: 0.143604
+Epoch 162 | Loss: 0.030543 | Val Loss: 0.143435
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 163
-Epoch 163 | Loss: 0.029147 | Val Loss: 0.143292
+Epoch 163 | Loss: 0.029096 | Val Loss: 0.143297
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 164
-Epoch 164 | Loss: 0.028093 | Val Loss: 0.141581
+Epoch 164 | Loss: 0.028090 | Val Loss: 0.141801
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 165
-Epoch 165 | Loss: 0.023822 | Val Loss: 0.143496
+Epoch 165 | Loss: 0.023824 | Val Loss: 0.143333
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 166
-Epoch 166 | Loss: 0.028158 | Val Loss: 0.144112
+Epoch 166 | Loss: 0.028158 | Val Loss: 0.144102
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 167
-Epoch 167 | Loss: 0.027017 | Val Loss: 0.142200
+Epoch 167 | Loss: 0.027015 | Val Loss: 0.142279
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 168
-Epoch 168 | Loss: 0.024301 | Val Loss: 0.143472
+Epoch 168 | Loss: 0.024277 | Val Loss: 0.143521
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 169
-Epoch 169 | Loss: 0.027399 | Val Loss: 0.143305
+Epoch 169 | Loss: 0.027411 | Val Loss: 0.143257
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 170
-Epoch 170 | Loss: 0.027284 | Val Loss: 0.144758
+Epoch 170 | Loss: 0.027266 | Val Loss: 0.144771
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 171
-Epoch 171 | Loss: 0.026791 | Val Loss: 0.142423
+Epoch 171 | Loss: 0.026748 | Val Loss: 0.142421
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 172
-Epoch 172 | Loss: 0.026539 | Val Loss: 0.141261
+Epoch 172 | Loss: 0.026525 | Val Loss: 0.141229
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 173
-Epoch 173 | Loss: 0.030744 | Val Loss: 0.141557
+Epoch 173 | Loss: 0.030737 | Val Loss: 0.141444
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 174
-Epoch 174 | Loss: 0.026621 | Val Loss: 0.141998
+Epoch 174 | Loss: 0.026595 | Val Loss: 0.142006
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 175
-Epoch 175 | Loss: 0.025263 | Val Loss: 0.141068
+Epoch 175 | Loss: 0.025183 | Val Loss: 0.141060
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 176
-Epoch 176 | Loss: 0.030606 | Val Loss: 0.140285
+Epoch 176 | Loss: 0.030548 | Val Loss: 0.140319
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 177
-Epoch 177 | Loss: 0.027517 | Val Loss: 0.141519
+Epoch 177 | Loss: 0.027492 | Val Loss: 0.141493
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 178
-Epoch 178 | Loss: 0.023874 | Val Loss: 0.144276
+Epoch 178 | Loss: 0.023838 | Val Loss: 0.144226
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 179
-Epoch 179 | Loss: 0.028955 | Val Loss: 0.143562
+Epoch 179 | Loss: 0.028947 | Val Loss: 0.143614
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 180
-Epoch 180 | Loss: 0.021396 | Val Loss: 0.140954
+Epoch 180 | Loss: 0.021387 | Val Loss: 0.141083
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 181
-Epoch 181 | Loss: 0.027607 | Val Loss: 0.142968
+Epoch 181 | Loss: 0.027586 | Val Loss: 0.143119
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 182
-Epoch 182 | Loss: 0.026770 | Val Loss: 0.143977
+Epoch 182 | Loss: 0.026766 | Val Loss: 0.143970
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 183
-Epoch 183 | Loss: 0.026630 | Val Loss: 0.140515
+Epoch 183 | Loss: 0.026537 | Val Loss: 0.140522
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 184
-Epoch 184 | Loss: 0.026380 | Val Loss: 0.142367
+Epoch 184 | Loss: 0.026346 | Val Loss: 0.142351
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 185
-Epoch 185 | Loss: 0.030246 | Val Loss: 0.142700
+Epoch 185 | Loss: 0.030219 | Val Loss: 0.142697
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 186
-Epoch 186 | Loss: 0.024589 | Val Loss: 0.142074
+Epoch 186 | Loss: 0.024553 | Val Loss: 0.141984
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 187
-Epoch 187 | Loss: 0.027789 | Val Loss: 0.142515
+Epoch 187 | Loss: 0.027765 | Val Loss: 0.142524
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 188
-Epoch 188 | Loss: 0.024449 | Val Loss: 0.143740
+Epoch 188 | Loss: 0.024403 | Val Loss: 0.143635
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 189
-Epoch 189 | Loss: 0.026789 | Val Loss: 0.141401
+Epoch 189 | Loss: 0.026790 | Val Loss: 0.141413
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 190
-Epoch 190 | Loss: 0.025744 | Val Loss: 0.142598
+Epoch 190 | Loss: 0.025725 | Val Loss: 0.142522
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 191
-Epoch 191 | Loss: 0.027856 | Val Loss: 0.142551
+Epoch 191 | Loss: 0.027846 | Val Loss: 0.142608
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 192
-Epoch 192 | Loss: 0.029659 | Val Loss: 0.141806
+Epoch 192 | Loss: 0.029636 | Val Loss: 0.141784
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 193
-Epoch 193 | Loss: 0.026347 | Val Loss: 0.143242
+Epoch 193 | Loss: 0.026281 | Val Loss: 0.143173
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 194
-Epoch 194 | Loss: 0.023808 | Val Loss: 0.141578
+Epoch 194 | Loss: 0.023787 | Val Loss: 0.141576
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 195
-Epoch 195 | Loss: 0.020028 | Val Loss: 0.143309
+Epoch 195 | Loss: 0.020001 | Val Loss: 0.143319
 Generating class 0 images
 Generating class 1 images
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 196
-Epoch 196 | Loss: 0.026453 | Val Loss: 0.143437
+Epoch 196 | Loss: 0.026428 | Val Loss: 0.143228
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 197
-Epoch 197 | Loss: 0.025507 | Val Loss: 0.142805
+Epoch 197 | Loss: 0.025475 | Val Loss: 0.142719
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 198
-Epoch 198 | Loss: 0.024175 | Val Loss: 0.139833
+Epoch 198 | Loss: 0.024140 | Val Loss: 0.139817
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 199
-Epoch 199 | Loss: 0.029926 | Val Loss: 0.143605
+Epoch 199 | Loss: 0.029886 | Val Loss: 0.143555
 --- Saved model to checkpoints/diffusion/state.pt ---
 Generating class 0 images
 Generating class 1 images
 Labels:
 tensor([1, 0, 1, 0, 0, 0, 0, 1], device='cuda:0')
-FITS files saved to results/diffusion/run_20260507_093858_seed44/generated_fits
-📈 Loss graph saved to results/diffusion/run_20260507_093858_seed44/training_metrics.png
+FITS files saved to results/diffusion/run_20260515_180925_seed44/generated_fits
+📈 Loss graph saved to results/diffusion/run_20260515_180925_seed44/training_metrics.png
 Generated images saved.
 Testing model
