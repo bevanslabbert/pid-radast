@@ -17,7 +17,7 @@ model:
   checkpoint_dir: ./checkpoints
 
 training:
-  epochs: 200
+  epochs: 300
   learning_rate: 0.0001
   label_dropout: 0.29869287822764246
   num_train_timesteps: 1000
@@ -26,8 +26,8 @@ training:
   # physics constraint weights
   # lambda_sym: penalises left-right / top-bottom asymmetry in x_0 estimates
   # lambda_neg: penalises sub-zero (unphysical negative flux) pixel values
-  lambda_sym: 0.1
-  lambda_neg: 0.5
+  lambda_sym: 0.05
+  lambda_neg: 0.1
 
   # accelerator
   mixed_precision: no
