@@ -38,18 +38,13 @@ def nonnegativity_loss(x_0_pred):
     return F.relu(-x_0_pred).mean()
 
 
-def physics_loss(x_0_pred, lambda_sym: float, lambda_neg: float) -> torch.Tensor:
-    """Weighted sum of symmetry and non-negativity penalties."""
-    return lambda_sym * symmetry_loss(x_0_pred) + lambda_neg * nonnegativity_loss(x_0_pred)
-
-
-def apply_nonnegativity(images: torch.Tensor) -> torch.Tensor:
-    """Zero out negative pixels in a batch of fully denoised images."""
-    return images.clamp(min=0.0)
+def physics_loss(x_0_pred, lambda_sym: float) -> torch.Tensor:
+    """Symmetry penalty only."""
+    return lambda_sym * symmetry_loss(x_0_pred)
 
 
 def sample_pid_zeros(model, scheduler, class_emb, num_samples, num_classes, device,
-                     shape=(1, 150, 150), guidance_scale=7.5, enforce_nonneg=True):
+                     shape=(1, 150, 150), guidance_scale=7.5):
     """Generate class-0 (FR-I) samples using CFG, then apply physics projection."""
     model.eval()
 
@@ -76,15 +71,11 @@ def sample_pid_zeros(model, scheduler, class_emb, num_samples, num_classes, devi
 
             images = scheduler.step(noise_pred, t, images).prev_sample
 
-    if enforce_nonneg:
-        # zero out unphysical negative flux after the final denoising step
-        images = apply_nonnegativity(images)
-
     return images
 
 
 def sample_pid_ones(model, scheduler, class_emb, num_samples, num_classes, device,
-                    shape=(1, 150, 150), guidance_scale=7.5, enforce_nonneg=True):
+                    shape=(1, 150, 150), guidance_scale=7.5):
     """Generate class-1 (FR-II) samples using CFG, then apply physics projection."""
     model.eval()
 
@@ -105,8 +96,5 @@ def sample_pid_ones(model, scheduler, class_emb, num_samples, num_classes, devic
             noise_pred_uncond, noise_pred_cond = output.chunk(2)
             noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_cond - noise_pred_uncond)
             images = scheduler.step(noise_pred, t, images).prev_sample
-
-    if enforce_nonneg:
-        images = apply_nonnegativity(images)
 
     return images

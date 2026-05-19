@@ -4,7 +4,7 @@ from src.models.time_dependent_resnet import TimeDependentResNet
 from src.models.diffusion import build_diffusion_components, train_epoch, eval_epoch
 from diffusers import UNet2DConditionModel, DDPMScheduler
 from src.models.pid import (
-    estimate_x0, physics_loss, symmetry_loss, nonnegativity_loss,
+    estimate_x0, physics_loss, symmetry_loss,
     sample_pid_zeros, sample_pid_ones,
 )
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
@@ -810,7 +810,6 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
 
     # physics loss weights from config
     lambda_sym = float(config['training'].get('lambda_sym', 0.1))
-    lambda_neg = float(config['training'].get('lambda_neg', 0.5))
 
     start_epoch = 0
     loss_history = []
@@ -891,8 +890,7 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
             # convert noise prediction to image space and apply physics penalties
             x_0_pred = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
             sym = lambda_sym * symmetry_loss(x_0_pred)
-            neg = lambda_neg * nonnegativity_loss(x_0_pred)
-            loss = mse + sym + neg
+            loss = mse + sym
 
             optimizer.zero_grad()
             loss.backward()
@@ -928,7 +926,7 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
 
                 # val loss includes physics terms so the metric is comparable to training loss
                 x_0_val = estimate_x0(noisy_val, noise_pred_val, alphas_cumprod, t_val)
-                v_loss = F.mse_loss(noise_pred_val, noise_val) + physics_loss(x_0_val, lambda_sym, lambda_neg)
+                v_loss = F.mse_loss(noise_pred_val, noise_val) + physics_loss(x_0_val, lambda_sym)
                 val_loss_accum += v_loss.item()
 
             avg_val_loss = val_loss_accum / len(testloader)
