@@ -1,11 +1,11 @@
 #!/bin/bash
-#PBS -N diffusion_seed${SEED}
+#PBS -N classification_seed${SEED}
 #PBS -q gpu_1
 #PBS -P CSCI1166
 #PBS -l select=1:ncpus=9:ngpus=1
-#PBS -l walltime=6:00:00
-#PBS -o logs/diffusion_seed${SEED}.out
-#PBS -e logs/diffusion_seed${SEED}.err
+#PBS -l walltime=4:00:00
+#PBS -o logs/classification_seed${SEED}.out
+#PBS -e logs/classification_seed${SEED}.err
 #PBS -m be
 #PBS -M bevanslabbert@gmail.com
 
@@ -13,7 +13,7 @@ cd $PBS_O_WORKDIR
 module load python/3.9.6
 
 python main.py train \
-    --model diffusion \
+    --model classification \
     --seed ${SEED} \
     --runs 1 \
     --checkpoint True

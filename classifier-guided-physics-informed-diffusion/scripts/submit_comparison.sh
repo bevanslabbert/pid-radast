@@ -18,6 +18,12 @@ ROOT="$(dirname "$SCRIPT_DIR")"
 
 mkdir -p "$ROOT/logs"
 
+echo "Submitting classification jobs..."
+for SEED in "${SEEDS[@]}"; do
+    qsub -v SEED=$SEED "$SCRIPT_DIR/job_classification.pbs"
+    echo "  submitted classification seed=$SEED"
+done
+
 echo "Submitting robust_classification jobs..."
 for SEED in "${SEEDS[@]}"; do
     qsub -v SEED=$SEED "$SCRIPT_DIR/job_robust_classification.pbs"
@@ -37,4 +43,4 @@ for SEED in "${SEEDS[@]}"; do
 done
 
 echo ""
-echo "All 15 jobs submitted. Monitor with: qstat -u $USER"
+echo "All 12 jobs submitted. Monitor with: qstat -u $USER"
