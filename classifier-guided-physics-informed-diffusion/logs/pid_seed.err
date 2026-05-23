@@ -1,2 +1,12 @@
 /home/bslabbert/.local/lib/python3.9/site-packages/diffusers/configuration_utils.py:141: FutureWarning: Accessing config attribute `num_train_timesteps` directly via 'DDPMScheduler' object attribute is deprecated. Please access 'num_train_timesteps' over 'DDPMScheduler's config object instead, e.g. 'scheduler.config.num_train_timesteps'.
   deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
+Traceback (most recent call last):
+  File "/home/bslabbert/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 157, in <module>
+    main()
+  File "/home/bslabbert/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 145, in main
+    model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset)
+  File "/home/bslabbert/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 1335, in train_model
+    return train_pid(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
+  File "/home/bslabbert/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 902, in train_pid
+    epoch_neg  += neg.item()
+NameError: name 'neg' is not defined
