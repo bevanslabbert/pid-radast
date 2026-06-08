@@ -263,7 +263,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 batch_sz = val_images.size(0)
 
                 # 1. CALCULATE VAL LOSS (Fast)
-                t_val = torch.linspace(0, scheduler.num_train_timesteps - 1, batch_sz, dtype=torch.long, device=device)
+                t_val = torch.linspace(0, scheduler.num_train_timesteps - 1, val_images.size(0), dtype=torch.long, device=device)
                 noise_val = torch.randn_like(val_images)
                 noisy_val = scheduler.add_noise(val_images, noise_val, t_val)
 
@@ -452,6 +452,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
     fid_history = []
     kid_history = []
     fid_epochs = []
+    cls_loss_history = []
 
     # optimizer resume logic
     optimizer = torch.optim.AdamW(
@@ -478,7 +479,6 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
                 torch.cuda.set_rng_state_all([s.to('cpu').to(torch.uint8) for s in cuda_state])
 
         unet.load_state_dict(checkpoint['model_state_dict'])
-        # optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
         loss_history = checkpoint['loss_history']
@@ -487,6 +487,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
         fid_history = checkpoint['fid_history']
         kid_history = checkpoint.get('kid_history', [])
         fid_epochs = checkpoint.get('fid_epochs', [])
+        cls_loss_history = checkpoint.get('cls_loss_history', [])
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
     if resume is not None:
@@ -560,6 +561,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
         avg_loss = epoch_loss / batch_count
         loss_history.append(avg_loss)
         avg_cls_loss = epoch_cls_loss / batch_count
+        cls_loss_history.append(avg_cls_loss)
         epochs_range.append(epoch)
 
         # --- Inside your validation block ---
@@ -569,10 +571,9 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
         with torch.no_grad():
             for i, (val_images, val_labels) in enumerate(testloader):
                 val_images, val_labels = val_images.to(device), val_labels.to(device)
-                batch_sz = val_images.size(0)
 
                 # 1. CALCULATE VAL LOSS (Fast)
-                t_val = torch.linspace(0, scheduler.num_train_timesteps - 1, batch_sz, dtype=torch.long, device=device)
+                t_val = torch.linspace(0, scheduler.num_train_timesteps - 1, val_images.size(0), dtype=torch.long, device=device)
                 noise_val = torch.randn_like(val_images)
                 noisy_val = scheduler.add_noise(val_images, noise_val, t_val)
 
@@ -662,6 +663,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
                     'config': config,
                     'loss_history': loss_history,
                     'val_loss_history': val_loss_history,
+                    'cls_loss_history': cls_loss_history,
                     'epochs_range': epochs_range,
                     'fid_history': fid_history,
                     'kid_history': kid_history,
