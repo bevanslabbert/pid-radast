@@ -29,7 +29,8 @@ def pgd_attack_early_stop(model, x_t, t, y,
                           random_start=True,
                           clamp=(0.0, 1.0),
                           device=None,
-                          verbose=False):
+                          verbose=False,
+                          training_mode=False):
     """
     PGD attack (untargeted) for a time-dependent classifier model(x, t).
     Returns adversarial image tensor of same shape as x_t.
@@ -74,13 +75,14 @@ def pgd_attack_early_stop(model, x_t, t, y,
         logits = model(inp, t)
         preds = logits.detach().argmax(dim=1)
 
-        # early stopping check (per-batch: stop if all are fooled)
-        newly_success = (preds != y)
-        if newly_success.all():
-            print(f"[PGD] All samples fooled at step {step}")
-            if verbose:
-                print(f"[PGD] All samples fooled at step {step}")
-            break
+        # early stopping check — disabled during adversarial training so that
+        # full-strength perturbations are always generated regardless of model state
+        if not training_mode:
+            newly_success = (preds != y)
+            if newly_success.all():
+                if verbose:
+                    print(f"[PGD] All samples fooled at step {step}")
+                break
 
         # compute scalar loss (we want to maximize the classification loss)
         loss = F.cross_entropy(logits, y)

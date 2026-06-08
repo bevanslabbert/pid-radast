@@ -16,6 +16,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchmetrics.image.fid import FrechetInceptionDistance
+from torchmetrics.image.kid import KernelInceptionDistance
 import matplotlib.pyplot as plt
 import numpy as np
 import math
@@ -172,6 +173,8 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     val_loss_history = []
     epochs_range = []
     fid_history = []
+    kid_history = []
+    fid_epochs = []
 
     # optimizer resume logic
     optimizer = torch.optim.AdamW(
@@ -205,6 +208,8 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         val_loss_history = checkpoint['val_loss_history']
         epochs_range = checkpoint['epochs_range']
         fid_history = checkpoint['fid_history']
+        kid_history = checkpoint.get('kid_history', [])
+        fid_epochs = checkpoint.get('fid_epochs', [])
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
     if resume is not None:
@@ -323,6 +328,17 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
                     print(f"FITS files saved to {fits_dir}")
 
+                # compute distributional quality metrics against the validation set
+                print(f"Computing FID/KID at epoch {epoch}...")
+                fid_score, kid_score = compute_fid_kid(
+                    unet, scheduler, class_emb, num_classes, valloader, device,
+                    sample_from_model_zeros, sample_from_model_ones,
+                )
+                fid_history.append(fid_score)
+                kid_history.append(kid_score)
+                fid_epochs.append(epoch)
+                print(f"  FID: {fid_score:.4f} | KID: {kid_score:.6f}")
+
             unet.train()
 
         # save checkpoint for resuming
@@ -339,6 +355,8 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                     'val_loss_history': val_loss_history,
                     'epochs_range': epochs_range,
                     'fid_history': fid_history,
+                    'kid_history': kid_history,
+                    'fid_epochs': fid_epochs,
                     'rng_state': torch.get_rng_state(),
                     'cuda_rng_state': torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
                 },
@@ -372,6 +390,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         print(f"FITS files saved to {fits_dir}")
 
     save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
+    save_generative_metrics_plot(fid_epochs, fid_history, kid_history, result_directory)
 
     torch.save(
         {'model_state_dict': unet.state_dict(), 'class_emb_state_dict': class_emb.state_dict(), 'config': config},
@@ -381,6 +400,314 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
     return unet
 
+def train_classifier_guided_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=None):
+    torch.cuda.empty_cache()
+    import gc
+    gc.collect()
+
+    unet = UNet2DConditionModel(
+        sample_size=config['data']['input_size'],
+        in_channels=1,
+        out_channels=1,
+        layers_per_block=2,
+        block_out_channels=(64, 128, 256, 512),
+        down_block_types=(
+            "DownBlock2D",
+            "DownBlock2D",
+            "CrossAttnDownBlock2D",
+            "CrossAttnDownBlock2D",
+        ),
+        up_block_types=(
+            "CrossAttnUpBlock2D",
+            "CrossAttnUpBlock2D",
+            "UpBlock2D",
+            "UpBlock2D",
+        ),
+        cross_attention_dim=config['model']['embedding_dim'],
+    ).to(device)
+
+    scheduler = DDPMScheduler(num_train_timesteps=config['training']['num_train_timesteps'])
+
+    num_classes = config['data']['num_classes']
+    num_epochs = config['training']['epochs']
+    class_emb = nn.Embedding(num_classes + 1, config['model']['embedding_dim']).to(device)
+
+    # load pre-trained diffusion weights as the starting point for classifier-guided fine-tuning.
+    # defaults to checkpoints/diffusion but can be overridden via model.pretrained_checkpoint in config.
+    pretrained_dir = config['model'].get('pretrained_checkpoint', f'{CHECKPOINT_DIR}/diffusion')
+    pretrained_ckpt_path = os.path.join(pretrained_dir, 'state.pt')
+    if os.path.exists(pretrained_ckpt_path):
+        pretrained = load_checkpoint(pretrained_dir, device)
+        unet.load_state_dict(pretrained['model_state_dict'])
+        class_emb.load_state_dict(pretrained['class_emb_state_dict'])
+        print(f"Loaded pre-trained diffusion weights from {pretrained_dir}")
+    else:
+        print(f"No pre-trained checkpoint found at {pretrained_dir}, training from scratch")
+
+    start_epoch = 0
+
+    loss_history = []
+    val_loss_history = []
+    epochs_range = []
+    fid_history = []
+    kid_history = []
+    fid_epochs = []
+
+    # optimizer resume logic
+    optimizer = torch.optim.AdamW(
+        list(unet.parameters()) + list(class_emb.parameters()),
+        lr=float(config['training']['learning_rate']),
+        weight_decay=float(config['training']['weight_decay']),
+    )
+
+    if resume is not None:
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classifier_guided_diffusion', device)
+
+        if checkpoint.get('rng_state') is not None:
+            # Force the state to the correct type for the CPU generator
+            rng_state = checkpoint['rng_state'].to('cpu').to(torch.uint8)
+            torch.set_rng_state(rng_state)
+
+        if checkpoint.get('cuda_rng_state') is not None:
+            # CUDA states can be a list (for multiple GPUs) or a single tensor
+            cuda_state = checkpoint['cuda_rng_state']
+            if isinstance(cuda_state, torch.Tensor):
+                torch.cuda.set_rng_state(cuda_state.to('cpu').to(torch.uint8))
+            else:
+                # If it's a list of states for multiple GPUs
+                torch.cuda.set_rng_state_all([s.to('cpu').to(torch.uint8) for s in cuda_state])
+
+        unet.load_state_dict(checkpoint['model_state_dict'])
+        # optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
+        start_epoch = checkpoint['epoch'] + 1
+        loss_history = checkpoint['loss_history']
+        val_loss_history = checkpoint['val_loss_history']
+        epochs_range = checkpoint['epochs_range']
+        fid_history = checkpoint['fid_history']
+        kid_history = checkpoint.get('kid_history', [])
+        fid_epochs = checkpoint.get('fid_epochs', [])
+        print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
+
+    if resume is not None:
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+
+    # --- Training loop ---
+
+    alphas_cumprod = scheduler.alphas_cumprod.to(device)
+
+    classifier = TimeDependentResNet(num_classes, pretrained=False)
+    classifier.load_state_dict(load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)['model_state_dict'])
+    classifier.to(device)
+    classifier.eval()
+    for p in classifier.parameters():
+        p.requires_grad_(False)
+
+    lambda_cls = float(config['training'].get('lambda_cls', 0.1))
+
+    for epoch in range(start_epoch, num_epochs):
+        unet.train()
+        epoch_loss = 0
+        epoch_cls_loss = 0
+        batch_count = 0
+
+        print(f'Epoch {epoch}')
+        for images, labels in trainloader:
+            images, labels = images.to(device), labels.to(device)
+
+            # dropout labels to train on unclassified images (classifier-free guidance)
+            drop_mask = torch.rand(labels.shape, device=device) < config['training']['label_dropout']
+            training_labels = labels.clone()
+            training_labels[drop_mask] = num_classes
+
+            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
+            noise = torch.randn_like(images)
+            noisy_images = scheduler.add_noise(images, noise, t)
+
+            # get class embeddings and add sequence dimension
+            class_embeddings = class_emb(training_labels).unsqueeze(1)  # (B, 1, D)
+
+            # predict noise conditioned on class
+            model_output = unet(noisy_images, t, encoder_hidden_states=class_embeddings).sample
+
+            # classifier guidance: penalise the UNet when the estimated clean image is misclassified.
+            # loss = (1 - p_correct), where p_correct = softmax probability assigned to the true class.
+            # this is exactly 0 when the classifier is certain and right, and equals the classifier's
+            # confidence in the wrong answer when misclassified — matching the intended formulation.
+            # only applied to non-dropped samples (null class has no target label).
+            cls_loss = torch.tensor(0.0, device=device)
+            cls_mask = training_labels != num_classes
+            if cls_mask.any():
+                x_0_pred = estimate_x0(noisy_images, model_output, alphas_cumprod, t)
+                cls_input = x_0_pred[cls_mask]
+                if isinstance(dataset, MiraBestFITS):
+                    cls_input = fits_to_linear(cls_input, dataset)
+                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
+                cls_logits = classifier(cls_input, t_clean)
+                p_correct = F.softmax(cls_logits, dim=1).gather(1, labels[cls_mask].unsqueeze(1)).squeeze(1)
+                cls_loss = lambda_cls * (1.0 - p_correct).mean()
+
+            loss = F.mse_loss(model_output, noise) + cls_loss
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            epoch_loss += loss.item()
+            batch_count += 1
+            epoch_cls_loss += cls_loss.item()
+
+        avg_loss = epoch_loss / batch_count
+        loss_history.append(avg_loss)
+        avg_cls_loss = epoch_cls_loss / batch_count
+        epochs_range.append(epoch)
+
+        # --- Inside your validation block ---
+        unet.eval()
+        val_loss_accum = 0
+        
+        with torch.no_grad():
+            for i, (val_images, val_labels) in enumerate(testloader):
+                val_images, val_labels = val_images.to(device), val_labels.to(device)
+                batch_sz = val_images.size(0)
+
+                # 1. CALCULATE VAL LOSS (Fast)
+                t_val = torch.linspace(0, scheduler.num_train_timesteps - 1, batch_sz, dtype=torch.long, device=device)
+                noise_val = torch.randn_like(val_images)
+                noisy_val = scheduler.add_noise(val_images, noise_val, t_val)
+
+                class_emb_val = class_emb(val_labels).unsqueeze(1)
+                model_output = unet(noisy_val, t_val, encoder_hidden_states=class_emb_val).sample
+
+                v_loss = F.mse_loss(model_output, noise_val)
+                val_loss_accum += v_loss.item()
+
+            # --- Finalize Metrics for the Epoch ---
+            avg_val_loss = val_loss_accum / len(testloader)
+            
+            print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f} | Cls Loss: {avg_cls_loss:.6f}")
+            
+            # Save to history
+            val_loss_history.append(avg_val_loss)
+
+        # save a sample image every x epochs
+        if epoch % 5 == 0:
+            unet.eval()
+            with torch.no_grad():
+                # 1. Generate images for both classes
+                # Assuming these return a batch of images [B, 1, 150, 150]
+                zero_images = sample_from_model_zeros(unet, scheduler, class_emb, 4, num_classes, device)
+                one_images = sample_from_model_ones(unet, scheduler, class_emb, 4, num_classes, device)
+
+                # 2. Combine into a single comparison plot
+                fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+                
+                # Helper to process tensors for plotting
+                def prep_for_plot(img_tensor):
+                    grid = torchvision.utils.make_grid(img_tensor, nrow=2, normalize=True, value_range=(-1, 1))
+                    return grid.permute(1, 2, 0).cpu().numpy()
+
+                # Display Class 0
+                axes[0].imshow(prep_for_plot(zero_images), cmap='gray')
+                axes[0].set_title(f"Class 0 (Epoch {epoch})")
+                axes[0].axis('off')
+
+                # Display Class 1
+                axes[1].imshow(prep_for_plot(one_images), cmap='gray')
+                axes[1].set_title(f"Class 1 (Epoch {epoch})")
+                axes[1].axis('off')
+
+                # 3. Save the single comparison file
+                plt.tight_layout()
+                plt.savefig(f"{result_directory}/comparison_epoch_{epoch}.png")
+                plt.close() # Important to avoid memory leaks
+
+                # If trained on FITS data, also save as FITS with inverted scaling
+                if isinstance(dataset, MiraBestFITS):
+                    fits_dir = os.path.join(result_directory, 'generated_fits')
+                    os.makedirs(fits_dir, exist_ok=True)
+
+                    for class_idx, images in [(0, zero_images), (1, one_images)]:
+                        for i, img in enumerate(images):
+                            # img shape: (1, H, W) tensor in [-1, 1]
+                            norm_array = img.squeeze(0).cpu().numpy()          # (H, W)
+                            jy_array = dataset.denormalise(norm_array)         # approximate Jy/beam
+                            fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}_{epoch}.fits")
+                            MiraBestFITS.write_fits(jy_array, fname)
+
+                    print(f"FITS files saved to {fits_dir}")
+
+                # compute distributional quality metrics against the validation set
+                print(f"Computing FID/KID at epoch {epoch}...")
+                fid_score, kid_score = compute_fid_kid(
+                    unet, scheduler, class_emb, num_classes, valloader, device,
+                    sample_from_model_zeros, sample_from_model_ones,
+                )
+                fid_history.append(fid_score)
+                kid_history.append(kid_score)
+                fid_epochs.append(epoch)
+                print(f"  FID: {fid_score:.4f} | KID: {kid_score:.6f}")
+
+            unet.train()
+
+        # save checkpoint for resuming
+        if not checkpoint == None or not resume == None:
+            save_checkpoint(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': unet.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'class_emb_state_dict': class_emb.state_dict(),
+                    'loss': loss,
+                    'config': config,
+                    'loss_history': loss_history,
+                    'val_loss_history': val_loss_history,
+                    'epochs_range': epochs_range,
+                    'fid_history': fid_history,
+                    'kid_history': kid_history,
+                    'fid_epochs': fid_epochs,
+                    'rng_state': torch.get_rng_state(),
+                    'cuda_rng_state': torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
+                },
+                f'{CHECKPOINT_DIR}/classifier_guided_diffusion'
+            )
+
+    num_samples = config['data']['batch_size']
+
+    class_0_images = sample_from_model_zeros(unet, scheduler, class_emb, num_samples, num_classes, device)
+    class_1_images = sample_from_model_ones(unet, scheduler, class_emb, num_samples, num_classes, device)
+    random_images  = sample_from_model(unet, scheduler, class_emb, num_samples, num_classes, device)
+
+    # Always save PNG previews
+    torchvision.utils.save_image(class_0_images, f"{result_directory}/generated_images_class_0.png", nrow=2, normalize=True, value_range=(-1, 1))
+    torchvision.utils.save_image(class_1_images, f"{result_directory}/generated_images_class_1.png", nrow=2, normalize=True, value_range=(-1, 1))
+    torchvision.utils.save_image(random_images,  f"{result_directory}/generated_images_random_all_classes.png", nrow=2, normalize=True, value_range=(-1, 1))
+
+    # If trained on FITS data, also save as FITS with inverted scaling
+    if isinstance(dataset, MiraBestFITS):
+        fits_dir = os.path.join(result_directory, 'generated_fits')
+        os.makedirs(fits_dir, exist_ok=True)
+
+        for class_idx, images in [(0, class_0_images), (1, class_1_images)]:
+            for i, img in enumerate(images):
+                # img shape: (1, H, W) tensor in [-1, 1]
+                norm_array = img.squeeze(0).cpu().numpy()          # (H, W)
+                jy_array = dataset.denormalise(norm_array)         # approximate Jy/beam
+                fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}.fits")
+                MiraBestFITS.write_fits(jy_array, fname)
+
+        print(f"FITS files saved to {fits_dir}")
+
+    save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
+    save_generative_metrics_plot(fid_epochs, fid_history, kid_history, result_directory)
+
+    torch.save(
+        {'model_state_dict': unet.state_dict(), 'class_emb_state_dict': class_emb.state_dict(), 'config': config},
+        os.path.join(result_directory, 'final_weights.pt')
+    )
+    print(f"Generated images saved.")
+
+    return unet
 def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, device, shape=(1, 150, 150)):
     model.eval()
     # Random target labels for validation
@@ -478,10 +805,67 @@ def fits_to_linear(x_fits, dataset):
     return torch.sign(x_fits) * torch.expm1(torch.abs(x_fits) * peak_log) / math.expm1(peak_log)
 
 def prepare_for_fid(t):
-        t = t.repeat(1, 3, 1, 1)          # 1 channel -> 3 channels
-        t = (t + 1.0) / 2.0               # -1..1 -> 0..1
-        t = (t * 255).clamp(0, 255)       # 0..1 -> 0..255
-        return t.to(torch.uint8)          # Float -> Byte
+    t = t.repeat(1, 3, 1, 1)          # 1 channel -> 3 channels
+    t = (t + 1.0) / 2.0               # -1..1 -> 0..1
+    t = (t * 255).clamp(0, 255)       # 0..1 -> 0..255
+    return t.to(torch.uint8)          # float -> uint8
+
+def compute_fid_kid(unet, scheduler, class_emb, num_classes, valloader, device,
+                    sample_zeros_fn, sample_ones_fn, num_gen_per_class=16):
+    """Compute FID and KID between real val images and CFG-generated images.
+
+    Generates `num_gen_per_class` images for each class (total 2×), feeds all
+    real validation images as the reference distribution, then returns
+    (fid_score, kid_mean).  Both metrics use Inception v3 pool3 features.
+    KID is preferred over FID on small datasets like MiraBest (~1 200 images)
+    because it is an unbiased estimator.
+    """
+    n_fake = num_gen_per_class * 2
+    fid_metric = FrechetInceptionDistance(feature=2048, normalize=False).to(device)
+    kid_metric = KernelInceptionDistance(
+        feature=2048, normalize=False, subset_size=min(n_fake, 50)
+    ).to(device)
+
+    with torch.no_grad():
+        for real_imgs, _ in valloader:
+            real_u8 = prepare_for_fid(real_imgs.to(device))
+            fid_metric.update(real_u8, real=True)
+            kid_metric.update(real_u8, real=True)
+
+        gen_0 = sample_zeros_fn(unet, scheduler, class_emb, num_gen_per_class, num_classes, device)
+        gen_1 = sample_ones_fn(unet, scheduler, class_emb, num_gen_per_class, num_classes, device)
+        fake_u8 = prepare_for_fid(torch.cat([gen_0, gen_1], dim=0))
+        fid_metric.update(fake_u8, real=False)
+        kid_metric.update(fake_u8, real=False)
+
+    fid_score = fid_metric.compute().item()
+    kid_mean, _ = kid_metric.compute()
+    return fid_score, kid_mean.item()
+
+def save_generative_metrics_plot(fid_epochs, fid_history, kid_history, result_dir):
+    """Save a two-panel figure showing FID and KID over training epochs."""
+    if not fid_epochs:
+        return
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+    fig.suptitle('Generative Quality Metrics (lower is better)', fontsize=14)
+
+    axes[0].plot(fid_epochs, fid_history, color='tab:purple', linewidth=2, marker='o')
+    axes[0].set_title('FID')
+    axes[0].set_xlabel('Epoch')
+    axes[0].set_ylabel('FID score')
+    axes[0].grid(True, linestyle='--', alpha=0.5)
+
+    axes[1].plot(fid_epochs, kid_history, color='tab:orange', linewidth=2, marker='o')
+    axes[1].set_title('KID')
+    axes[1].set_xlabel('Epoch')
+    axes[1].set_ylabel('KID mean')
+    axes[1].grid(True, linestyle='--', alpha=0.5)
+
+    fig.tight_layout()
+    plot_path = os.path.join(result_dir, 'generative_metrics.png')
+    plt.savefig(plot_path, dpi=150)
+    plt.close()
+    print(f"Generative metrics plot saved to {plot_path}")
 
 def save_pid_training_plots(epochs, loss_history, val_loss_history,
                             mse_history, sym_history, neg_history,
@@ -589,20 +973,31 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
     transition_epochs = config['training'].get('transition_epochs', 15)
     label_smoothing   = float(config['training'].get('label_smoothing', 0.1))
     num_timesteps     = config['training'].get('num_timesteps', 1000)
-    optimizer = torch.optim.Adam(
+    optimizer = torch.optim.SGD(
         rob_model.parameters(),
         lr=float(config['training']['learning_rate']),
+        momentum=0.9,
         weight_decay=float(config['training']['weight_decay']),
     )
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs)
+    # Linear warmup for the first 5 epochs, then cosine anneal
+    warmup_lr_epochs = 5
+    def lr_lambda(epoch):
+        if epoch < warmup_lr_epochs:
+            return (epoch + 1) / warmup_lr_epochs
+        return 1.0
+    warmup_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lr_lambda)
+    cosine_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+        optimizer, T_max=num_epochs - warmup_lr_epochs
+    )
     epoch_losses = []
     val_losses = []
 
     pgd_cfg = config['training'].get('pgd', {})
     pgd_epsilon      = float(pgd_cfg.get('epsilon',      0.03))
     pgd_alpha        = float(pgd_cfg.get('alpha',        0.01))
-    pgd_num_steps    = int(pgd_cfg.get('num_steps',      10))
+    pgd_num_steps    = int(pgd_cfg.get('num_steps',      20))
     pgd_random_start = bool(pgd_cfg.get('random_start',  True))
+    trades_beta      = float(config['training'].get('trades_beta', 6.0))
 
     # Define diffusion noise schedule (linear beta schedule)
     betas = torch.linspace(0.0001, 0.02, num_timesteps).to(device)
@@ -616,8 +1011,10 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
         rob_model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        if checkpoint.get('scheduler_state_dict') is not None:
-            scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+        if checkpoint.get('warmup_scheduler_state_dict') is not None:
+            warmup_scheduler.load_state_dict(checkpoint['warmup_scheduler_state_dict'])
+        if checkpoint.get('cosine_scheduler_state_dict') is not None:
+            cosine_scheduler.load_state_dict(checkpoint['cosine_scheduler_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
         best_val_acc = checkpoint.get('best_val_acc', 0.0)
         print(f"Resumed from checkpoint: epoch {start_epoch}, best val acc {best_val_acc:.1f}%")
@@ -652,27 +1049,41 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
 
             if in_warmup:
                 # Noisy images with the curriculum schedule but no adversarial attack.
-                # The model gradually learns to classify at increasing noise levels
-                # so that when PGD is introduced it has already seen that noise range.
                 x_train = x_t
                 t_train = t
+
+                optimizer.zero_grad()
+                logits = rob_model(x_train, t_train)
+                loss = F.cross_entropy(logits, labels, label_smoothing=label_smoothing)
+                loss.backward()
+                optimizer.step()
             else:
-                # Transition or full adversarial — PGD with progressive epsilon.
-                x_train = pgd_attack_early_stop(
+                # TRADES loss: CE on clean + β * KL(clean || adv)
+                # Generate adversarial examples with full-strength PGD (no early stop)
+                x_adv = pgd_attack_early_stop(
                     rob_model, x_t, t, labels,
                     epsilon=current_epsilon,
                     alpha=pgd_alpha,
                     num_steps=pgd_num_steps,
                     random_start=pgd_random_start,
                     clamp=(-1.0, 1.0),
+                    training_mode=True,
                 )
                 t_train = t
 
-            optimizer.zero_grad()
-            logits = rob_model(x_train, t_train)
-            loss = F.cross_entropy(logits, labels, label_smoothing=label_smoothing)
-            loss.backward()
-            optimizer.step()
+                optimizer.zero_grad()
+                logits_clean = rob_model(x_t, t)
+                logits_adv   = rob_model(x_adv, t)
+                loss_ce  = F.cross_entropy(logits_clean, labels, label_smoothing=label_smoothing)
+                loss_kl  = F.kl_div(
+                    F.log_softmax(logits_adv, dim=1),
+                    F.softmax(logits_clean.detach(), dim=1),
+                    reduction='batchmean',
+                )
+                loss = loss_ce + trades_beta * loss_kl
+                loss.backward()
+                optimizer.step()
+                logits = logits_adv  # report adversarial accuracy during AT phase
 
             total_loss += loss.item()
 
@@ -697,7 +1108,10 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
 
         # read LR before stepping so the summary reflects this epoch's LR
         current_lr = optimizer.param_groups[0]['lr']
-        scheduler.step()
+        if epoch < warmup_lr_epochs:
+            warmup_scheduler.step()
+        else:
+            cosine_scheduler.step()
 
         avg_loss = total_loss / len(trainloader)
         epoch_losses.append(avg_loss)
@@ -720,45 +1134,61 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
         val_acc = 100.0 * val_correct / val_total
         val_losses.append(avg_val_loss)
 
+        # Adversarial validation every 5 epochs (after warmup) to track robustness
+        adv_val_acc = None
+        if not in_warmup and epoch % 5 == 0:
+            adv_val_correct = 0
+            adv_val_total = 0
+            for val_batch in valloader:
+                val_inputs = val_batch[0].to(device)
+                val_labels = val_batch[1].to(device)
+                t_val = torch.zeros(val_inputs.size(0), dtype=torch.long, device=device)
+                val_adv = pgd_attack_early_stop(
+                    rob_model, val_inputs, t_val, val_labels,
+                    epsilon=pgd_epsilon,
+                    alpha=pgd_alpha,
+                    num_steps=10,
+                    random_start=True,
+                    clamp=(-1.0, 1.0),
+                    training_mode=False,
+                )
+                with torch.no_grad():
+                    adv_logits = rob_model(val_adv, t_val)
+                adv_val_correct += (adv_logits.argmax(dim=1) == val_labels).sum().item()
+                adv_val_total += val_labels.size(0)
+            adv_val_acc = 100.0 * adv_val_correct / adv_val_total
+
         if in_warmup:
             phase = "warmup"
         elif in_transition:
             phase = f"transition(ε={current_epsilon:.3f})"
         else:
             phase = "adversarial"
-        print(f'Epoch {epoch} [{phase}] | Loss: {avg_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.1f}% | LR: {current_lr:.2e}')
+        adv_str = f" | Adv Val Acc: {adv_val_acc:.1f}%" if adv_val_acc is not None else ""
+        print(f'Epoch {epoch} [{phase}] | Loss: {avg_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.1f}%{adv_str} | LR: {current_lr:.2e}')
+
+        # best-checkpoint criterion: adversarial accuracy when available, else clean accuracy
+        best_metric = adv_val_acc if adv_val_acc is not None else val_acc
 
         # always save latest checkpoint for resuming
+        ckpt_payload = {
+            'epoch': epoch,
+            'model_state_dict': rob_model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'warmup_scheduler_state_dict': warmup_scheduler.state_dict(),
+            'cosine_scheduler_state_dict': cosine_scheduler.state_dict(),
+            'loss': loss,
+            'config': config,
+            'best_val_acc': best_val_acc,
+        }
         if not checkpoint == None or not resume == None:
-            save_checkpoint(
-                {
-                    'epoch': epoch,
-                    'model_state_dict': rob_model.state_dict(),
-                    'optimizer_state_dict': optimizer.state_dict(),
-                    'scheduler_state_dict': scheduler.state_dict(),
-                    'loss': loss,
-                    'config': config,
-                    'best_val_acc': best_val_acc,
-                },
-                f'{CHECKPOINT_DIR}/robust_classification'
-            )
+            save_checkpoint(ckpt_payload, f'{CHECKPOINT_DIR}/robust_classification')
 
-        # save a separate best checkpoint so the peak model is never overwritten
-        if val_acc > best_val_acc:
-            best_val_acc = val_acc
-            save_checkpoint(
-                {
-                    'epoch': epoch,
-                    'model_state_dict': rob_model.state_dict(),
-                    'optimizer_state_dict': optimizer.state_dict(),
-                    'scheduler_state_dict': scheduler.state_dict(),
-                    'loss': loss,
-                    'config': config,
-                    'best_val_acc': best_val_acc,
-                },
-                f'{CHECKPOINT_DIR}/robust_classification_best'
-            )
-            print(f"  ** New best val acc: {best_val_acc:.1f}% — saved to checkpoints/robust_classification_best")
+        # save a separate best checkpoint based on adversarial val acc when available
+        if best_metric > best_val_acc:
+            best_val_acc = best_metric
+            save_checkpoint(ckpt_payload, f'{CHECKPOINT_DIR}/robust_classification_best')
+            print(f"  ** New best metric: {best_val_acc:.1f}% — saved to checkpoints/robust_classification_best")
 
     plt.figure(figsize=(8, 5))
         
@@ -819,6 +1249,8 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
     neg_history = []        # weighted non-negativity loss component (train)
     epochs_range = []
     fid_history = []
+    kid_history = []
+    fid_epochs = []
 
     # physics compliance measured on generated samples every 5 epochs
     compliance_epochs = []
@@ -849,6 +1281,8 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
         neg_history = checkpoint.get('neg_history', [])
         epochs_range = checkpoint['epochs_range']
         fid_history = checkpoint['fid_history']
+        kid_history = checkpoint.get('kid_history', [])
+        fid_epochs = checkpoint.get('fid_epochs', [])
         compliance_epochs = checkpoint.get('compliance_epochs', [])
         pct_negative_history = checkpoint.get('pct_negative_history', [])
         sym_score_history = checkpoint.get('sym_score_history', [])
@@ -948,6 +1382,9 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
             'compliance_epochs': compliance_epochs,
             'pct_negative': pct_negative_history,
             'sym_score': sym_score_history,
+            'fid_epochs': fid_epochs,
+            'fid': fid_history,
+            'kid': kid_history,
         }
         with open(os.path.join(result_directory, 'metrics.json'), 'w') as f:
             json.dump(metrics, f, indent=2)
@@ -986,6 +1423,17 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
                 sym_score_history.append(sym_score)
                 print(f"  Compliance — % negative pixels: {pct_neg:.2f}% | symmetry score: {sym_score:.6f}")
 
+                # compute distributional quality metrics against the validation set
+                print(f"Computing FID/KID at epoch {epoch}...")
+                fid_score, kid_score = compute_fid_kid(
+                    unet, scheduler, class_emb, num_classes, valloader, device,
+                    sample_pid_zeros, sample_pid_ones,
+                )
+                fid_history.append(fid_score)
+                kid_history.append(kid_score)
+                fid_epochs.append(epoch)
+                print(f"  FID: {fid_score:.4f} | KID: {kid_score:.6f}")
+
                 if isinstance(dataset, MiraBestFITS):
                     fits_dir = os.path.join(result_directory, 'generated_fits')
                     os.makedirs(fits_dir, exist_ok=True)
@@ -1017,6 +1465,8 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
                     'neg_history': neg_history,
                     'epochs_range': epochs_range,
                     'fid_history': fid_history,
+                    'kid_history': kid_history,
+                    'fid_epochs': fid_epochs,
                     'compliance_epochs': compliance_epochs,
                     'pct_negative_history': pct_negative_history,
                     'sym_score_history': sym_score_history,
@@ -1052,6 +1502,7 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
         compliance_epochs, pct_negative_history, sym_score_history,
         result_directory,
     )
+    save_generative_metrics_plot(fid_epochs, fid_history, kid_history, result_directory)
 
     torch.save(
         {'model_state_dict': unet.state_dict(), 'class_emb_state_dict': class_emb.state_dict(), 'config': config},
@@ -1066,18 +1517,12 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
     import gc
     gc.collect()
 
-    # reuse the same UNet architecture, scheduler, class embedding, and optimizer as train_diffusion
     unet, scheduler, class_emb, optimizer = build_diffusion_components(config, {}, device)
 
-    # alphas_cumprod needed to convert noise predictions back to image space
     alphas_cumprod = scheduler.alphas_cumprod.to(device)
 
-    scheduler = DDPMScheduler(num_train_timesteps=config['training']['num_train_timesteps'])
-
-    # Embed class labels
-    num_classes = config['data']['num_classes'] # to account for null class
+    num_classes = config['data']['num_classes']
     num_epochs = config['training']['epochs']
-    class_emb = nn.Embedding(num_classes + 1, config['model']['embedding_dim']).to(device)
 
     start_epoch = 0
 
@@ -1085,16 +1530,11 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
     val_loss_history = []
     epochs_range = []
     fid_history = []
-
-    # optimizer resume logic
-    optimizer = torch.optim.AdamW(
-        list(unet.parameters()) + list(class_emb.parameters()),
-        lr=float(config['training']['learning_rate']),
-        weight_decay=float(config['training']['weight_decay']),
-    )
+    kid_history = []
+    fid_epochs = []
 
     if resume is not None:
-        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/diffusion', device)
+        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classifier_guided_diffusion', device)
 
         if checkpoint.get('rng_state') is not None:
             # Force the state to the correct type for the CPU generator
@@ -1118,6 +1558,8 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
         val_loss_history = checkpoint['val_loss_history']
         epochs_range = checkpoint['epochs_range']
         fid_history = checkpoint['fid_history']
+        kid_history = checkpoint.get('kid_history', [])
+        fid_epochs = checkpoint.get('fid_epochs', [])
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
     if resume is not None:
@@ -1285,10 +1727,12 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
                     'val_loss_history': val_loss_history,
                     'epochs_range': epochs_range,
                     'fid_history': fid_history,
+                    'kid_history': kid_history,
+                    'fid_epochs': fid_epochs,
                     'rng_state': torch.get_rng_state(),
                     'cuda_rng_state': torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
                 },
-                f'{CHECKPOINT_DIR}/diffusion'
+                f'{CHECKPOINT_DIR}/robust_classifier_guided_diffusion'
             )
 
     num_samples = config['data']['batch_size']
@@ -1333,5 +1777,9 @@ def train_model(model, config, trainloader, valloader, testloader, device, resul
         return train_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
     elif model == 'pid':
         return train_pid(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
+    elif model == 'robust_classifier_guided_diffusion':
+        return train_robust_classifier_guided_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
+    elif model == 'classifier_guided_diffusion':
+        return train_classifier_guided_diffusion(config, trainloader, valloader, testloader, device, result_directory, resume, checkpoint, dataset=dataset)
     else:
-        raise f'Model {model} not supported ["diffusion", "pid", "robust_classification", "classification"]'
+        raise ValueError(f'Model {model} not supported ["diffusion", "pid", "robust_classification", "classification", "robust_classifier_guided_diffusion", "classifier_guided_diffusion"]')
