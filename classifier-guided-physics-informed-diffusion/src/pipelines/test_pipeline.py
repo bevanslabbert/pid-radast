@@ -48,9 +48,12 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         pgd_alpha     = float(pgd_cfg.get('alpha',      0.01))
         pgd_num_steps = int(pgd_cfg.get('num_steps',    20))
 
-        rob_model = TimeDependentResNet(num_classes, pretrained=False)
-        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
-        rob_model.load_state_dict(checkpoint['model_state_dict'])
+        if model is None:
+            rob_model = TimeDependentResNet(num_classes, pretrained=False)
+            checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
+            rob_model.load_state_dict(checkpoint['model_state_dict'])
+        else:
+            rob_model = model
         rob_model.to(device)
         rob_model.eval()
 
@@ -151,11 +154,11 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
 
     elif model_type == 'classification':
         num_classes = config['data']['num_classes']
-        model = resnet50(pretrained=False)
-        model.fc = nn.Linear(model.fc.in_features, num_classes)
-
-        checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
-        model.load_state_dict(checkpoint['model_state_dict'])
+        if model is None:
+            model = resnet50(pretrained=False)
+            model.fc = nn.Linear(model.fc.in_features, num_classes)
+            checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
+            model.load_state_dict(checkpoint['model_state_dict'])
         model.to(device)
         model.eval()
 
@@ -186,6 +189,7 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
     elif model_type in ('diffusion', 'pid', 'classifier_guided_diffusion', 'robust_classifier_guided_diffusion'):
         from src.models.diffusion import build_diffusion_components
         from src.models.pid import sample_pid_zeros, sample_pid_ones
+        import os
 
         num_classes = config['data']['num_classes']
         unet, scheduler, class_emb, _ = build_diffusion_components(config, {}, device)
@@ -197,9 +201,17 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
             'robust_classifier_guided_diffusion': 'robust_classifier_guided_diffusion',
         }[model_type]
 
-        ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/{ckpt_dir}', device)
-        unet.load_state_dict(ckpt['model_state_dict'])
-        class_emb.load_state_dict(ckpt['class_emb_state_dict'])
+        ckpt_path = f'{CHECKPOINT_DIR}/{ckpt_dir}/state.pt'
+        if os.path.exists(ckpt_path):
+            ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/{ckpt_dir}', device)
+            unet.load_state_dict(ckpt['model_state_dict'])
+            class_emb.load_state_dict(ckpt['class_emb_state_dict'])
+        elif model is not None:
+            # model passed directly from training (no checkpoint was saved)
+            unet = model
+        else:
+            print(f"No checkpoint at {ckpt_path} and no model passed — skipping generation.")
+            return
         unet.to(device)
         unet.eval()
 

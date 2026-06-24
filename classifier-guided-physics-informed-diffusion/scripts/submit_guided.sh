@@ -15,13 +15,13 @@ mkdir -p "$ROOT/logs"
 
 if [ ! -f "$ROOT/checkpoints/diffusion/state.pt" ]; then
     echo "ERROR: checkpoints/diffusion/state.pt not found."
-    echo "Wait for the diffusion job from submit_comparison.sh to finish first."
+    echo "Wait for the diffusion job from submit_baselines.sh to finish first."
     exit 1
 fi
 
 if [ ! -f "$ROOT/checkpoints/robust_classification/state.pt" ]; then
     echo "ERROR: checkpoints/robust_classification/state.pt not found."
-    echo "Wait for the robust_classification job from submit_comparison.sh to finish first."
+    echo "Wait for the robust_classification job from submit_baselines.sh to finish first."
     exit 1
 fi
 

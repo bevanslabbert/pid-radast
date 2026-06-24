@@ -88,9 +88,17 @@ def main():
         transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
+    # classification uses standard 3-channel RGB ResNet50; everything else (including
+    # robust_classification which uses TimeDependentResNet with 1-channel conv1) uses
+    # the 1-channel 150x150 diffusion transform.
+    if args.model == 'classification':
+        active_transform = classification_transform
+    else:
+        active_transform = diffusion_transform
+
     result = get_data_loaders(
         cfg['data']['dataset'],
-        transform = diffusion_transform,
+        transform=active_transform,
         batch_size=cfg['data']['batch_size']
     )
     # mirabest_fits returns a 4th value (the dataset object) for FITS inverse scaling
