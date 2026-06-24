@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -N rcgd_seed${SEED}
+#PBS -q gpu_1
+#PBS -P CSCI1166
+#PBS -l select=1:ncpus=9:ngpus=1
+#PBS -l walltime=8:00:00
+#PBS -o logs/rcgd_seed${SEED}.out
+#PBS -e logs/rcgd_seed${SEED}.err
+#PBS -m be
+#PBS -M bevanslabbert@gmail.com
+
+cd $PBS_O_WORKDIR
+module load python/3.9.6
+
+python main.py train \
+    --model robust_classifier_guided_diffusion \
+    --seed ${SEED} \
+    --runs 1 \
+    --checkpoint True

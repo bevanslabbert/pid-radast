@@ -1,14 +1,9 @@
 #!/bin/bash
-# Submit 5 independent runs for each model in the comparison.
-# Each run uses a different seed (42-46) and saves results + final weights
-# to results/<model>/run_<timestamp>_seed<N>/.
+# Phase 1: submit the 4 independent models (12 jobs total, 3 seeds each).
+# Run this first. Once diffusion and robust_classification checkpoints are
+# saved, run submit_guided.sh to queue the classifier-guided models.
 #
-# Usage: bash scripts/submit_comparison.sh
-#
-# Run robust_classification first — diffusion and pid can run in parallel
-# but don't depend on the classifier. If you later wire up
-# classifier-guided diffusion you'll need the robust_classification
-# weights first.
+# Usage: bash scripts/submit_baselines.sh
 
 set -e
 
@@ -43,4 +38,5 @@ for SEED in "${SEEDS[@]}"; do
 done
 
 echo ""
-echo "All 12 jobs submitted. Monitor with: qstat -u $USER"
+echo "12 jobs submitted. Monitor with: qstat -u $USER"
+echo "Once diffusion and robust_classification are done, run: bash scripts/submit_guided.sh"

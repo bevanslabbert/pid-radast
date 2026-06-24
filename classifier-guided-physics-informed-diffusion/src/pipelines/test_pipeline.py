@@ -1,15 +1,13 @@
 import torch
+import torch.nn as nn
+import numpy as np
+import matplotlib.pyplot as plt
+import torchvision
+from torchvision.models import resnet50
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
 from src.utils.checkpoint import load_checkpoint
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.utils.augmentation import pgd_attack_early_stop, get_noisy_image
-from torchvision.models import resnet50
-import torch
-import torch.nn as nn
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
-import matplotlib.pyplot as plt
-import numpy as np
-import torchvision
-from diffusers import UNet2DConditionModel, DDPMScheduler
 
 CHECKPOINT_DIR = 'checkpoints'
 
@@ -152,14 +150,12 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         print(f"\nSummary saved to {result_directory}/")
 
     elif model_type == 'classification':
-        model = resnet50(pretrained=True)
-        optimizer = torch.optim.Adam(model.parameters(), lr=config['training']['learning_rate'], weight_decay=config['training']['weight_decay'])
+        num_classes = config['data']['num_classes']
+        model = resnet50(pretrained=False)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
 
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
         model.load_state_dict(checkpoint['model_state_dict'])
-
-        num_classes = config['data']['num_classes']
-        model.fc = nn.Linear(model.fc.in_features, num_classes)
         model.to(device)
         model.eval()
 
@@ -187,46 +183,30 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
             plt.title("Confusion Matrix")
             plt.savefig(f'{result_directory}/confusion_matrix.png')
 
-    elif model_type == "diffusion":
-        scheduler = DDPMScheduler(num_train_timesteps=1000)
+    elif model_type in ('diffusion', 'pid', 'classifier_guided_diffusion', 'robust_classifier_guided_diffusion'):
+        from src.models.diffusion import build_diffusion_components
+        from src.models.pid import sample_pid_zeros, sample_pid_ones
+
         num_classes = config['data']['num_classes']
-        class_emb = nn.Embedding(num_classes, 128).to(device)
+        unet, scheduler, class_emb, _ = build_diffusion_components(config, {}, device)
 
-        # --- UNet that supports class conditioning ---
-        model = UNet2DConditionModel(
-            sample_size=32,
-            in_channels=1,
-            out_channels=1,
-            layers_per_block=2,
-            block_out_channels=(64, 64, 128, 256),
-            down_block_types=("DownBlock2D", "DownBlock2D", "AttnDownBlock2D", "DownBlock2D"),
-            up_block_types=("UpBlock2D", "AttnUpBlock2D", "UpBlock2D", "UpBlock2D"),
-            cross_attention_dim=128,   # needed for conditioning
-        ).to(device)
+        ckpt_dir = {
+            'diffusion': 'diffusion',
+            'pid': 'pid',
+            'classifier_guided_diffusion': 'classifier_guided_diffusion',
+            'robust_classifier_guided_diffusion': 'robust_classifier_guided_diffusion',
+        }[model_type]
 
-        state_dict = torch.load(f'checkpoints/diffusion/state.pt', map_location=device)
-        model.load_state_dict(state_dict['model_state_dict'])
-        model.to(device)
+        ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/{ckpt_dir}', device)
+        unet.load_state_dict(ckpt['model_state_dict'])
+        class_emb.load_state_dict(ckpt['class_emb_state_dict'])
+        unet.to(device)
+        unet.eval()
 
-        model.eval()
         with torch.no_grad():
-            target_class = 1
-            label = torch.tensor([target_class] * 8, device=device)  # generate target class
-            class_embeddings = class_emb(label).unsqueeze(1)
+            zero_images = sample_pid_zeros(unet, scheduler, class_emb, 4, num_classes, device)
+            one_images  = sample_pid_ones(unet, scheduler, class_emb, 4, num_classes, device)
 
-            scheduler.set_timesteps(50)
-            noisy = torch.randn(8, 1, 224, 224, device=device)
-
-            for t in scheduler.timesteps:
-                noise_pred = model(noisy, t, encoder_hidden_states=class_embeddings).sample
-                noisy = scheduler.step(noise_pred, t, noisy).prev_sample
-
-        torchvision.utils.save_image(
-            noisy, 
-            f"{result_directory}/generated_class_{target_class}.png", 
-            nrow=2, 
-            normalize=True, 
-            value_range=(-1, 1)
-        )
-
-        print(f"✅ Generated images for class {target_class} saved to PNG.")
+        torchvision.utils.save_image(zero_images, f"{result_directory}/test_generated_class_0.png", nrow=2, normalize=True, value_range=(-1, 1))
+        torchvision.utils.save_image(one_images,  f"{result_directory}/test_generated_class_1.png", nrow=2, normalize=True, value_range=(-1, 1))
+        print(f"Generated test images saved to {result_directory}/")

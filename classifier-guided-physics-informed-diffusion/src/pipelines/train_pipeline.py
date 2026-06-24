@@ -4,7 +4,7 @@ from src.models.time_dependent_resnet import TimeDependentResNet
 from src.models.diffusion import build_diffusion_components, train_epoch, eval_epoch
 from diffusers import UNet2DConditionModel, DDPMScheduler
 from src.models.pid import (
-    estimate_x0, physics_loss, symmetry_loss,
+    estimate_x0, physics_loss, symmetry_loss, nonnegativity_loss,
     sample_pid_zeros, sample_pid_ones,
 )
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
@@ -175,6 +175,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
     fid_history = []
     kid_history = []
     fid_epochs = []
+    pdf_history = []
 
     # optimizer resume logic
     optimizer = torch.optim.AdamW(
@@ -210,6 +211,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
         fid_history = checkpoint['fid_history']
         kid_history = checkpoint.get('kid_history', [])
         fid_epochs = checkpoint.get('fid_epochs', [])
+        pdf_history = checkpoint.get('pdf_history', [])
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
     if resume is not None:
@@ -329,7 +331,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                     print(f"FITS files saved to {fits_dir}")
 
                 # compute distributional quality metrics against the validation set
-                print(f"Computing FID/KID at epoch {epoch}...")
+                print(f"Computing FID/KID/PDF at epoch {epoch}...")
                 fid_score, kid_score = compute_fid_kid(
                     unet, scheduler, class_emb, num_classes, valloader, device,
                     sample_from_model_zeros, sample_from_model_ones,
@@ -338,6 +340,14 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                 kid_history.append(kid_score)
                 fid_epochs.append(epoch)
                 print(f"  FID: {fid_score:.4f} | KID: {kid_score:.6f}")
+
+                pdf_score = compute_pixel_pdf(
+                    unet, scheduler, class_emb, num_classes, valloader, device,
+                    sample_from_model_zeros, sample_from_model_ones,
+                    result_directory, epoch,
+                )
+                pdf_history.append(pdf_score)
+                print(f"  Pixel PDF W-dist: {pdf_score:.4f}")
 
             unet.train()
 
@@ -357,6 +367,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
                     'fid_history': fid_history,
                     'kid_history': kid_history,
                     'fid_epochs': fid_epochs,
+                    'pdf_history': pdf_history,
                     'rng_state': torch.get_rng_state(),
                     'cuda_rng_state': torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
                 },
@@ -391,6 +402,7 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
     save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
     save_generative_metrics_plot(fid_epochs, fid_history, kid_history, result_directory)
+    save_pixel_pdf_history_plot(fid_epochs, pdf_history, result_directory)
 
     torch.save(
         {'model_state_dict': unet.state_dict(), 'class_emb_state_dict': class_emb.state_dict(), 'config': config},
@@ -453,6 +465,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
     kid_history = []
     fid_epochs = []
     cls_loss_history = []
+    pdf_history = []
 
     # optimizer resume logic
     optimizer = torch.optim.AdamW(
@@ -488,6 +501,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
         kid_history = checkpoint.get('kid_history', [])
         fid_epochs = checkpoint.get('fid_epochs', [])
         cls_loss_history = checkpoint.get('cls_loss_history', [])
+        pdf_history = checkpoint.get('pdf_history', [])
         print(f"Resumed from checkpoint: {resume} (epoch {start_epoch})")
 
     if resume is not None:
@@ -639,7 +653,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
                     print(f"FITS files saved to {fits_dir}")
 
                 # compute distributional quality metrics against the validation set
-                print(f"Computing FID/KID at epoch {epoch}...")
+                print(f"Computing FID/KID/PDF at epoch {epoch}...")
                 fid_score, kid_score = compute_fid_kid(
                     unet, scheduler, class_emb, num_classes, valloader, device,
                     sample_from_model_zeros, sample_from_model_ones,
@@ -648,6 +662,14 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
                 kid_history.append(kid_score)
                 fid_epochs.append(epoch)
                 print(f"  FID: {fid_score:.4f} | KID: {kid_score:.6f}")
+
+                pdf_score = compute_pixel_pdf(
+                    unet, scheduler, class_emb, num_classes, valloader, device,
+                    sample_from_model_zeros, sample_from_model_ones,
+                    result_directory, epoch,
+                )
+                pdf_history.append(pdf_score)
+                print(f"  Pixel PDF W-dist: {pdf_score:.4f}")
 
             unet.train()
 
@@ -668,6 +690,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
                     'fid_history': fid_history,
                     'kid_history': kid_history,
                     'fid_epochs': fid_epochs,
+                    'pdf_history': pdf_history,
                     'rng_state': torch.get_rng_state(),
                     'cuda_rng_state': torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
                 },
@@ -843,6 +866,91 @@ def compute_fid_kid(unet, scheduler, class_emb, num_classes, valloader, device,
     fid_score = fid_metric.compute().item()
     kid_mean, _ = kid_metric.compute()
     return fid_score, kid_mean.item()
+
+def compute_pixel_pdf(unet, scheduler, class_emb, num_classes, valloader, device,
+                      sample_zeros_fn, sample_ones_fn, result_dir, epoch,
+                      num_gen_per_class=16, n_bins=100):
+    """Compare pixel intensity PDFs of generated vs real validation images per class.
+
+    Plots real and generated histograms for FR-I and FR-II side by side so you
+    can see whether the model reproduces the true intensity distribution.
+    Returns the mean Wasserstein-1 distance across both classes (lower = better).
+    Wasserstein is computed from CDFs, requiring no scipy dependency.
+    """
+    bins = np.linspace(-1.0, 1.0, n_bins + 1)
+    bin_centers = (bins[:-1] + bins[1:]) / 2
+    bin_width = float(bins[1] - bins[0])
+
+    # collect real pixel values per class from the validation loader
+    real_pixels = {c: [] for c in range(num_classes)}
+    for imgs, labels in valloader:
+        for c in range(num_classes):
+            mask = labels == c
+            if mask.any():
+                real_pixels[c].append(imgs[mask].cpu().numpy().flatten())
+
+    # generate images per class
+    with torch.no_grad():
+        gen_0 = sample_zeros_fn(unet, scheduler, class_emb, num_gen_per_class, num_classes, device)
+        gen_1 = sample_ones_fn(unet, scheduler, class_emb, num_gen_per_class, num_classes, device)
+    gen_pixels = {0: gen_0.cpu().numpy().flatten(), 1: gen_1.cpu().numpy().flatten()}
+
+    color_pairs = {0: ('tab:blue', 'tab:cyan'), 1: ('tab:red', 'tab:orange')}
+    class_names = {0: 'FR-I', 1: 'FR-II'}
+
+    w_dists = []
+    fig, axes = plt.subplots(1, num_classes, figsize=(7 * num_classes, 5))
+    if num_classes == 1:
+        axes = [axes]
+    fig.suptitle(f'Pixel Intensity PDF — Real vs Generated (Epoch {epoch})', fontsize=13)
+
+    for c in range(num_classes):
+        ax = axes[c]
+        real_col, gen_col = color_pairs.get(c, ('tab:blue', 'tab:cyan'))
+        cls_name = class_names.get(c, f'Class {c}')
+
+        real_arr = np.concatenate(real_pixels[c]) if real_pixels[c] else np.array([])
+        if len(real_arr) == 0:
+            continue
+
+        real_hist, _ = np.histogram(real_arr, bins=bins, density=True)
+        gen_hist, _ = np.histogram(gen_pixels[c], bins=bins, density=True)
+
+        # Wasserstein-1 = L1 distance between CDFs
+        w_dist = float(np.sum(np.abs(np.cumsum(real_hist) - np.cumsum(gen_hist))) * bin_width ** 2)
+        w_dists.append(w_dist)
+
+        ax.plot(bin_centers, real_hist, color=real_col, linewidth=2, label=f'Real {cls_name}')
+        ax.plot(bin_centers, gen_hist, color=gen_col, linewidth=2, linestyle='--', label=f'Generated {cls_name}')
+        ax.set_title(f'{cls_name}  (W={w_dist:.4f})')
+        ax.set_xlabel('Pixel intensity (normalised)')
+        ax.set_ylabel('Probability density')
+        ax.legend()
+        ax.grid(True, linestyle='--', alpha=0.5)
+
+    fig.tight_layout()
+    plt.savefig(os.path.join(result_dir, f'pixel_pdf_epoch_{epoch}.png'), dpi=150)
+    plt.close()
+
+    return float(np.mean(w_dists)) if w_dists else float('nan')
+
+
+def save_pixel_pdf_history_plot(pdf_epochs, pdf_history, result_dir):
+    """Plot the mean Wasserstein-1 distance between real and generated pixel PDFs over training."""
+    if not pdf_epochs:
+        return
+    plt.figure(figsize=(8, 5))
+    plt.plot(pdf_epochs, pdf_history, color='tab:green', linewidth=2, marker='o')
+    plt.xlabel('Epoch')
+    plt.ylabel('Mean Wasserstein-1 distance (lower is better)')
+    plt.title('Pixel PDF Fidelity over Training')
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
+    path = os.path.join(result_dir, 'pixel_pdf_history.png')
+    plt.savefig(path, dpi=150)
+    plt.close()
+    print(f"Pixel PDF history plot saved to {path}")
+
 
 def save_generative_metrics_plot(fid_epochs, fid_history, kid_history, result_dir):
     """Save a two-panel figure showing FID and KID over training epochs."""
@@ -1242,6 +1350,7 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
 
     # physics loss weights from config
     lambda_sym = float(config['training'].get('lambda_sym', 0.1))
+    lambda_neg = float(config['training'].get('lambda_neg', 0.1))
 
     start_epoch = 0
     loss_history = []
@@ -1326,7 +1435,8 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
             # convert noise prediction to image space and apply physics penalties
             x_0_pred = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
             sym = lambda_sym * symmetry_loss(x_0_pred)
-            loss = mse + sym
+            neg = lambda_neg * nonnegativity_loss(x_0_pred)
+            loss = mse + sym + neg
 
             optimizer.zero_grad()
             loss.backward()
@@ -1362,7 +1472,7 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
 
                 # val loss includes physics terms so the metric is comparable to training loss
                 x_0_val = estimate_x0(noisy_val, noise_pred_val, alphas_cumprod, t_val)
-                v_loss = F.mse_loss(noise_pred_val, noise_val) + physics_loss(x_0_val, lambda_sym)
+                v_loss = F.mse_loss(noise_pred_val, noise_val) + physics_loss(x_0_val, lambda_sym) + lambda_neg * nonnegativity_loss(x_0_val)
                 val_loss_accum += v_loss.item()
 
             avg_val_loss = val_loss_accum / len(testloader)
@@ -1526,10 +1636,22 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
     num_classes = config['data']['num_classes']
     num_epochs = config['training']['epochs']
 
+    # load pre-trained diffusion weights as the starting point for fine-tuning
+    pretrained_dir = config['model'].get('pretrained_checkpoint', f'{CHECKPOINT_DIR}/diffusion')
+    pretrained_ckpt_path = os.path.join(pretrained_dir, 'state.pt')
+    if os.path.exists(pretrained_ckpt_path):
+        pretrained = load_checkpoint(pretrained_dir, device)
+        unet.load_state_dict(pretrained['model_state_dict'])
+        class_emb.load_state_dict(pretrained['class_emb_state_dict'])
+        print(f"Loaded pre-trained diffusion weights from {pretrained_dir}")
+    else:
+        print(f"No pre-trained checkpoint at {pretrained_dir}, training from scratch")
+
     start_epoch = 0
 
     loss_history = []
     val_loss_history = []
+    cls_loss_history = []
     epochs_range = []
     fid_history = []
     kid_history = []
@@ -1539,25 +1661,22 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
         checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classifier_guided_diffusion', device)
 
         if checkpoint.get('rng_state') is not None:
-            # Force the state to the correct type for the CPU generator
             rng_state = checkpoint['rng_state'].to('cpu').to(torch.uint8)
             torch.set_rng_state(rng_state)
 
         if checkpoint.get('cuda_rng_state') is not None:
-            # CUDA states can be a list (for multiple GPUs) or a single tensor
             cuda_state = checkpoint['cuda_rng_state']
             if isinstance(cuda_state, torch.Tensor):
                 torch.cuda.set_rng_state(cuda_state.to('cpu').to(torch.uint8))
             else:
-                # If it's a list of states for multiple GPUs
                 torch.cuda.set_rng_state_all([s.to('cpu').to(torch.uint8) for s in cuda_state])
 
         unet.load_state_dict(checkpoint['model_state_dict'])
-        # optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         class_emb.load_state_dict(checkpoint['class_emb_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
         loss_history = checkpoint['loss_history']
         val_loss_history = checkpoint['val_loss_history']
+        cls_loss_history = checkpoint.get('cls_loss_history', [])
         epochs_range = checkpoint['epochs_range']
         fid_history = checkpoint['fid_history']
         kid_history = checkpoint.get('kid_history', [])
@@ -1579,7 +1698,6 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
 
     lambda_cls = float(config['training'].get('lambda_cls', 0.1))
 
-    # --- Training loop ---
     for epoch in range(start_epoch, num_epochs):
         unet.train()
         epoch_loss = 0
@@ -1590,7 +1708,6 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
         for images, labels in trainloader:
             images, labels = images.to(device), labels.to(device)
 
-            # dropout labels to train on unclassified images (classifier-free guidance)
             drop_mask = torch.rand(labels.shape, device=device) < config['training']['label_dropout']
             training_labels = labels.clone()
             training_labels[drop_mask] = num_classes
@@ -1599,25 +1716,16 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
             noise = torch.randn_like(images)
             noisy_images = scheduler.add_noise(images, noise, t)
 
-            # get class embeddings and add sequence dimension
-            class_embeddings = class_emb(training_labels).unsqueeze(1)  # (B, 1, D)
-
-            # predict noise conditioned on class
+            class_embeddings = class_emb(training_labels).unsqueeze(1)
             model_output = unet(noisy_images, t, encoder_hidden_states=class_embeddings).sample
 
-            # convert noise prediction to image space
             x_0_pred = estimate_x0(noisy_images, model_output, alphas_cumprod, t)
 
-            # classifier guidance: penalise the UNet when x_0_pred is misclassified.
-            # only applied to non-dropped samples (null-class has no target label).
-            # t=0 signals to the robust classifier that x_0_pred is an estimated clean image.
             cls_mask = training_labels != num_classes
             cls_loss = torch.tensor(0.0, device=device)
             if cls_mask.any():
                 t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
                 cls_input = x_0_pred[cls_mask]
-                # FITS images are log-SNR normalised; convert to linear [-1,1] so the
-                # classifier (trained on standard MiraBest images) sees the same distribution.
                 if isinstance(dataset, MiraBestFITS):
                     cls_input = fits_to_linear(cls_input, dataset)
                 cls_logits = classifier(cls_input, t_clean)
@@ -1636,86 +1744,76 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
         avg_loss = epoch_loss / batch_count
         avg_cls_loss = epoch_cls_loss / batch_count
         loss_history.append(avg_loss)
+        cls_loss_history.append(avg_cls_loss)
         epochs_range.append(epoch)
 
-        # --- Inside your validation block ---
         unet.eval()
         val_loss_accum = 0
 
         with torch.no_grad():
-            for i, (val_images, val_labels) in enumerate(testloader):
+            for val_images, val_labels in testloader:
                 val_images, val_labels = val_images.to(device), val_labels.to(device)
                 batch_sz = val_images.size(0)
 
-                # 1. CALCULATE VAL LOSS (Fast)
                 t_val = torch.linspace(0, scheduler.num_train_timesteps - 1, batch_sz, dtype=torch.long, device=device)
                 noise_val = torch.randn_like(val_images)
                 noisy_val = scheduler.add_noise(val_images, noise_val, t_val)
 
                 class_emb_val = class_emb(val_labels).unsqueeze(1)
-                model_output = unet(noisy_val, t_val, encoder_hidden_states=class_emb_val).sample
+                model_output_val = unet(noisy_val, t_val, encoder_hidden_states=class_emb_val).sample
 
-                v_loss = F.mse_loss(model_output, noise_val)
+                v_loss = F.mse_loss(model_output_val, noise_val)
                 val_loss_accum += v_loss.item()
 
-            # --- Finalize Metrics for the Epoch ---
             avg_val_loss = val_loss_accum / len(testloader)
-
-            print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f} | Cls Loss: {avg_cls_loss:.6f}")
-            
-            # Save to history
             val_loss_history.append(avg_val_loss)
+            print(f"Epoch {epoch} | Loss: {avg_loss:.6f} | Val Loss: {avg_val_loss:.6f} | Cls Loss: {avg_cls_loss:.6f}")
 
-        # save a sample image every x epochs
         if epoch % 5 == 0:
             unet.eval()
             with torch.no_grad():
-                # 1. Generate images for both classes
-                # Assuming these return a batch of images [B, 1, 150, 150]
                 zero_images = sample_from_model_zeros(unet, scheduler, class_emb, 4, num_classes, device)
                 one_images = sample_from_model_ones(unet, scheduler, class_emb, 4, num_classes, device)
 
-                # 2. Combine into a single comparison plot
                 fig, axes = plt.subplots(1, 2, figsize=(10, 5))
-                
-                # Helper to process tensors for plotting
+
                 def prep_for_plot(img_tensor):
                     grid = torchvision.utils.make_grid(img_tensor, nrow=2, normalize=True, value_range=(-1, 1))
                     return grid.permute(1, 2, 0).cpu().numpy()
 
-                # Display Class 0
                 axes[0].imshow(prep_for_plot(zero_images), cmap='gray')
                 axes[0].set_title(f"Class 0 (Epoch {epoch})")
                 axes[0].axis('off')
-
-                # Display Class 1
                 axes[1].imshow(prep_for_plot(one_images), cmap='gray')
                 axes[1].set_title(f"Class 1 (Epoch {epoch})")
                 axes[1].axis('off')
-
-                # 3. Save the single comparison file
                 plt.tight_layout()
                 plt.savefig(f"{result_directory}/comparison_epoch_{epoch}.png")
-                plt.close() # Important to avoid memory leaks
+                plt.close()
 
-                # If trained on FITS data, also save as FITS with inverted scaling
                 if isinstance(dataset, MiraBestFITS):
                     fits_dir = os.path.join(result_directory, 'generated_fits')
                     os.makedirs(fits_dir, exist_ok=True)
-
-                    for class_idx, images in [(0, zero_images), (1, one_images)]:
-                        for i, img in enumerate(images):
-                            # img shape: (1, H, W) tensor in [-1, 1]
-                            norm_array = img.squeeze(0).cpu().numpy()          # (H, W)
-                            jy_array = dataset.denormalise(norm_array)         # approximate Jy/beam
+                    for class_idx, imgs in [(0, zero_images), (1, one_images)]:
+                        for i, img in enumerate(imgs):
+                            norm_array = img.squeeze(0).cpu().numpy()
+                            jy_array = dataset.denormalise(norm_array)
                             fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}_{epoch}.fits")
                             MiraBestFITS.write_fits(jy_array, fname)
-
                     print(f"FITS files saved to {fits_dir}")
+
+                print(f"Computing FID/KID at epoch {epoch}...")
+                fid_score, kid_score = compute_fid_kid(
+                    unet, scheduler, class_emb, num_classes, valloader, device,
+                    sample_from_model_zeros, sample_from_model_ones,
+                )
+                fid_history.append(fid_score)
+                kid_history.append(kid_score)
+                fid_epochs.append(epoch)
+                print(f"  FID: {fid_score:.4f} | KID: {kid_score:.6f}")
 
             unet.train()
 
-        # save checkpoint for resuming
         if not checkpoint == None or not resume == None:
             save_checkpoint(
                 {
@@ -1727,6 +1825,7 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
                     'config': config,
                     'loss_history': loss_history,
                     'val_loss_history': val_loss_history,
+                    'cls_loss_history': cls_loss_history,
                     'epochs_range': epochs_range,
                     'fid_history': fid_history,
                     'kid_history': kid_history,
@@ -1741,31 +1840,31 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
 
     class_0_images = sample_from_model_zeros(unet, scheduler, class_emb, num_samples, num_classes, device)
     class_1_images = sample_from_model_ones(unet, scheduler, class_emb, num_samples, num_classes, device)
-    random_images  = sample_from_model(unet, scheduler, class_emb, num_samples, num_classes, device)
+    random_images = sample_from_model(unet, scheduler, class_emb, num_samples, num_classes, device)
 
-    # Always save PNG previews
     torchvision.utils.save_image(class_0_images, f"{result_directory}/generated_images_class_0.png", nrow=2, normalize=True, value_range=(-1, 1))
     torchvision.utils.save_image(class_1_images, f"{result_directory}/generated_images_class_1.png", nrow=2, normalize=True, value_range=(-1, 1))
-    torchvision.utils.save_image(random_images,  f"{result_directory}/generated_images_random_all_classes.png", nrow=2, normalize=True, value_range=(-1, 1))
+    torchvision.utils.save_image(random_images, f"{result_directory}/generated_images_random_all_classes.png", nrow=2, normalize=True, value_range=(-1, 1))
 
-    # If trained on FITS data, also save as FITS with inverted scaling
     if isinstance(dataset, MiraBestFITS):
         fits_dir = os.path.join(result_directory, 'generated_fits')
         os.makedirs(fits_dir, exist_ok=True)
-
-        for class_idx, images in [(0, class_0_images), (1, class_1_images)]:
-            for i, img in enumerate(images):
-                # img shape: (1, H, W) tensor in [-1, 1]
-                norm_array = img.squeeze(0).cpu().numpy()          # (H, W)
-                jy_array = dataset.denormalise(norm_array)         # approximate Jy/beam
+        for class_idx, imgs in [(0, class_0_images), (1, class_1_images)]:
+            for i, img in enumerate(imgs):
+                norm_array = img.squeeze(0).cpu().numpy()
+                jy_array = dataset.denormalise(norm_array)
                 fname = os.path.join(fits_dir, f"generated_class{class_idx}_{i:03d}.fits")
                 MiraBestFITS.write_fits(jy_array, fname)
-
         print(f"FITS files saved to {fits_dir}")
 
     save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
+    save_generative_metrics_plot(fid_epochs, fid_history, kid_history, result_directory)
 
-    print(f"Generated images saved.")
+    torch.save(
+        {'model_state_dict': unet.state_dict(), 'class_emb_state_dict': class_emb.state_dict(), 'config': config},
+        os.path.join(result_directory, 'final_weights.pt')
+    )
+    print("Generated images saved.")
 
     return unet
 
