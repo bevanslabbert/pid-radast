@@ -1,0 +1,33 @@
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/configuration_utils.py:173: FutureWarning: Accessing config attribute `num_train_timesteps` directly via 'DDPMScheduler' object attribute is deprecated. Please access 'num_train_timesteps' over 'DDPMScheduler's config object instead, e.g. 'scheduler.config.num_train_timesteps'.
+  deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
+Downloading: "https://github.com/toshas/torch-fidelity/releases/download/v0.2.0/weights-inception-2015-12-05-6726825d.pth" to /users/bevan/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth
+  0%|          | 0.00/91.2M [00:00<?, ?B/s]  1%|          | 768k/91.2M [00:00<00:14, 6.72MB/s]  2%|▏         | 1.50M/91.2M [00:00<00:17, 5.27MB/s]  2%|▏         | 2.25M/91.2M [00:00<00:15, 5.94MB/s]  4%|▎         | 3.25M/91.2M [00:00<00:12, 7.33MB/s]  5%|▌         | 4.62M/91.2M [00:00<00:09, 9.35MB/s]  7%|▋         | 6.12M/91.2M [00:00<00:07, 11.2MB/s] 10%|▉         | 8.75M/91.2M [00:00<00:05, 15.9MB/s] 11%|█▏        | 10.4M/91.2M [00:01<00:14, 6.02MB/s] 13%|█▎        | 11.6M/91.2M [00:01<00:17, 4.76MB/s] 14%|█▍        | 12.6M/91.2M [00:02<00:18, 4.40MB/s] 16%|█▋        | 15.0M/91.2M [00:02<00:14, 5.61MB/s] 20%|█▉        | 18.1M/91.2M [00:02<00:09, 7.81MB/s] 21%|██        | 19.2M/91.2M [00:02<00:10, 6.95MB/s] 22%|██▏       | 20.1M/91.2M [00:03<00:12, 6.12MB/s] 24%|██▎       | 21.5M/91.2M [00:03<00:10, 7.22MB/s] 25%|██▍       | 22.4M/91.2M [00:03<00:09, 7.30MB/s] 26%|██▌       | 23.6M/91.2M [00:03<00:08, 8.35MB/s] 27%|██▋       | 24.9M/91.2M [00:03<00:07, 9.32MB/s] 30%|███       | 27.4M/91.2M [00:03<00:05, 13.2MB/s] 33%|███▎      | 29.8M/91.2M [00:03<00:04, 15.7MB/s] 35%|███▍      | 31.5M/91.2M [00:04<00:05, 11.1MB/s] 36%|███▋      | 33.1M/91.2M [00:04<00:05, 10.6MB/s] 40%|███▉      | 36.2M/91.2M [00:04<00:04, 12.0MB/s] 43%|████▎     | 39.4M/91.2M [00:04<00:04, 12.8MB/s] 45%|████▍     | 40.8M/91.2M [00:05<00:05, 10.3MB/s] 48%|████▊     | 43.9M/91.2M [00:05<00:04, 10.9MB/s] 54%|█████▍    | 49.4M/91.2M [00:05<00:02, 15.2MB/s] 56%|█████▌    | 50.9M/91.2M [00:05<00:03, 11.7MB/s] 58%|█████▊    | 52.9M/91.2M [00:05<00:03, 13.0MB/s] 60%|█████▉    | 54.4M/91.2M [00:06<00:03, 12.6MB/s] 62%|██████▏   | 56.5M/91.2M [00:06<00:02, 14.4MB/s] 65%|██████▍   | 59.1M/91.2M [00:06<00:01, 17.1MB/s] 67%|██████▋   | 61.0M/91.2M [00:06<00:02, 12.4MB/s] 70%|██████▉   | 63.5M/91.2M [00:06<00:01, 14.9MB/s] 73%|███████▎  | 66.1M/91.2M [00:06<00:01, 17.4MB/s] 75%|███████▌  | 68.6M/91.2M [00:06<00:01, 19.3MB/s] 78%|███████▊  | 70.9M/91.2M [00:07<00:01, 13.4MB/s] 81%|████████  | 73.5M/91.2M [00:07<00:01, 16.0MB/s] 83%|████████▎ | 75.9M/91.2M [00:07<00:00, 17.8MB/s] 86%|████████▌ | 78.5M/91.2M [00:07<00:00, 20.0MB/s] 89%|████████▊ | 80.8M/91.2M [00:07<00:00, 13.7MB/s] 91%|█████████▏| 83.4M/91.2M [00:07<00:00, 16.2MB/s] 94%|█████████▍| 85.6M/91.2M [00:08<00:00, 14.7MB/s] 97%|█████████▋| 88.1M/91.2M [00:08<00:00, 16.9MB/s] 99%|█████████▉| 90.1M/91.2M [00:08<00:00, 10.0MB/s]100%|██████████| 91.2M/91.2M [00:09<00:00, 10.3MB/s]
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 165, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 153, in main
+    model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 811, in train_model
+    return train_diffusion(config, trainloader, valloader, testloader, device,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 609, in train_diffusion
+    unet, scheduler, class_emb, hist = _train_diffusion_loop(
+                                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 540, in _train_diffusion_loop
+    fid_score, kid_score = compute_fid_kid(gen_0, gen_1, valloader, device)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/metrics.py", line 70, in compute_fid_kid
+    fid = FrechetInceptionDistance(feature=2048, normalize=False).to(device)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/image/fid.py", line 345, in __init__
+    self.inception = NoTrainInceptionV3(
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/image/fid.py", line 63, in __init__
+    super().__init__(name, features_list, feature_extractor_weights_path)
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch_fidelity/feature_extractor_inceptionv3.py", line 93, in __init__
+    state_dict = load_state_dict_from_url(URL_INCEPTION_V3, progress=get_kwarg("verbose", kwargs))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/hub.py", line 898, in load_state_dict_from_url
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/serialization.py", line 1521, in load
+ModuleNotFoundError: No module named 'torch.utils.serialization'

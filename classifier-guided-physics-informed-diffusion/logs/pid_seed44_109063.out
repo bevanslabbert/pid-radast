@@ -1,0 +1,35 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mirabest_fits
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1221
+Total batches: 107 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=44  |  results -> results/pid/run_20260625_212352_seed44
+============================================================
+
+Training pid for 300 epochs
+Epoch 0
+Epoch 0 | Loss: 0.112827 | Val: 0.169236  |  mse: 0.089488  sym: 0.016391  neg: 0.006948
+FITS files saved to results/pid/run_20260625_212352_seed44/generated_fits
+Computing FID/KID/PDF at epoch 0...
+  FID: 146.9632 | KID: 0.140557
+  Pixel PDF W-dist: 0.5744
+  Compliance — pct_negative: 0.1681  sym_score: 0.0300
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 1
+Epoch 1 | Loss: 0.048933 | Val: 0.166086  |  mse: 0.042749  sym: 0.004243  neg: 0.001942
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 2
+Epoch 2 | Loss: 0.035060 | Val: 0.162487  |  mse: 0.030699  sym: 0.002971  neg: 0.001390
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 3
+Epoch 3 | Loss: 0.037147 | Val: 0.160528  |  mse: 0.034451  sym: 0.001735  neg: 0.000961
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 4
+Epoch 4 | Loss: 0.031300 | Val: 0.165279  |  mse: 0.028800  sym: 0.001693  neg: 0.000806
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 5
