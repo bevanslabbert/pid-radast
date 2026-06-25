@@ -19,7 +19,7 @@ for SEED in "${SEEDS[@]}"; do
         --job-name="classification_seed${SEED}" \
         --output="$ROOT/logs/classification_seed${SEED}_%j.out" \
         --error="$ROOT/logs/classification_seed${SEED}_%j.err" \
-        --export=ALL,SEED=$SEED \
+        --export=ALL,SEED=$SEED,PROJECT_DIR=$ROOT \
         "$SCRIPT_DIR/job_classification.sh"
     echo "  submitted classification seed=$SEED"
 done
@@ -30,7 +30,7 @@ for SEED in "${SEEDS[@]}"; do
         --job-name="robustcls_seed${SEED}" \
         --output="$ROOT/logs/robustcls_seed${SEED}_%j.out" \
         --error="$ROOT/logs/robustcls_seed${SEED}_%j.err" \
-        --export=ALL,SEED=$SEED \
+        --export=ALL,SEED=$SEED,PROJECT_DIR=$ROOT \
         "$SCRIPT_DIR/job_robust_classification.sh"
     echo "  submitted robust_classification seed=$SEED"
 done
@@ -41,7 +41,7 @@ for SEED in "${SEEDS[@]}"; do
         --job-name="diffusion_seed${SEED}" \
         --output="$ROOT/logs/diffusion_seed${SEED}_%j.out" \
         --error="$ROOT/logs/diffusion_seed${SEED}_%j.err" \
-        --export=ALL,SEED=$SEED \
+        --export=ALL,SEED=$SEED,PROJECT_DIR=$ROOT \
         "$SCRIPT_DIR/job_diffusion.sh"
     echo "  submitted diffusion seed=$SEED"
 done
@@ -52,7 +52,7 @@ for SEED in "${SEEDS[@]}"; do
         --job-name="pid_seed${SEED}" \
         --output="$ROOT/logs/pid_seed${SEED}_%j.out" \
         --error="$ROOT/logs/pid_seed${SEED}_%j.err" \
-        --export=ALL,SEED=$SEED \
+        --export=ALL,SEED=$SEED,PROJECT_DIR=$ROOT \
         "$SCRIPT_DIR/job_pid.sh"
     echo "  submitted pid seed=$SEED"
 done

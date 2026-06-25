@@ -10,7 +10,8 @@
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=bevanslabbert@gmail.com
 
-cd $SLURM_SUBMIT_DIR
+
+cd "$PROJECT_DIR"
 module load python/3.11.15
 source .venv/bin/activate
 
