@@ -33,3 +33,23 @@ Epoch 4
 Epoch 4 | Loss: 0.031300 | Val: 0.165279  |  mse: 0.028800  sym: 0.001693  neg: 0.000806
 --- Saved model to checkpoints/pid/state.pt ---
 Epoch 5
+Epoch 5 | Loss: 0.032162 | Val: 0.154981  |  mse: 0.029944  sym: 0.001415  neg: 0.000802
+FITS files saved to results/pid/run_20260625_212352_seed44/generated_fits
+Computing FID/KID/PDF at epoch 5...
+  FID: 149.2981 | KID: 0.157307
+  Pixel PDF W-dist: 0.4875
+  Compliance — pct_negative: 0.0013  sym_score: 0.0243
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 6
+Epoch 6 | Loss: 0.028781 | Val: 0.159071  |  mse: 0.026940  sym: 0.001122  neg: 0.000720
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 7
+Epoch 7 | Loss: 0.026029 | Val: 0.159385  |  mse: 0.024473  sym: 0.000930  neg: 0.000625
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 8
+Epoch 8 | Loss: 0.027065 | Val: 0.152694  |  mse: 0.025445  sym: 0.000993  neg: 0.000627
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 9
+Epoch 9 | Loss: 0.026863 | Val: 0.157145  |  mse: 0.025106  sym: 0.001050  neg: 0.000707
+--- Saved model to checkpoints/pid/state.pt ---
+Epoch 10
