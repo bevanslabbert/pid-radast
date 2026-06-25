@@ -6,6 +6,7 @@ pyhopper
 matplotlib
 scikit-learn
 diffusers==0.25.1
+huggingface_hub<0.24
 tabulate
 astropy
 torchmetrics
