@@ -31,7 +31,8 @@ for SEED in "${SEEDS[@]}"; do
         --job-name="cgd_seed${SEED}" \
         --output="$ROOT/logs/cgd_seed${SEED}_%j.out" \
         --error="$ROOT/logs/cgd_seed${SEED}_%j.err" \
-        --export=ALL,SEED=$SEED,PROJECT_DIR=$ROOT \
+        --chdir="$ROOT" \
+        --export=ALL,SEED=$SEED \
         "$SCRIPT_DIR/job_classifier_guided_diffusion.sh"
     echo "  submitted classifier_guided_diffusion seed=$SEED"
 done
@@ -42,7 +43,8 @@ for SEED in "${SEEDS[@]}"; do
         --job-name="rcgd_seed${SEED}" \
         --output="$ROOT/logs/rcgd_seed${SEED}_%j.out" \
         --error="$ROOT/logs/rcgd_seed${SEED}_%j.err" \
-        --export=ALL,SEED=$SEED,PROJECT_DIR=$ROOT \
+        --chdir="$ROOT" \
+        --export=ALL,SEED=$SEED \
         "$SCRIPT_DIR/job_robust_classifier_guided_diffusion.sh"
     echo "  submitted robust_classifier_guided_diffusion seed=$SEED"
 done

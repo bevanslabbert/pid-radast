@@ -11,7 +11,6 @@
 #SBATCH --mail-user=bevanslabbert@gmail.com
 
 
-cd "$PROJECT_DIR"
 module load python/3.11.15
 module load cuda/11.8.0_520.61.05
 source .venv/bin/activate
