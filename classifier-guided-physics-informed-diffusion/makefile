@@ -5,10 +5,14 @@
 SSH_USER = bslabbert
 SSH_HOST = lengau.chpc.ac.za
 
+ILIFU_USER = bevan
+ILIFU_HOST = slurm.ilifu.ac.za
+
 # Default target
 all:
 	@echo "Available commands:"
 	@echo "  make ssh             -> Connect to CHPC Lengau"
+	@echo "  make ssh_ilifu       -> Connect to Ilifu Slurm"
 	@echo "  make nodes           -> View node info"
 	@echo "  make modules         -> List available modules (paged)"
 	@echo "  make search term=<module> -> Search for module"
@@ -20,6 +24,10 @@ all:
 # SSH into Lengau
 ssh:
 	ssh $(SSH_USER)@$(SSH_HOST)
+
+# SSH into Ilifu
+ssh_ilifu:
+	ssh $(ILIFU_USER)@$(ILIFU_HOST)
 
 # List all nodes
 nodes:
