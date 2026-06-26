@@ -2,3 +2,4 @@
   deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
 /idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
   warnings.warn(*args, **kwargs)
+[2026-06-26T01:22:48.059] error: *** JOB 109063 ON gpu-003 CANCELLED AT 2026-06-26T01:22:48 DUE TO TIME LIMIT ***

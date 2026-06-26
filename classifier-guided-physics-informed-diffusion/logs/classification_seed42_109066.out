@@ -1,0 +1,38 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 2003
+Total batches: 86 (at batch size 16)
+
+============================================================
+Run 1/1  |  seed=42  |  results -> results/classification/run_20260626_033937_seed42
+============================================================
+
+Training classification for 100 epochs
+Epoch 0
+Epoch 0, Training Loss: 0.6917, Validation Loss: 0.6671
+Epoch 1
+Epoch 1, Training Loss: 0.6800, Validation Loss: 0.6799
+Epoch 2
+Epoch 2, Training Loss: 0.6764, Validation Loss: 0.6853
+Epoch 3
+Epoch 3, Training Loss: 0.6759, Validation Loss: 0.7435
+Epoch 4
+Epoch 4, Training Loss: 0.6813, Validation Loss: 0.7334
+Epoch 5
+Epoch 5, Training Loss: 0.6732, Validation Loss: 0.6778
+Epoch 6
+Epoch 6, Training Loss: 0.6741, Validation Loss: 0.7985
+Epoch 7
+Epoch 7, Training Loss: 0.6673, Validation Loss: 0.7270
+Epoch 8
+Epoch 8, Training Loss: 0.6627, Validation Loss: 2.2061
+Epoch 9
+Epoch 9, Training Loss: 0.6454, Validation Loss: 1.5532
+Epoch 10
+Epoch 10, Training Loss: 0.6448, Validation Loss: 0.7231
+Epoch 11
+Testing model
+Accuracy: 48.95104895104895%
