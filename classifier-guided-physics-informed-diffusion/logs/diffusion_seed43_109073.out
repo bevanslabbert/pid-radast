@@ -618,3 +618,54 @@ Epoch 158
 Epoch 158 | Loss: 0.029632 | Val: 0.144838
 --- Saved model to checkpoints/diffusion/state.pt ---
 Epoch 159
+Epoch 159 | Loss: 0.025043 | Val: 0.144070
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 160
+Epoch 160 | Loss: 0.031064 | Val: 0.143651
+FITS files saved to results/diffusion/run_20260626_105324_seed43/generated_fits
+Computing FID/KID/PDF at epoch 160...
+  FID: 79.4984 | KID: 0.040073
+  Pixel PDF W-dist: 0.3517
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 161
+Epoch 161 | Loss: 0.023758 | Val: 0.143559
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 162
+Epoch 162 | Loss: 0.030204 | Val: 0.142623
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 163
+Epoch 163 | Loss: 0.027058 | Val: 0.144424
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 164
+Epoch 164 | Loss: 0.023182 | Val: 0.144441
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 165
+Epoch 165 | Loss: 0.033149 | Val: 0.140651
+FITS files saved to results/diffusion/run_20260626_105324_seed43/generated_fits
+Computing FID/KID/PDF at epoch 165...
+  FID: 58.4742 | KID: 0.008323
+  Pixel PDF W-dist: 0.0621
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 166
+Epoch 166 | Loss: 0.029191 | Val: 0.143532
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 167
+Epoch 167 | Loss: 0.023074 | Val: 0.144045
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 168
+Epoch 168 | Loss: 0.021117 | Val: 0.140485
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 169
+Epoch 169 | Loss: 0.023094 | Val: 0.142973
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 170
+Epoch 170 | Loss: 0.023868 | Val: 0.141988
+FITS files saved to results/diffusion/run_20260626_105324_seed43/generated_fits
+Computing FID/KID/PDF at epoch 170...
+  FID: 98.5496 | KID: 0.070378
+  Pixel PDF W-dist: 0.2476
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 171
+Epoch 171 | Loss: 0.026120 | Val: 0.141939
+--- Saved model to checkpoints/diffusion/state.pt ---
+Epoch 172
