@@ -127,7 +127,8 @@ def main():
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         result_directory = f'results/{args.model}/run_{timestamp}'
         os.makedirs(result_directory, exist_ok=True)
-        optimize_parameters(args.model, cfg, trainloader, valloader, device, result_directory)
+        optimize_parameters(args.model, cfg, trainloader, valloader, device, result_directory,
+                            dataset=fits_dataset)
     elif args.command == "train":
         num_runs = args.runs if args.runs is not None else 1
         base_seed = args.seed if args.seed is not None else cfg["seed"]

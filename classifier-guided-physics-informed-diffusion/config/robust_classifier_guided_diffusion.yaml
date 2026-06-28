@@ -29,6 +29,8 @@ training:
   # loss = MSE(noise_pred, noise) + lambda_cls * CE(classifier(x_0_pred), labels)
   lambda_cls: 0.1
 
+  guidance_scale: 7.5
+
   mixed_precision: no
   gradient_accumulation_steps: 4
   output_dir: output
@@ -42,6 +44,17 @@ training:
     delta: 0.001
   save_best_only: true
   log_interval: 10
+  eval_interval: 10
+
+optimization:
+  method: bayesian
+  max_trials: 25
+  parameters:
+    learning_rate: { min: 0.000001, max: 0.0001, log: true }
+    weight_decay: { min: 0.00001, max: 0.1, log: true }
+    label_dropout: { min: 0.05, max: 0.30 }
+    lambda_cls: { min: 0.01, max: 1.0, log: true }
+    guidance_scale: { min: 3.0, max: 15.0 }
 
 evaluation:
   metrics: [accuracy, precision, recall, f1]

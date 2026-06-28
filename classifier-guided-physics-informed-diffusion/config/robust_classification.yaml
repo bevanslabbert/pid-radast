@@ -24,11 +24,27 @@ training:
   trades_beta: 6.0 # TRADES KL regularisation weight (Zhang et al., 2019)
 
   # PGD adversarial attack parameters
+  momentum: 0.9
+
   pgd:
     epsilon: 0.03 # l-inf perturbation budget (in [-1,1] pixel space)
     alpha: 0.01 # step size per PGD iteration
     num_steps: 20 # increased from 10; stronger attacks produce more robust models
     random_start: true # random delta initialisation (stronger attacks; recommended)
+
+optimization:
+  method: bayesian
+  max_trials: 25
+  parameters:
+    learning_rate: { min: 0.0001, max: 0.1, log: true }
+    weight_decay: { min: 0.00001, max: 0.01, log: true }
+    momentum: { min: 0.85, max: 0.99 }
+    warmup_epochs: { choices: [10, 20, 30] }
+    transition_epochs: { choices: [10, 15, 20] }
+    trades_beta: { min: 1.0, max: 10.0 }
+    "pgd.epsilon": { min: 0.01, max: 0.1, log: true }
+    "pgd.alpha": { min: 0.001, max: 0.02, log: true }
+    "pgd.num_steps": { choices: [10, 20, 40] }
 
 evaluation:
   metrics: [accuracy, precision, recall, f1]
