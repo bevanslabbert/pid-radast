@@ -1,19 +1,25 @@
 import json
+import math
 import os
 
 import pyhopper
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torch.utils.data as tud
+import yaml
 from diffusers import UNet2DConditionModel, DDPMScheduler
 from torchvision.models import resnet50
 
+from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.models.pid import estimate_x0, physics_loss
 from src.utils.augmentation import pgd_attack_early_stop, get_noisy_image, get_max_timestep
+from src.utils.checkpoint import load_checkpoint
 
 # Short training proxy used during each trial — not a full training run.
 TRIAL_EPOCHS = 5
+CHECKPOINT_DIR = 'checkpoints'
 
 
 def _build_search_space(opt_config: dict) -> dict:
@@ -31,25 +37,55 @@ def _build_search_space(opt_config: dict) -> dict:
     return space
 
 
+def _write_yaml_params(params: dict, out_path: str) -> None:
+    """Write best params to YAML, expanding dotted keys to nested dicts.
+
+    Keys like 'pgd.epsilon' become pgd: {epsilon: <value>} so the output
+    can be copy-pasted directly into the training: section of a config file.
+    """
+    nested = {}
+    for k, v in params.items():
+        if '.' in k:
+            parent, child = k.split('.', 1)
+            nested.setdefault(parent, {})[child] = v
+        else:
+            nested[k] = v
+    with open(out_path, 'w') as f:
+        yaml.dump({'training': nested}, f, default_flow_style=False, sort_keys=False)
+
+
 # ---------------------------------------------------------------------------
 # Per-model objective functions — each returns a scalar PyHopper maximises.
 # ---------------------------------------------------------------------------
 
-def _objective_classification(params, cfg, trainloader, valloader, device):
+def _objective_classification(params, cfg, trainloader, valloader, device, dataset=None):
     num_classes = cfg['data']['num_classes']
+
+    batch_size = int(params.get('batch_size', cfg['data']['batch_size']))
+    if batch_size != trainloader.batch_size:
+        trial_loader = tud.DataLoader(
+            trainloader.dataset, batch_size=batch_size, shuffle=True, num_workers=0,
+        )
+    else:
+        trial_loader = trainloader
+
     model = resnet50(pretrained=True)
+    # Adapt conv1 for 1-channel grayscale input (same as train_classification).
+    original_weight = model.conv1.weight.data
+    model.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
+    model.conv1.weight.data = original_weight.mean(dim=1, keepdim=True)
     model.fc = nn.Linear(model.fc.in_features, num_classes)
     model.to(device)
 
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=params.get('learning_rate', cfg['training']['learning_rate']),
-        weight_decay=params.get('weight_decay', cfg['training']['weight_decay']),
+        lr=float(params.get('learning_rate', cfg['training']['learning_rate'])),
+        weight_decay=float(params.get('weight_decay', cfg['training']['weight_decay'])),
     )
 
     for _ in range(TRIAL_EPOCHS):
         model.train()
-        for inputs, labels in trainloader:
+        for inputs, labels in trial_loader:
             inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             F.cross_entropy(model(inputs), labels).backward()
@@ -66,24 +102,27 @@ def _objective_classification(params, cfg, trainloader, valloader, device):
     return correct / total  # maximise val accuracy
 
 
-def _objective_robust_classification(params, cfg, trainloader, valloader, device):
+def _objective_robust_classification(params, cfg, trainloader, valloader, device, dataset=None):
     num_classes = cfg['data']['num_classes']
     num_timesteps = 1000
     model = TimeDependentResNet(num_classes)
     model.to(device)
 
-    optimizer = torch.optim.Adam(
+    momentum = float(params.get('momentum', cfg['training'].get('momentum', 0.9)))
+    optimizer = torch.optim.SGD(
         model.parameters(),
-        lr=params.get('learning_rate', cfg['training']['learning_rate']),
-        weight_decay=params.get('weight_decay', cfg['training']['weight_decay']),
+        lr=float(params.get('learning_rate', cfg['training']['learning_rate'])),
+        momentum=momentum,
+        weight_decay=float(params.get('weight_decay', cfg['training']['weight_decay'])),
     )
 
     betas = torch.linspace(0.0001, 0.02, num_timesteps, device=device)
     alphas_cumprod = torch.cumprod(1 - betas, dim=0)
 
-    epsilon   = params.get('epsilon',    0.03)
-    alpha     = params.get('alpha',      0.01)
-    num_steps = params.get('num_steps',  10)
+    pgd_cfg = cfg['training'].get('pgd', {})
+    epsilon   = float(params.get('pgd.epsilon', pgd_cfg.get('epsilon', 0.03)))
+    alpha     = float(params.get('pgd.alpha',   pgd_cfg.get('alpha', 0.01)))
+    num_steps = int(params.get('pgd.num_steps', pgd_cfg.get('num_steps', 20)))
 
     for epoch in range(TRIAL_EPOCHS):
         model.train()
@@ -99,7 +138,6 @@ def _objective_robust_classification(params, cfg, trainloader, valloader, device
             F.cross_entropy(model(x_adv, t), labels).backward()
             optimizer.step()
 
-    # Evaluate clean accuracy on val set at timestep 0
     model.eval()
     correct = total = 0
     with torch.no_grad():
@@ -112,7 +150,7 @@ def _objective_robust_classification(params, cfg, trainloader, valloader, device
     return correct / total  # maximise clean val accuracy
 
 
-def _objective_diffusion(params, cfg, trainloader, valloader, device):
+def _objective_diffusion(params, cfg, trainloader, valloader, device, dataset=None):
     num_classes = cfg['data']['num_classes']
     label_dropout = params.get('label_dropout', cfg['training']['label_dropout'])
     embedding_dim = int(params.get('embedding_dim', cfg['model']['embedding_dim']))
@@ -177,7 +215,7 @@ def _objective_diffusion(params, cfg, trainloader, valloader, device):
     return -(val_loss / len(valloader))
 
 
-def _objective_pid(params, cfg, trainloader, valloader, device):
+def _objective_pid(params, cfg, trainloader, valloader, device, dataset=None):
     num_classes = cfg['data']['num_classes']
     label_dropout = params.get('label_dropout', cfg['training']['label_dropout'])
     embedding_dim = int(params.get('embedding_dim', cfg['model']['embedding_dim']))
@@ -254,19 +292,204 @@ def _objective_pid(params, cfg, trainloader, valloader, device):
     return -(val_loss / len(valloader))
 
 
+def _build_guided_diffusion_components(cfg, params, device):
+    """Build UNet + scheduler + class_emb + optimizer for guided diffusion objectives."""
+    num_classes = cfg['data']['num_classes']
+    embedding_dim = int(params.get('embedding_dim', cfg['model'].get('embedding_dim', 256)))
+
+    unet = UNet2DConditionModel(
+        sample_size=cfg['data']['input_size'],
+        in_channels=1, out_channels=1,
+        layers_per_block=2,
+        block_out_channels=(64, 128, 256, 512),
+        down_block_types=(
+            "DownBlock2D", "DownBlock2D",
+            "CrossAttnDownBlock2D", "CrossAttnDownBlock2D",
+        ),
+        up_block_types=(
+            "CrossAttnUpBlock2D", "CrossAttnUpBlock2D",
+            "UpBlock2D", "UpBlock2D",
+        ),
+        cross_attention_dim=embedding_dim,
+    ).to(device)
+
+    scheduler = DDPMScheduler(num_train_timesteps=cfg['training']['num_train_timesteps'])
+    class_emb = nn.Embedding(num_classes + 1, embedding_dim).to(device)
+    optimizer = torch.optim.AdamW(
+        list(unet.parameters()) + list(class_emb.parameters()),
+        lr=float(params.get('learning_rate', cfg['training']['learning_rate'])),
+        weight_decay=float(params.get('weight_decay', cfg['training'].get('weight_decay', 0.01))),
+    )
+    return unet, scheduler, class_emb, optimizer
+
+
+def _load_pretrained_diffusion(unet, class_emb, cfg, device):
+    """Load pre-trained diffusion weights if checkpoint exists."""
+    pretrained_dir = cfg['model'].get('pretrained_checkpoint', f'{CHECKPOINT_DIR}/diffusion')
+    ckpt_path = os.path.join(pretrained_dir, 'state.pt')
+    if os.path.exists(ckpt_path):
+        ckpt = load_checkpoint(pretrained_dir, device)
+        unet.load_state_dict(ckpt['model_state_dict'])
+        class_emb.load_state_dict(ckpt['class_emb_state_dict'])
+        print(f"[optimize] Loaded pre-trained diffusion from {pretrained_dir}")
+    else:
+        print(f"[optimize] No checkpoint at {pretrained_dir} — training guidance from scratch")
+
+
+def _load_frozen_classifier(cfg, device):
+    """Load and freeze the robust classifier used for guidance."""
+    num_classes = cfg['data']['num_classes']
+    ckpt_path = os.path.join(CHECKPOINT_DIR, 'robust_classification', 'state.pt')
+    if not os.path.exists(ckpt_path):
+        raise FileNotFoundError(
+            f"Robust classifier checkpoint not found at {ckpt_path}. "
+            "Train robust_classification first before optimising guided diffusion."
+        )
+    classifier = TimeDependentResNet(num_classes, pretrained=False)
+    ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
+    classifier.load_state_dict(ckpt['model_state_dict'])
+    classifier.to(device).eval()
+    for p in classifier.parameters():
+        p.requires_grad_(False)
+    return classifier
+
+
+def _objective_classifier_guided_diffusion(params, cfg, trainloader, valloader, device, dataset=None):
+    num_classes = cfg['data']['num_classes']
+    label_dropout = float(params.get('label_dropout', cfg['training']['label_dropout']))
+    lambda_cls    = float(params.get('lambda_cls',    cfg['training'].get('lambda_cls', 0.1)))
+
+    unet, scheduler, class_emb, optimizer = _build_guided_diffusion_components(cfg, params, device)
+    _load_pretrained_diffusion(unet, class_emb, cfg, device)
+    classifier = _load_frozen_classifier(cfg, device)
+    alphas_cumprod = scheduler.alphas_cumprod.to(device)
+
+    for _ in range(TRIAL_EPOCHS):
+        unet.train()
+        for images, labels in trainloader:
+            images, labels = images.to(device), labels.to(device)
+
+            drop_mask = torch.rand(labels.shape, device=device) < label_dropout
+            training_labels = labels.clone()
+            training_labels[drop_mask] = num_classes
+
+            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
+            noise = torch.randn_like(images)
+            noisy = scheduler.add_noise(images, noise, t)
+            class_embeddings = class_emb(training_labels).unsqueeze(1)
+            noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample
+
+            mse = F.mse_loss(noise_pred, noise)
+            cls_loss = torch.tensor(0.0, device=device)
+            cls_mask = training_labels != num_classes
+            if cls_mask.any():
+                x0 = estimate_x0(noisy, noise_pred, alphas_cumprod, t)
+                cls_input = x0[cls_mask]
+                if isinstance(dataset, MiraBestFITS):
+                    peak_log = dataset.median_peak_log
+                    cls_input = (torch.sign(cls_input)
+                                 * torch.expm1(torch.abs(cls_input) * peak_log)
+                                 / math.expm1(peak_log))
+                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
+                p_correct = F.softmax(classifier(cls_input, t_clean), dim=1).gather(
+                    1, labels[cls_mask].unsqueeze(1)).squeeze(1)
+                cls_loss = lambda_cls * (1.0 - p_correct).mean()
+
+            optimizer.zero_grad()
+            (mse + cls_loss).backward()
+            optimizer.step()
+
+    unet.eval()
+    val_loss = 0.0
+    with torch.no_grad():
+        for images, labels in valloader:
+            images, labels = images.to(device), labels.to(device)
+            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
+            noise = torch.randn_like(images)
+            noisy = scheduler.add_noise(images, noise, t)
+            noise_pred = unet(noisy, t,
+                              encoder_hidden_states=class_emb(labels).unsqueeze(1)).sample
+            val_loss += F.mse_loss(noise_pred, noise).item()
+
+    return -(val_loss / len(valloader))
+
+
+def _objective_robust_classifier_guided_diffusion(params, cfg, trainloader, valloader, device, dataset=None):
+    num_classes = cfg['data']['num_classes']
+    label_dropout = float(params.get('label_dropout', cfg['training']['label_dropout']))
+    lambda_cls    = float(params.get('lambda_cls',    cfg['training'].get('lambda_cls', 0.1)))
+
+    unet, scheduler, class_emb, optimizer = _build_guided_diffusion_components(cfg, params, device)
+    _load_pretrained_diffusion(unet, class_emb, cfg, device)
+    classifier = _load_frozen_classifier(cfg, device)
+    alphas_cumprod = scheduler.alphas_cumprod.to(device)
+
+    for _ in range(TRIAL_EPOCHS):
+        unet.train()
+        for images, labels in trainloader:
+            images, labels = images.to(device), labels.to(device)
+
+            drop_mask = torch.rand(labels.shape, device=device) < label_dropout
+            training_labels = labels.clone()
+            training_labels[drop_mask] = num_classes
+
+            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
+            noise = torch.randn_like(images)
+            noisy = scheduler.add_noise(images, noise, t)
+            class_embeddings = class_emb(training_labels).unsqueeze(1)
+            noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample
+
+            mse = F.mse_loss(noise_pred, noise)
+            cls_loss = torch.tensor(0.0, device=device)
+            cls_mask = training_labels != num_classes
+            if cls_mask.any():
+                x0 = estimate_x0(noisy, noise_pred, alphas_cumprod, t)
+                cls_input = x0[cls_mask]
+                if isinstance(dataset, MiraBestFITS):
+                    peak_log = dataset.median_peak_log
+                    cls_input = (torch.sign(cls_input)
+                                 * torch.expm1(torch.abs(cls_input) * peak_log)
+                                 / math.expm1(peak_log))
+                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
+                cls_loss = lambda_cls * F.cross_entropy(
+                    classifier(cls_input, t_clean), labels[cls_mask]
+                )
+
+            optimizer.zero_grad()
+            (mse + cls_loss).backward()
+            optimizer.step()
+
+    unet.eval()
+    val_loss = 0.0
+    with torch.no_grad():
+        for images, labels in valloader:
+            images, labels = images.to(device), labels.to(device)
+            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
+            noise = torch.randn_like(images)
+            noisy = scheduler.add_noise(images, noise, t)
+            noise_pred = unet(noisy, t,
+                              encoder_hidden_states=class_emb(labels).unsqueeze(1)).sample
+            val_loss += F.mse_loss(noise_pred, noise).item()
+
+    return -(val_loss / len(valloader))
+
+
 # ---------------------------------------------------------------------------
 # Registry — register a new model type by adding one entry here.
 # ---------------------------------------------------------------------------
 
 _OBJECTIVES = {
-    'classification':        _objective_classification,
-    'robust_classification': _objective_robust_classification,
-    'diffusion':             _objective_diffusion,
-    'pid':                   _objective_pid,
+    'classification':                     _objective_classification,
+    'robust_classification':              _objective_robust_classification,
+    'diffusion':                          _objective_diffusion,
+    'pid':                                _objective_pid,
+    'classifier_guided_diffusion':        _objective_classifier_guided_diffusion,
+    'robust_classifier_guided_diffusion': _objective_robust_classifier_guided_diffusion,
 }
 
 
-def optimize_parameters(model_type, cfg, trainloader, valloader, device, result_directory):
+def optimize_parameters(model_type, cfg, trainloader, valloader, device, result_directory,
+                        dataset=None):
     if model_type not in _OBJECTIVES:
         raise ValueError(
             f"No optimization objective registered for '{model_type}'. "
@@ -284,17 +507,21 @@ def optimize_parameters(model_type, cfg, trainloader, valloader, device, result_
         )
 
     objective_fn = _OBJECTIVES[model_type]
-    objective = lambda params: objective_fn(params, cfg, trainloader, valloader, device)
+    objective = lambda params: objective_fn(params, cfg, trainloader, valloader, device,
+                                            dataset=dataset)
 
     print(f"Starting {model_type} optimization: {max_steps} trials over {list(space)}")
     search = pyhopper.Search(space)
     best = search.run(objective, direction="max", steps=max_steps)
 
-    out_path = os.path.join(result_directory, 'best_params.json')
-    with open(out_path, 'w') as f:
+    out_json = os.path.join(result_directory, 'best_params.json')
+    with open(out_json, 'w') as f:
         json.dump(dict(best), f, indent=2)
 
+    out_yaml = os.path.join(result_directory, 'best_params.yaml')
+    _write_yaml_params(dict(best), out_yaml)
+
     print(f"Best params for {model_type}: {best}")
-    print(f"Saved to {out_path}")
+    print(f"Saved to {out_json} and {out_yaml}")
 
     return best

@@ -38,6 +38,7 @@ training:
     delta: 0.001
   save_best_only: true
   log_interval: 10
+  eval_interval: 10
 
 optimization:
   max_trials: 25

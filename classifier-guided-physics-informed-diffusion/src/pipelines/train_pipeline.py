@@ -92,8 +92,10 @@ def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, in
     num_classes = config['data']['num_classes']
     num_samples = config['data']['batch_size']
     device = next(unet.parameters()).device
+    guidance_scale = float(config['training'].get('guidance_scale', 7.5))
 
-    gen_0, gen_1 = generate_class_samples(unet, scheduler, class_emb, num_classes, num_samples, device)
+    gen_0, gen_1 = generate_class_samples(unet, scheduler, class_emb, num_classes, num_samples, device,
+                                           guidance_scale=guidance_scale)
     torchvision.utils.save_image(gen_0, f'{result_dir}/generated_images_class_0.png',
                                   nrow=2, normalize=True, value_range=(-1, 1))
     torchvision.utils.save_image(gen_1, f'{result_dir}/generated_images_class_1.png',
@@ -442,6 +444,8 @@ def _train_diffusion_loop(
     num_classes = config['data']['num_classes']
     num_epochs = config['training']['epochs']
     label_dropout = config['training']['label_dropout']
+    guidance_scale = float(config['training'].get('guidance_scale', 7.5))
+    eval_interval = int(config['training'].get('eval_interval', 5))
     extra_keys = extra_keys or []
 
     loss_history, val_loss_history, epochs_range = [], [], []
@@ -528,11 +532,12 @@ def _train_diffusion_loop(
             log += f'  |  {extra_str}'
         print(log)
 
-        if epoch % 5 == 0:
+        if epoch % eval_interval == 0:
             unet.eval()
             with torch.no_grad():
                 gen_0, gen_1 = generate_class_samples(
-                    unet, scheduler, class_emb, num_classes, 16, device
+                    unet, scheduler, class_emb, num_classes, 16, device,
+                    guidance_scale=guidance_scale,
                 )
 
             save_comparison_grid(gen_0[:4], gen_1[:4], epoch, result_dir)
