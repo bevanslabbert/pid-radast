@@ -1,0 +1,4 @@
+training:
+  learning_rate: 3.0861266651739854e-05
+  weight_decay: 0.0030841273535875168
+  batch_size: 16

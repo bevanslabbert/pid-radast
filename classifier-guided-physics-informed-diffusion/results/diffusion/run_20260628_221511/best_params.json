@@ -1,0 +1,6 @@
+{
+  "learning_rate": 9.047404010598482e-05,
+  "label_dropout": 0.11956635677389038,
+  "weight_decay": 0.0007254860307195132,
+  "embedding_dim": 256
+}

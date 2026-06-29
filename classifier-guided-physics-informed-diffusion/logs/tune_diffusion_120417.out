@@ -1,0 +1,22 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mirabest_fits
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1221
+Total batches: 107 (at batch size 8)
+Starting diffusion optimization: 25 trials over ['learning_rate', 'label_dropout', 'weight_decay', 'embedding_dim']
+Search is scheduled for 25 steps
+======================= Summary =======================
+Mode              : Best f   : Steps : Time            
+----------------  : ----     : ----  : ----            
+Initial solution  : -0.04121 : 1     : 08:19 (m:s)     
+Random seeding    : -0.03381 : 5     : 41:23 (m:s)     
+Local sampling    : -0.02084 : 18    : 02:28:47 (h:m:s)
+Duplicates        : -        : 1     : -               
+----------------  : ----     : ----  : ----            
+Total             : -0.02084 : 25    : 03:18:29 (h:m:s)
+=======================================================
+Best params for diffusion: {'learning_rate': 9.047404010598482e-05, 'label_dropout': 0.11956635677389038, 'weight_decay': 0.0007254860307195132, 'embedding_dim': 256}
+Saved to results/diffusion/run_20260628_221511/best_params.json and results/diffusion/run_20260628_221511/best_params.yaml
