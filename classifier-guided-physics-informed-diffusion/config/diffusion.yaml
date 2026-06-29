@@ -18,9 +18,13 @@ model:
   checkpoint_dir: ./checkpoints
 
 training:
+  # tuned params
+  learning_rate: 9.047404010598482e-05
+  label_dropout: 0.11956635677389038
+  weight_decay: 0.0007254860307195132
+  embedding_dim: 256
+
   epochs: 300
-  learning_rate: 0.0001
-  label_dropout: 0.29869287822764246
   num_train_timesteps: 1000
   optimizer: adamw
 
@@ -29,7 +33,6 @@ training:
   gradient_accumulation_steps: 4
   output_dir: output
 
-  weight_decay: 0.01
   scheduler:
     type: cosine
     warmup_epochs: 5
