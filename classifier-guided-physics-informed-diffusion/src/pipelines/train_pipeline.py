@@ -750,10 +750,15 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
         cls_loss = torch.tensor(0.0, device=device)
         cls_mask = training_labels != num_classes
         if cls_mask.any():
+            # generate image
             x0 = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
             cls_input = x0[cls_mask]
+
+            # convert to png if fits
             if isinstance(dataset, MiraBestFITS):
                 cls_input = fits_to_linear(cls_input, dataset)
+
+            # classify
             t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
             p_correct = F.softmax(classifier(cls_input, t_clean), dim=1).gather(
                 1, labels[cls_mask].unsqueeze(1)).squeeze(1)
