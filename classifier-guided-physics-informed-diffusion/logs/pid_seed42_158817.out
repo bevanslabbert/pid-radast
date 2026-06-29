@@ -1,0 +1,16 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mirabest_fits
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1221
+Total batches: 107 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  results -> results/pid/run_20260629_171341_seed42
+============================================================
+
+Training pid for 300 epochs
+Epoch 0
+Epoch 0 | Loss: 0.111751 | Val: 0.176104  |  mse: 0.088526  sym: 0.016353  neg: 0.006872

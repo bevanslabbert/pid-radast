@@ -1,0 +1,11 @@
+training:
+  learning_rate: 0.0003860626299443583
+  weight_decay: 6.912507507810066e-05
+  momentum: 0.9601593338971406
+  warmup_epochs: 20
+  transition_epochs: 15
+  trades_beta: 8.401406312046173
+  pgd:
+    epsilon: 0.013532639390515262
+    alpha: 0.0036998700546648183
+    num_steps: 10
