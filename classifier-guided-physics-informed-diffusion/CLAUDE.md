@@ -95,3 +95,11 @@ Three datasets are supported via the `dataset` key in config:
 - `test_pipeline.py` diffusion path hardcodes a mismatched architecture — it cannot load a checkpoint produced by `train_diffusion`.
 - `evaluators/` directory is empty.
 - `main.py` always uses `diffusion_transform` for data loading regardless of `--model`; classification models receive 150×150 grayscale instead of 224×224 RGB.
+
+## Dissertation Change Log
+
+After every edit, append a brief entry here so the user can track all changes for their dissertation write-up.
+
+| Date | File | Change |
+|------|------|--------|
+| 2026-06-29 | `config/pid.yaml` | Set `lambda_neg` from `0.1` → `0.0`; non-negativity loss suppressed because it caused generated images to be artificially bright. `epochs` also changed from 300 → 200 (external edit). |
