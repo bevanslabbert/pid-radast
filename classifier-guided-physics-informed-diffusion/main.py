@@ -88,7 +88,7 @@ def main():
         transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
-    active_transform = diffusion_transform
+    active_transform = classification_transform if args.model == 'classification' else diffusion_transform
 
     result = get_data_loaders(
         cfg['data']['dataset'],

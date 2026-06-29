@@ -1,3 +1,4 @@
+import json
 import torch
 import torch.nn as nn
 import numpy as np
@@ -156,9 +157,6 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         num_classes = config['data']['num_classes']
         if model is None:
             model = resnet50(pretrained=False)
-            original_weight = model.conv1.weight.data
-            model.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
-            model.conv1.weight.data = original_weight.mean(dim=1, keepdim=True)
             model.fc = nn.Linear(model.fc.in_features, num_classes)
             checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
             model.load_state_dict(checkpoint['model_state_dict'])
@@ -181,12 +179,15 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
                 all_labels.extend(labels.cpu().numpy())
 
             accuracy = 100 * correct / total
-            print(f'Accuracy: {accuracy}%')
+            print(f'Accuracy: {accuracy:.2f}%')
+
+            with open(f'{result_directory}/metrics.json', 'w') as f:
+                json.dump({'test_accuracy': accuracy}, f, indent=2)
 
             cm = confusion_matrix(all_labels, all_preds)
             disp = ConfusionMatrixDisplay(confusion_matrix=cm)
             disp.plot(cmap='Blues', xticks_rotation=45)
-            plt.title("Confusion Matrix")
+            plt.title(f"Confusion Matrix — acc={accuracy:.1f}%")
             plt.savefig(f'{result_directory}/confusion_matrix.png')
 
     elif model_type in ('diffusion', 'pid', 'classifier_guided_diffusion', 'robust_classifier_guided_diffusion'):

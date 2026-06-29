@@ -103,3 +103,5 @@ After every edit, append a brief entry here so the user can track all changes fo
 | Date | File | Change |
 |------|------|--------|
 | 2026-06-29 | `config/pid.yaml` | Set `lambda_neg` from `0.1` → `0.0`; non-negativity loss suppressed because it caused generated images to be artificially bright. `epochs` also changed from 300 → 200 (external edit). |
+| 2026-06-29 | `main.py`, `train_pipeline.py`, `test_pipeline.py` | Fixed classifier ~50% accuracy caused by normalization mismatch: classification model now uses `classification_transform` (ImageNet mean/std, 3-channel) instead of `diffusion_transform` ([-1,1] grayscale). Removed 1-channel conv1 surgery in train and test pipelines since input is now 3-channel matching pretrained ResNet50 expectations. |
+| 2026-06-29 | `test_pipeline.py` | Added `metrics.json` save with `test_accuracy` at end of classification evaluation in `test_model`. |
