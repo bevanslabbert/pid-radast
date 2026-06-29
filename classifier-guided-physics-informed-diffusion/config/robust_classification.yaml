@@ -25,7 +25,7 @@ training:
     alpha: 0.0012337144983744607
     num_steps: 40
 
-  epochs: 300
+  epochs: 200
   label_smoothing: 0.05 # reduced from 0.1; small dataset benefits from less smoothing
   num_timesteps: 1000
 
