@@ -1,0 +1,81 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 2003
+Total batches: 86 (at batch size 16)
+
+============================================================
+Run 1/1  |  seed=44  |  results -> results/classification/run_20260629_195304_seed44
+============================================================
+
+Training classification for 100 epochs
+Epoch 0
+Epoch 0, Training Loss: 0.6315, Validation Loss: 0.6049, LR: 1.68e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 1
+Epoch 1, Training Loss: 0.5988, Validation Loss: 0.6223, LR: 1.68e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 2
+Epoch 2, Training Loss: 0.5902, Validation Loss: 0.6098, LR: 1.68e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 3
+Epoch 3, Training Loss: 0.5820, Validation Loss: 0.6461, LR: 1.68e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 4
+Epoch 4, Training Loss: 0.5826, Validation Loss: 0.5831, LR: 1.67e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 5
+Epoch 5, Training Loss: 0.5574, Validation Loss: 0.5638, LR: 1.67e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 6
+Epoch 6, Training Loss: 0.5479, Validation Loss: 0.5812, LR: 1.66e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 7
+Epoch 7, Training Loss: 0.5621, Validation Loss: 0.5782, LR: 1.66e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 8
+Epoch 8, Training Loss: 0.5180, Validation Loss: 0.5737, LR: 1.65e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 9
+Epoch 9, Training Loss: 0.5423, Validation Loss: 0.5987, LR: 1.64e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 10
+Epoch 10, Training Loss: 0.5279, Validation Loss: 0.5683, LR: 1.64e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 11
+Epoch 11, Training Loss: 0.5354, Validation Loss: 0.5453, LR: 1.63e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 12
+Epoch 12, Training Loss: 0.5240, Validation Loss: 0.5857, LR: 1.62e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 13
+Epoch 13, Training Loss: 0.5175, Validation Loss: 0.5448, LR: 1.60e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 14
+Epoch 14, Training Loss: 0.5229, Validation Loss: 0.5710, LR: 1.59e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 15
+Epoch 15, Training Loss: 0.5227, Validation Loss: 0.5310, LR: 1.58e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 16
+Epoch 16, Training Loss: 0.5083, Validation Loss: 0.5580, LR: 1.57e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 17
+Epoch 17, Training Loss: 0.5145, Validation Loss: 0.5962, LR: 1.55e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 18
+Epoch 18, Training Loss: 0.5040, Validation Loss: 0.5250, LR: 1.54e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 19
+Epoch 19, Training Loss: 0.4988, Validation Loss: 0.5277, LR: 1.52e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 20
+Epoch 20, Training Loss: 0.5170, Validation Loss: 0.5271, LR: 1.51e-05
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 21
