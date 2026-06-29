@@ -187,11 +187,13 @@ def train_classification(config, trainloader, valloader, device, result_director
 
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}, LR: {scheduler.get_last_lr()[0]:.2e}')
 
-        if checkpoint is not None and resume is not None:
+        if checkpoint is not None or resume is not None:
             save_checkpoint(
                 {'epoch': epoch, 'model_state_dict': model.state_dict(),
                  'optimizer_state_dict': optimizer.state_dict(),
                  'scheduler_state_dict': scheduler.state_dict(),
+                 'best_val_loss': best_val_loss,
+                 'patience_counter': patience_counter,
                  'loss': loss, 'config': config},
                 f'{CHECKPOINT_DIR}/classification',
             )
@@ -389,6 +391,10 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
               f' | Val Acc: {val_acc:.1f}%{adv_str} | LR: {current_lr:.2e}')
 
         best_metric = adv_val_acc if adv_val_acc is not None else val_acc
+        is_new_best = best_metric > best_val_acc
+        if is_new_best:
+            best_val_acc = best_metric
+
         ckpt_payload = {
             'epoch': epoch, 'model_state_dict': rob_model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
@@ -399,34 +405,26 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
         if checkpoint is not None or resume is not None:
             save_checkpoint(ckpt_payload, f'{CHECKPOINT_DIR}/robust_classification')
 
-        if best_metric > best_val_acc:
-            best_val_acc = best_metric
+        if is_new_best:
             save_checkpoint(ckpt_payload, f'{CHECKPOINT_DIR}/robust_classification_best')
             print(f'  ** New best metric: {best_val_acc:.1f}% — saved to checkpoints/robust_classification_best')
 
     epochs_range = list(range(start_epoch, start_epoch + len(epoch_losses)))
 
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
-    axes[0].plot(epochs_range, epoch_losses, label='Train Loss', marker='o')
-    if val_losses:
-        axes[0].plot(epochs_range, val_losses, label='Val Loss', marker='s')
-    axes[0].set_xlabel('Epoch')
-    axes[0].set_ylabel('Loss')
-    axes[0].set_title('Training vs Validation Loss')
-    axes[0].legend()
-    axes[0].grid(True)
+    save_training_plot(epochs_range, epoch_losses, val_losses, result_directory)
 
-    axes[1].plot(epochs_range, val_acc_history, label='Val Acc (%)', marker='o')
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(epochs_range, val_acc_history, color='tab:blue', linewidth=2, label='Val Acc (%)')
     if adv_val_acc_history:
-        axes[1].plot(adv_epochs, adv_val_acc_history, label='Adv Val Acc (%)', marker='s', linestyle='--')
-    axes[1].set_xlabel('Epoch')
-    axes[1].set_ylabel('Accuracy (%)')
-    axes[1].set_title('Validation Accuracy')
-    axes[1].legend()
-    axes[1].grid(True)
-
+        ax.plot(adv_epochs, adv_val_acc_history, color='tab:orange', linewidth=2,
+                linestyle='--', label='Adv Val Acc (%)')
+    ax.set_xlabel('Epoch')
+    ax.set_ylabel('Accuracy (%)')
+    ax.set_title('Robust Classifier: Validation Accuracy')
+    ax.legend()
+    ax.grid(True, linestyle='--', alpha=0.5)
     fig.tight_layout()
-    fig.savefig(f'{result_directory}/robust_classifier_metrics.png', dpi=150)
+    fig.savefig(os.path.join(result_directory, 'robust_classifier_accuracy.png'), dpi=150)
     plt.close()
 
     with open(os.path.join(result_directory, 'metrics.json'), 'w') as f:
@@ -487,6 +485,7 @@ def _train_diffusion_loop(
     label_dropout = config['training']['label_dropout']
     guidance_scale = float(config['training'].get('guidance_scale', 7.5))
     eval_interval = int(config['training'].get('eval_interval', 5))
+    eval_num_samples = int(config['training'].get('eval_num_samples', 16))
     extra_keys = extra_keys or []
 
     loss_history, val_loss_history, epochs_range = [], [], []
@@ -575,7 +574,6 @@ def _train_diffusion_loop(
 
         if epoch % eval_interval == 0:
             unet.eval()
-            eval_num_samples = int(config['training'].get('eval_num_samples', 16))
             with torch.no_grad():
                 gen_0, gen_1 = generate_class_samples(
                     unet, scheduler, class_emb, num_classes, eval_num_samples, device,

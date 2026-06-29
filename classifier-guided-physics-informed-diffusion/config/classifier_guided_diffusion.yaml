@@ -45,6 +45,7 @@ training:
   save_best_only: true
   log_interval: 10
   eval_interval: 10
+  eval_num_samples: 64
 
 optimization:
   method: bayesian
