@@ -133,21 +133,29 @@ def train_classification(config, trainloader, valloader, device, result_director
     model.to(device)
 
     num_epochs = config['training']['epochs']
+    patience = int(config['training'].get('early_stopping', {}).get('patience', 30))
     optimizer = torch.optim.Adam(
         model.parameters(),
         lr=config['training']['learning_rate'],
         weight_decay=config['training']['weight_decay'],
     )
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs)
     criterion = nn.CrossEntropyLoss()
     epoch_losses, val_losses = [], []
     best_val_loss = torch.inf
-    patience, patience_counter = 10, 0
+    patience_counter = 0
     start_epoch = 0
 
     if resume is not None:
         ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
         model.load_state_dict(ckpt['model_state_dict'])
         optimizer.load_state_dict(ckpt['optimizer_state_dict'])
+        if 'scheduler_state_dict' in ckpt:
+            scheduler.load_state_dict(ckpt['scheduler_state_dict'])
+        else:
+            print("Warning: checkpoint has no scheduler_state_dict — LR schedule will restart from epoch 0")
+        best_val_loss = ckpt.get('best_val_loss', torch.inf)
+        patience_counter = ckpt.get('patience_counter', 0)
         start_epoch = ckpt['epoch'] + 1
         print(f"Resumed from checkpoint (epoch {start_epoch})")
 
@@ -163,6 +171,7 @@ def train_classification(config, trainloader, valloader, device, result_director
             optimizer.step()
             total_loss += loss.item()
 
+        scheduler.step()
         avg_loss = total_loss / len(trainloader)
         epoch_losses.append(avg_loss)
         avg_val_loss = evaluate_loss(model, valloader, criterion, device)
@@ -173,15 +182,17 @@ def train_classification(config, trainloader, valloader, device, result_director
             patience_counter = 0
         else:
             patience_counter += 1
-            if patience_counter > patience:
+            if patience_counter >= patience:
                 break
 
-        print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
+        print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}, LR: {scheduler.get_last_lr()[0]:.2e}')
 
         if checkpoint is not None and resume is not None:
             save_checkpoint(
                 {'epoch': epoch, 'model_state_dict': model.state_dict(),
-                 'optimizer_state_dict': optimizer.state_dict(), 'loss': loss, 'config': config},
+                 'optimizer_state_dict': optimizer.state_dict(),
+                 'scheduler_state_dict': scheduler.state_dict(),
+                 'loss': loss, 'config': config},
                 f'{CHECKPOINT_DIR}/classification',
             )
 
@@ -239,6 +250,7 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
     alphas_cumprod = torch.cumprod(1 - betas, dim=0)
 
     epoch_losses, val_losses = [], []
+    val_acc_history, adv_val_acc_history, adv_epochs = [], [], []
     start_epoch = 0
     best_val_acc = 0.0
     loss = None
@@ -366,6 +378,11 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
                 adv_total += val_labels.size(0)
             adv_val_acc = 100.0 * adv_correct / adv_total
 
+        val_acc_history.append(val_acc)
+        if adv_val_acc is not None:
+            adv_val_acc_history.append(adv_val_acc)
+            adv_epochs.append(epoch)
+
         phase = 'warmup' if in_warmup else (f'transition(ε={current_epsilon:.3f})' if in_transition else 'adversarial')
         adv_str = f' | Adv Val Acc: {adv_val_acc:.1f}%' if adv_val_acc is not None else ''
         print(f'Epoch {epoch} [{phase}] | Loss: {avg_loss:.4f} | Val Loss: {avg_val_loss:.4f}'
@@ -387,17 +404,41 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
             save_checkpoint(ckpt_payload, f'{CHECKPOINT_DIR}/robust_classification_best')
             print(f'  ** New best metric: {best_val_acc:.1f}% — saved to checkpoints/robust_classification_best')
 
-    plt.figure(figsize=(8, 5))
-    plt.plot(range(1, len(epoch_losses) + 1), epoch_losses, label='Training Loss', marker='o')
+    epochs_range = list(range(start_epoch, start_epoch + len(epoch_losses)))
+
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    axes[0].plot(epochs_range, epoch_losses, label='Train Loss', marker='o')
     if val_losses:
-        plt.plot(range(1, len(val_losses) + 1), val_losses, label='Validation Loss', marker='s')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.title('Training vs Validation Loss')
-    plt.legend()
-    plt.grid(True)
-    plt.savefig(f'{result_directory}/robust_classifier_loss_plot.png')
+        axes[0].plot(epochs_range, val_losses, label='Val Loss', marker='s')
+    axes[0].set_xlabel('Epoch')
+    axes[0].set_ylabel('Loss')
+    axes[0].set_title('Training vs Validation Loss')
+    axes[0].legend()
+    axes[0].grid(True)
+
+    axes[1].plot(epochs_range, val_acc_history, label='Val Acc (%)', marker='o')
+    if adv_val_acc_history:
+        axes[1].plot(adv_epochs, adv_val_acc_history, label='Adv Val Acc (%)', marker='s', linestyle='--')
+    axes[1].set_xlabel('Epoch')
+    axes[1].set_ylabel('Accuracy (%)')
+    axes[1].set_title('Validation Accuracy')
+    axes[1].legend()
+    axes[1].grid(True)
+
+    fig.tight_layout()
+    fig.savefig(f'{result_directory}/robust_classifier_metrics.png', dpi=150)
     plt.close()
+
+    with open(os.path.join(result_directory, 'metrics.json'), 'w') as f:
+        json.dump({
+            'epochs': epochs_range,
+            'train_loss': epoch_losses,
+            'val_loss': val_losses,
+            'val_acc': val_acc_history,
+            'adv_epochs': adv_epochs,
+            'adv_val_acc': adv_val_acc_history,
+            'best_val_acc': best_val_acc,
+        }, f, indent=2)
 
     torch.save(
         {'model_state_dict': rob_model.state_dict(), 'config': config},
@@ -534,9 +575,10 @@ def _train_diffusion_loop(
 
         if epoch % eval_interval == 0:
             unet.eval()
+            eval_num_samples = int(config['training'].get('eval_num_samples', 16))
             with torch.no_grad():
                 gen_0, gen_1 = generate_class_samples(
-                    unet, scheduler, class_emb, num_classes, 16, device,
+                    unet, scheduler, class_emb, num_classes, eval_num_samples, device,
                     guidance_scale=guidance_scale,
                 )
 
