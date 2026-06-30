@@ -17,15 +17,15 @@ training:
   learning_rate: 0.003197267211783691
   weight_decay: 0.0027584890854206985
   momentum: 0.9116646213437151
-  warmup_epochs: 2
-  transition_epochs: 1
+  warmup_epochs: 30
+  transition_epochs: 15
   trades_beta: 3.577679870970874
   pgd:
     epsilon: 0.09220277726992455
     alpha: 0.0012337144983744607
-    num_steps: 5
+    num_steps: 40
 
-  epochs: 5
+  epochs: 200
   label_smoothing: 0.05 # reduced from 0.1; small dataset benefits from less smoothing
   num_timesteps: 1000
 
