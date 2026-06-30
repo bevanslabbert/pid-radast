@@ -64,18 +64,6 @@ def main():
     print(f"On device {device}")
     set_seed(cfg["seed"])
 
-    classification_transform = transforms.Compose([
-        transforms.RandomResizedCrop(224),
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomVerticalFlip(p=0.5),
-        transforms.RandomRotation(30),
-        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
-        transforms.Grayscale(num_output_channels=3),  # Convert 1 channel → 3 channels
-        transforms.GaussianBlur(3),
-        transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-    ])
-
     diffusion_transform = transforms.Compose([
         transforms.Grayscale(num_output_channels=1),
         # Upscale to ceil(150 * sqrt(2)) = 213 so that a 150x150 centre crop
@@ -88,7 +76,7 @@ def main():
         transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
-    active_transform = classification_transform if args.model == 'classification' or args.model == 'robust_classification' else diffusion_transform
+    active_transform = diffusion_transform
 
     result = get_data_loaders(
         cfg['data']['dataset'],
