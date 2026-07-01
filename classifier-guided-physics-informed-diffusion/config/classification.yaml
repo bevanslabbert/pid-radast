@@ -20,17 +20,8 @@ model:
 training:
   learning_rate: 1.6850506699025968e-05
   weight_decay: 0.009500082335089189
-  batch_size: 8
+  batch_size: 16
   epochs: 100
-  optimizer: adamw
-  scheduler:
-    type: cosine
-    warmup_epochs: 5
-  early_stopping:
-    patience: 30
-    delta: 0.001
-  save_best_only: true
-  log_interval: 10
 
 optimization:
   method: bayesian

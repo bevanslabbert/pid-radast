@@ -133,16 +133,15 @@ def train_classification(config, trainloader, valloader, device, result_director
     model.to(device)
 
     num_epochs = config['training']['epochs']
-    patience = int(config['training'].get('early_stopping', {}).get('patience', 30))
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=config['training']['learning_rate'],
-        weight_decay=config['training']['weight_decay'],
+        lr=float(config['training']['learning_rate']),
+        weight_decay=float(config['training']['weight_decay']),
     )
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs)
     criterion = nn.CrossEntropyLoss()
     epoch_losses, val_losses = [], []
     best_val_loss = torch.inf
+    patience = 10
     patience_counter = 0
     start_epoch = 0
 
@@ -150,28 +149,22 @@ def train_classification(config, trainloader, valloader, device, result_director
         ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
         model.load_state_dict(ckpt['model_state_dict'])
         optimizer.load_state_dict(ckpt['optimizer_state_dict'])
-        if 'scheduler_state_dict' in ckpt:
-            scheduler.load_state_dict(ckpt['scheduler_state_dict'])
-        else:
-            print("Warning: checkpoint has no scheduler_state_dict — LR schedule will restart from epoch 0")
-        best_val_loss = ckpt.get('best_val_loss', torch.inf)
-        patience_counter = ckpt.get('patience_counter', 0)
         start_epoch = ckpt['epoch'] + 1
         print(f"Resumed from checkpoint (epoch {start_epoch})")
 
     for epoch in range(start_epoch, num_epochs):
-        model.train()
         total_loss = 0.0
+        model.train()
         print(f"Epoch {epoch}")
         for batch in trainloader:
             inputs, labels = batch[0].to(device), batch[1].to(device)
             optimizer.zero_grad()
-            loss = criterion(model(inputs), labels)
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
             total_loss += loss.item()
 
-        scheduler.step()
         avg_loss = total_loss / len(trainloader)
         epoch_losses.append(avg_loss)
         avg_val_loss = evaluate_loss(model, valloader, criterion, device)
@@ -182,18 +175,15 @@ def train_classification(config, trainloader, valloader, device, result_director
             patience_counter = 0
         else:
             patience_counter += 1
-            if patience_counter >= patience:
+            if patience_counter > patience:
                 break
 
-        print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}, LR: {scheduler.get_last_lr()[0]:.2e}')
+        print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
 
-        if checkpoint is not None or resume is not None:
+        if checkpoint is not None:
             save_checkpoint(
                 {'epoch': epoch, 'model_state_dict': model.state_dict(),
                  'optimizer_state_dict': optimizer.state_dict(),
-                 'scheduler_state_dict': scheduler.state_dict(),
-                 'best_val_loss': best_val_loss,
-                 'patience_counter': patience_counter,
                  'loss': loss, 'config': config},
                 f'{CHECKPOINT_DIR}/classification',
             )
