@@ -9,6 +9,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+COMMIT="$(git -C "$ROOT" rev-parse --short HEAD)"
 
 mkdir -p "$ROOT/logs"
 
@@ -24,19 +25,19 @@ if [ ! -f "$ROOT/checkpoints/robust_classification/state.pt" ]; then
     exit 1
 fi
 
-echo "Submitting tuning job: classifier_guided_diffusion..."
+echo "Submitting tuning job: classifier_guided_diffusion (commit=${COMMIT})..."
 sbatch \
-    --job-name="tune_cgd" \
-    --output="$ROOT/logs/tune_cgd_%j.out" \
-    --error="$ROOT/logs/tune_cgd_%j.err" \
+    --job-name="tune_cgd_${COMMIT}" \
+    --output="$ROOT/logs/tune_cgd_${COMMIT}_%j.out" \
+    --error="$ROOT/logs/tune_cgd_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
     "$SCRIPT_DIR/job_tune_classifier_guided_diffusion.sh"
 
 echo "Submitting tuning job: robust_classifier_guided_diffusion..."
 sbatch \
-    --job-name="tune_rcgd" \
-    --output="$ROOT/logs/tune_rcgd_%j.out" \
-    --error="$ROOT/logs/tune_rcgd_%j.err" \
+    --job-name="tune_rcgd_${COMMIT}" \
+    --output="$ROOT/logs/tune_rcgd_${COMMIT}_%j.out" \
+    --error="$ROOT/logs/tune_rcgd_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
     "$SCRIPT_DIR/job_tune_robust_classifier_guided_diffusion.sh"
 

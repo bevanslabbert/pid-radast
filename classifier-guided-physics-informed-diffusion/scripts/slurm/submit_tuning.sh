@@ -16,38 +16,39 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+COMMIT="$(git -C "$ROOT" rev-parse --short HEAD)"
 
 mkdir -p "$ROOT/logs"
 
-echo "Submitting tuning job: classification..."
+echo "Submitting tuning job: classification (commit=${COMMIT})..."
 sbatch \
-    --job-name="tune_classification" \
-    --output="$ROOT/logs/tune_classification_%j.out" \
-    --error="$ROOT/logs/tune_classification_%j.err" \
+    --job-name="tune_classification_${COMMIT}" \
+    --output="$ROOT/logs/tune_classification_${COMMIT}_%j.out" \
+    --error="$ROOT/logs/tune_classification_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
     "$SCRIPT_DIR/job_tune_classification.sh"
 
 echo "Submitting tuning job: robust_classification..."
 sbatch \
-    --job-name="tune_robustcls" \
-    --output="$ROOT/logs/tune_robustcls_%j.out" \
-    --error="$ROOT/logs/tune_robustcls_%j.err" \
+    --job-name="tune_robustcls_${COMMIT}" \
+    --output="$ROOT/logs/tune_robustcls_${COMMIT}_%j.out" \
+    --error="$ROOT/logs/tune_robustcls_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
     "$SCRIPT_DIR/job_tune_robust_classification.sh"
 
 echo "Submitting tuning job: diffusion..."
 sbatch \
-    --job-name="tune_diffusion" \
-    --output="$ROOT/logs/tune_diffusion_%j.out" \
-    --error="$ROOT/logs/tune_diffusion_%j.err" \
+    --job-name="tune_diffusion_${COMMIT}" \
+    --output="$ROOT/logs/tune_diffusion_${COMMIT}_%j.out" \
+    --error="$ROOT/logs/tune_diffusion_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
     "$SCRIPT_DIR/job_tune_diffusion.sh"
 
 echo "Submitting tuning job: pid..."
 sbatch \
-    --job-name="tune_pid" \
-    --output="$ROOT/logs/tune_pid_%j.out" \
-    --error="$ROOT/logs/tune_pid_%j.err" \
+    --job-name="tune_pid_${COMMIT}" \
+    --output="$ROOT/logs/tune_pid_${COMMIT}_%j.out" \
+    --error="$ROOT/logs/tune_pid_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
     "$SCRIPT_DIR/job_tune_pid.sh"
 

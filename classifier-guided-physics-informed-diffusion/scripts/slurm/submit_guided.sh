@@ -10,6 +10,7 @@ set -e
 SEEDS=(42 43 44)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+COMMIT="$(git -C "$ROOT" rev-parse --short HEAD)"
 
 mkdir -p "$ROOT/logs"
 
@@ -25,12 +26,12 @@ if [ ! -f "$ROOT/checkpoints/robust_classification/state.pt" ]; then
     exit 1
 fi
 
-echo "Submitting classifier_guided_diffusion jobs..."
+echo "Submitting classifier_guided_diffusion jobs (commit=${COMMIT})..."
 for SEED in "${SEEDS[@]}"; do
     sbatch \
-        --job-name="cgd_seed${SEED}" \
-        --output="$ROOT/logs/cgd_seed${SEED}_%j.out" \
-        --error="$ROOT/logs/cgd_seed${SEED}_%j.err" \
+        --job-name="cgd_seed${SEED}_${COMMIT}" \
+        --output="$ROOT/logs/cgd_seed${SEED}_${COMMIT}_%j.out" \
+        --error="$ROOT/logs/cgd_seed${SEED}_${COMMIT}_%j.err" \
         --chdir="$ROOT" \
         --export=ALL,SEED=$SEED \
         "$SCRIPT_DIR/job_classifier_guided_diffusion.sh"
@@ -40,9 +41,9 @@ done
 echo "Submitting robust_classifier_guided_diffusion jobs..."
 for SEED in "${SEEDS[@]}"; do
     sbatch \
-        --job-name="rcgd_seed${SEED}" \
-        --output="$ROOT/logs/rcgd_seed${SEED}_%j.out" \
-        --error="$ROOT/logs/rcgd_seed${SEED}_%j.err" \
+        --job-name="rcgd_seed${SEED}_${COMMIT}" \
+        --output="$ROOT/logs/rcgd_seed${SEED}_${COMMIT}_%j.out" \
+        --error="$ROOT/logs/rcgd_seed${SEED}_${COMMIT}_%j.err" \
         --chdir="$ROOT" \
         --export=ALL,SEED=$SEED \
         "$SCRIPT_DIR/job_robust_classifier_guided_diffusion.sh"
