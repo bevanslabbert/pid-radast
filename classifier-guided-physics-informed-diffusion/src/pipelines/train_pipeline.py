@@ -12,7 +12,7 @@ import torchvision
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.models.diffusion import build_diffusion_components, eval_epoch
 from src.models.pid import estimate_x0, symmetry_loss, nonnegativity_loss
-from torchvision.models import resnet50
+from torchvision.models import resnet18
 from src.models.simple_cnn import SimpleCNN
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
@@ -125,7 +125,12 @@ def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, in
 
 def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
     num_classes = config['data']['num_classes']
-    model = resnet50(pretrained=True)
+    model = resnet18(pretrained=True)
+
+    # Freeze layer1 and layer2 — preserve generic low-level features.
+    for name, param in model.named_parameters():
+        if name.startswith('layer1') or name.startswith('layer2'):
+            param.requires_grad = False
 
     model.fc = nn.Linear(model.fc.in_features, num_classes)
     model.to(device)
@@ -134,7 +139,7 @@ def train_classification(config, trainloader, valloader, device, result_director
     lr = float(config['training']['learning_rate'])
     wd = float(config['training']['weight_decay'])
     optimizer = torch.optim.Adam([
-        {'params': [p for n, p in model.named_parameters() if not n.startswith('fc')], 'lr': lr * 0.1},
+        {'params': [p for n, p in model.named_parameters() if p.requires_grad and not n.startswith('fc')], 'lr': lr * 0.1},
         {'params': model.fc.parameters(), 'lr': lr},
     ], weight_decay=wd)
     criterion = nn.CrossEntropyLoss()
