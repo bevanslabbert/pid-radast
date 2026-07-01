@@ -1,0 +1,1 @@
+mkdir: cannot create directory ‘/var/lib/slurm/logs’: Permission denied
