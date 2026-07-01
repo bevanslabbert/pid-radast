@@ -64,26 +64,44 @@ def main():
     print(f"On device {device}")
     set_seed(cfg["seed"])
 
-    train_transform = transforms.Compose([
-        transforms.Grayscale(num_output_channels=1),
-        # Upscale to ceil(150 * sqrt(2)) = 213 so that a 150x150 centre crop
-        # contains only real image content after any rotation angle.
-        transforms.Resize(213),
-        transforms.RandomRotation(180),
-        transforms.CenterCrop(150),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5], std=[0.5])
-    ])
-
-    # Deterministic transform for val and test — no random ops so metrics are stable
-    eval_transform = transforms.Compose([
-        transforms.Grayscale(num_output_channels=1),
-        transforms.Resize(150),
-        transforms.CenterCrop(150),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5], std=[0.5])
-    ])
+    # Classification uses 3-channel ImageNet-normalised input to match pretrained ResNet50
+    if args.model == 'classification':
+        train_transform = transforms.Compose([
+            transforms.Resize(150),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomVerticalFlip(p=0.5),
+            transforms.RandomRotation(30),
+            transforms.ColorJitter(brightness=0.2, contrast=0.2),
+            transforms.Grayscale(num_output_channels=3),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ])
+        eval_transform = transforms.Compose([
+            transforms.Resize(150),
+            transforms.CenterCrop(150),
+            transforms.Grayscale(num_output_channels=3),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ])
+    else:
+        train_transform = transforms.Compose([
+            transforms.Grayscale(num_output_channels=1),
+            # Upscale to ceil(150 * sqrt(2)) = 213 so that a 150x150 centre crop
+            # contains only real image content after any rotation angle.
+            transforms.Resize(213),
+            transforms.RandomRotation(180),
+            transforms.CenterCrop(150),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5], std=[0.5])
+        ])
+        eval_transform = transforms.Compose([
+            transforms.Grayscale(num_output_channels=1),
+            transforms.Resize(150),
+            transforms.CenterCrop(150),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5], std=[0.5])
+        ])
 
     result = get_data_loaders(
         cfg['data']['dataset'],

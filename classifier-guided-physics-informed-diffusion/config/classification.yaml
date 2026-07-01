@@ -6,7 +6,7 @@ data:
   dataset: crumb
   batch_size: 16
   num_workers: 4
-  input_size: 224
+  input_size: 150
 
 model:
   type: classifier # options: classifier, robust_classifier, diffuser, integrated_diffusion
