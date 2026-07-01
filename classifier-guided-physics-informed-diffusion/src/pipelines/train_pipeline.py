@@ -131,11 +131,12 @@ def train_classification(config, trainloader, valloader, device, result_director
     model.to(device)
 
     num_epochs = config['training']['epochs']
-    optimizer = torch.optim.Adam(
-        model.parameters(),
-        lr=float(config['training']['learning_rate']),
-        weight_decay=float(config['training']['weight_decay']),
-    )
+    lr = float(config['training']['learning_rate'])
+    wd = float(config['training']['weight_decay'])
+    optimizer = torch.optim.Adam([
+        {'params': [p for n, p in model.named_parameters() if not n.startswith('fc')], 'lr': lr * 0.1},
+        {'params': model.fc.parameters(), 'lr': lr},
+    ], weight_decay=wd)
     criterion = nn.CrossEntropyLoss()
     epoch_losses, val_losses = [], []
     best_val_loss = torch.inf
