@@ -64,7 +64,7 @@ def main():
     print(f"On device {device}")
     set_seed(cfg["seed"])
 
-    diffusion_transform = transforms.Compose([
+    train_transform = transforms.Compose([
         transforms.Grayscale(num_output_channels=1),
         # Upscale to ceil(150 * sqrt(2)) = 213 so that a 150x150 centre crop
         # contains only real image content after any rotation angle.
@@ -76,11 +76,19 @@ def main():
         transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
-    active_transform = diffusion_transform
+    # Deterministic transform for val and test — no random ops so metrics are stable
+    eval_transform = transforms.Compose([
+        transforms.Grayscale(num_output_channels=1),
+        transforms.Resize(150),
+        transforms.CenterCrop(150),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.5], std=[0.5])
+    ])
 
     result = get_data_loaders(
         cfg['data']['dataset'],
-        transform=active_transform,
+        transform=train_transform,
+        eval_transform=eval_transform,
         batch_size=cfg['data']['batch_size']
     )
     # mirabest_fits returns a 4th value (the dataset object) for FITS inverse scaling

@@ -95,6 +95,7 @@ Three datasets are supported via the `dataset` key in config:
 - `test_pipeline.py` diffusion path hardcodes a mismatched architecture — it cannot load a checkpoint produced by `train_diffusion`.
 - `evaluators/` directory is empty.
 - `main.py` always uses `diffusion_transform` for data loading regardless of `--model`; classification models receive 150×150 grayscale instead of 224×224 RGB.
+- Val and test loaders now use `eval_transform` (deterministic: no random rotation/flip), so val accuracy is a stable, reliable metric rather than a noisy estimate inflated by random augmentations.
 
 ## Dissertation Change Log
 
@@ -107,3 +108,4 @@ After every edit, append a brief entry here so the user can track all changes fo
 | 2026-06-29 | `test_pipeline.py` | Added `metrics.json` save with `test_accuracy` at end of classification evaluation in `test_model`. |
 | 2026-06-30 | `main.py` | Fixed `classification_transform`: replaced `RandomResizedCrop(224)` (default scale 0.08–1.0, could crop 42×42px patches destroying FR-I/FR-II morphology) with `Resize(224)`. Also moved `Grayscale` to first position and removed `saturation`/`hue` from `ColorJitter` and `GaussianBlur` (both no-ops on grayscale). Root cause of ~50% classification accuracy. |
 | 2026-06-30 | `main.py`, `train_pipeline.py`, `test_pipeline.py` | Reverted classification model to 1-channel input: removed `classification_transform` entirely, restored conv1 surgery on ResNet50 (average RGB pretrained weights to 1-channel), all models now use `diffusion_transform`. The 2026-06-29 fix misdiagnosed the root cause — the real issue was `RandomResizedCrop` (fixed above), not the channel count. |
+| 2026-07-01 | `main.py`, `src/utils/data.py` | Fixed inflated val accuracy: added `eval_transform` (Grayscale → Resize(150) → CenterCrop(150) → ToTensor → Normalize, no random ops) applied to val and test loaders, while training loader keeps augmentation. Also fixed train/val split to use a fixed seed (42) so the split is reproducible across runs. |
