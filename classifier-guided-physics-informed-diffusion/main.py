@@ -66,7 +66,9 @@ def main():
 
     if args.model == 'classification':
         train_transform = transforms.Compose([
-            transforms.Resize(150),
+            transforms.Resize(213),        # upscale so corners stay filled after rotation
+            transforms.RandomRotation(180),  # full 360° — orientation is arbitrary for radio galaxies
+            transforms.CenterCrop(150),
             transforms.RandomHorizontalFlip(),
             transforms.RandomVerticalFlip(p=0.5),
             transforms.Grayscale(num_output_channels=3),
