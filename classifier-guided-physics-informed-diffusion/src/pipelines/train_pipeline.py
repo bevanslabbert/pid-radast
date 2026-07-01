@@ -135,9 +135,6 @@ def train_classification(config, trainloader, valloader, device, result_director
     )
     criterion = nn.CrossEntropyLoss()
     epoch_losses, val_losses = [], []
-    best_val_loss = torch.inf
-    patience = 10
-    patience_counter = 0
     start_epoch = 0
 
     if resume is not None:
@@ -164,14 +161,6 @@ def train_classification(config, trainloader, valloader, device, result_director
         epoch_losses.append(avg_loss)
         avg_val_loss = evaluate_loss(model, valloader, criterion, device)
         val_losses.append(avg_val_loss)
-
-        if avg_val_loss < best_val_loss:
-            best_val_loss = avg_val_loss
-            patience_counter = 0
-        else:
-            patience_counter += 1
-            if patience_counter > patience:
-                break
 
         print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
 
