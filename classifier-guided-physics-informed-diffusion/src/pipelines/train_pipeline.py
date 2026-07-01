@@ -125,10 +125,6 @@ def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, in
 def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
     model = resnet50(pretrained=True)
     num_classes = config['data']['num_classes']
-    # Adapt conv1 for 1-channel grayscale input; average pretrained RGB weights across channels
-    pretrained_w = model.conv1.weight.data.clone()
-    model.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
-    model.conv1.weight.data = pretrained_w.mean(dim=1, keepdim=True)
     model.fc = nn.Linear(model.fc.in_features, num_classes)
     model.to(device)
 
