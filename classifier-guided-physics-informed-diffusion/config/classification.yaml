@@ -18,9 +18,9 @@ model:
   checkpoint_dir: ./checkpoints
 
 training:
-  learning_rate: 0.001
-  weight_decay: 0.0001
-  batch_size: 16
+  learning_rate: 0.00013440266015943834
+  weight_decay: 0.00021222586235768734
+  batch_size: 32
   epochs: 100
 
 optimization:
