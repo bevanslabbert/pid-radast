@@ -12,6 +12,7 @@ import torchvision
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.models.diffusion import build_diffusion_components, eval_epoch
 from src.models.pid import estimate_x0, symmetry_loss, nonnegativity_loss
+from torchvision.models import resnet50
 from src.models.simple_cnn import SimpleCNN
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
@@ -124,7 +125,9 @@ def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, in
 
 def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
     num_classes = config['data']['num_classes']
-    model = SimpleCNN(num_classes=num_classes)
+    model = resnet50(pretrained=True)
+
+    model.fc = nn.Linear(model.fc.in_features, num_classes)
     model.to(device)
 
     num_epochs = config['training']['epochs']
@@ -135,6 +138,8 @@ def train_classification(config, trainloader, valloader, device, result_director
     )
     criterion = nn.CrossEntropyLoss()
     epoch_losses, val_losses = [], []
+    best_val_loss = torch.inf
+    best_state = None
     start_epoch = 0
 
     if resume is not None:
@@ -162,7 +167,12 @@ def train_classification(config, trainloader, valloader, device, result_director
         avg_val_loss = evaluate_loss(model, valloader, criterion, device)
         val_losses.append(avg_val_loss)
 
-        print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
+        if avg_val_loss < best_val_loss:
+            best_val_loss = avg_val_loss
+            best_state = {k: v.clone() for k, v in model.state_dict().items()}
+            print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f} (best)')
+        else:
+            print(f'Epoch {epoch}, Training Loss: {avg_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
 
         if checkpoint is not None:
             save_checkpoint(
@@ -171,6 +181,11 @@ def train_classification(config, trainloader, valloader, device, result_director
                  'loss': loss, 'config': config},
                 f'{CHECKPOINT_DIR}/classification',
             )
+
+    # Restore best weights before returning
+    if best_state is not None:
+        model.load_state_dict(best_state)
+        print(f"Restored best model (val loss {best_val_loss:.4f})")
 
     plt.figure(figsize=(8, 5))
     plt.plot(epoch_losses, label='Training Loss', marker='o')

@@ -30,7 +30,7 @@ class SimpleCNN(nn.Module):
             nn.MaxPool2d(2),
         )
         self.pool = nn.AdaptiveAvgPool2d(1)
-        self.dropout = nn.Dropout(p=0.5)
+        self.dropout = nn.Dropout(p=0.6)
         self.classifier = nn.Linear(256, num_classes)
 
     def forward(self, x):

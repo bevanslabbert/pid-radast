@@ -19,7 +19,7 @@ model:
 
 training:
   learning_rate: 0.00013440266015943834
-  weight_decay: 0.00021222586235768734
+  weight_decay: 0.001
   batch_size: 32
   epochs: 100
 

@@ -66,20 +66,19 @@ def main():
 
     if args.model == 'classification':
         train_transform = transforms.Compose([
-            transforms.Grayscale(num_output_channels=1),
             transforms.Resize(150),
             transforms.RandomHorizontalFlip(),
             transforms.RandomVerticalFlip(p=0.5),
-            transforms.RandomRotation(30),
+            transforms.Grayscale(num_output_channels=3),
             transforms.ToTensor(),
-            transforms.Normalize(mean=[0.5], std=[0.5])
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ])
         eval_transform = transforms.Compose([
-            transforms.Grayscale(num_output_channels=1),
             transforms.Resize(150),
             transforms.CenterCrop(150),
+            transforms.Grayscale(num_output_channels=3),
             transforms.ToTensor(),
-            transforms.Normalize(mean=[0.5], std=[0.5])
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ])
     else:
         train_transform = transforms.Compose([
