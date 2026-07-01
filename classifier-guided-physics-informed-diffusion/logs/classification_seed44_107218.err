@@ -1,5 +1,0 @@
-/var/lib/slurm/slurmd/job107218/slurm_script: line 15: .venv/bin/activate: No such file or directory
-Traceback (most recent call last):
-  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 1, in <module>
-    import torch
-ModuleNotFoundError: No module named 'torch'

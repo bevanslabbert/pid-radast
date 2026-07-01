@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 9, in <module>
-    from src.pipelines.train_pipeline import train_model
-  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 19, in <module>
-    from src.utils.metrics import generate_class_samples, compute_fid_kid, compute_pixel_pdf
-  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/metrics.py", line 6, in <module>
-    from torchmetrics.image.fid import FrechetInceptionDistance
-ModuleNotFoundError: No module named 'torchmetrics'
