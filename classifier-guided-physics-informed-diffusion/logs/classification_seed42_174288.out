@@ -1,0 +1,38 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mirabest
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Channels (3 for RGB, 1 for Gray): 3
+Height: 150 pixels
+Width: 150 pixels
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 770
+Total batches: 35 (at batch size 16)
+
+============================================================
+Run 1/1  |  seed=42  |  results -> results/classification/run_20260701_152734_seed42
+============================================================
+
+Training classification for 100 epochs
+Epoch 0
+Epoch 0, Training Loss: 0.4759, Validation Loss: 0.4895 (best)
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 1
+Epoch 1, Training Loss: 0.3191, Validation Loss: 0.4066 (best)
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 2
+Epoch 2, Training Loss: 0.2566, Validation Loss: 0.6936
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 3
+Epoch 3, Training Loss: 0.2411, Validation Loss: 0.3149 (best)
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 4
+Epoch 4, Training Loss: 0.2150, Validation Loss: 0.5615
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 5
+Epoch 5, Training Loss: 0.1644, Validation Loss: 0.6404
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 6

@@ -78,3 +78,75 @@ Epoch 21
 Epoch 21, Training Loss: 0.2602, Validation Loss: 0.7385
 --- Saved model to checkpoints/classification/state.pt ---
 Epoch 22
+Epoch 22, Training Loss: 0.2586, Validation Loss: 0.6321
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 23
+Epoch 23, Training Loss: 0.2403, Validation Loss: 0.7330
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 24
+Epoch 24, Training Loss: 0.2330, Validation Loss: 0.7557
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 25
+Epoch 25, Training Loss: 0.2173, Validation Loss: 0.8082
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 26
+Epoch 26, Training Loss: 0.2228, Validation Loss: 0.6036
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 27
+Epoch 27, Training Loss: 0.2308, Validation Loss: 0.5861
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 28
+Epoch 28, Training Loss: 0.2071, Validation Loss: 0.6901
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 29
+Epoch 29, Training Loss: 0.1935, Validation Loss: 0.6471
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 30
+Epoch 30, Training Loss: 0.1950, Validation Loss: 0.5792
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 31
+Epoch 31, Training Loss: 0.1696, Validation Loss: 0.6769
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 32
+Epoch 32, Training Loss: 0.1834, Validation Loss: 0.6732
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 33
+Epoch 33, Training Loss: 0.2383, Validation Loss: 0.6825
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 34
+Epoch 34, Training Loss: 0.1698, Validation Loss: 0.8566
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 35
+Epoch 35, Training Loss: 0.1821, Validation Loss: 0.8818
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 36
+Epoch 36, Training Loss: 0.1437, Validation Loss: 0.7681
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 37
+Epoch 37, Training Loss: 0.1778, Validation Loss: 0.6408
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 38
+Epoch 38, Training Loss: 0.1661, Validation Loss: 0.7292
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 39
+Epoch 39, Training Loss: 0.1541, Validation Loss: 0.7181
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 40
+Epoch 40, Training Loss: 0.1584, Validation Loss: 0.7165
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 41
+Epoch 41, Training Loss: 0.1301, Validation Loss: 0.9090
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 42
+Epoch 42, Training Loss: 0.1472, Validation Loss: 0.8781
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 43
+Epoch 43, Training Loss: 0.1540, Validation Loss: 0.6867
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 44
+Epoch 44, Training Loss: 0.1545, Validation Loss: 0.7163
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 45
+Epoch 45, Training Loss: 0.1733, Validation Loss: 0.7089
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 46
