@@ -9,9 +9,9 @@ import torch.nn.functional as F
 import torch.utils.data as tud
 import yaml
 from diffusers import UNet2DConditionModel, DDPMScheduler
-from torchvision.models import resnet50
 
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
+from src.models.simple_cnn import SimpleCNN
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.models.pid import estimate_x0, physics_loss
 from src.utils.augmentation import pgd_attack_early_stop, get_noisy_image, get_max_timestep
@@ -69,12 +69,7 @@ def _objective_classification(params, cfg, trainloader, valloader, device, datas
     else:
         trial_loader = trainloader
 
-    model = resnet50(pretrained=True)
-    # Adapt conv1 for 1-channel grayscale input (same as train_classification).
-    original_weight = model.conv1.weight.data
-    model.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
-    model.conv1.weight.data = original_weight.mean(dim=1, keepdim=True)
-    model.fc = nn.Linear(model.fc.in_features, num_classes)
+    model = SimpleCNN(num_classes=num_classes)
     model.to(device)
 
     optimizer = torch.optim.Adam(

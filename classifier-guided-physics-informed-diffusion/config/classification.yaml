@@ -18,8 +18,8 @@ model:
   checkpoint_dir: ./checkpoints
 
 training:
-  learning_rate: 1.6850506699025968e-05
-  weight_decay: 0.009500082335089189
+  learning_rate: 0.001
+  weight_decay: 0.0001
   batch_size: 16
   epochs: 100
 
@@ -27,8 +27,8 @@ optimization:
   method: bayesian
   max_trials: 25
   parameters:
-    learning_rate: { min: 0.00001, max: 0.01, log: true }
-    weight_decay: { min: 0.00001, max: 0.1, log: true }
+    learning_rate: { min: 0.0001, max: 0.01, log: true }
+    weight_decay: { min: 0.00001, max: 0.01, log: true }
     batch_size: { choices: [8, 16, 32] }
 
 evaluation:

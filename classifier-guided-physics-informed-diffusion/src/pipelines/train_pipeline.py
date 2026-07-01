@@ -8,11 +8,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
-from torchvision.models import resnet50
 
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.models.diffusion import build_diffusion_components, eval_epoch
 from src.models.pid import estimate_x0, symmetry_loss, nonnegativity_loss
+from src.models.simple_cnn import SimpleCNN
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
 from src.utils.checkpoint import save_checkpoint, load_checkpoint
@@ -123,9 +123,8 @@ def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, in
 # ---------------------------------------------------------------------------
 
 def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
-    model = resnet50(pretrained=True)
     num_classes = config['data']['num_classes']
-    model.fc = nn.Linear(model.fc.in_features, num_classes)
+    model = SimpleCNN(num_classes=num_classes)
     model.to(device)
 
     num_epochs = config['training']['epochs']
