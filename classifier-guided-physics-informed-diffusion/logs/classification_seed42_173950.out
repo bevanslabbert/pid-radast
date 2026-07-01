@@ -1,0 +1,49 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 2003
+Total batches: 86 (at batch size 16)
+
+============================================================
+Run 1/1  |  seed=42  |  results -> results/classification/run_20260701_132928_seed42
+============================================================
+
+Training classification for 100 epochs
+Epoch 0
+Epoch 0, Training Loss: 0.6973, Validation Loss: 0.7311
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 1
+Epoch 1, Training Loss: 0.6826, Validation Loss: 0.7386
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 2
+Epoch 2, Training Loss: 0.6426, Validation Loss: 5.3793
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 3
+Epoch 3, Training Loss: 0.6186, Validation Loss: 1.4275
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 4
+Epoch 4, Training Loss: 0.6339, Validation Loss: 5.8997
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 5
+Epoch 5, Training Loss: 0.6096, Validation Loss: 4.3158
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 6
+Epoch 6, Training Loss: 0.6067, Validation Loss: 2.0987
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 7
+Epoch 7, Training Loss: 0.5981, Validation Loss: 1.1081
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 8
+Epoch 8, Training Loss: 0.5864, Validation Loss: 7.6406
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 9
+Epoch 9, Training Loss: 0.5816, Validation Loss: 0.8993
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 10
+Epoch 10, Training Loss: 0.5802, Validation Loss: 8.3974
+--- Saved model to checkpoints/classification/state.pt ---
+Epoch 11
+Testing model
+Accuracy: 50.00%
