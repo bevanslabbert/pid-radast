@@ -125,14 +125,20 @@ def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, in
 
 def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
     num_classes = config['data']['num_classes']
+    dropout_p = float(config['model'].get('dropout', 0.2))
     model = resnet18(pretrained=True)
 
-    # Freeze layer1 and layer2 — preserve generic low-level features.
+    # Freeze layer1-layer3 — preserve generic low/mid-level features. Only
+    # layer4 + fc are fine-tuned, since the CRUMB train split (~1.4k images)
+    # is too small to fine-tune the full backbone without overfitting.
     for name, param in model.named_parameters():
-        if name.startswith('layer1') or name.startswith('layer2'):
+        if name.startswith('layer1') or name.startswith('layer2') or name.startswith('layer3'):
             param.requires_grad = False
 
-    model.fc = nn.Linear(model.fc.in_features, num_classes)
+    model.fc = nn.Sequential(
+        nn.Dropout(p=dropout_p),
+        nn.Linear(model.fc.in_features, num_classes),
+    )
     model.to(device)
 
     num_epochs = config['training']['epochs']
