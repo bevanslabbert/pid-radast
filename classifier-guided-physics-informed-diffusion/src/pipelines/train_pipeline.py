@@ -199,6 +199,14 @@ def train_classification(config, trainloader, valloader, device, result_director
         model.load_state_dict(best_state)
         print(f"Restored best model (val loss {best_val_loss:.4f})")
 
+        if checkpoint is not None:
+            save_checkpoint(
+                {'epoch': num_epochs - 1, 'model_state_dict': model.state_dict(),
+                 'optimizer_state_dict': optimizer.state_dict(),
+                 'loss': loss, 'config': config, 'best_val_loss': best_val_loss},
+                f'{CHECKPOINT_DIR}/classification',
+            )
+
     plt.figure(figsize=(8, 5))
     plt.plot(epoch_losses, label='Training Loss', marker='o')
     plt.plot(val_losses, label='Validation Loss', marker='s')
