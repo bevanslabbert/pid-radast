@@ -11,6 +11,7 @@ Usage:
 import argparse
 import os
 import random
+import sys
 
 import matplotlib
 matplotlib.use('Agg')
@@ -21,6 +22,7 @@ import torch.nn.functional as F
 import torchvision.transforms as transforms
 from torchvision.models import resnet18
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.utils.config import load_config
 from src.utils.checkpoint import load_checkpoint
 from src.utils.data import get_data_loaders
