@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/sanity_check_classifier.py", line 24, in <module>
+    from src.utils.config import load_config
+ModuleNotFoundError: No module named 'src'
