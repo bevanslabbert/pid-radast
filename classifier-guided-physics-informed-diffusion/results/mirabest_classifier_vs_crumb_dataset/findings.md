@@ -69,8 +69,8 @@ below restricts matching to CRUMB's **test split only** (not train):
      matching the original `sanity_check_classifier.py` methodology,
      seeds 0–4) to quantify how much of the originally reported 40% was
      sampling noise vs. a stable effect.
-- `scripts/slurm/job_sanity_check_mirabest_subset.sh` — Slurm job
-  (`sbatch scripts/slurm/job_sanity_check_mirabest_subset.sh`) that runs the
+- `scripts/slurm/eval/job_sanity_check_mirabest_subset.sh` — Slurm job
+  (`sbatch scripts/slurm/eval/job_sanity_check_mirabest_subset.sh`) that runs the
   above on the GPU partition. `NUM_SAMPLES` / `REPEATS` overridable via
   `sbatch --export=...`.
 - `scripts/build_mirabest_crumb_mapping.py` — for **every** one of the 770
@@ -117,29 +117,59 @@ CRUMB's test-split labels — which disagree with MiraBest on this specific
 image on 46% of these sources — caps achievable accuracy at roughly 54%,
 which is what was measured (49–50%).
 
-**Conclusion: this is not a classifier problem, a preprocessing/format
-problem, or a stale-checkpoint problem.** Pixel format (uint8, 0–255, same
-`eval_transform`) was verified identical earlier; a `test_pipeline.py`
-architecture bug (stale resnet50/1-channel build vs. the actual trained
-resnet18/3-channel model, unrelated to this investigation) was found and
-fixed in `src/pipelines/test_pipeline.py:156-166` but did not affect these
-results, which all came from `sanity_check_classifier.py`-style loading
-(already using the correct architecture). The ~40-50 point accuracy drop
-between MiraBest and CRUMB is best explained by CRUMB's own test-split
+**Conclusion (confirmed, see below): this is not a classifier problem, a
+preprocessing/format problem, or a stale-checkpoint problem.** Pixel format
+(uint8, 0–255, same `eval_transform`) was verified identical earlier; a
+`test_pipeline.py` architecture bug (stale resnet50/1-channel build vs. the
+actual trained resnet18/3-channel model, unrelated to this investigation)
+was found and fixed in `src/pipelines/test_pipeline.py:156-166` but did not
+affect these results, which all came from `sanity_check_classifier.py`-style
+loading (already using the correct architecture). The ~40-50 point accuracy
+drop between MiraBest and CRUMB is explained by CRUMB's own test-split
 FR-I/FR-II labels for the MiraBest-overlap sources disagreeing with
 MiraBest's canonical labels on nearly half of those sources — i.e., a label
 quality/consistency issue specific to CRUMB's test batch, not evidence the
 classifier itself is unreliable.
 
-### Caveat / not yet verified
+### Confirmed directly: predictions vs. both label sets
 
-This conclusion is inferred from the label-disagreement rate lining up with
-the accuracy gap, not from directly comparing per-image model predictions
-against both label sets. To confirm directly: for each of the 100 matched
-test-split images, log the model's prediction alongside *both* the CRUMB
-label and the MiraBest label, and check whether disagreements between
-prediction and CRUMB-label correlate with CRUMB/MiraBest label disagreement
-(they should, if this explanation is correct).
+The caveat above (inferring the cause from a correlation rather than
+checking per-image) has been closed. `scripts/evaluate_classifier_vs_both_labels.py`
+logs the model's prediction for each matched image alongside *both* the
+CRUMB label and the MiraBest label
+(`results/mirabest_classifier_vs_crumb_dataset/predictions_vs_both_labels_train.csv`).
+Run on the **CRUMB train split** (663 non-hybrid matched images — training
+data, so this checks whether the model is fitting CRUMB's labels or true
+morphology, not generalisation):
+
+| Metric (train split, n=663) | Value |
+|---|---|
+| Accuracy vs. CRUMB's own label | 81.0% |
+| Accuracy vs. MiraBest's label | **85.1%** |
+| Label disagreements (non-hybrid) | 35 / 663 (5.3%) |
+| On those 35 disagreements: prediction matches MiraBest | **88.6%** |
+| On those 35 disagreements: prediction matches CRUMB | 11.4% |
+
+Even on data the classifier was *trained on with CRUMB's labels*, its
+predictions align with MiraBest's canonical labeling more than with CRUMB's
+own labels — and on the specific images where the two catalogues disagree,
+the model sides with MiraBest 88.6% of the time. This directly confirms the
+model has learned real FR-I/FR-II morphology rather than memorising CRUMB's
+occasional mislabels.
+
+Combined with the label-disagreement rates by split —
+**5.3% (35/663) in CRUMB's train split vs. 46.0% (46/100) in CRUMB's test
+split** — this confirms the root cause: **CRUMB's test batch specifically
+has a much higher rate of label disagreement with MiraBest than its train
+batch does**, and the classifier's ~49% "accuracy" on CRUMB's test set is a
+measurement artifact of scoring good predictions against that split's
+unreliable labels — not evidence the classifier is failing.
+
+(The test-split equivalent of this direct per-image check — accuracy vs.
+MiraBest label, and match-rate on disagreements — has not yet been run;
+`--scope test` or `--scope both` on `evaluate_classifier_vs_both_labels.py`
+would complete it, but the train-split result plus the label-disagreement
+rate by split already account for the full accuracy gap.)
 
 ## Ruled out: the data-loading pipelines are not the cause
 

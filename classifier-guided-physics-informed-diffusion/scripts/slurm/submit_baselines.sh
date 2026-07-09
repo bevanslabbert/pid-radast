@@ -22,7 +22,7 @@ for SEED in "${SEEDS[@]}"; do
         --error="$ROOT/logs/classification_seed${SEED}_${COMMIT}_%j.err" \
         --chdir="$ROOT" \
         --export=ALL,SEED=$SEED \
-        "$SCRIPT_DIR/job_classification.sh"
+        "$SCRIPT_DIR/train/job_classification.sh"
     echo "  submitted classification seed=$SEED"
 done
 
@@ -34,7 +34,7 @@ for SEED in "${SEEDS[@]}"; do
         --error="$ROOT/logs/robustcls_seed${SEED}_${COMMIT}_%j.err" \
         --chdir="$ROOT" \
         --export=ALL,SEED=$SEED \
-        "$SCRIPT_DIR/job_robust_classification.sh"
+        "$SCRIPT_DIR/train/job_robust_classification.sh"
     echo "  submitted robust_classification seed=$SEED"
 done
 
@@ -46,7 +46,7 @@ for SEED in "${SEEDS[@]}"; do
         --error="$ROOT/logs/diffusion_seed${SEED}_${COMMIT}_%j.err" \
         --chdir="$ROOT" \
         --export=ALL,SEED=$SEED \
-        "$SCRIPT_DIR/job_diffusion.sh"
+        "$SCRIPT_DIR/train/job_diffusion.sh"
     echo "  submitted diffusion seed=$SEED"
 done
 
@@ -58,7 +58,7 @@ for SEED in "${SEEDS[@]}"; do
         --error="$ROOT/logs/pid_seed${SEED}_${COMMIT}_%j.err" \
         --chdir="$ROOT" \
         --export=ALL,SEED=$SEED \
-        "$SCRIPT_DIR/job_pid.sh"
+        "$SCRIPT_DIR/train/job_pid.sh"
     echo "  submitted pid seed=$SEED"
 done
 

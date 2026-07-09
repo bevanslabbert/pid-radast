@@ -34,7 +34,7 @@ for SEED in "${SEEDS[@]}"; do
         --error="$ROOT/logs/cgd_seed${SEED}_${COMMIT}_%j.err" \
         --chdir="$ROOT" \
         --export=ALL,SEED=$SEED \
-        "$SCRIPT_DIR/job_classifier_guided_diffusion.sh"
+        "$SCRIPT_DIR/train/job_classifier_guided_diffusion.sh"
     echo "  submitted classifier_guided_diffusion seed=$SEED"
 done
 
@@ -46,7 +46,7 @@ for SEED in "${SEEDS[@]}"; do
         --error="$ROOT/logs/rcgd_seed${SEED}_${COMMIT}_%j.err" \
         --chdir="$ROOT" \
         --export=ALL,SEED=$SEED \
-        "$SCRIPT_DIR/job_robust_classifier_guided_diffusion.sh"
+        "$SCRIPT_DIR/train/job_robust_classifier_guided_diffusion.sh"
     echo "  submitted robust_classifier_guided_diffusion seed=$SEED"
 done
 

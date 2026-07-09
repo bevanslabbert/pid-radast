@@ -26,7 +26,7 @@ sbatch \
     --output="$ROOT/logs/tune_classification_${COMMIT}_%j.out" \
     --error="$ROOT/logs/tune_classification_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
-    "$SCRIPT_DIR/job_tune_classification.sh"
+    "$SCRIPT_DIR/tune/job_tune_classification.sh"
 
 echo "Submitting tuning job: robust_classification..."
 sbatch \
@@ -34,7 +34,7 @@ sbatch \
     --output="$ROOT/logs/tune_robustcls_${COMMIT}_%j.out" \
     --error="$ROOT/logs/tune_robustcls_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
-    "$SCRIPT_DIR/job_tune_robust_classification.sh"
+    "$SCRIPT_DIR/tune/job_tune_robust_classification.sh"
 
 echo "Submitting tuning job: diffusion..."
 sbatch \
@@ -42,7 +42,7 @@ sbatch \
     --output="$ROOT/logs/tune_diffusion_${COMMIT}_%j.out" \
     --error="$ROOT/logs/tune_diffusion_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
-    "$SCRIPT_DIR/job_tune_diffusion.sh"
+    "$SCRIPT_DIR/tune/job_tune_diffusion.sh"
 
 echo "Submitting tuning job: pid..."
 sbatch \
@@ -50,7 +50,7 @@ sbatch \
     --output="$ROOT/logs/tune_pid_${COMMIT}_%j.out" \
     --error="$ROOT/logs/tune_pid_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
-    "$SCRIPT_DIR/job_tune_pid.sh"
+    "$SCRIPT_DIR/tune/job_tune_pid.sh"
 
 echo ""
 echo "4 tuning jobs submitted. Monitor with: squeue -u $USER"

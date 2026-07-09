@@ -31,7 +31,7 @@ sbatch \
     --output="$ROOT/logs/tune_cgd_${COMMIT}_%j.out" \
     --error="$ROOT/logs/tune_cgd_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
-    "$SCRIPT_DIR/job_tune_classifier_guided_diffusion.sh"
+    "$SCRIPT_DIR/tune/job_tune_classifier_guided_diffusion.sh"
 
 echo "Submitting tuning job: robust_classifier_guided_diffusion..."
 sbatch \
@@ -39,7 +39,7 @@ sbatch \
     --output="$ROOT/logs/tune_rcgd_${COMMIT}_%j.out" \
     --error="$ROOT/logs/tune_rcgd_${COMMIT}_%j.err" \
     --chdir="$ROOT" \
-    "$SCRIPT_DIR/job_tune_robust_classifier_guided_diffusion.sh"
+    "$SCRIPT_DIR/tune/job_tune_robust_classifier_guided_diffusion.sh"
 
 echo ""
 echo "2 tuning jobs submitted. Monitor with: squeue -u $USER"
