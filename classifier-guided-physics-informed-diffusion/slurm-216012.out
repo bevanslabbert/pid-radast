@@ -1,0 +1,16 @@
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+On device cuda
+Evaluating 663 matched images (crumb_split in ['train']), skipped 2 matched to a CRUMB hybrid-class image
+
+n=663
+Accuracy vs CRUMB label:    81.0%
+Accuracy vs MiraBest label: 85.1%
+
+On the 35 images where CRUMB/MiraBest labels disagree:
+  model prediction matches MiraBest: 88.6%
+  model prediction matches CRUMB:    11.4%
+
+Wrote results/mirabest_classifier_vs_crumb_dataset/predictions_vs_both_labels_train.csv
