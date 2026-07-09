@@ -1,0 +1,18 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mirabest_fits
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1221
+Total batches: 107 (at batch size 8)
+
+============================================================
+Run 1/5  |  seed=2042  |  tag=acc90guided_seed2042  |  results -> results/classifier_guided_diffusion/run_20260709_193636_seed2042
+============================================================
+
+Training classifier_guided_diffusion for 200 epochs
+Loaded guidance classifier (classification) from checkpoints/classification/acc90
+Loaded pre-trained diffusion weights from checkpoints/diffusion
+Epoch 0
