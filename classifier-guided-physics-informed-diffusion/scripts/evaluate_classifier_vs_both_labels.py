@@ -10,6 +10,7 @@ Usage:
 import argparse
 import csv
 import os
+import re
 import sys
 
 import torch
@@ -27,6 +28,12 @@ CHECKPOINT_DIR = 'checkpoints'
 CLASS_NAMES = ['FR-I', 'FR-II']  # index 0 = FRI/100, index 1 = FRII/200
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
+
+# CRUMB.py strips the first 31 chars off every filename in __init__, so
+# ds.filenames won't match the untrimmed filenames stored in the mapping
+# CSV. Match by coordinate (parsed from the filename suffix, which survives
+# the trimming) instead of by exact filename string.
+CRUMB_COORD_RE = re.compile(r'([+-]?\d+\.\d+)_([+-]\d+\.\d+)\.png$')
 
 CRUMB_TO_IDX = {'FRI': 0, 'FRII': 1}
 MIRABEST_TO_IDX = {'100': 0, '200': 1}
@@ -77,13 +84,20 @@ def main():
     mapping_rows = [r for r in mapping_rows if r['crumb_split'] in scopes and r['crumb_filename']]
     print(f"Evaluating {len(mapping_rows)} matched images (crumb_split in {scopes})")
 
-    # Build filename -> dataset index for each needed split, loaded once.
+    # Build (RA, Dec) -> dataset index for each needed split, loaded once.
+    # Matched by coordinate rather than filename string since CRUMB.py
+    # strips a filename prefix in __init__ (see CRUMB_COORD_RE comment above).
     datasets = {}
-    filename_to_idx = {}
+    coord_to_idx = {}
     for split in scopes:
         ds = CRUMB(root='./batches', train=(split == 'train'), download=True, transform=eval_transform)
         datasets[split] = ds
-        filename_to_idx[split] = {fn: i for i, fn in enumerate(ds.filenames)}
+        idx_map = {}
+        for i, fn in enumerate(ds.filenames):
+            m = CRUMB_COORD_RE.search(fn)
+            if m:
+                idx_map[(float(m.group(1)), float(m.group(2)))] = i
+        coord_to_idx[split] = idx_map
 
     num_classes = len(CLASS_NAMES)
     dropout_p = float(cfg['model'].get('dropout', 0.2))
@@ -93,7 +107,8 @@ def main():
     with torch.no_grad():
         for row in mapping_rows:
             split = row['crumb_split']
-            idx = filename_to_idx[split][row['crumb_filename']]
+            coord = (float(row['crumb_ra']), float(row['crumb_dec']))
+            idx = coord_to_idx[split][coord]
             image, _ = datasets[split][idx]
 
             logits = model(image.unsqueeze(0).to(device))
