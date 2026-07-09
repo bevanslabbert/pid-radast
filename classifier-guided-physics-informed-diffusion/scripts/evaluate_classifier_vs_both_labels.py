@@ -81,8 +81,13 @@ def main():
         mapping_rows = list(csv.DictReader(f))
 
     scopes = ['train', 'test'] if args.scope == 'both' else [args.scope]
-    mapping_rows = [r for r in mapping_rows if r['crumb_split'] in scopes and r['crumb_filename']]
-    print(f"Evaluating {len(mapping_rows)} matched images (crumb_split in {scopes})")
+    all_matched = [r for r in mapping_rows if r['crumb_split'] in scopes and r['crumb_filename']]
+    # Nearest-match search in build_mirabest_crumb_mapping.py doesn't exclude
+    # CRUMB's hybrid class; drop those here since the classifier is binary.
+    mapping_rows = [r for r in all_matched if r['crumb_label'] != 'Hyb']
+    n_hybrid = len(all_matched) - len(mapping_rows)
+    print(f"Evaluating {len(mapping_rows)} matched images (crumb_split in {scopes}), "
+          f"skipped {n_hybrid} matched to a CRUMB hybrid-class image")
 
     # Build (RA, Dec) -> dataset index for each needed split, loaded once.
     # Matched by coordinate rather than filename string since CRUMB.py
