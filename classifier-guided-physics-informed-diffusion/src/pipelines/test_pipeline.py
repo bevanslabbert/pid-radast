@@ -156,9 +156,12 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
     elif model_type == 'classification':
         num_classes = config['data']['num_classes']
         if model is None:
-            model = resnet50(pretrained=False)
-            model.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
-            model.fc = nn.Linear(model.fc.in_features, num_classes)
+            dropout_p = float(config['model'].get('dropout', 0.2))
+            model = resnet18(pretrained=False)
+            model.fc = nn.Sequential(
+                nn.Dropout(p=dropout_p),
+                nn.Linear(model.fc.in_features, num_classes),
+            )
             checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
             model.load_state_dict(checkpoint['model_state_dict'])
         model.to(device)
