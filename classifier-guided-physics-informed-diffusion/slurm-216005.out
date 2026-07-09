@@ -1,0 +1,13 @@
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+On device cuda
+Evaluating 665 matched images (crumb_split in ['train'])
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_classifier_vs_both_labels.py", line 148, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_classifier_vs_both_labels.py", line 96, in main
+    idx = filename_to_idx[split][row['crumb_filename']]
+          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: './CombinedCat/PNG/Scaled_Final/162.947_+055.386.png'
