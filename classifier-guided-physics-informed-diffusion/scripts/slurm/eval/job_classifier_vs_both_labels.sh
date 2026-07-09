@@ -17,4 +17,5 @@ source .venv/bin/activate
 
 python scripts/evaluate_classifier_vs_both_labels.py \
     --config config/classification.yaml \
-    --scope ${SCOPE:-train}
+    --scope ${SCOPE:-train} \
+    ${TAG:+--tag $TAG}

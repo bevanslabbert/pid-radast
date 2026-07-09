@@ -70,13 +70,14 @@ def load_mirabest_coords(mirabest_batches_dir):
     return coords
 
 
-def build_model(num_classes, dropout_p, device):
+def build_model(num_classes, dropout_p, device, tag=None):
     model = resnet18(pretrained=False)
     model.fc = nn.Sequential(
         nn.Dropout(p=dropout_p),
         nn.Linear(model.fc.in_features, num_classes),
     )
-    checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
+    ckpt_dir = f'{CHECKPOINT_DIR}/classification' + (f'/{tag}' if tag else '')
+    checkpoint = load_checkpoint(ckpt_dir, device)
     model.load_state_dict(checkpoint['model_state_dict'])
     model.to(device)
     model.eval()
@@ -121,6 +122,9 @@ def main():
     parser.add_argument("--tolerance-deg", type=float, default=COORD_TOLERANCE_DEG)
     parser.add_argument("--num-samples", type=int, default=100, help="Samples per random-sample run")
     parser.add_argument("--repeats", type=int, default=5, help="Number of random-sample runs per scope")
+    parser.add_argument("--tag", default=None,
+                         help="Load checkpoints/classification/<tag> instead of the untagged "
+                              "checkpoints/classification default.")
     args = parser.parse_args()
 
     cfg = load_config(args.config)
@@ -163,7 +167,7 @@ def main():
 
     num_classes = len(CLASS_NAMES)
     dropout_p = float(cfg['model'].get('dropout', 0.2))
-    model = build_model(num_classes, dropout_p, device)
+    model = build_model(num_classes, dropout_p, device, tag=args.tag)
 
     results = {}
     for label, ds in (("full_crumb", full_crumb_set), ("mirabest_subset", mirabest_subset)):

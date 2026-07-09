@@ -1,17 +1,8 @@
-experiment_name: mirabest_robust_classification_v1
 seed: 42
-device: cuda
 
 data:
   dataset: mirabest
   batch_size: 16
-  num_workers: 4
-  input_size: 150
-
-model:
-  backbone: resnet50
-  pretrained: true
-  checkpoint_dir: ./checkpoints
 
 training:
   learning_rate: 0.003197267211783691
@@ -24,29 +15,18 @@ training:
     epsilon: 0.09220277726992455
     alpha: 0.0012337144983744607
     num_steps: 40
+    random_start: true # random delta initialisation (stronger attacks; recommended)
 
   epochs: 200
   label_smoothing: 0.05 # reduced from 0.1; small dataset benefits from less smoothing
   num_timesteps: 1000
 
-  pgd:
-    random_start: true # random delta initialisation (stronger attacks; recommended)
-
 optimization:
-  method: bayesian
   max_trials: 25
   parameters:
     learning_rate: { min: 0.0001, max: 0.1, log: true }
     weight_decay: { min: 0.00001, max: 0.01, log: true }
     momentum: { min: 0.85, max: 0.99 }
-    warmup_epochs: { choices: [10, 20, 30] }
-    transition_epochs: { choices: [10, 15, 20] }
-    trades_beta: { min: 1.0, max: 10.0 }
     "pgd.epsilon": { min: 0.01, max: 0.1, log: true }
     "pgd.alpha": { min: 0.001, max: 0.02, log: true }
     "pgd.num_steps": { choices: [10, 20, 40] }
-
-evaluation:
-  metrics: [accuracy, precision, recall, f1]
-  save_predictions: true
-  output_dir: ./results

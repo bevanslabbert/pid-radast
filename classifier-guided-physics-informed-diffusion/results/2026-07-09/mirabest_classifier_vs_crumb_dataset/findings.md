@@ -199,3 +199,52 @@ differences in the source PNGs themselves (re-encoding artifacts), not
 introduced by the loading/transform code. **This rules out the data-loader
 pipeline as an explanation** — the accuracy gap is not a preprocessing bug,
 it's the CRUMB test-split label inconsistency documented above.
+
+## Deeper root cause: it's a label/metadata misalignment bug in CRUMB's own `test_batch` pickle, not a parent-dataset labeling disagreement
+
+An initial hypothesis (since retracted) was that CRUMB merges four independently
+labeled parent catalogues — MiraBest (Miraghaei & Best 2017), FR-DEEP (Tang,
+Scaife & Leahy 2019, via CoNFIG/FRICAT), AT17 (Aniyan & Thorat 2017, via
+CoNFIG/FRICAT), and MiraBest Hybrid — and that CRUMB's "basic" label for a
+MiraBest-overlap source might be inherited from one of the other three
+catalogues instead of from MiraBest, explaining the disagreement. This was
+checked directly and does not hold up.
+
+**Method.** `CRUMB_batches.tar.gz` was extracted locally and each pickle's
+`complete_labels` field (a 4-column array: col 0 = MiraBest's own fine-grained
+FR code, col 1 = FR-DEEP, col 2 = AT17, col 3 = MiraBest Hybrid; `-1` = "source
+absent from this parent catalogue") was read directly, per-source, alongside
+CRUMB's `labels` (basic FRI/FRII/Hyb) and `filenames`. Cross-referencing against
+`mirabest_crumb_mapping.csv`:
+
+- **All 51 label-disagreeing sources in the CRUMB test split have MiraBest's
+  column present** (`complete_labels[0] != -1`) — CRUMB is not falling back to
+  a different parent dataset's label for these sources. The parent-dataset
+  theory is ruled out.
+- Per CRUMB's own `CRUMB_builder.ipynb` (github.com/fmporter/CRUMB), the basic
+  label is derived from the MiraBest column via: code `< 5` → FRI, code `5–7`
+  → FRII, code `> 7` → Hyb. In CRUMB's **train** batches this mapping holds
+  cleanly: code `0` → CRUMB FRI in 275/292 (94%) of matched sources, code `5`
+  → CRUMB FRII in 353/372 (95%) — consistent with the ~5.3% disagreement rate
+  already measured for train.
+- In CRUMB's **test** batch, the same check gives code `0` → CRUMB FRI in only
+  22/45 (49%) of sources, and code `5` → CRUMB FRII in 31/56 (55%) — a coin
+  flip. Knowing the MiraBest code carries almost no information about what
+  basic label `test_batch` assigns to the same source.
+
+**Conclusion.** The MiraBest-derived code and CRUMB's own basic label are
+correctly linked in the train batches but effectively decorrelated in
+`test_batch` specifically. This is consistent with a construction-time bug
+(e.g. a shuffle/reindex of `labels` relative to `filenames`/`complete_labels`)
+confined to that one batch file, not a genuine scientific disagreement between
+labeling teams. It explains why the label-disagreement rate is so much higher
+in CRUMB's test split (46%) than its train split (5.3%): the train batches'
+labels are trustworthy, the test batch's are not.
+
+**Practical implication:** any accuracy number computed against CRUMB's own
+`test_batch` labels is unreliable for the ~100 MiraBest-overlap sources in
+that split; MiraBest's own label (or CRUMB's `complete_labels` column 0,
+correctly re-mapped) should be treated as ground truth instead. This does not
+necessarily extend to the ~186 non-MiraBest-overlap sources in CRUMB's test
+split — whether the same misalignment affects those images (which have no
+independent MiraBest label to cross-check against) has not been verified.

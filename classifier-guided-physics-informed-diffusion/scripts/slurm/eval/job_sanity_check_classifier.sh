@@ -19,4 +19,5 @@ python scripts/sanity_check_classifier.py \
     --config config/classification.yaml \
     --dataset mirabest \
     --num-samples ${NUM_SAMPLES:-100} \
-    --output results/sanity_check
+    --output results/sanity_check \
+    ${TAG:+--tag $TAG}

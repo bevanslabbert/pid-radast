@@ -123,7 +123,8 @@ def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, in
 # Classification trainers
 # ---------------------------------------------------------------------------
 
-def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
+def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint, tag=None):
+    ckpt_dir = f"{CHECKPOINT_DIR}/classification" + (f"/{tag}" if tag else "")
     num_classes = config['data']['num_classes']
     dropout_p = float(config['model'].get('dropout', 0.2))
     model = resnet18(pretrained=True)
@@ -155,7 +156,7 @@ def train_classification(config, trainloader, valloader, device, result_director
     start_epoch = 0
 
     if resume is not None:
-        ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
+        ckpt = load_checkpoint(ckpt_dir, device)
         model.load_state_dict(ckpt['model_state_dict'])
         optimizer.load_state_dict(ckpt['optimizer_state_dict'])
         start_epoch = ckpt['epoch'] + 1
@@ -191,7 +192,7 @@ def train_classification(config, trainloader, valloader, device, result_director
                 {'epoch': epoch, 'model_state_dict': model.state_dict(),
                  'optimizer_state_dict': optimizer.state_dict(),
                  'loss': loss, 'config': config},
-                f'{CHECKPOINT_DIR}/classification',
+                ckpt_dir,
             )
 
     # Restore best weights before returning
@@ -204,7 +205,7 @@ def train_classification(config, trainloader, valloader, device, result_director
                 {'epoch': num_epochs - 1, 'model_state_dict': model.state_dict(),
                  'optimizer_state_dict': optimizer.state_dict(),
                  'loss': loss, 'config': config, 'best_val_loss': best_val_loss},
-                f'{CHECKPOINT_DIR}/classification',
+                ckpt_dir,
             )
 
     plt.figure(figsize=(8, 5))
@@ -221,7 +222,9 @@ def train_classification(config, trainloader, valloader, device, result_director
     return model
 
 
-def train_robust_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint):
+def train_robust_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint, tag=None):
+    ckpt_dir = f"{CHECKPOINT_DIR}/robust_classification" + (f"/{tag}" if tag else "")
+    best_ckpt_dir = f"{ckpt_dir}_best"
     num_classes = config['data']['num_classes']
     rob_model = TimeDependentResNet(num_classes)
     rob_model.to(device)
@@ -267,7 +270,7 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
     loss = None
 
     if resume is not None:
-        ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
+        ckpt = load_checkpoint(ckpt_dir, device)
         rob_model.load_state_dict(ckpt['model_state_dict'])
         optimizer.load_state_dict(ckpt['optimizer_state_dict'])
         if ckpt.get('warmup_scheduler_state_dict') is not None:
@@ -412,11 +415,11 @@ def train_robust_classification(config, trainloader, valloader, device, result_d
             'loss': loss, 'config': config, 'best_val_acc': best_val_acc,
         }
         if checkpoint is not None or resume is not None:
-            save_checkpoint(ckpt_payload, f'{CHECKPOINT_DIR}/robust_classification')
+            save_checkpoint(ckpt_payload, ckpt_dir)
 
         if is_new_best:
-            save_checkpoint(ckpt_payload, f'{CHECKPOINT_DIR}/robust_classification_best')
-            print(f'  ** New best metric: {best_val_acc:.1f}% — saved to checkpoints/robust_classification_best')
+            save_checkpoint(ckpt_payload, best_ckpt_dir)
+            print(f'  ** New best metric: {best_val_acc:.1f}% — saved to {best_ckpt_dir}')
 
     epochs_range = list(range(start_epoch, start_epoch + len(epoch_losses)))
 
@@ -658,15 +661,56 @@ def _train_diffusion_loop(
 # Public training wrappers
 # ---------------------------------------------------------------------------
 
+def _load_guidance_classifier(config, device):
+    """Loads the frozen classifier used to guide classifier_guided_diffusion training.
+
+    `model.classifier_type` selects the architecture ('classification' -> resnet18
+    head as trained by train_classification; 'robust_classification' -> TimeDependentResNet
+    as trained by train_robust_classification). Only TimeDependentResNet takes a timestep
+    argument, but the guidance loss always calls the classifier at t=0 on the estimated
+    clean image, so a plain resnet18 classifier works too — just called without t.
+    """
+    classifier_type = config['model'].get('classifier_type', 'robust_classification')
+    num_classes = config['data']['num_classes']
+    default_dir = f'{CHECKPOINT_DIR}/{classifier_type}'
+    ckpt_dir = config['model'].get('classifier_checkpoint', default_dir)
+
+    if classifier_type == 'classification':
+        dropout_p = float(config['model'].get('dropout', 0.2))
+        classifier = resnet18(pretrained=False)
+        classifier.fc = nn.Sequential(
+            nn.Dropout(p=dropout_p),
+            nn.Linear(classifier.fc.in_features, num_classes),
+        )
+        time_aware = False
+    elif classifier_type == 'robust_classification':
+        classifier = TimeDependentResNet(num_classes, pretrained=False)
+        time_aware = True
+    else:
+        raise ValueError(
+            f"Unknown model.classifier_type '{classifier_type}'. "
+            f"Choose from: classification, robust_classification"
+        )
+
+    cls_ckpt = load_checkpoint(ckpt_dir, device)
+    classifier.load_state_dict(cls_ckpt['model_state_dict'])
+    classifier.to(device).eval()
+    for p in classifier.parameters():
+        p.requires_grad_(False)
+    print(f"Loaded guidance classifier ({classifier_type}) from {ckpt_dir}")
+    return classifier, time_aware
+
+
 def train_diffusion(config, trainloader, valloader, testloader, device, result_directory,
-                    resume, checkpoint, dataset=None):
+                    resume, checkpoint, dataset=None, tag=None):
+    ckpt_dir = 'diffusion' + (f'/{tag}' if tag else '')
 
     def loss_fn(noise_pred, noise, **_):
         return F.mse_loss(noise_pred, noise), {}
 
     unet, scheduler, class_emb, hist = _train_diffusion_loop(
         config, trainloader, valloader, testloader, device, result_directory,
-        resume, checkpoint, 'diffusion', loss_fn, dataset=dataset,
+        resume, checkpoint, ckpt_dir, loss_fn, dataset=dataset,
     )
 
     _post_train_save(unet, scheduler, class_emb, config, result_directory, dataset, include_random=True)
@@ -679,8 +723,9 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
 
 def train_pid(config, trainloader, valloader, testloader, device, result_directory,
-              resume, checkpoint, dataset=None):
+              resume, checkpoint, dataset=None, tag=None):
     """Physics-informed diffusion: DDPM MSE + symmetry + non-negativity penalties."""
+    ckpt_dir = 'pid' + (f'/{tag}' if tag else '')
     lambda_sym = float(config['training'].get('lambda_sym', 0.1))
     lambda_neg = float(config['training'].get('lambda_neg', 0.1))
 
@@ -700,7 +745,7 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
 
     unet, scheduler, class_emb, hist = _train_diffusion_loop(
         config, trainloader, valloader, testloader, device, result_directory,
-        resume, checkpoint, 'pid', loss_fn, dataset=dataset,
+        resume, checkpoint, ckpt_dir, loss_fn, dataset=dataset,
         extra_keys=['mse', 'sym', 'neg'], compliance_fn=compliance_fn,
     )
 
@@ -739,20 +784,16 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
 
 
 def train_classifier_guided_diffusion(config, trainloader, valloader, testloader, device,
-                                       result_directory, resume, checkpoint, dataset=None):
+                                       result_directory, resume, checkpoint, dataset=None, tag=None):
     """Fine-tunes a pre-trained diffusion model with frozen classifier guidance.
 
     loss = MSE + lambda_cls * (1 - p_correct).mean()
     """
+    ckpt_dir = 'classifier_guided_diffusion' + (f'/{tag}' if tag else '')
     num_classes = config['data']['num_classes']
     lambda_cls = float(config['training'].get('lambda_cls', 0.1))
 
-    classifier = TimeDependentResNet(num_classes, pretrained=False)
-    cls_ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
-    classifier.load_state_dict(cls_ckpt['model_state_dict'])
-    classifier.to(device).eval()
-    for p in classifier.parameters():
-        p.requires_grad_(False)
+    classifier, classifier_time_aware = _load_guidance_classifier(config, device)
 
     def loss_fn(noise_pred, noise, noisy_images, labels, training_labels, t, alphas_cumprod, device, **_):
         mse = F.mse_loss(noise_pred, noise)
@@ -768,8 +809,12 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
                 cls_input = fits_to_linear(cls_input, dataset)
 
             # classify
-            t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
-            p_correct = F.softmax(classifier(cls_input, t_clean), dim=1).gather(
+            if classifier_time_aware:
+                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
+                logits = classifier(cls_input, t_clean)
+            else:
+                logits = classifier(cls_input)
+            p_correct = F.softmax(logits, dim=1).gather(
                 1, labels[cls_mask].unsqueeze(1)).squeeze(1)
             cls_loss = lambda_cls * (1.0 - p_correct).mean()
         return mse + cls_loss, {'cls_loss': cls_loss.item()}
@@ -787,7 +832,7 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
 
     unet, scheduler, class_emb, hist = _train_diffusion_loop(
         config, trainloader, valloader, testloader, device, result_directory,
-        resume, checkpoint, 'classifier_guided_diffusion', loss_fn, dataset=dataset,
+        resume, checkpoint, ckpt_dir, loss_fn, dataset=dataset,
         extra_keys=['cls_loss'], init_fn=init_fn,
     )
 
@@ -801,22 +846,18 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
 
 
 def train_robust_classifier_guided_diffusion(config, trainloader, valloader, testloader, device,
-                                              result_directory, resume, checkpoint, dataset=None):
+                                              result_directory, resume, checkpoint, dataset=None, tag=None):
     """Fine-tunes a pre-trained diffusion model with robust classifier guidance.
 
     Identical to train_classifier_guided_diffusion but uses cross-entropy as the
     guidance loss (more numerically stable when classifier confidence is poorly calibrated).
     loss = MSE + lambda_cls * CE(classifier(x_0_pred), labels)
     """
+    ckpt_dir = 'robust_classifier_guided_diffusion' + (f'/{tag}' if tag else '')
     num_classes = config['data']['num_classes']
     lambda_cls = float(config['training'].get('lambda_cls', 0.1))
 
-    classifier = TimeDependentResNet(num_classes, pretrained=False)
-    cls_ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
-    classifier.load_state_dict(cls_ckpt['model_state_dict'])
-    classifier.to(device).eval()
-    for p in classifier.parameters():
-        p.requires_grad_(False)
+    classifier, classifier_time_aware = _load_guidance_classifier(config, device)
 
     def loss_fn(noise_pred, noise, noisy_images, labels, training_labels, t, alphas_cumprod, device, **_):
         mse = F.mse_loss(noise_pred, noise)
@@ -827,8 +868,12 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
             cls_input = x0[cls_mask]
             if isinstance(dataset, MiraBestFITS):
                 cls_input = fits_to_linear(cls_input, dataset)
-            t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
-            cls_loss = lambda_cls * F.cross_entropy(classifier(cls_input, t_clean), labels[cls_mask])
+            if classifier_time_aware:
+                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
+                logits = classifier(cls_input, t_clean)
+            else:
+                logits = classifier(cls_input)
+            cls_loss = lambda_cls * F.cross_entropy(logits, labels[cls_mask])
         return mse + cls_loss, {'cls_loss': cls_loss.item()}
 
     def init_fn(unet, class_emb, device):
@@ -844,7 +889,7 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
 
     unet, scheduler, class_emb, hist = _train_diffusion_loop(
         config, trainloader, valloader, testloader, device, result_directory,
-        resume, checkpoint, 'robust_classifier_guided_diffusion', loss_fn, dataset=dataset,
+        resume, checkpoint, ckpt_dir, loss_fn, dataset=dataset,
         extra_keys=['cls_loss'], init_fn=init_fn,
     )
 
@@ -862,27 +907,27 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
 # ---------------------------------------------------------------------------
 
 def train_model(model, config, trainloader, valloader, testloader, device, result_directory,
-                resume, checkpoint, dataset=None):
+                resume, checkpoint, dataset=None, tag=None):
     print(f"Training {model} for {config['training']['epochs']} epochs")
     if model == 'classification':
         return train_classification(config, trainloader, valloader, device,
-                                    result_directory, resume, checkpoint)
+                                    result_directory, resume, checkpoint, tag=tag)
     elif model == 'robust_classification':
         return train_robust_classification(config, trainloader, valloader, device,
-                                           result_directory, resume, checkpoint)
+                                           result_directory, resume, checkpoint, tag=tag)
     elif model == 'diffusion':
         return train_diffusion(config, trainloader, valloader, testloader, device,
-                               result_directory, resume, checkpoint, dataset=dataset)
+                               result_directory, resume, checkpoint, dataset=dataset, tag=tag)
     elif model == 'pid':
         return train_pid(config, trainloader, valloader, testloader, device,
-                         result_directory, resume, checkpoint, dataset=dataset)
+                         result_directory, resume, checkpoint, dataset=dataset, tag=tag)
     elif model == 'classifier_guided_diffusion':
         return train_classifier_guided_diffusion(config, trainloader, valloader, testloader, device,
-                                                  result_directory, resume, checkpoint, dataset=dataset)
+                                                  result_directory, resume, checkpoint, dataset=dataset, tag=tag)
     elif model == 'robust_classifier_guided_diffusion':
         return train_robust_classifier_guided_diffusion(config, trainloader, valloader, testloader,
                                                          device, result_directory, resume, checkpoint,
-                                                         dataset=dataset)
+                                                         dataset=dataset, tag=tag)
     else:
         raise ValueError(
             f'Model {model} not supported. '

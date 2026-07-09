@@ -17,4 +17,5 @@ source .venv/bin/activate
 
 python main.py test \
     --model classification \
-    --config config/classification.yaml
+    --config config/classification.yaml \
+    ${TAG:+--tag $TAG}

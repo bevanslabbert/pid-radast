@@ -33,13 +33,14 @@ IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
 
 
-def build_model(num_classes, dropout_p, device):
+def build_model(num_classes, dropout_p, device, tag=None):
     model = resnet18(pretrained=False)
     model.fc = nn.Sequential(
         nn.Dropout(p=dropout_p),
         nn.Linear(model.fc.in_features, num_classes),
     )
-    checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
+    ckpt_dir = f'{CHECKPOINT_DIR}/classification' + (f'/{tag}' if tag else '')
+    checkpoint = load_checkpoint(ckpt_dir, device)
     model.load_state_dict(checkpoint['model_state_dict'])
     model.to(device)
     model.eval()
@@ -94,6 +95,9 @@ def main():
     parser.add_argument("--num-samples", type=int, default=1, help="Number of random test images to classify")
     parser.add_argument("--seed", type=int, default=None, help="Random seed for picking images (default: nondeterministic)")
     parser.add_argument("--output", default="results/sanity_check")
+    parser.add_argument("--tag", default=None,
+                         help="Load checkpoints/classification/<tag> instead of the untagged "
+                              "checkpoints/classification default.")
     args = parser.parse_args()
 
     os.makedirs(args.output, exist_ok=True)
@@ -127,7 +131,7 @@ def main():
 
     num_classes = len(CLASS_NAMES)
     dropout_p = float(cfg['model'].get('dropout', 0.2))
-    model = build_model(num_classes, dropout_p, device)
+    model = build_model(num_classes, dropout_p, device, tag=args.tag)
 
     num_correct = 0
     for i in range(args.num_samples):

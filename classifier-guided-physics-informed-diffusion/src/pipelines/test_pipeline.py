@@ -39,7 +39,7 @@ def _eval_accuracy(model, loader, device, t_fixed=None, alphas_cumprod=None):
     return 100.0 * correct / total, all_preds, all_labels
 
 # evaluate model performance
-def test_model(model_type, config, testloader, device, result_directory, model=None):
+def test_model(model_type, config, testloader, device, result_directory, model=None, tag=None):
     print(f'Testing model')
     if model_type == 'robust_classification':
         num_classes = config['data']['num_classes']
@@ -51,7 +51,8 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
 
         if model is None:
             rob_model = TimeDependentResNet(num_classes, pretrained=False)
-            checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
+            ckpt_dir = f'{CHECKPOINT_DIR}/robust_classification' + (f'/{tag}' if tag else '')
+            checkpoint = load_checkpoint(ckpt_dir, device)
             rob_model.load_state_dict(checkpoint['model_state_dict'])
         else:
             rob_model = model
@@ -162,7 +163,8 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
                 nn.Dropout(p=dropout_p),
                 nn.Linear(model.fc.in_features, num_classes),
             )
-            checkpoint = load_checkpoint(f'{CHECKPOINT_DIR}/classification', device)
+            ckpt_dir = f'{CHECKPOINT_DIR}/classification' + (f'/{tag}' if tag else '')
+            checkpoint = load_checkpoint(ckpt_dir, device)
             model.load_state_dict(checkpoint['model_state_dict'])
         model.to(device)
         model.eval()
@@ -202,12 +204,7 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         num_classes = config['data']['num_classes']
         unet, scheduler, class_emb, _ = build_diffusion_components(config, {}, device)
 
-        ckpt_dir = {
-            'diffusion': 'diffusion',
-            'pid': 'pid',
-            'classifier_guided_diffusion': 'classifier_guided_diffusion',
-            'robust_classifier_guided_diffusion': 'robust_classifier_guided_diffusion',
-        }[model_type]
+        ckpt_dir = model_type + (f'/{tag}' if tag else '')
 
         ckpt_path = f'{CHECKPOINT_DIR}/{ckpt_dir}/state.pt'
         if os.path.exists(ckpt_path):

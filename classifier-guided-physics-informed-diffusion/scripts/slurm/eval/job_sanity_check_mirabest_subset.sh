@@ -18,4 +18,5 @@ source .venv/bin/activate
 python scripts/test_classifier_on_mirabest_subset.py \
     --config config/classification.yaml \
     --num-samples ${NUM_SAMPLES:-100} \
-    --repeats ${REPEATS:-5}
+    --repeats ${REPEATS:-5} \
+    ${TAG:+--tag $TAG}

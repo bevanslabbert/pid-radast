@@ -29,6 +29,7 @@ def main():
     config_help = "[string] Path to .yaml file to use for config [default: config/<model>.yaml]"
     resume_help = "[True | False] Whether to resume training from last saved epoch"
     checkpoint_help = "[True | False] Whether to save the training checkpoints"
+    tag_help = "[string] Tag for this model's checkpoint dir (checkpoints/<model>/<tag>) so it isn't overwritten by other runs"
 
     # --- Optimize command ---
     optimize_parser = subparsers.add_parser("optimize")
@@ -44,12 +45,14 @@ def main():
     train_parser.add_argument("--checkpoint", help=checkpoint_help)
     train_parser.add_argument("--runs", type=int, default=1, help="[int] Number of independent runs (each uses a different seed)")
     train_parser.add_argument("--seed", type=int, help="[int] Base seed for run 0; run i uses seed+i (overrides config seed)")
+    train_parser.add_argument("--tag", help=tag_help)
 
     # --- Test command ---
     test_parser = subparsers.add_parser("test")
     test_parser.add_argument("--model", required=True, help=model_help)
     test_parser.add_argument("--checkpoint", required=False, help=checkpoint_help)
     test_parser.add_argument("--config", help=config_help)
+    test_parser.add_argument("--tag", help=tag_help)
 
 
     args = parser.parse_args()
@@ -158,14 +161,14 @@ def main():
             print(f"Run {run_idx + 1}/{num_runs}  |  seed={seed}  |  results -> {result_directory}")
             print(f"{'='*60}\n")
 
-            model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset)
+            model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset, tag=args.tag)
             test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
     elif args.command == "test":
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         result_directory = f'results/{args.model}/run_{timestamp}'
         os.makedirs(result_directory, exist_ok=True)
         # TODO: need to get the trained model
-        test_model(model_type=args.model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
+        test_model(model_type=args.model, config=cfg, testloader=testloader, device=device, result_directory=result_directory, tag=args.tag)
     else:
         parser.print_help()
 

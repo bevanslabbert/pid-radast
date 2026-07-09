@@ -19,4 +19,5 @@ python main.py train \
     --model pid \
     --seed ${SEED} \
     --runs 1 \
-    --checkpoint True
+    --checkpoint True \
+    ${TAG:+--tag $TAG}
