@@ -157,12 +157,16 @@ def main():
             result_directory = f'results/{args.model}/run_{timestamp}_seed{seed}'
             os.makedirs(result_directory, exist_ok=True)
 
+            # With multiple runs in one invocation, each seed needs its own checkpoint
+            # dir or later runs would silently overwrite earlier ones' weights.
+            run_tag = f"{args.tag}_seed{seed}" if (num_runs > 1 and args.tag) else args.tag
+
             print(f"\n{'='*60}")
-            print(f"Run {run_idx + 1}/{num_runs}  |  seed={seed}  |  results -> {result_directory}")
+            print(f"Run {run_idx + 1}/{num_runs}  |  seed={seed}  |  tag={run_tag}  |  results -> {result_directory}")
             print(f"{'='*60}\n")
 
-            model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset, tag=args.tag)
-            test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory)
+            model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset, tag=run_tag)
+            test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory, tag=run_tag)
     elif args.command == "test":
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         result_directory = f'results/{args.model}/run_{timestamp}'
