@@ -1,0 +1,98 @@
+=== 1. Baseline: classifier vs CRUMB's raw (test-split-corrupted) labels ===
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+On device cuda
+
+===== CRUMB train split =====
+Full (non-hybrid): 1717
+  MiraBest: 1058
+  FR-DEEP: 484
+  AT17: 169
+  Hybrid: 6
+[train/full] 1268/1717 correct (73.8%)
+[train/MiraBest] 792/1058 correct (74.9%)
+[train/FR-DEEP] 364/484 correct (75.2%)
+[train/AT17] 109/169 correct (64.5%)
+[train/Hybrid] 3/6 correct (50.0%)
+
+===== CRUMB test split =====
+Full (non-hybrid): 286
+  MiraBest: 163
+  FR-DEEP: 75
+  AT17: 38
+  Hybrid: 10
+[test/full] 141/286 correct (49.3%)
+[test/MiraBest] 84/163 correct (51.5%)
+[test/FR-DEEP] 34/75 correct (45.3%)
+[test/AT17] 16/38 correct (42.1%)
+[test/Hybrid] 7/10 correct (70.0%)
+
+===== Summary =====
+scope                   train         test (raw)
+full        1268/1717 (73.8%)    141/286 (49.3%)
+MiraBest     792/1058 (74.9%)     84/163 (51.5%)
+FR-DEEP       364/484 (75.2%)      34/75 (45.3%)
+AT17          109/169 (64.5%)      16/38 (42.1%)
+Hybrid            3/6 (50.0%)       7/10 (70.0%)
+=== 2. Deriving corrected test labels from train-split code->label mapping ===
+Learned (parent, code) -> label mapping from TRAIN split:
+  ('AT17', 1): {0: 25, 1: 1} -> FRI (purity=96.2%, n=26)
+  ('AT17', 2): {0: 136, 1: 7, 2: 1} -> FRI (purity=94.4%, n=144)
+  ('FR-DEEP', 0): {0: 154, 1: 16, 2: 5} -> FRI (purity=88.0%, n=175)
+  ('FR-DEEP', 1): {1: 283, 0: 31, 2: 4} -> FRII (purity=89.0%, n=318)
+  ('Hybrid', 0): {2: 29} -> Hyb (purity=100.0%, n=29)
+  ('Hybrid', 1): {2: 17, 0: 4, 1: 2} -> Hyb (purity=73.9%, n=23)
+  ('MiraBest', 0): {0: 276, 1: 16, 2: 1} -> FRI (purity=94.2%, n=293)
+  ('MiraBest', 1): {0: 42, 1: 1} -> FRI (purity=97.7%, n=43)
+  ('MiraBest', 2): {0: 6, 1: 1} -> FRI (purity=85.7%, n=7)
+  ('MiraBest', 3): {0: 157, 1: 5, 2: 1} -> FRI (purity=96.3%, n=163)
+  ('MiraBest', 4): {0: 3} -> FRI (purity=100.0%, n=3)
+  ('MiraBest', 5): {1: 354, 0: 18, 2: 1} -> FRII (purity=94.9%, n=373)
+  ('MiraBest', 6): {1: 3} -> FRII (purity=100.0%, n=3)
+  ('MiraBest', 7): {1: 161, 0: 9} -> FRII (purity=94.7%, n=170)
+  ('MiraBest', 8): {2: 16, 1: 2} -> Hyb (purity=88.9%, n=18)
+  ('MiraBest', 9): {2: 8, 0: 2, 1: 2} -> Hyb (purity=66.7%, n=12)
+
+Wrote results/2026-07-09/mirabest_classifier_vs_crumb_dataset/crumb_test_corrected_labels.csv
+163/300 test labels changed by correction (0 sources had no (parent, code) seen in train, left as raw label)
+=== 3. Re-scoring: classifier vs corrected test labels ===
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+On device cuda
+
+===== CRUMB train split =====
+Full (non-hybrid): 1717
+  MiraBest: 1058
+  FR-DEEP: 484
+  AT17: 169
+  Hybrid: 6
+[train/full] 1268/1717 correct (73.8%)
+[train/MiraBest] 792/1058 correct (74.9%)
+[train/FR-DEEP] 364/484 correct (75.2%)
+[train/AT17] 109/169 correct (64.5%)
+[train/Hybrid] 3/6 correct (50.0%)
+
+===== CRUMB test split =====
+Overrode 300/300 test labels from results/2026-07-09/mirabest_classifier_vs_crumb_dataset/crumb_test_corrected_labels.csv
+Full (non-hybrid): 285
+  MiraBest: 166
+  FR-DEEP: 79
+  AT17: 40
+  Hybrid: 0
+[test/full] 223/285 correct (78.2%)
+[test/MiraBest] 133/166 correct (80.1%)
+[test/FR-DEEP] 61/79 correct (77.2%)
+[test/AT17] 29/40 correct (72.5%)
+[test/Hybrid] n=0, skipping
+
+===== Summary =====
+scope                   train   test (corrected)
+full        1268/1717 (73.8%)    223/285 (78.2%)
+MiraBest     792/1058 (74.9%)    133/166 (80.1%)
+FR-DEEP       364/484 (75.2%)      61/79 (77.2%)
+AT17          109/169 (64.5%)      29/40 (72.5%)
+Hybrid            3/6 (50.0%)                n/a
