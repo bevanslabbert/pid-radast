@@ -167,3 +167,44 @@ class CRUMB(data.Dataset):
         tmp = '    Target Transforms (if any): '
         fmt_str += '{0}{1}'.format(tmp, self.target_transform.__repr__().replace('\n', '\n' + ' ' * len(tmp)))
         return fmt_str
+
+
+def correct_crumb_test_labels(train_dataset, test_dataset):
+    """Fix CRUMB's test-split `labels`, which are decorrelated from CRUMB's own
+    `complete_labels` metadata for a large fraction of test sources across all
+    four parent datasets (MiraBest, FR-DEEP, AT17, MiraBest Hybrid) -- see
+    results/2026-07-09/mirabest_classifier_vs_crumb_dataset/findings.md.
+
+    In the train split, `complete_labels` cleanly predicts `labels` (94-100%
+    purity per (parent, code) pair, matching CRUMB's own builder-notebook rule).
+    This learns that majority-vote (parent, code) -> class mapping from
+    `train_dataset` and uses it to overwrite `test_dataset.targets` in place,
+    ignoring the test split's own corrupted `labels`. Sources whose (parent,
+    code) never appears in train are left unchanged.
+
+    Returns the number of test targets that were changed.
+    """
+    from collections import Counter, defaultdict
+
+    def parent_and_code(complete_label):
+        for col in range(len(complete_label)):
+            if complete_label[col] != -1:
+                return col, complete_label[col]
+        return None, None
+
+    tally = defaultdict(Counter)
+    for target, complete_label in zip(train_dataset.targets, train_dataset.complete_labels):
+        key = parent_and_code(complete_label)
+        if key[0] is None:
+            continue
+        tally[key][target] += 1
+    mapping = {key: counter.most_common(1)[0][0] for key, counter in tally.items()}
+
+    n_changed = 0
+    for i, complete_label in enumerate(test_dataset.complete_labels):
+        key = parent_and_code(complete_label)
+        corrected = mapping.get(key)
+        if corrected is not None and corrected != test_dataset.targets[i]:
+            test_dataset.targets[i] = corrected
+            n_changed += 1
+    return n_changed

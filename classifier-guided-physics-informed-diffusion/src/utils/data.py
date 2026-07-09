@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader, Subset
 from typing import Tuple
 from torch.utils.data import random_split
 import torchvision.transforms as transforms
-from src.datasets.crumb.CRUMB import CRUMB
+from src.datasets.crumb.CRUMB import CRUMB, correct_crumb_test_labels
 from src.datasets.mirabest.MiraBest import MiraBest
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.datasets.mirabest.MiraBestPNG import MiraBestPNG
@@ -27,6 +27,10 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         full_train_aug  = CRUMB(root='./batches', train=True,  download=True, transform=transform)
         full_train_eval = CRUMB(root='./batches', train=True,  download=True, transform=_eval)
         full_test_set   = CRUMB(root='./batches', train=False, download=True, transform=_eval)
+
+        n_corrected = correct_crumb_test_labels(full_train_eval, full_test_set)
+        print(f"Corrected {n_corrected}/{len(full_test_set)} CRUMB test labels "
+              f"using train-derived (parent, code) -> label mapping")
 
         # Filter out hybrid sources (class 2)
         binary_indices = [i for i, t in enumerate(full_train_aug.targets) if t != 2]
