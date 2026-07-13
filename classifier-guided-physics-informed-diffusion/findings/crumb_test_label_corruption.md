@@ -1,5 +1,59 @@
 # Classifier accuracy on CRUMB vs. its MiraBest-derived subset
 
+## Addendum: fix verified against CRUMB's raw catalogue, and a second bug found
+
+Everything below was the original investigation. Two follow-ups after
+`correct_crumb_test_labels` (`src/datasets/crumb/CRUMB.py`) was implemented:
+
+**1. The fix was independently verified against ground truth.** Rather than
+trusting the train-derived majority-vote mapping on faith, every image in
+both CRUMB splits was matched by RA/Dec to a row in the CRUMB repo's own
+`combined_catalogue_data.txt` (the raw per-source catalogue that
+`CRUMB_builder.ipynb` builds labels from — note its RA column is in *hours*,
+not degrees, unlike the image filenames). Applying the builder notebook's own
+labeling rule directly to those raw codes gives an authoritative "true" label
+per image, independent of any of our own code:
+
+| | vs. catalogue-derived truth |
+|---|---|
+| Test labels, before correction | 46.3% (139/300) |
+| Test labels, after `correct_crumb_test_labels` | **98.7% (296/300)** |
+| Train labels (baseline noise, untouched) | 92.6% (1666/1800) |
+
+So the fix is essentially complete — the remaining 4/300 mismatches are
+within normal catalogue-level noise, not evidence of a broken correction.
+
+**2. Root cause confirmed via the CRUMB repo itself.** The maintainers pushed
+a fix (`33256f1`, "fix: label popping causing label/image mismatch",
+`CRUMB_builder.ipynb`) for exactly the bug this investigation predicted:
+`class_labels.pop(1538)` removed a source from `class_labels` in place without
+correspondingly removing it from `all_files`/`label_vector`, permanently
+shifting every source after index 1538 out of alignment between the coarse
+`labels` field and the image/`complete_labels` it was assigned to — for the
+`labels` field only, since `filenames`/`complete_labels`/`data` are selected
+using the *shifted* indices consistently with each other, just pointing at
+the wrong `class_labels` entry. Because batches are built by taking
+consecutive slices per class and the **test batch is built last** (drawing
+the tail end of each class list, i.e. the highest-index, most-affected
+sources), this explains why test was scrambled while train was mostly clean.
+
+**3. A second, still-unfixed bug was found while reproducing the labeling
+rule.** In `CRUMB_builder.ipynb`'s label-assignment cell, the branch for
+AT17-only sources checks the wrong column:
+```python
+elif label_vector[i, 2] != -1:      # AT17-only branch
+    if label_vector[i, 1] == 1:     # bug: checks column 1 (FR-DEEP)...
+```
+Column 1 is guaranteed `-1` to even reach this branch, so the condition is
+always `False` and every AT17-only source is unconditionally labeled FRI
+regardless of its real AT17 code. **210 of 2100 sources (10%)** fall into
+this AT17-only bucket, split roughly evenly between train and test, so it
+doesn't explain the test-specific corruption above but is a real, separate
+mislabeling source in the base dataset. Not yet reported upstream.
+
+See also [`classifier_architecture_experiments.md`](./classifier_architecture_experiments.md)
+for the classifier tuning that followed once labels were trustworthy.
+
 ## Background
 
 The classifier checkpoint (`checkpoints/classification`) scored **40/100 (40%)**
