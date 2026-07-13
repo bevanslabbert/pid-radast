@@ -1,0 +1,17 @@
+On device cuda
+Dataset: mirabest
+Getting data loader mirabest
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [-0.558952..1.82].
+Channels (3 for RGB, 1 for Gray): 3
+Height: 150 pixels
+Width: 150 pixels
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/sanity_check_classifier.py", line 144, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/sanity_check_classifier.py", line 133, in main
+    dropout_p = float(cfg['model'].get('dropout', 0.2))
+                      ~~~^^^^^^^^^
+KeyError: 'model'
