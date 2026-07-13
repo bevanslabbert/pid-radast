@@ -12,311 +12,311 @@ Total images in dataset: 2002
 Total batches: 86 (at batch size 16)
 
 ============================================================
-Run 1/1  |  seed=42  |  tag=crumb_reg1  |  results -> results/classification/run_20260713_183432_seed42
+Run 1/1  |  seed=42  |  tag=crumb_reg1  |  results -> results/classification/run_20260713_183930_seed42
 ============================================================
 
 Training classification for 100 epochs
 Epoch 0
-Epoch 0, Training Loss: 0.6690, Validation Loss: 0.6584 (best)
+Epoch 0, Training Loss: 0.6691, Validation Loss: 0.6596 (best)
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 1
-Epoch 1, Training Loss: 0.6058, Validation Loss: 0.6731
+Epoch 1, Training Loss: 0.6063, Validation Loss: 0.6813
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 2
-Epoch 2, Training Loss: 0.5717, Validation Loss: 0.6587
+Epoch 2, Training Loss: 0.5716, Validation Loss: 0.6569 (best)
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 3
-Epoch 3, Training Loss: 0.5609, Validation Loss: 0.6136 (best)
+Epoch 3, Training Loss: 0.5616, Validation Loss: 0.6205 (best)
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 4
-Epoch 4, Training Loss: 0.5658, Validation Loss: 0.6161
+Epoch 4, Training Loss: 0.5665, Validation Loss: 0.6160 (best)
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 5
-Epoch 5, Training Loss: 0.5572, Validation Loss: 0.6635
+Epoch 5, Training Loss: 0.5587, Validation Loss: 0.6722
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 6
-Epoch 6, Training Loss: 0.5444, Validation Loss: 0.6135 (best)
+Epoch 6, Training Loss: 0.5456, Validation Loss: 0.6104 (best)
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 7
-Epoch 7, Training Loss: 0.5419, Validation Loss: 0.6514
+Epoch 7, Training Loss: 0.5413, Validation Loss: 0.6500
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 8
-Epoch 8, Training Loss: 0.5442, Validation Loss: 0.6205
+Epoch 8, Training Loss: 0.5450, Validation Loss: 0.6228
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 9
-Epoch 9, Training Loss: 0.5287, Validation Loss: 0.6192
+Epoch 9, Training Loss: 0.5308, Validation Loss: 0.6220
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 10
-Epoch 10, Training Loss: 0.5275, Validation Loss: 0.6762
+Epoch 10, Training Loss: 0.5320, Validation Loss: 0.6459
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 11
-Epoch 11, Training Loss: 0.5077, Validation Loss: 0.6355
+Epoch 11, Training Loss: 0.5049, Validation Loss: 0.6229
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 12
-Epoch 12, Training Loss: 0.4998, Validation Loss: 0.6148
+Epoch 12, Training Loss: 0.5017, Validation Loss: 0.6135
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 13
-Epoch 13, Training Loss: 0.4987, Validation Loss: 0.6345
+Epoch 13, Training Loss: 0.5005, Validation Loss: 0.6369
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 14
-Epoch 14, Training Loss: 0.4985, Validation Loss: 0.6334
+Epoch 14, Training Loss: 0.5008, Validation Loss: 0.6252
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 15
-Epoch 15, Training Loss: 0.5133, Validation Loss: 0.6118 (best)
+Epoch 15, Training Loss: 0.5119, Validation Loss: 0.6140
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 16
-Epoch 16, Training Loss: 0.5101, Validation Loss: 0.6218
+Epoch 16, Training Loss: 0.5118, Validation Loss: 0.6193
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 17
-Epoch 17, Training Loss: 0.5036, Validation Loss: 0.6446
+Epoch 17, Training Loss: 0.5006, Validation Loss: 0.6162
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 18
-Epoch 18, Training Loss: 0.5080, Validation Loss: 0.6210
+Epoch 18, Training Loss: 0.5046, Validation Loss: 0.6361
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 19
-Epoch 19, Training Loss: 0.4956, Validation Loss: 0.6432
+Epoch 19, Training Loss: 0.5016, Validation Loss: 0.6421
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 20
-Epoch 20, Training Loss: 0.4883, Validation Loss: 0.6585
+Epoch 20, Training Loss: 0.4909, Validation Loss: 0.6470
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 21
-Epoch 21, Training Loss: 0.4703, Validation Loss: 0.6449
+Epoch 21, Training Loss: 0.4709, Validation Loss: 0.6426
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 22
-Epoch 22, Training Loss: 0.4903, Validation Loss: 0.6702
+Epoch 22, Training Loss: 0.4885, Validation Loss: 0.6557
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 23
-Epoch 23, Training Loss: 0.4743, Validation Loss: 0.6394
+Epoch 23, Training Loss: 0.4738, Validation Loss: 0.6591
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 24
-Epoch 24, Training Loss: 0.4852, Validation Loss: 0.6733
+Epoch 24, Training Loss: 0.4827, Validation Loss: 0.6514
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 25
-Epoch 25, Training Loss: 0.4900, Validation Loss: 0.6154
+Epoch 25, Training Loss: 0.4893, Validation Loss: 0.6209
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 26
-Epoch 26, Training Loss: 0.4718, Validation Loss: 0.6156
+Epoch 26, Training Loss: 0.4757, Validation Loss: 0.6214
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 27
-Epoch 27, Training Loss: 0.4777, Validation Loss: 0.6299
+Epoch 27, Training Loss: 0.4738, Validation Loss: 0.6274
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 28
-Epoch 28, Training Loss: 0.4685, Validation Loss: 0.6252
+Epoch 28, Training Loss: 0.4658, Validation Loss: 0.6166
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 29
-Epoch 29, Training Loss: 0.4727, Validation Loss: 0.6581
+Epoch 29, Training Loss: 0.4700, Validation Loss: 0.6692
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 30
-Epoch 30, Training Loss: 0.4621, Validation Loss: 0.6121
+Epoch 30, Training Loss: 0.4628, Validation Loss: 0.6201
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 31
-Epoch 31, Training Loss: 0.4637, Validation Loss: 0.6724
+Epoch 31, Training Loss: 0.4637, Validation Loss: 0.6599
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 32
-Epoch 32, Training Loss: 0.4763, Validation Loss: 0.6291
+Epoch 32, Training Loss: 0.4741, Validation Loss: 0.6420
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 33
-Epoch 33, Training Loss: 0.4586, Validation Loss: 0.6273
+Epoch 33, Training Loss: 0.4565, Validation Loss: 0.6258
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 34
-Epoch 34, Training Loss: 0.4490, Validation Loss: 0.6275
+Epoch 34, Training Loss: 0.4523, Validation Loss: 0.6414
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 35
-Epoch 35, Training Loss: 0.4579, Validation Loss: 0.6819
+Epoch 35, Training Loss: 0.4569, Validation Loss: 0.6938
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 36
-Epoch 36, Training Loss: 0.4711, Validation Loss: 0.6702
+Epoch 36, Training Loss: 0.4718, Validation Loss: 0.6629
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 37
-Epoch 37, Training Loss: 0.4619, Validation Loss: 0.6366
+Epoch 37, Training Loss: 0.4624, Validation Loss: 0.6410
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 38
-Epoch 38, Training Loss: 0.4402, Validation Loss: 0.6712
+Epoch 38, Training Loss: 0.4454, Validation Loss: 0.6580
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 39
-Epoch 39, Training Loss: 0.4495, Validation Loss: 0.6555
+Epoch 39, Training Loss: 0.4491, Validation Loss: 0.6816
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 40
-Epoch 40, Training Loss: 0.4468, Validation Loss: 0.6716
+Epoch 40, Training Loss: 0.4443, Validation Loss: 0.6774
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 41
-Epoch 41, Training Loss: 0.4450, Validation Loss: 0.6787
+Epoch 41, Training Loss: 0.4440, Validation Loss: 0.6557
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 42
-Epoch 42, Training Loss: 0.4432, Validation Loss: 0.6341
+Epoch 42, Training Loss: 0.4452, Validation Loss: 0.6317
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 43
-Epoch 43, Training Loss: 0.4459, Validation Loss: 0.6814
+Epoch 43, Training Loss: 0.4450, Validation Loss: 0.6695
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 44
-Epoch 44, Training Loss: 0.4322, Validation Loss: 0.6612
+Epoch 44, Training Loss: 0.4341, Validation Loss: 0.6651
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 45
-Epoch 45, Training Loss: 0.4400, Validation Loss: 0.6699
+Epoch 45, Training Loss: 0.4409, Validation Loss: 0.6910
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 46
-Epoch 46, Training Loss: 0.4532, Validation Loss: 0.6622
+Epoch 46, Training Loss: 0.4580, Validation Loss: 0.6369
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 47
-Epoch 47, Training Loss: 0.4489, Validation Loss: 0.6346
+Epoch 47, Training Loss: 0.4449, Validation Loss: 0.6353
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 48
-Epoch 48, Training Loss: 0.4318, Validation Loss: 0.6315
+Epoch 48, Training Loss: 0.4337, Validation Loss: 0.6422
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 49
-Epoch 49, Training Loss: 0.4195, Validation Loss: 0.6640
+Epoch 49, Training Loss: 0.4183, Validation Loss: 0.6796
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 50
-Epoch 50, Training Loss: 0.4279, Validation Loss: 0.6702
+Epoch 50, Training Loss: 0.4326, Validation Loss: 0.6793
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 51
-Epoch 51, Training Loss: 0.4518, Validation Loss: 0.6582
+Epoch 51, Training Loss: 0.4509, Validation Loss: 0.6428
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 52
-Epoch 52, Training Loss: 0.4343, Validation Loss: 0.6684
+Epoch 52, Training Loss: 0.4335, Validation Loss: 0.6433
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 53
-Epoch 53, Training Loss: 0.4216, Validation Loss: 0.6459
+Epoch 53, Training Loss: 0.4202, Validation Loss: 0.6466
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 54
-Epoch 54, Training Loss: 0.4109, Validation Loss: 0.6592
+Epoch 54, Training Loss: 0.4086, Validation Loss: 0.6706
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 55
-Epoch 55, Training Loss: 0.4076, Validation Loss: 0.6622
+Epoch 55, Training Loss: 0.4039, Validation Loss: 0.6655
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 56
-Epoch 56, Training Loss: 0.4222, Validation Loss: 0.7242
+Epoch 56, Training Loss: 0.4214, Validation Loss: 0.7318
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 57
-Epoch 57, Training Loss: 0.4447, Validation Loss: 0.7027
+Epoch 57, Training Loss: 0.4441, Validation Loss: 0.7145
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 58
-Epoch 58, Training Loss: 0.3970, Validation Loss: 0.7252
+Epoch 58, Training Loss: 0.3996, Validation Loss: 0.6955
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 59
-Epoch 59, Training Loss: 0.4299, Validation Loss: 0.6509
+Epoch 59, Training Loss: 0.4294, Validation Loss: 0.6709
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 60
-Epoch 60, Training Loss: 0.4128, Validation Loss: 0.6427
+Epoch 60, Training Loss: 0.4115, Validation Loss: 0.6457
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 61
-Epoch 61, Training Loss: 0.4154, Validation Loss: 0.6644
+Epoch 61, Training Loss: 0.4144, Validation Loss: 0.6867
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 62
-Epoch 62, Training Loss: 0.4176, Validation Loss: 0.6238
+Epoch 62, Training Loss: 0.4175, Validation Loss: 0.6309
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 63
-Epoch 63, Training Loss: 0.4069, Validation Loss: 0.6715
+Epoch 63, Training Loss: 0.4077, Validation Loss: 0.6841
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 64
-Epoch 64, Training Loss: 0.4107, Validation Loss: 0.6748
+Epoch 64, Training Loss: 0.4059, Validation Loss: 0.6572
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 65
-Epoch 65, Training Loss: 0.3955, Validation Loss: 0.6654
+Epoch 65, Training Loss: 0.3939, Validation Loss: 0.6808
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 66
-Epoch 66, Training Loss: 0.4150, Validation Loss: 0.6589
+Epoch 66, Training Loss: 0.4091, Validation Loss: 0.6753
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 67
-Epoch 67, Training Loss: 0.4263, Validation Loss: 0.6364
+Epoch 67, Training Loss: 0.4289, Validation Loss: 0.6394
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 68
-Epoch 68, Training Loss: 0.4111, Validation Loss: 0.6290
+Epoch 68, Training Loss: 0.4081, Validation Loss: 0.6393
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 69
-Epoch 69, Training Loss: 0.4215, Validation Loss: 0.6391
+Epoch 69, Training Loss: 0.4138, Validation Loss: 0.6461
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 70
-Epoch 70, Training Loss: 0.4149, Validation Loss: 0.6773
+Epoch 70, Training Loss: 0.4122, Validation Loss: 0.6717
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 71
-Epoch 71, Training Loss: 0.3993, Validation Loss: 0.6916
+Epoch 71, Training Loss: 0.4010, Validation Loss: 0.6887
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 72
-Epoch 72, Training Loss: 0.4009, Validation Loss: 0.6786
+Epoch 72, Training Loss: 0.4008, Validation Loss: 0.6753
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 73
-Epoch 73, Training Loss: 0.3899, Validation Loss: 0.6281
+Epoch 73, Training Loss: 0.3921, Validation Loss: 0.6281
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 74
-Epoch 74, Training Loss: 0.4049, Validation Loss: 0.7389
+Epoch 74, Training Loss: 0.4032, Validation Loss: 0.7485
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 75
-Epoch 75, Training Loss: 0.4053, Validation Loss: 0.6787
+Epoch 75, Training Loss: 0.4048, Validation Loss: 0.6695
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 76
-Epoch 76, Training Loss: 0.3982, Validation Loss: 0.6827
+Epoch 76, Training Loss: 0.4014, Validation Loss: 0.6866
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 77
-Epoch 77, Training Loss: 0.4122, Validation Loss: 0.7392
+Epoch 77, Training Loss: 0.4087, Validation Loss: 0.7174
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 78
-Epoch 78, Training Loss: 0.4029, Validation Loss: 0.7070
+Epoch 78, Training Loss: 0.4023, Validation Loss: 0.7174
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 79
-Epoch 79, Training Loss: 0.4143, Validation Loss: 0.6954
+Epoch 79, Training Loss: 0.4102, Validation Loss: 0.7006
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 80
-Epoch 80, Training Loss: 0.3903, Validation Loss: 0.7101
+Epoch 80, Training Loss: 0.3903, Validation Loss: 0.7347
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 81
-Epoch 81, Training Loss: 0.3900, Validation Loss: 0.7099
+Epoch 81, Training Loss: 0.3878, Validation Loss: 0.7333
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 82
-Epoch 82, Training Loss: 0.4020, Validation Loss: 0.6600
+Epoch 82, Training Loss: 0.4014, Validation Loss: 0.6907
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 83
-Epoch 83, Training Loss: 0.3768, Validation Loss: 0.6932
+Epoch 83, Training Loss: 0.3783, Validation Loss: 0.7070
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 84
-Epoch 84, Training Loss: 0.3630, Validation Loss: 0.7541
+Epoch 84, Training Loss: 0.3614, Validation Loss: 0.7302
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 85
-Epoch 85, Training Loss: 0.3903, Validation Loss: 0.7630
+Epoch 85, Training Loss: 0.3872, Validation Loss: 0.7952
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 86
-Epoch 86, Training Loss: 0.3776, Validation Loss: 0.7014
+Epoch 86, Training Loss: 0.3809, Validation Loss: 0.7055
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 87
-Epoch 87, Training Loss: 0.3734, Validation Loss: 0.6715
+Epoch 87, Training Loss: 0.3764, Validation Loss: 0.6690
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 88
-Epoch 88, Training Loss: 0.3747, Validation Loss: 0.7291
+Epoch 88, Training Loss: 0.3764, Validation Loss: 0.7575
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 89
-Epoch 89, Training Loss: 0.3890, Validation Loss: 0.7273
+Epoch 89, Training Loss: 0.3869, Validation Loss: 0.7378
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 90
-Epoch 90, Training Loss: 0.3888, Validation Loss: 0.7121
+Epoch 90, Training Loss: 0.3889, Validation Loss: 0.7151
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 91
-Epoch 91, Training Loss: 0.3791, Validation Loss: 0.6948
+Epoch 91, Training Loss: 0.3819, Validation Loss: 0.7138
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 92
-Epoch 92, Training Loss: 0.3762, Validation Loss: 0.6868
+Epoch 92, Training Loss: 0.3757, Validation Loss: 0.7011
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 93
-Epoch 93, Training Loss: 0.3771, Validation Loss: 0.7091
+Epoch 93, Training Loss: 0.3738, Validation Loss: 0.7200
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 94
-Epoch 94, Training Loss: 0.3813, Validation Loss: 0.7156
+Epoch 94, Training Loss: 0.3815, Validation Loss: 0.7275
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 95
-Epoch 95, Training Loss: 0.3749, Validation Loss: 0.7009
+Epoch 95, Training Loss: 0.3786, Validation Loss: 0.7304
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 96
-Epoch 96, Training Loss: 0.3672, Validation Loss: 0.7422
+Epoch 96, Training Loss: 0.3646, Validation Loss: 0.7515
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 97
-Epoch 97, Training Loss: 0.3707, Validation Loss: 0.7211
+Epoch 97, Training Loss: 0.3653, Validation Loss: 0.7467
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 98
-Epoch 98, Training Loss: 0.3707, Validation Loss: 0.7680
+Epoch 98, Training Loss: 0.3631, Validation Loss: 0.7627
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Epoch 99
-Epoch 99, Training Loss: 0.3604, Validation Loss: 0.8936
+Epoch 99, Training Loss: 0.3625, Validation Loss: 0.8495
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
-Restored best model (val loss 0.6118)
+Restored best model (val loss 0.6104)
 --- Saved model to checkpoints/classification/crumb_reg1/state.pt ---
 Testing model
-Accuracy: 76.84%
+Accuracy: 73.68%
