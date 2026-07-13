@@ -129,11 +129,10 @@ def train_classification(config, trainloader, valloader, device, result_director
     dropout_p = float(config['model'].get('dropout', 0.2))
     model = resnet18(pretrained=True)
 
-    # Freeze layer1-layer3 — preserve generic low/mid-level features. Only
-    # layer4 + fc are fine-tuned, since the CRUMB train split (~1.4k images)
-    # is too small to fine-tune the full backbone without overfitting.
+    # Freeze the whole backbone (layer1-layer4) — only fc is fine-tuned, since
+    # the CRUMB train split (~1.4k images) overfit even with just layer4 unfrozen.
     for name, param in model.named_parameters():
-        if name.startswith('layer1') or name.startswith('layer2') or name.startswith('layer3'):
+        if not name.startswith('fc'):
             param.requires_grad = False
 
     model.fc = nn.Sequential(
@@ -145,10 +144,7 @@ def train_classification(config, trainloader, valloader, device, result_director
     num_epochs = config['training']['epochs']
     lr = float(config['training']['learning_rate'])
     wd = float(config['training']['weight_decay'])
-    optimizer = torch.optim.Adam([
-        {'params': [p for n, p in model.named_parameters() if p.requires_grad and not n.startswith('fc')], 'lr': lr * 0.1},
-        {'params': model.fc.parameters(), 'lr': lr},
-    ], weight_decay=wd)
+    optimizer = torch.optim.Adam(model.fc.parameters(), lr=lr, weight_decay=wd)
     criterion = nn.CrossEntropyLoss()
     epoch_losses, val_losses = [], []
     best_val_loss = torch.inf
