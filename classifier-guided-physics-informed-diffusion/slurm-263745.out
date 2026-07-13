@@ -235,3 +235,84 @@ Epoch 73
 Epoch 73, Training Loss: 0.6881, Validation Loss: 0.6855 (best)
 --- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
 Epoch 74
+Epoch 74, Training Loss: 0.6891, Validation Loss: 0.6846 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 75
+Epoch 75, Training Loss: 0.6869, Validation Loss: 0.6826 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 76
+Epoch 76, Training Loss: 0.6752, Validation Loss: 0.6699 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 77
+Epoch 77, Training Loss: 0.6704, Validation Loss: 0.6660 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 78
+Epoch 78, Training Loss: 0.6671, Validation Loss: 0.6470 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 79
+Epoch 79, Training Loss: 0.6485, Validation Loss: 0.6389 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 80
+Epoch 80, Training Loss: 0.6510, Validation Loss: 0.6344 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 81
+Epoch 81, Training Loss: 0.6408, Validation Loss: 0.6315 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 82
+Epoch 82, Training Loss: 0.6408, Validation Loss: 0.6485
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 83
+Epoch 83, Training Loss: 0.6357, Validation Loss: 0.6347
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 84
+Epoch 84, Training Loss: 0.6322, Validation Loss: 0.6440
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 85
+Epoch 85, Training Loss: 0.6463, Validation Loss: 0.6558
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 86
+Epoch 86, Training Loss: 0.6352, Validation Loss: 0.6340
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 87
+Epoch 87, Training Loss: 0.6374, Validation Loss: 0.6361
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 88
+Epoch 88, Training Loss: 0.6323, Validation Loss: 0.6611
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 89
+Epoch 89, Training Loss: 0.6374, Validation Loss: 0.6350
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 90
+Epoch 90, Training Loss: 0.6329, Validation Loss: 0.6543
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 91
+Epoch 91, Training Loss: 0.6269, Validation Loss: 0.6357
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 92
+Epoch 92, Training Loss: 0.6260, Validation Loss: 0.6328
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 93
+Epoch 93, Training Loss: 0.6313, Validation Loss: 0.6379
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 94
+Epoch 94, Training Loss: 0.6327, Validation Loss: 0.6367
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 95
+Epoch 95, Training Loss: 0.6308, Validation Loss: 0.6297 (best)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 96
+Epoch 96, Training Loss: 0.6243, Validation Loss: 0.6355
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 97
+Epoch 97, Training Loss: 0.6271, Validation Loss: 0.6564
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 98
+Epoch 98, Training Loss: 0.6267, Validation Loss: 0.6345
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Epoch 99
+Epoch 99, Training Loss: 0.6180, Validation Loss: 0.6323
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Restored best model (val loss 0.6297)
+--- Saved model to checkpoints/classification/scratch_cnn_3_layers/state.pt ---
+Testing model
+Accuracy: 69.47%
