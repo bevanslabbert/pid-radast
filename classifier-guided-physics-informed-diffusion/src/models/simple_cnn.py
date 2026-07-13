@@ -16,10 +16,16 @@ class SimpleCNN(nn.Module):
             nn.BatchNorm2d(32),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2),
+
+            # Block 3: 32×37×37 → 64×18×18
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2),
         )
         self.pool = nn.AdaptiveAvgPool2d(1)
         self.dropout = nn.Dropout(p=0.6)
-        self.classifier = nn.Linear(32, num_classes)
+        self.classifier = nn.Linear(64, num_classes)
 
     def forward(self, x):
         x = self.features(x)
