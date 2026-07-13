@@ -70,36 +70,50 @@ def main():
     # ResNet18 (pretrained, ImageNet-normalized 3-channel) transform for
     # `classification` -- scored ~90% on MiraBest. Kept here in case we revert
     # from the from-scratch SimpleCNN back to ResNet18 transfer learning.
-    # if args.model == 'classification':
-    #     train_transform = transforms.Compose([
-    #         transforms.Resize(213),        # upscale so corners stay filled after rotation
-    #         transforms.RandomRotation(180),  # full 360° — orientation is arbitrary for radio galaxies
-    #         transforms.CenterCrop(150),
-    #         transforms.RandomHorizontalFlip(),
-    #         transforms.RandomVerticalFlip(p=0.5),
-    #         transforms.Grayscale(num_output_channels=3),
-    #         transforms.ToTensor(),
-    #         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-    #     ])
-    #     eval_transform = transforms.Compose([
-    #         transforms.Resize(150),
-    #         transforms.CenterCrop(150),
-    #         transforms.Grayscale(num_output_channels=3),
-    #         transforms.ToTensor(),
-    #         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-    #     ])
-    # else:
-    train_transform = transforms.Compose([
-        transforms.Grayscale(num_output_channels=1),
-        # Upscale to ceil(150 * sqrt(2)) = 213 so that a 150x150 centre crop
-        # contains only real image content after any rotation angle.
-        transforms.Resize(213),
-        transforms.RandomRotation(180),
-        transforms.CenterCrop(150),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5], std=[0.5])
-    ])
+    # train_transform = transforms.Compose([
+    #     transforms.Resize(213),        # upscale so corners stay filled after rotation
+    #     transforms.RandomRotation(180),  # full 360° — orientation is arbitrary for radio galaxies
+    #     transforms.CenterCrop(150),
+    #     transforms.RandomHorizontalFlip(),
+    #     transforms.RandomVerticalFlip(p=0.5),
+    #     transforms.Grayscale(num_output_channels=3),
+    #     transforms.ToTensor(),
+    #     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    # ])
+    # eval_transform = transforms.Compose([
+    #     transforms.Resize(150),
+    #     transforms.CenterCrop(150),
+    #     transforms.Grayscale(num_output_channels=3),
+    #     transforms.ToTensor(),
+    #     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    # ])
+
+    if args.model == 'classification':
+        # Radio galaxy orientation is arbitrary either way, so vertical flip
+        # is as valid as horizontal -- free extra augmentation for a ~1.4k
+        # image training set.
+        train_transform = transforms.Compose([
+            transforms.Grayscale(num_output_channels=1),
+            transforms.Resize(213),
+            transforms.RandomRotation(180),
+            transforms.CenterCrop(150),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomVerticalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5], std=[0.5])
+        ])
+    else:
+        train_transform = transforms.Compose([
+            transforms.Grayscale(num_output_channels=1),
+            # Upscale to ceil(150 * sqrt(2)) = 213 so that a 150x150 centre crop
+            # contains only real image content after any rotation angle.
+            transforms.Resize(213),
+            transforms.RandomRotation(180),
+            transforms.CenterCrop(150),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5], std=[0.5])
+        ])
     eval_transform = transforms.Compose([
         transforms.Grayscale(num_output_channels=1),
         transforms.Resize(150),
