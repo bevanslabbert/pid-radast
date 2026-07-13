@@ -229,3 +229,90 @@ Epoch 71
 Epoch 71, Training Loss: 0.6556, Validation Loss: 2.4039
 --- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
 Epoch 72
+Epoch 72, Training Loss: 0.6681, Validation Loss: 3.4825
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 73
+Epoch 73, Training Loss: 0.6546, Validation Loss: 3.5020
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 74
+Epoch 74, Training Loss: 0.6583, Validation Loss: 6.0556
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 75
+Epoch 75, Training Loss: 0.6565, Validation Loss: 3.7294
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 76
+Epoch 76, Training Loss: 0.6561, Validation Loss: 1.2771
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 77
+Epoch 77, Training Loss: 0.6622, Validation Loss: 1.1837
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 78
+Epoch 78, Training Loss: 0.6587, Validation Loss: 1.3980
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 79
+Epoch 79, Training Loss: 0.6488, Validation Loss: 2.2989
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 80
+Epoch 80, Training Loss: 0.6477, Validation Loss: 11.0849
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 81
+Epoch 81, Training Loss: 0.6532, Validation Loss: 3.8989
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 82
+Epoch 82, Training Loss: 0.6468, Validation Loss: 8.5003
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 83
+Epoch 83, Training Loss: 0.6639, Validation Loss: 1.4770
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 84
+Epoch 84, Training Loss: 0.6546, Validation Loss: 0.6664
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 85
+Epoch 85, Training Loss: 0.6562, Validation Loss: 4.9359
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 86
+Epoch 86, Training Loss: 0.6484, Validation Loss: 2.6858
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 87
+Epoch 87, Training Loss: 0.6585, Validation Loss: 0.9699
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 88
+Epoch 88, Training Loss: 0.6469, Validation Loss: 9.3417
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 89
+Epoch 89, Training Loss: 0.6587, Validation Loss: 0.6504 (best)
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 90
+Epoch 90, Training Loss: 0.6535, Validation Loss: 2.7901
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 91
+Epoch 91, Training Loss: 0.6575, Validation Loss: 3.2564
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 92
+Epoch 92, Training Loss: 0.6497, Validation Loss: 0.6813
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 93
+Epoch 93, Training Loss: 0.6525, Validation Loss: 0.6694
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 94
+Epoch 94, Training Loss: 0.6507, Validation Loss: 1.1300
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 95
+Epoch 95, Training Loss: 0.6463, Validation Loss: 24.0506
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 96
+Epoch 96, Training Loss: 0.6551, Validation Loss: 6.7406
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 97
+Epoch 97, Training Loss: 0.6506, Validation Loss: 0.8987
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 98
+Epoch 98, Training Loss: 0.6470, Validation Loss: 1.8902
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Epoch 99
+Epoch 99, Training Loss: 0.6500, Validation Loss: 3.1006
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Restored best model (val loss 0.6504)
+--- Saved model to checkpoints/classification/crumb_scratch_lr3/state.pt ---
+Testing model
+Accuracy: 73.33%
