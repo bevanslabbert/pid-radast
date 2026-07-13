@@ -148,8 +148,11 @@ def train_classification(config, trainloader, valloader, device, result_director
 
     num_epochs = config['training']['epochs']
     lr = float(config['training']['learning_rate'])
-    wd = float(config['training']['weight_decay'])
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=wd)
+    # No weight decay: SimpleCNN is trained from scratch with dropout as its
+    # regularizer; decaying BatchNorm's gamma/beta destabilized it (huge val-loss
+    # spikes with train loss barely moving), so decay is dropped rather than
+    # special-cased.
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
     epoch_losses, val_losses = [], []
     best_val_loss = torch.inf
