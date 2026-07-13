@@ -126,6 +126,23 @@ def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, in
 def train_classification(config, trainloader, valloader, device, result_directory, resume, checkpoint, tag=None):
     ckpt_dir = f"{CHECKPOINT_DIR}/classification" + (f"/{tag}" if tag else "")
     num_classes = config['data']['num_classes']
+
+    # ResNet18 (pretrained, backbone frozen, only fc fine-tuned) -- scored
+    # ~90% on MiraBest. Kept here in case we revert from the from-scratch
+    # SimpleCNN back to ResNet18 transfer learning. Needs main.py's commented
+    # -out classification transform (3-channel, ImageNet-normalized) too.
+    # dropout_p = float(config['model'].get('dropout', 0.2))
+    # model = resnet18(pretrained=True)
+    # for name, param in model.named_parameters():
+    #     if not name.startswith('fc'):
+    #         param.requires_grad = False
+    # model.fc = nn.Sequential(
+    #     nn.Dropout(p=dropout_p),
+    #     nn.Linear(model.fc.in_features, num_classes),
+    # )
+    # model.to(device)
+    # optimizer = torch.optim.Adam(model.fc.parameters(), lr=lr, weight_decay=wd)
+
     model = SimpleCNN(num_classes=num_classes)
     model.to(device)
 
