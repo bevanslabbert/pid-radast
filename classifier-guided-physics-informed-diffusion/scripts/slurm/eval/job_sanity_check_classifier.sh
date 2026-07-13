@@ -17,7 +17,7 @@ source .venv/bin/activate
 
 python scripts/sanity_check_classifier.py \
     --config config/classification.yaml \
-    --dataset mirabest \
+    --dataset crumb \
     --num-samples ${NUM_SAMPLES:-100} \
     --output results/sanity_check \
     ${TAG:+--tag $TAG}
