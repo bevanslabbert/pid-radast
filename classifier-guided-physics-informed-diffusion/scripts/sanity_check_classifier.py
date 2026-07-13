@@ -17,28 +17,21 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.transforms as transforms
-from torchvision.models import resnet18
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.utils.config import load_config
 from src.utils.checkpoint import load_checkpoint
 from src.utils.data import get_data_loaders
+from src.models.simple_cnn import SimpleCNN
 
 CHECKPOINT_DIR = 'checkpoints'
 CLASS_NAMES = ['FR-I', 'FR-II']
-IMAGENET_MEAN = [0.485, 0.456, 0.406]
-IMAGENET_STD = [0.229, 0.224, 0.225]
 
 
-def build_model(num_classes, dropout_p, device, tag=None):
-    model = resnet18(pretrained=False)
-    model.fc = nn.Sequential(
-        nn.Dropout(p=dropout_p),
-        nn.Linear(model.fc.in_features, num_classes),
-    )
+def build_model(num_classes, device, tag=None):
+    model = SimpleCNN(num_classes=num_classes)
     ckpt_dir = f'{CHECKPOINT_DIR}/classification' + (f'/{tag}' if tag else '')
     checkpoint = load_checkpoint(ckpt_dir, device)
     model.load_state_dict(checkpoint['model_state_dict'])
@@ -48,9 +41,7 @@ def build_model(num_classes, dropout_p, device, tag=None):
 
 
 def unnormalize(tensor):
-    mean = torch.tensor(IMAGENET_MEAN).view(-1, 1, 1)
-    std = torch.tensor(IMAGENET_STD).view(-1, 1, 1)
-    return (tensor.cpu() * std + mean).clamp(0, 1)
+    return (tensor.cpu() * 0.5 + 0.5).clamp(0, 1)
 
 
 def classify_random_sample(test_dataset, model, device, output_dir, sample_idx):
@@ -63,7 +54,7 @@ def classify_random_sample(test_dataset, model, device, output_dir, sample_idx):
         pred_label = int(torch.argmax(probs).item())
         confidence = float(probs[pred_label].item())
 
-    display_img = unnormalize(image)[0]  # channels are identical (grayscale replicated 3x)
+    display_img = unnormalize(image)[0]
 
     correct = pred_label == true_label
     title = (
@@ -113,11 +104,11 @@ def main():
     print(f"Dataset: {cfg['data']['dataset']}")
 
     eval_transform = transforms.Compose([
+        transforms.Grayscale(num_output_channels=1),
         transforms.Resize(150),
         transforms.CenterCrop(150),
-        transforms.Grayscale(num_output_channels=3),
         transforms.ToTensor(),
-        transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD),
+        transforms.Normalize(mean=[0.5], std=[0.5]),
     ])
 
     result = get_data_loaders(
@@ -130,8 +121,7 @@ def main():
     test_dataset = testloader.dataset
 
     num_classes = len(CLASS_NAMES)
-    dropout_p = float(cfg['model'].get('dropout', 0.2))
-    model = build_model(num_classes, dropout_p, device, tag=args.tag)
+    model = build_model(num_classes, device, tag=args.tag)
 
     num_correct = 0
     for i in range(args.num_samples):
