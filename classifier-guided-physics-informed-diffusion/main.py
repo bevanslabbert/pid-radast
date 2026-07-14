@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+import random
 import argparse
 import os
 from datetime import datetime
@@ -13,10 +14,18 @@ from src.utils.common import clear_gpu_memory
 from src.utils.checkpoint import load_checkpoint
 from torchvision.utils import make_grid, save_image
 
-# Setting a global seed for reproducibility
+# Setting a global seed for reproducibility. torchvision's Random* transforms
+# (RandomRotation, RandomHorizontalFlip, RandomVerticalFlip) draw from Python's
+# `random` module, not torch's RNG, so it must be seeded too. cudnn is forced
+# deterministic since its default autotuned algorithm selection is otherwise a
+# GPU-side source of run-to-run variance even with a fixed seed.
 def set_seed(seed):
-    torch.manual_seed(seed)
+    random.seed(seed)
     np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 def main():
 

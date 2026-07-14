@@ -1,4 +1,6 @@
+import random
 import matplotlib.pyplot as plt
+import torch
 from torch.utils.data import DataLoader, Subset
 from typing import Tuple
 from torch.utils.data import random_split
@@ -10,6 +12,17 @@ from src.datasets.mirabest.MiraBestPNG import MiraBestPNG
 import torchvision
 import numpy as np
 
+
+def _seed_worker(worker_id):
+    """DataLoader workers only auto-inherit torch's RNG from the main
+    process; `random`/`numpy` (which torchvision's Random* transforms use
+    internally) are left at each worker's fork-inherited state otherwise,
+    breaking run-to-run reproducibility even with a fixed seed."""
+    worker_seed = torch.initial_seed() % 2**32
+    np.random.seed(worker_seed)
+    random.seed(worker_seed)
+
+
 def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_transform=None) -> Tuple[DataLoader, DataLoader, DataLoader]:
     """
     Returns trainloader, valloader, and testloader.
@@ -18,7 +31,6 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
       Falls back to transform when not given.
     - Train/val split uses a fixed seed so results are reproducible across runs.
     """
-    import torch
     _eval = eval_transform if eval_transform is not None else transform
 
     print(f"Getting data loader {dataset}")
@@ -71,7 +83,7 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         generator = torch.Generator().manual_seed(42)
         train_idx, val_idx = random_split(binary_indices, [train_size, val_size], generator=generator)
 
-        trainloader = DataLoader(Subset(full_train_aug,  list(train_idx)), batch_size=batch_size, shuffle=True,  num_workers=2)
+        trainloader = DataLoader(Subset(full_train_aug,  list(train_idx)), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
         valloader   = DataLoader(Subset(full_train_eval, list(val_idx)),   batch_size=batch_size, shuffle=False, num_workers=2)
         testloader  = DataLoader(Subset(full_test_set,   test_indices),    batch_size=batch_size, shuffle=False, num_workers=2)
 
@@ -89,7 +101,7 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         generator = torch.Generator().manual_seed(42)
         train_idx, val_idx = random_split(list(range(total_train)), [train_size, val_size], generator=generator)
 
-        trainloader = DataLoader(Subset(full_train_aug,  list(train_idx)), batch_size=batch_size, shuffle=True,  num_workers=2)
+        trainloader = DataLoader(Subset(full_train_aug,  list(train_idx)), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
         valloader   = DataLoader(Subset(full_train_eval, list(val_idx)),   batch_size=batch_size, shuffle=False, num_workers=2)
         testloader  = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=2)
 
@@ -127,7 +139,7 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         val_idx   = indices[train_size:train_size + val_size]
         test_idx  = indices[train_size + val_size:]
 
-        trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2)
+        trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
         valloader   = DataLoader(Subset(eval_dataset,  val_idx),   batch_size=batch_size, shuffle=False, num_workers=2)
         testloader  = DataLoader(Subset(eval_dataset,  test_idx),  batch_size=batch_size, shuffle=False, num_workers=2)
 
@@ -151,7 +163,7 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         val_idx   = indices[train_size:train_size + val_size]
         test_idx  = indices[train_size + val_size:]
 
-        trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2)
+        trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
         valloader   = DataLoader(Subset(eval_dataset,  val_idx),   batch_size=batch_size, shuffle=False, num_workers=2)
         testloader  = DataLoader(Subset(eval_dataset,  test_idx),  batch_size=batch_size, shuffle=False, num_workers=2)
 
