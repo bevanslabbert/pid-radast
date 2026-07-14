@@ -85,3 +85,6 @@ Epoch 18
 Epoch 18 | Loss: 0.043673 | Val: 0.143648  |  cls_loss: 0.016165
 --- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
 Epoch 19
+Epoch 19 | Loss: 0.043667 | Val: 0.142652  |  cls_loss: 0.015744
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 20

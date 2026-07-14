@@ -1,0 +1,111 @@
+On device cuda
+Dataset: mirabest
+Getting data loader mirabest
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Channels (3 for RGB, 1 for Gray): 1
+Height: 150 pixels
+Width: 150 pixels
+[0] test_idx=17  true=FR-I  pred=FR-I  confidence=60.4%  CORRECT  -> results/sanity_check/sample_00_idx17_true-FR-I_pred-FR-I.png
+[1] test_idx=38  true=FR-II  pred=FR-II  confidence=76.1%  CORRECT  -> results/sanity_check/sample_01_idx38_true-FR-II_pred-FR-II.png
+[2] test_idx=46  true=FR-II  pred=FR-II  confidence=74.3%  CORRECT  -> results/sanity_check/sample_02_idx46_true-FR-II_pred-FR-II.png
+[3] test_idx=63  true=FR-II  pred=FR-I  confidence=83.3%  WRONG  -> results/sanity_check/sample_03_idx63_true-FR-II_pred-FR-I.png
+[4] test_idx=70  true=FR-II  pred=FR-II  confidence=82.3%  CORRECT  -> results/sanity_check/sample_04_idx70_true-FR-II_pred-FR-II.png
+[5] test_idx=23  true=FR-I  pred=FR-II  confidence=63.2%  WRONG  -> results/sanity_check/sample_05_idx23_true-FR-I_pred-FR-II.png
+[6] test_idx=57  true=FR-II  pred=FR-II  confidence=73.9%  CORRECT  -> results/sanity_check/sample_06_idx57_true-FR-II_pred-FR-II.png
+[7] test_idx=25  true=FR-I  pred=FR-I  confidence=63.7%  CORRECT  -> results/sanity_check/sample_07_idx25_true-FR-I_pred-FR-I.png
+[8] test_idx=38  true=FR-II  pred=FR-II  confidence=76.1%  CORRECT  -> results/sanity_check/sample_08_idx38_true-FR-II_pred-FR-II.png
+[9] test_idx=31  true=FR-I  pred=FR-I  confidence=54.6%  CORRECT  -> results/sanity_check/sample_09_idx31_true-FR-I_pred-FR-I.png
+[10] test_idx=33  true=FR-I  pred=FR-I  confidence=71.5%  CORRECT  -> results/sanity_check/sample_10_idx33_true-FR-I_pred-FR-I.png
+[11] test_idx=58  true=FR-II  pred=FR-I  confidence=52.5%  WRONG  -> results/sanity_check/sample_11_idx58_true-FR-II_pred-FR-I.png
+[12] test_idx=21  true=FR-I  pred=FR-I  confidence=64.1%  CORRECT  -> results/sanity_check/sample_12_idx21_true-FR-I_pred-FR-I.png
+[13] test_idx=0  true=FR-I  pred=FR-I  confidence=73.5%  CORRECT  -> results/sanity_check/sample_13_idx0_true-FR-I_pred-FR-I.png
+[14] test_idx=3  true=FR-I  pred=FR-I  confidence=52.7%  CORRECT  -> results/sanity_check/sample_14_idx3_true-FR-I_pred-FR-I.png
+[15] test_idx=52  true=FR-II  pred=FR-II  confidence=84.8%  CORRECT  -> results/sanity_check/sample_15_idx52_true-FR-II_pred-FR-II.png
+[16] test_idx=73  true=FR-II  pred=FR-II  confidence=53.3%  CORRECT  -> results/sanity_check/sample_16_idx73_true-FR-II_pred-FR-II.png
+[17] test_idx=19  true=FR-I  pred=FR-I  confidence=65.2%  CORRECT  -> results/sanity_check/sample_17_idx19_true-FR-I_pred-FR-I.png
+[18] test_idx=14  true=FR-I  pred=FR-I  confidence=81.2%  CORRECT  -> results/sanity_check/sample_18_idx14_true-FR-I_pred-FR-I.png
+[19] test_idx=42  true=FR-II  pred=FR-II  confidence=58.0%  CORRECT  -> results/sanity_check/sample_19_idx42_true-FR-II_pred-FR-II.png
+[20] test_idx=53  true=FR-II  pred=FR-I  confidence=70.5%  WRONG  -> results/sanity_check/sample_20_idx53_true-FR-II_pred-FR-I.png
+[21] test_idx=52  true=FR-II  pred=FR-II  confidence=84.8%  CORRECT  -> results/sanity_check/sample_21_idx52_true-FR-II_pred-FR-II.png
+[22] test_idx=42  true=FR-II  pred=FR-II  confidence=58.0%  CORRECT  -> results/sanity_check/sample_22_idx42_true-FR-II_pred-FR-II.png
+[23] test_idx=38  true=FR-II  pred=FR-II  confidence=76.1%  CORRECT  -> results/sanity_check/sample_23_idx38_true-FR-II_pred-FR-II.png
+[24] test_idx=49  true=FR-II  pred=FR-II  confidence=50.1%  CORRECT  -> results/sanity_check/sample_24_idx49_true-FR-II_pred-FR-II.png
+[25] test_idx=37  true=FR-II  pred=FR-II  confidence=66.6%  CORRECT  -> results/sanity_check/sample_25_idx37_true-FR-II_pred-FR-II.png
+[26] test_idx=65  true=FR-II  pred=FR-II  confidence=80.4%  CORRECT  -> results/sanity_check/sample_26_idx65_true-FR-II_pred-FR-II.png
+[27] test_idx=55  true=FR-II  pred=FR-II  confidence=77.7%  CORRECT  -> results/sanity_check/sample_27_idx55_true-FR-II_pred-FR-II.png
+[28] test_idx=32  true=FR-I  pred=FR-I  confidence=71.2%  CORRECT  -> results/sanity_check/sample_28_idx32_true-FR-I_pred-FR-I.png
+[29] test_idx=69  true=FR-II  pred=FR-II  confidence=71.4%  CORRECT  -> results/sanity_check/sample_29_idx69_true-FR-II_pred-FR-II.png
+[30] test_idx=24  true=FR-I  pred=FR-I  confidence=89.5%  CORRECT  -> results/sanity_check/sample_30_idx24_true-FR-I_pred-FR-I.png
+[31] test_idx=74  true=FR-II  pred=FR-II  confidence=53.1%  CORRECT  -> results/sanity_check/sample_31_idx74_true-FR-II_pred-FR-II.png
+[32] test_idx=61  true=FR-II  pred=FR-II  confidence=74.0%  CORRECT  -> results/sanity_check/sample_32_idx61_true-FR-II_pred-FR-II.png
+[33] test_idx=69  true=FR-II  pred=FR-II  confidence=71.4%  CORRECT  -> results/sanity_check/sample_33_idx69_true-FR-II_pred-FR-II.png
+[34] test_idx=3  true=FR-I  pred=FR-I  confidence=52.7%  CORRECT  -> results/sanity_check/sample_34_idx3_true-FR-I_pred-FR-I.png
+[35] test_idx=69  true=FR-II  pred=FR-II  confidence=71.4%  CORRECT  -> results/sanity_check/sample_35_idx69_true-FR-II_pred-FR-II.png
+[36] test_idx=75  true=FR-II  pred=FR-II  confidence=74.0%  CORRECT  -> results/sanity_check/sample_36_idx75_true-FR-II_pred-FR-II.png
+[37] test_idx=28  true=FR-I  pred=FR-I  confidence=75.9%  CORRECT  -> results/sanity_check/sample_37_idx28_true-FR-I_pred-FR-I.png
+[38] test_idx=4  true=FR-I  pred=FR-II  confidence=54.7%  WRONG  -> results/sanity_check/sample_38_idx4_true-FR-I_pred-FR-II.png
+[39] test_idx=65  true=FR-II  pred=FR-II  confidence=80.4%  CORRECT  -> results/sanity_check/sample_39_idx65_true-FR-II_pred-FR-II.png
+[40] test_idx=24  true=FR-I  pred=FR-I  confidence=89.5%  CORRECT  -> results/sanity_check/sample_40_idx24_true-FR-I_pred-FR-I.png
+[41] test_idx=71  true=FR-II  pred=FR-II  confidence=79.1%  CORRECT  -> results/sanity_check/sample_41_idx71_true-FR-II_pred-FR-II.png
+[42] test_idx=39  true=FR-II  pred=FR-II  confidence=57.4%  CORRECT  -> results/sanity_check/sample_42_idx39_true-FR-II_pred-FR-II.png
+[43] test_idx=68  true=FR-II  pred=FR-I  confidence=67.5%  WRONG  -> results/sanity_check/sample_43_idx68_true-FR-II_pred-FR-I.png
+[44] test_idx=12  true=FR-I  pred=FR-I  confidence=55.6%  CORRECT  -> results/sanity_check/sample_44_idx12_true-FR-I_pred-FR-I.png
+[45] test_idx=30  true=FR-I  pred=FR-I  confidence=75.3%  CORRECT  -> results/sanity_check/sample_45_idx30_true-FR-I_pred-FR-I.png
+[46] test_idx=11  true=FR-I  pred=FR-I  confidence=90.9%  CORRECT  -> results/sanity_check/sample_46_idx11_true-FR-I_pred-FR-I.png
+[47] test_idx=54  true=FR-II  pred=FR-II  confidence=68.0%  CORRECT  -> results/sanity_check/sample_47_idx54_true-FR-II_pred-FR-II.png
+[48] test_idx=71  true=FR-II  pred=FR-II  confidence=79.1%  CORRECT  -> results/sanity_check/sample_48_idx71_true-FR-II_pred-FR-II.png
+[49] test_idx=13  true=FR-I  pred=FR-I  confidence=56.1%  CORRECT  -> results/sanity_check/sample_49_idx13_true-FR-I_pred-FR-I.png
+[50] test_idx=34  true=FR-II  pred=FR-II  confidence=66.8%  CORRECT  -> results/sanity_check/sample_50_idx34_true-FR-II_pred-FR-II.png
+[51] test_idx=12  true=FR-I  pred=FR-I  confidence=55.6%  CORRECT  -> results/sanity_check/sample_51_idx12_true-FR-I_pred-FR-I.png
+[52] test_idx=37  true=FR-II  pred=FR-II  confidence=66.6%  CORRECT  -> results/sanity_check/sample_52_idx37_true-FR-II_pred-FR-II.png
+[53] test_idx=27  true=FR-I  pred=FR-II  confidence=62.0%  WRONG  -> results/sanity_check/sample_53_idx27_true-FR-I_pred-FR-II.png
+[54] test_idx=56  true=FR-II  pred=FR-I  confidence=75.9%  WRONG  -> results/sanity_check/sample_54_idx56_true-FR-II_pred-FR-I.png
+[55] test_idx=5  true=FR-I  pred=FR-I  confidence=63.8%  CORRECT  -> results/sanity_check/sample_55_idx5_true-FR-I_pred-FR-I.png
+[56] test_idx=57  true=FR-II  pred=FR-II  confidence=73.9%  CORRECT  -> results/sanity_check/sample_56_idx57_true-FR-II_pred-FR-II.png
+[57] test_idx=41  true=FR-II  pred=FR-II  confidence=55.4%  CORRECT  -> results/sanity_check/sample_57_idx41_true-FR-II_pred-FR-II.png
+[58] test_idx=25  true=FR-I  pred=FR-I  confidence=63.7%  CORRECT  -> results/sanity_check/sample_58_idx25_true-FR-I_pred-FR-I.png
+[59] test_idx=75  true=FR-II  pred=FR-II  confidence=74.0%  CORRECT  -> results/sanity_check/sample_59_idx75_true-FR-II_pred-FR-II.png
+[60] test_idx=6  true=FR-I  pred=FR-I  confidence=80.3%  CORRECT  -> results/sanity_check/sample_60_idx6_true-FR-I_pred-FR-I.png
+[61] test_idx=33  true=FR-I  pred=FR-I  confidence=71.5%  CORRECT  -> results/sanity_check/sample_61_idx33_true-FR-I_pred-FR-I.png
+[62] test_idx=27  true=FR-I  pred=FR-II  confidence=62.0%  WRONG  -> results/sanity_check/sample_62_idx27_true-FR-I_pred-FR-II.png
+[63] test_idx=38  true=FR-II  pred=FR-II  confidence=76.1%  CORRECT  -> results/sanity_check/sample_63_idx38_true-FR-II_pred-FR-II.png
+[64] test_idx=9  true=FR-I  pred=FR-I  confidence=84.0%  CORRECT  -> results/sanity_check/sample_64_idx9_true-FR-I_pred-FR-I.png
+[65] test_idx=56  true=FR-II  pred=FR-I  confidence=75.9%  WRONG  -> results/sanity_check/sample_65_idx56_true-FR-II_pred-FR-I.png
+[66] test_idx=58  true=FR-II  pred=FR-I  confidence=52.5%  WRONG  -> results/sanity_check/sample_66_idx58_true-FR-II_pred-FR-I.png
+[67] test_idx=17  true=FR-I  pred=FR-I  confidence=60.4%  CORRECT  -> results/sanity_check/sample_67_idx17_true-FR-I_pred-FR-I.png
+[68] test_idx=63  true=FR-II  pred=FR-I  confidence=83.3%  WRONG  -> results/sanity_check/sample_68_idx63_true-FR-II_pred-FR-I.png
+[69] test_idx=28  true=FR-I  pred=FR-I  confidence=75.9%  CORRECT  -> results/sanity_check/sample_69_idx28_true-FR-I_pred-FR-I.png
+[70] test_idx=74  true=FR-II  pred=FR-II  confidence=53.1%  CORRECT  -> results/sanity_check/sample_70_idx74_true-FR-II_pred-FR-II.png
+[71] test_idx=15  true=FR-I  pred=FR-I  confidence=61.5%  CORRECT  -> results/sanity_check/sample_71_idx15_true-FR-I_pred-FR-I.png
+[72] test_idx=56  true=FR-II  pred=FR-I  confidence=75.9%  WRONG  -> results/sanity_check/sample_72_idx56_true-FR-II_pred-FR-I.png
+[73] test_idx=70  true=FR-II  pred=FR-II  confidence=82.3%  CORRECT  -> results/sanity_check/sample_73_idx70_true-FR-II_pred-FR-II.png
+[74] test_idx=38  true=FR-II  pred=FR-II  confidence=76.1%  CORRECT  -> results/sanity_check/sample_74_idx38_true-FR-II_pred-FR-II.png
+[75] test_idx=59  true=FR-II  pred=FR-II  confidence=53.3%  CORRECT  -> results/sanity_check/sample_75_idx59_true-FR-II_pred-FR-II.png
+[76] test_idx=36  true=FR-II  pred=FR-I  confidence=69.3%  WRONG  -> results/sanity_check/sample_76_idx36_true-FR-II_pred-FR-I.png
+[77] test_idx=65  true=FR-II  pred=FR-II  confidence=80.4%  CORRECT  -> results/sanity_check/sample_77_idx65_true-FR-II_pred-FR-II.png
+[78] test_idx=33  true=FR-I  pred=FR-I  confidence=71.5%  CORRECT  -> results/sanity_check/sample_78_idx33_true-FR-I_pred-FR-I.png
+[79] test_idx=68  true=FR-II  pred=FR-I  confidence=67.5%  WRONG  -> results/sanity_check/sample_79_idx68_true-FR-II_pred-FR-I.png
+[80] test_idx=57  true=FR-II  pred=FR-II  confidence=73.9%  CORRECT  -> results/sanity_check/sample_80_idx57_true-FR-II_pred-FR-II.png
+[81] test_idx=62  true=FR-II  pred=FR-II  confidence=68.0%  CORRECT  -> results/sanity_check/sample_81_idx62_true-FR-II_pred-FR-II.png
+[82] test_idx=67  true=FR-II  pred=FR-I  confidence=66.8%  WRONG  -> results/sanity_check/sample_82_idx67_true-FR-II_pred-FR-I.png
+[83] test_idx=16  true=FR-I  pred=FR-I  confidence=81.0%  CORRECT  -> results/sanity_check/sample_83_idx16_true-FR-I_pred-FR-I.png
+[84] test_idx=65  true=FR-II  pred=FR-II  confidence=80.4%  CORRECT  -> results/sanity_check/sample_84_idx65_true-FR-II_pred-FR-II.png
+[85] test_idx=19  true=FR-I  pred=FR-I  confidence=65.2%  CORRECT  -> results/sanity_check/sample_85_idx19_true-FR-I_pred-FR-I.png
+[86] test_idx=16  true=FR-I  pred=FR-I  confidence=81.0%  CORRECT  -> results/sanity_check/sample_86_idx16_true-FR-I_pred-FR-I.png
+[87] test_idx=45  true=FR-II  pred=FR-II  confidence=54.9%  CORRECT  -> results/sanity_check/sample_87_idx45_true-FR-II_pred-FR-II.png
+[88] test_idx=17  true=FR-I  pred=FR-I  confidence=60.4%  CORRECT  -> results/sanity_check/sample_88_idx17_true-FR-I_pred-FR-I.png
+[89] test_idx=32  true=FR-I  pred=FR-I  confidence=71.2%  CORRECT  -> results/sanity_check/sample_89_idx32_true-FR-I_pred-FR-I.png
+[90] test_idx=30  true=FR-I  pred=FR-I  confidence=75.3%  CORRECT  -> results/sanity_check/sample_90_idx30_true-FR-I_pred-FR-I.png
+[91] test_idx=20  true=FR-I  pred=FR-I  confidence=60.1%  CORRECT  -> results/sanity_check/sample_91_idx20_true-FR-I_pred-FR-I.png
+[92] test_idx=36  true=FR-II  pred=FR-I  confidence=69.3%  WRONG  -> results/sanity_check/sample_92_idx36_true-FR-II_pred-FR-I.png
+[93] test_idx=47  true=FR-II  pred=FR-II  confidence=83.7%  CORRECT  -> results/sanity_check/sample_93_idx47_true-FR-II_pred-FR-II.png
+[94] test_idx=15  true=FR-I  pred=FR-I  confidence=61.5%  CORRECT  -> results/sanity_check/sample_94_idx15_true-FR-I_pred-FR-I.png
+[95] test_idx=74  true=FR-II  pred=FR-II  confidence=53.1%  CORRECT  -> results/sanity_check/sample_95_idx74_true-FR-II_pred-FR-II.png
+[96] test_idx=35  true=FR-II  pred=FR-II  confidence=81.0%  CORRECT  -> results/sanity_check/sample_96_idx35_true-FR-II_pred-FR-II.png
+[97] test_idx=20  true=FR-I  pred=FR-I  confidence=60.1%  CORRECT  -> results/sanity_check/sample_97_idx20_true-FR-I_pred-FR-I.png
+[98] test_idx=40  true=FR-II  pred=FR-II  confidence=64.7%  CORRECT  -> results/sanity_check/sample_98_idx40_true-FR-II_pred-FR-II.png
+[99] test_idx=51  true=FR-II  pred=FR-I  confidence=59.0%  WRONG  -> results/sanity_check/sample_99_idx51_true-FR-II_pred-FR-I.png
+
+82/100 correct on this random sample.
