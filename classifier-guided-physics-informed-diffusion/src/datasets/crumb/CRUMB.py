@@ -208,3 +208,46 @@ def correct_crumb_test_labels(train_dataset, test_dataset):
             test_dataset.targets[i] = corrected
             n_changed += 1
     return n_changed
+
+
+def correct_crumb_train_labels_from_mirabest(
+        train_dataset,
+        mapping_csv='results/mirabest_classifier_vs_crumb_dataset/mirabest_crumb_mapping.csv'):
+    """Overwrite CRUMB train-split `labels` with MiraBest's own canonical
+    label wherever a train image is a MiraBest source -- see
+    findings/crumb_test_label_corruption.md.
+
+    Unlike the test split (whose `labels` field is decorrelated from its own
+    `complete_labels` metadata), CRUMB's train split has no index-alignment
+    bug -- but its labels still disagree with MiraBest's on ~5.3% of the
+    ~665 train images that are also MiraBest sources (confirmed via
+    `build_mirabest_crumb_mapping.py`'s RA/Dec coordinate match, tolerance
+    0.01 deg). The classifier's own predictions on those disagreement cases
+    track MiraBest's label 88.6% of the time, so MiraBest is treated as
+    ground truth for this overlap subset rather than CRUMB's own label.
+
+    `mapping_csv` is `results/mirabest_classifier_vs_crumb_dataset/mirabest_crumb_mapping.csv`,
+    produced by `scripts/build_mirabest_crumb_mapping.py`. Sources with no
+    MiraBest match (the ~1135 non-overlap train images) are left unchanged.
+
+    Returns the number of train targets that were changed.
+    """
+    import csv
+
+    label_to_idx = {'FRI': 0, 'FRII': 1, 'Hyb': 2, '100': 0, '200': 1}
+
+    filename_to_label = {}
+    with open(mapping_csv, newline='') as f:
+        for row in csv.DictReader(f):
+            if row['crumb_split'] != 'train' or not row['crumb_filename']:
+                continue
+            basename = row['crumb_filename'].rsplit('/', 1)[-1]
+            filename_to_label[basename] = label_to_idx[row['mirabest_label']]
+
+    n_changed = 0
+    for i, filename in enumerate(train_dataset.filenames):
+        corrected = filename_to_label.get(filename)
+        if corrected is not None and corrected != train_dataset.targets[i]:
+            train_dataset.targets[i] = corrected
+            n_changed += 1
+    return n_changed

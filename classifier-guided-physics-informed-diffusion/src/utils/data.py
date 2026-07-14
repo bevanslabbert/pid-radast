@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader, Subset
 from typing import Tuple
 from torch.utils.data import random_split
 import torchvision.transforms as transforms
-from src.datasets.crumb.CRUMB import CRUMB, correct_crumb_test_labels
+from src.datasets.crumb.CRUMB import CRUMB, correct_crumb_test_labels, correct_crumb_train_labels_from_mirabest
 from src.datasets.mirabest.MiraBest import MiraBest
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.datasets.mirabest.MiraBestPNG import MiraBestPNG
@@ -27,6 +27,16 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         full_train_aug  = CRUMB(root='./batches', train=True,  download=True, transform=transform)
         full_train_eval = CRUMB(root='./batches', train=True,  download=True, transform=_eval)
         full_test_set   = CRUMB(root='./batches', train=False, download=True, transform=_eval)
+
+        # Correct train labels first (MiraBest ground truth), since
+        # correct_crumb_test_labels learns its (parent, code) -> label
+        # mapping from full_train_eval's targets -- it should learn from the
+        # cleaned-up labels, not the ones still containing the ~5.3% overlap
+        # disagreement with MiraBest.
+        n_train_corrected_aug  = correct_crumb_train_labels_from_mirabest(full_train_aug)
+        n_train_corrected_eval = correct_crumb_train_labels_from_mirabest(full_train_eval)
+        print(f"Corrected {n_train_corrected_eval}/{len(full_train_eval)} CRUMB train labels "
+              f"using MiraBest ground truth for overlapping sources")
 
         n_corrected = correct_crumb_test_labels(full_train_eval, full_test_set)
         print(f"Corrected {n_corrected}/{len(full_test_set)} CRUMB test labels "
