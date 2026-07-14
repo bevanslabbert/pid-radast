@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader, Subset
 from typing import Tuple
 from torch.utils.data import random_split
 import torchvision.transforms as transforms
-from src.datasets.crumb.CRUMB import CRUMB, correct_crumb_test_labels, correct_crumb_train_labels_from_mirabest, is_at17_only_source
+from src.datasets.crumb.CRUMB import CRUMB, correct_crumb_test_labels, correct_crumb_train_labels_from_mirabest, correct_crumb_train_labels_by_majority_vote, is_at17_only_source
 from src.datasets.mirabest.MiraBest import MiraBest
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.datasets.mirabest.MiraBestPNG import MiraBestPNG
@@ -33,10 +33,19 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         # mapping from full_train_eval's targets -- it should learn from the
         # cleaned-up labels, not the ones still containing the ~5.3% overlap
         # disagreement with MiraBest.
-        n_train_corrected_aug  = correct_crumb_train_labels_from_mirabest(full_train_aug)
-        n_train_corrected_eval = correct_crumb_train_labels_from_mirabest(full_train_eval)
+        n_train_corrected_aug,  mirabest_matched_aug  = correct_crumb_train_labels_from_mirabest(full_train_aug)
+        n_train_corrected_eval, mirabest_matched_eval = correct_crumb_train_labels_from_mirabest(full_train_eval)
         print(f"Corrected {n_train_corrected_eval}/{len(full_train_eval)} CRUMB train labels "
               f"using MiraBest ground truth for overlapping sources")
+
+        # For train sources with no MiraBest counterpart (the majority --
+        # skip_indices excludes the ones already ground-truth-corrected
+        # above), fall back to a self-consistency majority vote learned from
+        # train's own (parent, code) -> label distribution.
+        n_vote_corrected_aug  = correct_crumb_train_labels_by_majority_vote(full_train_aug,  skip_indices=mirabest_matched_aug)
+        n_vote_corrected_eval = correct_crumb_train_labels_by_majority_vote(full_train_eval, skip_indices=mirabest_matched_eval)
+        print(f"Corrected {n_vote_corrected_eval}/{len(full_train_eval)} CRUMB train labels "
+              f"using self-consistency majority vote (non-MiraBest-overlap sources)")
 
         n_corrected = correct_crumb_test_labels(full_train_eval, full_test_set)
         print(f"Corrected {n_corrected}/{len(full_test_set)} CRUMB test labels "

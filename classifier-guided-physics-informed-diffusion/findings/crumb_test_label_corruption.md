@@ -31,6 +31,46 @@ this new AT17-only filter together: train goes from 1719 (hybrid-filtered
 only) to 1550, giving 1240/310 after the 80/20 train/val split; test goes
 from 285 (hybrid-filtered only) to 246.
 
+**Caveat: the "unconditionally FRI" mechanism is not fully confirmed against
+the actual pickle data.** The wrong-column-check bug was identified by
+reading `CRUMB_builder.ipynb`'s source directly (an inferred code defect),
+not by independently re-deriving it from the shipped `CRUMB_batches` the way
+the test-split corruption was (that one was cross-checked against the raw
+`combined_catalogue_data.txt` and confirmed via the maintainers' own fix
+commit). Checking the raw, *uncorrected* `labels` field for AT17-only
+sources directly:
+
+| Split | FRI | FRII | Hyb |
+|---|---|---|---|
+| train (n=170) | 161 (94.7%) | 8 (4.7%) | 1 |
+| test (n=39) | 20 (51.3%) | 17 (43.6%) | 2 |
+
+"Unconditionally FRI" predicts 100% FRI; train is close but not exact (8
+FRII exceptions the bug shouldn't allow), and test is close to a coin flip
+— but test's ratio is fully explained by the *already-documented*,
+AT17-independent test-split label/`complete_labels` decorrelation (this
+section, "Deeper root cause"), so it isn't independent evidence about the
+AT17 branch specifically. Net assessment: solid evidence these 209 sources'
+labels are anomalous and unreliable relative to a working code->label rule;
+not solid proof of the *exact* mechanism.
+
+**Empirical result supports keeping the exclusion regardless of mechanism.**
+A single from-scratch `SimpleCNN` run (seed 42, otherwise identical config,
+build on top of the MiraBest train-label fix above) improved monotonically
+across both fixes:
+
+| Stage | Test accuracy |
+|---|---|
+| Before either fix | 72.63% |
+| + MiraBest train-label correction (Addendum 2) | 76.49% |
+| + AT17-only exclusion (this addendum) | **79.67%** |
+
+If the excluded 209 sources were just as reliable as the rest of the
+dataset, removing ~10% of the data should not have helped accuracy on a
+held-out test set — the fact that it did is consistent with those labels
+being lower-quality on average, independent of whether the precise root
+cause is the wrong-column bug or something else.
+
 ## Addendum 2: train-split labels corrected against MiraBest ground truth too
 
 Everything below (including Addendum 1) only ever corrected CRUMB's **test**

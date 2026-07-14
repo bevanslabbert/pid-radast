@@ -250,7 +250,12 @@ def correct_crumb_train_labels_from_mirabest(
     produced by `scripts/build_mirabest_crumb_mapping.py`. Sources with no
     MiraBest match (the ~1135 non-overlap train images) are left unchanged.
 
-    Returns the number of train targets that were changed.
+    Returns a tuple `(n_changed, matched_indices)`: the number of train
+    targets that were changed, and the set of train indices with a MiraBest
+    match (whether or not the label actually changed) -- callers should
+    treat these as ground-truth-confirmed and skip them in any subsequent,
+    lower-confidence correction pass (e.g.
+    `correct_crumb_train_labels_by_majority_vote`).
     """
     import csv
 
@@ -265,8 +270,67 @@ def correct_crumb_train_labels_from_mirabest(
             filename_to_label[basename] = label_to_idx[row['mirabest_label']]
 
     n_changed = 0
+    matched_indices = set()
     for i, filename in enumerate(train_dataset.filenames):
         corrected = filename_to_label.get(filename)
+        if corrected is None:
+            continue
+        matched_indices.add(i)
+        if corrected != train_dataset.targets[i]:
+            train_dataset.targets[i] = corrected
+            n_changed += 1
+    return n_changed, matched_indices
+
+
+def correct_crumb_train_labels_by_majority_vote(train_dataset, skip_indices=frozenset()):
+    """Self-consistency correction for the CRUMB train sources that have no
+    MiraBest counterpart to check against (~850 of ~1550 post-filter train
+    images) -- see findings/crumb_test_label_corruption.md.
+
+    Reuses the same logic as `correct_crumb_test_labels`: learns a
+    majority-vote `(parent, code) -> label` mapping from `train_dataset`
+    itself (train's own `complete_labels` predict its `labels` at 94-100%
+    purity per group) and overwrites any train target that disagrees with
+    its group's majority. Unlike the MiraBest ground-truth fix, this is a
+    self-consistency vote, not independent ground truth -- lower confidence,
+    used only to fill the gap where no ground truth exists.
+
+    Two exclusions are required for this to be safe:
+    - `skip_indices` (typically the indices already matched against MiraBest
+      ground truth by `correct_crumb_train_labels_from_mirabest`) are left
+      untouched, so the higher-confidence ground-truth label always wins.
+    - AT17-only sources (`is_at17_only_source`) are excluded from both the
+      vote's tally and the correction targets. That group is unconditionally
+      mislabeled FRI by a CRUMB_builder.ipynb bug, so its "majority" label
+      *is* the bug -- voting would entrench it rather than fix it. These
+      sources are excluded from training/eval entirely elsewhere.
+
+    Returns the number of train targets that were changed.
+    """
+    from collections import Counter, defaultdict
+
+    def parent_and_code(complete_label):
+        for col in range(len(complete_label)):
+            if complete_label[col] != -1:
+                return col, complete_label[col]
+        return None, None
+
+    tally = defaultdict(Counter)
+    for target, complete_label in zip(train_dataset.targets, train_dataset.complete_labels):
+        if is_at17_only_source(complete_label):
+            continue
+        key = parent_and_code(complete_label)
+        if key[0] is None:
+            continue
+        tally[key][target] += 1
+    mapping = {key: counter.most_common(1)[0][0] for key, counter in tally.items()}
+
+    n_changed = 0
+    for i, complete_label in enumerate(train_dataset.complete_labels):
+        if i in skip_indices or is_at17_only_source(complete_label):
+            continue
+        key = parent_and_code(complete_label)
+        corrected = mapping.get(key)
         if corrected is not None and corrected != train_dataset.targets[i]:
             train_dataset.targets[i] = corrected
             n_changed += 1
