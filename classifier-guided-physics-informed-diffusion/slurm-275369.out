@@ -3827,3 +3827,309 @@ Epoch 56
 Epoch 56, Training Loss: 0.5530, Validation Loss: 0.6050
 --- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
 Epoch 57
+Epoch 57, Training Loss: 0.5403, Validation Loss: 0.5767 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 58
+Epoch 58, Training Loss: 0.5347, Validation Loss: 0.5833
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 59
+Epoch 59, Training Loss: 0.5446, Validation Loss: 0.5812
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 60
+Epoch 60, Training Loss: 0.5449, Validation Loss: 0.6067
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 61
+Epoch 61, Training Loss: 0.5304, Validation Loss: 0.6273
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 62
+Epoch 62, Training Loss: 0.5313, Validation Loss: 0.5954
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 63
+Epoch 63, Training Loss: 0.5367, Validation Loss: 0.6418
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 64
+Epoch 64, Training Loss: 0.5234, Validation Loss: 0.5760 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 65
+Epoch 65, Training Loss: 0.5261, Validation Loss: 0.6027
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 66
+Epoch 66, Training Loss: 0.5342, Validation Loss: 0.6034
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 67
+Epoch 67, Training Loss: 0.5344, Validation Loss: 0.5877
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 68
+Epoch 68, Training Loss: 0.5186, Validation Loss: 0.5782
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 69
+Epoch 69, Training Loss: 0.5291, Validation Loss: 0.6154
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 70
+Epoch 70, Training Loss: 0.5280, Validation Loss: 0.5801
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 71
+Epoch 71, Training Loss: 0.5126, Validation Loss: 0.6558
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 72
+Epoch 72, Training Loss: 0.5227, Validation Loss: 0.5778
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 73
+Epoch 73, Training Loss: 0.5126, Validation Loss: 0.5837
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 74
+Epoch 74, Training Loss: 0.5075, Validation Loss: 0.5873
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 75
+Epoch 75, Training Loss: 0.5015, Validation Loss: 0.5918
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 76
+Epoch 76, Training Loss: 0.4908, Validation Loss: 0.5837
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 77
+Epoch 77, Training Loss: 0.5086, Validation Loss: 0.5931
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 78
+Epoch 78, Training Loss: 0.5052, Validation Loss: 0.6006
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 79
+Epoch 79, Training Loss: 0.5071, Validation Loss: 0.5692 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 80
+Epoch 80, Training Loss: 0.5079, Validation Loss: 0.6004
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 81
+Epoch 81, Training Loss: 0.5039, Validation Loss: 0.5695
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 82
+Epoch 82, Training Loss: 0.5090, Validation Loss: 0.6019
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 83
+Epoch 83, Training Loss: 0.4974, Validation Loss: 0.6926
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 84
+Epoch 84, Training Loss: 0.5065, Validation Loss: 0.5866
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 85
+Epoch 85, Training Loss: 0.5049, Validation Loss: 0.5684 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 86
+Epoch 86, Training Loss: 0.5182, Validation Loss: 0.5737
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 87
+Epoch 87, Training Loss: 0.5057, Validation Loss: 0.6099
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 88
+Epoch 88, Training Loss: 0.4976, Validation Loss: 0.5871
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 89
+Epoch 89, Training Loss: 0.4899, Validation Loss: 0.5883
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 90
+Epoch 90, Training Loss: 0.5049, Validation Loss: 0.5873
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 91
+Epoch 91, Training Loss: 0.4936, Validation Loss: 0.5860
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 92
+Epoch 92, Training Loss: 0.4829, Validation Loss: 0.5622 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 93
+Epoch 93, Training Loss: 0.4827, Validation Loss: 0.5701
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 94
+Epoch 94, Training Loss: 0.4773, Validation Loss: 0.5790
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 95
+Epoch 95, Training Loss: 0.4824, Validation Loss: 0.5723
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 96
+Epoch 96, Training Loss: 0.4824, Validation Loss: 0.5664
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 97
+Epoch 97, Training Loss: 0.5017, Validation Loss: 0.5743
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 98
+Epoch 98, Training Loss: 0.4879, Validation Loss: 0.5665
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 99
+Epoch 99, Training Loss: 0.4958, Validation Loss: 0.5910
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 100
+Epoch 100, Training Loss: 0.4821, Validation Loss: 0.5599 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 101
+Epoch 101, Training Loss: 0.4908, Validation Loss: 0.5583 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 102
+Epoch 102, Training Loss: 0.4752, Validation Loss: 0.5812
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 103
+Epoch 103, Training Loss: 0.4785, Validation Loss: 0.5655
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 104
+Epoch 104, Training Loss: 0.4744, Validation Loss: 0.5621
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 105
+Epoch 105, Training Loss: 0.4667, Validation Loss: 0.5606
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 106
+Epoch 106, Training Loss: 0.4779, Validation Loss: 0.5664
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 107
+Epoch 107, Training Loss: 0.4693, Validation Loss: 0.5946
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 108
+Epoch 108, Training Loss: 0.4782, Validation Loss: 0.5484 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 109
+Epoch 109, Training Loss: 0.4669, Validation Loss: 0.5428 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 110
+Epoch 110, Training Loss: 0.4664, Validation Loss: 0.5704
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 111
+Epoch 111, Training Loss: 0.4802, Validation Loss: 0.5494
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 112
+Epoch 112, Training Loss: 0.4781, Validation Loss: 0.5347 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 113
+Epoch 113, Training Loss: 0.4645, Validation Loss: 0.5792
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 114
+Epoch 114, Training Loss: 0.4649, Validation Loss: 0.5719
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 115
+Epoch 115, Training Loss: 0.4782, Validation Loss: 0.5612
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 116
+Epoch 116, Training Loss: 0.4585, Validation Loss: 0.5443
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 117
+Epoch 117, Training Loss: 0.4770, Validation Loss: 0.5386
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 118
+Epoch 118, Training Loss: 0.4493, Validation Loss: 0.5459
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 119
+Epoch 119, Training Loss: 0.4668, Validation Loss: 0.5827
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 120
+Epoch 120, Training Loss: 0.4744, Validation Loss: 0.5439
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 121
+Epoch 121, Training Loss: 0.4717, Validation Loss: 0.5241 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 122
+Epoch 122, Training Loss: 0.4834, Validation Loss: 0.5265
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 123
+Epoch 123, Training Loss: 0.4607, Validation Loss: 0.5419
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 124
+Epoch 124, Training Loss: 0.4631, Validation Loss: 0.5377
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 125
+Epoch 125, Training Loss: 0.4398, Validation Loss: 0.5420
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 126
+Epoch 126, Training Loss: 0.4421, Validation Loss: 0.5470
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 127
+Epoch 127, Training Loss: 0.4629, Validation Loss: 0.5476
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 128
+Epoch 128, Training Loss: 0.4492, Validation Loss: 0.5319
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 129
+Epoch 129, Training Loss: 0.4481, Validation Loss: 0.5402
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 130
+Epoch 130, Training Loss: 0.4585, Validation Loss: 0.5272
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 131
+Epoch 131, Training Loss: 0.4589, Validation Loss: 0.5291
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 132
+Epoch 132, Training Loss: 0.4477, Validation Loss: 0.5323
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 133
+Epoch 133, Training Loss: 0.4735, Validation Loss: 0.5544
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 134
+Epoch 134, Training Loss: 0.4392, Validation Loss: 0.5169 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 135
+Epoch 135, Training Loss: 0.4413, Validation Loss: 0.5431
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 136
+Epoch 136, Training Loss: 0.4504, Validation Loss: 0.5208
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 137
+Epoch 137, Training Loss: 0.4538, Validation Loss: 0.5319
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 138
+Epoch 138, Training Loss: 0.4376, Validation Loss: 0.5135 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 139
+Epoch 139, Training Loss: 0.4519, Validation Loss: 0.5253
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 140
+Epoch 140, Training Loss: 0.4531, Validation Loss: 0.5132 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 141
+Epoch 141, Training Loss: 0.4515, Validation Loss: 0.5100 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 142
+Epoch 142, Training Loss: 0.4507, Validation Loss: 0.5038 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 143
+Epoch 143, Training Loss: 0.4414, Validation Loss: 0.5421
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 144
+Epoch 144, Training Loss: 0.4288, Validation Loss: 0.5210
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 145
+Epoch 145, Training Loss: 0.4559, Validation Loss: 0.5465
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 146
+Epoch 146, Training Loss: 0.4453, Validation Loss: 0.5180
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 147
+Epoch 147, Training Loss: 0.4413, Validation Loss: 0.4990 (best)
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 148
+Epoch 148, Training Loss: 0.4466, Validation Loss: 0.5206
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 149
+Epoch 149, Training Loss: 0.4433, Validation Loss: 0.5356
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 150
+Epoch 150, Training Loss: 0.4299, Validation Loss: 0.5447
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 151
+Epoch 151, Training Loss: 0.4462, Validation Loss: 0.5242
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 152
+Epoch 152, Training Loss: 0.4439, Validation Loss: 0.5272
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 153
+Epoch 153, Training Loss: 0.4497, Validation Loss: 0.5272
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 154
+Epoch 154, Training Loss: 0.4425, Validation Loss: 0.5310
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 155
+Epoch 155, Training Loss: 0.4210, Validation Loss: 0.5223
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 156
+Epoch 156, Training Loss: 0.4637, Validation Loss: 0.5285
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 157
+Epoch 157, Training Loss: 0.4323, Validation Loss: 0.5117
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 158
+Epoch 158, Training Loss: 0.4377, Validation Loss: 0.5077
+--- Saved model to checkpoints/classification/scratch_batch_8_seed46/state.pt ---
+Epoch 159
