@@ -11,4 +11,16 @@ Total images in dataset: 1794
 Total batches: 39 (at batch size 32)
 Starting classification optimization: 25 trials over ['learning_rate', 'weight_decay', 'batch_size']
   0%|          |  [00:00<?]                             0%|          |  [00:00<?]Search is scheduled for 25 steps
-Best f: 0.528 (out of 1 params):   0%|          |  [00:10<?, 0.1 param/s]Best f: 0.528 (out of 2 params):   4%|▍         |  [00:20<08:02, 0.1 param/s]Best f: 0.528 (out of 3 params):   8%|▊         |  [00:24<04:44, 0.1 param/s]Best f: 0.528 (out of 4 params):  12%|█▏        |  [00:34<04:11, 0.1 param/s]
+Best f: 0.528 (out of 1 params):   0%|          |  [00:10<?, 0.1 param/s]Best f: 0.528 (out of 2 params):   4%|▍         |  [00:20<08:02, 0.1 param/s]Best f: 0.528 (out of 3 params):   8%|▊         |  [00:24<04:44, 0.1 param/s]Best f: 0.528 (out of 4 params):  12%|█▏        |  [00:34<04:11, 0.1 param/s]Best f: 0.528 (out of 5 params):  16%|█▌        |  [00:44<03:51, 0.1 param/s]Best f: 0.528 (out of 6 params):  20%|██        |  [00:53<03:34, 0.1 param/s]Best f: 0.528 (out of 7 params):  24%|██▍       |  [01:01<03:16, 0.1 param/s]Best f: 0.528 (out of 8 params):  28%|██▊       |  [01:06<02:50, 0.1 param/s]Best f: 0.528 (out of 9 params):  32%|███▏      |  [01:14<02:38, 0.1 param/s]Best f: 0.528 (out of 10 params):  36%|███▌      |  [01:24<02:29, 0.1 param/s]Best f: 0.528 (out of 11 params):  40%|████      |  [01:34<02:21, 0.1 param/s]Best f: 0.528 (out of 12 params):  44%|████▍     |  [01:44<02:12, 0.1 param/s]Best f: 0.528 (out of 13 params):  48%|████▊     |  [01:48<01:57, 0.1 param/s]Best f: 0.528 (out of 14 params):  52%|█████▏    |  [01:58<01:49, 0.1 param/s]Best f: 0.528 (out of 15 params):  56%|█████▌    |  [02:08<01:40, 0.1 param/s]Best f: 0.528 (out of 16 params):  60%|██████    |  [02:17<01:31, 0.1 param/s]Best f: 0.528 (out of 17 params):  64%|██████▍   |  [02:25<01:22, 0.1 param/s]Best f: 0.528 (out of 18 params):  68%|██████▊   |  [02:36<01:13, 0.1 param/s]Best f: 0.528 (out of 19 params):  72%|███████▏  |  [02:44<01:04, 0.1 param/s]Best f: 0.528 (out of 20 params):  76%|███████▌  |  [02:54<00:55, 0.1 param/s]Best f: 0.528 (out of 21 params):  80%|████████  |  [03:04<00:46, 0.1 param/s]Best f: 0.528 (out of 22 params):  84%|████████▍ |  [03:14<00:37, 0.1 param/s]Best f: 0.528 (out of 23 params):  88%|████████▊ |  [03:18<00:27, 0.1 param/s]Best f: 0.528 (out of 24 params):  96%|█████████▌|  [03:23<00:08, 0.1 param/s]Best f: 0.528 (out of 24 params): 100%|██████████|  [03:23<00:00, 0.1 param/s]Best f: 0.528 (out of 24 params): 100%|██████████|  [03:23<00:00, 0.1 param/s]
+==================== Summary ===================
+Mode              : Best f : Steps : Time       
+----------------  : ----   : ----  : ----       
+Initial solution  : 0.5275 : 1     : 10.53 s    
+Random seeding    : 0.5275 : 5     : 43 s       
+Local sampling    : 0.5275 : 18    : 02:30 (m:s)
+Duplicates        : -      : 1     : -          
+----------------  : ----   : ----  : ----       
+Total             : 0.5275 : 25    : 03:23 (m:s)
+================================================
+Best params for classification: {'learning_rate': 0.0010000000000000002, 'weight_decay': 0.00031622776601683783, 'batch_size': 8}
+Saved to results/classification/run_20260714_202439/best_params.json and results/classification/run_20260714_202439/best_params.yaml

@@ -1,0 +1,102 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb
+Corrected 37/1800 CRUMB train labels using MiraBest ground truth for overlapping sources
+Corrected 85/1800 CRUMB train labels using self-consistency majority vote (non-MiraBest-overlap sources)
+Corrected 163/300 CRUMB test labels using train-derived (parent, code) -> label mapping
+Excluding 170/1800 train and 39/300 test AT17-only sources (mislabeled FRI)
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1794
+Total batches: 39 (at batch size 32)
+
+============================================================
+Run 1/5  |  seed=42  |  tag=scratch_seed42  |  results -> results/classification/run_20260714_203445_seed42
+============================================================
+
+Training classification for 300 epochs
+Epoch 0
+Epoch 0, Training Loss: 0.7072, Validation Loss: 0.6940 (best)
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 1
+Epoch 1, Training Loss: 0.6938, Validation Loss: 0.6918 (best)
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 2
+Epoch 2, Training Loss: 0.6871, Validation Loss: 0.6946
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 3
+Epoch 3, Training Loss: 0.6852, Validation Loss: 0.7084
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 4
+Epoch 4, Training Loss: 0.6932, Validation Loss: 0.6951
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 5
+Epoch 5, Training Loss: 0.6874, Validation Loss: 0.6944
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 6
+Epoch 6, Training Loss: 0.6880, Validation Loss: 0.6947
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 7
+Epoch 7, Training Loss: 0.6872, Validation Loss: 0.6939
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 8
+Epoch 8, Training Loss: 0.6882, Validation Loss: 0.6914 (best)
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 9
+Epoch 9, Training Loss: 0.6870, Validation Loss: 0.6930
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 10
+Epoch 10, Training Loss: 0.6859, Validation Loss: 0.6943
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 11
+Epoch 11, Training Loss: 0.6883, Validation Loss: 0.6967
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 12
+Epoch 12, Training Loss: 0.6884, Validation Loss: 0.6945
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 13
+Epoch 13, Training Loss: 0.6859, Validation Loss: 0.6938
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 14
+Epoch 14, Training Loss: 0.6861, Validation Loss: 0.6943
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 15
+Epoch 15, Training Loss: 0.6860, Validation Loss: 0.6928
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 16
+Epoch 16, Training Loss: 0.6853, Validation Loss: 0.6920
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 17
+Epoch 17, Training Loss: 0.6849, Validation Loss: 0.6910 (best)
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 18
+Epoch 18, Training Loss: 0.6837, Validation Loss: 0.6985
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 19
+Epoch 19, Training Loss: 0.6865, Validation Loss: 0.6934
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 20
+Epoch 20, Training Loss: 0.6867, Validation Loss: 0.6905 (best)
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 21
+Epoch 21, Training Loss: 0.6849, Validation Loss: 0.6951
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 22
+Epoch 22, Training Loss: 0.6871, Validation Loss: 0.6900 (best)
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 23
+Epoch 23, Training Loss: 0.6867, Validation Loss: 0.6944
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 24
+Epoch 24, Training Loss: 0.6854, Validation Loss: 0.6892 (best)
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 25
+Epoch 25, Training Loss: 0.6830, Validation Loss: 0.6862 (best)
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 26
+Epoch 26, Training Loss: 0.6848, Validation Loss: 0.6891
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 27
+Epoch 27, Training Loss: 0.6796, Validation Loss: 0.6886
+--- Saved model to checkpoints/classification/scratch_seed42/state.pt ---
+Epoch 28
