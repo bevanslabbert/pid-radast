@@ -1,5 +1,77 @@
 # Classifier accuracy on CRUMB vs. its MiraBest-derived subset
 
+## Addendum 3: AT17-only sources excluded from training and evaluation
+
+Addendum 1, point 3 identified but did not fix a second CRUMB bug: the
+AT17-only branch of `CRUMB_builder.ipynb`'s label-assignment cell checks the
+wrong column (`label_vector[i, 1]`, FR-DEEP, instead of `label_vector[i, 2]`,
+AT17), so the condition is structurally always false and every AT17-only
+source — a source present in the AT17 catalogue but absent from MiraBest,
+FR-DEEP, and MiraBest Hybrid — is unconditionally labeled FRI regardless of
+its true AT17 code. Unlike the train-label fix in Addendum 2, there's no
+MiraBest ground truth to fall back on here (AT17-only sources have no
+MiraBest counterpart by definition), and the intended AT17 threshold rule
+isn't recoverable from the buggy branch alone — so rather than guess a
+relabeling, these sources are excluded from both training and evaluation
+entirely.
+
+Added `is_at17_only_source(complete_label)` (`src/datasets/crumb/CRUMB.py`),
+which flags a source as AT17-only when `complete_labels` column 2 (AT17) is
+present and columns 0/1/3 (MiraBest/FR-DEEP/Hybrid) are all `-1`. Wired into
+`get_data_loaders('crumb', ...)` (`src/utils/data.py`) alongside the existing
+hybrid-class (class 2) filter, applied to both the train and test index
+sets.
+
+**Result:** 170/1800 train sources and 39/300 test sources are AT17-only
+(209/2100 total across both splits — matches the previously documented
+210/2100 within normal catalogue-level noise; 1 train source and 2 test
+sources are AT17-only *and* hybrid, already excluded by the pre-existing
+hybrid filter, hence the 1-off). After the existing hybrid-class filter and
+this new AT17-only filter together: train goes from 1719 (hybrid-filtered
+only) to 1550, giving 1240/310 after the 80/20 train/val split; test goes
+from 285 (hybrid-filtered only) to 246.
+
+## Addendum 2: train-split labels corrected against MiraBest ground truth too
+
+Everything below (including Addendum 1) only ever corrected CRUMB's **test**
+split — `correct_crumb_test_labels` overwrites `test_dataset.targets` using a
+majority-vote (parent, code) -> label mapping learned from train, on the
+assumption that train's own labels were already trustworthy. That assumption
+was mostly right (94-100% purity per code, see Addendum 1) but not entirely:
+of the ~665 CRUMB train images that are also MiraBest sources (identified by
+the RA/Dec coordinate match in `build_mirabest_crumb_mapping.py`, tolerance
+0.01°), CRUMB's own label disagreed with MiraBest's canonical label on
+**5.3% (~35/665)** of them — see `classifier_architecture_experiments.md`'s
+"Confirmed directly" section, run on the train split.
+
+Added `correct_crumb_train_labels_from_mirabest`
+(`src/datasets/crumb/CRUMB.py`), wired into `get_data_loaders('crumb', ...)`
+in `src/utils/data.py`, run *before* `correct_crumb_test_labels` (so the
+test-label mapping learns from the now-cleaned train targets rather than the
+~5% train noise). It overwrites CRUMB's train label with MiraBest's own label
+for every train image confirmed (by coordinate + pixel match) to be a
+MiraBest source, using
+`results/mirabest_classifier_vs_crumb_dataset/mirabest_crumb_mapping.csv`.
+Non-overlap train images (the majority — ~1135/1800, which have no MiraBest
+counterpart to check against) are left unchanged.
+
+**Result:** 37/1800 train labels corrected. A single from-scratch `SimpleCNN`
+run (seed 42, otherwise identical config) went from 72.63% -> 76.49% test
+accuracy — a real but modest improvement, roughly the size of one
+seed-to-seed swing on this dataset (the 5-seed spread before this fix was
+72.6-76.5%, see `classifier_architecture_experiments.md`). Consistent with
+the size of the underlying fix: only ~2% of the full train set changed.
+
+**This does not touch the AT17-only mislabeling bug (Addendum 1, point 3).**
+The two are unrelated by construction: AT17-only sources have no MiraBest
+match (they appear *only* in the AT17 catalogue, not MiraBest/FR-DEEP/Hybrid,
+so they take a different code branch in CRUMB's builder notebook), so the
+MiraBest-ground-truth correction above cannot have touched any of the
+210/2100 (10%) sources affected by that bug. That bug remains unfixed as of
+this writing — the correct AT17 code -> label threshold isn't known (we only
+have the buggy branch, not the intended one), so a safe next step is
+excluding AT17-only sources from training rather than guessing a relabeling.
+
 ## Addendum: fix verified against CRUMB's raw catalogue, and a second bug found
 
 Everything below was the original investigation. Two follow-ups after

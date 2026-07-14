@@ -169,6 +169,26 @@ class CRUMB(data.Dataset):
         return fmt_str
 
 
+def is_at17_only_source(complete_label):
+    """True if a source appears only in the AT17 parent catalogue (not
+    MiraBest, FR-DEEP, or MiraBest Hybrid) -- see
+    findings/crumb_test_label_corruption.md. CRUMB_builder.ipynb's
+    label-assignment branch for these sources checks the wrong column
+    (`label_vector[i, 1]`, FR-DEEP, instead of `label_vector[i, 2]`, AT17),
+    so the condition is structurally always false and every AT17-only source
+    is unconditionally labeled FRI regardless of its true AT17 code. There's
+    no known-correct relabeling (the intended AT17 threshold rule isn't
+    recoverable from the buggy branch alone), so these sources should be
+    excluded from training/evaluation rather than trusted. Affects 210/2100
+    sources (10%) of the full CRUMB dataset.
+
+    `complete_label` columns are [MiraBest, FR-DEEP, AT17, Hybrid]; `-1`
+    means "source absent from this parent catalogue".
+    """
+    mirabest, fr_deep, at17, hybrid = complete_label[0], complete_label[1], complete_label[2], complete_label[3]
+    return at17 != -1 and mirabest == -1 and fr_deep == -1 and hybrid == -1
+
+
 def correct_crumb_test_labels(train_dataset, test_dataset):
     """Fix CRUMB's test-split `labels`, which are decorrelated from CRUMB's own
     `complete_labels` metadata for a large fraction of test sources across all

@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader, Subset
 from typing import Tuple
 from torch.utils.data import random_split
 import torchvision.transforms as transforms
-from src.datasets.crumb.CRUMB import CRUMB, correct_crumb_test_labels, correct_crumb_train_labels_from_mirabest
+from src.datasets.crumb.CRUMB import CRUMB, correct_crumb_test_labels, correct_crumb_train_labels_from_mirabest, is_at17_only_source
 from src.datasets.mirabest.MiraBest import MiraBest
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.datasets.mirabest.MiraBestPNG import MiraBestPNG
@@ -42,9 +42,18 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         print(f"Corrected {n_corrected}/{len(full_test_set)} CRUMB test labels "
               f"using train-derived (parent, code) -> label mapping")
 
-        # Filter out hybrid sources (class 2)
-        binary_indices = [i for i, t in enumerate(full_train_aug.targets) if t != 2]
-        test_indices   = [i for i, t in enumerate(full_test_set.targets)  if t != 2]
+        # Filter out hybrid sources (class 2) and AT17-only sources
+        # (unconditionally mislabeled FRI by a CRUMB_builder.ipynb bug -- see
+        # findings/crumb_test_label_corruption.md)
+        n_at17_train = sum(1 for cl in full_train_aug.complete_labels if is_at17_only_source(cl))
+        n_at17_test  = sum(1 for cl in full_test_set.complete_labels  if is_at17_only_source(cl))
+        print(f"Excluding {n_at17_train}/{len(full_train_aug)} train and "
+              f"{n_at17_test}/{len(full_test_set)} test AT17-only sources (mislabeled FRI)")
+
+        binary_indices = [i for i, t in enumerate(full_train_aug.targets)
+                          if t != 2 and not is_at17_only_source(full_train_aug.complete_labels[i])]
+        test_indices   = [i for i, t in enumerate(full_test_set.targets)
+                          if t != 2 and not is_at17_only_source(full_test_set.complete_labels[i])]
 
         val_size   = int(len(binary_indices) * val_split)
         train_size = len(binary_indices) - val_size
