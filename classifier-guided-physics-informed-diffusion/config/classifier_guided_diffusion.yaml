@@ -13,7 +13,7 @@ model:
   # timestep input) or robust_classification (TimeDependentResNet). Defaults to
   # robust_classification if omitted.
   classifier_type: classification
-  classifier_checkpoint: checkpoints/classification/acc90
+  classifier_checkpoint: checkpoints/classification/scratch
 
 training:
   epochs: 200

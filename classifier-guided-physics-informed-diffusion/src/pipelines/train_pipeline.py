@@ -668,11 +668,11 @@ def _train_diffusion_loop(
 def _load_guidance_classifier(config, device):
     """Loads the frozen classifier used to guide classifier_guided_diffusion training.
 
-    `model.classifier_type` selects the architecture ('classification' -> resnet18
-    head as trained by train_classification; 'robust_classification' -> TimeDependentResNet
+    `model.classifier_type` selects the architecture ('classification' -> SimpleCNN
+    as trained by train_classification; 'robust_classification' -> TimeDependentResNet
     as trained by train_robust_classification). Only TimeDependentResNet takes a timestep
     argument, but the guidance loss always calls the classifier at t=0 on the estimated
-    clean image, so a plain resnet18 classifier works too — just called without t.
+    clean image, so a plain SimpleCNN classifier works too — just called without t.
     """
     classifier_type = config['model'].get('classifier_type', 'robust_classification')
     num_classes = config['data']['num_classes']
@@ -680,12 +680,7 @@ def _load_guidance_classifier(config, device):
     ckpt_dir = config['model'].get('classifier_checkpoint', default_dir)
 
     if classifier_type == 'classification':
-        dropout_p = float(config['model'].get('dropout', 0.2))
-        classifier = resnet18(pretrained=False)
-        classifier.fc = nn.Sequential(
-            nn.Dropout(p=dropout_p),
-            nn.Linear(classifier.fc.in_features, num_classes),
-        )
+        classifier = SimpleCNN(num_classes=num_classes)
         time_aware = False
     elif classifier_type == 'robust_classification':
         classifier = TimeDependentResNet(num_classes, pretrained=False)
