@@ -27,3 +27,6 @@ Computing FID/KID/PDF at epoch 0...
   Pixel PDF W-dist: 0.2564
 --- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
 Epoch 1
+Epoch 1 | Loss: 0.055020 | Val: 0.142806  |  cls_loss: 0.025822
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 2
