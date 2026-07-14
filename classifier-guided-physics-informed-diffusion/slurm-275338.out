@@ -1,0 +1,14 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb
+Corrected 37/1800 CRUMB train labels using MiraBest ground truth for overlapping sources
+Corrected 85/1800 CRUMB train labels using self-consistency majority vote (non-MiraBest-overlap sources)
+Corrected 163/300 CRUMB test labels using train-derived (parent, code) -> label mapping
+Excluding 170/1800 train and 39/300 test AT17-only sources (mislabeled FRI)
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1794
+Total batches: 39 (at batch size 32)
+Starting classification optimization: 25 trials over ['learning_rate', 'weight_decay', 'batch_size']
+  0%|          |  [00:00<?]                             0%|          |  [00:00<?]Search is scheduled for 25 steps
+Best f: 0.528 (out of 1 params):   0%|          |  [00:10<?, 0.1 param/s]Best f: 0.528 (out of 2 params):   4%|▍         |  [00:20<08:02, 0.1 param/s]Best f: 0.528 (out of 3 params):   8%|▊         |  [00:24<04:44, 0.1 param/s]Best f: 0.528 (out of 4 params):  12%|█▏        |  [00:34<04:11, 0.1 param/s]
