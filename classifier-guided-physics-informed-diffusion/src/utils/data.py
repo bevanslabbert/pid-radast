@@ -145,6 +145,42 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
 
         return trainloader, valloader, testloader, train_dataset
 
+    if dataset.lower() == 'crumb_fits':
+        fits_dir = 'src/datasets/crumb/fits'
+        fits_train_transform = transforms.Compose([
+            transforms.Resize(213, antialias=True),
+            transforms.RandomRotation(180),
+            transforms.CenterCrop(150),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomVerticalFlip(),
+        ])
+        fits_eval_transform = transforms.Compose([
+            transforms.Resize(150, antialias=True),
+            transforms.CenterCrop(150),
+        ])
+
+        train_dataset = MiraBestFITS(root=fits_dir, transform=fits_train_transform)
+        eval_dataset  = MiraBestFITS(root=fits_dir, transform=fits_eval_transform)
+
+        total = len(train_dataset)
+        val_size   = int(total * val_split)
+        test_size  = int(total * 0.1)
+        train_size = total - val_size - test_size
+
+        indices = list(range(total))
+        rng = np.random.default_rng(42)
+        rng.shuffle(indices)
+
+        train_idx = indices[:train_size]
+        val_idx   = indices[train_size:train_size + val_size]
+        test_idx  = indices[train_size + val_size:]
+
+        trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
+        valloader   = DataLoader(Subset(eval_dataset,  val_idx),   batch_size=batch_size, shuffle=False, num_workers=2)
+        testloader  = DataLoader(Subset(eval_dataset,  test_idx),  batch_size=batch_size, shuffle=False, num_workers=2)
+
+        return trainloader, valloader, testloader, train_dataset
+
     if dataset.lower() == 'mirabest_fits_png':
         png_dir = 'src/datasets/mirabest/png'
         train_dataset = MiraBestPNG(root=png_dir, transform=transform)

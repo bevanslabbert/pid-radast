@@ -27,6 +27,13 @@ def set_seed(seed):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
+def make_result_directory(model, tag, seed=None):
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    tag_part = tag if tag else "untagged"
+    jobid = os.environ.get("SLURM_JOB_ID") or os.environ.get("PBS_JOBID") or "local"
+    seed_part = f"_seed{seed}" if seed is not None else ""
+    return f'results/{model}/{timestamp}_{tag_part}_{jobid}{seed_part}'
+
 def main():
 
     clear_gpu_memory()
@@ -166,8 +173,7 @@ def main():
     print(f"Total batches: {total_batches} (at batch size {batch_size})")
 
     if args.command == "optimize":
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        result_directory = f'results/{args.model}/run_{timestamp}'
+        result_directory = make_result_directory(args.model, getattr(args, "tag", None))
         os.makedirs(result_directory, exist_ok=True)
         optimize_parameters(args.model, cfg, trainloader, valloader, device, result_directory,
                             dataset=fits_dataset)
@@ -179,8 +185,7 @@ def main():
             seed = base_seed + run_idx
             set_seed(seed)
 
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            result_directory = f'results/{args.model}/run_{timestamp}_seed{seed}'
+            result_directory = make_result_directory(args.model, args.tag, seed=seed if num_runs > 1 else None)
             os.makedirs(result_directory, exist_ok=True)
 
             # With multiple runs in one invocation, each seed needs its own checkpoint
@@ -194,8 +199,7 @@ def main():
             model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset, tag=run_tag)
             test_model(model_type=args.model, model=model, config=cfg, testloader=testloader, device=device, result_directory=result_directory, tag=run_tag)
     elif args.command == "test":
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        result_directory = f'results/{args.model}/run_{timestamp}'
+        result_directory = make_result_directory(args.model, args.tag)
         os.makedirs(result_directory, exist_ok=True)
         # TODO: need to get the trained model
         test_model(model_type=args.model, config=cfg, testloader=testloader, device=device, result_directory=result_directory, tag=args.tag)
