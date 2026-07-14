@@ -64,3 +64,24 @@ Epoch 11
 Epoch 11 | Loss: 0.051374 | Val: 0.143436  |  cls_loss: 0.018895
 --- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
 Epoch 12
+Epoch 12 | Loss: 0.046500 | Val: 0.143394  |  cls_loss: 0.017479
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 13
+Epoch 13 | Loss: 0.047987 | Val: 0.142894  |  cls_loss: 0.018989
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 14
+Epoch 14 | Loss: 0.047976 | Val: 0.143046  |  cls_loss: 0.017300
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 15
+Epoch 15 | Loss: 0.040540 | Val: 0.142074  |  cls_loss: 0.015385
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 16
+Epoch 16 | Loss: 0.046785 | Val: 0.142203  |  cls_loss: 0.016109
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 17
+Epoch 17 | Loss: 0.047335 | Val: 0.143245  |  cls_loss: 0.015582
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 18
+Epoch 18 | Loss: 0.043673 | Val: 0.143648  |  cls_loss: 0.016165
+--- Saved model to checkpoints/classifier_guided_diffusion/state.pt ---
+Epoch 19
