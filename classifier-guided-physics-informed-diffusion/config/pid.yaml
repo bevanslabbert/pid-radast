@@ -29,7 +29,7 @@ training:
 
   weight_decay: 0.01
   eval_interval: 10
-  eval_num_samples: 64
+  eval_num_samples: 16
 
 optimization:
   max_trials: 25
