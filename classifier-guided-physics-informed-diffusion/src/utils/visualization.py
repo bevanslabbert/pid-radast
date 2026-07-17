@@ -83,10 +83,11 @@ def save_pixel_pdf_history_plot(pdf_epochs, pdf_history, result_dir):
 
 
 def save_pid_training_plots(epochs, loss_history, val_loss_history,
-                             mse_history, sym_history, neg_history,
+                             mse_history, sym_history, neg_history, conc_history,
                              compliance_epochs, pct_negative_history, sym_score_history,
+                             conc_fri_history, conc_frii_history,
                              result_dir):
-    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    fig, axes = plt.subplots(2, 3, figsize=(20, 10))
     fig.suptitle('PID Training: Loss Decomposition', fontsize=14)
 
     axes[0, 0].plot(epochs, loss_history, color='tab:blue', linewidth=2, label='Train')
@@ -101,6 +102,11 @@ def save_pid_training_plots(epochs, loss_history, val_loss_history,
     axes[0, 1].set_xlabel('Epoch')
     axes[0, 1].grid(True, linestyle='--', alpha=0.5)
 
+    axes[0, 2].plot(epochs, conc_history, color='tab:purple', linewidth=2)
+    axes[0, 2].set_title('FR Concentration Loss')
+    axes[0, 2].set_xlabel('Epoch')
+    axes[0, 2].grid(True, linestyle='--', alpha=0.5)
+
     axes[1, 0].plot(epochs, sym_history, color='tab:green', linewidth=2)
     axes[1, 0].set_title('Symmetry Loss')
     axes[1, 0].set_xlabel('Epoch')
@@ -111,12 +117,14 @@ def save_pid_training_plots(epochs, loss_history, val_loss_history,
     axes[1, 1].set_xlabel('Epoch')
     axes[1, 1].grid(True, linestyle='--', alpha=0.5)
 
+    axes[1, 2].axis('off')
+
     fig.tight_layout()
     plt.savefig(os.path.join(result_dir, 'pid_loss_decomposition.png'), dpi=150)
     plt.close()
 
     if compliance_epochs:
-        fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+        fig, axes = plt.subplots(1, 3, figsize=(18, 5))
         fig.suptitle('PID Physics Compliance (generated images)', fontsize=14)
 
         axes[0].plot(compliance_epochs, pct_negative_history, color='tab:red', linewidth=2, marker='o')
@@ -130,6 +138,17 @@ def save_pid_training_plots(epochs, loss_history, val_loss_history,
         axes[1].set_xlabel('Epoch')
         axes[1].set_ylabel('MSE(image, flipped)')
         axes[1].grid(True, linestyle='--', alpha=0.5)
+
+        axes[2].plot(compliance_epochs, conc_fri_history, color='tab:blue', linewidth=2,
+                     marker='o', label='FR-I (want high)')
+        axes[2].plot(compliance_epochs, conc_frii_history, color='tab:orange', linewidth=2,
+                     marker='o', label='FR-II (want low)')
+        axes[2].axhline(0.5, color='gray', linestyle='--', linewidth=1, label='margin')
+        axes[2].set_title('FR Concentration Index by Class')
+        axes[2].set_xlabel('Epoch')
+        axes[2].set_ylabel('Central flux fraction')
+        axes[2].legend()
+        axes[2].grid(True, linestyle='--', alpha=0.5)
 
         fig.tight_layout()
         plt.savefig(os.path.join(result_dir, 'pid_physics_compliance.png'), dpi=150)

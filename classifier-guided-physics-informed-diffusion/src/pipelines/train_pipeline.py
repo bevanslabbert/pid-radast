@@ -11,7 +11,9 @@ import torchvision
 
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.models.diffusion import build_diffusion_components, eval_epoch
-from src.models.pid import estimate_x0, symmetry_loss, nonnegativity_loss
+from src.models.pid import (
+    estimate_x0, symmetry_loss, nonnegativity_loss, concentration_loss, concentration_index,
+)
 from torchvision.models import resnet18
 from src.models.simple_cnn import SimpleCNN
 from src.models.time_dependent_resnet import TimeDependentResNet
@@ -723,29 +725,36 @@ def train_diffusion(config, trainloader, valloader, testloader, device, result_d
 
 def train_pid(config, trainloader, valloader, testloader, device, result_directory,
               resume, checkpoint, dataset=None, tag=None):
-    """Physics-informed diffusion: DDPM MSE + symmetry + non-negativity penalties."""
+    """Physics-informed diffusion: DDPM MSE + symmetry + non-negativity + FR concentration penalties."""
     ckpt_dir = 'pid' + (f'/{tag}' if tag else '')
     lambda_sym = float(config['training'].get('lambda_sym', 0.1))
     lambda_neg = float(config['training'].get('lambda_neg', 0.1))
+    lambda_conc = float(config['training'].get('lambda_conc', 0.1))
+    conc_inner_frac = float(config['training'].get('conc_inner_frac', 0.25))
 
-    def loss_fn(noise_pred, noise, noisy_images, t, alphas_cumprod, **_):
+    def loss_fn(noise_pred, noise, noisy_images, labels, t, alphas_cumprod, **_):
         mse = F.mse_loss(noise_pred, noise)
         x0 = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
         sym = lambda_sym * symmetry_loss(x0)
         neg = lambda_neg * nonnegativity_loss(x0)
-        return mse + sym + neg, {'mse': mse.item(), 'sym': sym.item(), 'neg': neg.item()}
+        conc = lambda_conc * concentration_loss(x0, labels, inner_frac=conc_inner_frac)
+        return mse + sym + neg + conc, {
+            'mse': mse.item(), 'sym': sym.item(), 'neg': neg.item(), 'conc': conc.item(),
+        }
 
     def compliance_fn(gen_0, gen_1):
         all_gen = torch.cat([gen_0, gen_1], dim=0)
         return {
             'pct_negative': (all_gen < 0).float().mean().item() * 100,
             'sym_score': symmetry_loss(all_gen).item(),
+            'conc_fri': concentration_index(gen_0, inner_frac=conc_inner_frac).mean().item(),
+            'conc_frii': concentration_index(gen_1, inner_frac=conc_inner_frac).mean().item(),
         }
 
     unet, scheduler, class_emb, hist = _train_diffusion_loop(
         config, trainloader, valloader, testloader, device, result_directory,
         resume, checkpoint, ckpt_dir, loss_fn, dataset=dataset,
-        extra_keys=['mse', 'sym', 'neg'], compliance_fn=compliance_fn,
+        extra_keys=['mse', 'sym', 'neg', 'conc'], compliance_fn=compliance_fn,
     )
 
     _post_train_save(unet, scheduler, class_emb, config, result_directory, dataset,
@@ -759,9 +768,12 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
             'mse': hist['extra'].get('mse', []),
             'sym': hist['extra'].get('sym', []),
             'neg': hist['extra'].get('neg', []),
+            'conc': hist['extra'].get('conc', []),
             'compliance_epochs': hist['compliance_epochs'],
             'pct_negative': hist['compliance'].get('pct_negative', []),
             'sym_score': hist['compliance'].get('sym_score', []),
+            'conc_fri': hist['compliance'].get('conc_fri', []),
+            'conc_frii': hist['compliance'].get('conc_frii', []),
             'fid_epochs': hist['fid_epochs'],
             'fid': hist['fid_history'],
             'kid': hist['kid_history'],
@@ -770,10 +782,12 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
     save_pid_training_plots(
         hist['epochs_range'], hist['loss_history'], hist['val_loss_history'],
         hist['extra'].get('mse', []), hist['extra'].get('sym', []),
-        hist['extra'].get('neg', []),
+        hist['extra'].get('neg', []), hist['extra'].get('conc', []),
         hist['compliance_epochs'],
         hist['compliance'].get('pct_negative', []),
         hist['compliance'].get('sym_score', []),
+        hist['compliance'].get('conc_fri', []),
+        hist['compliance'].get('conc_frii', []),
         result_directory,
     )
     save_generative_metrics_plot(hist['fid_epochs'], hist['fid_history'], hist['kid_history'],

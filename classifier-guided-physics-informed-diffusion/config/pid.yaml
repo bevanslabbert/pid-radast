@@ -17,8 +17,15 @@ training:
   # physics constraint weights
   # lambda_sym: penalises left-right / top-bottom asymmetry in x_0 estimates
   # lambda_neg: penalises sub-zero (unphysical negative flux) pixel values
+  # lambda_conc: penalises FR-I x_0 estimates with too little central flux
+  #   concentration and FR-II estimates with too much, per the Fanaroff-Riley
+  #   morphological definition (FR-I core-brightened, FR-II edge-brightened)
+  # conc_inner_frac: radius (as a fraction of the image half-width) of the
+  #   central disk used to measure flux concentration
   lambda_sym: 0.05
   lambda_neg: 0.0
+  lambda_conc: 0.1
+  conc_inner_frac: 0.25
 
   weight_decay: 0.01
   eval_interval: 10
@@ -33,3 +40,4 @@ optimization:
     embedding_dim: { choices: [128, 256, 512] }
     lambda_sym: { min: 0.01, max: 1.0, log: true }
     lambda_neg: { min: 0.1, max: 2.0, log: true }
+    lambda_conc: { min: 0.01, max: 1.0, log: true }

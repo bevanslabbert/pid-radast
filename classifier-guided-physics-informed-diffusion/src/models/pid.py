@@ -38,6 +38,52 @@ def nonnegativity_loss(x_0_pred):
     return F.relu(-x_0_pred).mean()
 
 
+_concentration_mask_cache = {}
+
+
+def _center_mask(size: int, inner_frac: float, device) -> torch.Tensor:
+    """Boolean (1, 1, size, size) disk mask, True within inner_frac of the half-width from center."""
+    key = (size, inner_frac, device)
+    if key not in _concentration_mask_cache:
+        coords = torch.arange(size, device=device) - (size - 1) / 2.0
+        yy, xx = torch.meshgrid(coords, coords, indexing='ij')
+        radius = (yy ** 2 + xx ** 2).sqrt()
+        mask = (radius <= inner_frac * (size / 2.0)).unsqueeze(0).unsqueeze(0)
+        _concentration_mask_cache[key] = mask
+    return _concentration_mask_cache[key]
+
+
+def concentration_index(x_0_pred, inner_frac: float = 0.25) -> torch.Tensor:
+    """Fraction of total absolute flux falling within a central disk of the image.
+
+    Used to enforce the Fanaroff-Riley morphological definition: FR-I sources
+    are core-brightened (jet brightness peaks near the AGN core and fades
+    outward -> high concentration), FR-II sources are edge-brightened (bright
+    hotspots/lobes far from the core -> low concentration).
+    """
+    size = x_0_pred.shape[-1]
+    mask = _center_mask(size, inner_frac, x_0_pred.device)
+    flux = x_0_pred.abs()
+    inner_flux = (flux * mask).sum(dim=(1, 2, 3))
+    total_flux = flux.sum(dim=(1, 2, 3)).clamp_min(1e-8)
+    return inner_flux / total_flux
+
+
+def concentration_loss(x_0_pred, labels, inner_frac: float = 0.25, margin: float = 0.5) -> torch.Tensor:
+    """Push generated images' flux concentration toward their class's FR morphology.
+
+    Label 0 (FR-I, core-brightened): penalise concentration falling below `margin`.
+    Label 1 (FR-II, edge-brightened): penalise concentration rising above `margin`.
+    Hinge loss: zero once the sample is on the correct side of the margin.
+    """
+    c = concentration_index(x_0_pred, inner_frac)
+    is_fri = labels == 0
+    loss_fri = F.relu(margin - c[is_fri])
+    loss_frii = F.relu(c[~is_fri] - margin)
+    terms = torch.cat([loss_fri, loss_frii])
+    return terms.mean() if terms.numel() > 0 else torch.zeros((), device=x_0_pred.device)
+
+
 def physics_loss(x_0_pred, lambda_sym: float) -> torch.Tensor:
     """Symmetry penalty only."""
     return lambda_sym * symmetry_loss(x_0_pred)
