@@ -1,0 +1,68 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mirabest_fits
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1221
+Total batches: 107 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=conc_v1  |  results -> results/pid/20260717_101113_conc_v1_278844
+============================================================
+
+Training pid for 200 epochs
+Epoch 0
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/configuration_utils.py:139: FutureWarning: Accessing config attribute `num_train_timesteps` directly via 'DDPMScheduler' object attribute is deprecated. Please access 'num_train_timesteps' over 'DDPMScheduler's config object instead, e.g. 'scheduler.config.num_train_timesteps'.
+  deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
+Epoch 0 | Loss: 0.129194 | Val: 0.165631  |  mse: 0.085552  sym: 0.021967  neg: 0.000000  conc: 0.021675
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 210, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 199, in main
+    model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset, tag=run_tag)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 947, in train_model
+    return train_pid(config, trainloader, valloader, testloader, device,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 754, in train_pid
+    unet, scheduler, class_emb, hist = _train_diffusion_loop(
+                                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 596, in _train_diffusion_loop
+    gen_0, gen_1 = generate_class_samples(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/metrics.py", line 41, in generate_class_samples
+    gen_0 = _sample(0)
+            ^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/metrics.py", line 35, in _sample
+    out = unet(model_input, t, encoder_hidden_states=combined_emb).sample
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/unet_2d_condition.py", line 1188, in forward
+    sample = upsample_block(
+             ^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/unet_2d_blocks.py", line 2471, in forward
+    hidden_states = resnet(hidden_states, temb, scale=scale)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/resnet.py", line 196, in forward
+    hidden_states = self.nonlinearity(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/nn/modules/activation.py", line 396, in forward
+    return F.silu(input, inplace=self.inplace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/nn/functional.py", line 2059, in silu
+    return torch._C._nn.silu(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.06 GiB (GPU 0; 11.90 GiB total capacity; 9.05 GiB already allocated; 1.58 GiB free; 10.00 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
