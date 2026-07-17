@@ -23,6 +23,11 @@ training:
   # loss = MSE(noise_pred, noise) + lambda_cls * CE(classifier(x_0_pred), labels)
   lambda_cls: 0.1
 
+  # classifier guidance only applies to samples with t below this threshold.
+  # estimate_x0's one-step estimate is only reliable at low t; guiding on it
+  # at high t rewards the UNet for ignoring its noisy input (mode collapse).
+  cls_guidance_max_t: 200
+
   guidance_scale: 7.5
 
   weight_decay: 0.01

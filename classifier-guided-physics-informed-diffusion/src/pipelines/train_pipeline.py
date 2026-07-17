@@ -787,17 +787,23 @@ def train_classifier_guided_diffusion(config, trainloader, valloader, testloader
     """Fine-tunes a pre-trained diffusion model with frozen classifier guidance.
 
     loss = MSE + lambda_cls * (1 - p_correct).mean()
+
+    The classifier term is only applied when t < cls_guidance_max_t: estimate_x0
+    is a one-step algebraic estimate, accurate near t=0 but collapsing to a
+    blurry, mode-averaged guess at high t regardless of model quality, so
+    guiding on it there rewards the UNet for ignoring its noisy input.
     """
     ckpt_dir = 'classifier_guided_diffusion' + (f'/{tag}' if tag else '')
     num_classes = config['data']['num_classes']
     lambda_cls = float(config['training'].get('lambda_cls', 0.1))
+    cls_guidance_max_t = int(config['training'].get('cls_guidance_max_t', 200))
 
     classifier, classifier_time_aware = _load_guidance_classifier(config, device)
 
     def loss_fn(noise_pred, noise, noisy_images, labels, training_labels, t, alphas_cumprod, device, **_):
         mse = F.mse_loss(noise_pred, noise)
         cls_loss = torch.tensor(0.0, device=device)
-        cls_mask = training_labels != num_classes
+        cls_mask = (training_labels != num_classes) & (t < cls_guidance_max_t)
         if cls_mask.any():
             # generate image
             x0 = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
@@ -851,17 +857,23 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
     Identical to train_classifier_guided_diffusion but uses cross-entropy as the
     guidance loss (more numerically stable when classifier confidence is poorly calibrated).
     loss = MSE + lambda_cls * CE(classifier(x_0_pred), labels)
+
+    The classifier term is only applied when t < cls_guidance_max_t: estimate_x0
+    is a one-step algebraic estimate, accurate near t=0 but collapsing to a
+    blurry, mode-averaged guess at high t regardless of model quality, so
+    guiding on it there rewards the UNet for ignoring its noisy input.
     """
     ckpt_dir = 'robust_classifier_guided_diffusion' + (f'/{tag}' if tag else '')
     num_classes = config['data']['num_classes']
     lambda_cls = float(config['training'].get('lambda_cls', 0.1))
+    cls_guidance_max_t = int(config['training'].get('cls_guidance_max_t', 200))
 
     classifier, classifier_time_aware = _load_guidance_classifier(config, device)
 
     def loss_fn(noise_pred, noise, noisy_images, labels, training_labels, t, alphas_cumprod, device, **_):
         mse = F.mse_loss(noise_pred, noise)
         cls_loss = torch.tensor(0.0, device=device)
-        cls_mask = training_labels != num_classes
+        cls_mask = (training_labels != num_classes) & (t < cls_guidance_max_t)
         if cls_mask.any():
             x0 = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
             cls_input = x0[cls_mask]
