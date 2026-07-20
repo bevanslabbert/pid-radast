@@ -17,7 +17,7 @@ source .venv/bin/activate
 
 python main.py train \
     --model diffusion \
-    --seed ${SEED} \
+    --seed ${SEED:-42} \
     --runs 1 \
     --checkpoint True \
     ${TAG:+--tag $TAG}
