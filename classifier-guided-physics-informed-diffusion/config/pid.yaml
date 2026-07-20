@@ -1,7 +1,7 @@
 seed: 42
 
 data:
-  dataset: mirabest_fits
+  dataset: crumb_fits
   batch_size: 8
   input_size: 150
 
