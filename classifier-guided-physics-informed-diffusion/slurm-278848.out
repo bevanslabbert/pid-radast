@@ -1,0 +1,725 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mirabest_fits
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Loaded FITS stats: noise_rms=0.000274, peak_log=3.938847
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1221
+Total batches: 107 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=conc_v1  |  results -> results/pid/20260717_101843_conc_v1_278848
+============================================================
+
+Training pid for 200 epochs
+Epoch 0
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/configuration_utils.py:139: FutureWarning: Accessing config attribute `num_train_timesteps` directly via 'DDPMScheduler' object attribute is deprecated. Please access 'num_train_timesteps' over 'DDPMScheduler's config object instead, e.g. 'scheduler.config.num_train_timesteps'.
+  deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 0 | Loss: 0.129230 | Val: 0.165567  |  mse: 0.085575  sym: 0.021980  neg: 0.000000  conc: 0.021675
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 0...
+  FID: 215.9940 | KID: 0.248682
+  Pixel PDF W-dist: 0.8737
+  Compliance — pct_negative: 0.0249  sym_score: 0.0175  conc_fri: 0.0501  conc_frii: 0.0498
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 1
+Epoch 1 | Loss: 0.064220 | Val: 0.156999  |  mse: 0.038529  sym: 0.004896  neg: 0.000000  conc: 0.020796
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 2
+Epoch 2 | Loss: 0.061195 | Val: 0.155507  |  mse: 0.038353  sym: 0.003307  neg: 0.000000  conc: 0.019535
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 3
+Epoch 3 | Loss: 0.051212 | Val: 0.157466  |  mse: 0.029801  sym: 0.002543  neg: 0.000000  conc: 0.018869
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 4
+Epoch 4 | Loss: 0.046853 | Val: 0.152624  |  mse: 0.032435  sym: 0.001539  neg: 0.000000  conc: 0.012879
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 5
+Epoch 5 | Loss: 0.043388 | Val: 0.151249  |  mse: 0.030341  sym: 0.001467  neg: 0.000000  conc: 0.011579
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 6
+Epoch 6 | Loss: 0.044700 | Val: 0.150625  |  mse: 0.030446  sym: 0.001458  neg: 0.000000  conc: 0.012796
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 7
+Epoch 7 | Loss: 0.043385 | Val: 0.150110  |  mse: 0.030817  sym: 0.001208  neg: 0.000000  conc: 0.011360
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 8
+Epoch 8 | Loss: 0.043150 | Val: 0.155967  |  mse: 0.030926  sym: 0.001368  neg: 0.000000  conc: 0.010856
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 9
+Epoch 9 | Loss: 0.045223 | Val: 0.149128  |  mse: 0.032165  sym: 0.001077  neg: 0.000000  conc: 0.011981
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 10
+Epoch 10 | Loss: 0.040280 | Val: 0.151281  |  mse: 0.028599  sym: 0.001255  neg: 0.000000  conc: 0.010426
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 10...
+  FID: 228.8886 | KID: 0.167694
+  Pixel PDF W-dist: 0.6589
+  Compliance — pct_negative: 1.7821  sym_score: 0.0283  conc_fri: 0.0734  conc_frii: 0.0078
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 11
+Epoch 11 | Loss: 0.046827 | Val: 0.148785  |  mse: 0.035149  sym: 0.001037  neg: 0.000000  conc: 0.010641
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 12
+Epoch 12 | Loss: 0.043304 | Val: 0.151359  |  mse: 0.031610  sym: 0.001012  neg: 0.000000  conc: 0.010682
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 13
+Epoch 13 | Loss: 0.043089 | Val: 0.149372  |  mse: 0.031116  sym: 0.001005  neg: 0.000000  conc: 0.010968
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 14
+Epoch 14 | Loss: 0.043245 | Val: 0.151928  |  mse: 0.032399  sym: 0.000976  neg: 0.000000  conc: 0.009871
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 15
+Epoch 15 | Loss: 0.039395 | Val: 0.150698  |  mse: 0.027016  sym: 0.000913  neg: 0.000000  conc: 0.011466
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 16
+Epoch 16 | Loss: 0.044152 | Val: 0.150150  |  mse: 0.032541  sym: 0.001004  neg: 0.000000  conc: 0.010607
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 17
+Epoch 17 | Loss: 0.044494 | Val: 0.149484  |  mse: 0.032914  sym: 0.000963  neg: 0.000000  conc: 0.010617
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 18
+Epoch 18 | Loss: 0.039101 | Val: 0.149647  |  mse: 0.028584  sym: 0.000978  neg: 0.000000  conc: 0.009539
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 19
+Epoch 19 | Loss: 0.039935 | Val: 0.149176  |  mse: 0.029340  sym: 0.000836  neg: 0.000000  conc: 0.009760
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 20
+Epoch 20 | Loss: 0.044349 | Val: 0.146658  |  mse: 0.032702  sym: 0.001090  neg: 0.000000  conc: 0.010558
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 20...
+  FID: 243.5132 | KID: 0.191794
+  Pixel PDF W-dist: 0.6684
+  Compliance — pct_negative: 0.0069  sym_score: 0.0285  conc_fri: 0.0724  conc_frii: 0.0506
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 21
+Epoch 21 | Loss: 0.039632 | Val: 0.145024  |  mse: 0.028418  sym: 0.000965  neg: 0.000000  conc: 0.010249
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 22
+Epoch 22 | Loss: 0.037509 | Val: 0.148065  |  mse: 0.026302  sym: 0.000989  neg: 0.000000  conc: 0.010218
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 23
+Epoch 23 | Loss: 0.039723 | Val: 0.148079  |  mse: 0.028205  sym: 0.000995  neg: 0.000000  conc: 0.010524
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 24
+Epoch 24 | Loss: 0.044943 | Val: 0.148600  |  mse: 0.034838  sym: 0.000945  neg: 0.000000  conc: 0.009160
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 25
+Epoch 25 | Loss: 0.040314 | Val: 0.147024  |  mse: 0.028927  sym: 0.001067  neg: 0.000000  conc: 0.010319
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 26
+Epoch 26 | Loss: 0.041169 | Val: 0.147527  |  mse: 0.030805  sym: 0.000964  neg: 0.000000  conc: 0.009399
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 27
+Epoch 27 | Loss: 0.044406 | Val: 0.144701  |  mse: 0.034246  sym: 0.000795  neg: 0.000000  conc: 0.009364
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 28
+Epoch 28 | Loss: 0.034642 | Val: 0.146062  |  mse: 0.024028  sym: 0.001180  neg: 0.000000  conc: 0.009434
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 29
+Epoch 29 | Loss: 0.037232 | Val: 0.145967  |  mse: 0.025350  sym: 0.000871  neg: 0.000000  conc: 0.011011
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 30
+Epoch 30 | Loss: 0.039135 | Val: 0.144798  |  mse: 0.029861  sym: 0.000765  neg: 0.000000  conc: 0.008508
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 30...
+  FID: 242.8526 | KID: 0.177740
+  Pixel PDF W-dist: 0.5811
+  Compliance — pct_negative: 0.1413  sym_score: 0.0464  conc_fri: 0.0788  conc_frii: 0.0470
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 31
+Epoch 31 | Loss: 0.041091 | Val: 0.145152  |  mse: 0.030352  sym: 0.000829  neg: 0.000000  conc: 0.009911
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 32
+Epoch 32 | Loss: 0.030040 | Val: 0.145367  |  mse: 0.019570  sym: 0.000844  neg: 0.000000  conc: 0.009626
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 33
+Epoch 33 | Loss: 0.039854 | Val: 0.145665  |  mse: 0.029182  sym: 0.000959  neg: 0.000000  conc: 0.009713
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 34
+Epoch 34 | Loss: 0.041221 | Val: 0.144858  |  mse: 0.030650  sym: 0.000957  neg: 0.000000  conc: 0.009614
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 35
+Epoch 35 | Loss: 0.039593 | Val: 0.146140  |  mse: 0.030114  sym: 0.000779  neg: 0.000000  conc: 0.008700
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 36
+Epoch 36 | Loss: 0.037165 | Val: 0.144563  |  mse: 0.026265  sym: 0.001093  neg: 0.000000  conc: 0.009807
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 37
+Epoch 37 | Loss: 0.040755 | Val: 0.145439  |  mse: 0.030111  sym: 0.000951  neg: 0.000000  conc: 0.009693
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 38
+Epoch 38 | Loss: 0.047005 | Val: 0.145915  |  mse: 0.035633  sym: 0.000891  neg: 0.000000  conc: 0.010480
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 39
+Epoch 39 | Loss: 0.041364 | Val: 0.148245  |  mse: 0.028626  sym: 0.001241  neg: 0.000000  conc: 0.011497
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 40
+Epoch 40 | Loss: 0.038149 | Val: 0.143482  |  mse: 0.028638  sym: 0.000820  neg: 0.000000  conc: 0.008691
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 40...
+  FID: 259.7652 | KID: 0.210317
+  Pixel PDF W-dist: 0.4299
+  Compliance — pct_negative: 0.9167  sym_score: 0.0513  conc_fri: 0.1087  conc_frii: 0.0517
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 41
+Epoch 41 | Loss: 0.044257 | Val: 0.143571  |  mse: 0.033859  sym: 0.000926  neg: 0.000000  conc: 0.009473
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 42
+Epoch 42 | Loss: 0.037661 | Val: 0.144798  |  mse: 0.027874  sym: 0.000700  neg: 0.000000  conc: 0.009088
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 43
+Epoch 43 | Loss: 0.041324 | Val: 0.143801  |  mse: 0.030677  sym: 0.000823  neg: 0.000000  conc: 0.009824
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 44
+Epoch 44 | Loss: 0.039916 | Val: 0.143917  |  mse: 0.030343  sym: 0.000752  neg: 0.000000  conc: 0.008821
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 45
+Epoch 45 | Loss: 0.040271 | Val: 0.144822  |  mse: 0.029504  sym: 0.000803  neg: 0.000000  conc: 0.009964
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 46
+Epoch 46 | Loss: 0.043944 | Val: 0.146404  |  mse: 0.032464  sym: 0.001021  neg: 0.000000  conc: 0.010459
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 47
+Epoch 47 | Loss: 0.038541 | Val: 0.146093  |  mse: 0.027510  sym: 0.000848  neg: 0.000000  conc: 0.010182
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 48
+Epoch 48 | Loss: 0.042563 | Val: 0.144105  |  mse: 0.032011  sym: 0.000765  neg: 0.000000  conc: 0.009786
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 49
+Epoch 49 | Loss: 0.037203 | Val: 0.144408  |  mse: 0.027214  sym: 0.000634  neg: 0.000000  conc: 0.009354
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 50
+Epoch 50 | Loss: 0.036461 | Val: 0.143400  |  mse: 0.027237  sym: 0.000797  neg: 0.000000  conc: 0.008427
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 50...
+  FID: 265.3420 | KID: 0.209536
+  Pixel PDF W-dist: 0.5524
+  Compliance — pct_negative: 2.8510  sym_score: 0.0683  conc_fri: 0.0858  conc_frii: 0.0378
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 51
+Epoch 51 | Loss: 0.044264 | Val: 0.143956  |  mse: 0.033791  sym: 0.000708  neg: 0.000000  conc: 0.009765
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 52
+Epoch 52 | Loss: 0.043431 | Val: 0.144853  |  mse: 0.031964  sym: 0.000917  neg: 0.000000  conc: 0.010551
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 53
+Epoch 53 | Loss: 0.037021 | Val: 0.147656  |  mse: 0.027239  sym: 0.000909  neg: 0.000000  conc: 0.008873
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 54
+Epoch 54 | Loss: 0.037485 | Val: 0.145093  |  mse: 0.028570  sym: 0.000708  neg: 0.000000  conc: 0.008207
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 55
+Epoch 55 | Loss: 0.036309 | Val: 0.144306  |  mse: 0.027381  sym: 0.000711  neg: 0.000000  conc: 0.008217
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 56
+Epoch 56 | Loss: 0.038199 | Val: 0.145171  |  mse: 0.027904  sym: 0.000914  neg: 0.000000  conc: 0.009382
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 57
+Epoch 57 | Loss: 0.044622 | Val: 0.144033  |  mse: 0.034961  sym: 0.000757  neg: 0.000000  conc: 0.008905
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 58
+Epoch 58 | Loss: 0.042774 | Val: 0.143466  |  mse: 0.032795  sym: 0.000685  neg: 0.000000  conc: 0.009295
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 59
+Epoch 59 | Loss: 0.035054 | Val: 0.147626  |  mse: 0.025525  sym: 0.000991  neg: 0.000000  conc: 0.008537
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 60
+Epoch 60 | Loss: 0.038873 | Val: 0.143022  |  mse: 0.028507  sym: 0.000668  neg: 0.000000  conc: 0.009698
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 60...
+  FID: 205.8067 | KID: 0.162780
+  Pixel PDF W-dist: 0.5464
+  Compliance — pct_negative: 0.0019  sym_score: 0.0249  conc_fri: 0.1056  conc_frii: 0.0443
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 61
+Epoch 61 | Loss: 0.041329 | Val: 0.144494  |  mse: 0.030817  sym: 0.000794  neg: 0.000000  conc: 0.009718
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 62
+Epoch 62 | Loss: 0.042904 | Val: 0.144816  |  mse: 0.032326  sym: 0.000952  neg: 0.000000  conc: 0.009627
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 63
+Epoch 63 | Loss: 0.044941 | Val: 0.143867  |  mse: 0.034488  sym: 0.000903  neg: 0.000000  conc: 0.009550
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 64
+Epoch 64 | Loss: 0.036898 | Val: 0.145045  |  mse: 0.027554  sym: 0.000716  neg: 0.000000  conc: 0.008627
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 65
+Epoch 65 | Loss: 0.038371 | Val: 0.142754  |  mse: 0.029944  sym: 0.000635  neg: 0.000000  conc: 0.007792
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 66
+Epoch 66 | Loss: 0.039637 | Val: 0.143351  |  mse: 0.029823  sym: 0.000807  neg: 0.000000  conc: 0.009007
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 67
+Epoch 67 | Loss: 0.035780 | Val: 0.143122  |  mse: 0.026486  sym: 0.000748  neg: 0.000000  conc: 0.008546
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 68
+Epoch 68 | Loss: 0.038680 | Val: 0.143181  |  mse: 0.029717  sym: 0.000643  neg: 0.000000  conc: 0.008320
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 69
+Epoch 69 | Loss: 0.040700 | Val: 0.144988  |  mse: 0.030989  sym: 0.000928  neg: 0.000000  conc: 0.008784
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 70
+Epoch 70 | Loss: 0.037527 | Val: 0.145551  |  mse: 0.027774  sym: 0.000750  neg: 0.000000  conc: 0.009003
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 70...
+  FID: 250.1770 | KID: 0.182096
+  Pixel PDF W-dist: 0.6006
+  Compliance — pct_negative: 0.1425  sym_score: 0.0514  conc_fri: 0.0735  conc_frii: 0.0454
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 71
+Epoch 71 | Loss: 0.039218 | Val: 0.144820  |  mse: 0.029244  sym: 0.000921  neg: 0.000000  conc: 0.009053
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 72
+Epoch 72 | Loss: 0.039824 | Val: 0.143980  |  mse: 0.030070  sym: 0.000823  neg: 0.000000  conc: 0.008931
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 73
+Epoch 73 | Loss: 0.036440 | Val: 0.144645  |  mse: 0.026121  sym: 0.000792  neg: 0.000000  conc: 0.009528
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 74
+Epoch 74 | Loss: 0.036301 | Val: 0.144218  |  mse: 0.027438  sym: 0.000797  neg: 0.000000  conc: 0.008066
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 75
+Epoch 75 | Loss: 0.036894 | Val: 0.143876  |  mse: 0.027317  sym: 0.000815  neg: 0.000000  conc: 0.008763
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 76
+Epoch 76 | Loss: 0.035855 | Val: 0.143956  |  mse: 0.025658  sym: 0.000828  neg: 0.000000  conc: 0.009369
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 77
+Epoch 77 | Loss: 0.037548 | Val: 0.144753  |  mse: 0.027801  sym: 0.000785  neg: 0.000000  conc: 0.008962
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 78
+Epoch 78 | Loss: 0.032160 | Val: 0.142871  |  mse: 0.023321  sym: 0.000622  neg: 0.000000  conc: 0.008217
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 79
+Epoch 79 | Loss: 0.036708 | Val: 0.144574  |  mse: 0.027202  sym: 0.000812  neg: 0.000000  conc: 0.008694
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 80
+Epoch 80 | Loss: 0.036319 | Val: 0.143851  |  mse: 0.026710  sym: 0.000804  neg: 0.000000  conc: 0.008805
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 80...
+  FID: 242.2665 | KID: 0.189519
+  Pixel PDF W-dist: 0.2310
+  Compliance — pct_negative: 6.8861  sym_score: 0.0288  conc_fri: 0.2592  conc_frii: 0.0415
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 81
+Epoch 81 | Loss: 0.040835 | Val: 0.144905  |  mse: 0.030359  sym: 0.000744  neg: 0.000000  conc: 0.009733
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 82
+Epoch 82 | Loss: 0.036564 | Val: 0.143592  |  mse: 0.026213  sym: 0.000797  neg: 0.000000  conc: 0.009555
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 83
+Epoch 83 | Loss: 0.037459 | Val: 0.144291  |  mse: 0.027486  sym: 0.000937  neg: 0.000000  conc: 0.009037
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 84
+Epoch 84 | Loss: 0.034247 | Val: 0.143789  |  mse: 0.025320  sym: 0.000686  neg: 0.000000  conc: 0.008241
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 85
+Epoch 85 | Loss: 0.036493 | Val: 0.142700  |  mse: 0.026303  sym: 0.000762  neg: 0.000000  conc: 0.009428
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 86
+Epoch 86 | Loss: 0.040394 | Val: 0.143218  |  mse: 0.030837  sym: 0.000790  neg: 0.000000  conc: 0.008768
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 87
+Epoch 87 | Loss: 0.037869 | Val: 0.144033  |  mse: 0.028292  sym: 0.000758  neg: 0.000000  conc: 0.008818
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 88
+Epoch 88 | Loss: 0.045673 | Val: 0.143411  |  mse: 0.035595  sym: 0.000722  neg: 0.000000  conc: 0.009356
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 89
+Epoch 89 | Loss: 0.042894 | Val: 0.143507  |  mse: 0.033001  sym: 0.000724  neg: 0.000000  conc: 0.009170
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 90
+Epoch 90 | Loss: 0.038263 | Val: 0.143404  |  mse: 0.028921  sym: 0.000690  neg: 0.000000  conc: 0.008652
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 90...
+  FID: 244.1497 | KID: 0.176894
+  Pixel PDF W-dist: 0.3366
+  Compliance — pct_negative: 5.6965  sym_score: 0.0406  conc_fri: 0.1340  conc_frii: 0.0382
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 91
+Epoch 91 | Loss: 0.034944 | Val: 0.143508  |  mse: 0.026076  sym: 0.000658  neg: 0.000000  conc: 0.008209
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 92
+Epoch 92 | Loss: 0.041062 | Val: 0.145000  |  mse: 0.031502  sym: 0.000801  neg: 0.000000  conc: 0.008759
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 93
+Epoch 93 | Loss: 0.034439 | Val: 0.145196  |  mse: 0.025234  sym: 0.000691  neg: 0.000000  conc: 0.008514
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 94
+Epoch 94 | Loss: 0.039461 | Val: 0.144589  |  mse: 0.030078  sym: 0.000685  neg: 0.000000  conc: 0.008698
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 95
+Epoch 95 | Loss: 0.043623 | Val: 0.143917  |  mse: 0.033752  sym: 0.000778  neg: 0.000000  conc: 0.009093
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 96
+Epoch 96 | Loss: 0.042890 | Val: 0.142743  |  mse: 0.032971  sym: 0.000753  neg: 0.000000  conc: 0.009165
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 97
+Epoch 97 | Loss: 0.037598 | Val: 0.143842  |  mse: 0.027085  sym: 0.000661  neg: 0.000000  conc: 0.009851
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 98
+Epoch 98 | Loss: 0.037660 | Val: 0.143429  |  mse: 0.028466  sym: 0.000583  neg: 0.000000  conc: 0.008612
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 99
+Epoch 99 | Loss: 0.035136 | Val: 0.143933  |  mse: 0.025079  sym: 0.000843  neg: 0.000000  conc: 0.009214
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 100
+Epoch 100 | Loss: 0.037357 | Val: 0.144673  |  mse: 0.027634  sym: 0.000690  neg: 0.000000  conc: 0.009033
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 100...
+  FID: 272.0629 | KID: 0.212706
+  Pixel PDF W-dist: 0.5191
+  Compliance — pct_negative: 0.5635  sym_score: 0.0532  conc_fri: 0.0842  conc_frii: 0.0405
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 101
+Epoch 101 | Loss: 0.034427 | Val: 0.144152  |  mse: 0.024589  sym: 0.000863  neg: 0.000000  conc: 0.008974
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 102
+Epoch 102 | Loss: 0.040509 | Val: 0.145503  |  mse: 0.030685  sym: 0.000733  neg: 0.000000  conc: 0.009091
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 103
+Epoch 103 | Loss: 0.046644 | Val: 0.143999  |  mse: 0.036335  sym: 0.000695  neg: 0.000000  conc: 0.009614
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 104
+Epoch 104 | Loss: 0.036044 | Val: 0.144619  |  mse: 0.026267  sym: 0.000738  neg: 0.000000  conc: 0.009039
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 105
+Epoch 105 | Loss: 0.037316 | Val: 0.143681  |  mse: 0.028605  sym: 0.000707  neg: 0.000000  conc: 0.008004
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 106
+Epoch 106 | Loss: 0.040569 | Val: 0.142941  |  mse: 0.031170  sym: 0.000835  neg: 0.000000  conc: 0.008563
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 107
+Epoch 107 | Loss: 0.035209 | Val: 0.143018  |  mse: 0.026540  sym: 0.000680  neg: 0.000000  conc: 0.007989
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 108
+Epoch 108 | Loss: 0.036656 | Val: 0.143075  |  mse: 0.027412  sym: 0.000555  neg: 0.000000  conc: 0.008689
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 109
+Epoch 109 | Loss: 0.039786 | Val: 0.143618  |  mse: 0.030542  sym: 0.000627  neg: 0.000000  conc: 0.008616
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 110
+Epoch 110 | Loss: 0.040424 | Val: 0.144112  |  mse: 0.031388  sym: 0.000697  neg: 0.000000  conc: 0.008340
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 110...
+  FID: 262.9124 | KID: 0.202485
+  Pixel PDF W-dist: 0.3956
+  Compliance — pct_negative: 0.7950  sym_score: 0.0385  conc_fri: 0.1340  conc_frii: 0.0407
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 111
+Epoch 111 | Loss: 0.036572 | Val: 0.144811  |  mse: 0.027275  sym: 0.000712  neg: 0.000000  conc: 0.008584
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 112
+Epoch 112 | Loss: 0.040896 | Val: 0.143912  |  mse: 0.031602  sym: 0.000662  neg: 0.000000  conc: 0.008633
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 113
+Epoch 113 | Loss: 0.041583 | Val: 0.143424  |  mse: 0.031971  sym: 0.000782  neg: 0.000000  conc: 0.008830
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 114
+Epoch 114 | Loss: 0.038545 | Val: 0.143567  |  mse: 0.029372  sym: 0.000844  neg: 0.000000  conc: 0.008328
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 115
+Epoch 115 | Loss: 0.034309 | Val: 0.143417  |  mse: 0.025560  sym: 0.000768  neg: 0.000000  conc: 0.007981
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 116
+Epoch 116 | Loss: 0.033749 | Val: 0.143963  |  mse: 0.025283  sym: 0.000630  neg: 0.000000  conc: 0.007836
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 117
+Epoch 117 | Loss: 0.041335 | Val: 0.143541  |  mse: 0.031777  sym: 0.000688  neg: 0.000000  conc: 0.008871
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 118
+Epoch 118 | Loss: 0.039022 | Val: 0.142713  |  mse: 0.029797  sym: 0.000578  neg: 0.000000  conc: 0.008648
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 119
+Epoch 119 | Loss: 0.038919 | Val: 0.143219  |  mse: 0.030080  sym: 0.000763  neg: 0.000000  conc: 0.008075
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 120
+Epoch 120 | Loss: 0.040044 | Val: 0.143268  |  mse: 0.027186  sym: 0.000715  neg: 0.000000  conc: 0.012144
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 120...
+  FID: 184.2718 | KID: 0.115729
+  Pixel PDF W-dist: 0.4996
+  Compliance — pct_negative: 1.4732  sym_score: 0.0348  conc_fri: 0.0534  conc_frii: 0.0351
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 121
+Epoch 121 | Loss: 0.048694 | Val: 0.143491  |  mse: 0.031381  sym: 0.000776  neg: 0.000000  conc: 0.016537
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 122
+Epoch 122 | Loss: 0.040490 | Val: 0.143163  |  mse: 0.029288  sym: 0.000715  neg: 0.000000  conc: 0.010486
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 123
+Epoch 123 | Loss: 0.037610 | Val: 0.143084  |  mse: 0.028833  sym: 0.000684  neg: 0.000000  conc: 0.008093
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 124
+Epoch 124 | Loss: 0.041662 | Val: 0.144159  |  mse: 0.032279  sym: 0.000683  neg: 0.000000  conc: 0.008700
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 125
+Epoch 125 | Loss: 0.040698 | Val: 0.144603  |  mse: 0.031545  sym: 0.000600  neg: 0.000000  conc: 0.008552
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 126
+Epoch 126 | Loss: 0.036123 | Val: 0.143701  |  mse: 0.026385  sym: 0.000655  neg: 0.000000  conc: 0.009083
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 127
+Epoch 127 | Loss: 0.042261 | Val: 0.143287  |  mse: 0.033152  sym: 0.000594  neg: 0.000000  conc: 0.008515
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 128
+Epoch 128 | Loss: 0.043634 | Val: 0.143888  |  mse: 0.034325  sym: 0.000798  neg: 0.000000  conc: 0.008510
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 129
+Epoch 129 | Loss: 0.045401 | Val: 0.142362  |  mse: 0.036488  sym: 0.000653  neg: 0.000000  conc: 0.008259
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 130
+Epoch 130 | Loss: 0.041851 | Val: 0.142110  |  mse: 0.032028  sym: 0.000725  neg: 0.000000  conc: 0.009098
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 130...
+  FID: 237.3703 | KID: 0.166385
+  Pixel PDF W-dist: 0.3267
+  Compliance — pct_negative: 6.4039  sym_score: 0.0519  conc_fri: 0.2520  conc_frii: 0.0389
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 131
+Epoch 131 | Loss: 0.035607 | Val: 0.143403  |  mse: 0.026500  sym: 0.000570  neg: 0.000000  conc: 0.008537
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 132
+Epoch 132 | Loss: 0.038032 | Val: 0.142128  |  mse: 0.029238  sym: 0.000521  neg: 0.000000  conc: 0.008273
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 133
+Epoch 133 | Loss: 0.040468 | Val: 0.142607  |  mse: 0.029579  sym: 0.000922  neg: 0.000000  conc: 0.009968
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 134
+Epoch 134 | Loss: 0.036329 | Val: 0.142352  |  mse: 0.027000  sym: 0.000637  neg: 0.000000  conc: 0.008692
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 135
+Epoch 135 | Loss: 0.042366 | Val: 0.143774  |  mse: 0.032962  sym: 0.000595  neg: 0.000000  conc: 0.008809
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 136
+Epoch 136 | Loss: 0.037187 | Val: 0.142449  |  mse: 0.027494  sym: 0.000771  neg: 0.000000  conc: 0.008922
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 137
+Epoch 137 | Loss: 0.036386 | Val: 0.142458  |  mse: 0.026714  sym: 0.000578  neg: 0.000000  conc: 0.009095
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 138
+Epoch 138 | Loss: 0.038493 | Val: 0.143126  |  mse: 0.028703  sym: 0.000575  neg: 0.000000  conc: 0.009216
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 139
+Epoch 139 | Loss: 0.037300 | Val: 0.142560  |  mse: 0.027980  sym: 0.000722  neg: 0.000000  conc: 0.008599
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 140
+Epoch 140 | Loss: 0.033137 | Val: 0.143640  |  mse: 0.023936  sym: 0.000713  neg: 0.000000  conc: 0.008488
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 140...
+  FID: 261.4858 | KID: 0.202688
+  Pixel PDF W-dist: 0.5195
+  Compliance — pct_negative: 0.2003  sym_score: 0.0356  conc_fri: 0.0920  conc_frii: 0.0370
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 141
+Epoch 141 | Loss: 0.039203 | Val: 0.142495  |  mse: 0.029708  sym: 0.000630  neg: 0.000000  conc: 0.008864
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 142
+Epoch 142 | Loss: 0.033314 | Val: 0.143306  |  mse: 0.024424  sym: 0.000517  neg: 0.000000  conc: 0.008374
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 143
+Epoch 143 | Loss: 0.041846 | Val: 0.143653  |  mse: 0.033085  sym: 0.000636  neg: 0.000000  conc: 0.008125
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 144
+Epoch 144 | Loss: 0.033187 | Val: 0.144749  |  mse: 0.023286  sym: 0.000547  neg: 0.000000  conc: 0.009354
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 145
+Epoch 145 | Loss: 0.038811 | Val: 0.144310  |  mse: 0.029053  sym: 0.000696  neg: 0.000000  conc: 0.009062
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 146
+Epoch 146 | Loss: 0.037885 | Val: 0.143672  |  mse: 0.028859  sym: 0.000527  neg: 0.000000  conc: 0.008499
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 147
+Epoch 147 | Loss: 0.040213 | Val: 0.142944  |  mse: 0.031220  sym: 0.000571  neg: 0.000000  conc: 0.008423
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 148
+Epoch 148 | Loss: 0.040462 | Val: 0.143037  |  mse: 0.031003  sym: 0.000617  neg: 0.000000  conc: 0.008842
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 149
+Epoch 149 | Loss: 0.033797 | Val: 0.143169  |  mse: 0.025361  sym: 0.000609  neg: 0.000000  conc: 0.007827
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 150
+Epoch 150 | Loss: 0.032164 | Val: 0.142730  |  mse: 0.022749  sym: 0.000601  neg: 0.000000  conc: 0.008813
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 150...
+  FID: 232.4186 | KID: 0.164209
+  Pixel PDF W-dist: 0.3830
+  Compliance — pct_negative: 12.0194  sym_score: 0.0268  conc_fri: 0.0466  conc_frii: 0.0251
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 151
+Epoch 151 | Loss: 0.038944 | Val: 0.143816  |  mse: 0.026869  sym: 0.000714  neg: 0.000000  conc: 0.011362
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 152
+Epoch 152 | Loss: 0.036017 | Val: 0.142455  |  mse: 0.026914  sym: 0.000579  neg: 0.000000  conc: 0.008524
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 153
+Epoch 153 | Loss: 0.033350 | Val: 0.143324  |  mse: 0.024958  sym: 0.000619  neg: 0.000000  conc: 0.007773
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 154
+Epoch 154 | Loss: 0.034996 | Val: 0.143804  |  mse: 0.025712  sym: 0.000580  neg: 0.000000  conc: 0.008704
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 155
+Epoch 155 | Loss: 0.036602 | Val: 0.143144  |  mse: 0.027602  sym: 0.000702  neg: 0.000000  conc: 0.008298
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 156
+Epoch 156 | Loss: 0.035609 | Val: 0.142787  |  mse: 0.026593  sym: 0.000533  neg: 0.000000  conc: 0.008482
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 157
+Epoch 157 | Loss: 0.033269 | Val: 0.143463  |  mse: 0.024361  sym: 0.000608  neg: 0.000000  conc: 0.008300
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 158
+Epoch 158 | Loss: 0.033923 | Val: 0.142027  |  mse: 0.025373  sym: 0.000675  neg: 0.000000  conc: 0.007875
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 159
+Epoch 159 | Loss: 0.036101 | Val: 0.142812  |  mse: 0.026949  sym: 0.000617  neg: 0.000000  conc: 0.008534
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 160
+Epoch 160 | Loss: 0.040228 | Val: 0.143893  |  mse: 0.030959  sym: 0.000488  neg: 0.000000  conc: 0.008781
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 160...
+  FID: 275.7504 | KID: 0.214015
+  Pixel PDF W-dist: 0.4415
+  Compliance — pct_negative: 0.0471  sym_score: 0.0319  conc_fri: 0.1188  conc_frii: 0.0426
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 161
+Epoch 161 | Loss: 0.033537 | Val: 0.142923  |  mse: 0.025506  sym: 0.000520  neg: 0.000000  conc: 0.007510
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 162
+Epoch 162 | Loss: 0.037642 | Val: 0.140635  |  mse: 0.028280  sym: 0.000665  neg: 0.000000  conc: 0.008697
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 163
+Epoch 163 | Loss: 0.038916 | Val: 0.141969  |  mse: 0.029451  sym: 0.000767  neg: 0.000000  conc: 0.008698
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 164
+Epoch 164 | Loss: 0.041409 | Val: 0.142829  |  mse: 0.031981  sym: 0.000551  neg: 0.000000  conc: 0.008876
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 165
+Epoch 165 | Loss: 0.040603 | Val: 0.142356  |  mse: 0.030255  sym: 0.000889  neg: 0.000000  conc: 0.009459
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 166
+Epoch 166 | Loss: 0.038001 | Val: 0.142790  |  mse: 0.028146  sym: 0.000865  neg: 0.000000  conc: 0.008990
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 167
+Epoch 167 | Loss: 0.041869 | Val: 0.142485  |  mse: 0.032277  sym: 0.000511  neg: 0.000000  conc: 0.009082
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 168
+Epoch 168 | Loss: 0.033446 | Val: 0.142028  |  mse: 0.024159  sym: 0.000666  neg: 0.000000  conc: 0.008621
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 169
+Epoch 169 | Loss: 0.040236 | Val: 0.143172  |  mse: 0.030572  sym: 0.000824  neg: 0.000000  conc: 0.008840
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 170
+Epoch 170 | Loss: 0.041621 | Val: 0.141761  |  mse: 0.032571  sym: 0.000514  neg: 0.000000  conc: 0.008537
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 170...
+  FID: 253.3657 | KID: 0.223155
+  Pixel PDF W-dist: 0.2967
+  Compliance — pct_negative: 7.3106  sym_score: 0.0385  conc_fri: 0.2679  conc_frii: 0.0467
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 171
+Epoch 171 | Loss: 0.033695 | Val: 0.142358  |  mse: 0.024418  sym: 0.000616  neg: 0.000000  conc: 0.008662
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 172
+Epoch 172 | Loss: 0.041018 | Val: 0.141742  |  mse: 0.032363  sym: 0.000550  neg: 0.000000  conc: 0.008106
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 173
+Epoch 173 | Loss: 0.038281 | Val: 0.142828  |  mse: 0.029064  sym: 0.000627  neg: 0.000000  conc: 0.008590
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 174
+Epoch 174 | Loss: 0.034304 | Val: 0.141646  |  mse: 0.024930  sym: 0.000622  neg: 0.000000  conc: 0.008753
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 175
+Epoch 175 | Loss: 0.035165 | Val: 0.141064  |  mse: 0.026248  sym: 0.000535  neg: 0.000000  conc: 0.008382
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 176
+Epoch 176 | Loss: 0.036341 | Val: 0.141792  |  mse: 0.027843  sym: 0.000686  neg: 0.000000  conc: 0.007812
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 177
+Epoch 177 | Loss: 0.035547 | Val: 0.142071  |  mse: 0.026499  sym: 0.000585  neg: 0.000000  conc: 0.008464
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 178
+Epoch 178 | Loss: 0.036114 | Val: 0.141681  |  mse: 0.026327  sym: 0.000738  neg: 0.000000  conc: 0.009049
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 179
+Epoch 179 | Loss: 0.038444 | Val: 0.141595  |  mse: 0.028965  sym: 0.000591  neg: 0.000000  conc: 0.008888
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 180
+Epoch 180 | Loss: 0.037839 | Val: 0.141561  |  mse: 0.028759  sym: 0.000627  neg: 0.000000  conc: 0.008453
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 180...
+  FID: 240.1556 | KID: 0.189620
+  Pixel PDF W-dist: 0.4902
+  Compliance — pct_negative: 0.4088  sym_score: 0.0351  conc_fri: 0.0940  conc_frii: 0.0433
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 181
+Epoch 181 | Loss: 0.037083 | Val: 0.141862  |  mse: 0.028515  sym: 0.000457  neg: 0.000000  conc: 0.008111
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 182
+Epoch 182 | Loss: 0.037583 | Val: 0.142576  |  mse: 0.028609  sym: 0.000504  neg: 0.000000  conc: 0.008470
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 183
+Epoch 183 | Loss: 0.037663 | Val: 0.141991  |  mse: 0.027988  sym: 0.000637  neg: 0.000000  conc: 0.009037
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 184
+Epoch 184 | Loss: 0.038482 | Val: 0.142549  |  mse: 0.028566  sym: 0.000592  neg: 0.000000  conc: 0.009324
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 185
+Epoch 185 | Loss: 0.039653 | Val: 0.142200  |  mse: 0.030981  sym: 0.000656  neg: 0.000000  conc: 0.008016
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 186
+Epoch 186 | Loss: 0.039923 | Val: 0.141413  |  mse: 0.030749  sym: 0.000740  neg: 0.000000  conc: 0.008434
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 187
+Epoch 187 | Loss: 0.040821 | Val: 0.141739  |  mse: 0.030161  sym: 0.000613  neg: 0.000000  conc: 0.010048
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 188
+Epoch 188 | Loss: 0.044428 | Val: 0.142453  |  mse: 0.028858  sym: 0.000705  neg: 0.000000  conc: 0.014864
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 189
+Epoch 189 | Loss: 0.039922 | Val: 0.143531  |  mse: 0.029573  sym: 0.000627  neg: 0.000000  conc: 0.009721
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 190
+Epoch 190 | Loss: 0.039710 | Val: 0.142438  |  mse: 0.029944  sym: 0.000709  neg: 0.000000  conc: 0.009058
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Computing FID/KID/PDF at epoch 190...
+  FID: 235.6427 | KID: 0.169535
+  Pixel PDF W-dist: 0.5062
+  Compliance — pct_negative: 2.3665  sym_score: 0.0602  conc_fri: 0.0901  conc_frii: 0.0139
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 191
+Epoch 191 | Loss: 0.043263 | Val: 0.142237  |  mse: 0.033643  sym: 0.000730  neg: 0.000000  conc: 0.008890
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 192
+Epoch 192 | Loss: 0.036353 | Val: 0.142462  |  mse: 0.027646  sym: 0.000580  neg: 0.000000  conc: 0.008127
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 193
+Epoch 193 | Loss: 0.036240 | Val: 0.141078  |  mse: 0.027107  sym: 0.000562  neg: 0.000000  conc: 0.008571
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 194
+Epoch 194 | Loss: 0.031054 | Val: 0.141346  |  mse: 0.021883  sym: 0.000707  neg: 0.000000  conc: 0.008464
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 195
+Epoch 195 | Loss: 0.042139 | Val: 0.141611  |  mse: 0.033217  sym: 0.000635  neg: 0.000000  conc: 0.008287
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 196
+Epoch 196 | Loss: 0.035598 | Val: 0.142593  |  mse: 0.026808  sym: 0.000529  neg: 0.000000  conc: 0.008261
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 197
+Epoch 197 | Loss: 0.037533 | Val: 0.143123  |  mse: 0.029018  sym: 0.000629  neg: 0.000000  conc: 0.007886
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 198
+Epoch 198 | Loss: 0.037027 | Val: 0.143039  |  mse: 0.028238  sym: 0.000698  neg: 0.000000  conc: 0.008091
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+Epoch 199
+Epoch 199 | Loss: 0.042262 | Val: 0.141599  |  mse: 0.034317  sym: 0.000561  neg: 0.000000  conc: 0.007384
+--- Saved model to checkpoints/pid/conc_v1/state.pt ---
+FITS files saved to results/pid/20260717_101843_conc_v1_278848/generated_fits
+Generated images saved.
+Generative metrics plot saved to results/pid/20260717_101843_conc_v1_278848/generative_metrics.png
+Pixel PDF history plot saved to results/pid/20260717_101843_conc_v1_278848/pixel_pdf_history.png
+Testing model
+Generated test images saved to results/pid/20260717_101843_conc_v1_278848/
