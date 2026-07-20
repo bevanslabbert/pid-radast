@@ -2,6 +2,7 @@ import os
 
 import numpy as np
 import torch
+import torch.nn.functional as F
 import matplotlib.pyplot as plt
 from torchmetrics.image.fid import FrechetInceptionDistance
 from torchmetrics.image.kid import KernelInceptionDistance
@@ -35,6 +36,61 @@ def generate_class_samples(unet, scheduler, class_emb, num_classes, num_samples,
                 out = unet(model_input, t, encoder_hidden_states=combined_emb).sample
                 noise_uncond, noise_cond = out.chunk(2)
                 noise_pred = noise_uncond + guidance_scale * (noise_cond - noise_uncond)
+                images = scheduler.step(noise_pred, t, images).prev_sample
+        return images
+
+    gen_0 = _sample(0)
+    gen_1 = _sample(1)
+    return gen_0, gen_1
+
+
+def generate_class_samples_guided(unet, scheduler, class_emb, classifier, classifier_time_aware,
+                                   num_classes, num_samples, device, shape=(1, 150, 150),
+                                   guidance_scale=7.5, classifier_scale=1.0):
+    """Generate CFG images for class 0 and class 1, nudged by classifier guidance.
+
+    Standard inference-time classifier guidance (Dhariwal & Nichol, 2021): at each
+    denoising step, the frozen classifier's gradient w.r.t. the current noisy image
+    x_t is added to the CFG noise prediction, on top of the existing class-embedding
+    CFG. Unlike training-time guidance (a classifier loss baked into the UNet's
+    weights), this only perturbs each sample's own trajectory — the classifier never
+    touches the UNet's weights, so it can't collapse every sample of a class onto one
+    canonical, classifier-maximising image.
+    """
+    unet.eval()
+    alphas_cumprod = scheduler.alphas_cumprod.to(device)
+
+    def _sample(class_idx):
+        cond_labels = torch.full((num_samples,), class_idx, dtype=torch.long, device=device)
+        uncond_labels = torch.full((num_samples,), num_classes, dtype=torch.long, device=device)
+        cond_emb = class_emb(cond_labels).unsqueeze(1)
+        uncond_emb = class_emb(uncond_labels).unsqueeze(1)
+
+        scheduler.set_timesteps(50)
+        images = torch.randn((num_samples, *shape), device=device)
+        for t in scheduler.timesteps:
+            model_input = torch.cat([images] * 2)
+            combined_emb = torch.cat([uncond_emb, cond_emb])
+            with torch.no_grad():
+                out = unet(model_input, t, encoder_hidden_states=combined_emb).sample
+                noise_uncond, noise_cond = out.chunk(2)
+                noise_pred = noise_uncond + guidance_scale * (noise_cond - noise_uncond)
+
+            if classifier_scale > 0:
+                x_t = images.detach().requires_grad_(True)
+                with torch.enable_grad():
+                    if classifier_time_aware:
+                        t_batch = torch.full((num_samples,), int(t), dtype=torch.long, device=device)
+                        logits = classifier(x_t, t_batch)
+                    else:
+                        logits = classifier(x_t)
+                    log_probs = F.log_softmax(logits, dim=1)
+                    selected = log_probs.gather(1, cond_labels.unsqueeze(1)).sum()
+                    grad = torch.autograd.grad(selected, x_t)[0]
+                alpha_bar_t = alphas_cumprod[t].view(1, 1, 1, 1)
+                noise_pred = noise_pred - classifier_scale * (1.0 - alpha_bar_t).sqrt() * grad
+
+            with torch.no_grad():
                 images = scheduler.step(noise_pred, t, images).prev_sample
         return images
 

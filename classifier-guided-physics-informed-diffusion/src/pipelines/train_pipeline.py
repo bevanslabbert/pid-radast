@@ -1,6 +1,6 @@
+import functools
 import gc
 import json
-import math
 import os
 
 import matplotlib.pyplot as plt
@@ -19,7 +19,9 @@ from src.models.simple_cnn import SimpleCNN
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.utils.augmentation import pgd_attack_early_stop, get_max_timestep, get_noisy_image
 from src.utils.checkpoint import save_checkpoint, load_checkpoint
-from src.utils.metrics import generate_class_samples, compute_fid_kid, compute_pixel_pdf
+from src.utils.metrics import (
+    generate_class_samples, generate_class_samples_guided, compute_fid_kid, compute_pixel_pdf,
+)
 from src.utils.visualization import (
     save_training_plot, save_generative_metrics_plot, save_pixel_pdf_history_plot,
     save_pid_training_plots, save_comparison_grid,
@@ -40,16 +42,6 @@ def evaluate_loss(model, dataloader, criterion, device='cpu'):
             inputs, labels = inputs.to(device), labels.to(device)
             total_loss += criterion(model(inputs), labels).item()
     return total_loss / len(dataloader)
-
-
-def fits_to_linear(x_fits, dataset):
-    """Convert FITS log-SNR normalised tensor to linear-normalised [-1, 1].
-
-    Fully differentiable — safe to use inside a training step where gradients
-    must flow back through x_0_pred to the UNet.
-    """
-    peak_log = dataset.median_peak_log
-    return torch.sign(x_fits) * torch.expm1(torch.abs(x_fits) * peak_log) / math.expm1(peak_log)
 
 
 def _restore_rng(ckpt):
@@ -90,15 +82,17 @@ def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, dev
     return images
 
 
-def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, include_random=True):
+def _post_train_save(unet, scheduler, class_emb, config, result_dir, dataset, include_random=True,
+                      sample_fn=None):
     """Generate final images, save PNGs (and FITS if applicable), save final_weights.pt."""
     num_classes = config['data']['num_classes']
     num_samples = config['data']['batch_size']
     device = next(unet.parameters()).device
     guidance_scale = float(config['training'].get('guidance_scale', 7.5))
+    sample_fn = sample_fn or generate_class_samples
 
-    gen_0, gen_1 = generate_class_samples(unet, scheduler, class_emb, num_classes, num_samples, device,
-                                           guidance_scale=guidance_scale)
+    gen_0, gen_1 = sample_fn(unet, scheduler, class_emb, num_classes, num_samples, device,
+                             guidance_scale=guidance_scale)
     torchvision.utils.save_image(gen_0, f'{result_dir}/generated_images_class_0.png',
                                   nrow=2, normalize=True, value_range=(-1, 1))
     torchvision.utils.save_image(gen_1, f'{result_dir}/generated_images_class_1.png',
@@ -475,6 +469,7 @@ def _train_diffusion_loop(
     extra_keys=None,
     compliance_fn=None,
     init_fn=None,
+    sample_fn=None,
 ):
     """Core training loop shared by all four diffusion model variants.
 
@@ -488,10 +483,14 @@ def _train_diffusion_loop(
             compliance metrics computed every 5 epochs on generated images (PID).
         init_fn: (unet, class_emb, device) -> None — optional hook called once
             before training starts when not resuming (e.g. load pretrained weights).
+        sample_fn: (unet, scheduler, class_emb, num_classes, num_samples, device,
+            guidance_scale=...) -> (gen_0, gen_1) — optional override for the periodic
+            eval-time sampler (e.g. classifier-guided sampling); defaults to plain CFG.
 
     Returns:
         (unet, scheduler, class_emb, histories: dict)
     """
+    sample_fn = sample_fn or generate_class_samples
     torch.cuda.empty_cache()
     gc.collect()
 
@@ -593,7 +592,7 @@ def _train_diffusion_loop(
         if epoch % eval_interval == 0:
             unet.eval()
             with torch.no_grad():
-                gen_0, gen_1 = generate_class_samples(
+                gen_0, gen_1 = sample_fn(
                     unet, scheduler, class_emb, num_classes, eval_num_samples, device,
                     guidance_scale=guidance_scale,
                 )
@@ -790,6 +789,57 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
         hist['compliance'].get('conc_frii', []),
         result_directory,
     )
+    save_training_plot(hist['epochs_range'], hist['loss_history'], hist['val_loss_history'],
+                       result_directory)
+    save_generative_metrics_plot(hist['fid_epochs'], hist['fid_history'], hist['kid_history'],
+                                  result_directory)
+    save_pixel_pdf_history_plot(hist['fid_epochs'], hist['pdf_history'], result_directory)
+    return unet
+
+
+def _train_guided_diffusion(ckpt_dir, config, trainloader, valloader, testloader, device,
+                             result_directory, resume, checkpoint, dataset=None):
+    """Fine-tunes a pre-trained diffusion model (plain MSE), then generates samples with
+    standard inference-time classifier guidance (Dhariwal & Nichol, 2021): a frozen
+    classifier's gradient w.r.t. the noisy image x_t nudges the CFG noise prediction at
+    each sampling step, on top of the model's own class-embedding CFG.
+
+    This replaces baking a classifier loss into the training objective, which collapsed
+    every sample of a class onto one canonical, classifier-maximising image — since the
+    classifier no longer touches the UNet's weights, only each sample's own trajectory
+    is perturbed, so per-sample diversity from the base diffusion model is preserved.
+    """
+    classifier_scale = float(config['training'].get('classifier_scale', 1.0))
+    classifier, classifier_time_aware = _load_guidance_classifier(config, device)
+    sample_fn = functools.partial(
+        generate_class_samples_guided, classifier=classifier,
+        classifier_time_aware=classifier_time_aware, classifier_scale=classifier_scale,
+    )
+
+    def loss_fn(noise_pred, noise, **_):
+        return F.mse_loss(noise_pred, noise), {}
+
+    def init_fn(unet, class_emb, device):
+        pretrained_dir = config['model'].get('pretrained_checkpoint', f'{CHECKPOINT_DIR}/diffusion')
+        ckpt_path = os.path.join(pretrained_dir, 'state.pt')
+        if os.path.exists(ckpt_path):
+            ckpt = load_checkpoint(pretrained_dir, device)
+            unet.load_state_dict(ckpt['model_state_dict'])
+            class_emb.load_state_dict(ckpt['class_emb_state_dict'])
+            print(f"Loaded pre-trained diffusion weights from {pretrained_dir}")
+        else:
+            print(f"No pre-trained checkpoint at {pretrained_dir}, training from scratch")
+
+    unet, scheduler, class_emb, hist = _train_diffusion_loop(
+        config, trainloader, valloader, testloader, device, result_directory,
+        resume, checkpoint, ckpt_dir, loss_fn, dataset=dataset,
+        init_fn=init_fn, sample_fn=sample_fn,
+    )
+
+    _post_train_save(unet, scheduler, class_emb, config, result_directory, dataset,
+                     include_random=True, sample_fn=sample_fn)
+    save_training_plot(hist['epochs_range'], hist['loss_history'], hist['val_loss_history'],
+                       result_directory)
     save_generative_metrics_plot(hist['fid_epochs'], hist['fid_history'], hist['kid_history'],
                                   result_directory)
     save_pixel_pdf_history_plot(hist['fid_epochs'], hist['pdf_history'], result_directory)
@@ -798,133 +848,16 @@ def train_pid(config, trainloader, valloader, testloader, device, result_directo
 
 def train_classifier_guided_diffusion(config, trainloader, valloader, testloader, device,
                                        result_directory, resume, checkpoint, dataset=None, tag=None):
-    """Fine-tunes a pre-trained diffusion model with frozen classifier guidance.
-
-    loss = MSE + lambda_cls * (1 - p_correct).mean()
-
-    The classifier term is only applied when t < cls_guidance_max_t: estimate_x0
-    is a one-step algebraic estimate, accurate near t=0 but collapsing to a
-    blurry, mode-averaged guess at high t regardless of model quality, so
-    guiding on it there rewards the UNet for ignoring its noisy input.
-    """
     ckpt_dir = 'classifier_guided_diffusion' + (f'/{tag}' if tag else '')
-    num_classes = config['data']['num_classes']
-    lambda_cls = float(config['training'].get('lambda_cls', 0.1))
-    cls_guidance_max_t = int(config['training'].get('cls_guidance_max_t', 200))
-
-    classifier, classifier_time_aware = _load_guidance_classifier(config, device)
-
-    def loss_fn(noise_pred, noise, noisy_images, labels, training_labels, t, alphas_cumprod, device, **_):
-        mse = F.mse_loss(noise_pred, noise)
-        cls_loss = torch.tensor(0.0, device=device)
-        cls_mask = (training_labels != num_classes) & (t < cls_guidance_max_t)
-        if cls_mask.any():
-            # generate image
-            x0 = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
-            cls_input = x0[cls_mask]
-
-            # convert to png if fits
-            if isinstance(dataset, MiraBestFITS):
-                cls_input = fits_to_linear(cls_input, dataset)
-
-            # classify
-            if classifier_time_aware:
-                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
-                logits = classifier(cls_input, t_clean)
-            else:
-                logits = classifier(cls_input)
-            p_correct = F.softmax(logits, dim=1).gather(
-                1, labels[cls_mask].unsqueeze(1)).squeeze(1)
-            cls_loss = lambda_cls * (1.0 - p_correct).mean()
-        return mse + cls_loss, {'cls_loss': cls_loss.item()}
-
-    def init_fn(unet, class_emb, device):
-        pretrained_dir = config['model'].get('pretrained_checkpoint', f'{CHECKPOINT_DIR}/diffusion')
-        ckpt_path = os.path.join(pretrained_dir, 'state.pt')
-        if os.path.exists(ckpt_path):
-            ckpt = load_checkpoint(pretrained_dir, device)
-            unet.load_state_dict(ckpt['model_state_dict'])
-            class_emb.load_state_dict(ckpt['class_emb_state_dict'])
-            print(f"Loaded pre-trained diffusion weights from {pretrained_dir}")
-        else:
-            print(f"No pre-trained checkpoint at {pretrained_dir}, training from scratch")
-
-    unet, scheduler, class_emb, hist = _train_diffusion_loop(
-        config, trainloader, valloader, testloader, device, result_directory,
-        resume, checkpoint, ckpt_dir, loss_fn, dataset=dataset,
-        extra_keys=['cls_loss'], init_fn=init_fn,
-    )
-
-    _post_train_save(unet, scheduler, class_emb, config, result_directory, dataset, include_random=True)
-    save_training_plot(hist['epochs_range'], hist['loss_history'], hist['val_loss_history'],
-                       result_directory)
-    save_generative_metrics_plot(hist['fid_epochs'], hist['fid_history'], hist['kid_history'],
-                                  result_directory)
-    save_pixel_pdf_history_plot(hist['fid_epochs'], hist['pdf_history'], result_directory)
-    return unet
+    return _train_guided_diffusion(ckpt_dir, config, trainloader, valloader, testloader, device,
+                                   result_directory, resume, checkpoint, dataset=dataset)
 
 
 def train_robust_classifier_guided_diffusion(config, trainloader, valloader, testloader, device,
                                               result_directory, resume, checkpoint, dataset=None, tag=None):
-    """Fine-tunes a pre-trained diffusion model with robust classifier guidance.
-
-    Identical to train_classifier_guided_diffusion but uses cross-entropy as the
-    guidance loss (more numerically stable when classifier confidence is poorly calibrated).
-    loss = MSE + lambda_cls * CE(classifier(x_0_pred), labels)
-
-    The classifier term is only applied when t < cls_guidance_max_t: estimate_x0
-    is a one-step algebraic estimate, accurate near t=0 but collapsing to a
-    blurry, mode-averaged guess at high t regardless of model quality, so
-    guiding on it there rewards the UNet for ignoring its noisy input.
-    """
     ckpt_dir = 'robust_classifier_guided_diffusion' + (f'/{tag}' if tag else '')
-    num_classes = config['data']['num_classes']
-    lambda_cls = float(config['training'].get('lambda_cls', 0.1))
-    cls_guidance_max_t = int(config['training'].get('cls_guidance_max_t', 200))
-
-    classifier, classifier_time_aware = _load_guidance_classifier(config, device)
-
-    def loss_fn(noise_pred, noise, noisy_images, labels, training_labels, t, alphas_cumprod, device, **_):
-        mse = F.mse_loss(noise_pred, noise)
-        cls_loss = torch.tensor(0.0, device=device)
-        cls_mask = (training_labels != num_classes) & (t < cls_guidance_max_t)
-        if cls_mask.any():
-            x0 = estimate_x0(noisy_images, noise_pred, alphas_cumprod, t)
-            cls_input = x0[cls_mask]
-            if isinstance(dataset, MiraBestFITS):
-                cls_input = fits_to_linear(cls_input, dataset)
-            if classifier_time_aware:
-                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
-                logits = classifier(cls_input, t_clean)
-            else:
-                logits = classifier(cls_input)
-            cls_loss = lambda_cls * F.cross_entropy(logits, labels[cls_mask])
-        return mse + cls_loss, {'cls_loss': cls_loss.item()}
-
-    def init_fn(unet, class_emb, device):
-        pretrained_dir = config['model'].get('pretrained_checkpoint', f'{CHECKPOINT_DIR}/diffusion')
-        ckpt_path = os.path.join(pretrained_dir, 'state.pt')
-        if os.path.exists(ckpt_path):
-            ckpt = load_checkpoint(pretrained_dir, device)
-            unet.load_state_dict(ckpt['model_state_dict'])
-            class_emb.load_state_dict(ckpt['class_emb_state_dict'])
-            print(f"Loaded pre-trained diffusion weights from {pretrained_dir}")
-        else:
-            print(f"No pre-trained checkpoint at {pretrained_dir}, training from scratch")
-
-    unet, scheduler, class_emb, hist = _train_diffusion_loop(
-        config, trainloader, valloader, testloader, device, result_directory,
-        resume, checkpoint, ckpt_dir, loss_fn, dataset=dataset,
-        extra_keys=['cls_loss'], init_fn=init_fn,
-    )
-
-    _post_train_save(unet, scheduler, class_emb, config, result_directory, dataset, include_random=True)
-    save_training_plot(hist['epochs_range'], hist['loss_history'], hist['val_loss_history'],
-                       result_directory)
-    save_generative_metrics_plot(hist['fid_epochs'], hist['fid_history'], hist['kid_history'],
-                                  result_directory)
-    save_pixel_pdf_history_plot(hist['fid_epochs'], hist['pdf_history'], result_directory)
-    return unet
+    return _train_guided_diffusion(ckpt_dir, config, trainloader, valloader, testloader, device,
+                                   result_directory, resume, checkpoint, dataset=dataset)
 
 
 # ---------------------------------------------------------------------------

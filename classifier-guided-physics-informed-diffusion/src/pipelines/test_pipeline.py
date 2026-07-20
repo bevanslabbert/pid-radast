@@ -220,9 +220,21 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         unet.to(device)
         unet.eval()
 
-        with torch.no_grad():
-            zero_images = sample_pid_zeros(unet, scheduler, class_emb, 4, num_classes, device)
-            one_images  = sample_pid_ones(unet, scheduler, class_emb, 4, num_classes, device)
+        if model_type in ('classifier_guided_diffusion', 'robust_classifier_guided_diffusion'):
+            from src.utils.metrics import generate_class_samples_guided
+            from src.pipelines.train_pipeline import _load_guidance_classifier
+
+            classifier_scale = float(config['training'].get('classifier_scale', 1.0))
+            classifier, classifier_time_aware = _load_guidance_classifier(config, device)
+            with torch.no_grad():
+                zero_images, one_images = generate_class_samples_guided(
+                    unet, scheduler, class_emb, classifier, classifier_time_aware,
+                    num_classes, 4, device, classifier_scale=classifier_scale,
+                )
+        else:
+            with torch.no_grad():
+                zero_images = sample_pid_zeros(unet, scheduler, class_emb, 4, num_classes, device)
+                one_images  = sample_pid_ones(unet, scheduler, class_emb, 4, num_classes, device)
 
         torchvision.utils.save_image(zero_images, f"{result_directory}/test_generated_class_0.png", nrow=2, normalize=True, value_range=(-1, 1))
         torchvision.utils.save_image(one_images,  f"{result_directory}/test_generated_class_1.png", nrow=2, normalize=True, value_range=(-1, 1))

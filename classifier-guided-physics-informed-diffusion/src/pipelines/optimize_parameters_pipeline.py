@@ -1,5 +1,4 @@
 import json
-import math
 import os
 
 import pyhopper
@@ -10,7 +9,6 @@ import torch.utils.data as tud
 import yaml
 from diffusers import UNet2DConditionModel, DDPMScheduler
 
-from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.models.simple_cnn import SimpleCNN
 from src.models.time_dependent_resnet import TimeDependentResNet
 from src.models.pid import estimate_x0, physics_loss
@@ -331,33 +329,20 @@ def _load_pretrained_diffusion(unet, class_emb, cfg, device):
         print(f"[optimize] No checkpoint at {pretrained_dir} — training guidance from scratch")
 
 
-def _load_frozen_classifier(cfg, device):
-    """Load and freeze the robust classifier used for guidance."""
-    num_classes = cfg['data']['num_classes']
-    ckpt_path = os.path.join(CHECKPOINT_DIR, 'robust_classification', 'state.pt')
-    if not os.path.exists(ckpt_path):
-        raise FileNotFoundError(
-            f"Robust classifier checkpoint not found at {ckpt_path}. "
-            "Train robust_classification first before optimising guided diffusion."
-        )
-    classifier = TimeDependentResNet(num_classes, pretrained=False)
-    ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/robust_classification', device)
-    classifier.load_state_dict(ckpt['model_state_dict'])
-    classifier.to(device).eval()
-    for p in classifier.parameters():
-        p.requires_grad_(False)
-    return classifier
+def _objective_guided_diffusion(params, cfg, trainloader, valloader, device, dataset=None):
+    """Shared objective for classifier_guided_diffusion/robust_classifier_guided_diffusion.
 
-
-def _objective_classifier_guided_diffusion(params, cfg, trainloader, valloader, device, dataset=None):
+    Classifier guidance is applied only at inference time (see
+    generate_class_samples_guided in src/utils/metrics.py), so the classifier plays no
+    part in training or in this MSE-only proxy objective — tuning here just searches
+    the fine-tuning hyperparameters (lr/weight_decay/label_dropout) for continuing the
+    pre-trained diffusion checkpoint.
+    """
     num_classes = cfg['data']['num_classes']
     label_dropout = float(params.get('label_dropout', cfg['training']['label_dropout']))
-    lambda_cls    = float(params.get('lambda_cls',    cfg['training'].get('lambda_cls', 0.1)))
 
     unet, scheduler, class_emb, optimizer = _build_guided_diffusion_components(cfg, params, device)
     _load_pretrained_diffusion(unet, class_emb, cfg, device)
-    classifier = _load_frozen_classifier(cfg, device)
-    alphas_cumprod = scheduler.alphas_cumprod.to(device)
 
     for _ in range(TRIAL_EPOCHS):
         unet.train()
@@ -375,83 +360,9 @@ def _objective_classifier_guided_diffusion(params, cfg, trainloader, valloader, 
             noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample
 
             mse = F.mse_loss(noise_pred, noise)
-            cls_loss = torch.tensor(0.0, device=device)
-            cls_mask = training_labels != num_classes
-            if cls_mask.any():
-                x0 = estimate_x0(noisy, noise_pred, alphas_cumprod, t)
-                cls_input = x0[cls_mask]
-                if isinstance(dataset, MiraBestFITS):
-                    peak_log = dataset.median_peak_log
-                    cls_input = (torch.sign(cls_input)
-                                 * torch.expm1(torch.abs(cls_input) * peak_log)
-                                 / math.expm1(peak_log))
-                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
-                p_correct = F.softmax(classifier(cls_input, t_clean), dim=1).gather(
-                    1, labels[cls_mask].unsqueeze(1)).squeeze(1)
-                cls_loss = lambda_cls * (1.0 - p_correct).mean()
 
             optimizer.zero_grad()
-            (mse + cls_loss).backward()
-            optimizer.step()
-
-    unet.eval()
-    val_loss = 0.0
-    with torch.no_grad():
-        for images, labels in valloader:
-            images, labels = images.to(device), labels.to(device)
-            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
-            noise = torch.randn_like(images)
-            noisy = scheduler.add_noise(images, noise, t)
-            noise_pred = unet(noisy, t,
-                              encoder_hidden_states=class_emb(labels).unsqueeze(1)).sample
-            val_loss += F.mse_loss(noise_pred, noise).item()
-
-    return -(val_loss / len(valloader))
-
-
-def _objective_robust_classifier_guided_diffusion(params, cfg, trainloader, valloader, device, dataset=None):
-    num_classes = cfg['data']['num_classes']
-    label_dropout = float(params.get('label_dropout', cfg['training']['label_dropout']))
-    lambda_cls    = float(params.get('lambda_cls',    cfg['training'].get('lambda_cls', 0.1)))
-
-    unet, scheduler, class_emb, optimizer = _build_guided_diffusion_components(cfg, params, device)
-    _load_pretrained_diffusion(unet, class_emb, cfg, device)
-    classifier = _load_frozen_classifier(cfg, device)
-    alphas_cumprod = scheduler.alphas_cumprod.to(device)
-
-    for _ in range(TRIAL_EPOCHS):
-        unet.train()
-        for images, labels in trainloader:
-            images, labels = images.to(device), labels.to(device)
-
-            drop_mask = torch.rand(labels.shape, device=device) < label_dropout
-            training_labels = labels.clone()
-            training_labels[drop_mask] = num_classes
-
-            t = torch.randint(0, scheduler.num_train_timesteps, (images.shape[0],), device=device)
-            noise = torch.randn_like(images)
-            noisy = scheduler.add_noise(images, noise, t)
-            class_embeddings = class_emb(training_labels).unsqueeze(1)
-            noise_pred = unet(noisy, t, encoder_hidden_states=class_embeddings).sample
-
-            mse = F.mse_loss(noise_pred, noise)
-            cls_loss = torch.tensor(0.0, device=device)
-            cls_mask = training_labels != num_classes
-            if cls_mask.any():
-                x0 = estimate_x0(noisy, noise_pred, alphas_cumprod, t)
-                cls_input = x0[cls_mask]
-                if isinstance(dataset, MiraBestFITS):
-                    peak_log = dataset.median_peak_log
-                    cls_input = (torch.sign(cls_input)
-                                 * torch.expm1(torch.abs(cls_input) * peak_log)
-                                 / math.expm1(peak_log))
-                t_clean = torch.zeros(cls_mask.sum(), dtype=torch.long, device=device)
-                cls_loss = lambda_cls * F.cross_entropy(
-                    classifier(cls_input, t_clean), labels[cls_mask]
-                )
-
-            optimizer.zero_grad()
-            (mse + cls_loss).backward()
+            mse.backward()
             optimizer.step()
 
     unet.eval()
@@ -478,8 +389,8 @@ _OBJECTIVES = {
     'robust_classification':              _objective_robust_classification,
     'diffusion':                          _objective_diffusion,
     'pid':                                _objective_pid,
-    'classifier_guided_diffusion':        _objective_classifier_guided_diffusion,
-    'robust_classifier_guided_diffusion': _objective_robust_classifier_guided_diffusion,
+    'classifier_guided_diffusion':        _objective_guided_diffusion,
+    'robust_classifier_guided_diffusion': _objective_guided_diffusion,
 }
 
 
