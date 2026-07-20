@@ -52,3 +52,16 @@ Epoch 9
 Epoch 9 | Loss: 0.027479 | Val: 0.136040
 --- Saved model to checkpoints/diffusion/diffusion_crumb_fits/state.pt ---
 Epoch 10
+Epoch 10 | Loss: 0.026393 | Val: 0.136588
+FITS files saved to results/diffusion/20260720_202319_diffusion_crumb_fits_315339/generated_fits
+Computing FID/KID/PDF at epoch 10...
+  FID: 162.7930 | KID: 0.153605
+  Pixel PDF W-dist: 0.2242
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits/state.pt ---
+Epoch 11
+Epoch 11 | Loss: 0.025883 | Val: 0.135159
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits/state.pt ---
+Epoch 12
+Epoch 12 | Loss: 0.025587 | Val: 0.134248
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits/state.pt ---
+Epoch 13
