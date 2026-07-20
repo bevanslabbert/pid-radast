@@ -228,8 +228,9 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
             classifier, classifier_time_aware = _load_guidance_classifier(config, device)
             with torch.no_grad():
                 zero_images, one_images = generate_class_samples_guided(
-                    unet, scheduler, class_emb, classifier, classifier_time_aware,
-                    num_classes, 4, device, classifier_scale=classifier_scale,
+                    unet, scheduler, class_emb, num_classes, 4, device,
+                    classifier=classifier, classifier_time_aware=classifier_time_aware,
+                    classifier_scale=classifier_scale,
                 )
         else:
             with torch.no_grad():

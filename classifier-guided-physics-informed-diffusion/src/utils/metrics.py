@@ -44,8 +44,8 @@ def generate_class_samples(unet, scheduler, class_emb, num_classes, num_samples,
     return gen_0, gen_1
 
 
-def generate_class_samples_guided(unet, scheduler, class_emb, classifier, classifier_time_aware,
-                                   num_classes, num_samples, device, shape=(1, 150, 150),
+def generate_class_samples_guided(unet, scheduler, class_emb, num_classes, num_samples, device, *,
+                                   classifier, classifier_time_aware, shape=(1, 150, 150),
                                    guidance_scale=7.5, classifier_scale=1.0):
     """Generate CFG images for class 0 and class 1, nudged by classifier guidance.
 
