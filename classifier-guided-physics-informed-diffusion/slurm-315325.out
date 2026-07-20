@@ -1,0 +1,19 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=None  |  results -> results/classifier_guided_diffusion/20260720_201358_untagged_315325
+============================================================
+
+Training classifier_guided_diffusion for 200 epochs
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded pre-trained diffusion weights from checkpoints/diffusion
+Epoch 0
+Epoch 0 | Loss: 0.021511 | Val: 0.129696
