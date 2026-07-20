@@ -1,0 +1,5 @@
+usage: main.py train [-h] --model MODEL [--config CONFIG] [--resume RESUME]
+                     [--checkpoint CHECKPOINT] [--runs RUNS] [--seed SEED]
+                     [--tag TAG]
+main.py train: error: argument --seed: expected one argument
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB

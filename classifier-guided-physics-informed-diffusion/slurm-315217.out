@@ -1,0 +1,39 @@
+WARNING: File may have been truncated: actual file length (155648) is smaller than the expected size (377280) [astropy.io.fits.file]
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Computing dataset stats across 1691 FITS files...
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 210, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 141, in main
+    result = get_data_loaders(
+             ^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/data.py", line 162, in get_data_loaders
+    train_dataset = MiraBestFITS(root=fits_dir, transform=fits_train_transform)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/datasets/mirabest/MiraBestFITS.py", line 63, in __init__
+    self.median_noise_rms, self.median_peak_log = self._load_or_compute_stats()
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/datasets/mirabest/MiraBestFITS.py", line 75, in _load_or_compute_stats
+    return self._compute_and_save_stats(stats_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/datasets/mirabest/MiraBestFITS.py", line 85, in _compute_and_save_stats
+    data = hdul[0].data.astype(np.float32)
+           ^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/astropy/utils/decorators.py", line 837, in __get__
+    val = self.fget(obj)
+          ^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/astropy/io/fits/hdu/image.py", line 250, in data
+    data = self._get_scaled_image_data(self._data_offset, self.shape)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/astropy/io/fits/hdu/image.py", line 809, in _get_scaled_image_data
+    raw_data = self._get_raw_data(shape, code, offset)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/astropy/io/fits/hdu/base.py", line 559, in _get_raw_data
+    return self._file.readarray(offset=offset, dtype=code, shape=shape)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/astropy/io/fits/file.py", line 393, in readarray
+    return np.ndarray(
+           ^^^^^^^^^^^
+TypeError: buffer is too small for requested array
