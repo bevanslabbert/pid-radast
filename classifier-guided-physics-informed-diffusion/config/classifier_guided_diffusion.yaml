@@ -8,7 +8,7 @@ data:
 model:
   embedding_dim: 256
   # loads from checkpoints/diffusion by default; override to use a different starting point
-  pretrained_checkpoint: checkpoints/diffusion
+  pretrained_checkpoint: checkpoints/diffusion_crumb_fits
   # which classifier architecture guides training: classification (resnet18, no
   # timestep input) or robust_classification (TimeDependentResNet). Defaults to
   # robust_classification if omitted.
@@ -16,7 +16,7 @@ model:
   classifier_checkpoint: checkpoints/classification/scratch
 
 training:
-  epochs: 200
+  epochs: 300
   learning_rate: 0.00005
   label_dropout: 0.29869287822764246
   num_train_timesteps: 1000
