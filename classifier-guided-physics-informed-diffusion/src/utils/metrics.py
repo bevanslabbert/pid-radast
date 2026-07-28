@@ -67,27 +67,43 @@ def generate_class_samples_guided(unet, scheduler, class_emb, num_classes, num_s
         uncond_emb = class_emb(uncond_labels).unsqueeze(1)
 
         scheduler.set_timesteps(50)
+
+        # random samples
         images = torch.randn((num_samples, *shape), device=device)
         for t in scheduler.timesteps:
             model_input = torch.cat([images] * 2)
             combined_emb = torch.cat([uncond_emb, cond_emb])
             with torch.no_grad():
+                # get predicted noise for class labeled samples, and unlabeled samples
                 out = unet(model_input, t, encoder_hidden_states=combined_emb).sample
                 noise_uncond, noise_cond = out.chunk(2)
+
+                # check in which direction the noise is leaning for the labeled noise prediction as opposed to unlabeled noise prediction
+                # exaggerate the difference by nudging further in that direction
                 noise_pred = noise_uncond + guidance_scale * (noise_cond - noise_uncond)
 
             if classifier_scale > 0:
                 x_t = images.detach().requires_grad_(True)
                 with torch.enable_grad():
+                    # pass timestep too if classifier was trained to be noise-level-aware
                     if classifier_time_aware:
                         t_batch = torch.full((num_samples,), int(t), dtype=torch.long, device=device)
                         logits = classifier(x_t, t_batch)
                     else:
                         logits = classifier(x_t)
+
+                    # convert logits to log-probabilities per class
                     log_probs = F.log_softmax(logits, dim=1)
+
+                    # get current class confidence, and sum all together to get a scalar
                     selected = log_probs.gather(1, cond_labels.unsqueeze(1)).sum()
+
+                    # get the gradient of the scalar confidence output w.r.t. the input image (N, 1, 150, 150)
                     grad = torch.autograd.grad(selected, x_t)[0]
+
                 alpha_bar_t = alphas_cumprod[t].view(1, 1, 1, 1)
+
+                # use the gradient to nudge each pixel of the noise in the direction of the correct classification
                 noise_pred = noise_pred - classifier_scale * (1.0 - alpha_bar_t).sqrt() * grad
 
             with torch.no_grad():
