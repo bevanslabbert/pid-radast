@@ -10,6 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from metrics_utils import basic_MSE, score_NCC
+from vq_vae_modified import get_vqvae
 from fits_normalize import load_fits_stats, load_and_normalise_fits
 
 CGD_FITS_DIR = os.path.join(
