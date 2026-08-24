@@ -20,12 +20,23 @@ from torchvision.utils import make_grid, save_image
 # deterministic since its default autotuned algorithm selection is otherwise a
 # GPU-side source of run-to-run variance even with a fixed seed.
 def set_seed(seed):
+    # Must be set before any CUDA op touches cuBLAS (e.g. cuda.manual_seed_all
+    # below) for deterministic matmul/conv-backward on GPU.
+    os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
+
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
+    # cudnn.deterministic only covers convolutions; this additionally forces
+    # every other op (scatter/index, interpolate, etc.) to use a deterministic
+    # implementation, raising instead of silently varying if one doesn't
+    # exist. warn_only=True: warn rather than crash training on an
+    # unsupported op, since some ops used here (e.g. attention) may not have
+    # a deterministic CUDA kernel.
+    torch.use_deterministic_algorithms(True, warn_only=True)
 
 def make_result_directory(model, tag, seed=None):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
