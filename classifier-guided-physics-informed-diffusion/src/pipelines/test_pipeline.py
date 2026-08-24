@@ -240,3 +240,35 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         torchvision.utils.save_image(zero_images, f"{result_directory}/test_generated_class_0.png", nrow=2, normalize=True, value_range=(-1, 1))
         torchvision.utils.save_image(one_images,  f"{result_directory}/test_generated_class_1.png", nrow=2, normalize=True, value_range=(-1, 1))
         print(f"Generated test images saved to {result_directory}/")
+
+    elif model_type == 'edm_baseline':
+        from src.models.edm import build_edm_components, generate_class_samples_edm
+        import os
+
+        num_classes = config['data']['num_classes']
+        input_size = config['data']['input_size']
+        guidance_scale = float(config['training'].get('guidance_scale', 3.0))
+        num_sampling_steps = int(config['training'].get('num_sampling_steps', 25))
+
+        unet, ema, _ = build_edm_components(config, device)
+        ckpt_dir = 'edm_baseline' + (f'/{tag}' if tag else '')
+        ckpt_path = f'{CHECKPOINT_DIR}/{ckpt_dir}/state.pt'
+
+        if os.path.exists(ckpt_path):
+            ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/{ckpt_dir}', device)
+            unet.load_state_dict(ckpt['model_state_dict'])
+            ema.load_state_dict(ckpt['ema_state_dict'])
+        elif model is not None:
+            unet = model
+        else:
+            print(f"No checkpoint at {ckpt_path} and no model passed — skipping generation.")
+            return
+
+        zero_images, one_images = generate_class_samples_edm(
+            ema.shadow, num_classes, 4, device,
+            shape=(1, input_size, input_size), guidance_scale=guidance_scale,
+            num_steps=num_sampling_steps,
+        )
+        torchvision.utils.save_image(zero_images, f"{result_directory}/test_generated_class_0.png", nrow=2, normalize=True, value_range=(-1, 1))
+        torchvision.utils.save_image(one_images,  f"{result_directory}/test_generated_class_1.png", nrow=2, normalize=True, value_range=(-1, 1))
+        print(f"Generated test images saved to {result_directory}/")

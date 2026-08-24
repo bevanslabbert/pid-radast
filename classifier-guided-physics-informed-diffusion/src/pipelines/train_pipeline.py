@@ -11,6 +11,7 @@ import torchvision
 
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.models.diffusion import build_diffusion_components, eval_epoch
+from src.models.edm import build_edm_components, edm_loss, generate_class_samples_edm
 from src.models.pid import (
     estimate_x0, symmetry_loss, nonnegativity_loss, concentration_loss, concentration_index,
 )
@@ -860,6 +861,145 @@ def train_robust_classifier_guided_diffusion(config, trainloader, valloader, tes
                                    result_directory, resume, checkpoint, dataset=dataset)
 
 
+def train_edm_baseline(config, trainloader, valloader, testloader, device, result_directory,
+                        resume, checkpoint, dataset=None, tag=None):
+    """EDM (Karras et al. 2022) baseline, architecture-matched to Vicanek
+    Martinez et al. (2024, A&A) "Simulating images of radio galaxies with
+    diffusion models" -- a literature baseline for direct comparison against
+    this project's DDPM-based diffusion/CGD/PID models. See src/models/edm.py
+    for the architecture/sampler and how it differs from the DDPM models.
+    """
+    ckpt_dir = 'edm_baseline' + (f'/{tag}' if tag else '')
+    num_classes = config['data']['num_classes']
+    num_epochs = config['training']['epochs']
+    label_dropout = config['training']['label_dropout']
+    guidance_scale = float(config['training'].get('guidance_scale', 3.0))
+    num_sampling_steps = int(config['training'].get('num_sampling_steps', 25))
+    eval_interval = int(config['training'].get('eval_interval', 5))
+    eval_num_samples = int(config['training'].get('eval_num_samples', 16))
+    input_size = config['data']['input_size']
+
+    unet, ema, optimizer = build_edm_components(config, device)
+
+    loss_history, val_loss_history, epochs_range = [], [], []
+    fid_history, kid_history, fid_epochs, pdf_history = [], [], [], []
+    start_epoch = 0
+
+    if resume is not None:
+        ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/{ckpt_dir}', device)
+        _restore_rng(ckpt)
+        unet.load_state_dict(ckpt['model_state_dict'])
+        ema.load_state_dict(ckpt['ema_state_dict'])
+        optimizer.load_state_dict(ckpt['optimizer_state_dict'])
+        start_epoch = ckpt['epoch'] + 1
+        loss_history = ckpt['loss_history']
+        val_loss_history = ckpt['val_loss_history']
+        epochs_range = ckpt['epochs_range']
+        fid_history = ckpt.get('fid_history', [])
+        kid_history = ckpt.get('kid_history', [])
+        fid_epochs = ckpt.get('fid_epochs', [])
+        pdf_history = ckpt.get('pdf_history', [])
+        print(f"Resumed from checkpoint: {ckpt_dir} (epoch {start_epoch})")
+
+    def sample_fn():
+        # Sampling uses EMA weights, matching the paper's reported practice.
+        return generate_class_samples_edm(
+            ema.shadow, num_classes, eval_num_samples, device,
+            shape=(1, input_size, input_size), guidance_scale=guidance_scale,
+            num_steps=num_sampling_steps,
+        )
+
+    for epoch in range(start_epoch, num_epochs):
+        unet.train()
+        epoch_loss = 0.0
+        batch_count = 0
+        print(f'Epoch {epoch}')
+        for images, labels in trainloader:
+            images, labels = images.to(device), labels.to(device)
+            loss, _ = edm_loss(unet, images, labels, num_classes, label_dropout, device)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            ema.update(unet)
+            epoch_loss += loss.item()
+            batch_count += 1
+
+        avg_loss = epoch_loss / batch_count
+        loss_history.append(avg_loss)
+        epochs_range.append(epoch)
+
+        unet.eval()
+        val_loss_accum = 0.0
+        with torch.no_grad():
+            for images, labels in testloader:
+                images, labels = images.to(device), labels.to(device)
+                v_loss, _ = edm_loss(unet, images, labels, num_classes, 0.0, device)
+                val_loss_accum += v_loss.item()
+        avg_val_loss = val_loss_accum / len(testloader)
+        val_loss_history.append(avg_val_loss)
+
+        print(f'Epoch {epoch} | Loss: {avg_loss:.6f} | Val: {avg_val_loss:.6f}')
+
+        if epoch % eval_interval == 0:
+            gen_0, gen_1 = sample_fn()
+            save_comparison_grid(gen_0[:4], gen_1[:4], epoch, result_directory)
+
+            print(f'Computing FID/KID/PDF at epoch {epoch}...')
+            fid_score, kid_score = compute_fid_kid(gen_0, gen_1, valloader, device)
+            fid_history.append(fid_score)
+            kid_history.append(kid_score)
+            fid_epochs.append(epoch)
+            print(f'  FID: {fid_score:.4f} | KID: {kid_score:.6f}')
+
+            pdf_score = compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_directory, epoch)
+            pdf_history.append(pdf_score)
+            print(f'  Pixel PDF W-dist: {pdf_score:.4f}')
+
+            unet.train()
+
+        if checkpoint is not None or resume is not None:
+            payload = {
+                'epoch': epoch,
+                'model_state_dict': unet.state_dict(),
+                'ema_state_dict': ema.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'config': config,
+                'loss_history': loss_history,
+                'val_loss_history': val_loss_history,
+                'epochs_range': epochs_range,
+                'fid_history': fid_history,
+                'kid_history': kid_history,
+                'fid_epochs': fid_epochs,
+                'pdf_history': pdf_history,
+                'rng_state': torch.get_rng_state(),
+                'cuda_rng_state': torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
+            }
+            save_checkpoint(payload, f'{CHECKPOINT_DIR}/{ckpt_dir}')
+
+    gen_0, gen_1 = sample_fn()
+    torchvision.utils.save_image(gen_0, f'{result_directory}/generated_images_class_0.png',
+                                  nrow=2, normalize=True, value_range=(-1, 1))
+    torchvision.utils.save_image(gen_1, f'{result_directory}/generated_images_class_1.png',
+                                  nrow=2, normalize=True, value_range=(-1, 1))
+
+    torch.save(
+        {'model_state_dict': unet.state_dict(), 'ema_state_dict': ema.state_dict(), 'config': config},
+        os.path.join(result_directory, 'final_weights.pt'),
+    )
+
+    save_training_plot(epochs_range, loss_history, val_loss_history, result_directory)
+    save_generative_metrics_plot(fid_epochs, fid_history, kid_history, result_directory)
+    save_pixel_pdf_history_plot(fid_epochs, pdf_history, result_directory)
+
+    with open(os.path.join(result_directory, 'metrics.json'), 'w') as f:
+        json.dump({
+            'epochs': epochs_range, 'loss': loss_history, 'val_loss': val_loss_history,
+            'fid_epochs': fid_epochs, 'fid': fid_history, 'kid': kid_history, 'pdf': pdf_history,
+        }, f, indent=2)
+
+    return unet
+
+
 # ---------------------------------------------------------------------------
 # Dispatcher
 # ---------------------------------------------------------------------------
@@ -886,9 +1026,12 @@ def train_model(model, config, trainloader, valloader, testloader, device, resul
         return train_robust_classifier_guided_diffusion(config, trainloader, valloader, testloader,
                                                          device, result_directory, resume, checkpoint,
                                                          dataset=dataset, tag=tag)
+    elif model == 'edm_baseline':
+        return train_edm_baseline(config, trainloader, valloader, testloader, device,
+                                  result_directory, resume, checkpoint, dataset=dataset, tag=tag)
     else:
         raise ValueError(
             f'Model {model} not supported. '
             f'Choose from: classification, robust_classification, diffusion, pid, '
-            f'classifier_guided_diffusion, robust_classifier_guided_diffusion'
+            f'classifier_guided_diffusion, robust_classifier_guided_diffusion, edm_baseline'
         )

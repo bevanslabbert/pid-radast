@@ -1,0 +1,28 @@
+seed: 42
+
+# EDM (Karras et al. 2022) baseline, architecture-matched to Vicanek Martinez
+# et al. (2024, A&A) "Simulating images of radio galaxies with diffusion
+# models" (arXiv:2410.07794) -- a literature baseline for comparison against
+# this project's DDPM-based diffusion/CGD/PID models. See src/models/edm.py.
+
+data:
+  dataset: crumb_fits
+  batch_size: 8
+  input_size: 150
+
+training:
+  # Paper: lr=2e-5, batch_size=128 (FIRST model)
+  learning_rate: 0.00002
+  # Paper's FIRST-model context dropout (for classifier-free guidance)
+  label_dropout: 0.10
+  # Paper: EMA rate 0.9999
+  ema_decay: 0.9999
+
+  epochs: 200
+
+  # Paper: 25-step Heun ODE sampler, guidance_scale = 1 + omega
+  guidance_scale: 3.0
+  num_sampling_steps: 25
+
+  eval_interval: 10
+  eval_num_samples: 16
