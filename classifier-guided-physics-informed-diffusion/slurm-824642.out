@@ -1,0 +1,35 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=None  |  results -> results/edm_baseline/20260825_191230_untagged_824642
+============================================================
+
+Training edm_baseline for 200 epochs
+Epoch 0
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
+  hidden_states = F.scaled_dot_product_attention(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 0 | Loss: 0.487739 | Val: 0.368113
+Computing FID/KID/PDF at epoch 0...
+  FID: 202.6429 | KID: 0.214611
+  Pixel PDF W-dist: 0.4311
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 1
+Epoch 1 | Loss: 0.440416 | Val: 0.382293
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 2
+Epoch 2 | Loss: 0.437206 | Val: 0.379788
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 3
+Epoch 3 | Loss: 0.436466 | Val: 0.408219
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 4
