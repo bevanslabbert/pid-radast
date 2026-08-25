@@ -33,3 +33,36 @@ Epoch 3
 Epoch 3 | Loss: 0.436466 | Val: 0.408219
 --- Saved model to checkpoints/edm_baseline/state.pt ---
 Epoch 4
+Epoch 4 | Loss: 0.445840 | Val: 0.396889
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 5
+Epoch 5 | Loss: 0.419935 | Val: 0.413200
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 6
+Epoch 6 | Loss: 0.418577 | Val: 0.371925
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 7
+Epoch 7 | Loss: 0.435602 | Val: 0.381711
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 8
+Epoch 8 | Loss: 0.429693 | Val: 0.339365
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 9
+Epoch 9 | Loss: 0.420701 | Val: 0.436458
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 10
+Epoch 10 | Loss: 0.429173 | Val: 0.383273
+Computing FID/KID/PDF at epoch 10...
+  FID: 203.3990 | KID: 0.222475
+  Pixel PDF W-dist: 0.3760
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 11
+Epoch 11 | Loss: 0.400506 | Val: 0.374951
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 12
+Epoch 12 | Loss: 0.416935 | Val: 0.364498
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 13
+Epoch 13 | Loss: 0.404163 | Val: 0.370583
+--- Saved model to checkpoints/edm_baseline/state.pt ---
+Epoch 14
