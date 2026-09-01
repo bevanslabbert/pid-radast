@@ -943,6 +943,8 @@ def train_edm_baseline(config, trainloader, valloader, testloader, device, resul
         if epoch % eval_interval == 0:
             gen_0, gen_1 = sample_fn()
             save_comparison_grid(gen_0[:4], gen_1[:4], epoch, result_directory)
+            if isinstance(dataset, MiraBestFITS):
+                _save_fits_dir([(0, gen_0), (1, gen_1)], dataset, result_directory, f'_{epoch}')
 
             print(f'Computing FID/KID/PDF at epoch {epoch}...')
             fid_score, kid_score = compute_fid_kid(gen_0, gen_1, valloader, device)
@@ -981,6 +983,9 @@ def train_edm_baseline(config, trainloader, valloader, testloader, device, resul
                                   nrow=2, normalize=True, value_range=(-1, 1))
     torchvision.utils.save_image(gen_1, f'{result_directory}/generated_images_class_1.png',
                                   nrow=2, normalize=True, value_range=(-1, 1))
+
+    if isinstance(dataset, MiraBestFITS):
+        _save_fits_dir([(0, gen_0), (1, gen_1)], dataset, result_directory)
 
     torch.save(
         {'model_state_dict': unet.state_dict(), 'ema_state_dict': ema.state_dict(), 'config': config},
