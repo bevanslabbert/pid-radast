@@ -1,0 +1,13 @@
+{
+  "batch_size": 16,
+  "conv1_out_channels": 12,
+  "conv2_out_channels": 16,
+  "criterion_class": "<class 'torch.nn.modules.loss.CrossEntropyLoss'>",
+  "dataset": "MiraBest",
+  "fc1_units": 256,
+  "fc2_units": 84,
+  "kernel_size": 5,
+  "lr": 0.038487640873125374,
+  "model_class": "<class 'models.classification_model.ClassificationModel'>",
+  "optimizer_class": "<class 'torch.optim.adamw.AdamW'>"
+}

@@ -1,0 +1,19 @@
+Diffusion-generated set: 16 images (final)
+MSE: mean=0.001737 std=0.000729
+NCC: mean=0.7705 std=0.0467
+generated_class0_000.fits	MSE=0.001110	NCC=0.7519
+generated_class0_001.fits	MSE=0.001090	NCC=0.6871
+generated_class0_002.fits	MSE=0.000942	NCC=0.6879
+generated_class0_003.fits	MSE=0.001004	NCC=0.7647
+generated_class0_004.fits	MSE=0.001013	NCC=0.7700
+generated_class0_005.fits	MSE=0.000952	NCC=0.8232
+generated_class0_006.fits	MSE=0.001038	NCC=0.7142
+generated_class0_007.fits	MSE=0.001247	NCC=0.7644
+generated_class1_000.fits	MSE=0.002705	NCC=0.7998
+generated_class1_001.fits	MSE=0.002943	NCC=0.8762
+generated_class1_002.fits	MSE=0.001980	NCC=0.7724
+generated_class1_003.fits	MSE=0.002323	NCC=0.7798
+generated_class1_004.fits	MSE=0.002236	NCC=0.7707
+generated_class1_005.fits	MSE=0.002241	NCC=0.7958
+generated_class1_006.fits	MSE=0.002129	NCC=0.7570
+generated_class1_007.fits	MSE=0.002835	NCC=0.8127

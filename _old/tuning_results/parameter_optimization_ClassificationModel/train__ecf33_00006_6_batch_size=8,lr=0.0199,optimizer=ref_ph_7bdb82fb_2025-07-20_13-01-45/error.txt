@@ -1,0 +1,16 @@
+Failure # 1 (occurred at 2025-07-20_13-01-48)
+[36mray::ImplicitFunc.train()[39m (pid=37472, ip=127.0.0.1, actor_id=2d56c1d0688738cadcb5dc3201000000, repr=train_)
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/ray/tune/trainable/trainable.py", line 331, in train
+    raise skipped from exception_cause(skipped)
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+                ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+                          ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/venv/lib/python3.13/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/Users/bevanslabbert/Documents/GitHub/pid-radast/src/parameter_optimization/optimize.py", line 47, in train_
+    device, model = set_gpu_parallel_training(model)
+    ^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable NoneType object
