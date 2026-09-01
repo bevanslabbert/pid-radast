@@ -1,8 +1,0 @@
-{
-  "batch_size": 8,
-  "criterion_class": "<class 'torch.nn.modules.loss.CrossEntropyLoss'>",
-  "dataset": "MiraBest",
-  "lr": 0.00194655857849265,
-  "model_class": "<class 'models.classification_model.ClassificationModel'>",
-  "optimizer_class": "<class 'torch.optim.adamw.AdamW'>"
-}

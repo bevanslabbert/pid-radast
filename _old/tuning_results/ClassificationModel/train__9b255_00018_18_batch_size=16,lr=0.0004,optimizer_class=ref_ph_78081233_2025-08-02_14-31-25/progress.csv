@@ -1,2 +1,0 @@
-val_loss,training_loss,val_accuracy,timestamp,checkpoint_dir_name,done,training_iteration,trial_id,date,time_this_iter_s,time_total_s,pid,hostname,node_ip,time_since_restore,iterations_since_restore
-5.8382086753845215,0.5630702904292515,0.5827338129496403,1754139503,,False,1,9b255_00018,2025-08-02_14-58-23,744.6140410900116,744.6140410900116,90110,Bevans-MacBook-Pro.local,127.0.0.1,744.6140410900116,1

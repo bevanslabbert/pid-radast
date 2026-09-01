@@ -1,9 +1,0 @@
-torch
-torchvision
-matplotlib
-numpy
-torchsummary
-ipywidgets
-ray
-pandas
-pyarrow

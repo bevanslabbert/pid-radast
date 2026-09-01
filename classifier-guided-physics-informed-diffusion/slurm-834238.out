@@ -1,0 +1,684 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=44  |  tag=exp_seed44  |  results -> results/edm_baseline/20260827_053746_exp_seed44_834238
+============================================================
+
+Training edm_baseline for 200 epochs
+Epoch 0
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
+  hidden_states = F.scaled_dot_product_attention(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 0 | Loss: 0.475425 | Val: 0.389156
+Computing FID/KID/PDF at epoch 0...
+  FID: 220.4984 | KID: 0.205454
+  Pixel PDF W-dist: 0.5023
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 1
+Epoch 1 | Loss: 0.438725 | Val: 0.386845
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 2
+Epoch 2 | Loss: 0.446225 | Val: 0.429408
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 3
+Epoch 3 | Loss: 0.444471 | Val: 0.386346
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 4
+Epoch 4 | Loss: 0.426898 | Val: 0.408481
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 5
+Epoch 5 | Loss: 0.430389 | Val: 0.393561
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 6
+Epoch 6 | Loss: 0.410422 | Val: 0.337878
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 7
+Epoch 7 | Loss: 0.436871 | Val: 0.371994
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 8
+Epoch 8 | Loss: 0.423076 | Val: 0.416639
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 9
+Epoch 9 | Loss: 0.415436 | Val: 0.359119
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 10
+Epoch 10 | Loss: 0.400600 | Val: 0.369196
+Computing FID/KID/PDF at epoch 10...
+  FID: 194.7277 | KID: 0.189440
+  Pixel PDF W-dist: 0.4326
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 11
+Epoch 11 | Loss: 0.420387 | Val: 0.387075
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 12
+Epoch 12 | Loss: 0.411155 | Val: 0.373376
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 13
+Epoch 13 | Loss: 0.409958 | Val: 0.389489
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 14
+Epoch 14 | Loss: 0.417385 | Val: 0.399579
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 15
+Epoch 15 | Loss: 0.405544 | Val: 0.395684
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 16
+Epoch 16 | Loss: 0.419911 | Val: 0.406960
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 17
+Epoch 17 | Loss: 0.429162 | Val: 0.381067
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 18
+Epoch 18 | Loss: 0.412707 | Val: 0.400946
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 19
+Epoch 19 | Loss: 0.408111 | Val: 0.355915
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 20
+Epoch 20 | Loss: 0.414834 | Val: 0.349095
+Computing FID/KID/PDF at epoch 20...
+  FID: 176.4651 | KID: 0.180205
+  Pixel PDF W-dist: 0.3423
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 21
+Epoch 21 | Loss: 0.416148 | Val: 0.392950
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 22
+Epoch 22 | Loss: 0.396578 | Val: 0.345997
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 23
+Epoch 23 | Loss: 0.406516 | Val: 0.402648
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 24
+Epoch 24 | Loss: 0.403568 | Val: 0.406485
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 25
+Epoch 25 | Loss: 0.409692 | Val: 0.362978
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 26
+Epoch 26 | Loss: 0.393745 | Val: 0.387750
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 27
+Epoch 27 | Loss: 0.396456 | Val: 0.361831
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 28
+Epoch 28 | Loss: 0.415226 | Val: 0.389842
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 29
+Epoch 29 | Loss: 0.400883 | Val: 0.301047
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 30
+Epoch 30 | Loss: 0.411334 | Val: 0.349827
+Computing FID/KID/PDF at epoch 30...
+  FID: 160.3663 | KID: 0.166339
+  Pixel PDF W-dist: 0.2190
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 31
+Epoch 31 | Loss: 0.400738 | Val: 0.387916
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 32
+Epoch 32 | Loss: 0.402651 | Val: 0.365780
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 33
+Epoch 33 | Loss: 0.404232 | Val: 0.378397
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 34
+Epoch 34 | Loss: 0.413031 | Val: 0.384289
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 35
+Epoch 35 | Loss: 0.400611 | Val: 0.425088
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 36
+Epoch 36 | Loss: 0.405914 | Val: 0.354504
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 37
+Epoch 37 | Loss: 0.397515 | Val: 0.379967
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 38
+Epoch 38 | Loss: 0.379797 | Val: 0.353815
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 39
+Epoch 39 | Loss: 0.408578 | Val: 0.397722
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 40
+Epoch 40 | Loss: 0.415943 | Val: 0.334664
+Computing FID/KID/PDF at epoch 40...
+  FID: 161.4290 | KID: 0.154176
+  Pixel PDF W-dist: 0.1302
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 41
+Epoch 41 | Loss: 0.417562 | Val: 0.336961
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 42
+Epoch 42 | Loss: 0.386680 | Val: 0.424144
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 43
+Epoch 43 | Loss: 0.401680 | Val: 0.355160
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 44
+Epoch 44 | Loss: 0.407022 | Val: 0.396543
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 45
+Epoch 45 | Loss: 0.404603 | Val: 0.410826
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 46
+Epoch 46 | Loss: 0.407797 | Val: 0.382989
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 47
+Epoch 47 | Loss: 0.396388 | Val: 0.382548
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 48
+Epoch 48 | Loss: 0.401118 | Val: 0.346627
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 49
+Epoch 49 | Loss: 0.406370 | Val: 0.375258
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 50
+Epoch 50 | Loss: 0.404143 | Val: 0.349915
+Computing FID/KID/PDF at epoch 50...
+  FID: 168.3106 | KID: 0.164899
+  Pixel PDF W-dist: 0.0974
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 51
+Epoch 51 | Loss: 0.391670 | Val: 0.333372
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 52
+Epoch 52 | Loss: 0.408344 | Val: 0.415843
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 53
+Epoch 53 | Loss: 0.397296 | Val: 0.365178
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 54
+Epoch 54 | Loss: 0.404189 | Val: 0.390576
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 55
+Epoch 55 | Loss: 0.405288 | Val: 0.382160
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 56
+Epoch 56 | Loss: 0.402358 | Val: 0.311651
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 57
+Epoch 57 | Loss: 0.402942 | Val: 0.379834
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 58
+Epoch 58 | Loss: 0.384962 | Val: 0.358847
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 59
+Epoch 59 | Loss: 0.384335 | Val: 0.356172
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 60
+Epoch 60 | Loss: 0.384167 | Val: 0.384509
+Computing FID/KID/PDF at epoch 60...
+  FID: 172.8386 | KID: 0.178619
+  Pixel PDF W-dist: 0.0666
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 61
+Epoch 61 | Loss: 0.403557 | Val: 0.378481
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 62
+Epoch 62 | Loss: 0.398122 | Val: 0.346973
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 63
+Epoch 63 | Loss: 0.392736 | Val: 0.357818
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 64
+Epoch 64 | Loss: 0.401382 | Val: 0.365564
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 65
+Epoch 65 | Loss: 0.397963 | Val: 0.351571
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 66
+Epoch 66 | Loss: 0.387317 | Val: 0.341881
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 67
+Epoch 67 | Loss: 0.381012 | Val: 0.345323
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 68
+Epoch 68 | Loss: 0.395288 | Val: 0.312571
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 69
+Epoch 69 | Loss: 0.381697 | Val: 0.372049
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 70
+Epoch 70 | Loss: 0.388954 | Val: 0.411820
+Computing FID/KID/PDF at epoch 70...
+  FID: 162.6786 | KID: 0.158174
+  Pixel PDF W-dist: 0.0407
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 71
+Epoch 71 | Loss: 0.398417 | Val: 0.347164
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 72
+Epoch 72 | Loss: 0.385475 | Val: 0.380813
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 73
+Epoch 73 | Loss: 0.397395 | Val: 0.398459
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 74
+Epoch 74 | Loss: 0.403549 | Val: 0.386344
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 75
+Epoch 75 | Loss: 0.400163 | Val: 0.385927
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 76
+Epoch 76 | Loss: 0.388336 | Val: 0.322757
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 77
+Epoch 77 | Loss: 0.416507 | Val: 0.349895
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 78
+Epoch 78 | Loss: 0.398700 | Val: 0.368199
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 79
+Epoch 79 | Loss: 0.396462 | Val: 0.373589
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 80
+Epoch 80 | Loss: 0.389729 | Val: 0.402521
+Computing FID/KID/PDF at epoch 80...
+  FID: 153.4214 | KID: 0.147698
+  Pixel PDF W-dist: 0.0265
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 81
+Epoch 81 | Loss: 0.377491 | Val: 0.326389
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 82
+Epoch 82 | Loss: 0.392751 | Val: 0.368269
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 83
+Epoch 83 | Loss: 0.384984 | Val: 0.336450
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 84
+Epoch 84 | Loss: 0.390342 | Val: 0.393797
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 85
+Epoch 85 | Loss: 0.376176 | Val: 0.349151
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 86
+Epoch 86 | Loss: 0.398649 | Val: 0.418862
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 87
+Epoch 87 | Loss: 0.393938 | Val: 0.349243
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 88
+Epoch 88 | Loss: 0.384516 | Val: 0.360680
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 89
+Epoch 89 | Loss: 0.386347 | Val: 0.352210
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 90
+Epoch 90 | Loss: 0.399102 | Val: 0.355170
+Computing FID/KID/PDF at epoch 90...
+  FID: 153.9438 | KID: 0.148333
+  Pixel PDF W-dist: 0.0240
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 91
+Epoch 91 | Loss: 0.402186 | Val: 0.377601
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 92
+Epoch 92 | Loss: 0.391969 | Val: 0.378899
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 93
+Epoch 93 | Loss: 0.386804 | Val: 0.410448
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 94
+Epoch 94 | Loss: 0.383546 | Val: 0.380649
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 95
+Epoch 95 | Loss: 0.404518 | Val: 0.383146
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 96
+Epoch 96 | Loss: 0.381694 | Val: 0.338707
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 97
+Epoch 97 | Loss: 0.401657 | Val: 0.360905
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 98
+Epoch 98 | Loss: 0.390344 | Val: 0.350656
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 99
+Epoch 99 | Loss: 0.395635 | Val: 0.338794
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 100
+Epoch 100 | Loss: 0.400403 | Val: 0.353635
+Computing FID/KID/PDF at epoch 100...
+  FID: 151.3587 | KID: 0.145161
+  Pixel PDF W-dist: 0.0255
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 101
+Epoch 101 | Loss: 0.387875 | Val: 0.390034
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 102
+Epoch 102 | Loss: 0.394015 | Val: 0.400806
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 103
+Epoch 103 | Loss: 0.399017 | Val: 0.323454
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 104
+Epoch 104 | Loss: 0.379268 | Val: 0.353498
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 105
+Epoch 105 | Loss: 0.380504 | Val: 0.353995
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 106
+Epoch 106 | Loss: 0.392267 | Val: 0.414914
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 107
+Epoch 107 | Loss: 0.396208 | Val: 0.335668
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 108
+Epoch 108 | Loss: 0.403875 | Val: 0.378808
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 109
+Epoch 109 | Loss: 0.414457 | Val: 0.360793
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 110
+Epoch 110 | Loss: 0.400651 | Val: 0.375185
+Computing FID/KID/PDF at epoch 110...
+  FID: 142.7409 | KID: 0.137886
+  Pixel PDF W-dist: 0.0283
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 111
+Epoch 111 | Loss: 0.395516 | Val: 0.342175
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 112
+Epoch 112 | Loss: 0.392528 | Val: 0.350106
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 113
+Epoch 113 | Loss: 0.392410 | Val: 0.396271
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 114
+Epoch 114 | Loss: 0.385053 | Val: 0.366601
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 115
+Epoch 115 | Loss: 0.394069 | Val: 0.371006
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 116
+Epoch 116 | Loss: 0.399236 | Val: 0.408102
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 117
+Epoch 117 | Loss: 0.397480 | Val: 0.414258
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 118
+Epoch 118 | Loss: 0.387616 | Val: 0.362778
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 119
+Epoch 119 | Loss: 0.385030 | Val: 0.375966
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 120
+Epoch 120 | Loss: 0.397625 | Val: 0.367262
+Computing FID/KID/PDF at epoch 120...
+  FID: 137.0337 | KID: 0.122461
+  Pixel PDF W-dist: 0.0295
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 121
+Epoch 121 | Loss: 0.387950 | Val: 0.308061
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 122
+Epoch 122 | Loss: 0.404164 | Val: 0.341239
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 123
+Epoch 123 | Loss: 0.373304 | Val: 0.349887
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 124
+Epoch 124 | Loss: 0.398952 | Val: 0.348950
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 125
+Epoch 125 | Loss: 0.391130 | Val: 0.361587
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 126
+Epoch 126 | Loss: 0.388322 | Val: 0.359516
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 127
+Epoch 127 | Loss: 0.388495 | Val: 0.329443
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 128
+Epoch 128 | Loss: 0.390960 | Val: 0.368080
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 129
+Epoch 129 | Loss: 0.391473 | Val: 0.358473
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 130
+Epoch 130 | Loss: 0.391312 | Val: 0.331231
+Computing FID/KID/PDF at epoch 130...
+  FID: 131.5813 | KID: 0.119270
+  Pixel PDF W-dist: 0.0296
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 131
+Epoch 131 | Loss: 0.374546 | Val: 0.396355
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 132
+Epoch 132 | Loss: 0.376703 | Val: 0.331273
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 133
+Epoch 133 | Loss: 0.391910 | Val: 0.346817
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 134
+Epoch 134 | Loss: 0.392687 | Val: 0.305854
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 135
+Epoch 135 | Loss: 0.369636 | Val: 0.317881
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 136
+Epoch 136 | Loss: 0.404380 | Val: 0.337377
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 137
+Epoch 137 | Loss: 0.377156 | Val: 0.359562
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 138
+Epoch 138 | Loss: 0.389581 | Val: 0.331214
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 139
+Epoch 139 | Loss: 0.383556 | Val: 0.358582
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 140
+Epoch 140 | Loss: 0.384015 | Val: 0.382964
+Computing FID/KID/PDF at epoch 140...
+  FID: 132.3824 | KID: 0.119650
+  Pixel PDF W-dist: 0.0297
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 141
+Epoch 141 | Loss: 0.396083 | Val: 0.350334
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 142
+Epoch 142 | Loss: 0.394504 | Val: 0.361098
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 143
+Epoch 143 | Loss: 0.396063 | Val: 0.354847
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 144
+Epoch 144 | Loss: 0.386229 | Val: 0.357118
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 145
+Epoch 145 | Loss: 0.384075 | Val: 0.376577
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 146
+Epoch 146 | Loss: 0.394689 | Val: 0.332719
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 147
+Epoch 147 | Loss: 0.387071 | Val: 0.341297
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 148
+Epoch 148 | Loss: 0.375724 | Val: 0.371414
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 149
+Epoch 149 | Loss: 0.376075 | Val: 0.373425
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 150
+Epoch 150 | Loss: 0.375089 | Val: 0.383591
+Computing FID/KID/PDF at epoch 150...
+  FID: 121.7994 | KID: 0.103819
+  Pixel PDF W-dist: 0.0282
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 151
+Epoch 151 | Loss: 0.391518 | Val: 0.331878
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 152
+Epoch 152 | Loss: 0.388430 | Val: 0.342452
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 153
+Epoch 153 | Loss: 0.388653 | Val: 0.337299
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 154
+Epoch 154 | Loss: 0.394502 | Val: 0.426353
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 155
+Epoch 155 | Loss: 0.376256 | Val: 0.379987
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 156
+Epoch 156 | Loss: 0.376523 | Val: 0.360567
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 157
+Epoch 157 | Loss: 0.382942 | Val: 0.357530
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 158
+Epoch 158 | Loss: 0.388469 | Val: 0.373984
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 159
+Epoch 159 | Loss: 0.395302 | Val: 0.410124
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 160
+Epoch 160 | Loss: 0.400276 | Val: 0.367237
+Computing FID/KID/PDF at epoch 160...
+  FID: 107.9964 | KID: 0.083849
+  Pixel PDF W-dist: 0.0258
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 161
+Epoch 161 | Loss: 0.394420 | Val: 0.406026
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 162
+Epoch 162 | Loss: 0.396328 | Val: 0.398390
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 163
+Epoch 163 | Loss: 0.386295 | Val: 0.373169
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 164
+Epoch 164 | Loss: 0.389281 | Val: 0.301490
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 165
+Epoch 165 | Loss: 0.382916 | Val: 0.323186
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 166
+Epoch 166 | Loss: 0.363248 | Val: 0.339038
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 167
+Epoch 167 | Loss: 0.384234 | Val: 0.373655
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 168
+Epoch 168 | Loss: 0.383068 | Val: 0.371196
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 169
+Epoch 169 | Loss: 0.390227 | Val: 0.345237
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 170
+Epoch 170 | Loss: 0.386230 | Val: 0.403261
+Computing FID/KID/PDF at epoch 170...
+  FID: 113.9362 | KID: 0.091441
+  Pixel PDF W-dist: 0.0250
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 171
+Epoch 171 | Loss: 0.396798 | Val: 0.321473
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 172
+Epoch 172 | Loss: 0.370067 | Val: 0.369640
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 173
+Epoch 173 | Loss: 0.378737 | Val: 0.377038
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 174
+Epoch 174 | Loss: 0.388553 | Val: 0.397099
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 175
+Epoch 175 | Loss: 0.380005 | Val: 0.401718
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 176
+Epoch 176 | Loss: 0.391504 | Val: 0.413806
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 177
+Epoch 177 | Loss: 0.397235 | Val: 0.381653
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 178
+Epoch 178 | Loss: 0.381128 | Val: 0.346748
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 179
+Epoch 179 | Loss: 0.401731 | Val: 0.332304
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 180
+Epoch 180 | Loss: 0.381756 | Val: 0.363853
+Computing FID/KID/PDF at epoch 180...
+  FID: 98.7200 | KID: 0.063252
+  Pixel PDF W-dist: 0.0206
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 181
+Epoch 181 | Loss: 0.365731 | Val: 0.354361
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 182
+Epoch 182 | Loss: 0.382127 | Val: 0.386674
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 183
+Epoch 183 | Loss: 0.392668 | Val: 0.391485
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 184
+Epoch 184 | Loss: 0.397947 | Val: 0.340534
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 185
+Epoch 185 | Loss: 0.392539 | Val: 0.392871
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 186
+Epoch 186 | Loss: 0.367158 | Val: 0.410055
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 187
+Epoch 187 | Loss: 0.381988 | Val: 0.430222
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 188
+Epoch 188 | Loss: 0.385188 | Val: 0.373104
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 189
+Epoch 189 | Loss: 0.395591 | Val: 0.353411
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 190
+Epoch 190 | Loss: 0.401219 | Val: 0.341683
+Computing FID/KID/PDF at epoch 190...
+  FID: 100.8865 | KID: 0.074272
+  Pixel PDF W-dist: 0.0192
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 191
+Epoch 191 | Loss: 0.390647 | Val: 0.373875
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 192
+Epoch 192 | Loss: 0.386841 | Val: 0.369010
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 193
+Epoch 193 | Loss: 0.381629 | Val: 0.413402
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 194
+Epoch 194 | Loss: 0.369325 | Val: 0.401465
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 195
+Epoch 195 | Loss: 0.384760 | Val: 0.331314
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 196
+Epoch 196 | Loss: 0.375859 | Val: 0.356141
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 197
+Epoch 197 | Loss: 0.383922 | Val: 0.417258
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 198
+Epoch 198 | Loss: 0.373946 | Val: 0.353844
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Epoch 199
+Epoch 199 | Loss: 0.394554 | Val: 0.389619
+--- Saved model to checkpoints/edm_baseline/exp_seed44/state.pt ---
+Loss graph saved to results/edm_baseline/20260827_053746_exp_seed44_834238/training_metrics.png
+Generative metrics plot saved to results/edm_baseline/20260827_053746_exp_seed44_834238/generative_metrics.png
+Pixel PDF history plot saved to results/edm_baseline/20260827_053746_exp_seed44_834238/pixel_pdf_history.png
+Testing model
+Generated test images saved to results/edm_baseline/20260827_053746_exp_seed44_834238/
