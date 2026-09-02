@@ -1,0 +1,17 @@
+seed: 42
+
+data:
+  dataset: crumb_fits
+  batch_size: 32
+
+training:
+  learning_rate: 0.001
+  weight_decay: 0.0003
+  epochs: 300
+
+optimization:
+  max_trials: 25
+  parameters:
+    learning_rate: { min: 0.0001, max: 0.01, log: true }
+    weight_decay: { min: 0.00001, max: 0.01, log: true }
+    batch_size: { choices: [8, 16, 32] }

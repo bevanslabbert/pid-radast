@@ -20,4 +20,5 @@ python main.py train \
     --seed ${SEED:-42} \
     --runs ${RUNS:-1} \
     --checkpoint True \
-    ${TAG:+--tag $TAG}
+    ${TAG:+--tag $TAG} \
+    ${CONFIG:+--config $CONFIG}
