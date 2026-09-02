@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 198, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 182, in main
+    results[model_type] = evaluate_model(
+                          ^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 135, in evaluate_model
+    gen_0, gen_1 = generate_fn(config, tag, num_classes, num_samples, device, shape)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 90, in generate_cgd
+    ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/classifier_guided_diffusion/{tag}', device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/checkpoint.py", line 16, in load_checkpoint
+    return torch.load(f'{checkpoint_dir}/{filename}', map_location=device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/serialization.py", line 791, in load
+    with _open_file_like(f, 'rb') as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/serialization.py", line 271, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/serialization.py", line 252, in __init__
+    super().__init__(open(name, mode))
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'checkpoints/classifier_guided_diffusion/exp_seed42/state.pt'
