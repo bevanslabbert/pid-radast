@@ -3,3 +3,20 @@ On device cuda
 Getting data loader crumb_fits
 Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
 Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=None  |  results -> results/edm_baseline/20260902_074244_untagged_908585
+============================================================
+
+Training edm_baseline for 200 epochs
+Resumed from checkpoint: edm_baseline (epoch 200)
+FITS files saved to results/edm_baseline/20260902_074244_untagged_908585/generated_fits
+Loss graph saved to results/edm_baseline/20260902_074244_untagged_908585/training_metrics.png
+Generative metrics plot saved to results/edm_baseline/20260902_074244_untagged_908585/generative_metrics.png
+Pixel PDF history plot saved to results/edm_baseline/20260902_074244_untagged_908585/pixel_pdf_history.png
+Testing model
+Generated test images saved to results/edm_baseline/20260902_074244_untagged_908585/
