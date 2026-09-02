@@ -1,0 +1,11 @@
+On device cuda
+
+Evaluating diffusion (2 seeds)...
+  [diffusion/exp_seed42]  class_accuracy=0.5000  mean_confidence=0.5041
+  [diffusion/exp_seed44]  class_accuracy=0.5000  mean_confidence=0.5048
+
+Evaluating classifier_guided_diffusion (1 seeds)...
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+  [classifier_guided_diffusion/exp_seed43]  class_accuracy=0.5000  mean_confidence=0.5077
+
+Evaluating edm_baseline (2 seeds)...
