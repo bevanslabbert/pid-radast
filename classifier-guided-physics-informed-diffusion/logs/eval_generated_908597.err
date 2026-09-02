@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 197, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 181, in main
+    results[model_type] = evaluate_model(
+                          ^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 134, in evaluate_model
+    gen_0, gen_1 = generate_fn(config, tag, num_classes, num_samples, device, shape)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 72, in generate_diffusion
+    unet, scheduler, class_emb, _ = build_diffusion_components(config, {}, device)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/models/diffusion.py", line 14, in build_diffusion_components
+    num_classes = cfg['data']['num_classes']
+                  ~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'num_classes'
