@@ -22,4 +22,4 @@ python scripts/evaluate_generated_samples.py \
     --cgd-tags ${CGD_TAGS} \
     --edm-tags ${EDM_TAGS} \
     --classifier-tag ${CLASSIFIER_TAG:-eval} \
-    --num-samples ${NUM_SAMPLES:-64}
+    --num-samples ${NUM_SAMPLES:-16}
