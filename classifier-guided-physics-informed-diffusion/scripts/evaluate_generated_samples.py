@@ -128,6 +128,7 @@ MODEL_SPECS = {
 def evaluate_model(model_type, tags, classifier, num_classes, num_samples, device, shape):
     config_path, generate_fn = MODEL_SPECS[model_type]
     config = load_config(config_path)
+    config['data']['num_classes'] = num_classes
 
     accuracies, confidences = [], []
     for tag in tags:
