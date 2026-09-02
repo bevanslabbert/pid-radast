@@ -16,7 +16,7 @@ from fits_normalize import load_fits_stats, load_and_normalise_fits
 EDM_FITS_DIR = os.path.join(
     os.path.dirname(__file__), "..", "classifier-guided-physics-informed-diffusion",
     "results", "edm_baseline",
-    "20260825_191230_untagged_824642", "generated_fits",
+    "20260901_191251_untagged_900926", "generated_fits",
 )
 # Real FITS dir, source of the cached normalisation stats (fits_stats.json)
 # the diffusion model itself was trained/denormalised against, and the same
