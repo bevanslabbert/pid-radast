@@ -18,7 +18,7 @@ training:
   # Paper: EMA rate 0.9999
   ema_decay: 0.9999
 
-  epochs: 200
+  epochs: 300
 
   # Paper: 25-step Heun ODE sampler, guidance_scale = 1 + omega
   guidance_scale: 3.0
