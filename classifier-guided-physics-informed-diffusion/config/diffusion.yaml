@@ -15,7 +15,7 @@ training:
   label_dropout: 0.11956635677389038
   weight_decay: 0.0007254860307195132
 
-  epochs: 300
+  epochs: 400
   num_train_timesteps: 1000
 
   eval_interval: 10

@@ -125,24 +125,25 @@ tb.text_frame.paragraphs[0].runs[0].font.bold = True
 tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
 table(s, [
     ["Model", "FID ↓", "KID ↓", "pixel-PDF W ↓", "Epochs"],
-    ["EDM baseline (latest, seed 43)", "91.7", "0.058", "0.0086", "253 / 300\n(walltime-cut)"],
+    ["EDM baseline (latest)", "85.5", "0.048", "0.0033", "300\n(complete)"],
     ["EDM baseline (earlier, seeds 42 / 44)", "106.9 / 98.7", "0.081 / 0.063", "0.0165 / 0.019", "200"],
-    ["diffusion (DDPM+CFG)", "99.7", "0.053", "0.0162", "200"],
-    ["CGD", "77.5", "0.031", "0.0064", "260"],
-], top=1.7, height=1.9, col_widths=[3.6, 1.8, 2.0, 2.6, 1.5], font=12)
+    ["diffusion (DDPM+CFG)", "99.7", "0.053", "0.0162", "200\n(300-ep run in\nprogress, ep 123)"],
+    ["CGD (latest, seed 42)", "67.2", "0.016", "0.0069", "300\n(complete)"],
+    ["CGD (earlier, seed 42)", "77.5", "0.031", "0.0064", "260"],
+], top=1.7, height=2.3, col_widths=[3.6, 1.8, 2.0, 2.6, 1.5], font=12)
 
-tb = s.shapes.add_textbox(Inches(0.5), Inches(4.0), Inches(9), Inches(0.3))
+tb = s.shapes.add_textbox(Inches(0.5), Inches(4.15), Inches(9), Inches(0.3))
 tb.text_frame.paragraphs[0].add_run().text = "CRUMB VQ-VAE reconstruction fidelity  (VQ-VAE trained only on real CRUMB)"
 tb.text_frame.paragraphs[0].runs[0].font.bold = True
 tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
 table(s, [
     ["Passed through the CRUMB VQ-VAE", "N", "Recon MSE ↓", "Recon NCC ↑"],
     ["Real held-out CRUMB  (reference)", "178", "0.00377", "0.652"],
-    ["EDM-generated (latest, seed 43, ep 250)", "32", "0.00217", "0.746"],
+    ["EDM-generated (latest, final)", "32", "0.00271", "0.763"],
     ["DDPM-generated", "16", "0.00174", "0.771"],
-    ["CGD-generated", "32", "0.00181", "0.846"],
-], top=4.35, height=2.0, col_widths=[5.2, 1.3, 3.0, 3.0], font=12)
-caption(s, "CGD best on every distributional metric; all models' outputs reconstruct at least as well as real CRUMB (highest NCC = CGD).")
+    ["CGD-generated (latest, ep 290)", "32", "0.00300", "0.725"],
+], top=4.5, height=2.0, col_widths=[5.2, 1.3, 3.0, 3.0], font=12)
+caption(s, "CGD best on distributional metrics (FID/KID/PDF); DDPM best on VQ-VAE reconstruction fidelity this round.")
 
 # ---------------------------------------------------------------- 4 comparison graph
 s = slide()
@@ -152,19 +153,20 @@ pic(s, os.path.join(RES, "edm_baseline/metric_comparison.png"), 0.4, 2.1, 12.6)
 # ---------------------------------------------------------------- 5 per-run training graphs
 s = slide()
 title(s, "Per-run generative-metric curves")
-# generative_metrics.png r~2.40 -> w 5.9 => h 2.46 ; pixel_pdf_history.png r~1.60 -> w 4.4 => h 2.75
-tb = s.shapes.add_textbox(Inches(0.55), Inches(1.55), Inches(5.9), Inches(5.0))
-tb.text_frame.word_wrap = True
-r = tb.text_frame.paragraphs[0].add_run()
-r.text = ("EDM baseline (latest, 300-epoch config, seed 43): no per-run summary "
-          "plot available -- the job was cancelled by the cluster walltime limit "
-          "at epoch 253/300 before the end-of-training plot was written. "
-          "See the combined FID/KID/pixel-PDF graph on the previous slide "
-          "for its per-epoch curve instead.")
-r.font.size = Pt(13); r.font.color.rgb = GREY
-pic(s, os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339/generative_metrics.png"), 6.9, 1.55, 5.9)
-pic(s, os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339/pixel_pdf_history.png"), 7.9, 4.25, 4.4)
-caption(s, "Right column: DDPM diffusion.   Top: FID / KID.   Bottom: pixel-PDF Wasserstein history.")
+cols = [
+    ("EDM baseline (300 ep, complete)", os.path.join(RES, "edm_baseline/20260917_101657_my_run_tag_912853")),
+    ("DDPM diffusion (200 ep)", os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339")),
+    ("CGD (300 ep, complete)", os.path.join(RES, "classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852")),
+]
+xs = [0.4, 4.75, 9.1]
+for (label, d), x in zip(cols, xs):
+    tb = s.shapes.add_textbox(Inches(x), Inches(1.4), Inches(4.0), Inches(0.3))
+    r = tb.text_frame.paragraphs[0].add_run(); r.text = label
+    r.font.size = Pt(12); r.font.bold = True; r.font.color.rgb = NAVY
+    pic(s, os.path.join(d, "generative_metrics.png"), x, 1.75, 4.0)
+    pic(s, os.path.join(d, "pixel_pdf_history.png"), x, 4.55, 4.0)
+caption(s, "Top row: FID / KID vs epoch.   Bottom row: pixel-PDF Wasserstein history. "
+           "DDPM's fresh 300-epoch run is still in progress (epoch 123 as of this build).")
 
 # ---------------------------------------------------------------- 6 reconstruction overview + metrics
 s = slide()
@@ -174,16 +176,16 @@ pic(s, os.path.join(RES, "edm_baseline/recon_overview.png"), 0.35, 1.55, 0, heig
 table(s, [
     ["", "MSE ↓", "NCC ↑"],
     ["Real CRUMB (reference)", "0.00377", "0.652"],
-    ["EDM-generated", "0.00217", "0.746"],
+    ["EDM-generated (latest, final)", "0.00271", "0.763"],
     ["DDPM-generated", "0.00174", "0.771"],
-    ["CGD-generated", "0.00181", "0.846"],
+    ["CGD-generated (latest, ep 290)", "0.00300", "0.725"],
 ], top=6.0, left=0.5, width=7.0, height=1.3, col_widths=[3.4, 1.8, 1.8], font=11)
 tb = s.shapes.add_textbox(Inches(8.0), Inches(2.0), Inches(4.9), Inches(4.5))
 tb.text_frame.word_wrap = True
 for txt in [
     "One example pair per model (col 1 input, col 2 reconstruction).",
     "All models reconstruct at least as well as real held-out CRUMB.",
-    "CGD has the highest NCC - most CRUMB-like morphology.",
+    "DDPM has the highest NCC this round - most CRUMB-like morphology.",
     "MSE flatters all models: generated fields are smoother than real CRUMB.",
     "Per-model example galleries on the following slides.",
 ]:
@@ -203,9 +205,9 @@ s = slide()
 title(s, "Samples  (left cols FR-I  ·  right cols FR-II)")
 rows = [
     ("Real CRUMB  (ground truth)", os.path.join(RES, "edm_baseline/crumb_groundtruth_samples.png")),
-    ("EDM baseline (latest, seed 43) - epoch 250", os.path.join(RES, "edm_baseline/20260916_124424_my_run_tag_909739/comparison_epoch_250.png")),
+    ("EDM baseline (latest, 300 ep) - epoch 290", os.path.join(RES, "edm_baseline/20260917_101657_my_run_tag_912853/comparison_epoch_290.png")),
     ("DDPM - epoch 190", os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339/comparison_epoch_190.png")),
-    ("CGD - epoch 250", os.path.join(RES, "classifier_guided_diffusion/20260721_202503_cls_guided_diffusion_crumb_fits_321045_seed42/comparison_epoch_250.png")),
+    ("CGD (latest, 300 ep) - epoch 290", os.path.join(RES, "classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/comparison_epoch_290.png")),
 ]
 pos = [(0.9, 1.25), (7.1, 1.25), (0.9, 4.6), (7.1, 4.6)]
 for (label, path), (x, yy) in zip(rows, pos):

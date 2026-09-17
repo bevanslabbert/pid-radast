@@ -23,9 +23,9 @@ def from_log(path):
 
 
 series = {
-    "EDM baseline": (from_log("slurm-909739.out"), "#c44"),
+    "EDM baseline": (from_log("slurm-912853.out"), "#c44"),
     "DDPM (diffusion)": (from_log("slurm-315339.out"), "#48a"),
-    "CGD": (from_log("slurm-321045.out"), "#2a2"),
+    "CGD": (from_log("slurm-912852.out"), "#2a2"),
 }
 
 fig, axes = plt.subplots(1, 3, figsize=(13, 4))
