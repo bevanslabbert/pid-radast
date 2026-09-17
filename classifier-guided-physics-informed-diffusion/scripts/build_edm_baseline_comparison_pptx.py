@@ -125,8 +125,8 @@ tb.text_frame.paragraphs[0].runs[0].font.bold = True
 tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
 table(s, [
     ["Model", "FID ↓", "KID ↓", "pixel-PDF W ↓", "Epochs"],
-    ["EDM baseline (seed 42)", "106.9", "0.081", "0.0165", "200"],
-    ["EDM baseline (seeds 43 / 44)", "97.5 / 98.7", "0.069 / 0.063", "0.019 / 0.019", "200"],
+    ["EDM baseline (latest, seed 43)", "91.7", "0.058", "0.0086", "253 / 300\n(walltime-cut)"],
+    ["EDM baseline (earlier, seeds 42 / 44)", "106.9 / 98.7", "0.081 / 0.063", "0.0165 / 0.019", "200"],
     ["diffusion (DDPM+CFG)", "99.7", "0.053", "0.0162", "200"],
     ["CGD", "77.5", "0.031", "0.0064", "260"],
 ], top=1.7, height=1.9, col_widths=[3.6, 1.8, 2.0, 2.6, 1.5], font=12)
@@ -138,7 +138,7 @@ tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
 table(s, [
     ["Passed through the CRUMB VQ-VAE", "N", "Recon MSE ↓", "Recon NCC ↑"],
     ["Real held-out CRUMB  (reference)", "178", "0.00377", "0.652"],
-    ["EDM-generated", "32", "0.00164", "0.735"],
+    ["EDM-generated (latest, seed 43, ep 250)", "32", "0.00217", "0.746"],
     ["DDPM-generated", "16", "0.00174", "0.771"],
     ["CGD-generated", "32", "0.00181", "0.846"],
 ], top=4.35, height=2.0, col_widths=[5.2, 1.3, 3.0, 3.0], font=12)
@@ -153,11 +153,18 @@ pic(s, os.path.join(RES, "edm_baseline/metric_comparison.png"), 0.4, 2.1, 12.6)
 s = slide()
 title(s, "Per-run generative-metric curves")
 # generative_metrics.png r~2.40 -> w 5.9 => h 2.46 ; pixel_pdf_history.png r~1.60 -> w 4.4 => h 2.75
-pic(s, os.path.join(RES, "edm_baseline/20260825_191230_untagged_824642/generative_metrics.png"), 0.55, 1.55, 5.9)
+tb = s.shapes.add_textbox(Inches(0.55), Inches(1.55), Inches(5.9), Inches(5.0))
+tb.text_frame.word_wrap = True
+r = tb.text_frame.paragraphs[0].add_run()
+r.text = ("EDM baseline (latest, 300-epoch config, seed 43): no per-run summary "
+          "plot available -- the job was cancelled by the cluster walltime limit "
+          "at epoch 253/300 before the end-of-training plot was written. "
+          "See the combined FID/KID/pixel-PDF graph on the previous slide "
+          "for its per-epoch curve instead.")
+r.font.size = Pt(13); r.font.color.rgb = GREY
 pic(s, os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339/generative_metrics.png"), 6.9, 1.55, 5.9)
-pic(s, os.path.join(RES, "edm_baseline/20260825_191230_untagged_824642/pixel_pdf_history.png"), 1.6, 4.25, 4.4)
 pic(s, os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339/pixel_pdf_history.png"), 7.9, 4.25, 4.4)
-caption(s, "Left column: EDM baseline (seed 42).   Right column: DDPM diffusion.   Top: FID / KID.   Bottom: pixel-PDF Wasserstein history.")
+caption(s, "Right column: DDPM diffusion.   Top: FID / KID.   Bottom: pixel-PDF Wasserstein history.")
 
 # ---------------------------------------------------------------- 6 reconstruction overview + metrics
 s = slide()
@@ -167,7 +174,7 @@ pic(s, os.path.join(RES, "edm_baseline/recon_overview.png"), 0.35, 1.55, 0, heig
 table(s, [
     ["", "MSE ↓", "NCC ↑"],
     ["Real CRUMB (reference)", "0.00377", "0.652"],
-    ["EDM-generated", "0.00164", "0.735"],
+    ["EDM-generated", "0.00217", "0.746"],
     ["DDPM-generated", "0.00174", "0.771"],
     ["CGD-generated", "0.00181", "0.846"],
 ], top=6.0, left=0.5, width=7.0, height=1.3, col_widths=[3.4, 1.8, 1.8], font=11)
@@ -196,7 +203,7 @@ s = slide()
 title(s, "Samples  (left cols FR-I  ·  right cols FR-II)")
 rows = [
     ("Real CRUMB  (ground truth)", os.path.join(RES, "edm_baseline/crumb_groundtruth_samples.png")),
-    ("EDM baseline - epoch 190", os.path.join(RES, "edm_baseline/20260901_191251_untagged_900926/comparison_epoch_190.png")),
+    ("EDM baseline (latest, seed 43) - epoch 250", os.path.join(RES, "edm_baseline/20260916_124424_my_run_tag_909739/comparison_epoch_250.png")),
     ("DDPM - epoch 190", os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339/comparison_epoch_190.png")),
     ("CGD - epoch 250", os.path.join(RES, "classifier_guided_diffusion/20260721_202503_cls_guided_diffusion_crumb_fits_321045_seed42/comparison_epoch_250.png")),
 ]

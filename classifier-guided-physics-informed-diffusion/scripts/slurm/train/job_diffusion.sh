@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --gres=gpu:1
-#SBATCH --time=10:00:00
+#SBATCH --time=16:00:00
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=bevanslabbert@gmail.com
 
@@ -20,4 +20,5 @@ python main.py train \
     --seed ${SEED:-42} \
     --runs 1 \
     --checkpoint True \
-    ${TAG:+--tag $TAG}
+    ${TAG:+--tag $TAG} \
+    ${RESUME:+--resume $RESUME}

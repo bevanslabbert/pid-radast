@@ -22,16 +22,8 @@ def from_log(path):
     return np.array(ep[:n]), np.array(fid[:n]), np.array(kid[:n]), np.array(pdf[:n])
 
 
-import json
-
-def from_json(path):
-    m = json.load(open(os.path.join(ROOT, path)))
-    ep = np.array(m["fid_epochs"])
-    return ep, np.array(m["fid"]), np.array(m["kid"]), np.array(m["pdf"], dtype=float)
-
-
 series = {
-    "EDM baseline": (from_json("results/edm_baseline/20260825_191230_untagged_824642/metrics.json"), "#c44"),
+    "EDM baseline": (from_log("slurm-909739.out"), "#c44"),
     "DDPM (diffusion)": (from_log("slurm-315339.out"), "#48a"),
     "CGD": (from_log("slurm-321045.out"), "#2a2"),
 }
