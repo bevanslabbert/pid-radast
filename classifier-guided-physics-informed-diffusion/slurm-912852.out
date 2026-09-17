@@ -1,0 +1,170 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=cls_guided_diffusion_crumb_fits_seed42  |  results -> results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852
+============================================================
+
+Training classifier_guided_diffusion for 300 epochs
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Resumed from checkpoint: classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42 (epoch 259)
+Epoch 259
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/configuration_utils.py:139: FutureWarning: Accessing config attribute `num_train_timesteps` directly via 'DDPMScheduler' object attribute is deprecated. Please access 'num_train_timesteps' over 'DDPMScheduler's config object instead, e.g. 'scheduler.config.num_train_timesteps'.
+  deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
+  hidden_states = F.scaled_dot_product_attention(
+Epoch 259 | Loss: 0.025571 | Val: 0.128693
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 260
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 260 | Loss: 0.025450 | Val: 0.132229
+FITS files saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/generated_fits
+Computing FID/KID/PDF at epoch 260...
+  FID: 67.1967 | KID: 0.016333
+  Pixel PDF W-dist: 0.0101
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 261
+Epoch 261 | Loss: 0.022040 | Val: 0.129104
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 262
+Epoch 262 | Loss: 0.025125 | Val: 0.128546
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 263
+Epoch 263 | Loss: 0.024754 | Val: 0.129223
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 264
+Epoch 264 | Loss: 0.025569 | Val: 0.129749
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 265
+Epoch 265 | Loss: 0.019878 | Val: 0.128544
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 266
+Epoch 266 | Loss: 0.020365 | Val: 0.128153
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 267
+Epoch 267 | Loss: 0.024485 | Val: 0.128572
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 268
+Epoch 268 | Loss: 0.021339 | Val: 0.128896
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 269
+Epoch 269 | Loss: 0.024850 | Val: 0.128384
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 270
+Epoch 270 | Loss: 0.020490 | Val: 0.129773
+FITS files saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/generated_fits
+Computing FID/KID/PDF at epoch 270...
+  FID: 94.7693 | KID: 0.057600
+  Pixel PDF W-dist: 0.0131
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 271
+Epoch 271 | Loss: 0.022555 | Val: 0.128398
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 272
+Epoch 272 | Loss: 0.022492 | Val: 0.128104
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 273
+Epoch 273 | Loss: 0.023944 | Val: 0.130387
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 274
+Epoch 274 | Loss: 0.024172 | Val: 0.129814
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 275
+Epoch 275 | Loss: 0.021391 | Val: 0.129877
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 276
+Epoch 276 | Loss: 0.019601 | Val: 0.128787
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 277
+Epoch 277 | Loss: 0.020869 | Val: 0.130263
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 278
+Epoch 278 | Loss: 0.021572 | Val: 0.129078
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 279
+Epoch 279 | Loss: 0.022093 | Val: 0.129657
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 280
+Epoch 280 | Loss: 0.019631 | Val: 0.129381
+FITS files saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/generated_fits
+Computing FID/KID/PDF at epoch 280...
+  FID: 85.3661 | KID: 0.043843
+  Pixel PDF W-dist: 0.0140
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 281
+Epoch 281 | Loss: 0.024323 | Val: 0.129877
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 282
+Epoch 282 | Loss: 0.027819 | Val: 0.130718
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 283
+Epoch 283 | Loss: 0.021728 | Val: 0.129682
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 284
+Epoch 284 | Loss: 0.024278 | Val: 0.129272
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 285
+Epoch 285 | Loss: 0.020850 | Val: 0.129271
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 286
+Epoch 286 | Loss: 0.021423 | Val: 0.131000
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 287
+Epoch 287 | Loss: 0.027161 | Val: 0.130653
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 288
+Epoch 288 | Loss: 0.022069 | Val: 0.129878
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 289
+Epoch 289 | Loss: 0.024340 | Val: 0.128871
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 290
+Epoch 290 | Loss: 0.022447 | Val: 0.129953
+FITS files saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/generated_fits
+Computing FID/KID/PDF at epoch 290...
+  FID: 107.8142 | KID: 0.065592
+  Pixel PDF W-dist: 0.0069
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 291
+Epoch 291 | Loss: 0.020482 | Val: 0.128856
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 292
+Epoch 292 | Loss: 0.020873 | Val: 0.128572
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 293
+Epoch 293 | Loss: 0.019103 | Val: 0.128833
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 294
+Epoch 294 | Loss: 0.020379 | Val: 0.128757
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 295
+Epoch 295 | Loss: 0.021494 | Val: 0.128802
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 296
+Epoch 296 | Loss: 0.024646 | Val: 0.129741
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 297
+Epoch 297 | Loss: 0.023656 | Val: 0.128779
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 298
+Epoch 298 | Loss: 0.025416 | Val: 0.128956
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+Epoch 299
+Epoch 299 | Loss: 0.023659 | Val: 0.128838
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42/state.pt ---
+FITS files saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/generated_fits
+Generated images saved.
+Loss graph saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/training_metrics.png
+Generative metrics plot saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/generative_metrics.png
+Pixel PDF history plot saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/pixel_pdf_history.png
+Testing model
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Generated test images saved to results/classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/

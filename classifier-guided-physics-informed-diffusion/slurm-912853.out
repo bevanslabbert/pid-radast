@@ -1,0 +1,183 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=43  |  tag=my_run_tag  |  results -> results/edm_baseline/20260917_101657_my_run_tag_912853
+============================================================
+
+Training edm_baseline for 300 epochs
+Resumed from checkpoint: edm_baseline/my_run_tag (epoch 253)
+Epoch 253
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
+  hidden_states = F.scaled_dot_product_attention(
+Epoch 253 | Loss: 0.365077 | Val: 0.294302
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 254
+Epoch 254 | Loss: 0.366368 | Val: 0.364108
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 255
+Epoch 255 | Loss: 0.379925 | Val: 0.373086
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 256
+Epoch 256 | Loss: 0.376698 | Val: 0.353599
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 257
+Epoch 257 | Loss: 0.364577 | Val: 0.341084
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 258
+Epoch 258 | Loss: 0.384492 | Val: 0.363277
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 259
+Epoch 259 | Loss: 0.379539 | Val: 0.359732
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 260
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 260 | Loss: 0.372152 | Val: 0.342236
+FITS files saved to results/edm_baseline/20260917_101657_my_run_tag_912853/generated_fits
+Computing FID/KID/PDF at epoch 260...
+  FID: 87.8876 | KID: 0.055154
+  Pixel PDF W-dist: 0.0066
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 261
+Epoch 261 | Loss: 0.367415 | Val: 0.379928
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 262
+Epoch 262 | Loss: 0.381640 | Val: 0.356256
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 263
+Epoch 263 | Loss: 0.379202 | Val: 0.356600
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 264
+Epoch 264 | Loss: 0.366798 | Val: 0.344553
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 265
+Epoch 265 | Loss: 0.368621 | Val: 0.343250
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 266
+Epoch 266 | Loss: 0.370965 | Val: 0.384300
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 267
+Epoch 267 | Loss: 0.365303 | Val: 0.383151
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 268
+Epoch 268 | Loss: 0.362176 | Val: 0.381023
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 269
+Epoch 269 | Loss: 0.379037 | Val: 0.365075
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 270
+Epoch 270 | Loss: 0.373515 | Val: 0.346444
+FITS files saved to results/edm_baseline/20260917_101657_my_run_tag_912853/generated_fits
+Computing FID/KID/PDF at epoch 270...
+  FID: 90.4495 | KID: 0.054653
+  Pixel PDF W-dist: 0.0033
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 271
+Epoch 271 | Loss: 0.376365 | Val: 0.349727
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 272
+Epoch 272 | Loss: 0.373189 | Val: 0.325127
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 273
+Epoch 273 | Loss: 0.367919 | Val: 0.377342
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 274
+Epoch 274 | Loss: 0.375229 | Val: 0.360722
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 275
+Epoch 275 | Loss: 0.359132 | Val: 0.343448
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 276
+Epoch 276 | Loss: 0.363266 | Val: 0.367769
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 277
+Epoch 277 | Loss: 0.361134 | Val: 0.323552
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 278
+Epoch 278 | Loss: 0.399283 | Val: 0.407529
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 279
+Epoch 279 | Loss: 0.361866 | Val: 0.361159
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 280
+Epoch 280 | Loss: 0.377328 | Val: 0.413427
+FITS files saved to results/edm_baseline/20260917_101657_my_run_tag_912853/generated_fits
+Computing FID/KID/PDF at epoch 280...
+  FID: 86.5463 | KID: 0.047517
+  Pixel PDF W-dist: 0.0050
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 281
+Epoch 281 | Loss: 0.379630 | Val: 0.355676
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 282
+Epoch 282 | Loss: 0.384709 | Val: 0.361799
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 283
+Epoch 283 | Loss: 0.374634 | Val: 0.344794
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 284
+Epoch 284 | Loss: 0.381862 | Val: 0.370870
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 285
+Epoch 285 | Loss: 0.363370 | Val: 0.386765
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 286
+Epoch 286 | Loss: 0.379095 | Val: 0.430474
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 287
+Epoch 287 | Loss: 0.366635 | Val: 0.354862
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 288
+Epoch 288 | Loss: 0.353336 | Val: 0.364096
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 289
+Epoch 289 | Loss: 0.381073 | Val: 0.376538
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 290
+Epoch 290 | Loss: 0.377820 | Val: 0.349549
+FITS files saved to results/edm_baseline/20260917_101657_my_run_tag_912853/generated_fits
+Computing FID/KID/PDF at epoch 290...
+  FID: 85.5375 | KID: 0.048169
+  Pixel PDF W-dist: 0.0043
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 291
+Epoch 291 | Loss: 0.374982 | Val: 0.342705
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 292
+Epoch 292 | Loss: 0.376764 | Val: 0.360077
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 293
+Epoch 293 | Loss: 0.364937 | Val: 0.353646
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 294
+Epoch 294 | Loss: 0.382831 | Val: 0.335164
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 295
+Epoch 295 | Loss: 0.365369 | Val: 0.349598
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 296
+Epoch 296 | Loss: 0.363365 | Val: 0.397847
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 297
+Epoch 297 | Loss: 0.370433 | Val: 0.367062
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 298
+Epoch 298 | Loss: 0.380438 | Val: 0.358129
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 299
+Epoch 299 | Loss: 0.372647 | Val: 0.377625
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+FITS files saved to results/edm_baseline/20260917_101657_my_run_tag_912853/generated_fits
+Loss graph saved to results/edm_baseline/20260917_101657_my_run_tag_912853/training_metrics.png
+Generative metrics plot saved to results/edm_baseline/20260917_101657_my_run_tag_912853/generative_metrics.png
+Pixel PDF history plot saved to results/edm_baseline/20260917_101657_my_run_tag_912853/pixel_pdf_history.png
+Testing model
+Generated test images saved to results/edm_baseline/20260917_101657_my_run_tag_912853/
