@@ -1,0 +1,884 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=43  |  tag=my_run_tag  |  results -> results/edm_baseline/20260916_124424_my_run_tag_909739
+============================================================
+
+Training edm_baseline for 300 epochs
+Epoch 0
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
+  hidden_states = F.scaled_dot_product_attention(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 0 | Loss: 0.478545 | Val: 0.378805
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 0...
+  FID: 243.2917 | KID: 0.300571
+  Pixel PDF W-dist: 0.4705
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 1
+Epoch 1 | Loss: 0.428326 | Val: 0.408754
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 2
+Epoch 2 | Loss: 0.441227 | Val: 0.374039
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 3
+Epoch 3 | Loss: 0.441200 | Val: 0.378770
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 4
+Epoch 4 | Loss: 0.421322 | Val: 0.431221
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 5
+Epoch 5 | Loss: 0.438428 | Val: 0.411546
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 6
+Epoch 6 | Loss: 0.427150 | Val: 0.405289
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 7
+Epoch 7 | Loss: 0.433246 | Val: 0.410584
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 8
+Epoch 8 | Loss: 0.400072 | Val: 0.435712
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 9
+Epoch 9 | Loss: 0.417758 | Val: 0.386809
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 10
+Epoch 10 | Loss: 0.401671 | Val: 0.352599
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 10...
+  FID: 247.8920 | KID: 0.318960
+  Pixel PDF W-dist: 0.4059
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 11
+Epoch 11 | Loss: 0.416242 | Val: 0.392104
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 12
+Epoch 12 | Loss: 0.414835 | Val: 0.413454
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 13
+Epoch 13 | Loss: 0.416977 | Val: 0.377178
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 14
+Epoch 14 | Loss: 0.415185 | Val: 0.387595
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 15
+Epoch 15 | Loss: 0.411624 | Val: 0.373460
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 16
+Epoch 16 | Loss: 0.410288 | Val: 0.355484
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 17
+Epoch 17 | Loss: 0.410004 | Val: 0.369886
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 18
+Epoch 18 | Loss: 0.405065 | Val: 0.356097
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 19
+Epoch 19 | Loss: 0.406574 | Val: 0.362870
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 20
+Epoch 20 | Loss: 0.404575 | Val: 0.366845
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 20...
+  FID: 261.1378 | KID: 0.351212
+  Pixel PDF W-dist: 0.2856
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 21
+Epoch 21 | Loss: 0.412700 | Val: 0.377623
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 22
+Epoch 22 | Loss: 0.406263 | Val: 0.350872
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 23
+Epoch 23 | Loss: 0.414731 | Val: 0.384346
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 24
+Epoch 24 | Loss: 0.401539 | Val: 0.414851
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 25
+Epoch 25 | Loss: 0.412651 | Val: 0.341043
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 26
+Epoch 26 | Loss: 0.410816 | Val: 0.357655
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 27
+Epoch 27 | Loss: 0.407797 | Val: 0.341995
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 28
+Epoch 28 | Loss: 0.395259 | Val: 0.363473
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 29
+Epoch 29 | Loss: 0.404597 | Val: 0.390139
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 30
+Epoch 30 | Loss: 0.403667 | Val: 0.373539
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 30...
+  FID: 197.7347 | KID: 0.219689
+  Pixel PDF W-dist: 0.1386
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 31
+Epoch 31 | Loss: 0.397042 | Val: 0.416748
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 32
+Epoch 32 | Loss: 0.399051 | Val: 0.383562
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 33
+Epoch 33 | Loss: 0.401368 | Val: 0.358386
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 34
+Epoch 34 | Loss: 0.413684 | Val: 0.362717
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 35
+Epoch 35 | Loss: 0.415072 | Val: 0.379876
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 36
+Epoch 36 | Loss: 0.394027 | Val: 0.383719
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 37
+Epoch 37 | Loss: 0.400314 | Val: 0.332088
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 38
+Epoch 38 | Loss: 0.407971 | Val: 0.367387
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 39
+Epoch 39 | Loss: 0.422445 | Val: 0.387639
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 40
+Epoch 40 | Loss: 0.390787 | Val: 0.389067
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 40...
+  FID: 177.4244 | KID: 0.182416
+  Pixel PDF W-dist: 0.0819
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 41
+Epoch 41 | Loss: 0.404932 | Val: 0.396625
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 42
+Epoch 42 | Loss: 0.390532 | Val: 0.391934
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 43
+Epoch 43 | Loss: 0.411993 | Val: 0.358401
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 44
+Epoch 44 | Loss: 0.402153 | Val: 0.321939
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 45
+Epoch 45 | Loss: 0.387805 | Val: 0.370839
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 46
+Epoch 46 | Loss: 0.410865 | Val: 0.417998
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 47
+Epoch 47 | Loss: 0.399952 | Val: 0.330085
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 48
+Epoch 48 | Loss: 0.407640 | Val: 0.380453
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 49
+Epoch 49 | Loss: 0.406484 | Val: 0.362056
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 50
+Epoch 50 | Loss: 0.421377 | Val: 0.430650
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 50...
+  FID: 171.9343 | KID: 0.150434
+  Pixel PDF W-dist: 0.0669
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 51
+Epoch 51 | Loss: 0.402220 | Val: 0.382292
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 52
+Epoch 52 | Loss: 0.419690 | Val: 0.377975
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 53
+Epoch 53 | Loss: 0.384340 | Val: 0.338498
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 54
+Epoch 54 | Loss: 0.392139 | Val: 0.371739
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 55
+Epoch 55 | Loss: 0.412637 | Val: 0.357690
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 56
+Epoch 56 | Loss: 0.396079 | Val: 0.395615
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 57
+Epoch 57 | Loss: 0.399310 | Val: 0.389666
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 58
+Epoch 58 | Loss: 0.388505 | Val: 0.392630
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 59
+Epoch 59 | Loss: 0.396588 | Val: 0.374107
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 60
+Epoch 60 | Loss: 0.396720 | Val: 0.349664
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 60...
+  FID: 168.8212 | KID: 0.140594
+  Pixel PDF W-dist: 0.0582
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 61
+Epoch 61 | Loss: 0.395231 | Val: 0.336134
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 62
+Epoch 62 | Loss: 0.402269 | Val: 0.391451
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 63
+Epoch 63 | Loss: 0.417163 | Val: 0.334457
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 64
+Epoch 64 | Loss: 0.382145 | Val: 0.345878
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 65
+Epoch 65 | Loss: 0.395661 | Val: 0.363115
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 66
+Epoch 66 | Loss: 0.379399 | Val: 0.357868
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 67
+Epoch 67 | Loss: 0.412429 | Val: 0.408509
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 68
+Epoch 68 | Loss: 0.412932 | Val: 0.324350
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 69
+Epoch 69 | Loss: 0.399726 | Val: 0.389219
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 70
+Epoch 70 | Loss: 0.412774 | Val: 0.359093
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 70...
+  FID: 158.6380 | KID: 0.139338
+  Pixel PDF W-dist: 0.0509
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 71
+Epoch 71 | Loss: 0.392614 | Val: 0.325519
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 72
+Epoch 72 | Loss: 0.397050 | Val: 0.390443
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 73
+Epoch 73 | Loss: 0.396066 | Val: 0.366438
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 74
+Epoch 74 | Loss: 0.394441 | Val: 0.370550
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 75
+Epoch 75 | Loss: 0.380270 | Val: 0.353924
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 76
+Epoch 76 | Loss: 0.378544 | Val: 0.428438
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 77
+Epoch 77 | Loss: 0.395337 | Val: 0.372089
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 78
+Epoch 78 | Loss: 0.386045 | Val: 0.357061
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 79
+Epoch 79 | Loss: 0.399159 | Val: 0.413390
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 80
+Epoch 80 | Loss: 0.387395 | Val: 0.320786
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 80...
+  FID: 154.4464 | KID: 0.129865
+  Pixel PDF W-dist: 0.0418
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 81
+Epoch 81 | Loss: 0.392126 | Val: 0.402284
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 82
+Epoch 82 | Loss: 0.396022 | Val: 0.349319
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 83
+Epoch 83 | Loss: 0.402167 | Val: 0.343159
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 84
+Epoch 84 | Loss: 0.398530 | Val: 0.369610
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 85
+Epoch 85 | Loss: 0.386020 | Val: 0.332440
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 86
+Epoch 86 | Loss: 0.385733 | Val: 0.372925
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 87
+Epoch 87 | Loss: 0.394046 | Val: 0.354966
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 88
+Epoch 88 | Loss: 0.399865 | Val: 0.378876
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 89
+Epoch 89 | Loss: 0.383162 | Val: 0.364299
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 90
+Epoch 90 | Loss: 0.395569 | Val: 0.357371
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 90...
+  FID: 139.1037 | KID: 0.113715
+  Pixel PDF W-dist: 0.0368
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 91
+Epoch 91 | Loss: 0.373877 | Val: 0.357184
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 92
+Epoch 92 | Loss: 0.382754 | Val: 0.369913
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 93
+Epoch 93 | Loss: 0.398060 | Val: 0.371678
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 94
+Epoch 94 | Loss: 0.399485 | Val: 0.378287
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 95
+Epoch 95 | Loss: 0.382755 | Val: 0.324570
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 96
+Epoch 96 | Loss: 0.394732 | Val: 0.340978
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 97
+Epoch 97 | Loss: 0.384653 | Val: 0.402517
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 98
+Epoch 98 | Loss: 0.381871 | Val: 0.392876
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 99
+Epoch 99 | Loss: 0.391467 | Val: 0.389343
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 100
+Epoch 100 | Loss: 0.415939 | Val: 0.378264
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 100...
+  FID: 138.9133 | KID: 0.114701
+  Pixel PDF W-dist: 0.0350
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 101
+Epoch 101 | Loss: 0.401650 | Val: 0.400474
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 102
+Epoch 102 | Loss: 0.394861 | Val: 0.336584
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 103
+Epoch 103 | Loss: 0.377974 | Val: 0.374773
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 104
+Epoch 104 | Loss: 0.380747 | Val: 0.398848
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 105
+Epoch 105 | Loss: 0.402515 | Val: 0.353830
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 106
+Epoch 106 | Loss: 0.390478 | Val: 0.361520
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 107
+Epoch 107 | Loss: 0.396491 | Val: 0.403466
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 108
+Epoch 108 | Loss: 0.387638 | Val: 0.380632
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 109
+Epoch 109 | Loss: 0.391972 | Val: 0.384035
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 110
+Epoch 110 | Loss: 0.394140 | Val: 0.370196
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 110...
+  FID: 143.8679 | KID: 0.128486
+  Pixel PDF W-dist: 0.0359
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 111
+Epoch 111 | Loss: 0.394210 | Val: 0.368302
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 112
+Epoch 112 | Loss: 0.378213 | Val: 0.383484
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 113
+Epoch 113 | Loss: 0.393934 | Val: 0.356896
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 114
+Epoch 114 | Loss: 0.402080 | Val: 0.299366
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 115
+Epoch 115 | Loss: 0.379833 | Val: 0.443578
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 116
+Epoch 116 | Loss: 0.388552 | Val: 0.360021
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 117
+Epoch 117 | Loss: 0.393392 | Val: 0.335274
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 118
+Epoch 118 | Loss: 0.390435 | Val: 0.344278
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 119
+Epoch 119 | Loss: 0.401067 | Val: 0.411326
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 120
+Epoch 120 | Loss: 0.386242 | Val: 0.408675
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 120...
+  FID: 149.3390 | KID: 0.137955
+  Pixel PDF W-dist: 0.0358
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 121
+Epoch 121 | Loss: 0.386394 | Val: 0.383329
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 122
+Epoch 122 | Loss: 0.382903 | Val: 0.363822
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 123
+Epoch 123 | Loss: 0.398637 | Val: 0.382995
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 124
+Epoch 124 | Loss: 0.390982 | Val: 0.323609
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 125
+Epoch 125 | Loss: 0.379039 | Val: 0.399513
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 126
+Epoch 126 | Loss: 0.402210 | Val: 0.300741
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 127
+Epoch 127 | Loss: 0.396661 | Val: 0.387223
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 128
+Epoch 128 | Loss: 0.380996 | Val: 0.387073
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 129
+Epoch 129 | Loss: 0.406441 | Val: 0.377175
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 130
+Epoch 130 | Loss: 0.396230 | Val: 0.388821
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 130...
+  FID: 143.8397 | KID: 0.136655
+  Pixel PDF W-dist: 0.0344
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 131
+Epoch 131 | Loss: 0.391055 | Val: 0.355487
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 132
+Epoch 132 | Loss: 0.383417 | Val: 0.360208
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 133
+Epoch 133 | Loss: 0.385529 | Val: 0.377752
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 134
+Epoch 134 | Loss: 0.400867 | Val: 0.385589
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 135
+Epoch 135 | Loss: 0.382253 | Val: 0.377221
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 136
+Epoch 136 | Loss: 0.362263 | Val: 0.334548
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 137
+Epoch 137 | Loss: 0.387754 | Val: 0.342109
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 138
+Epoch 138 | Loss: 0.377201 | Val: 0.321787
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 139
+Epoch 139 | Loss: 0.383948 | Val: 0.408199
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 140
+Epoch 140 | Loss: 0.405007 | Val: 0.349138
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 140...
+  FID: 141.3763 | KID: 0.129153
+  Pixel PDF W-dist: 0.0329
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 141
+Epoch 141 | Loss: 0.389487 | Val: 0.372235
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 142
+Epoch 142 | Loss: 0.395883 | Val: 0.365704
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 143
+Epoch 143 | Loss: 0.379769 | Val: 0.340225
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 144
+Epoch 144 | Loss: 0.398767 | Val: 0.348622
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 145
+Epoch 145 | Loss: 0.390106 | Val: 0.319581
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 146
+Epoch 146 | Loss: 0.400427 | Val: 0.355873
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 147
+Epoch 147 | Loss: 0.394161 | Val: 0.317166
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 148
+Epoch 148 | Loss: 0.361554 | Val: 0.338512
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 149
+Epoch 149 | Loss: 0.387417 | Val: 0.344264
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 150
+Epoch 150 | Loss: 0.378735 | Val: 0.374342
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 150...
+  FID: 129.3999 | KID: 0.109479
+  Pixel PDF W-dist: 0.0307
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 151
+Epoch 151 | Loss: 0.397388 | Val: 0.376308
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 152
+Epoch 152 | Loss: 0.386860 | Val: 0.391429
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 153
+Epoch 153 | Loss: 0.374523 | Val: 0.373994
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 154
+Epoch 154 | Loss: 0.392559 | Val: 0.351325
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 155
+Epoch 155 | Loss: 0.391179 | Val: 0.337013
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 156
+Epoch 156 | Loss: 0.385866 | Val: 0.366276
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 157
+Epoch 157 | Loss: 0.392331 | Val: 0.351671
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 158
+Epoch 158 | Loss: 0.380085 | Val: 0.351271
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 159
+Epoch 159 | Loss: 0.367284 | Val: 0.363464
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 160
+Epoch 160 | Loss: 0.383820 | Val: 0.445141
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 160...
+  FID: 120.3464 | KID: 0.092572
+  Pixel PDF W-dist: 0.0266
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 161
+Epoch 161 | Loss: 0.370500 | Val: 0.385808
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 162
+Epoch 162 | Loss: 0.380212 | Val: 0.414110
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 163
+Epoch 163 | Loss: 0.391026 | Val: 0.310369
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 164
+Epoch 164 | Loss: 0.383770 | Val: 0.358177
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 165
+Epoch 165 | Loss: 0.389941 | Val: 0.407789
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 166
+Epoch 166 | Loss: 0.407601 | Val: 0.410470
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 167
+Epoch 167 | Loss: 0.393444 | Val: 0.391393
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 168
+Epoch 168 | Loss: 0.390121 | Val: 0.384959
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 169
+Epoch 169 | Loss: 0.382324 | Val: 0.390307
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 170
+Epoch 170 | Loss: 0.395693 | Val: 0.339352
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 170...
+  FID: 111.6945 | KID: 0.090323
+  Pixel PDF W-dist: 0.0249
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 171
+Epoch 171 | Loss: 0.391242 | Val: 0.375842
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 172
+Epoch 172 | Loss: 0.376598 | Val: 0.358284
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 173
+Epoch 173 | Loss: 0.366616 | Val: 0.342654
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 174
+Epoch 174 | Loss: 0.387481 | Val: 0.405874
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 175
+Epoch 175 | Loss: 0.385080 | Val: 0.420921
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 176
+Epoch 176 | Loss: 0.392254 | Val: 0.338394
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 177
+Epoch 177 | Loss: 0.397042 | Val: 0.379205
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 178
+Epoch 178 | Loss: 0.395466 | Val: 0.337669
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 179
+Epoch 179 | Loss: 0.396935 | Val: 0.377301
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 180
+Epoch 180 | Loss: 0.385008 | Val: 0.363906
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 180...
+  FID: 106.8282 | KID: 0.082810
+  Pixel PDF W-dist: 0.0223
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 181
+Epoch 181 | Loss: 0.386589 | Val: 0.396803
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 182
+Epoch 182 | Loss: 0.379799 | Val: 0.324241
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 183
+Epoch 183 | Loss: 0.397787 | Val: 0.328019
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 184
+Epoch 184 | Loss: 0.390577 | Val: 0.382542
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 185
+Epoch 185 | Loss: 0.386749 | Val: 0.390559
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 186
+Epoch 186 | Loss: 0.371827 | Val: 0.352724
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 187
+Epoch 187 | Loss: 0.387792 | Val: 0.369779
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 188
+Epoch 188 | Loss: 0.382157 | Val: 0.381915
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 189
+Epoch 189 | Loss: 0.383142 | Val: 0.353389
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 190
+Epoch 190 | Loss: 0.387338 | Val: 0.319679
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 190...
+  FID: 97.4110 | KID: 0.070529
+  Pixel PDF W-dist: 0.0189
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 191
+Epoch 191 | Loss: 0.394959 | Val: 0.345527
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 192
+Epoch 192 | Loss: 0.395516 | Val: 0.373659
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 193
+Epoch 193 | Loss: 0.379069 | Val: 0.348208
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 194
+Epoch 194 | Loss: 0.361710 | Val: 0.364260
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 195
+Epoch 195 | Loss: 0.388960 | Val: 0.327729
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 196
+Epoch 196 | Loss: 0.376711 | Val: 0.389128
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 197
+Epoch 197 | Loss: 0.370308 | Val: 0.353345
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 198
+Epoch 198 | Loss: 0.359813 | Val: 0.357766
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 199
+Epoch 199 | Loss: 0.390392 | Val: 0.332238
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 200
+Epoch 200 | Loss: 0.380443 | Val: 0.445331
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 200...
+  FID: 98.4995 | KID: 0.072173
+  Pixel PDF W-dist: 0.0163
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 201
+Epoch 201 | Loss: 0.395751 | Val: 0.341663
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 202
+Epoch 202 | Loss: 0.372839 | Val: 0.391964
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 203
+Epoch 203 | Loss: 0.389519 | Val: 0.419690
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 204
+Epoch 204 | Loss: 0.378732 | Val: 0.373283
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 205
+Epoch 205 | Loss: 0.379361 | Val: 0.376226
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 206
+Epoch 206 | Loss: 0.376484 | Val: 0.370577
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 207
+Epoch 207 | Loss: 0.375100 | Val: 0.357649
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 208
+Epoch 208 | Loss: 0.397499 | Val: 0.340450
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 209
+Epoch 209 | Loss: 0.369310 | Val: 0.379664
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 210
+Epoch 210 | Loss: 0.380733 | Val: 0.369078
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 210...
+  FID: 94.4029 | KID: 0.065386
+  Pixel PDF W-dist: 0.0141
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 211
+Epoch 211 | Loss: 0.378322 | Val: 0.425175
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 212
+Epoch 212 | Loss: 0.357108 | Val: 0.388520
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 213
+Epoch 213 | Loss: 0.380757 | Val: 0.350610
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 214
+Epoch 214 | Loss: 0.377610 | Val: 0.408833
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 215
+Epoch 215 | Loss: 0.377714 | Val: 0.368135
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 216
+Epoch 216 | Loss: 0.384331 | Val: 0.363120
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 217
+Epoch 217 | Loss: 0.369310 | Val: 0.404018
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 218
+Epoch 218 | Loss: 0.375068 | Val: 0.337286
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 219
+Epoch 219 | Loss: 0.377971 | Val: 0.307060
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 220
+Epoch 220 | Loss: 0.393133 | Val: 0.359070
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 220...
+  FID: 93.9641 | KID: 0.062162
+  Pixel PDF W-dist: 0.0129
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 221
+Epoch 221 | Loss: 0.386277 | Val: 0.341008
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 222
+Epoch 222 | Loss: 0.377677 | Val: 0.357486
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 223
+Epoch 223 | Loss: 0.392555 | Val: 0.351177
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 224
+Epoch 224 | Loss: 0.377461 | Val: 0.325244
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 225
+Epoch 225 | Loss: 0.377145 | Val: 0.343207
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 226
+Epoch 226 | Loss: 0.367050 | Val: 0.404844
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 227
+Epoch 227 | Loss: 0.373985 | Val: 0.388039
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 228
+Epoch 228 | Loss: 0.383588 | Val: 0.331552
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 229
+Epoch 229 | Loss: 0.381318 | Val: 0.373831
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 230
+Epoch 230 | Loss: 0.384252 | Val: 0.363705
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 230...
+  FID: 91.7222 | KID: 0.058283
+  Pixel PDF W-dist: 0.0100
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 231
+Epoch 231 | Loss: 0.399706 | Val: 0.370092
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 232
+Epoch 232 | Loss: 0.385262 | Val: 0.336845
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 233
+Epoch 233 | Loss: 0.377805 | Val: 0.448888
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 234
+Epoch 234 | Loss: 0.367767 | Val: 0.389094
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 235
+Epoch 235 | Loss: 0.369288 | Val: 0.326202
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 236
+Epoch 236 | Loss: 0.369719 | Val: 0.316446
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 237
+Epoch 237 | Loss: 0.367253 | Val: 0.366892
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 238
+Epoch 238 | Loss: 0.373750 | Val: 0.390926
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 239
+Epoch 239 | Loss: 0.389552 | Val: 0.375500
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 240
+Epoch 240 | Loss: 0.377848 | Val: 0.392631
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 240...
+  FID: 102.7765 | KID: 0.080578
+  Pixel PDF W-dist: 0.0093
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 241
+Epoch 241 | Loss: 0.377382 | Val: 0.368499
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 242
+Epoch 242 | Loss: 0.373604 | Val: 0.398084
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 243
+Epoch 243 | Loss: 0.368825 | Val: 0.377604
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 244
+Epoch 244 | Loss: 0.377191 | Val: 0.360473
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 245
+Epoch 245 | Loss: 0.372583 | Val: 0.375603
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 246
+Epoch 246 | Loss: 0.382761 | Val: 0.368015
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 247
+Epoch 247 | Loss: 0.389091 | Val: 0.342183
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 248
+Epoch 248 | Loss: 0.373728 | Val: 0.356050
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 249
+Epoch 249 | Loss: 0.372346 | Val: 0.367344
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 250
+Epoch 250 | Loss: 0.369661 | Val: 0.379089
+FITS files saved to results/edm_baseline/20260916_124424_my_run_tag_909739/generated_fits
+Computing FID/KID/PDF at epoch 250...
+  FID: 101.6280 | KID: 0.067035
+  Pixel PDF W-dist: 0.0086
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 251
+Epoch 251 | Loss: 0.375585 | Val: 0.365832
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 252
+Epoch 252 | Loss: 0.377727 | Val: 0.357443
+--- Saved model to checkpoints/edm_baseline/my_run_tag/state.pt ---
+Epoch 253
+[2026-09-16T22:41:32.361] error: *** JOB 909739 ON gpu-001 CANCELLED AT 2026-09-16T22:41:32 DUE TO TIME LIMIT ***
