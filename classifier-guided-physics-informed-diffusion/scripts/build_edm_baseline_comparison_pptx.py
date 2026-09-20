@@ -125,9 +125,9 @@ tb.text_frame.paragraphs[0].runs[0].font.bold = True
 tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
 table(s, [
     ["Model", "FID ↓", "KID ↓", "pixel-PDF W ↓", "Epochs"],
-    ["EDM baseline (latest)", "85.5", "0.048", "0.0033", "300\n(complete)"],
+    ["EDM baseline (latest)", "82.1", "0.044", "0.0033", "400\n(complete)"],
     ["EDM baseline (earlier, seeds 42 / 44)", "106.9 / 98.7", "0.081 / 0.063", "0.0165 / 0.019", "200"],
-    ["diffusion (DDPM+CFG)", "99.7", "0.053", "0.0162", "200\n(300-ep run in\nprogress, ep 123)"],
+    ["diffusion (DDPM+CFG)", "73.5", "0.022", "0.0105", "400\n(complete)"],
     ["CGD (latest, seed 42)", "67.2", "0.016", "0.0069", "300\n(complete)"],
     ["CGD (earlier, seed 42)", "77.5", "0.031", "0.0064", "260"],
 ], top=1.7, height=2.3, col_widths=[3.6, 1.8, 2.0, 2.6, 1.5], font=12)
@@ -143,7 +143,8 @@ table(s, [
     ["DDPM-generated", "16", "0.00174", "0.771"],
     ["CGD-generated (latest, ep 290)", "32", "0.00300", "0.725"],
 ], top=4.5, height=2.0, col_widths=[5.2, 1.3, 3.0, 3.0], font=12)
-caption(s, "CGD best on distributional metrics (FID/KID/PDF); DDPM best on VQ-VAE reconstruction fidelity this round.")
+caption(s, "CGD still best on distributional metrics (FID/KID/PDF), though DDPM's now-complete 400-epoch run closed most of the gap; "
+           "DDPM best on VQ-VAE reconstruction fidelity this round.")
 
 # ---------------------------------------------------------------- 4 comparison graph
 s = slide()
@@ -154,8 +155,8 @@ pic(s, os.path.join(RES, "edm_baseline/metric_comparison.png"), 0.4, 2.1, 12.6)
 s = slide()
 title(s, "Per-run generative-metric curves")
 cols = [
-    ("EDM baseline (300 ep, complete)", os.path.join(RES, "edm_baseline/20260917_101657_my_run_tag_912853")),
-    ("DDPM diffusion (200 ep)", os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339")),
+    ("EDM baseline (400 ep, complete)", os.path.join(RES, "edm_baseline/20260917_161506_my_run_tag_913384")),
+    ("DDPM diffusion (400 ep, complete)", os.path.join(RES, "diffusion/20260917_161506_diffusion_crumb_fits_913386")),
     ("CGD (300 ep, complete)", os.path.join(RES, "classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852")),
 ]
 xs = [0.4, 4.75, 9.1]
@@ -166,7 +167,8 @@ for (label, d), x in zip(cols, xs):
     pic(s, os.path.join(d, "generative_metrics.png"), x, 1.75, 4.0)
     pic(s, os.path.join(d, "pixel_pdf_history.png"), x, 4.55, 4.0)
 caption(s, "Top row: FID / KID vs epoch.   Bottom row: pixel-PDF Wasserstein history. "
-           "DDPM's fresh 300-epoch run is still in progress (epoch 123 as of this build).")
+           "EDM and DDPM both now trained to the full 400-epoch budget; CGD's own 400-epoch resume "
+           "crashed on a missing checkpoint, so its curves still stop at 300.")
 
 # ---------------------------------------------------------------- 6 reconstruction overview + metrics
 s = slide()
@@ -205,8 +207,8 @@ s = slide()
 title(s, "Samples  (left cols FR-I  ·  right cols FR-II)")
 rows = [
     ("Real CRUMB  (ground truth)", os.path.join(RES, "edm_baseline/crumb_groundtruth_samples.png")),
-    ("EDM baseline (latest, 300 ep) - epoch 290", os.path.join(RES, "edm_baseline/20260917_101657_my_run_tag_912853/comparison_epoch_290.png")),
-    ("DDPM - epoch 190", os.path.join(RES, "diffusion/20260720_202319_diffusion_crumb_fits_315339/comparison_epoch_190.png")),
+    ("EDM baseline (latest, 400 ep) - epoch 320", os.path.join(RES, "edm_baseline/20260917_161506_my_run_tag_913384/comparison_epoch_320.png")),
+    ("DDPM (latest, 400 ep) - epoch 390", os.path.join(RES, "diffusion/20260917_161506_diffusion_crumb_fits_913386/comparison_epoch_390.png")),
     ("CGD (latest, 300 ep) - epoch 290", os.path.join(RES, "classifier_guided_diffusion/20260917_101657_cls_guided_diffusion_crumb_fits_seed42_912852/comparison_epoch_290.png")),
 ]
 pos = [(0.9, 1.25), (7.1, 1.25), (0.9, 4.6), (7.1, 4.6)]
