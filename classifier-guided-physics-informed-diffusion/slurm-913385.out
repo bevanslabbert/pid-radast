@@ -1,0 +1,47 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=cls_guided_diffusion_crumb_fits  |  results -> results/classifier_guided_diffusion/20260917_161506_cls_guided_diffusion_crumb_fits_913385
+============================================================
+
+Training classifier_guided_diffusion for 400 epochs
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 221, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 210, in main
+    model = train_model(args.model, cfg, trainloader, valloader, testloader, device, result_directory, resume=args.resume, checkpoint=args.checkpoint, dataset=fits_dataset, tag=run_tag)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 1028, in train_model
+    return train_classifier_guided_diffusion(config, trainloader, valloader, testloader, device,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 853, in train_classifier_guided_diffusion
+    return _train_guided_diffusion(ckpt_dir, config, trainloader, valloader, testloader, device,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 834, in _train_guided_diffusion
+    unet, scheduler, class_emb, hist = _train_diffusion_loop(
+                                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/pipelines/train_pipeline.py", line 517, in _train_diffusion_loop
+    ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/{ckpt_dir}', device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/checkpoint.py", line 16, in load_checkpoint
+    return torch.load(f'{checkpoint_dir}/{filename}', map_location=device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/serialization.py", line 791, in load
+    with _open_file_like(f, 'rb') as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/serialization.py", line 271, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torch/serialization.py", line 252, in __init__
+    super().__init__(open(name, mode))
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits/state.pt'
