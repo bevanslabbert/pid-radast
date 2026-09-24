@@ -1375,3 +1375,11 @@ Epoch 398
 Epoch 398 | Loss: 0.353165 | Val: 0.356439
 --- Saved model to checkpoints/edm_baseline/my_run_tag_seed43/state.pt ---
 Epoch 399
+Epoch 399 | Loss: 0.366568 | Val: 0.374124
+--- Saved model to checkpoints/edm_baseline/my_run_tag_seed43/state.pt ---
+FITS files saved to results/edm_baseline/20260920_211338_my_run_tag_seed43_921086/generated_fits
+Loss graph saved to results/edm_baseline/20260920_211338_my_run_tag_seed43_921086/training_metrics.png
+Generative metrics plot saved to results/edm_baseline/20260920_211338_my_run_tag_seed43_921086/generative_metrics.png
+Pixel PDF history plot saved to results/edm_baseline/20260920_211338_my_run_tag_seed43_921086/pixel_pdf_history.png
+Testing model
+Generated test images saved to results/edm_baseline/20260920_211338_my_run_tag_seed43_921086/
