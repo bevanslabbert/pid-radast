@@ -1,0 +1,909 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=45  |  tag=cls_guided_diffusion_crumb_fits_seed45  |  results -> results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096
+============================================================
+
+Training classifier_guided_diffusion for 400 epochs
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+No pre-trained checkpoint at checkpoints/diffusion_crumb_fits, training from scratch
+Epoch 0
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/configuration_utils.py:139: FutureWarning: Accessing config attribute `num_train_timesteps` directly via 'DDPMScheduler' object attribute is deprecated. Please access 'num_train_timesteps' over 'DDPMScheduler's config object instead, e.g. 'scheduler.config.num_train_timesteps'.
+  deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
+  hidden_states = F.scaled_dot_product_attention(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 0 | Loss: 0.095567 | Val: 0.153023
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 0...
+  FID: 179.6743 | KID: 0.196952
+  Pixel PDF W-dist: 0.0545
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 1
+Epoch 1 | Loss: 0.033154 | Val: 0.149532
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 2
+Epoch 2 | Loss: 0.027751 | Val: 0.143876
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 3
+Epoch 3 | Loss: 0.026866 | Val: 0.142940
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 4
+Epoch 4 | Loss: 0.024280 | Val: 0.142147
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 5
+Epoch 5 | Loss: 0.026618 | Val: 0.137126
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 6
+Epoch 6 | Loss: 0.025251 | Val: 0.140158
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 7
+Epoch 7 | Loss: 0.030190 | Val: 0.138071
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 8
+Epoch 8 | Loss: 0.025208 | Val: 0.137780
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 9
+Epoch 9 | Loss: 0.020540 | Val: 0.136222
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 10
+Epoch 10 | Loss: 0.026513 | Val: 0.136960
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 10...
+  FID: 179.7881 | KID: 0.189123
+  Pixel PDF W-dist: 0.1763
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 11
+Epoch 11 | Loss: 0.026827 | Val: 0.134631
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 12
+Epoch 12 | Loss: 0.021424 | Val: 0.136587
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 13
+Epoch 13 | Loss: 0.024220 | Val: 0.137840
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 14
+Epoch 14 | Loss: 0.022282 | Val: 0.134392
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 15
+Epoch 15 | Loss: 0.034296 | Val: 0.135955
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 16
+Epoch 16 | Loss: 0.030458 | Val: 0.134109
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 17
+Epoch 17 | Loss: 0.029729 | Val: 0.135632
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 18
+Epoch 18 | Loss: 0.024211 | Val: 0.133934
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 19
+Epoch 19 | Loss: 0.028926 | Val: 0.134567
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 20
+Epoch 20 | Loss: 0.021184 | Val: 0.133918
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 20...
+  FID: 146.7735 | KID: 0.126369
+  Pixel PDF W-dist: 0.1317
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 21
+Epoch 21 | Loss: 0.026828 | Val: 0.134491
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 22
+Epoch 22 | Loss: 0.026257 | Val: 0.133443
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 23
+Epoch 23 | Loss: 0.023760 | Val: 0.133268
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 24
+Epoch 24 | Loss: 0.027572 | Val: 0.133296
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 25
+Epoch 25 | Loss: 0.022682 | Val: 0.133425
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 26
+Epoch 26 | Loss: 0.022296 | Val: 0.133883
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 27
+Epoch 27 | Loss: 0.025675 | Val: 0.133640
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 28
+Epoch 28 | Loss: 0.022941 | Val: 0.135243
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 29
+Epoch 29 | Loss: 0.022293 | Val: 0.132948
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 30
+Epoch 30 | Loss: 0.021319 | Val: 0.132836
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 30...
+  FID: 152.0164 | KID: 0.134970
+  Pixel PDF W-dist: 0.1447
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 31
+Epoch 31 | Loss: 0.025092 | Val: 0.133749
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 32
+Epoch 32 | Loss: 0.023659 | Val: 0.132881
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 33
+Epoch 33 | Loss: 0.021875 | Val: 0.132230
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 34
+Epoch 34 | Loss: 0.025088 | Val: 0.135301
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 35
+Epoch 35 | Loss: 0.024628 | Val: 0.132321
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 36
+Epoch 36 | Loss: 0.026823 | Val: 0.133147
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 37
+Epoch 37 | Loss: 0.027847 | Val: 0.132879
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 38
+Epoch 38 | Loss: 0.021650 | Val: 0.132984
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 39
+Epoch 39 | Loss: 0.026315 | Val: 0.133235
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 40
+Epoch 40 | Loss: 0.027839 | Val: 0.132771
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 40...
+  FID: 149.7173 | KID: 0.136416
+  Pixel PDF W-dist: 0.0993
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 41
+Epoch 41 | Loss: 0.025010 | Val: 0.132586
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 42
+Epoch 42 | Loss: 0.026987 | Val: 0.132753
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 43
+Epoch 43 | Loss: 0.029095 | Val: 0.132490
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 44
+Epoch 44 | Loss: 0.024644 | Val: 0.132579
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 45
+Epoch 45 | Loss: 0.033045 | Val: 0.133703
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 46
+Epoch 46 | Loss: 0.026874 | Val: 0.131934
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 47
+Epoch 47 | Loss: 0.026955 | Val: 0.131898
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 48
+Epoch 48 | Loss: 0.022276 | Val: 0.133320
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 49
+Epoch 49 | Loss: 0.022752 | Val: 0.132438
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 50
+Epoch 50 | Loss: 0.026687 | Val: 0.132182
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 50...
+  FID: 160.8680 | KID: 0.154199
+  Pixel PDF W-dist: 0.3584
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 51
+Epoch 51 | Loss: 0.022487 | Val: 0.132508
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 52
+Epoch 52 | Loss: 0.021171 | Val: 0.132197
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 53
+Epoch 53 | Loss: 0.023352 | Val: 0.132439
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 54
+Epoch 54 | Loss: 0.022642 | Val: 0.131996
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 55
+Epoch 55 | Loss: 0.027085 | Val: 0.133007
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 56
+Epoch 56 | Loss: 0.023864 | Val: 0.133179
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 57
+Epoch 57 | Loss: 0.021568 | Val: 0.132161
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 58
+Epoch 58 | Loss: 0.022618 | Val: 0.132801
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 59
+Epoch 59 | Loss: 0.023361 | Val: 0.131814
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 60
+Epoch 60 | Loss: 0.025125 | Val: 0.131972
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 60...
+  FID: 163.2441 | KID: 0.149791
+  Pixel PDF W-dist: 0.1276
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 61
+Epoch 61 | Loss: 0.023993 | Val: 0.132232
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 62
+Epoch 62 | Loss: 0.023727 | Val: 0.132559
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 63
+Epoch 63 | Loss: 0.023063 | Val: 0.131577
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 64
+Epoch 64 | Loss: 0.026708 | Val: 0.132464
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 65
+Epoch 65 | Loss: 0.028819 | Val: 0.132116
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 66
+Epoch 66 | Loss: 0.025786 | Val: 0.132195
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 67
+Epoch 67 | Loss: 0.025137 | Val: 0.133467
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 68
+Epoch 68 | Loss: 0.028238 | Val: 0.132206
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 69
+Epoch 69 | Loss: 0.021230 | Val: 0.131481
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 70
+Epoch 70 | Loss: 0.023997 | Val: 0.131195
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 70...
+  FID: 151.8726 | KID: 0.135225
+  Pixel PDF W-dist: 0.0542
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 71
+Epoch 71 | Loss: 0.026011 | Val: 0.130598
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 72
+Epoch 72 | Loss: 0.024608 | Val: 0.131713
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 73
+Epoch 73 | Loss: 0.020636 | Val: 0.131515
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 74
+Epoch 74 | Loss: 0.018347 | Val: 0.131896
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 75
+Epoch 75 | Loss: 0.024457 | Val: 0.131179
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 76
+Epoch 76 | Loss: 0.022623 | Val: 0.131166
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 77
+Epoch 77 | Loss: 0.023087 | Val: 0.133234
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 78
+Epoch 78 | Loss: 0.023075 | Val: 0.130536
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 79
+Epoch 79 | Loss: 0.025152 | Val: 0.131825
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 80
+Epoch 80 | Loss: 0.022833 | Val: 0.132005
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 80...
+  FID: 156.9125 | KID: 0.135297
+  Pixel PDF W-dist: 0.0691
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 81
+Epoch 81 | Loss: 0.025327 | Val: 0.131274
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 82
+Epoch 82 | Loss: 0.020336 | Val: 0.130616
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 83
+Epoch 83 | Loss: 0.024882 | Val: 0.132138
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 84
+Epoch 84 | Loss: 0.024530 | Val: 0.132314
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 85
+Epoch 85 | Loss: 0.023753 | Val: 0.131212
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 86
+Epoch 86 | Loss: 0.023655 | Val: 0.130637
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 87
+Epoch 87 | Loss: 0.024379 | Val: 0.130842
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 88
+Epoch 88 | Loss: 0.023954 | Val: 0.130351
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 89
+Epoch 89 | Loss: 0.026094 | Val: 0.130774
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 90
+Epoch 90 | Loss: 0.022017 | Val: 0.130369
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 90...
+  FID: 142.8021 | KID: 0.125805
+  Pixel PDF W-dist: 0.1632
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 91
+Epoch 91 | Loss: 0.023642 | Val: 0.130301
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 92
+Epoch 92 | Loss: 0.023098 | Val: 0.130595
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 93
+Epoch 93 | Loss: 0.022732 | Val: 0.133184
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 94
+Epoch 94 | Loss: 0.022189 | Val: 0.131713
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 95
+Epoch 95 | Loss: 0.023226 | Val: 0.132264
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 96
+Epoch 96 | Loss: 0.021006 | Val: 0.129947
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 97
+Epoch 97 | Loss: 0.024456 | Val: 0.130689
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 98
+Epoch 98 | Loss: 0.017699 | Val: 0.130222
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 99
+Epoch 99 | Loss: 0.020957 | Val: 0.129768
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 100
+Epoch 100 | Loss: 0.025301 | Val: 0.131237
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 100...
+  FID: 153.8732 | KID: 0.139649
+  Pixel PDF W-dist: 0.0571
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 101
+Epoch 101 | Loss: 0.023998 | Val: 0.131461
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 102
+Epoch 102 | Loss: 0.025004 | Val: 0.130071
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 103
+Epoch 103 | Loss: 0.026443 | Val: 0.130327
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 104
+Epoch 104 | Loss: 0.025315 | Val: 0.131504
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 105
+Epoch 105 | Loss: 0.025899 | Val: 0.131930
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 106
+Epoch 106 | Loss: 0.024571 | Val: 0.131168
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 107
+Epoch 107 | Loss: 0.025923 | Val: 0.130976
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 108
+Epoch 108 | Loss: 0.027979 | Val: 0.130485
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 109
+Epoch 109 | Loss: 0.021642 | Val: 0.130143
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 110
+Epoch 110 | Loss: 0.019619 | Val: 0.132040
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 110...
+  FID: 161.3610 | KID: 0.152506
+  Pixel PDF W-dist: 0.0524
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 111
+Epoch 111 | Loss: 0.024351 | Val: 0.129818
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 112
+Epoch 112 | Loss: 0.026056 | Val: 0.130939
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 113
+Epoch 113 | Loss: 0.022777 | Val: 0.130164
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 114
+Epoch 114 | Loss: 0.019396 | Val: 0.130714
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 115
+Epoch 115 | Loss: 0.019043 | Val: 0.130198
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 116
+Epoch 116 | Loss: 0.025827 | Val: 0.129421
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 117
+Epoch 117 | Loss: 0.022180 | Val: 0.131422
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 118
+Epoch 118 | Loss: 0.022008 | Val: 0.129454
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 119
+Epoch 119 | Loss: 0.020282 | Val: 0.129485
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 120
+Epoch 120 | Loss: 0.020416 | Val: 0.130017
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 120...
+  FID: 98.8558 | KID: 0.055434
+  Pixel PDF W-dist: 0.0177
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 121
+Epoch 121 | Loss: 0.026909 | Val: 0.129943
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 122
+Epoch 122 | Loss: 0.022377 | Val: 0.131104
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 123
+Epoch 123 | Loss: 0.021993 | Val: 0.131840
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 124
+Epoch 124 | Loss: 0.022398 | Val: 0.130947
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 125
+Epoch 125 | Loss: 0.027375 | Val: 0.129653
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 126
+Epoch 126 | Loss: 0.024908 | Val: 0.130117
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 127
+Epoch 127 | Loss: 0.021033 | Val: 0.129467
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 128
+Epoch 128 | Loss: 0.023256 | Val: 0.131669
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 129
+Epoch 129 | Loss: 0.027927 | Val: 0.129439
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 130
+Epoch 130 | Loss: 0.027554 | Val: 0.129758
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 130...
+  FID: 110.8435 | KID: 0.069094
+  Pixel PDF W-dist: 0.0744
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 131
+Epoch 131 | Loss: 0.025387 | Val: 0.129467
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 132
+Epoch 132 | Loss: 0.021761 | Val: 0.129884
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 133
+Epoch 133 | Loss: 0.028597 | Val: 0.129851
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 134
+Epoch 134 | Loss: 0.025672 | Val: 0.130030
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 135
+Epoch 135 | Loss: 0.026072 | Val: 0.130137
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 136
+Epoch 136 | Loss: 0.025707 | Val: 0.131843
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 137
+Epoch 137 | Loss: 0.021044 | Val: 0.130396
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 138
+Epoch 138 | Loss: 0.021718 | Val: 0.130434
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 139
+Epoch 139 | Loss: 0.026140 | Val: 0.129692
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 140
+Epoch 140 | Loss: 0.022809 | Val: 0.130151
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 140...
+  FID: 101.5216 | KID: 0.074052
+  Pixel PDF W-dist: 0.0702
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 141
+Epoch 141 | Loss: 0.025025 | Val: 0.129202
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 142
+Epoch 142 | Loss: 0.023886 | Val: 0.129253
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 143
+Epoch 143 | Loss: 0.023412 | Val: 0.131955
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 144
+Epoch 144 | Loss: 0.026250 | Val: 0.129450
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 145
+Epoch 145 | Loss: 0.022118 | Val: 0.130462
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 146
+Epoch 146 | Loss: 0.023882 | Val: 0.129980
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 147
+Epoch 147 | Loss: 0.020677 | Val: 0.132306
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 148
+Epoch 148 | Loss: 0.025854 | Val: 0.129615
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 149
+Epoch 149 | Loss: 0.020903 | Val: 0.129000
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 150
+Epoch 150 | Loss: 0.019825 | Val: 0.129574
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 150...
+  FID: 102.2836 | KID: 0.055998
+  Pixel PDF W-dist: 0.0191
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 151
+Epoch 151 | Loss: 0.023242 | Val: 0.129812
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 152
+Epoch 152 | Loss: 0.022467 | Val: 0.129970
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 153
+Epoch 153 | Loss: 0.021597 | Val: 0.130094
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 154
+Epoch 154 | Loss: 0.020161 | Val: 0.130083
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 155
+Epoch 155 | Loss: 0.022481 | Val: 0.129708
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 156
+Epoch 156 | Loss: 0.019452 | Val: 0.130033
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 157
+Epoch 157 | Loss: 0.027060 | Val: 0.130881
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 158
+Epoch 158 | Loss: 0.025207 | Val: 0.129646
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 159
+Epoch 159 | Loss: 0.024545 | Val: 0.130125
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 160
+Epoch 160 | Loss: 0.023109 | Val: 0.128701
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 160...
+  FID: 107.4357 | KID: 0.042563
+  Pixel PDF W-dist: 0.0159
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 161
+Epoch 161 | Loss: 0.027039 | Val: 0.129211
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 162
+Epoch 162 | Loss: 0.021335 | Val: 0.129386
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 163
+Epoch 163 | Loss: 0.017866 | Val: 0.129507
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 164
+Epoch 164 | Loss: 0.018831 | Val: 0.129668
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 165
+Epoch 165 | Loss: 0.027806 | Val: 0.130314
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 166
+Epoch 166 | Loss: 0.020635 | Val: 0.129476
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 167
+Epoch 167 | Loss: 0.019130 | Val: 0.132456
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 168
+Epoch 168 | Loss: 0.021242 | Val: 0.129466
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 169
+Epoch 169 | Loss: 0.022579 | Val: 0.129520
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 170
+Epoch 170 | Loss: 0.022905 | Val: 0.130178
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 170...
+  FID: 72.8736 | KID: 0.032535
+  Pixel PDF W-dist: 0.0284
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 171
+Epoch 171 | Loss: 0.023751 | Val: 0.129974
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 172
+Epoch 172 | Loss: 0.023750 | Val: 0.129508
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 173
+Epoch 173 | Loss: 0.020582 | Val: 0.129242
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 174
+Epoch 174 | Loss: 0.022607 | Val: 0.129600
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 175
+Epoch 175 | Loss: 0.018389 | Val: 0.129236
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 176
+Epoch 176 | Loss: 0.020919 | Val: 0.129166
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 177
+Epoch 177 | Loss: 0.021524 | Val: 0.130121
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 178
+Epoch 178 | Loss: 0.028619 | Val: 0.129026
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 179
+Epoch 179 | Loss: 0.020200 | Val: 0.129183
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 180
+Epoch 180 | Loss: 0.025035 | Val: 0.129047
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 180...
+  FID: 100.8261 | KID: 0.051967
+  Pixel PDF W-dist: 0.0342
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 181
+Epoch 181 | Loss: 0.020544 | Val: 0.129083
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 182
+Epoch 182 | Loss: 0.018442 | Val: 0.129076
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 183
+Epoch 183 | Loss: 0.020939 | Val: 0.128582
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 184
+Epoch 184 | Loss: 0.021097 | Val: 0.128783
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 185
+Epoch 185 | Loss: 0.024009 | Val: 0.129703
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 186
+Epoch 186 | Loss: 0.024163 | Val: 0.129100
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 187
+Epoch 187 | Loss: 0.021643 | Val: 0.129040
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 188
+Epoch 188 | Loss: 0.022059 | Val: 0.128846
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 189
+Epoch 189 | Loss: 0.024051 | Val: 0.129527
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 190
+Epoch 190 | Loss: 0.023817 | Val: 0.129307
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 190...
+  FID: 91.1591 | KID: 0.053567
+  Pixel PDF W-dist: 0.0221
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 191
+Epoch 191 | Loss: 0.023209 | Val: 0.129510
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 192
+Epoch 192 | Loss: 0.025114 | Val: 0.128514
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 193
+Epoch 193 | Loss: 0.023926 | Val: 0.129524
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 194
+Epoch 194 | Loss: 0.024014 | Val: 0.129829
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 195
+Epoch 195 | Loss: 0.022350 | Val: 0.129879
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 196
+Epoch 196 | Loss: 0.023062 | Val: 0.128821
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 197
+Epoch 197 | Loss: 0.020085 | Val: 0.129597
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 198
+Epoch 198 | Loss: 0.027155 | Val: 0.128939
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 199
+Epoch 199 | Loss: 0.025470 | Val: 0.129309
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 200
+Epoch 200 | Loss: 0.023709 | Val: 0.129018
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 200...
+  FID: 106.3774 | KID: 0.085511
+  Pixel PDF W-dist: 0.0182
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 201
+Epoch 201 | Loss: 0.019051 | Val: 0.129135
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 202
+Epoch 202 | Loss: 0.024921 | Val: 0.129211
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 203
+Epoch 203 | Loss: 0.019739 | Val: 0.129153
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 204
+Epoch 204 | Loss: 0.024770 | Val: 0.129152
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 205
+Epoch 205 | Loss: 0.025832 | Val: 0.130055
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 206
+Epoch 206 | Loss: 0.022622 | Val: 0.130131
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 207
+Epoch 207 | Loss: 0.022593 | Val: 0.129022
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 208
+Epoch 208 | Loss: 0.029114 | Val: 0.128994
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 209
+Epoch 209 | Loss: 0.019809 | Val: 0.129462
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 210
+Epoch 210 | Loss: 0.024966 | Val: 0.128822
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 210...
+  FID: 105.8215 | KID: 0.048370
+  Pixel PDF W-dist: 0.0286
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 211
+Epoch 211 | Loss: 0.023186 | Val: 0.128866
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 212
+Epoch 212 | Loss: 0.022073 | Val: 0.128649
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 213
+Epoch 213 | Loss: 0.024045 | Val: 0.128704
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 214
+Epoch 214 | Loss: 0.023382 | Val: 0.128989
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 215
+Epoch 215 | Loss: 0.025649 | Val: 0.129208
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 216
+Epoch 216 | Loss: 0.023344 | Val: 0.128844
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 217
+Epoch 217 | Loss: 0.021338 | Val: 0.128971
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 218
+Epoch 218 | Loss: 0.024839 | Val: 0.128064
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 219
+Epoch 219 | Loss: 0.021580 | Val: 0.130306
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 220
+Epoch 220 | Loss: 0.021628 | Val: 0.130564
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 220...
+  FID: 99.6832 | KID: 0.055583
+  Pixel PDF W-dist: 0.0217
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 221
+Epoch 221 | Loss: 0.022833 | Val: 0.129292
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 222
+Epoch 222 | Loss: 0.019270 | Val: 0.130923
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 223
+Epoch 223 | Loss: 0.021784 | Val: 0.130032
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 224
+Epoch 224 | Loss: 0.020165 | Val: 0.129501
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 225
+Epoch 225 | Loss: 0.023129 | Val: 0.129458
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 226
+Epoch 226 | Loss: 0.024061 | Val: 0.129949
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 227
+Epoch 227 | Loss: 0.027068 | Val: 0.130480
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 228
+Epoch 228 | Loss: 0.017166 | Val: 0.129698
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 229
+Epoch 229 | Loss: 0.021740 | Val: 0.129247
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 230
+Epoch 230 | Loss: 0.022874 | Val: 0.130899
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 230...
+  FID: 97.2472 | KID: 0.050474
+  Pixel PDF W-dist: 0.0195
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 231
+Epoch 231 | Loss: 0.022411 | Val: 0.129131
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 232
+Epoch 232 | Loss: 0.022094 | Val: 0.129481
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 233
+Epoch 233 | Loss: 0.023214 | Val: 0.128796
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 234
+Epoch 234 | Loss: 0.019692 | Val: 0.129058
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 235
+Epoch 235 | Loss: 0.022075 | Val: 0.129771
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 236
+Epoch 236 | Loss: 0.023952 | Val: 0.130971
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 237
+Epoch 237 | Loss: 0.025870 | Val: 0.129304
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 238
+Epoch 238 | Loss: 0.019313 | Val: 0.129834
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 239
+Epoch 239 | Loss: 0.025933 | Val: 0.128982
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 240
+Epoch 240 | Loss: 0.017966 | Val: 0.128866
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 240...
+  FID: 102.6515 | KID: 0.059741
+  Pixel PDF W-dist: 0.0252
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 241
+Epoch 241 | Loss: 0.021532 | Val: 0.128984
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 242
+Epoch 242 | Loss: 0.025862 | Val: 0.129609
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 243
+Epoch 243 | Loss: 0.020099 | Val: 0.129473
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 244
+Epoch 244 | Loss: 0.025244 | Val: 0.129802
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 245
+Epoch 245 | Loss: 0.024189 | Val: 0.129460
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 246
+Epoch 246 | Loss: 0.019977 | Val: 0.131155
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 247
+Epoch 247 | Loss: 0.023999 | Val: 0.130001
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 248
+Epoch 248 | Loss: 0.023475 | Val: 0.129004
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 249
+Epoch 249 | Loss: 0.022265 | Val: 0.129759
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 250
+Epoch 250 | Loss: 0.027034 | Val: 0.129231
+FITS files saved to results/classifier_guided_diffusion/20260925_020136_cls_guided_diffusion_crumb_fits_seed45_921096/generated_fits
+Computing FID/KID/PDF at epoch 250...
+  FID: 126.5426 | KID: 0.094823
+  Pixel PDF W-dist: 0.0232
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 251
+Epoch 251 | Loss: 0.021083 | Val: 0.129052
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 252
+Epoch 252 | Loss: 0.023165 | Val: 0.129544
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 253
+Epoch 253 | Loss: 0.019797 | Val: 0.128799
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 254
+Epoch 254 | Loss: 0.025252 | Val: 0.129638
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 255
+Epoch 255 | Loss: 0.021670 | Val: 0.129158
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 256
+Epoch 256 | Loss: 0.021511 | Val: 0.129790
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 257
+Epoch 257 | Loss: 0.022644 | Val: 0.130015
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 258
+Epoch 258 | Loss: 0.026672 | Val: 0.129482
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 259
+Epoch 259 | Loss: 0.024541 | Val: 0.129173
+--- Saved model to checkpoints/classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45/state.pt ---
+Epoch 260
+[2026-09-25T13:59:07.067] error: *** JOB 921096 ON gpu-003 CANCELLED AT 2026-09-25T13:59:07 DUE TO TIME LIMIT ***

@@ -1,0 +1,27 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
+  hidden_states = F.scaled_dot_product_attention(
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=43  |  tag=cls_guided_diffusion_crumb_fits_seed43  |  results -> results/classifier_guided_diffusion/20260925_130619_cls_guided_diffusion_crumb_fits_seed43_13877272
+============================================================
+
+Training classifier_guided_diffusion for 400 epochs
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Resumed from checkpoint: classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed43 (epoch 400)
+FITS files saved to results/classifier_guided_diffusion/20260925_130619_cls_guided_diffusion_crumb_fits_seed43_13877272/generated_fits
+Generated images saved.
+Loss graph saved to results/classifier_guided_diffusion/20260925_130619_cls_guided_diffusion_crumb_fits_seed43_13877272/training_metrics.png
+Generative metrics plot saved to results/classifier_guided_diffusion/20260925_130619_cls_guided_diffusion_crumb_fits_seed43_13877272/generative_metrics.png
+Pixel PDF history plot saved to results/classifier_guided_diffusion/20260925_130619_cls_guided_diffusion_crumb_fits_seed43_13877272/pixel_pdf_history.png
+Testing model
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Generated test images saved to results/classifier_guided_diffusion/20260925_130619_cls_guided_diffusion_crumb_fits_seed43_13877272/
