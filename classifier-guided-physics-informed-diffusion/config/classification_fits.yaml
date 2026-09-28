@@ -2,7 +2,7 @@ seed: 42
 
 data:
   dataset: crumb_fits
-  batch_size: 32
+  batch_size: 8
 
 training:
   learning_rate: 0.001
