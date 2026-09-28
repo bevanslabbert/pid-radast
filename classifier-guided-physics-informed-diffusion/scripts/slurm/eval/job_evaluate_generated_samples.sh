@@ -17,10 +17,12 @@ source .venv/bin/activate
 
 # Expects DIFFUSION_TAGS / CGD_TAGS / EDM_TAGS as space-separated seed tag lists,
 # e.g. --export=ALL,DIFFUSION_TAGS="exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46"
+# Any of the three may be left unset to evaluate a subset of models (one job per model).
 python scripts/evaluate_generated_samples.py \
-    --diffusion-tags ${DIFFUSION_TAGS} \
-    --cgd-tags ${CGD_TAGS} \
-    --edm-tags ${EDM_TAGS} \
+    ${DIFFUSION_TAGS:+--diffusion-tags $DIFFUSION_TAGS} \
+    ${CGD_TAGS:+--cgd-tags $CGD_TAGS} \
+    ${EDM_TAGS:+--edm-tags $EDM_TAGS} \
+    --output results/generation_classifier_eval/${SLURM_JOB_NAME:-all} \
     --classifier-tag ${CLASSIFIER_TAG:-eval} \
     --num-samples ${NUM_SAMPLES:-128} \
     --batch-size ${BATCH_SIZE:-16}
