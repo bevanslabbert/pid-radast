@@ -2,6 +2,7 @@ import functools
 import gc
 import json
 import os
+import re
 
 import matplotlib.pyplot as plt
 import torch
@@ -66,6 +67,25 @@ def _save_fits_dir(images_by_class, dataset, result_dir, epoch_suffix=''):
             fname = os.path.join(fits_dir, f'generated_class{class_idx}_{i:03d}{epoch_suffix}.fits')
             MiraBestFITS.write_fits(jy_array, fname)
     print(f"FITS files saved to {fits_dir}")
+
+
+_EPOCH_SNAPSHOT_PATTERN = re.compile(
+    r'^(?:comparison_epoch_|pixel_pdf_epoch_|generated_class\d+_\d+_)(\d+)\.(?:png|fits)$'
+)
+
+
+def _prune_epoch_snapshots(result_dir, fid_epochs, fid_history):
+    """Keep per-epoch snapshots (comparison grid, pixel-PDF plot, FITS) only for the
+    latest and best-FID epochs; each eval otherwise adds ~3.5MB, ~140MB per 400-epoch run."""
+    best_epoch = fid_epochs[min(range(len(fid_history)), key=fid_history.__getitem__)]
+    keep = {fid_epochs[-1], best_epoch}
+    for directory in (result_dir, os.path.join(result_dir, 'generated_fits')):
+        if not os.path.isdir(directory):
+            continue
+        for fname in os.listdir(directory):
+            match = _EPOCH_SNAPSHOT_PATTERN.match(fname)
+            if match and int(match.group(1)) not in keep:
+                os.remove(os.path.join(directory, fname))
 
 
 def sample_from_model(model, scheduler, class_emb, num_samples, num_classes, device,
@@ -613,6 +633,7 @@ def _train_diffusion_loop(
             pdf_score = compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_dir, epoch)
             pdf_history.append(pdf_score)
             print(f'  Pixel PDF W-dist: {pdf_score:.4f}')
+            _prune_epoch_snapshots(result_dir, fid_epochs, fid_history)
 
             if compliance_fn is not None:
                 c_metrics = compliance_fn(gen_0, gen_1)
@@ -956,6 +977,7 @@ def train_edm_baseline(config, trainloader, valloader, testloader, device, resul
             pdf_score = compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_directory, epoch)
             pdf_history.append(pdf_score)
             print(f'  Pixel PDF W-dist: {pdf_score:.4f}')
+            _prune_epoch_snapshots(result_directory, fid_epochs, fid_history)
 
             unet.train()
 

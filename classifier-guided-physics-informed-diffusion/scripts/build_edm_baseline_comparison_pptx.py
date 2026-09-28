@@ -125,13 +125,13 @@ tb.text_frame.paragraphs[0].runs[0].font.bold = True
 tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
 table(s, [
     ["Model", "FID ↓", "KID ↓", "pixel-PDF W ↓", "Epochs"],
-    ["EDM baseline  (mean ± std, n=2: seeds 42, 43)", "82.8 ± 1.0", "0.045 ± 0.001", "0.0031 ± 0.0004", "400\n(complete)"],
-    ["diffusion (DDPM+CFG)  (n=1: seed 42)", "73.5", "0.022", "0.0105", "400\n(complete)"],
-    ["CGD  (n=1: seed 42)", "66.8", "0.016", "0.0069", "400\n(complete)"],
+    ["EDM baseline  (mean ± std, n=5: seeds 42-46)", "87.3 ± 5.0", "0.048 ± 0.005", "0.0036 ± 0.0009", "400\n(complete)"],
+    ["diffusion (DDPM+CFG)  (mean ± std, n=4: seeds 42-45)", "73.4 ± 1.4", "0.021 ± 0.003", "0.0078 ± 0.0021", "400\n(complete)"],
+    ["CGD  (n=1: seed 42)", "66.8", "0.016", "0.0064", "400\n(complete)"],
 ], top=1.7, height=1.8, col_widths=[4.6, 1.8, 2.0, 2.4, 1.5], font=12)
 tb = s.shapes.add_textbox(Inches(0.5), Inches(3.55), Inches(11.5), Inches(0.35))
 r = tb.text_frame.paragraphs[0].add_run()
-r.text = "EDM has 2 completed seeds so far; DDPM and CGD each have 1. 4 more seeds (43-46) per model submitted, pending completion."
+r.text = "EDM has all 5 seeds; DDPM has 4 (seed 46 pending); CGD has 1 (seeds 43-46 pending). Std is the sample std across seeds."
 r.font.size = Pt(10); r.font.italic = True; r.font.color.rgb = GREY
 
 tb = s.shapes.add_textbox(Inches(0.5), Inches(4.3), Inches(9), Inches(0.3))
@@ -145,33 +145,13 @@ table(s, [
     ["DDPM-generated", "16", "0.00174", "0.771"],
     ["CGD-generated (latest, ep 290)", "32", "0.00300", "0.725"],
 ], top=4.65, height=2.0, col_widths=[5.2, 1.3, 3.0, 3.0], font=12)
-caption(s, "CGD still best on distributional metrics (FID/KID/PDF) on its single completed seed; DDPM closed most of the gap. "
-           "DDPM best on VQ-VAE reconstruction fidelity this round. Ranking may shift once all three models have 5 seeds.")
+caption(s, "DDPM beats EDM on FID/KID in every seed; EDM keeps the best pixel-PDF W. CGD's single seed has the best FID/KID "
+           "but is not yet multi-seed. DDPM best on VQ-VAE reconstruction fidelity.")
 
 # ---------------------------------------------------------------- 4 comparison graph
 s = slide()
 title(s, "Metrics vs epoch")
 pic(s, os.path.join(RES, "edm_baseline/metric_comparison.png"), 0.4, 2.1, 12.6)
-
-# ---------------------------------------------------------------- 5 per-run training graphs
-s = slide()
-title(s, "Per-run generative-metric curves")
-cols = [
-    ("EDM baseline, seed 42 (400 ep, complete)", os.path.join(RES, "edm_baseline/20260917_161506_my_run_tag_913384")),
-    ("DDPM diffusion, seed 42 (400 ep, complete)", os.path.join(RES, "diffusion/20260917_161506_diffusion_crumb_fits_913386")),
-    ("CGD, seed 42 (400 ep, complete)", os.path.join(RES, "classifier_guided_diffusion/20260920_172407_cls_guided_diffusion_crumb_fits_seed42_921074")),
-]
-xs = [0.4, 4.75, 9.1]
-for (label, d), x in zip(cols, xs):
-    tb = s.shapes.add_textbox(Inches(x), Inches(1.4), Inches(4.0), Inches(0.3))
-    r = tb.text_frame.paragraphs[0].add_run(); r.text = label
-    r.font.size = Pt(12); r.font.bold = True; r.font.color.rgb = NAVY
-    pic(s, os.path.join(d, "generative_metrics.png"), x, 1.75, 4.0)
-    pic(s, os.path.join(d, "pixel_pdf_history.png"), x, 4.55, 4.0)
-caption(s, "Top row: FID / KID vs epoch.   Bottom row: pixel-PDF Wasserstein history. "
-           "All three models now have at least one complete 400-epoch run; CGD's earlier resume-checkpoint "
-           "crash was fixed and it re-ran to completion. Curves shown are each model's seed-42 run; "
-           "4 more seeds per model are in progress for a proper multi-seed comparison.")
 
 # ---------------------------------------------------------------- 6 reconstruction overview + metrics
 s = slide()

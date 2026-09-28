@@ -38,16 +38,22 @@ def from_log(*paths):
 # will grow as the 5-seed sweep (2026-09-20) completes.
 models = {
     "EDM baseline": (
-        [["slurm-912853.out", "slurm-913384.out"],
-         ["slurm-921086.out"]],
+        [["slurm-909739.out", "slurm-912853.out", "slurm-913384.out"],
+         ["slurm-921086.out"],
+         ["slurm-921087.out"],
+         ["slurm-921088.out"],
+         ["slurm-921089.out"]],
         "#c44",
     ),
     "DDPM (diffusion)": (
-        [["slurm-912851.out", "slurm-913386.out"]],
+        [["slurm-912851.out", "slurm-913386.out"],
+         ["slurm-921090.out"],
+         ["slurm-921091.out"],
+         ["slurm-921092.out"]],
         "#48a",
     ),
     "CGD": (
-        [["slurm-912852.out", "slurm-921074.out"]],
+        [["slurm-321045.out", "slurm-912852.out", "slurm-921074.out"]],
         "#2a2",
     ),
 }
@@ -55,29 +61,34 @@ models = {
 series = {name: ([from_log(*paths) for paths in seed_logs], color)
           for name, (seed_logs, color) in models.items()}
 
-fig, axes = plt.subplots(1, 3, figsize=(13, 4))
-for ax, idx, ttl, log in zip(axes, [1, 2, 3], ["FID", "KID", "pixel-PDF Wasserstein"], [0, 0, 1]):
+fig, axes = plt.subplots(1, 3, figsize=(14, 4.6))
+panels = [("FID", 0, False), ("KID", 1, False), ("pixel-PDF Wasserstein", 2, True)]
+for ax, (ttl, col, log) in zip(axes, panels):
     for name, (runs, c) in series.items():
+        # mean (and std band) across seeds at each evaluated epoch
+        per_ep = {}
+        for ep, *metrics in runs:
+            for e, v in zip(ep.tolist(), metrics[col]):
+                per_ep.setdefault(e, []).append(v)
+        eps = np.array(sorted(per_ep))
+        vals = [np.array(per_ep[e]) for e in eps]
+        mean = np.array([v.mean() for v in vals])
         n = len(runs)
-        for ep, fid, kid, pdf in runs:
-            y = [fid, kid, pdf][idx - 1]
-            ax.plot(ep, y, "o-", ms=2.5, lw=0.9, color=c, alpha=0.35 if n > 1 else 1.0)
+        ax.plot(eps, mean, "-", lw=2.2, color=c, label=f"{name}  (n={n})")
         if n > 1:
-            # mean across seeds at epochs shared by every seed's eval schedule
-            shared_ep = sorted(set.intersection(*[set(ep.tolist()) for ep, *_ in runs]))
-            col = idx - 1
-            ys = np.array([[dict(zip(ep.tolist(), [fid, kid, pdf][col]))[e] for e in shared_ep]
-                            for ep, fid, kid, pdf in runs])
-            ax.plot(shared_ep, ys.mean(axis=0), "-", lw=2.2, color=c,
-                     label=f"{name}  (mean, n={n})")
-        else:
-            ax.plot([], [], "-", lw=2.2, color=c, label=f"{name}  (n=1)")
-    ax.set_title(ttl + "  (lower is better)", fontsize=11)
-    ax.set_xlabel("epoch")
+            std = np.array([v.std(ddof=1) if len(v) > 1 else 0.0 for v in vals])
+            lo = np.clip(mean - std, mean * 0.05, None) if log else mean - std
+            ax.fill_between(eps, lo, mean + std, color=c, alpha=0.15, lw=0)
+    ax.set_title(ttl, fontsize=13)
+    ax.set_xlabel("epoch", fontsize=11)
+    ax.set_xlim(0, 400)
     if log:
         ax.set_yscale("log")
-    ax.grid(alpha=0.3)
-axes[0].legend(fontsize=8)
-fig.tight_layout()
-fig.savefig(OUT, dpi=130)
+    ax.grid(alpha=0.25)
+    ax.spines[["top", "right"]].set_visible(False)
+handles, labels = axes[0].get_legend_handles_labels()
+fig.legend(handles, labels, loc="upper center", ncol=3, fontsize=11, frameon=False)
+fig.text(0.5, 0.005, "Lower is better.  Line = mean across seeds, band = ±1 std.", ha="center", fontsize=10, color="#555")
+fig.tight_layout(rect=(0, 0.03, 1, 0.9))
+fig.savefig(OUT, dpi=150)
 print("wrote", OUT)

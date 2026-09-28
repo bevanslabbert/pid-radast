@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --gres=gpu:1
-#SBATCH --time=01:00:00
+#SBATCH --time=03:00:00
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=bevanslabbert@gmail.com
 
@@ -22,4 +22,5 @@ python scripts/evaluate_generated_samples.py \
     --cgd-tags ${CGD_TAGS} \
     --edm-tags ${EDM_TAGS} \
     --classifier-tag ${CLASSIFIER_TAG:-eval} \
-    --num-samples ${NUM_SAMPLES:-16}
+    --num-samples ${NUM_SAMPLES:-128} \
+    --batch-size ${BATCH_SIZE:-16}

@@ -9,6 +9,12 @@ edm_baseline's checkpoints across multiple seeds, classifies them, and reports:
   - class_accuracy: fraction of generated class-c images the classifier
     predicts as class c (does the model actually generate what it was asked to?)
   - mean_confidence: mean softmax probability assigned to the intended class
+  - per-class accuracy (FR-I / FR-II), so a model that collapses onto one class
+    shows up as ~1.0 / ~0.0 rather than hiding behind a 0.5 overall accuracy
+
+Samples are generated in micro-batches of --batch-size per class (CFG doubles each
+forward pass, so large single batches OOM on an 11.9GB GPU) until --num-samples
+per class is reached.
 
 Aggregated as mean +/- std across seeds per model type.
 
@@ -18,7 +24,7 @@ Usage:
         --cgd-tags exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46 \
         --edm-tags exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46 \
         --classifier-tag eval \
-        --num-samples 64
+        --num-samples 128 --batch-size 16
 """
 import argparse
 import json
@@ -51,7 +57,7 @@ def load_eval_classifier(num_classes, device, tag):
 
 
 def classify_generated(classifier, gen_0, gen_1, device):
-    """Returns (accuracy, mean_confidence) for a single (gen_0, gen_1) pair."""
+    """Returns (accuracy, mean_confidence, per_class_accuracy) for a (gen_0, gen_1) pair."""
     images = torch.cat([gen_0, gen_1], dim=0).to(device)
     labels = torch.cat([
         torch.zeros(gen_0.shape[0], dtype=torch.long),
@@ -63,9 +69,11 @@ def classify_generated(classifier, gen_0, gen_1, device):
         probs = F.softmax(logits, dim=1)
         preds = probs.argmax(dim=1)
 
-    accuracy = (preds == labels).float().mean().item()
+    correct = (preds == labels).float()
+    accuracy = correct.mean().item()
     confidence = probs[torch.arange(labels.shape[0]), labels].mean().item()
-    return accuracy, confidence
+    per_class = [correct[labels == c].mean().item() for c in range(len(CLASS_NAMES))]
+    return accuracy, confidence, per_class
 
 
 def generate_diffusion(config, tag, num_classes, num_samples, device, shape):
@@ -125,23 +133,42 @@ MODEL_SPECS = {
 }
 
 
-def evaluate_model(model_type, tags, classifier, num_classes, num_samples, device, shape):
+def generate_in_batches(generate_fn, config, tag, num_classes, num_samples, batch_size, device, shape):
+    gen_0, gen_1 = [], []
+    remaining = num_samples
+    while remaining > 0:
+        n = min(batch_size, remaining)
+        g0, g1 = generate_fn(config, tag, num_classes, n, device, shape)
+        gen_0.append(g0.detach().cpu())
+        gen_1.append(g1.detach().cpu())
+        remaining -= n
+    return torch.cat(gen_0), torch.cat(gen_1)
+
+
+def evaluate_model(model_type, tags, classifier, num_classes, num_samples, batch_size, device, shape):
     config_path, generate_fn = MODEL_SPECS[model_type]
     config = load_config(config_path)
     config['data']['num_classes'] = num_classes
 
-    accuracies, confidences = [], []
+    accuracies, confidences, per_class_accs = [], [], []
     for tag in tags:
-        gen_0, gen_1 = generate_fn(config, tag, num_classes, num_samples, device, shape)
-        acc, conf = classify_generated(classifier, gen_0, gen_1, device)
-        print(f"  [{model_type}/{tag}]  class_accuracy={acc:.4f}  mean_confidence={conf:.4f}")
+        gen_0, gen_1 = generate_in_batches(
+            generate_fn, config, tag, num_classes, num_samples, batch_size, device, shape,
+        )
+        acc, conf, per_class = classify_generated(classifier, gen_0, gen_1, device)
+        per_class_str = '  '.join(f"{n}={a:.4f}" for n, a in zip(CLASS_NAMES, per_class))
+        print(f"  [{model_type}/{tag}]  class_accuracy={acc:.4f}  mean_confidence={conf:.4f}  ({per_class_str})")
         accuracies.append(acc)
         confidences.append(conf)
+        per_class_accs.append(per_class)
 
     return {
         'tags': tags,
         'class_accuracy_per_seed': accuracies,
         'mean_confidence_per_seed': confidences,
+        'per_class_accuracy_per_seed': {
+            name: [pc[i] for pc in per_class_accs] for i, name in enumerate(CLASS_NAMES)
+        },
         'class_accuracy_mean': float(np.mean(accuracies)),
         'class_accuracy_std': float(np.std(accuracies)),
         'mean_confidence_mean': float(np.mean(confidences)),
@@ -157,13 +184,16 @@ def main():
     parser.add_argument('--classifier-tag', default='eval',
                          help="checkpoints/classification/<tag> -- must be trained separately "
                               "from any classifier used to guide classifier_guided_diffusion.")
-    parser.add_argument('--num-samples', type=int, default=64, help="Generated samples per class per seed.")
+    parser.add_argument('--num-samples', type=int, default=128, help="Generated samples per class per seed.")
+    parser.add_argument('--batch-size', type=int, default=16, help="Samples per class per generation call (OOM guard).")
+    parser.add_argument('--seed', type=int, default=0, help="Sampling noise seed, for reproducible scores.")
     parser.add_argument('--num-classes', type=int, default=2)
     parser.add_argument('--input-size', type=int, default=150)
     parser.add_argument('--output', default='results/generation_classifier_eval')
     args = parser.parse_args()
 
     os.makedirs(args.output, exist_ok=True)
+    torch.manual_seed(args.seed)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"On device {device}")
 
@@ -180,7 +210,7 @@ def main():
             continue
         print(f"\nEvaluating {model_type} ({len(tags)} seeds)...")
         results[model_type] = evaluate_model(
-            model_type, tags, classifier, args.num_classes, args.num_samples, device, shape,
+            model_type, tags, classifier, args.num_classes, args.num_samples, args.batch_size, device, shape,
         )
 
     print("\n=== Summary (class_accuracy: predicted-as-intended-class rate) ===")
