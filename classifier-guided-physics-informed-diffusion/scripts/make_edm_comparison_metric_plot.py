@@ -53,7 +53,11 @@ models = {
         "#48a",
     ),
     "CGD": (
-        [["slurm-321045.out", "slurm-912852.out", "slurm-921074.out"]],
+        [["slurm-321045.out", "slurm-912852.out", "slurm-921074.out"],
+         ["slurm-921094.out"],
+         ["slurm-921095.out", "slurm-13877273.out"],
+         ["slurm-921096.out", "slurm-13877274.out"],
+         ["slurm-921097.out", "slurm-13877275.out"]],
         "#2a2",
     ),
 }

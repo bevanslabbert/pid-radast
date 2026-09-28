@@ -126,12 +126,12 @@ tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
 table(s, [
     ["Model", "FID ↓", "KID ↓", "pixel-PDF W ↓", "Epochs"],
     ["EDM baseline  (mean ± std, n=5: seeds 42-46)", "87.3 ± 5.0", "0.048 ± 0.005", "0.0036 ± 0.0009", "400\n(complete)"],
-    ["diffusion (DDPM+CFG)  (mean ± std, n=4: seeds 42-45)", "73.4 ± 1.4", "0.021 ± 0.003", "0.0078 ± 0.0021", "400\n(complete)"],
-    ["CGD  (n=1: seed 42)", "66.8", "0.016", "0.0064", "400\n(complete)"],
+    ["diffusion (DDPM+CFG)  (mean ± std, n=4: seeds 42-45)", "73.4 ± 1.4", "0.021 ± 0.003", "0.0077 ± 0.0021", "400\n(complete)"],
+    ["CGD  (mean ± std, n=5: seeds 42-46)", "74.4 ± 5.2", "0.024 ± 0.005", "0.0078 ± 0.0009", "400\n(complete)"],
 ], top=1.7, height=1.8, col_widths=[4.6, 1.8, 2.0, 2.4, 1.5], font=12)
 tb = s.shapes.add_textbox(Inches(0.5), Inches(3.55), Inches(11.5), Inches(0.35))
 r = tb.text_frame.paragraphs[0].add_run()
-r.text = "EDM has all 5 seeds; DDPM has 4 (seed 46 pending); CGD has 1 (seeds 43-46 pending). Std is the sample std across seeds."
+r.text = "EDM and CGD have all 5 seeds; DDPM has 4 (seed 46 hit its time limit at epoch 260). Std is the sample std across seeds."
 r.font.size = Pt(10); r.font.italic = True; r.font.color.rgb = GREY
 
 tb = s.shapes.add_textbox(Inches(0.5), Inches(4.3), Inches(9), Inches(0.3))
@@ -145,8 +145,8 @@ table(s, [
     ["DDPM-generated", "16", "0.00174", "0.771"],
     ["CGD-generated (latest, ep 290)", "32", "0.00300", "0.725"],
 ], top=4.65, height=2.0, col_widths=[5.2, 1.3, 3.0, 3.0], font=12)
-caption(s, "DDPM beats EDM on FID/KID in every seed; EDM keeps the best pixel-PDF W. CGD's single seed has the best FID/KID "
-           "but is not yet multi-seed. DDPM best on VQ-VAE reconstruction fidelity.")
+caption(s, "Over 5 seeds CGD is level with DDPM (seed 42's FID 66.8 was its best seed; others 72.9-80.5). Both beat EDM on "
+           "FID/KID; EDM keeps the best pixel-PDF W. DDPM best on VQ-VAE reconstruction fidelity.")
 
 # ---------------------------------------------------------------- 4 comparison graph
 s = slide()
