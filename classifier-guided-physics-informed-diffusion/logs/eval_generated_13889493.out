@@ -1,0 +1,13 @@
+On device cuda
+
+Evaluating edm_baseline (5 seeds)...
+  [edm_baseline/my_run_tag]  class_accuracy=0.8516  mean_confidence=0.6995  (FR-I=0.7969  FR-II=0.9062)
+  [edm_baseline/my_run_tag_seed43]  class_accuracy=0.8438  mean_confidence=0.7150  (FR-I=0.7422  FR-II=0.9453)
+  [edm_baseline/my_run_tag_seed44]  class_accuracy=0.8711  mean_confidence=0.7399  (FR-I=0.8203  FR-II=0.9219)
+  [edm_baseline/my_run_tag_seed45]  class_accuracy=0.8281  mean_confidence=0.7081  (FR-I=0.7578  FR-II=0.8984)
+  [edm_baseline/my_run_tag_seed46]  class_accuracy=0.8203  mean_confidence=0.6976  (FR-I=0.6719  FR-II=0.9688)
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+edm_baseline                    acc=0.8430 +/- 0.0179   conf=0.7120 +/- 0.0153
+
+Saved to results/generation_classifier_eval/eval_edm/classifier_eval_metrics.json

@@ -1,0 +1,40 @@
+{
+  "diffusion": {
+    "tags": [
+      "diffusion_crumb_fits",
+      "diffusion_crumb_fits_seed43",
+      "diffusion_crumb_fits_seed44",
+      "diffusion_crumb_fits_seed45"
+    ],
+    "class_accuracy_per_seed": [
+      0.98828125,
+      0.97265625,
+      0.98828125,
+      0.96484375
+    ],
+    "mean_confidence_per_seed": [
+      0.8426563739776611,
+      0.8419457674026489,
+      0.8533130884170532,
+      0.8280330896377563
+    ],
+    "per_class_accuracy_per_seed": {
+      "FR-I": [
+        0.984375,
+        0.9609375,
+        0.984375,
+        0.9296875
+      ],
+      "FR-II": [
+        0.9921875,
+        0.984375,
+        0.9921875,
+        1.0
+      ]
+    },
+    "class_accuracy_mean": 0.978515625,
+    "class_accuracy_std": 0.01014873520059889,
+    "mean_confidence_mean": 0.8414870798587799,
+    "mean_confidence_std": 0.008978334676975208
+  }
+}

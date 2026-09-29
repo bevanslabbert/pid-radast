@@ -1,0 +1,45 @@
+{
+  "edm_baseline": {
+    "tags": [
+      "my_run_tag",
+      "my_run_tag_seed43",
+      "my_run_tag_seed44",
+      "my_run_tag_seed45",
+      "my_run_tag_seed46"
+    ],
+    "class_accuracy_per_seed": [
+      0.8515625,
+      0.84375,
+      0.87109375,
+      0.828125,
+      0.8203125
+    ],
+    "mean_confidence_per_seed": [
+      0.6994770765304565,
+      0.7149983048439026,
+      0.7399343252182007,
+      0.7081318497657776,
+      0.6975775957107544
+    ],
+    "per_class_accuracy_per_seed": {
+      "FR-I": [
+        0.796875,
+        0.7421875,
+        0.8203125,
+        0.7578125,
+        0.671875
+      ],
+      "FR-II": [
+        0.90625,
+        0.9453125,
+        0.921875,
+        0.8984375,
+        0.96875
+      ]
+    },
+    "class_accuracy_mean": 0.84296875,
+    "class_accuracy_std": 0.01788362990978062,
+    "mean_confidence_mean": 0.7120238304138183,
+    "mean_confidence_std": 0.01529120964365518
+  }
+}

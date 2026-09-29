@@ -1,0 +1,45 @@
+{
+  "classifier_guided_diffusion": {
+    "tags": [
+      "cls_guided_diffusion_crumb_fits_seed42",
+      "cls_guided_diffusion_crumb_fits_seed43",
+      "cls_guided_diffusion_crumb_fits_seed44",
+      "cls_guided_diffusion_crumb_fits_seed45",
+      "cls_guided_diffusion_crumb_fits_seed46"
+    ],
+    "class_accuracy_per_seed": [
+      0.984375,
+      0.984375,
+      0.98046875,
+      0.9921875,
+      0.94140625
+    ],
+    "mean_confidence_per_seed": [
+      0.8106684684753418,
+      0.838429868221283,
+      0.8374577760696411,
+      0.8333768844604492,
+      0.7082768678665161
+    ],
+    "per_class_accuracy_per_seed": {
+      "FR-I": [
+        0.96875,
+        0.96875,
+        0.96875,
+        0.984375,
+        0.9765625
+      ],
+      "FR-II": [
+        1.0,
+        1.0,
+        0.9921875,
+        1.0,
+        0.90625
+      ]
+    },
+    "class_accuracy_mean": 0.9765625,
+    "class_accuracy_std": 0.01798572567690834,
+    "mean_confidence_mean": 0.8056419730186463,
+    "mean_confidence_std": 0.049722723308654314
+  }
+}

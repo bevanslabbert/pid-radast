@@ -1,0 +1,12 @@
+On device cuda
+
+Evaluating diffusion (4 seeds)...
+  [diffusion/diffusion_crumb_fits]  class_accuracy=0.9883  mean_confidence=0.8427  (FR-I=0.9844  FR-II=0.9922)
+  [diffusion/diffusion_crumb_fits_seed43]  class_accuracy=0.9727  mean_confidence=0.8419  (FR-I=0.9609  FR-II=0.9844)
+  [diffusion/diffusion_crumb_fits_seed44]  class_accuracy=0.9883  mean_confidence=0.8533  (FR-I=0.9844  FR-II=0.9922)
+  [diffusion/diffusion_crumb_fits_seed45]  class_accuracy=0.9648  mean_confidence=0.8280  (FR-I=0.9297  FR-II=1.0000)
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+diffusion                       acc=0.9785 +/- 0.0101   conf=0.8415 +/- 0.0090
+
+Saved to results/generation_classifier_eval/eval_ddpm/classifier_eval_metrics.json
