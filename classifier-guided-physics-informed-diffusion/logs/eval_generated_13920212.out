@@ -1,0 +1,23 @@
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+Evaluating diffusion_classifier_guided (4 seeds)...
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+  [diffusion_classifier_guided/diffusion_crumb_fits]  class_accuracy=0.9688  mean_confidence=0.8803  (FR-I=0.9375  FR-II=1.0000)  fid=55.62  kid=0.0311
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
