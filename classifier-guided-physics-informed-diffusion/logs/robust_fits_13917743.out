@@ -257,3 +257,1060 @@ Epoch 21 [warmup] | Loss: 0.4508 | Val Loss: 0.5559 | Val Acc: 73.7% | LR: 3.14e
   Batch  78 | t=[7,101] | loss=0.8150 | acc=3/6 | MISCLASSIFIED: [0] pred=1 true=0 t=76, [4] pred=1 true=0 t=7, [5] pred=0 true=1 t=30
 Epoch 22 [warmup] | Loss: 0.4298 | Val Loss: 0.7315 | Val Acc: 71.1% | LR: 3.14e-03
 --- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[2,114] | loss=0.2784 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=44
+  Batch   1 | t=[19,108] | loss=0.5344 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=19, [11] pred=0 true=1 t=83, [12] pred=0 true=1 t=108, [13] pred=0 true=1 t=22
+  Batch   2 | t=[4,110] | loss=0.7390 | acc=8/16 | MISCLASSIFIED: [4] pred=0 true=1 t=13, [6] pred=0 true=1 t=101, [9] pred=1 true=0 t=108, [11] pred=1 true=0 t=104, [12] pred=1 true=0 t=103, [13] pred=1 true=0 t=14, [14] pred=0 true=1 t=19, [15] pred=0 true=1 t=46
+  Batch   3 | t=[2,106] | loss=0.5167 | acc=11/16 | MISCLASSIFIED: [4] pred=1 true=0 t=58, [8] pred=1 true=0 t=50, [11] pred=1 true=0 t=4, [13] pred=1 true=0 t=99, [15] pred=1 true=0 t=85
+  Batch   4 | t=[9,106] | loss=0.4801 | acc=14/16 | MISCLASSIFIED: [9] pred=1 true=0 t=70, [15] pred=0 true=1 t=28
+  Batch   5 | t=[6,79] | loss=0.3760 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=58, [12] pred=1 true=0 t=13
+  Batch   6 | t=[1,108] | loss=0.5033 | acc=12/16 | MISCLASSIFIED: [7] pred=1 true=0 t=82, [10] pred=0 true=1 t=104, [12] pred=0 true=1 t=87, [15] pred=1 true=0 t=1
+  Batch   7 | t=[4,113] | loss=0.3038 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=107, [8] pred=0 true=1 t=104
+  Batch   8 | t=[5,92] | loss=0.3977 | acc=14/16 | MISCLASSIFIED: [10] pred=1 true=0 t=28, [14] pred=1 true=0 t=16
+  Batch   9 | t=[2,99] | loss=0.4312 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=2, [14] pred=0 true=1 t=96, [15] pred=0 true=1 t=52
+  Batch  10 | t=[2,114] | loss=0.3394 | acc=15/16 | MISCLASSIFIED: [13] pred=1 true=0 t=49
+  Batch  11 | t=[0,109] | loss=0.3807 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=0, [4] pred=0 true=1 t=78
+  Batch  12 | t=[7,110] | loss=0.5418 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=40, [9] pred=1 true=0 t=110, [10] pred=1 true=0 t=95, [12] pred=1 true=0 t=7, [13] pred=1 true=0 t=85
+  Batch  13 | t=[13,110] | loss=0.6135 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=61, [3] pred=1 true=0 t=78, [4] pred=1 true=0 t=110, [6] pred=1 true=0 t=60, [9] pred=1 true=0 t=35
+  Batch  14 | t=[7,100] | loss=0.3547 | acc=13/16 | MISCLASSIFIED: [10] pred=1 true=0 t=87, [11] pred=1 true=0 t=34, [15] pred=1 true=0 t=100
+  Batch  15 | t=[9,113] | loss=0.6548 | acc=9/16 | MISCLASSIFIED: [0] pred=1 true=0 t=101, [2] pred=1 true=0 t=65, [4] pred=1 true=0 t=113, [5] pred=0 true=1 t=63, [8] pred=1 true=0 t=39, [10] pred=1 true=0 t=63, [12] pred=1 true=0 t=68
+  Batch  16 | t=[6,108] | loss=0.4254 | acc=12/16 | MISCLASSIFIED: [7] pred=0 true=1 t=22, [9] pred=1 true=0 t=89, [10] pred=1 true=0 t=24, [15] pred=1 true=0 t=96
+  Batch  17 | t=[16,105] | loss=0.2830 | acc=15/16 | MISCLASSIFIED: [11] pred=1 true=0 t=78
+  Batch  18 | t=[2,100] | loss=0.4021 | acc=14/16 | MISCLASSIFIED: [8] pred=0 true=1 t=46, [9] pred=0 true=1 t=25
+  Batch  19 | t=[15,114] | loss=0.6127 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=57, [6] pred=0 true=1 t=34, [7] pred=0 true=1 t=114
+  Batch  20 | t=[1,113] | loss=0.3742 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=6
+  Batch  21 | t=[1,113] | loss=0.6391 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=1, [5] pred=1 true=0 t=79, [8] pred=0 true=1 t=83, [12] pred=1 true=0 t=12
+  Batch  22 | t=[0,102] | loss=0.5364 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=49, [4] pred=0 true=1 t=6, [5] pred=1 true=0 t=7, [15] pred=0 true=1 t=0
+  Batch  23 | t=[7,114] | loss=0.7270 | acc=8/16 | MISCLASSIFIED: [2] pred=0 true=1 t=28, [3] pred=0 true=1 t=114, [5] pred=1 true=0 t=73, [6] pred=0 true=1 t=86, [8] pred=0 true=1 t=41, [9] pred=1 true=0 t=67, [12] pred=1 true=0 t=84, [13] pred=1 true=0 t=108
+  Batch  24 | t=[4,78] | loss=0.3292 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=58, [14] pred=0 true=1 t=16
+  Batch  25 | t=[0,111] | loss=0.3552 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=78, [7] pred=0 true=1 t=94
+  Batch  26 | t=[0,95] | loss=0.2828 | acc=15/16 | MISCLASSIFIED: [2] pred=1 true=0 t=89
+  Batch  27 | t=[2,105] | loss=0.4059 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=11, [10] pred=0 true=1 t=105, [11] pred=1 true=0 t=72
+  Batch  28 | t=[4,112] | loss=0.4303 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=72, [14] pred=0 true=1 t=67
+  Batch  29 | t=[21,112] | loss=0.3279 | acc=14/16 | MISCLASSIFIED: [12] pred=0 true=1 t=52, [14] pred=1 true=0 t=59
+  Batch  30 | t=[1,111] | loss=0.1993 | acc=16/16
+  Batch  31 | t=[6,112] | loss=0.5206 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=103, [5] pred=1 true=0 t=111, [13] pred=1 true=0 t=23
+  Batch  32 | t=[20,111] | loss=0.3932 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=111, [1] pred=1 true=0 t=102, [3] pred=0 true=1 t=52
+  Batch  33 | t=[4,114] | loss=0.3917 | acc=14/16 | MISCLASSIFIED: [10] pred=1 true=0 t=95, [14] pred=1 true=0 t=11
+  Batch  34 | t=[6,100] | loss=0.4227 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=8, [6] pred=1 true=0 t=7, [10] pred=1 true=0 t=92, [13] pred=1 true=0 t=26
+  Batch  35 | t=[0,112] | loss=0.4260 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=47, [11] pred=1 true=0 t=112
+  Batch  36 | t=[4,112] | loss=0.4510 | acc=15/16 | MISCLASSIFIED: [4] pred=1 true=0 t=16
+  Batch  37 | t=[4,112] | loss=0.8640 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=12, [6] pred=0 true=1 t=109, [9] pred=1 true=0 t=32, [11] pred=1 true=0 t=4, [15] pred=1 true=0 t=111
+  Batch  38 | t=[23,111] | loss=0.4528 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=30, [9] pred=0 true=1 t=62, [15] pred=0 true=1 t=86
+  Batch  39 | t=[4,113] | loss=0.6819 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=74, [1] pred=0 true=1 t=101, [4] pred=0 true=1 t=94, [8] pred=1 true=0 t=55, [11] pred=1 true=0 t=16
+  Batch  40 | t=[16,107] | loss=0.3520 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=33
+  Batch  41 | t=[0,114] | loss=0.3008 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=109, [3] pred=0 true=1 t=77
+  Batch  42 | t=[0,89] | loss=0.3671 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=51
+  Batch  43 | t=[2,114] | loss=0.6348 | acc=11/16 | MISCLASSIFIED: [1] pred=0 true=1 t=68, [5] pred=1 true=0 t=101, [6] pred=0 true=1 t=69, [9] pred=1 true=0 t=54, [12] pred=1 true=0 t=64
+  Batch  44 | t=[6,111] | loss=0.5455 | acc=12/16 | MISCLASSIFIED: [8] pred=0 true=1 t=93, [9] pred=0 true=1 t=61, [13] pred=1 true=0 t=23, [14] pred=0 true=1 t=90
+  Batch  45 | t=[1,113] | loss=0.4757 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=4, [10] pred=1 true=0 t=38, [11] pred=0 true=1 t=56
+  Batch  46 | t=[1,113] | loss=0.4340 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=47, [4] pred=1 true=0 t=91
+  Batch  47 | t=[9,108] | loss=0.7596 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=49, [1] pred=1 true=0 t=19, [3] pred=1 true=0 t=99, [8] pred=1 true=0 t=51
+  Batch  48 | t=[6,114] | loss=0.4840 | acc=13/16 | MISCLASSIFIED: [6] pred=0 true=1 t=8, [14] pred=1 true=0 t=28, [15] pred=0 true=1 t=11
+  Batch  49 | t=[6,85] | loss=0.2890 | acc=15/16 | MISCLASSIFIED: [5] pred=1 true=0 t=21
+  Batch  50 | t=[0,108] | loss=0.6623 | acc=10/16 | MISCLASSIFIED: [0] pred=1 true=0 t=43, [9] pred=1 true=0 t=93, [10] pred=1 true=0 t=41, [11] pred=0 true=1 t=66, [13] pred=1 true=0 t=97, [14] pred=0 true=1 t=103
+  Batch  51 | t=[4,100] | loss=0.5589 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=100, [3] pred=1 true=0 t=68, [4] pred=1 true=0 t=50, [11] pred=0 true=1 t=40, [13] pred=0 true=1 t=35
+  Batch  52 | t=[10,112] | loss=0.3606 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=68, [7] pred=0 true=1 t=112
+  Batch  53 | t=[2,111] | loss=0.4847 | acc=14/16 | MISCLASSIFIED: [7] pred=0 true=1 t=47, [13] pred=1 true=0 t=66
+  Batch  54 | t=[9,111] | loss=0.3034 | acc=15/16 | MISCLASSIFIED: [8] pred=1 true=0 t=34
+  Batch  55 | t=[3,105] | loss=0.2745 | acc=15/16 | MISCLASSIFIED: [0] pred=1 true=0 t=79
+  Batch  56 | t=[3,106] | loss=0.4242 | acc=13/16 | MISCLASSIFIED: [9] pred=1 true=0 t=104, [12] pred=1 true=0 t=101, [14] pred=0 true=1 t=93
+  Batch  57 | t=[0,104] | loss=0.5263 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=85, [2] pred=0 true=1 t=63, [3] pred=1 true=0 t=103, [8] pred=1 true=0 t=55, [13] pred=1 true=0 t=104
+  Batch  58 | t=[8,114] | loss=0.3399 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=10, [5] pred=1 true=0 t=66, [6] pred=1 true=0 t=73
+  Batch  59 | t=[10,105] | loss=0.4023 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=10, [3] pred=0 true=1 t=105, [11] pred=1 true=0 t=72
+  Batch  60 | t=[2,110] | loss=0.2978 | acc=16/16
+  Batch  61 | t=[4,106] | loss=0.8492 | acc=10/16 | MISCLASSIFIED: [1] pred=0 true=1 t=93, [3] pred=0 true=1 t=8, [4] pred=1 true=0 t=97, [5] pred=1 true=0 t=19, [10] pred=0 true=1 t=4, [15] pred=1 true=0 t=38
+  Batch  62 | t=[18,104] | loss=0.3874 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=78, [3] pred=1 true=0 t=37, [10] pred=0 true=1 t=71, [13] pred=1 true=0 t=94
+  Batch  63 | t=[2,114] | loss=0.7368 | acc=8/16 | MISCLASSIFIED: [0] pred=0 true=1 t=93, [3] pred=0 true=1 t=40, [4] pred=1 true=0 t=80, [6] pred=1 true=0 t=2, [7] pred=0 true=1 t=104, [10] pred=1 true=0 t=71, [14] pred=0 true=1 t=83, [15] pred=0 true=1 t=40
+  Batch  64 | t=[2,104] | loss=0.5136 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=21, [13] pred=0 true=1 t=79, [14] pred=0 true=1 t=93
+  Batch  65 | t=[13,99] | loss=0.4267 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=59, [12] pred=1 true=0 t=52, [15] pred=0 true=1 t=92
+  Batch  66 | t=[3,111] | loss=0.4976 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=69, [3] pred=0 true=1 t=72, [8] pred=1 true=0 t=47, [15] pred=0 true=1 t=18
+  Batch  67 | t=[7,111] | loss=0.5108 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=82, [5] pred=0 true=1 t=49, [10] pred=0 true=1 t=27, [14] pred=0 true=1 t=71
+  Batch  68 | t=[5,103] | loss=0.3513 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=15
+  Batch  69 | t=[3,106] | loss=0.3051 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=106, [4] pred=0 true=1 t=51
+  Batch  70 | t=[9,108] | loss=0.3160 | acc=15/16 | MISCLASSIFIED: [9] pred=1 true=0 t=21
+  Batch  71 | t=[6,101] | loss=0.3681 | acc=14/16 | MISCLASSIFIED: [8] pred=0 true=1 t=101, [15] pred=1 true=0 t=52
+  Batch  72 | t=[2,110] | loss=0.2992 | acc=16/16
+  Batch  73 | t=[9,114] | loss=0.3357 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=9, [4] pred=1 true=0 t=102, [10] pred=1 true=0 t=93
+  Batch  74 | t=[0,113] | loss=0.4930 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=10, [5] pred=0 true=1 t=75, [8] pred=0 true=1 t=112, [11] pred=0 true=1 t=77, [15] pred=0 true=1 t=65
+  Batch  75 | t=[1,112] | loss=0.2426 | acc=15/16 | MISCLASSIFIED: [3] pred=1 true=0 t=38
+  Batch  76 | t=[10,90] | loss=0.4054 | acc=12/16 | MISCLASSIFIED: [4] pred=0 true=1 t=86, [6] pred=1 true=0 t=28, [12] pred=0 true=1 t=28, [13] pred=1 true=0 t=38
+  Batch  77 | t=[17,112] | loss=0.2486 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=55
+  Batch  78 | t=[11,95] | loss=0.7418 | acc=5/6 | MISCLASSIFIED: [3] pred=1 true=0 t=76
+Epoch 23 [warmup] | Loss: 0.4517 | Val Loss: 0.5168 | Val Acc: 79.8% | LR: 3.13e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+--- Saved model to checkpoints/robust_classification/guide_fits_best/state.pt ---
+  ** New best metric: 79.8% — saved to checkpoints/robust_classification/guide_fits_best
+  Batch   0 | t=[19,102] | loss=0.4714 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=29, [6] pred=1 true=0 t=64, [7] pred=1 true=0 t=57, [9] pred=1 true=0 t=84, [15] pred=0 true=1 t=58
+  Batch   1 | t=[2,97] | loss=0.4894 | acc=14/16 | MISCLASSIFIED: [8] pred=0 true=1 t=97, [9] pred=1 true=0 t=71
+  Batch   2 | t=[4,115] | loss=0.2444 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=55
+  Batch   3 | t=[2,119] | loss=0.6154 | acc=10/16 | MISCLASSIFIED: [0] pred=1 true=0 t=112, [1] pred=1 true=0 t=101, [2] pred=0 true=1 t=22, [4] pred=1 true=0 t=15, [7] pred=1 true=0 t=111, [12] pred=0 true=1 t=67
+  Batch   4 | t=[3,107] | loss=0.4474 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=34, [4] pred=1 true=0 t=3, [12] pred=1 true=0 t=41
+  Batch   5 | t=[3,117] | loss=0.4621 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=100, [8] pred=1 true=0 t=101
+  Batch   6 | t=[11,117] | loss=0.4284 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=11, [8] pred=1 true=0 t=110, [11] pred=1 true=0 t=41
+  Batch   7 | t=[0,119] | loss=0.3310 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=115, [13] pred=1 true=0 t=69
+  Batch   8 | t=[13,118] | loss=0.2641 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=96
+  Batch   9 | t=[1,119] | loss=0.3611 | acc=11/16 | MISCLASSIFIED: [4] pred=0 true=1 t=64, [6] pred=0 true=1 t=119, [7] pred=0 true=1 t=1, [10] pred=0 true=1 t=74, [13] pred=0 true=1 t=9
+  Batch  10 | t=[6,119] | loss=0.4472 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=119, [3] pred=0 true=1 t=46, [4] pred=0 true=1 t=55
+  Batch  11 | t=[4,119] | loss=0.3863 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=8, [8] pred=0 true=1 t=83, [14] pred=0 true=1 t=60
+  Batch  12 | t=[8,107] | loss=0.5609 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=36, [5] pred=0 true=1 t=90, [13] pred=1 true=0 t=102, [14] pred=0 true=1 t=107
+  Batch  13 | t=[0,106] | loss=0.4936 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=94, [7] pred=1 true=0 t=38, [8] pred=1 true=0 t=57
+  Batch  14 | t=[5,117] | loss=0.4336 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=117, [9] pred=0 true=1 t=90, [13] pred=0 true=1 t=103
+  Batch  15 | t=[5,99] | loss=0.3242 | acc=15/16 | MISCLASSIFIED: [4] pred=1 true=0 t=73
+  Batch  16 | t=[1,114] | loss=0.4891 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=46, [2] pred=0 true=1 t=32, [4] pred=1 true=0 t=6
+  Batch  17 | t=[0,103] | loss=0.3642 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=98, [7] pred=0 true=1 t=65
+  Batch  18 | t=[5,111] | loss=0.4776 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=60, [5] pred=0 true=1 t=111, [6] pred=1 true=0 t=72, [7] pred=0 true=1 t=5
+  Batch  19 | t=[0,118] | loss=0.8309 | acc=11/16 | MISCLASSIFIED: [2] pred=0 true=1 t=118, [5] pred=1 true=0 t=5, [9] pred=0 true=1 t=72, [12] pred=0 true=1 t=75, [13] pred=1 true=0 t=86
+  Batch  20 | t=[5,108] | loss=0.6168 | acc=10/16 | MISCLASSIFIED: [5] pred=1 true=0 t=83, [8] pred=1 true=0 t=108, [9] pred=1 true=0 t=105, [11] pred=1 true=0 t=67, [12] pred=1 true=0 t=80, [13] pred=1 true=0 t=5
+  Batch  21 | t=[3,118] | loss=0.4300 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=16, [3] pred=0 true=1 t=104, [7] pred=0 true=1 t=111, [14] pred=0 true=1 t=34
+  Batch  22 | t=[1,114] | loss=0.3491 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=30, [5] pred=0 true=1 t=102, [11] pred=1 true=0 t=64
+  Batch  23 | t=[11,119] | loss=0.3651 | acc=14/16 | MISCLASSIFIED: [12] pred=0 true=1 t=115, [13] pred=1 true=0 t=23
+  Batch  24 | t=[4,119] | loss=0.6117 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=85, [7] pred=0 true=1 t=12, [9] pred=0 true=1 t=23, [13] pred=1 true=0 t=77
+  Batch  25 | t=[6,116] | loss=0.4902 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=29, [14] pred=1 true=0 t=116
+  Batch  26 | t=[23,110] | loss=0.3773 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=87
+  Batch  27 | t=[13,107] | loss=0.6745 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=52, [10] pred=0 true=1 t=70, [11] pred=1 true=0 t=52
+  Batch  28 | t=[3,101] | loss=0.3590 | acc=14/16 | MISCLASSIFIED: [9] pred=1 true=0 t=98, [12] pred=1 true=0 t=68
+  Batch  29 | t=[2,119] | loss=0.4094 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=93, [1] pred=1 true=0 t=16, [11] pred=1 true=0 t=33, [14] pred=1 true=0 t=56
+  Batch  30 | t=[0,116] | loss=0.6258 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=41, [7] pred=1 true=0 t=116
+  Batch  31 | t=[1,119] | loss=0.4108 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=33, [13] pred=1 true=0 t=29, [15] pred=1 true=0 t=119
+  Batch  32 | t=[2,117] | loss=0.3684 | acc=14/16 | MISCLASSIFIED: [9] pred=1 true=0 t=2, [15] pred=0 true=1 t=55
+  Batch  33 | t=[1,106] | loss=0.4296 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=81, [8] pred=0 true=1 t=88, [15] pred=1 true=0 t=94
+  Batch  34 | t=[4,115] | loss=0.3632 | acc=16/16
+  Batch  35 | t=[3,111] | loss=0.4342 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=100, [15] pred=1 true=0 t=106
+  Batch  36 | t=[11,115] | loss=0.4166 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=90
+  Batch  37 | t=[7,118] | loss=0.4946 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=85, [8] pred=0 true=1 t=55, [14] pred=1 true=0 t=108
+  Batch  38 | t=[1,117] | loss=0.3828 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=35, [3] pred=1 true=0 t=10, [7] pred=1 true=0 t=87, [9] pred=0 true=1 t=117
+  Batch  39 | t=[5,99] | loss=0.3282 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=96
+  Batch  40 | t=[0,102] | loss=0.4921 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=37, [8] pred=0 true=1 t=0, [11] pred=1 true=0 t=15
+  Batch  41 | t=[23,111] | loss=0.4170 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=93, [9] pred=0 true=1 t=101, [12] pred=1 true=0 t=111, [15] pred=1 true=0 t=84
+  Batch  42 | t=[7,93] | loss=0.5253 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=71, [12] pred=1 true=0 t=65, [15] pred=1 true=0 t=49
+  Batch  43 | t=[0,119] | loss=0.4614 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=21, [7] pred=0 true=1 t=54, [14] pred=1 true=0 t=106
+  Batch  44 | t=[38,102] | loss=0.3822 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=86, [6] pred=1 true=0 t=77, [8] pred=1 true=0 t=44, [10] pred=1 true=0 t=48
+  Batch  45 | t=[2,117] | loss=0.4935 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=80, [9] pred=1 true=0 t=108, [14] pred=1 true=0 t=100, [15] pred=1 true=0 t=87
+  Batch  46 | t=[1,117] | loss=0.4617 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=54, [8] pred=1 true=0 t=31, [14] pred=0 true=1 t=112
+  Batch  47 | t=[3,118] | loss=0.3296 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=97, [8] pred=0 true=1 t=97
+  Batch  48 | t=[1,102] | loss=0.4852 | acc=13/16 | MISCLASSIFIED: [8] pred=1 true=0 t=102, [11] pred=1 true=0 t=89, [15] pred=0 true=1 t=58
+  Batch  49 | t=[3,119] | loss=0.4037 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=9, [10] pred=0 true=1 t=21
+  Batch  50 | t=[11,109] | loss=0.4317 | acc=13/16 | MISCLASSIFIED: [10] pred=0 true=1 t=50, [12] pred=0 true=1 t=94, [15] pred=1 true=0 t=11
+  Batch  51 | t=[5,102] | loss=0.2338 | acc=16/16
+  Batch  52 | t=[34,111] | loss=0.6461 | acc=12/16 | MISCLASSIFIED: [5] pred=0 true=1 t=97, [7] pred=0 true=1 t=52, [8] pred=1 true=0 t=74, [14] pred=0 true=1 t=34
+  Batch  53 | t=[0,107] | loss=0.5378 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=0, [6] pred=0 true=1 t=44, [8] pred=1 true=0 t=49, [11] pred=1 true=0 t=12
+  Batch  54 | t=[2,117] | loss=0.4193 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=117, [8] pred=0 true=1 t=97
+  Batch  55 | t=[10,115] | loss=0.6793 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=40, [5] pred=1 true=0 t=115, [7] pred=0 true=1 t=108, [8] pred=0 true=1 t=93
+  Batch  56 | t=[2,119] | loss=0.5790 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=2, [5] pred=1 true=0 t=76, [9] pred=0 true=1 t=100
+  Batch  57 | t=[8,111] | loss=0.3839 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=98, [11] pred=1 true=0 t=14
+  Batch  58 | t=[0,118] | loss=0.7585 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=0, [9] pred=0 true=1 t=66, [12] pred=0 true=1 t=28, [14] pred=0 true=1 t=8
+  Batch  59 | t=[8,115] | loss=0.5272 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=46, [3] pred=1 true=0 t=92, [5] pred=0 true=1 t=82, [14] pred=1 true=0 t=87
+  Batch  60 | t=[1,117] | loss=0.4744 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=45, [7] pred=0 true=1 t=117, [11] pred=0 true=1 t=1
+  Batch  61 | t=[1,116] | loss=0.6575 | acc=9/16 | MISCLASSIFIED: [5] pred=0 true=1 t=83, [7] pred=1 true=0 t=1, [8] pred=1 true=0 t=116, [10] pred=1 true=0 t=94, [11] pred=1 true=0 t=108, [12] pred=1 true=0 t=94, [15] pred=1 true=0 t=105
+  Batch  62 | t=[0,118] | loss=0.2725 | acc=16/16
+  Batch  63 | t=[3,118] | loss=0.6344 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=3, [8] pred=0 true=1 t=57, [11] pred=1 true=0 t=9, [13] pred=0 true=1 t=31
+  Batch  64 | t=[1,107] | loss=0.3617 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=107, [13] pred=0 true=1 t=44
+  Batch  65 | t=[19,118] | loss=0.3171 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=89
+  Batch  66 | t=[13,104] | loss=0.3473 | acc=15/16 | MISCLASSIFIED: [1] pred=1 true=0 t=49
+  Batch  67 | t=[12,116] | loss=0.4359 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=116, [1] pred=0 true=1 t=89, [10] pred=1 true=0 t=95
+  Batch  68 | t=[2,110] | loss=0.4608 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=14, [7] pred=1 true=0 t=73
+  Batch  69 | t=[4,114] | loss=0.4991 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=101, [3] pred=0 true=1 t=99, [6] pred=1 true=0 t=77, [12] pred=1 true=0 t=16
+  Batch  70 | t=[2,109] | loss=0.3816 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=67
+  Batch  71 | t=[3,108] | loss=0.3231 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=108
+  Batch  72 | t=[1,112] | loss=0.3810 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=21, [12] pred=0 true=1 t=10
+  Batch  73 | t=[0,118] | loss=0.5318 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=93, [9] pred=0 true=1 t=43, [12] pred=0 true=1 t=52
+  Batch  74 | t=[3,112] | loss=0.4246 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=71, [15] pred=1 true=0 t=107
+  Batch  75 | t=[12,92] | loss=0.6444 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=59, [5] pred=0 true=1 t=34, [6] pred=1 true=0 t=27, [14] pred=0 true=1 t=73
+  Batch  76 | t=[8,117] | loss=0.3936 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=96, [14] pred=0 true=1 t=91
+  Batch  77 | t=[9,119] | loss=0.4155 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=119, [15] pred=0 true=1 t=116
+  Batch  78 | t=[17,94] | loss=0.2612 | acc=6/6
+Epoch 24 [warmup] | Loss: 0.4522 | Val Loss: 0.6486 | Val Acc: 72.5% | LR: 3.12e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[3,119] | loss=0.7471 | acc=12/16 | MISCLASSIFIED: [6] pred=0 true=1 t=81, [9] pred=0 true=1 t=14, [13] pred=0 true=1 t=89, [15] pred=0 true=1 t=78
+  Batch   1 | t=[10,121] | loss=0.5695 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=28, [7] pred=1 true=0 t=23, [11] pred=1 true=0 t=36, [14] pred=1 true=0 t=121
+  Batch   2 | t=[11,123] | loss=0.6145 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=79, [8] pred=0 true=1 t=86, [10] pred=0 true=1 t=67, [12] pred=1 true=0 t=74, [13] pred=1 true=0 t=41
+  Batch   3 | t=[18,124] | loss=0.5143 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=53, [3] pred=0 true=1 t=33, [9] pred=1 true=0 t=117, [11] pred=1 true=0 t=29, [13] pred=1 true=0 t=83
+  Batch   4 | t=[4,115] | loss=0.3482 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=94, [10] pred=1 true=0 t=115
+  Batch   5 | t=[7,120] | loss=0.5309 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=59, [4] pred=1 true=0 t=120
+  Batch   6 | t=[6,114] | loss=0.3421 | acc=16/16
+  Batch   7 | t=[14,116] | loss=0.3869 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=33, [9] pred=0 true=1 t=47
+  Batch   8 | t=[4,121] | loss=0.3009 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=85
+  Batch   9 | t=[15,124] | loss=0.6093 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=124, [3] pred=1 true=0 t=73, [10] pred=1 true=0 t=119, [12] pred=0 true=1 t=49, [15] pred=1 true=0 t=57
+  Batch  10 | t=[2,119] | loss=0.5093 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=119, [7] pred=1 true=0 t=5, [8] pred=1 true=0 t=99, [15] pred=1 true=0 t=24
+  Batch  11 | t=[3,123] | loss=0.4320 | acc=15/16 | MISCLASSIFIED: [5] pred=1 true=0 t=26
+  Batch  12 | t=[0,118] | loss=0.5457 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=103, [9] pred=0 true=1 t=116, [13] pred=1 true=0 t=118
+  Batch  13 | t=[14,124] | loss=0.4159 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=33, [13] pred=0 true=1 t=58
+  Batch  14 | t=[1,124] | loss=0.6184 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=116, [8] pred=0 true=1 t=91, [12] pred=0 true=1 t=1, [13] pred=1 true=0 t=108
+  Batch  15 | t=[3,116] | loss=0.5685 | acc=12/16 | MISCLASSIFIED: [8] pred=0 true=1 t=3, [11] pred=0 true=1 t=62, [12] pred=0 true=1 t=96, [14] pred=0 true=1 t=106
+  Batch  16 | t=[2,124] | loss=0.3398 | acc=14/16 | MISCLASSIFIED: [9] pred=1 true=0 t=82, [14] pred=0 true=1 t=80
+  Batch  17 | t=[0,123] | loss=0.3493 | acc=14/16 | MISCLASSIFIED: [10] pred=1 true=0 t=88, [14] pred=1 true=0 t=77
+  Batch  18 | t=[1,124] | loss=0.4284 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=124, [8] pred=1 true=0 t=70
+  Batch  19 | t=[9,120] | loss=0.2619 | acc=15/16 | MISCLASSIFIED: [12] pred=1 true=0 t=58
+  Batch  20 | t=[1,124] | loss=0.5458 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=122, [4] pred=1 true=0 t=59
+  Batch  21 | t=[0,120] | loss=0.4010 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=105, [3] pred=1 true=0 t=77, [14] pred=0 true=1 t=15
+  Batch  22 | t=[3,116] | loss=0.2214 | acc=15/16 | MISCLASSIFIED: [12] pred=1 true=0 t=23
+  Batch  23 | t=[13,124] | loss=0.6397 | acc=10/16 | MISCLASSIFIED: [0] pred=1 true=0 t=68, [10] pred=1 true=0 t=124, [12] pred=1 true=0 t=16, [13] pred=1 true=0 t=95, [14] pred=1 true=0 t=122, [15] pred=1 true=0 t=13
+  Batch  24 | t=[4,121] | loss=0.5659 | acc=12/16 | MISCLASSIFIED: [5] pred=0 true=1 t=6, [8] pred=1 true=0 t=102, [9] pred=1 true=0 t=72, [11] pred=0 true=1 t=4
+  Batch  25 | t=[1,123] | loss=0.4507 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=96, [7] pred=1 true=0 t=81, [8] pred=1 true=0 t=60
+  Batch  26 | t=[12,122] | loss=0.3822 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=80, [12] pred=0 true=1 t=36
+  Batch  27 | t=[8,114] | loss=0.3549 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=46, [13] pred=1 true=0 t=114
+  Batch  28 | t=[1,124] | loss=0.2974 | acc=15/16 | MISCLASSIFIED: [10] pred=1 true=0 t=108
+  Batch  29 | t=[3,124] | loss=0.3151 | acc=15/16 | MISCLASSIFIED: [2] pred=1 true=0 t=49
+  Batch  30 | t=[10,121] | loss=0.4176 | acc=14/16 | MISCLASSIFIED: [14] pred=1 true=0 t=60, [15] pred=1 true=0 t=97
+  Batch  31 | t=[14,108] | loss=0.3697 | acc=14/16 | MISCLASSIFIED: [9] pred=1 true=0 t=100, [12] pred=0 true=1 t=99
+  Batch  32 | t=[9,97] | loss=0.4254 | acc=14/16 | MISCLASSIFIED: [12] pred=0 true=1 t=24, [15] pred=0 true=1 t=22
+  Batch  33 | t=[2,122] | loss=0.4371 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=64, [11] pred=0 true=1 t=2, [12] pred=0 true=1 t=122
+  Batch  34 | t=[4,123] | loss=0.7142 | acc=12/16 | MISCLASSIFIED: [4] pred=0 true=1 t=23, [6] pred=0 true=1 t=119, [8] pred=0 true=1 t=66, [14] pred=1 true=0 t=56
+  Batch  35 | t=[10,124] | loss=0.3908 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=100, [4] pred=0 true=1 t=110, [12] pred=1 true=0 t=124
+  Batch  36 | t=[6,124] | loss=0.5529 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=105, [7] pred=0 true=1 t=113, [8] pred=0 true=1 t=46, [13] pred=0 true=1 t=43
+  Batch  37 | t=[0,108] | loss=0.6984 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=92, [3] pred=0 true=1 t=49, [14] pred=1 true=0 t=0
+  Batch  38 | t=[4,114] | loss=0.4272 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=37, [10] pred=0 true=1 t=83
+  Batch  39 | t=[3,122] | loss=0.4046 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=84, [3] pred=0 true=1 t=18, [10] pred=0 true=1 t=83
+  Batch  40 | t=[4,123] | loss=0.4286 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=12, [5] pred=1 true=0 t=36, [10] pred=1 true=0 t=4
+  Batch  41 | t=[4,98] | loss=0.4289 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=4, [9] pred=1 true=0 t=77
+  Batch  42 | t=[17,119] | loss=0.7717 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=86, [5] pred=0 true=1 t=111, [8] pred=1 true=0 t=27, [12] pred=0 true=1 t=106
+  Batch  43 | t=[9,111] | loss=0.6009 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=68, [2] pred=1 true=0 t=74, [5] pred=1 true=0 t=109, [6] pred=0 true=1 t=58, [13] pred=1 true=0 t=71
+  Batch  44 | t=[12,119] | loss=0.2269 | acc=16/16
+  Batch  45 | t=[19,116] | loss=0.4391 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=98, [12] pred=0 true=1 t=110
+  Batch  46 | t=[5,120] | loss=0.2523 | acc=16/16
+  Batch  47 | t=[17,110] | loss=0.4428 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=55, [15] pred=1 true=0 t=23
+  Batch  48 | t=[3,103] | loss=0.2769 | acc=15/16 | MISCLASSIFIED: [8] pred=1 true=0 t=35
+  Batch  49 | t=[1,123] | loss=0.8560 | acc=9/16 | MISCLASSIFIED: [0] pred=1 true=0 t=79, [2] pred=1 true=0 t=123, [3] pred=0 true=1 t=65, [4] pred=1 true=0 t=39, [5] pred=0 true=1 t=20, [9] pred=0 true=1 t=117, [13] pred=1 true=0 t=82
+  Batch  50 | t=[10,120] | loss=0.5518 | acc=12/16 | MISCLASSIFIED: [7] pred=0 true=1 t=118, [10] pred=1 true=0 t=10, [12] pred=1 true=0 t=120, [14] pred=1 true=0 t=28
+  Batch  51 | t=[13,122] | loss=0.4300 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=18, [13] pred=1 true=0 t=122
+  Batch  52 | t=[2,120] | loss=0.4799 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=120, [8] pred=1 true=0 t=80, [9] pred=0 true=1 t=109
+  Batch  53 | t=[3,122] | loss=0.3842 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=122, [10] pred=0 true=1 t=5, [11] pred=1 true=0 t=92
+  Batch  54 | t=[3,124] | loss=0.4760 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=124, [14] pred=0 true=1 t=108
+  Batch  55 | t=[0,124] | loss=0.3883 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=24, [5] pred=0 true=1 t=13, [13] pred=1 true=0 t=67
+  Batch  56 | t=[22,106] | loss=0.3809 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=91, [15] pred=0 true=1 t=41
+  Batch  57 | t=[4,124] | loss=0.2387 | acc=16/16
+  Batch  58 | t=[1,124] | loss=0.2473 | acc=14/16 | MISCLASSIFIED: [11] pred=1 true=0 t=1, [13] pred=1 true=0 t=98
+  Batch  59 | t=[6,124] | loss=0.3714 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=38, [2] pred=0 true=1 t=90, [10] pred=0 true=1 t=108
+  Batch  60 | t=[3,122] | loss=0.3421 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=115
+  Batch  61 | t=[8,120] | loss=0.3335 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=89, [13] pred=0 true=1 t=80
+  Batch  62 | t=[5,123] | loss=0.3071 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=116
+  Batch  63 | t=[11,124] | loss=0.3885 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=124, [8] pred=1 true=0 t=76
+  Batch  64 | t=[16,114] | loss=0.4239 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=109, [7] pred=1 true=0 t=19, [14] pred=1 true=0 t=43
+  Batch  65 | t=[1,123] | loss=0.3960 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=93, [11] pred=1 true=0 t=15
+  Batch  66 | t=[11,124] | loss=0.3830 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=84, [8] pred=1 true=0 t=112
+  Batch  67 | t=[11,121] | loss=0.3880 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=11, [9] pred=1 true=0 t=63
+  Batch  68 | t=[2,113] | loss=0.4416 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=11, [3] pred=0 true=1 t=94, [14] pred=0 true=1 t=37
+  Batch  69 | t=[18,114] | loss=0.2736 | acc=15/16 | MISCLASSIFIED: [15] pred=1 true=0 t=32
+  Batch  70 | t=[12,119] | loss=0.2531 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=89
+  Batch  71 | t=[7,122] | loss=0.3725 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=105, [3] pred=0 true=1 t=80
+  Batch  72 | t=[2,119] | loss=0.3768 | acc=13/16 | MISCLASSIFIED: [6] pred=0 true=1 t=119, [10] pred=0 true=1 t=86, [11] pred=1 true=0 t=51
+  Batch  73 | t=[3,123] | loss=0.3866 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=28, [14] pred=0 true=1 t=108, [15] pred=0 true=1 t=92
+  Batch  74 | t=[1,110] | loss=0.3617 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=110, [5] pred=1 true=0 t=44, [9] pred=0 true=1 t=57, [15] pred=1 true=0 t=34
+  Batch  75 | t=[12,115] | loss=0.3491 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=105, [5] pred=1 true=0 t=110, [11] pred=1 true=0 t=114
+  Batch  76 | t=[2,121] | loss=0.2539 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=111
+  Batch  77 | t=[9,124] | loss=0.5296 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=99, [3] pred=0 true=1 t=20, [12] pred=0 true=1 t=34
+  Batch  78 | t=[53,105] | loss=0.1934 | acc=6/6
+Epoch 25 [warmup] | Loss: 0.4287 | Val Loss: 0.5549 | Val Acc: 76.2% | LR: 3.11e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[7,121] | loss=0.3556 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=41, [7] pred=0 true=1 t=38
+  Batch   1 | t=[4,123] | loss=0.4113 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=123, [4] pred=1 true=0 t=105
+  Batch   2 | t=[31,125] | loss=0.5947 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=96, [4] pred=1 true=0 t=108, [5] pred=0 true=1 t=49, [10] pred=0 true=1 t=92
+  Batch   3 | t=[0,127] | loss=0.4113 | acc=12/16 | MISCLASSIFIED: [6] pred=0 true=1 t=122, [10] pred=0 true=1 t=0, [13] pred=1 true=0 t=82, [15] pred=1 true=0 t=78
+  Batch   4 | t=[0,129] | loss=0.3461 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=111, [9] pred=1 true=0 t=129
+  Batch   5 | t=[10,125] | loss=0.4402 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=61, [12] pred=0 true=1 t=106, [13] pred=0 true=1 t=69
+  Batch   6 | t=[7,110] | loss=0.3894 | acc=14/16 | MISCLASSIFIED: [14] pred=1 true=0 t=110, [15] pred=1 true=0 t=63
+  Batch   7 | t=[6,126] | loss=0.2616 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=27
+  Batch   8 | t=[6,124] | loss=0.2477 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=113
+  Batch   9 | t=[10,129] | loss=0.3617 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=78, [9] pred=1 true=0 t=47
+  Batch  10 | t=[3,125] | loss=0.3055 | acc=15/16 | MISCLASSIFIED: [1] pred=1 true=0 t=94
+  Batch  11 | t=[10,129] | loss=0.3882 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=129, [1] pred=0 true=1 t=72
+  Batch  12 | t=[1,126] | loss=0.6848 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=88, [4] pred=0 true=1 t=12, [7] pred=0 true=1 t=38, [10] pred=0 true=1 t=104, [14] pred=1 true=0 t=27
+  Batch  13 | t=[4,128] | loss=0.3895 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=6, [11] pred=0 true=1 t=123, [12] pred=1 true=0 t=27
+  Batch  14 | t=[22,118] | loss=0.2324 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=32
+  Batch  15 | t=[11,122] | loss=0.3489 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=75, [12] pred=0 true=1 t=90
+  Batch  16 | t=[2,127] | loss=0.2797 | acc=15/16 | MISCLASSIFIED: [4] pred=1 true=0 t=127
+  Batch  17 | t=[16,118] | loss=0.3579 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=86, [2] pred=0 true=1 t=73, [15] pred=0 true=1 t=51
+  Batch  18 | t=[1,117] | loss=0.2504 | acc=16/16
+  Batch  19 | t=[20,129] | loss=0.3363 | acc=14/16 | MISCLASSIFIED: [7] pred=0 true=1 t=79, [8] pred=0 true=1 t=84
+  Batch  20 | t=[9,129] | loss=0.4907 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=74, [13] pred=1 true=0 t=41, [15] pred=0 true=1 t=118
+  Batch  21 | t=[10,128] | loss=0.4122 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=76, [12] pred=1 true=0 t=90
+  Batch  22 | t=[4,129] | loss=0.8269 | acc=8/16 | MISCLASSIFIED: [1] pred=1 true=0 t=74, [2] pred=1 true=0 t=120, [4] pred=1 true=0 t=21, [5] pred=1 true=0 t=39, [8] pred=1 true=0 t=89, [10] pred=1 true=0 t=67, [12] pred=0 true=1 t=57, [15] pred=1 true=0 t=26
+  Batch  23 | t=[24,128] | loss=0.2814 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=106
+  Batch  24 | t=[24,127] | loss=0.5131 | acc=12/16 | MISCLASSIFIED: [6] pred=1 true=0 t=55, [7] pred=1 true=0 t=28, [9] pred=1 true=0 t=65, [15] pred=1 true=0 t=53
+  Batch  25 | t=[23,125] | loss=0.5107 | acc=13/16 | MISCLASSIFIED: [8] pred=0 true=1 t=45, [13] pred=1 true=0 t=36, [15] pred=0 true=1 t=74
+  Batch  26 | t=[8,122] | loss=0.2466 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=63
+  Batch  27 | t=[6,128] | loss=0.2959 | acc=15/16 | MISCLASSIFIED: [10] pred=1 true=0 t=51
+  Batch  28 | t=[1,129] | loss=0.2983 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=30, [9] pred=1 true=0 t=86, [11] pred=0 true=1 t=102
+  Batch  29 | t=[10,126] | loss=0.2969 | acc=15/16 | MISCLASSIFIED: [12] pred=1 true=0 t=52
+  Batch  30 | t=[5,114] | loss=0.5365 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=65, [7] pred=0 true=1 t=56, [8] pred=1 true=0 t=66, [11] pred=1 true=0 t=56
+  Batch  31 | t=[18,124] | loss=0.5782 | acc=12/16 | MISCLASSIFIED: [4] pred=0 true=1 t=124, [7] pred=0 true=1 t=82, [8] pred=0 true=1 t=108, [10] pred=0 true=1 t=117
+  Batch  32 | t=[1,126] | loss=0.4849 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=45, [10] pred=1 true=0 t=68, [13] pred=0 true=1 t=126
+  Batch  33 | t=[13,126] | loss=0.4580 | acc=12/16 | MISCLASSIFIED: [4] pred=1 true=0 t=85, [7] pred=0 true=1 t=118, [11] pred=1 true=0 t=32, [13] pred=1 true=0 t=39
+  Batch  34 | t=[5,126] | loss=0.5131 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=98, [5] pred=0 true=1 t=88, [7] pred=0 true=1 t=37
+  Batch  35 | t=[0,104] | loss=0.4778 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=90, [1] pred=1 true=0 t=9, [3] pred=0 true=1 t=36, [12] pred=0 true=1 t=104
+  Batch  36 | t=[2,123] | loss=0.4619 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=98, [12] pred=1 true=0 t=103
+  Batch  37 | t=[1,125] | loss=0.2690 | acc=15/16 | MISCLASSIFIED: [13] pred=1 true=0 t=90
+  Batch  38 | t=[2,127] | loss=0.3716 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=74, [5] pred=1 true=0 t=93, [10] pred=1 true=0 t=61
+  Batch  39 | t=[8,127] | loss=0.2659 | acc=16/16
+  Batch  40 | t=[0,117] | loss=0.4896 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=62, [5] pred=1 true=0 t=117, [6] pred=1 true=0 t=81, [9] pred=0 true=1 t=0, [11] pred=1 true=0 t=115
+  Batch  41 | t=[7,122] | loss=0.7165 | acc=9/16 | MISCLASSIFIED: [2] pred=1 true=0 t=21, [4] pred=1 true=0 t=79, [6] pred=1 true=0 t=33, [8] pred=1 true=0 t=61, [11] pred=1 true=0 t=117, [12] pred=1 true=0 t=37, [14] pred=1 true=0 t=7
+  Batch  42 | t=[4,91] | loss=0.3142 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=33, [14] pred=0 true=1 t=21
+  Batch  43 | t=[0,123] | loss=0.5624 | acc=11/16 | MISCLASSIFIED: [0] pred=0 true=1 t=94, [6] pred=1 true=0 t=16, [9] pred=1 true=0 t=70, [10] pred=1 true=0 t=115, [13] pred=0 true=1 t=13
+  Batch  44 | t=[4,122] | loss=0.3852 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=55, [14] pred=1 true=0 t=87, [15] pred=0 true=1 t=71
+  Batch  45 | t=[4,115] | loss=0.7881 | acc=10/16 | MISCLASSIFIED: [1] pred=1 true=0 t=52, [4] pred=1 true=0 t=108, [9] pred=1 true=0 t=104, [10] pred=0 true=1 t=57, [11] pred=0 true=1 t=74, [13] pred=0 true=1 t=30
+  Batch  46 | t=[4,128] | loss=0.4605 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=75, [4] pred=1 true=0 t=107, [11] pred=0 true=1 t=50
+  Batch  47 | t=[1,121] | loss=0.3914 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=2, [13] pred=0 true=1 t=102
+  Batch  48 | t=[2,118] | loss=0.5086 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=30, [7] pred=1 true=0 t=38, [8] pred=1 true=0 t=74, [14] pred=1 true=0 t=118
+  Batch  49 | t=[3,127] | loss=0.5546 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=83, [8] pred=1 true=0 t=86, [11] pred=0 true=1 t=77, [13] pred=0 true=1 t=93
+  Batch  50 | t=[8,120] | loss=0.3081 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=97, [10] pred=0 true=1 t=97
+  Batch  51 | t=[4,125] | loss=0.3867 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=106, [4] pred=0 true=1 t=4
+  Batch  52 | t=[4,113] | loss=0.4101 | acc=12/16 | MISCLASSIFIED: [7] pred=1 true=0 t=80, [11] pred=1 true=0 t=4, [13] pred=1 true=0 t=58, [14] pred=0 true=1 t=82
+  Batch  53 | t=[3,128] | loss=0.6828 | acc=10/16 | MISCLASSIFIED: [0] pred=0 true=1 t=95, [2] pred=1 true=0 t=8, [4] pred=1 true=0 t=12, [8] pred=1 true=0 t=62, [11] pred=0 true=1 t=89, [15] pred=1 true=0 t=16
+  Batch  54 | t=[12,123] | loss=0.3602 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=75, [1] pred=1 true=0 t=123
+  Batch  55 | t=[11,122] | loss=0.6853 | acc=11/16 | MISCLASSIFIED: [1] pred=0 true=1 t=108, [7] pred=0 true=1 t=60, [8] pred=0 true=1 t=122, [14] pred=0 true=1 t=17, [15] pred=0 true=1 t=13
+  Batch  56 | t=[0,66] | loss=0.4841 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=16, [6] pred=0 true=1 t=64, [7] pred=1 true=0 t=9, [8] pred=1 true=0 t=26
+  Batch  57 | t=[6,124] | loss=0.5281 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=84, [9] pred=0 true=1 t=73
+  Batch  58 | t=[1,127] | loss=0.3413 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=82
+  Batch  59 | t=[13,108] | loss=0.5165 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=105, [6] pred=1 true=0 t=82, [10] pred=1 true=0 t=30, [13] pred=1 true=0 t=86, [14] pred=0 true=1 t=108
+  Batch  60 | t=[0,125] | loss=0.4713 | acc=11/16 | MISCLASSIFIED: [2] pred=0 true=1 t=24, [5] pred=0 true=1 t=103, [11] pred=0 true=1 t=112, [12] pred=0 true=1 t=125, [15] pred=0 true=1 t=83
+  Batch  61 | t=[10,128] | loss=0.3435 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=37
+  Batch  62 | t=[1,104] | loss=0.3041 | acc=15/16 | MISCLASSIFIED: [13] pred=1 true=0 t=104
+  Batch  63 | t=[0,119] | loss=0.2853 | acc=15/16 | MISCLASSIFIED: [0] pred=1 true=0 t=100
+  Batch  64 | t=[1,123] | loss=0.4469 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=92, [7] pred=0 true=1 t=53, [10] pred=1 true=0 t=104, [15] pred=0 true=1 t=16
+  Batch  65 | t=[3,123] | loss=0.2333 | acc=16/16
+  Batch  66 | t=[6,116] | loss=0.4202 | acc=14/16 | MISCLASSIFIED: [11] pred=0 true=1 t=86, [14] pred=1 true=0 t=63
+  Batch  67 | t=[16,116] | loss=0.2359 | acc=16/16
+  Batch  68 | t=[4,127] | loss=0.5526 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=58, [7] pred=1 true=0 t=27
+  Batch  69 | t=[32,127] | loss=0.3588 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=102, [7] pred=1 true=0 t=84, [14] pred=1 true=0 t=103
+  Batch  70 | t=[0,124] | loss=0.4034 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=107, [7] pred=0 true=1 t=98
+  Batch  71 | t=[11,122] | loss=0.3118 | acc=14/16 | MISCLASSIFIED: [11] pred=0 true=1 t=75, [14] pred=1 true=0 t=109
+  Batch  72 | t=[4,117] | loss=0.4909 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=60, [6] pred=1 true=0 t=26, [9] pred=1 true=0 t=13, [13] pred=0 true=1 t=99, [15] pred=0 true=1 t=117
+  Batch  73 | t=[0,129] | loss=0.1972 | acc=16/16
+  Batch  74 | t=[0,129] | loss=0.6965 | acc=11/16 | MISCLASSIFIED: [1] pred=0 true=1 t=75, [5] pred=1 true=0 t=116, [12] pred=0 true=1 t=21, [13] pred=1 true=0 t=32, [14] pred=0 true=1 t=16
+  Batch  75 | t=[3,129] | loss=0.4096 | acc=15/16 | MISCLASSIFIED: [0] pred=1 true=0 t=46
+  Batch  76 | t=[6,128] | loss=0.4339 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=105, [12] pred=0 true=1 t=128, [13] pred=1 true=0 t=69
+  Batch  77 | t=[2,125] | loss=0.2609 | acc=15/16 | MISCLASSIFIED: [8] pred=1 true=0 t=125
+  Batch  78 | t=[4,89] | loss=0.5492 | acc=5/6 | MISCLASSIFIED: [4] pred=1 true=0 t=86
+Epoch 26 [warmup] | Loss: 0.4210 | Val Loss: 0.6830 | Val Acc: 72.8% | LR: 3.11e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[6,134] | loss=0.4627 | acc=13/16 | MISCLASSIFIED: [9] pred=0 true=1 t=89, [11] pred=1 true=0 t=50, [14] pred=0 true=1 t=82
+  Batch   1 | t=[0,115] | loss=0.4035 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=83, [3] pred=0 true=1 t=21, [11] pred=0 true=1 t=63
+  Batch   2 | t=[3,126] | loss=0.3689 | acc=13/16 | MISCLASSIFIED: [8] pred=1 true=0 t=85, [13] pred=1 true=0 t=123, [15] pred=1 true=0 t=126
+  Batch   3 | t=[1,120] | loss=0.3994 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=89, [4] pred=1 true=0 t=49
+  Batch   4 | t=[19,123] | loss=0.5648 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=35, [12] pred=0 true=1 t=103
+  Batch   5 | t=[9,133] | loss=0.4255 | acc=14/16 | MISCLASSIFIED: [10] pred=1 true=0 t=96, [15] pred=0 true=1 t=113
+  Batch   6 | t=[4,124] | loss=0.4075 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=51, [8] pred=0 true=1 t=34, [11] pred=1 true=0 t=115
+  Batch   7 | t=[12,127] | loss=0.3400 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=79
+  Batch   8 | t=[26,131] | loss=0.6033 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=97, [4] pred=0 true=1 t=26, [9] pred=0 true=1 t=66, [13] pred=0 true=1 t=131, [15] pred=0 true=1 t=107
+  Batch   9 | t=[0,126] | loss=0.5071 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=110, [7] pred=1 true=0 t=123, [13] pred=0 true=1 t=71
+  Batch  10 | t=[49,132] | loss=0.4650 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=98, [8] pred=0 true=1 t=103
+  Batch  11 | t=[18,134] | loss=0.3644 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=128, [1] pred=0 true=1 t=98, [10] pred=0 true=1 t=132
+  Batch  12 | t=[3,129] | loss=0.3873 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=104, [7] pred=0 true=1 t=127, [10] pred=1 true=0 t=99, [15] pred=0 true=1 t=87
+  Batch  13 | t=[1,132] | loss=0.3818 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=17, [12] pred=1 true=0 t=30
+  Batch  14 | t=[2,121] | loss=0.8654 | acc=11/16 | MISCLASSIFIED: [4] pred=1 true=0 t=41, [8] pred=1 true=0 t=75, [10] pred=0 true=1 t=2, [14] pred=1 true=0 t=71, [15] pred=1 true=0 t=76
+  Batch  15 | t=[0,134] | loss=0.5010 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=48, [3] pred=1 true=0 t=13, [8] pred=1 true=0 t=5
+  Batch  16 | t=[34,125] | loss=0.2824 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=125
+  Batch  17 | t=[15,132] | loss=1.0387 | acc=9/16 | MISCLASSIFIED: [1] pred=0 true=1 t=115, [2] pred=1 true=0 t=15, [7] pred=1 true=0 t=20, [11] pred=1 true=0 t=132, [12] pred=1 true=0 t=98, [13] pred=1 true=0 t=32, [14] pred=1 true=0 t=18
+  Batch  18 | t=[1,134] | loss=0.4066 | acc=13/16 | MISCLASSIFIED: [12] pred=1 true=0 t=88, [13] pred=1 true=0 t=92, [14] pred=1 true=0 t=51
+  Batch  19 | t=[2,134] | loss=0.4198 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=125, [12] pred=1 true=0 t=88
+  Batch  20 | t=[0,116] | loss=0.4160 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=103, [5] pred=1 true=0 t=6, [6] pred=1 true=0 t=72, [10] pred=0 true=1 t=107
+  Batch  21 | t=[2,131] | loss=0.2467 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=6
+  Batch  22 | t=[15,132] | loss=0.4715 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=130, [14] pred=0 true=1 t=53
+  Batch  23 | t=[3,128] | loss=0.3796 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=85, [7] pred=0 true=1 t=76, [8] pred=0 true=1 t=100
+  Batch  24 | t=[1,104] | loss=0.3699 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=7, [5] pred=0 true=1 t=60
+  Batch  25 | t=[2,123] | loss=0.2426 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=66
+  Batch  26 | t=[2,123] | loss=0.4673 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=107, [13] pred=0 true=1 t=66
+  Batch  27 | t=[3,133] | loss=0.6436 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=9, [5] pred=0 true=1 t=3, [12] pred=0 true=1 t=77, [13] pred=0 true=1 t=23, [14] pred=0 true=1 t=61
+  Batch  28 | t=[12,134] | loss=0.3228 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=61, [6] pred=1 true=0 t=53, [11] pred=1 true=0 t=96
+  Batch  29 | t=[4,128] | loss=0.6465 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=43, [10] pred=1 true=0 t=128, [11] pred=1 true=0 t=84, [12] pred=1 true=0 t=48
+  Batch  30 | t=[12,111] | loss=0.4138 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=60, [15] pred=0 true=1 t=12
+  Batch  31 | t=[2,133] | loss=0.4071 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=13, [8] pred=0 true=1 t=2
+  Batch  32 | t=[0,131] | loss=0.6232 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=131, [9] pred=1 true=0 t=47, [11] pred=0 true=1 t=4, [15] pred=1 true=0 t=0
+  Batch  33 | t=[13,118] | loss=0.3341 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=75, [12] pred=0 true=1 t=53
+  Batch  34 | t=[2,129] | loss=0.5385 | acc=12/16 | MISCLASSIFIED: [9] pred=1 true=0 t=45, [10] pred=1 true=0 t=78, [11] pred=1 true=0 t=107, [12] pred=1 true=0 t=129
+  Batch  35 | t=[11,129] | loss=0.6234 | acc=11/16 | MISCLASSIFIED: [6] pred=1 true=0 t=52, [7] pred=0 true=1 t=53, [8] pred=0 true=1 t=128, [12] pred=0 true=1 t=30, [15] pred=1 true=0 t=105
+  Batch  36 | t=[15,134] | loss=0.5468 | acc=10/16 | MISCLASSIFIED: [0] pred=0 true=1 t=28, [3] pred=0 true=1 t=110, [7] pred=0 true=1 t=43, [11] pred=1 true=0 t=134, [12] pred=1 true=0 t=97, [13] pred=0 true=1 t=27
+  Batch  37 | t=[8,133] | loss=0.4081 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=57, [11] pred=1 true=0 t=86
+  Batch  38 | t=[1,133] | loss=0.4953 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=116, [2] pred=1 true=0 t=118, [7] pred=1 true=0 t=3, [9] pred=1 true=0 t=133, [14] pred=1 true=0 t=35
+  Batch  39 | t=[2,130] | loss=0.4875 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=39, [6] pred=1 true=0 t=130, [9] pred=1 true=0 t=92
+  Batch  40 | t=[20,131] | loss=0.3956 | acc=13/16 | MISCLASSIFIED: [8] pred=1 true=0 t=73, [10] pred=1 true=0 t=107, [13] pred=0 true=1 t=65
+  Batch  41 | t=[27,121] | loss=0.5248 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=120, [2] pred=1 true=0 t=91, [4] pred=1 true=0 t=121, [7] pred=1 true=0 t=120, [15] pred=1 true=0 t=60
+  Batch  42 | t=[3,133] | loss=0.3179 | acc=15/16 | MISCLASSIFIED: [14] pred=1 true=0 t=98
+  Batch  43 | t=[21,128] | loss=0.3224 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=29, [13] pred=0 true=1 t=71
+  Batch  44 | t=[23,120] | loss=0.4576 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=91, [10] pred=0 true=1 t=68, [11] pred=1 true=0 t=64
+  Batch  45 | t=[1,132] | loss=0.5894 | acc=12/16 | MISCLASSIFIED: [6] pred=1 true=0 t=75, [8] pred=1 true=0 t=1, [9] pred=1 true=0 t=56, [12] pred=1 true=0 t=114
+  Batch  46 | t=[6,134] | loss=0.2103 | acc=16/16
+  Batch  47 | t=[7,117] | loss=0.4449 | acc=14/16 | MISCLASSIFIED: [11] pred=1 true=0 t=7, [13] pred=0 true=1 t=61
+  Batch  48 | t=[2,126] | loss=0.4003 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=67, [10] pred=0 true=1 t=108, [15] pred=1 true=0 t=2
+  Batch  49 | t=[14,126] | loss=0.3565 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=126, [11] pred=0 true=1 t=54
+  Batch  50 | t=[0,128] | loss=0.3341 | acc=13/16 | MISCLASSIFIED: [8] pred=1 true=0 t=8, [11] pred=1 true=0 t=128, [13] pred=1 true=0 t=33
+  Batch  51 | t=[0,104] | loss=0.3562 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=16, [7] pred=1 true=0 t=3
+  Batch  52 | t=[1,124] | loss=0.3480 | acc=14/16 | MISCLASSIFIED: [11] pred=0 true=1 t=80, [15] pred=1 true=0 t=106
+  Batch  53 | t=[3,133] | loss=0.4754 | acc=11/16 | MISCLASSIFIED: [4] pred=0 true=1 t=116, [5] pred=0 true=1 t=118, [10] pred=0 true=1 t=15, [11] pred=1 true=0 t=97, [12] pred=0 true=1 t=3
+  Batch  54 | t=[3,116] | loss=0.4148 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=87, [3] pred=0 true=1 t=33
+  Batch  55 | t=[7,132] | loss=0.6438 | acc=12/16 | MISCLASSIFIED: [6] pred=0 true=1 t=98, [11] pred=0 true=1 t=84, [12] pred=0 true=1 t=127, [13] pred=0 true=1 t=132
+  Batch  56 | t=[0,101] | loss=0.3679 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=101, [6] pred=0 true=1 t=72, [15] pred=0 true=1 t=40
+  Batch  57 | t=[2,134] | loss=0.4990 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=2, [9] pred=0 true=1 t=26, [11] pred=0 true=1 t=37
+  Batch  58 | t=[8,126] | loss=0.3334 | acc=14/16 | MISCLASSIFIED: [7] pred=0 true=1 t=51, [15] pred=0 true=1 t=88
+  Batch  59 | t=[3,128] | loss=0.3883 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=93, [5] pred=1 true=0 t=84, [7] pred=1 true=0 t=56
+  Batch  60 | t=[13,129] | loss=0.3040 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=68
+  Batch  61 | t=[1,131] | loss=0.4584 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=131, [5] pred=0 true=1 t=53, [9] pred=1 true=0 t=43, [15] pred=1 true=0 t=1
+  Batch  62 | t=[0,122] | loss=0.3868 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=106, [14] pred=0 true=1 t=0, [15] pred=0 true=1 t=7
+  Batch  63 | t=[2,130] | loss=0.3675 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=33, [7] pred=0 true=1 t=100
+  Batch  64 | t=[3,131] | loss=0.4749 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=125, [10] pred=1 true=0 t=94, [11] pred=1 true=0 t=131, [12] pred=1 true=0 t=111
+  Batch  65 | t=[3,132] | loss=0.4626 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=41, [7] pred=0 true=1 t=106, [8] pred=0 true=1 t=3
+  Batch  66 | t=[15,127] | loss=0.2869 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=127
+  Batch  67 | t=[26,134] | loss=0.5434 | acc=11/16 | MISCLASSIFIED: [2] pred=0 true=1 t=116, [4] pred=0 true=1 t=64, [7] pred=1 true=0 t=28, [13] pred=0 true=1 t=111, [14] pred=0 true=1 t=26
+  Batch  68 | t=[19,128] | loss=0.3396 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=27
+  Batch  69 | t=[11,127] | loss=0.3870 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=127, [5] pred=0 true=1 t=62, [7] pred=1 true=0 t=75
+  Batch  70 | t=[5,128] | loss=0.4466 | acc=13/16 | MISCLASSIFIED: [4] pred=0 true=1 t=89, [8] pred=1 true=0 t=25, [15] pred=0 true=1 t=128
+  Batch  71 | t=[8,133] | loss=0.3076 | acc=15/16 | MISCLASSIFIED: [11] pred=1 true=0 t=14
+  Batch  72 | t=[21,130] | loss=0.6807 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=59, [3] pred=1 true=0 t=65, [9] pred=1 true=0 t=41, [15] pred=1 true=0 t=107
+  Batch  73 | t=[15,113] | loss=0.3697 | acc=14/16 | MISCLASSIFIED: [13] pred=1 true=0 t=34, [15] pred=0 true=1 t=43
+  Batch  74 | t=[8,134] | loss=0.4687 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=134, [6] pred=0 true=1 t=127, [13] pred=1 true=0 t=65, [14] pred=1 true=0 t=63
+  Batch  75 | t=[8,129] | loss=0.2817 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=64
+  Batch  76 | t=[6,127] | loss=0.6120 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=33, [10] pred=1 true=0 t=45, [13] pred=0 true=1 t=51
+  Batch  77 | t=[6,133] | loss=0.5142 | acc=12/16 | MISCLASSIFIED: [7] pred=0 true=1 t=121, [8] pred=0 true=1 t=90, [10] pred=0 true=1 t=125, [13] pred=1 true=0 t=60
+  Batch  78 | t=[10,121] | loss=0.6696 | acc=4/6 | MISCLASSIFIED: [2] pred=0 true=1 t=75, [3] pred=0 true=1 t=121
+Epoch 27 [warmup] | Loss: 0.4458 | Val Loss: 0.6333 | Val Acc: 73.4% | LR: 3.10e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[5,137] | loss=0.3090 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=137, [13] pred=0 true=1 t=41
+  Batch   1 | t=[28,138] | loss=0.3809 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=29, [2] pred=0 true=1 t=98, [9] pred=0 true=1 t=105, [14] pred=1 true=0 t=102
+  Batch   2 | t=[2,134] | loss=0.3846 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=120, [14] pred=0 true=1 t=26
+  Batch   3 | t=[0,139] | loss=0.4678 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=122, [3] pred=0 true=1 t=0
+  Batch   4 | t=[35,132] | loss=0.4582 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=122, [14] pred=0 true=1 t=54
+  Batch   5 | t=[5,133] | loss=0.4423 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=121, [9] pred=1 true=0 t=96, [15] pred=0 true=1 t=117
+  Batch   6 | t=[15,139] | loss=0.3414 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=128
+  Batch   7 | t=[9,131] | loss=0.4467 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=97, [6] pred=1 true=0 t=93, [10] pred=1 true=0 t=96, [14] pred=0 true=1 t=20
+  Batch   8 | t=[28,133] | loss=0.3832 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=67, [5] pred=1 true=0 t=66, [13] pred=1 true=0 t=133, [14] pred=1 true=0 t=77
+  Batch   9 | t=[7,139] | loss=0.5017 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=124, [2] pred=0 true=1 t=126, [9] pred=1 true=0 t=41, [13] pred=0 true=1 t=78, [14] pred=1 true=0 t=130
+  Batch  10 | t=[9,126] | loss=0.5634 | acc=10/16 | MISCLASSIFIED: [2] pred=1 true=0 t=81, [5] pred=0 true=1 t=108, [8] pred=1 true=0 t=123, [9] pred=0 true=1 t=56, [10] pred=0 true=1 t=57, [13] pred=0 true=1 t=126
+  Batch  11 | t=[3,132] | loss=0.7556 | acc=10/16 | MISCLASSIFIED: [2] pred=1 true=0 t=57, [4] pred=1 true=0 t=82, [5] pred=1 true=0 t=80, [7] pred=1 true=0 t=126, [10] pred=1 true=0 t=89, [12] pred=0 true=1 t=103
+  Batch  12 | t=[8,131] | loss=0.3951 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=131, [7] pred=1 true=0 t=112, [11] pred=1 true=0 t=125
+  Batch  13 | t=[3,138] | loss=0.6488 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=24, [5] pred=1 true=0 t=138, [9] pred=0 true=1 t=11
+  Batch  14 | t=[7,139] | loss=0.2949 | acc=15/16 | MISCLASSIFIED: [9] pred=1 true=0 t=113
+  Batch  15 | t=[4,136] | loss=0.3601 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=120, [2] pred=1 true=0 t=136
+  Batch  16 | t=[2,132] | loss=0.3851 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=43, [2] pred=1 true=0 t=132
+  Batch  17 | t=[5,130] | loss=0.4543 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=17, [6] pred=1 true=0 t=66, [7] pred=0 true=1 t=14, [11] pred=0 true=1 t=119
+  Batch  18 | t=[2,126] | loss=0.4208 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=93, [7] pred=0 true=1 t=53, [14] pred=0 true=1 t=102
+  Batch  19 | t=[1,135] | loss=0.3472 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=110, [6] pred=0 true=1 t=94
+  Batch  20 | t=[9,136] | loss=0.3268 | acc=14/16 | MISCLASSIFIED: [10] pred=1 true=0 t=136, [13] pred=0 true=1 t=135
+  Batch  21 | t=[0,118] | loss=0.4199 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=104, [2] pred=1 true=0 t=118, [4] pred=0 true=1 t=16, [13] pred=0 true=1 t=28
+  Batch  22 | t=[0,136] | loss=0.5414 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=0, [4] pred=1 true=0 t=91, [5] pred=1 true=0 t=92, [10] pred=1 true=0 t=78
+  Batch  23 | t=[1,124] | loss=0.4610 | acc=13/16 | MISCLASSIFIED: [4] pred=0 true=1 t=104, [5] pred=0 true=1 t=93, [8] pred=0 true=1 t=109
+  Batch  24 | t=[0,131] | loss=0.7150 | acc=12/16 | MISCLASSIFIED: [7] pred=0 true=1 t=28, [10] pred=1 true=0 t=39, [12] pred=1 true=0 t=2, [14] pred=1 true=0 t=82
+  Batch  25 | t=[4,119] | loss=0.3453 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=4, [5] pred=0 true=1 t=73
+  Batch  26 | t=[13,89] | loss=0.4807 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=43, [4] pred=1 true=0 t=59, [7] pred=1 true=0 t=62
+  Batch  27 | t=[11,138] | loss=0.3119 | acc=15/16 | MISCLASSIFIED: [13] pred=1 true=0 t=118
+  Batch  28 | t=[0,115] | loss=0.4856 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=55, [7] pred=1 true=0 t=53, [10] pred=1 true=0 t=53
+  Batch  29 | t=[6,135] | loss=0.4455 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=54, [2] pred=1 true=0 t=79, [15] pred=0 true=1 t=123
+  Batch  30 | t=[13,131] | loss=0.2809 | acc=14/16 | MISCLASSIFIED: [9] pred=1 true=0 t=50, [10] pred=0 true=1 t=41
+  Batch  31 | t=[7,126] | loss=0.5069 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=74, [12] pred=0 true=1 t=14, [14] pred=1 true=0 t=124
+  Batch  32 | t=[10,136] | loss=0.3507 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=117, [12] pred=1 true=0 t=136
+  Batch  33 | t=[5,134] | loss=0.4040 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=129, [7] pred=0 true=1 t=134, [13] pred=0 true=1 t=5
+  Batch  34 | t=[19,116] | loss=0.3759 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=19, [15] pred=1 true=0 t=68
+  Batch  35 | t=[1,139] | loss=0.3186 | acc=15/16 | MISCLASSIFIED: [2] pred=1 true=0 t=58
+  Batch  36 | t=[8,138] | loss=0.4141 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=64, [2] pred=1 true=0 t=138, [4] pred=1 true=0 t=91, [5] pred=1 true=0 t=37, [13] pred=0 true=1 t=97
+  Batch  37 | t=[4,133] | loss=0.4206 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=92
+  Batch  38 | t=[1,126] | loss=0.6260 | acc=11/16 | MISCLASSIFIED: [3] pred=1 true=0 t=15, [4] pred=1 true=0 t=126, [6] pred=0 true=1 t=1, [13] pred=1 true=0 t=107, [15] pred=1 true=0 t=23
+  Batch  39 | t=[8,134] | loss=0.4692 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=57, [8] pred=0 true=1 t=134, [10] pred=1 true=0 t=11
+  Batch  40 | t=[17,132] | loss=0.3649 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=132
+  Batch  41 | t=[10,121] | loss=0.3878 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=49, [8] pred=1 true=0 t=15, [9] pred=0 true=1 t=121
+  Batch  42 | t=[1,135] | loss=0.4393 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=116, [4] pred=1 true=0 t=85
+  Batch  43 | t=[0,136] | loss=0.3801 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=72, [4] pred=0 true=1 t=2, [15] pred=0 true=1 t=122
+  Batch  44 | t=[2,134] | loss=0.3483 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=2, [14] pred=0 true=1 t=134
+  Batch  45 | t=[2,126] | loss=0.3068 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=64
+  Batch  46 | t=[10,129] | loss=0.3164 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=126, [2] pred=0 true=1 t=129
+  Batch  47 | t=[9,135] | loss=0.4216 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=102
+  Batch  48 | t=[15,138] | loss=0.4896 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=15, [5] pred=1 true=0 t=95, [14] pred=1 true=0 t=138
+  Batch  49 | t=[8,139] | loss=0.3207 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=28
+  Batch  50 | t=[18,137] | loss=0.3378 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=54, [8] pred=1 true=0 t=137
+  Batch  51 | t=[14,127] | loss=0.3829 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=52, [4] pred=0 true=1 t=124, [13] pred=1 true=0 t=127
+  Batch  52 | t=[2,139] | loss=0.9126 | acc=9/16 | MISCLASSIFIED: [0] pred=1 true=0 t=113, [1] pred=1 true=0 t=2, [2] pred=1 true=0 t=90, [5] pred=1 true=0 t=58, [6] pred=0 true=1 t=110, [9] pred=1 true=0 t=25, [11] pred=1 true=0 t=46
+  Batch  53 | t=[2,124] | loss=0.4980 | acc=12/16 | MISCLASSIFIED: [10] pred=1 true=0 t=99, [12] pred=0 true=1 t=124, [13] pred=1 true=0 t=73, [14] pred=1 true=0 t=124
+  Batch  54 | t=[4,106] | loss=0.4676 | acc=12/16 | MISCLASSIFIED: [4] pred=0 true=1 t=94, [7] pred=1 true=0 t=30, [12] pred=1 true=0 t=49, [13] pred=1 true=0 t=49
+  Batch  55 | t=[2,116] | loss=0.4190 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=65, [12] pred=1 true=0 t=44
+  Batch  56 | t=[5,131] | loss=0.3618 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=121, [5] pred=0 true=1 t=81
+  Batch  57 | t=[9,130] | loss=0.3603 | acc=15/16 | MISCLASSIFIED: [0] pred=1 true=0 t=52
+  Batch  58 | t=[8,127] | loss=0.3616 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=85, [3] pred=0 true=1 t=125, [6] pred=0 true=1 t=32
+  Batch  59 | t=[3,126] | loss=0.3525 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=64, [14] pred=0 true=1 t=23
+  Batch  60 | t=[41,134] | loss=0.4248 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=99, [12] pred=0 true=1 t=89, [14] pred=1 true=0 t=109
+  Batch  61 | t=[0,132] | loss=0.2826 | acc=15/16 | MISCLASSIFIED: [4] pred=1 true=0 t=126
+  Batch  62 | t=[1,125] | loss=0.2179 | acc=16/16
+  Batch  63 | t=[11,133] | loss=0.3358 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=133, [15] pred=1 true=0 t=56
+  Batch  64 | t=[10,121] | loss=0.6736 | acc=13/16 | MISCLASSIFIED: [4] pred=0 true=1 t=34, [8] pred=1 true=0 t=71, [14] pred=0 true=1 t=42
+  Batch  65 | t=[9,109] | loss=0.4191 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=24, [6] pred=0 true=1 t=42, [8] pred=1 true=0 t=86
+  Batch  66 | t=[6,137] | loss=0.7858 | acc=12/16 | MISCLASSIFIED: [8] pred=0 true=1 t=6, [10] pred=1 true=0 t=34, [14] pred=0 true=1 t=36, [15] pred=1 true=0 t=130
+  Batch  67 | t=[28,139] | loss=0.3719 | acc=13/16 | MISCLASSIFIED: [6] pred=0 true=1 t=139, [12] pred=0 true=1 t=68, [13] pred=1 true=0 t=118
+  Batch  68 | t=[0,134] | loss=0.4388 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=93, [13] pred=1 true=0 t=122
+  Batch  69 | t=[3,133] | loss=0.4424 | acc=12/16 | MISCLASSIFIED: [4] pred=1 true=0 t=112, [7] pred=1 true=0 t=119, [8] pred=1 true=0 t=87, [13] pred=1 true=0 t=58
+  Batch  70 | t=[3,118] | loss=0.2564 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=70
+  Batch  71 | t=[3,130] | loss=0.4292 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=63, [9] pred=1 true=0 t=95
+  Batch  72 | t=[0,107] | loss=0.3558 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=70, [5] pred=1 true=0 t=44
+  Batch  73 | t=[4,137] | loss=0.3050 | acc=15/16 | MISCLASSIFIED: [12] pred=1 true=0 t=72
+  Batch  74 | t=[9,133] | loss=0.3676 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=22, [14] pred=1 true=0 t=133
+  Batch  75 | t=[3,133] | loss=0.6442 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=23, [5] pred=0 true=1 t=113, [7] pred=0 true=1 t=112, [9] pred=1 true=0 t=110
+  Batch  76 | t=[38,136] | loss=0.5521 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=100, [7] pred=0 true=1 t=118, [8] pred=0 true=1 t=60, [12] pred=0 true=1 t=44
+  Batch  77 | t=[4,138] | loss=0.5702 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=59, [3] pred=1 true=0 t=55, [6] pred=0 true=1 t=43, [9] pred=1 true=0 t=23
+  Batch  78 | t=[40,121] | loss=0.3516 | acc=5/6 | MISCLASSIFIED: [4] pred=0 true=1 t=60
+Epoch 28 [warmup] | Loss: 0.4291 | Val Loss: 0.5116 | Val Acc: 78.2% | LR: 3.09e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[10,144] | loss=0.3326 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=89, [6] pred=0 true=1 t=135
+  Batch   1 | t=[7,130] | loss=0.3250 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=26, [15] pred=0 true=1 t=11
+  Batch   2 | t=[14,137] | loss=0.4860 | acc=12/16 | MISCLASSIFIED: [4] pred=0 true=1 t=71, [8] pred=0 true=1 t=128, [10] pred=0 true=1 t=28, [12] pred=1 true=0 t=137
+  Batch   3 | t=[4,139] | loss=0.3450 | acc=14/16 | MISCLASSIFIED: [13] pred=1 true=0 t=135, [15] pred=1 true=0 t=102
+  Batch   4 | t=[0,139] | loss=0.4407 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=139, [2] pred=1 true=0 t=130
+  Batch   5 | t=[13,138] | loss=0.5260 | acc=11/16 | MISCLASSIFIED: [8] pred=0 true=1 t=70, [11] pred=0 true=1 t=52, [12] pred=1 true=0 t=76, [13] pred=0 true=1 t=130, [15] pred=0 true=1 t=68
+  Batch   6 | t=[21,139] | loss=0.2988 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=21, [15] pred=0 true=1 t=124
+  Batch   7 | t=[5,138] | loss=0.2238 | acc=16/16
+  Batch   8 | t=[0,141] | loss=0.4149 | acc=12/16 | MISCLASSIFIED: [6] pred=0 true=1 t=4, [8] pred=1 true=0 t=0, [14] pred=1 true=0 t=22, [15] pred=1 true=0 t=7
+  Batch   9 | t=[4,118] | loss=0.4206 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=88, [14] pred=1 true=0 t=108, [15] pred=1 true=0 t=118
+  Batch  10 | t=[12,118] | loss=0.5401 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=72, [3] pred=1 true=0 t=83, [6] pred=1 true=0 t=67, [11] pred=0 true=1 t=52, [13] pred=0 true=1 t=76
+  Batch  11 | t=[1,133] | loss=0.4677 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=57, [7] pred=0 true=1 t=68, [8] pred=1 true=0 t=31, [14] pred=0 true=1 t=42
+  Batch  12 | t=[5,124] | loss=0.2935 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=107, [10] pred=0 true=1 t=86
+  Batch  13 | t=[17,141] | loss=0.1825 | acc=16/16
+  Batch  14 | t=[1,138] | loss=0.5919 | acc=12/16 | MISCLASSIFIED: [9] pred=0 true=1 t=43, [11] pred=1 true=0 t=37, [12] pred=0 true=1 t=70, [14] pred=1 true=0 t=115
+  Batch  15 | t=[9,144] | loss=0.2867 | acc=14/16 | MISCLASSIFIED: [10] pred=1 true=0 t=66, [12] pred=1 true=0 t=135
+  Batch  16 | t=[35,142] | loss=0.4290 | acc=12/16 | MISCLASSIFIED: [6] pred=1 true=0 t=139, [7] pred=0 true=1 t=41, [9] pred=1 true=0 t=133, [11] pred=1 true=0 t=46
+  Batch  17 | t=[4,121] | loss=0.5818 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=72, [8] pred=1 true=0 t=31, [11] pred=1 true=0 t=4
+  Batch  18 | t=[12,140] | loss=0.5716 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=53, [3] pred=1 true=0 t=90, [4] pred=0 true=1 t=137, [5] pred=1 true=0 t=12, [14] pred=1 true=0 t=119
+  Batch  19 | t=[37,138] | loss=0.3153 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=75
+  Batch  20 | t=[5,132] | loss=0.4846 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=98, [4] pred=0 true=1 t=132, [8] pred=0 true=1 t=16
+  Batch  21 | t=[6,115] | loss=0.7032 | acc=9/16 | MISCLASSIFIED: [1] pred=0 true=1 t=115, [2] pred=1 true=0 t=46, [6] pred=1 true=0 t=35, [7] pred=1 true=0 t=48, [9] pred=1 true=0 t=18, [14] pred=1 true=0 t=98, [15] pred=1 true=0 t=6
+  Batch  22 | t=[5,125] | loss=0.6840 | acc=10/16 | MISCLASSIFIED: [1] pred=0 true=1 t=116, [7] pred=0 true=1 t=125, [10] pred=1 true=0 t=60, [12] pred=1 true=0 t=5, [14] pred=1 true=0 t=112, [15] pred=0 true=1 t=78
+  Batch  23 | t=[4,109] | loss=0.2868 | acc=16/16
+  Batch  24 | t=[0,128] | loss=0.4340 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=59, [6] pred=1 true=0 t=90, [14] pred=0 true=1 t=110
+  Batch  25 | t=[25,133] | loss=0.4027 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=119, [6] pred=1 true=0 t=76, [11] pred=0 true=1 t=74, [12] pred=0 true=1 t=28
+  Batch  26 | t=[0,137] | loss=0.3015 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=106
+  Batch  27 | t=[1,138] | loss=0.4063 | acc=13/16 | MISCLASSIFIED: [4] pred=0 true=1 t=82, [11] pred=1 true=0 t=80, [12] pred=0 true=1 t=90
+  Batch  28 | t=[0,117] | loss=0.6519 | acc=10/16 | MISCLASSIFIED: [1] pred=1 true=0 t=26, [3] pred=1 true=0 t=28, [7] pred=1 true=0 t=28, [13] pred=0 true=1 t=16, [14] pred=1 true=0 t=39, [15] pred=1 true=0 t=42
+  Batch  29 | t=[16,144] | loss=0.5315 | acc=11/16 | MISCLASSIFIED: [5] pred=1 true=0 t=91, [9] pred=0 true=1 t=107, [12] pred=1 true=0 t=49, [13] pred=0 true=1 t=71, [15] pred=0 true=1 t=141
+  Batch  30 | t=[14,134] | loss=0.3579 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=99, [2] pred=0 true=1 t=134, [9] pred=0 true=1 t=38
+  Batch  31 | t=[4,143] | loss=0.5113 | acc=12/16 | MISCLASSIFIED: [4] pred=1 true=0 t=22, [5] pred=1 true=0 t=4, [8] pred=1 true=0 t=80, [15] pred=1 true=0 t=94
+  Batch  32 | t=[5,143] | loss=0.5253 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=41, [12] pred=1 true=0 t=10, [15] pred=1 true=0 t=106
+  Batch  33 | t=[3,143] | loss=0.4396 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=74, [4] pred=1 true=0 t=140, [5] pred=1 true=0 t=4, [7] pred=1 true=0 t=143
+  Batch  34 | t=[14,135] | loss=1.1482 | acc=9/16 | MISCLASSIFIED: [0] pred=1 true=0 t=73, [6] pred=1 true=0 t=96, [7] pred=1 true=0 t=120, [8] pred=1 true=0 t=135, [9] pred=1 true=0 t=59, [10] pred=1 true=0 t=131, [13] pred=1 true=0 t=132
+  Batch  35 | t=[1,123] | loss=0.4181 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=69, [2] pred=1 true=0 t=123, [13] pred=0 true=1 t=69
+  Batch  36 | t=[1,140] | loss=0.4654 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=130, [8] pred=0 true=1 t=89
+  Batch  37 | t=[0,143] | loss=0.5079 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=94, [5] pred=1 true=0 t=13, [6] pred=1 true=0 t=96, [10] pred=0 true=1 t=137
+  Batch  38 | t=[23,144] | loss=0.4978 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=127, [4] pred=0 true=1 t=87, [7] pred=0 true=1 t=40
+  Batch  39 | t=[21,143] | loss=0.4443 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=21, [8] pred=0 true=1 t=50, [12] pred=0 true=1 t=143, [14] pred=0 true=1 t=56
+  Batch  40 | t=[1,133] | loss=0.8781 | acc=9/16 | MISCLASSIFIED: [0] pred=1 true=0 t=103, [5] pred=0 true=1 t=102, [6] pred=0 true=1 t=68, [7] pred=0 true=1 t=45, [9] pred=1 true=0 t=133, [14] pred=0 true=1 t=75, [15] pred=0 true=1 t=104
+  Batch  41 | t=[17,122] | loss=0.3850 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=30
+  Batch  42 | t=[12,134] | loss=0.7577 | acc=8/16 | MISCLASSIFIED: [0] pred=1 true=0 t=33, [2] pred=1 true=0 t=134, [3] pred=0 true=1 t=14, [7] pred=1 true=0 t=122, [8] pred=1 true=0 t=83, [9] pred=0 true=1 t=112, [10] pred=0 true=1 t=129, [11] pred=0 true=1 t=12
+  Batch  43 | t=[6,124] | loss=0.3565 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=98, [7] pred=0 true=1 t=98, [13] pred=1 true=0 t=124
+  Batch  44 | t=[1,138] | loss=0.3554 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=102, [10] pred=0 true=1 t=58
+  Batch  45 | t=[5,127] | loss=0.4196 | acc=12/16 | MISCLASSIFIED: [4] pred=0 true=1 t=5, [5] pred=1 true=0 t=77, [6] pred=0 true=1 t=44, [9] pred=0 true=1 t=119
+  Batch  46 | t=[8,142] | loss=0.3353 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=142, [3] pred=1 true=0 t=123
+  Batch  47 | t=[0,140] | loss=0.3391 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=28
+  Batch  48 | t=[4,143] | loss=0.3229 | acc=15/16 | MISCLASSIFIED: [13] pred=1 true=0 t=127
+  Batch  49 | t=[13,142] | loss=0.4648 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=83, [2] pred=1 true=0 t=31, [3] pred=1 true=0 t=72, [8] pred=1 true=0 t=13, [11] pred=1 true=0 t=41
+  Batch  50 | t=[3,133] | loss=0.5061 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=133, [9] pred=1 true=0 t=92
+  Batch  51 | t=[4,141] | loss=0.2544 | acc=16/16
+  Batch  52 | t=[4,126] | loss=0.4089 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=81, [7] pred=1 true=0 t=24, [15] pred=0 true=1 t=75
+  Batch  53 | t=[4,125] | loss=0.4581 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=69, [7] pred=1 true=0 t=76, [11] pred=1 true=0 t=113
+  Batch  54 | t=[22,144] | loss=0.3639 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=74, [8] pred=1 true=0 t=120, [9] pred=0 true=1 t=57
+  Batch  55 | t=[14,138] | loss=0.4289 | acc=14/16 | MISCLASSIFIED: [12] pred=0 true=1 t=138, [15] pred=0 true=1 t=80
+  Batch  56 | t=[19,144] | loss=0.5652 | acc=14/16 | MISCLASSIFIED: [7] pred=1 true=0 t=53, [12] pred=1 true=0 t=141
+  Batch  57 | t=[20,126] | loss=0.4722 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=32, [14] pred=1 true=0 t=80
+  Batch  58 | t=[4,128] | loss=0.3307 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=122, [5] pred=1 true=0 t=128
+  Batch  59 | t=[4,137] | loss=0.7244 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=4, [9] pred=1 true=0 t=133, [14] pred=1 true=0 t=45, [15] pred=1 true=0 t=86
+  Batch  60 | t=[0,143] | loss=0.4538 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=133, [8] pred=0 true=1 t=5
+  Batch  61 | t=[7,142] | loss=0.4789 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=55, [7] pred=0 true=1 t=123, [11] pred=1 true=0 t=36
+  Batch  62 | t=[10,143] | loss=0.4121 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=52, [13] pred=1 true=0 t=64, [14] pred=0 true=1 t=127
+  Batch  63 | t=[4,121] | loss=0.4670 | acc=11/16 | MISCLASSIFIED: [0] pred=0 true=1 t=68, [1] pred=0 true=1 t=54, [5] pred=1 true=0 t=121, [11] pred=0 true=1 t=41, [12] pred=0 true=1 t=92
+  Batch  64 | t=[15,143] | loss=0.5959 | acc=11/16 | MISCLASSIFIED: [6] pred=0 true=1 t=15, [7] pred=0 true=1 t=90, [8] pred=0 true=1 t=134, [11] pred=0 true=1 t=94, [14] pred=0 true=1 t=88
+  Batch  65 | t=[2,138] | loss=0.4514 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=14, [2] pred=1 true=0 t=115, [7] pred=0 true=1 t=103, [8] pred=0 true=1 t=138
+  Batch  66 | t=[8,116] | loss=0.3759 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=116, [13] pred=1 true=0 t=68
+  Batch  67 | t=[12,143] | loss=0.5283 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=93, [13] pred=0 true=1 t=58
+  Batch  68 | t=[1,129] | loss=0.3747 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=78, [7] pred=1 true=0 t=65
+  Batch  69 | t=[1,136] | loss=0.3483 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=98, [12] pred=0 true=1 t=57
+  Batch  70 | t=[16,141] | loss=0.4122 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=79, [6] pred=0 true=1 t=45, [10] pred=0 true=1 t=104
+  Batch  71 | t=[1,126] | loss=0.2462 | acc=15/16 | MISCLASSIFIED: [8] pred=1 true=0 t=64
+  Batch  72 | t=[6,140] | loss=0.3208 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=15
+  Batch  73 | t=[3,134] | loss=0.2735 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=94
+  Batch  74 | t=[1,121] | loss=0.3153 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=77
+  Batch  75 | t=[17,117] | loss=0.6070 | acc=11/16 | MISCLASSIFIED: [3] pred=1 true=0 t=104, [5] pred=1 true=0 t=69, [7] pred=1 true=0 t=98, [11] pred=0 true=1 t=54, [15] pred=1 true=0 t=53
+  Batch  76 | t=[4,134] | loss=0.9619 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=73, [4] pred=1 true=0 t=77, [6] pred=1 true=0 t=64, [9] pred=1 true=0 t=101, [10] pred=1 true=0 t=34
+  Batch  77 | t=[12,111] | loss=0.2521 | acc=16/16
+  Batch  78 | t=[25,131] | loss=0.2605 | acc=6/6
+Epoch 29 [warmup] | Loss: 0.4499 | Val Loss: 0.5451 | Val Acc: 79.8% | LR: 3.08e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[2,145] | loss=0.2800 | acc=15/16 | MISCLASSIFIED: [13] pred=1 true=0 t=110
+  Batch   1 | t=[9,148] | loss=0.2338 | acc=15/16 | MISCLASSIFIED: [2] pred=1 true=0 t=60
+  Batch   2 | t=[0,118] | loss=0.2705 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=31
+  Batch   3 | t=[9,143] | loss=0.6460 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=32, [1] pred=1 true=0 t=71, [4] pred=1 true=0 t=34, [6] pred=0 true=1 t=143, [10] pred=1 true=0 t=46
+  Batch   4 | t=[44,148] | loss=0.7768 | acc=11/16 | MISCLASSIFIED: [4] pred=1 true=0 t=63, [7] pred=1 true=0 t=80, [8] pred=1 true=0 t=100, [10] pred=1 true=0 t=103, [14] pred=1 true=0 t=142
+  Batch   5 | t=[1,149] | loss=0.6302 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=1, [2] pred=1 true=0 t=13, [8] pred=1 true=0 t=89, [11] pred=1 true=0 t=111
+  Batch   6 | t=[3,148] | loss=0.3318 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=3, [6] pred=1 true=0 t=17
+  Batch   7 | t=[1,136] | loss=0.5532 | acc=13/16 | MISCLASSIFIED: [6] pred=0 true=1 t=127, [7] pred=0 true=1 t=74, [15] pred=0 true=1 t=104
+  Batch   8 | t=[0,131] | loss=0.4705 | acc=11/16 | MISCLASSIFIED: [4] pred=0 true=1 t=82, [6] pred=0 true=1 t=33, [8] pred=0 true=1 t=127, [11] pred=0 true=1 t=129, [12] pred=1 true=0 t=131
+  Batch   9 | t=[4,138] | loss=0.3865 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=138, [2] pred=0 true=1 t=71
+  Batch  10 | t=[5,143] | loss=0.6129 | acc=10/16 | MISCLASSIFIED: [2] pred=0 true=1 t=48, [5] pred=0 true=1 t=63, [6] pred=0 true=1 t=105, [10] pred=0 true=1 t=28, [12] pred=0 true=1 t=62, [13] pred=0 true=1 t=123
+  Batch  11 | t=[10,141] | loss=0.6401 | acc=13/16 | MISCLASSIFIED: [4] pred=0 true=1 t=23, [5] pred=0 true=1 t=117, [11] pred=0 true=1 t=132
+  Batch  12 | t=[0,144] | loss=0.2974 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=102
+  Batch  13 | t=[0,148] | loss=0.2727 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=130, [9] pred=0 true=1 t=79
+  Batch  14 | t=[42,148] | loss=0.4328 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=119, [13] pred=0 true=1 t=59
+  Batch  15 | t=[1,147] | loss=0.5775 | acc=11/16 | MISCLASSIFIED: [1] pred=0 true=1 t=1, [2] pred=0 true=1 t=107, [8] pred=0 true=1 t=88, [13] pred=1 true=0 t=72, [15] pred=1 true=0 t=96
+  Batch  16 | t=[3,144] | loss=0.5487 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=89, [10] pred=0 true=1 t=111, [14] pred=0 true=1 t=139
+  Batch  17 | t=[13,102] | loss=0.2325 | acc=16/16
+  Batch  18 | t=[6,146] | loss=0.3963 | acc=14/16 | MISCLASSIFIED: [7] pred=0 true=1 t=41, [8] pred=1 true=0 t=56
+  Batch  19 | t=[14,148] | loss=0.7951 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=143, [8] pred=0 true=1 t=148, [12] pred=1 true=0 t=115
+  Batch  20 | t=[23,146] | loss=0.5452 | acc=11/16 | MISCLASSIFIED: [3] pred=1 true=0 t=146, [4] pred=1 true=0 t=113, [5] pred=1 true=0 t=145, [11] pred=1 true=0 t=116, [13] pred=0 true=1 t=116
+  Batch  21 | t=[13,149] | loss=0.4782 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=100, [9] pred=1 true=0 t=13, [14] pred=1 true=0 t=108
+  Batch  22 | t=[2,137] | loss=0.7175 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=105, [3] pred=1 true=0 t=131, [9] pred=1 true=0 t=51, [13] pred=1 true=0 t=2
+  Batch  23 | t=[7,130] | loss=1.3519 | acc=10/16 | MISCLASSIFIED: [1] pred=1 true=0 t=130, [2] pred=0 true=1 t=112, [7] pred=1 true=0 t=89, [10] pred=1 true=0 t=49, [11] pred=1 true=0 t=56, [13] pred=1 true=0 t=62
+  Batch  24 | t=[13,137] | loss=0.6399 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=128, [10] pred=1 true=0 t=136, [12] pred=1 true=0 t=88
+  Batch  25 | t=[13,142] | loss=1.1350 | acc=11/16 | MISCLASSIFIED: [5] pred=1 true=0 t=64, [7] pred=1 true=0 t=121, [9] pred=1 true=0 t=87, [13] pred=1 true=0 t=120, [14] pred=0 true=1 t=127
+  Batch  26 | t=[1,148] | loss=0.3995 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=148, [15] pred=0 true=1 t=55
+  Batch  27 | t=[8,141] | loss=0.4177 | acc=12/16 | MISCLASSIFIED: [4] pred=1 true=0 t=81, [5] pred=0 true=1 t=8, [6] pred=1 true=0 t=132, [11] pred=0 true=1 t=29
+  Batch  28 | t=[9,149] | loss=0.6792 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=14, [9] pred=0 true=1 t=61, [12] pred=0 true=1 t=134
+  Batch  29 | t=[0,141] | loss=0.5841 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=70, [9] pred=0 true=1 t=62, [14] pred=1 true=0 t=29, [15] pred=0 true=1 t=141
+  Batch  30 | t=[2,139] | loss=0.3459 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=75, [8] pred=0 true=1 t=49, [9] pred=0 true=1 t=139
+  Batch  31 | t=[1,129] | loss=0.5670 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=7, [2] pred=0 true=1 t=20, [9] pred=0 true=1 t=98
+  Batch  32 | t=[1,129] | loss=0.3662 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=115, [10] pred=0 true=1 t=39
+  Batch  33 | t=[6,142] | loss=0.6210 | acc=12/16 | MISCLASSIFIED: [6] pred=0 true=1 t=63, [10] pred=1 true=0 t=136, [13] pred=1 true=0 t=142, [15] pred=0 true=1 t=43
+  Batch  34 | t=[2,141] | loss=0.9079 | acc=11/16 | MISCLASSIFIED: [3] pred=1 true=0 t=100, [4] pred=0 true=1 t=46, [6] pred=0 true=1 t=97, [12] pred=0 true=1 t=141, [13] pred=0 true=1 t=120
+  Batch  35 | t=[2,140] | loss=0.4023 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=103, [15] pred=0 true=1 t=111
+  Batch  36 | t=[5,145] | loss=0.6168 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=67, [4] pred=1 true=0 t=82, [5] pred=1 true=0 t=132, [6] pred=0 true=1 t=86, [15] pred=1 true=0 t=79
+  Batch  37 | t=[4,143] | loss=0.3600 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=143, [11] pred=0 true=1 t=50
+  Batch  38 | t=[4,130] | loss=0.4312 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=81, [8] pred=0 true=1 t=4
+  Batch  39 | t=[4,141] | loss=0.4496 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=134, [13] pred=0 true=1 t=102, [15] pred=1 true=0 t=17
+  Batch  40 | t=[28,126] | loss=0.9821 | acc=8/16 | MISCLASSIFIED: [3] pred=1 true=0 t=122, [7] pred=1 true=0 t=44, [8] pred=1 true=0 t=62, [9] pred=1 true=0 t=80, [10] pred=1 true=0 t=103, [13] pred=1 true=0 t=61, [14] pred=1 true=0 t=79, [15] pred=0 true=1 t=116
+  Batch  41 | t=[5,146] | loss=0.7759 | acc=10/16 | MISCLASSIFIED: [1] pred=1 true=0 t=107, [2] pred=1 true=0 t=146, [4] pred=1 true=0 t=91, [8] pred=1 true=0 t=145, [12] pred=1 true=0 t=74, [13] pred=0 true=1 t=44
+  Batch  42 | t=[5,147] | loss=0.4441 | acc=12/16 | MISCLASSIFIED: [4] pred=0 true=1 t=58, [9] pred=0 true=1 t=146, [10] pred=0 true=1 t=71, [13] pred=0 true=1 t=7
+  Batch  43 | t=[2,138] | loss=0.4220 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=32, [14] pred=0 true=1 t=77, [15] pred=0 true=1 t=122
+  Batch  44 | t=[4,135] | loss=0.4085 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=29, [7] pred=1 true=0 t=81, [11] pred=1 true=0 t=42
+  Batch  45 | t=[17,145] | loss=0.4544 | acc=11/16 | MISCLASSIFIED: [2] pred=0 true=1 t=39, [8] pred=0 true=1 t=79, [9] pred=0 true=1 t=145, [13] pred=1 true=0 t=108, [14] pred=0 true=1 t=39
+  Batch  46 | t=[5,128] | loss=0.5747 | acc=10/16 | MISCLASSIFIED: [1] pred=0 true=1 t=49, [7] pred=1 true=0 t=128, [9] pred=0 true=1 t=26, [11] pred=0 true=1 t=43, [12] pred=1 true=0 t=117, [14] pred=1 true=0 t=84
+  Batch  47 | t=[0,141] | loss=0.4798 | acc=13/16 | MISCLASSIFIED: [9] pred=1 true=0 t=11, [10] pred=1 true=0 t=7, [11] pred=1 true=0 t=0
+  Batch  48 | t=[2,145] | loss=0.3399 | acc=16/16
+  Batch  49 | t=[0,132] | loss=0.4582 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=53, [3] pred=1 true=0 t=112, [9] pred=0 true=1 t=87, [13] pred=0 true=1 t=20
+  Batch  50 | t=[12,144] | loss=0.3659 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=108
+  Batch  51 | t=[4,149] | loss=0.4153 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=46, [5] pred=0 true=1 t=147
+  Batch  52 | t=[14,124] | loss=0.3425 | acc=14/16 | MISCLASSIFIED: [12] pred=0 true=1 t=119, [15] pred=1 true=0 t=27
+  Batch  53 | t=[7,147] | loss=0.4712 | acc=13/16 | MISCLASSIFIED: [6] pred=0 true=1 t=88, [10] pred=1 true=0 t=118, [14] pred=0 true=1 t=86
+  Batch  54 | t=[11,139] | loss=0.4171 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=139, [9] pred=0 true=1 t=91
+  Batch  55 | t=[12,147] | loss=0.3918 | acc=15/16 | MISCLASSIFIED: [2] pred=1 true=0 t=22
+  Batch  56 | t=[0,137] | loss=0.4618 | acc=14/16 | MISCLASSIFIED: [7] pred=1 true=0 t=50, [8] pred=0 true=1 t=99
+  Batch  57 | t=[1,149] | loss=0.5612 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=1, [3] pred=1 true=0 t=29, [5] pred=1 true=0 t=135, [12] pred=1 true=0 t=132, [15] pred=1 true=0 t=93
+  Batch  58 | t=[9,137] | loss=0.3504 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=84, [12] pred=1 true=0 t=133
+  Batch  59 | t=[1,142] | loss=0.6607 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=31, [7] pred=1 true=0 t=80, [12] pred=0 true=1 t=85, [15] pred=1 true=0 t=1
+  Batch  60 | t=[1,136] | loss=0.5036 | acc=13/16 | MISCLASSIFIED: [12] pred=1 true=0 t=14, [14] pred=0 true=1 t=30, [15] pred=1 true=0 t=76
+  Batch  61 | t=[13,144] | loss=0.3885 | acc=14/16 | MISCLASSIFIED: [8] pred=0 true=1 t=98, [10] pred=1 true=0 t=78
+  Batch  62 | t=[0,117] | loss=0.6613 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=33, [4] pred=1 true=0 t=39, [5] pred=1 true=0 t=37, [11] pred=1 true=0 t=43, [14] pred=1 true=0 t=21
+  Batch  63 | t=[2,149] | loss=0.2622 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=111
+  Batch  64 | t=[8,149] | loss=0.6157 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=8, [7] pred=1 true=0 t=47, [8] pred=1 true=0 t=91, [11] pred=1 true=0 t=133
+  Batch  65 | t=[15,149] | loss=0.4153 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=16, [3] pred=1 true=0 t=132, [10] pred=1 true=0 t=15, [14] pred=0 true=1 t=105
+  Batch  66 | t=[20,149] | loss=0.3795 | acc=15/16 | MISCLASSIFIED: [11] pred=1 true=0 t=96
+  Batch  67 | t=[5,143] | loss=1.0252 | acc=10/16 | MISCLASSIFIED: [2] pred=1 true=0 t=13, [3] pred=1 true=0 t=90, [5] pred=0 true=1 t=48, [6] pred=0 true=1 t=81, [10] pred=1 true=0 t=67, [15] pred=1 true=0 t=83
+  Batch  68 | t=[3,141] | loss=0.3549 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=105, [3] pred=1 true=0 t=129, [13] pred=0 true=1 t=95
+  Batch  69 | t=[11,139] | loss=0.6582 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=128, [5] pred=0 true=1 t=82, [10] pred=0 true=1 t=82, [11] pred=0 true=1 t=109
+  Batch  70 | t=[0,145] | loss=0.3772 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=71
+  Batch  71 | t=[0,138] | loss=0.4366 | acc=13/16 | MISCLASSIFIED: [9] pred=1 true=0 t=14, [11] pred=0 true=1 t=100, [13] pred=0 true=1 t=130
+  Batch  72 | t=[7,141] | loss=0.4949 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=35, [1] pred=1 true=0 t=43, [8] pred=0 true=1 t=124, [13] pred=0 true=1 t=60
+  Batch  73 | t=[0,149] | loss=0.3066 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=95
+  Batch  74 | t=[0,148] | loss=0.4026 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=121, [6] pred=0 true=1 t=147, [10] pred=1 true=0 t=107
+  Batch  75 | t=[8,142] | loss=0.4448 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=82, [1] pred=0 true=1 t=141, [11] pred=1 true=0 t=30
+  Batch  76 | t=[24,136] | loss=0.4128 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=24, [10] pred=0 true=1 t=136
+  Batch  77 | t=[6,149] | loss=1.0723 | acc=10/16 | MISCLASSIFIED: [0] pred=0 true=1 t=73, [1] pred=0 true=1 t=140, [8] pred=0 true=1 t=49, [9] pred=0 true=1 t=47, [11] pred=0 true=1 t=127, [13] pred=0 true=1 t=6
+  Batch  78 | t=[12,147] | loss=0.3793 | acc=5/6 | MISCLASSIFIED: [0] pred=1 true=0 t=112
+Epoch 30 [warmup] | Loss: 0.5161 | Val Loss: 0.4485 | Val Acc: 82.9% | LR: 3.07e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+--- Saved model to checkpoints/robust_classification/guide_fits_best/state.pt ---
+  ** New best metric: 82.9% — saved to checkpoints/robust_classification/guide_fits_best
+  Batch   0 | t=[12,140] | loss=0.3536 | acc=14/16 | MISCLASSIFIED: [12] pred=1 true=0 t=101, [14] pred=1 true=0 t=103
+  Batch   1 | t=[11,154] | loss=0.2687 | acc=16/16
+  Batch   2 | t=[11,147] | loss=0.3303 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=11, [7] pred=1 true=0 t=54
+  Batch   3 | t=[4,145] | loss=0.2850 | acc=15/16 | MISCLASSIFIED: [10] pred=1 true=0 t=41
+  Batch   4 | t=[18,154] | loss=0.5416 | acc=12/16 | MISCLASSIFIED: [6] pred=1 true=0 t=138, [9] pred=0 true=1 t=43, [10] pred=1 true=0 t=110, [15] pred=0 true=1 t=124
+  Batch   5 | t=[17,148] | loss=0.2582 | acc=15/16 | MISCLASSIFIED: [10] pred=1 true=0 t=111
+  Batch   6 | t=[14,153] | loss=0.3416 | acc=15/16 | MISCLASSIFIED: [5] pred=1 true=0 t=62
+  Batch   7 | t=[2,127] | loss=0.6445 | acc=10/16 | MISCLASSIFIED: [2] pred=1 true=0 t=98, [4] pred=1 true=0 t=2, [6] pred=1 true=0 t=127, [8] pred=0 true=1 t=120, [10] pred=1 true=0 t=65, [11] pred=1 true=0 t=34
+  Batch   8 | t=[12,128] | loss=0.3764 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=100, [3] pred=1 true=0 t=61
+  Batch   9 | t=[12,148] | loss=0.3779 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=95, [11] pred=0 true=1 t=34
+  Batch  10 | t=[13,146] | loss=0.3296 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=145, [15] pred=1 true=0 t=125
+  Batch  11 | t=[25,151] | loss=0.5914 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=36, [5] pred=1 true=0 t=49, [6] pred=1 true=0 t=124, [11] pred=1 true=0 t=82
+  Batch  12 | t=[15,143] | loss=0.3587 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=143
+  Batch  13 | t=[25,152] | loss=0.3654 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=85, [3] pred=1 true=0 t=42
+  Batch  14 | t=[2,149] | loss=0.4812 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=61, [3] pred=0 true=1 t=3, [13] pred=1 true=0 t=144
+  Batch  15 | t=[6,144] | loss=0.3079 | acc=14/16 | MISCLASSIFIED: [11] pred=1 true=0 t=86, [13] pred=1 true=0 t=144
+  Batch  16 | t=[3,140] | loss=0.6391 | acc=13/16 | MISCLASSIFIED: [8] pred=0 true=1 t=52, [12] pred=0 true=1 t=45, [13] pred=0 true=1 t=140
+  Batch  17 | t=[16,148] | loss=0.4035 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=93, [11] pred=0 true=1 t=67
+  Batch  18 | t=[1,140] | loss=0.3566 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=51
+  Batch  19 | t=[7,142] | loss=0.3707 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=53, [9] pred=0 true=1 t=142, [11] pred=1 true=0 t=106
+  Batch  20 | t=[21,146] | loss=0.3984 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=32, [12] pred=0 true=1 t=136
+  Batch  21 | t=[16,153] | loss=0.2904 | acc=16/16
+  Batch  22 | t=[22,148] | loss=0.5145 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=126, [9] pred=0 true=1 t=22, [10] pred=0 true=1 t=148, [13] pred=1 true=0 t=144
+  Batch  23 | t=[6,152] | loss=0.2585 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=69, [9] pred=1 true=0 t=116
+  Batch  24 | t=[4,152] | loss=0.4800 | acc=13/16 | MISCLASSIFIED: [9] pred=1 true=0 t=145, [11] pred=1 true=0 t=152, [12] pred=1 true=0 t=37
+  Batch  25 | t=[2,142] | loss=0.2546 | acc=14/16 | MISCLASSIFIED: [8] pred=0 true=1 t=98, [13] pred=0 true=1 t=113
+  Batch  26 | t=[7,151] | loss=0.3067 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=7, [9] pred=0 true=1 t=82
+  Batch  27 | t=[6,141] | loss=0.7375 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=95, [6] pred=0 true=1 t=35, [9] pred=0 true=1 t=127, [13] pred=0 true=1 t=31
+  Batch  28 | t=[15,150] | loss=0.4136 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=34, [7] pred=1 true=0 t=129, [13] pred=0 true=1 t=95
+  Batch  29 | t=[8,152] | loss=0.2526 | acc=15/16 | MISCLASSIFIED: [8] pred=1 true=0 t=10
+  Batch  30 | t=[5,132] | loss=0.5006 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=96, [14] pred=0 true=1 t=106, [15] pred=1 true=0 t=44
+  Batch  31 | t=[0,144] | loss=0.4866 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=144, [8] pred=0 true=1 t=27, [9] pred=0 true=1 t=27
+  Batch  32 | t=[10,154] | loss=0.2555 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=79
+  Batch  33 | t=[1,137] | loss=0.2789 | acc=15/16 | MISCLASSIFIED: [4] pred=1 true=0 t=26
+  Batch  34 | t=[0,144] | loss=0.6478 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=47, [1] pred=0 true=1 t=1, [5] pred=1 true=0 t=0, [12] pred=0 true=1 t=144, [15] pred=0 true=1 t=112
+  Batch  35 | t=[14,151] | loss=0.5749 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=151, [6] pred=1 true=0 t=40, [9] pred=1 true=0 t=126, [13] pred=0 true=1 t=115
+  Batch  36 | t=[0,152] | loss=0.3806 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=48, [13] pred=0 true=1 t=148, [15] pred=1 true=0 t=149
+  Batch  37 | t=[3,152] | loss=0.7283 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=143, [6] pred=1 true=0 t=44, [12] pred=1 true=0 t=41, [13] pred=0 true=1 t=150
+  Batch  38 | t=[0,144] | loss=0.3866 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=0, [8] pred=0 true=1 t=103
+  Batch  39 | t=[3,143] | loss=0.5177 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=3, [3] pred=1 true=0 t=53, [12] pred=1 true=0 t=75
+  Batch  40 | t=[6,152] | loss=0.5612 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=6, [2] pred=0 true=1 t=14, [12] pred=0 true=1 t=35
+  Batch  41 | t=[7,153] | loss=0.4203 | acc=12/16 | MISCLASSIFIED: [6] pred=0 true=1 t=42, [7] pred=1 true=0 t=70, [11] pred=0 true=1 t=141, [14] pred=0 true=1 t=153
+  Batch  42 | t=[6,142] | loss=0.2032 | acc=16/16
+  Batch  43 | t=[32,142] | loss=0.3805 | acc=14/16 | MISCLASSIFIED: [9] pred=1 true=0 t=103, [15] pred=1 true=0 t=42
+  Batch  44 | t=[7,150] | loss=0.3648 | acc=15/16 | MISCLASSIFIED: [14] pred=1 true=0 t=69
+  Batch  45 | t=[5,150] | loss=0.4292 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=47, [9] pred=1 true=0 t=150, [15] pred=0 true=1 t=138
+  Batch  46 | t=[9,147] | loss=0.3998 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=53
+  Batch  47 | t=[6,135] | loss=0.4392 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=94, [4] pred=0 true=1 t=26, [11] pred=0 true=1 t=116
+  Batch  48 | t=[12,153] | loss=0.3290 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=153, [13] pred=0 true=1 t=85
+  Batch  49 | t=[2,154] | loss=0.4089 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=95, [8] pred=0 true=1 t=131
+  Batch  50 | t=[11,143] | loss=0.3741 | acc=13/16 | MISCLASSIFIED: [6] pred=0 true=1 t=137, [8] pred=1 true=0 t=13, [11] pred=0 true=1 t=64
+  Batch  51 | t=[5,151] | loss=0.3911 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=108, [3] pred=1 true=0 t=64, [15] pred=0 true=1 t=109
+  Batch  52 | t=[5,154] | loss=0.2389 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=123
+  Batch  53 | t=[2,153] | loss=0.3866 | acc=13/16 | MISCLASSIFIED: [12] pred=0 true=1 t=96, [13] pred=1 true=0 t=131, [15] pred=0 true=1 t=112
+  Batch  54 | t=[2,147] | loss=0.5781 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=144, [5] pred=1 true=0 t=32, [8] pred=1 true=0 t=121, [15] pred=1 true=0 t=5
+  Batch  55 | t=[2,151] | loss=0.4484 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=95, [9] pred=1 true=0 t=109, [12] pred=0 true=1 t=121
+  Batch  56 | t=[0,153] | loss=0.2716 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=144
+  Batch  57 | t=[12,129] | loss=0.3321 | acc=15/16 | MISCLASSIFIED: [11] pred=1 true=0 t=129
+  Batch  58 | t=[10,147] | loss=0.5265 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=98, [5] pred=1 true=0 t=23, [10] pred=1 true=0 t=147, [13] pred=1 true=0 t=77, [15] pred=1 true=0 t=143
+  Batch  59 | t=[0,134] | loss=0.5184 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=76, [11] pred=1 true=0 t=134, [13] pred=1 true=0 t=121, [14] pred=0 true=1 t=89
+  Batch  60 | t=[6,152] | loss=0.5966 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=143, [4] pred=1 true=0 t=21, [12] pred=1 true=0 t=41
+  Batch  61 | t=[0,139] | loss=0.2869 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=113, [9] pred=1 true=0 t=79
+  Batch  62 | t=[7,153] | loss=0.5276 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=50, [11] pred=1 true=0 t=94, [12] pred=0 true=1 t=114
+  Batch  63 | t=[32,130] | loss=0.6299 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=32, [12] pred=1 true=0 t=123
+  Batch  64 | t=[3,145] | loss=0.3479 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=127, [13] pred=0 true=1 t=3
+  Batch  65 | t=[14,144] | loss=0.5016 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=113, [10] pred=0 true=1 t=142
+  Batch  66 | t=[9,142] | loss=0.5623 | acc=11/16 | MISCLASSIFIED: [1] pred=0 true=1 t=113, [3] pred=1 true=0 t=71, [11] pred=0 true=1 t=142, [13] pred=1 true=0 t=85, [14] pred=0 true=1 t=132
+  Batch  67 | t=[4,153] | loss=1.0167 | acc=10/16 | MISCLASSIFIED: [0] pred=0 true=1 t=89, [3] pred=0 true=1 t=96, [7] pred=0 true=1 t=17, [9] pred=0 true=1 t=153, [12] pred=0 true=1 t=91, [13] pred=1 true=0 t=74
+  Batch  68 | t=[22,151] | loss=0.4805 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=118, [1] pred=0 true=1 t=33, [3] pred=1 true=0 t=101, [5] pred=1 true=0 t=79
+  Batch  69 | t=[13,120] | loss=0.4347 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=88, [4] pred=0 true=1 t=91
+  Batch  70 | t=[6,150] | loss=0.4772 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=6, [14] pred=0 true=1 t=74
+  Batch  71 | t=[2,131] | loss=0.2789 | acc=15/16 | MISCLASSIFIED: [8] pred=1 true=0 t=56
+  Batch  72 | t=[5,148] | loss=0.5286 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=5, [9] pred=0 true=1 t=145, [13] pred=1 true=0 t=77
+  Batch  73 | t=[10,139] | loss=0.4015 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=75, [5] pred=0 true=1 t=77, [11] pred=1 true=0 t=128
+  Batch  74 | t=[38,153] | loss=0.2577 | acc=16/16
+  Batch  75 | t=[8,144] | loss=0.3570 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=106, [2] pred=1 true=0 t=118, [14] pred=0 true=1 t=84
+  Batch  76 | t=[1,132] | loss=0.3975 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=2, [11] pred=0 true=1 t=25
+  Batch  77 | t=[7,149] | loss=0.4624 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=76, [3] pred=0 true=1 t=129, [15] pred=0 true=1 t=45
+  Batch  78 | t=[19,132] | loss=0.6243 | acc=4/6 | MISCLASSIFIED: [1] pred=0 true=1 t=111, [4] pred=0 true=1 t=132
+Epoch 31 [warmup] | Loss: 0.4281 | Val Loss: 0.5745 | Val Acc: 75.9% | LR: 3.06e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[1,151] | loss=0.5570 | acc=12/16 | MISCLASSIFIED: [8] pred=0 true=1 t=64, [11] pred=0 true=1 t=80, [12] pred=1 true=0 t=49, [15] pred=0 true=1 t=135
+  Batch   1 | t=[8,155] | loss=0.3727 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=129, [5] pred=0 true=1 t=56, [6] pred=0 true=1 t=123
+  Batch   2 | t=[16,158] | loss=0.5059 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=153, [11] pred=1 true=0 t=143
+  Batch   3 | t=[2,133] | loss=0.8003 | acc=9/16 | MISCLASSIFIED: [2] pred=1 true=0 t=60, [3] pred=1 true=0 t=94, [4] pred=0 true=1 t=47, [5] pred=1 true=0 t=68, [8] pred=1 true=0 t=76, [10] pred=0 true=1 t=133, [11] pred=1 true=0 t=100
+  Batch   4 | t=[28,143] | loss=0.7146 | acc=14/16 | MISCLASSIFIED: [12] pred=1 true=0 t=53, [13] pred=1 true=0 t=125
+  Batch   5 | t=[29,145] | loss=0.3112 | acc=15/16 | MISCLASSIFIED: [12] pred=1 true=0 t=121
+  Batch   6 | t=[15,156] | loss=0.4658 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=15, [11] pred=0 true=1 t=46
+  Batch   7 | t=[0,135] | loss=0.4429 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=114, [9] pred=1 true=0 t=6
+  Batch   8 | t=[16,159] | loss=0.6505 | acc=11/16 | MISCLASSIFIED: [3] pred=0 true=1 t=144, [4] pred=0 true=1 t=143, [9] pred=0 true=1 t=43, [13] pred=1 true=0 t=23, [15] pred=0 true=1 t=149
+  Batch   9 | t=[4,150] | loss=0.3934 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=136, [11] pred=1 true=0 t=148
+  Batch  10 | t=[1,159] | loss=0.4108 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=146, [9] pred=1 true=0 t=159, [13] pred=1 true=0 t=74
+  Batch  11 | t=[2,148] | loss=0.5243 | acc=13/16 | MISCLASSIFIED: [4] pred=0 true=1 t=66, [6] pred=1 true=0 t=58, [9] pred=0 true=1 t=145
+  Batch  12 | t=[7,158] | loss=0.3968 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=23
+  Batch  13 | t=[1,159] | loss=0.4234 | acc=13/16 | MISCLASSIFIED: [4] pred=0 true=1 t=159, [11] pred=0 true=1 t=67, [14] pred=0 true=1 t=127
+  Batch  14 | t=[5,146] | loss=0.5533 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=17, [6] pred=0 true=1 t=71
+  Batch  15 | t=[7,148] | loss=0.4355 | acc=11/16 | MISCLASSIFIED: [2] pred=0 true=1 t=55, [3] pred=0 true=1 t=148, [6] pred=0 true=1 t=144, [8] pred=0 true=1 t=7, [9] pred=1 true=0 t=125
+  Batch  16 | t=[6,157] | loss=0.3942 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=131
+  Batch  17 | t=[3,158] | loss=0.4272 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=158, [4] pred=0 true=1 t=12, [9] pred=0 true=1 t=73, [13] pred=0 true=1 t=85
+  Batch  18 | t=[2,152] | loss=0.7410 | acc=10/16 | MISCLASSIFIED: [1] pred=1 true=0 t=96, [2] pred=1 true=0 t=7, [4] pred=1 true=0 t=50, [7] pred=1 true=0 t=140, [8] pred=0 true=1 t=139, [9] pred=1 true=0 t=92
+  Batch  19 | t=[4,156] | loss=0.2418 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=11
+  Batch  20 | t=[3,159] | loss=0.3873 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=79, [3] pred=0 true=1 t=16, [5] pred=1 true=0 t=15
+  Batch  21 | t=[8,145] | loss=0.3416 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=8, [13] pred=0 true=1 t=30
+  Batch  22 | t=[13,152] | loss=0.4896 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=120, [6] pred=1 true=0 t=144, [11] pred=1 true=0 t=13
+  Batch  23 | t=[24,153] | loss=0.4563 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=137, [4] pred=0 true=1 t=153, [9] pred=0 true=1 t=41
+  Batch  24 | t=[4,156] | loss=0.6165 | acc=12/16 | MISCLASSIFIED: [7] pred=1 true=0 t=85, [9] pred=1 true=0 t=117, [12] pred=0 true=1 t=148, [13] pred=0 true=1 t=77
+  Batch  25 | t=[0,152] | loss=0.5169 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=149, [8] pred=1 true=0 t=152, [13] pred=1 true=0 t=36
+  Batch  26 | t=[10,148] | loss=0.2724 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=34
+  Batch  27 | t=[3,156] | loss=0.3816 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=41, [5] pred=1 true=0 t=137
+  Batch  28 | t=[6,145] | loss=0.3822 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=125, [7] pred=0 true=1 t=6, [13] pred=1 true=0 t=145
+  Batch  29 | t=[3,158] | loss=0.2976 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=89
+  Batch  30 | t=[9,158] | loss=0.3668 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=150
+  Batch  31 | t=[4,149] | loss=0.3702 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=125, [4] pred=1 true=0 t=89, [12] pred=0 true=1 t=124
+  Batch  32 | t=[0,150] | loss=0.4307 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=0, [8] pred=0 true=1 t=150, [9] pred=1 true=0 t=98, [12] pred=1 true=0 t=9
+  Batch  33 | t=[22,156] | loss=0.5180 | acc=12/16 | MISCLASSIFIED: [4] pred=1 true=0 t=26, [7] pred=1 true=0 t=112, [11] pred=0 true=1 t=59, [14] pred=1 true=0 t=130
+  Batch  34 | t=[30,155] | loss=0.5905 | acc=9/16 | MISCLASSIFIED: [3] pred=1 true=0 t=125, [4] pred=0 true=1 t=105, [6] pred=0 true=1 t=124, [8] pred=0 true=1 t=90, [9] pred=1 true=0 t=71, [12] pred=1 true=0 t=118, [15] pred=1 true=0 t=89
+  Batch  35 | t=[4,139] | loss=0.4891 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=139, [3] pred=0 true=1 t=66, [7] pred=0 true=1 t=132
+  Batch  36 | t=[0,151] | loss=0.4206 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=93, [10] pred=0 true=1 t=47
+  Batch  37 | t=[6,153] | loss=0.6467 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=153, [3] pred=1 true=0 t=114, [8] pred=0 true=1 t=6, [11] pred=1 true=0 t=17
+  Batch  38 | t=[0,138] | loss=0.4488 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=51, [1] pred=1 true=0 t=77, [11] pred=0 true=1 t=54, [13] pred=1 true=0 t=42
+  Batch  39 | t=[7,156] | loss=0.4807 | acc=13/16 | MISCLASSIFIED: [4] pred=0 true=1 t=68, [8] pred=0 true=1 t=145, [14] pred=0 true=1 t=57
+  Batch  40 | t=[6,126] | loss=0.4207 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=104, [2] pred=0 true=1 t=54, [3] pred=0 true=1 t=116
+  Batch  41 | t=[7,150] | loss=0.4845 | acc=14/16 | MISCLASSIFIED: [8] pred=0 true=1 t=147, [15] pred=1 true=0 t=54
+  Batch  42 | t=[16,143] | loss=0.2764 | acc=16/16
+  Batch  43 | t=[3,159] | loss=0.5756 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=96, [7] pred=0 true=1 t=58, [10] pred=0 true=1 t=159
+  Batch  44 | t=[18,158] | loss=0.5664 | acc=10/16 | MISCLASSIFIED: [0] pred=1 true=0 t=43, [2] pred=0 true=1 t=93, [6] pred=1 true=0 t=87, [8] pred=0 true=1 t=158, [9] pred=0 true=1 t=78, [15] pred=1 true=0 t=79
+  Batch  45 | t=[22,150] | loss=0.3470 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=146, [14] pred=1 true=0 t=101
+  Batch  46 | t=[1,140] | loss=0.4367 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=121, [4] pred=1 true=0 t=13, [13] pred=0 true=1 t=114
+  Batch  47 | t=[1,150] | loss=0.3086 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=84, [1] pred=0 true=1 t=150
+  Batch  48 | t=[5,154] | loss=0.4326 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=151, [4] pred=0 true=1 t=154, [9] pred=0 true=1 t=92
+  Batch  49 | t=[15,155] | loss=0.2449 | acc=16/16
+  Batch  50 | t=[6,159] | loss=0.3472 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=145, [9] pred=0 true=1 t=146, [13] pred=1 true=0 t=132
+  Batch  51 | t=[13,147] | loss=0.3034 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=130
+  Batch  52 | t=[10,143] | loss=0.3286 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=140, [7] pred=0 true=1 t=120
+  Batch  53 | t=[0,150] | loss=0.2946 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=66, [15] pred=0 true=1 t=150
+  Batch  54 | t=[6,127] | loss=0.2968 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=76, [4] pred=0 true=1 t=6
+  Batch  55 | t=[16,144] | loss=0.4839 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=44, [10] pred=1 true=0 t=55
+  Batch  56 | t=[3,159] | loss=0.2802 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=69
+  Batch  57 | t=[19,156] | loss=0.6029 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=115, [5] pred=1 true=0 t=61, [10] pred=0 true=1 t=90, [12] pred=1 true=0 t=58, [14] pred=1 true=0 t=36
+  Batch  58 | t=[21,158] | loss=0.4202 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=134, [5] pred=1 true=0 t=109, [6] pred=1 true=0 t=122
+  Batch  59 | t=[12,158] | loss=0.3592 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=113, [7] pred=1 true=0 t=44, [10] pred=1 true=0 t=117, [12] pred=0 true=1 t=146
+  Batch  60 | t=[17,154] | loss=0.3507 | acc=13/16 | MISCLASSIFIED: [11] pred=0 true=1 t=17, [14] pred=0 true=1 t=76, [15] pred=1 true=0 t=42
+  Batch  61 | t=[10,135] | loss=0.6564 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=74, [6] pred=1 true=0 t=131, [8] pred=1 true=0 t=21, [10] pred=1 true=0 t=12
+  Batch  62 | t=[1,155] | loss=0.6545 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=143, [4] pred=0 true=1 t=23, [6] pred=1 true=0 t=51, [13] pred=0 true=1 t=36
+  Batch  63 | t=[6,152] | loss=0.4568 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=83, [7] pred=1 true=0 t=152, [9] pred=1 true=0 t=6
+  Batch  64 | t=[5,159] | loss=0.4006 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=104, [2] pred=1 true=0 t=61, [12] pred=1 true=0 t=52
+  Batch  65 | t=[11,155] | loss=0.3414 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=149, [8] pred=1 true=0 t=120, [11] pred=0 true=1 t=110, [12] pred=1 true=0 t=20
+  Batch  66 | t=[9,153] | loss=0.4867 | acc=13/16 | MISCLASSIFIED: [9] pred=1 true=0 t=153, [13] pred=1 true=0 t=126, [15] pred=1 true=0 t=142
+  Batch  67 | t=[0,149] | loss=0.4994 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=92, [13] pred=1 true=0 t=32, [15] pred=1 true=0 t=0
+  Batch  68 | t=[32,156] | loss=0.3864 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=32, [4] pred=1 true=0 t=113
+  Batch  69 | t=[15,159] | loss=0.3506 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=107
+  Batch  70 | t=[8,147] | loss=0.3556 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=13, [12] pred=0 true=1 t=147, [15] pred=0 true=1 t=101
+  Batch  71 | t=[39,144] | loss=0.3062 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=60, [13] pred=1 true=0 t=65
+  Batch  72 | t=[8,136] | loss=0.4558 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=130, [6] pred=0 true=1 t=48, [14] pred=0 true=1 t=128
+  Batch  73 | t=[8,142] | loss=0.4220 | acc=14/16 | MISCLASSIFIED: [12] pred=0 true=1 t=95, [13] pred=1 true=0 t=113
+  Batch  74 | t=[0,158] | loss=0.5663 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=143, [7] pred=1 true=0 t=93, [11] pred=1 true=0 t=8, [12] pred=1 true=0 t=70, [14] pred=1 true=0 t=0
+  Batch  75 | t=[1,153] | loss=0.2913 | acc=15/16 | MISCLASSIFIED: [15] pred=1 true=0 t=96
+  Batch  76 | t=[3,148] | loss=0.3474 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=3
+  Batch  77 | t=[4,126] | loss=0.3090 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=27, [3] pred=1 true=0 t=9
+  Batch  78 | t=[24,159] | loss=0.5915 | acc=5/6 | MISCLASSIFIED: [3] pred=0 true=1 t=24
+Epoch 32 [warmup] | Loss: 0.4393 | Val Loss: 0.5720 | Val Acc: 76.2% | LR: 3.05e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[22,161] | loss=0.3773 | acc=13/16 | MISCLASSIFIED: [2] pred=0 true=1 t=73, [4] pred=1 true=0 t=81, [13] pred=1 true=0 t=70
+  Batch   1 | t=[4,151] | loss=0.4194 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=15, [9] pred=1 true=0 t=79, [13] pred=1 true=0 t=35
+  Batch   2 | t=[4,149] | loss=0.1910 | acc=16/16
+  Batch   3 | t=[4,138] | loss=0.7042 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=75, [4] pred=1 true=0 t=125, [10] pred=1 true=0 t=95, [14] pred=1 true=0 t=102
+  Batch   4 | t=[1,148] | loss=0.3252 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=14, [13] pred=1 true=0 t=44
+  Batch   5 | t=[11,155] | loss=0.2499 | acc=15/16 | MISCLASSIFIED: [3] pred=1 true=0 t=94
+  Batch   6 | t=[6,163] | loss=0.4908 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=6, [7] pred=0 true=1 t=9, [13] pred=1 true=0 t=66, [15] pred=1 true=0 t=94
+  Batch   7 | t=[4,163] | loss=0.3762 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=77, [14] pred=1 true=0 t=163
+  Batch   8 | t=[11,139] | loss=0.5433 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=96, [7] pred=0 true=1 t=69, [12] pred=1 true=0 t=108
+  Batch   9 | t=[4,156] | loss=0.3880 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=68, [8] pred=0 true=1 t=49
+  Batch  10 | t=[15,147] | loss=0.5872 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=105, [3] pred=0 true=1 t=29, [4] pred=1 true=0 t=60, [15] pred=0 true=1 t=147
+  Batch  11 | t=[11,160] | loss=0.7242 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=112, [4] pred=1 true=0 t=56, [10] pred=1 true=0 t=129, [15] pred=1 true=0 t=107
+  Batch  12 | t=[3,157] | loss=0.2034 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=157
+  Batch  13 | t=[6,164] | loss=0.2500 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=164
+  Batch  14 | t=[0,157] | loss=0.4040 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=0, [2] pred=1 true=0 t=123, [4] pred=1 true=0 t=118, [15] pred=1 true=0 t=91
+  Batch  15 | t=[0,162] | loss=0.5254 | acc=12/16 | MISCLASSIFIED: [4] pred=1 true=0 t=54, [9] pred=0 true=1 t=87, [10] pred=0 true=1 t=162, [14] pred=0 true=1 t=147
+  Batch  16 | t=[22,164] | loss=0.5457 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=89, [9] pred=1 true=0 t=161, [14] pred=0 true=1 t=132, [15] pred=1 true=0 t=161
+  Batch  17 | t=[2,155] | loss=0.3925 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=155, [9] pred=1 true=0 t=133, [12] pred=0 true=1 t=132
+  Batch  18 | t=[0,157] | loss=0.3347 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=25, [9] pred=0 true=1 t=149, [11] pred=0 true=1 t=142
+  Batch  19 | t=[11,156] | loss=0.3940 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=109, [9] pred=1 true=0 t=36, [11] pred=0 true=1 t=129
+  Batch  20 | t=[19,162] | loss=0.4188 | acc=15/16 | MISCLASSIFIED: [11] pred=1 true=0 t=39
+  Batch  21 | t=[8,149] | loss=0.3346 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=74, [3] pred=1 true=0 t=149
+  Batch  22 | t=[5,155] | loss=0.4415 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=39, [8] pred=1 true=0 t=124, [13] pred=0 true=1 t=154, [14] pred=1 true=0 t=76
+  Batch  23 | t=[36,139] | loss=0.8978 | acc=9/16 | MISCLASSIFIED: [2] pred=1 true=0 t=139, [3] pred=1 true=0 t=135, [5] pred=0 true=1 t=99, [8] pred=0 true=1 t=121, [9] pred=1 true=0 t=36, [11] pred=0 true=1 t=97, [13] pred=0 true=1 t=130
+  Batch  24 | t=[1,161] | loss=0.4895 | acc=11/16 | MISCLASSIFIED: [0] pred=0 true=1 t=16, [1] pred=1 true=0 t=141, [6] pred=0 true=1 t=85, [10] pred=1 true=0 t=130, [12] pred=1 true=0 t=23
+  Batch  25 | t=[1,152] | loss=0.2943 | acc=15/16 | MISCLASSIFIED: [3] pred=1 true=0 t=147
+  Batch  26 | t=[5,156] | loss=0.3370 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=54, [15] pred=1 true=0 t=5
+  Batch  27 | t=[8,121] | loss=0.3790 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=74, [15] pred=1 true=0 t=98
+  Batch  28 | t=[5,160] | loss=0.3536 | acc=13/16 | MISCLASSIFIED: [3] pred=1 true=0 t=70, [10] pred=0 true=1 t=151, [14] pred=1 true=0 t=44
+  Batch  29 | t=[3,142] | loss=0.2830 | acc=16/16
+  Batch  30 | t=[0,160] | loss=0.6863 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=117, [4] pred=1 true=0 t=111, [7] pred=1 true=0 t=160, [8] pred=1 true=0 t=67, [15] pred=1 true=0 t=0
+  Batch  31 | t=[6,145] | loss=0.2996 | acc=15/16 | MISCLASSIFIED: [14] pred=1 true=0 t=99
+  Batch  32 | t=[6,151] | loss=0.2796 | acc=14/16 | MISCLASSIFIED: [11] pred=1 true=0 t=18, [15] pred=1 true=0 t=63
+  Batch  33 | t=[0,160] | loss=0.4139 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=156, [6] pred=0 true=1 t=0, [12] pred=1 true=0 t=32
+  Batch  34 | t=[11,135] | loss=0.2678 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=115
+  Batch  35 | t=[1,136] | loss=0.2711 | acc=15/16 | MISCLASSIFIED: [10] pred=1 true=0 t=46
+  Batch  36 | t=[9,150] | loss=0.2431 | acc=16/16
+  Batch  37 | t=[5,159] | loss=0.6583 | acc=11/16 | MISCLASSIFIED: [0] pred=0 true=1 t=93, [1] pred=0 true=1 t=101, [2] pred=1 true=0 t=60, [8] pred=0 true=1 t=158, [15] pred=1 true=0 t=58
+  Batch  38 | t=[7,157] | loss=0.4451 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=80, [10] pred=0 true=1 t=44
+  Batch  39 | t=[8,160] | loss=0.6065 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=90, [6] pred=0 true=1 t=114, [8] pred=1 true=0 t=28, [12] pred=0 true=1 t=107
+  Batch  40 | t=[7,131] | loss=0.2688 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=8
+  Batch  41 | t=[15,136] | loss=0.7127 | acc=10/16 | MISCLASSIFIED: [5] pred=0 true=1 t=121, [7] pred=0 true=1 t=92, [12] pred=0 true=1 t=36, [13] pred=1 true=0 t=72, [14] pred=0 true=1 t=29, [15] pred=0 true=1 t=40
+  Batch  42 | t=[1,155] | loss=0.2127 | acc=16/16
+  Batch  43 | t=[5,163] | loss=0.3522 | acc=15/16 | MISCLASSIFIED: [14] pred=1 true=0 t=163
+  Batch  44 | t=[6,147] | loss=0.5039 | acc=14/16 | MISCLASSIFIED: [12] pred=0 true=1 t=131, [15] pred=1 true=0 t=13
+  Batch  45 | t=[1,160] | loss=0.2977 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=137
+  Batch  46 | t=[15,154] | loss=0.3036 | acc=15/16 | MISCLASSIFIED: [10] pred=1 true=0 t=112
+  Batch  47 | t=[12,142] | loss=0.3061 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=125, [8] pred=1 true=0 t=137
+  Batch  48 | t=[12,143] | loss=0.6110 | acc=12/16 | MISCLASSIFIED: [3] pred=0 true=1 t=95, [9] pred=1 true=0 t=66, [14] pred=0 true=1 t=134, [15] pred=0 true=1 t=128
+  Batch  49 | t=[18,162] | loss=0.6031 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=18, [8] pred=1 true=0 t=83, [9] pred=1 true=0 t=127, [11] pred=0 true=1 t=49
+  Batch  50 | t=[8,158] | loss=0.5150 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=74, [5] pred=0 true=1 t=147, [13] pred=0 true=1 t=51
+  Batch  51 | t=[8,147] | loss=0.3431 | acc=15/16 | MISCLASSIFIED: [9] pred=1 true=0 t=147
+  Batch  52 | t=[1,160] | loss=0.5835 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=119, [7] pred=1 true=0 t=127, [11] pred=1 true=0 t=90, [15] pred=1 true=0 t=148
+  Batch  53 | t=[18,147] | loss=0.2147 | acc=16/16
+  Batch  54 | t=[11,160] | loss=0.2654 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=83
+  Batch  55 | t=[7,150] | loss=0.4999 | acc=12/16 | MISCLASSIFIED: [10] pred=0 true=1 t=62, [11] pred=0 true=1 t=29, [13] pred=1 true=0 t=131, [14] pred=1 true=0 t=97
+  Batch  56 | t=[7,157] | loss=0.7311 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=97, [3] pred=1 true=0 t=115, [8] pred=1 true=0 t=157, [12] pred=0 true=1 t=73, [15] pred=0 true=1 t=156
+  Batch  57 | t=[0,157] | loss=0.3695 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=141, [15] pred=1 true=0 t=69
+  Batch  58 | t=[0,144] | loss=0.3383 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=42, [9] pred=0 true=1 t=58, [10] pred=0 true=1 t=124, [13] pred=1 true=0 t=23
+  Batch  59 | t=[2,157] | loss=0.5674 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=74, [5] pred=1 true=0 t=62, [6] pred=1 true=0 t=107, [14] pred=0 true=1 t=94
+  Batch  60 | t=[4,161] | loss=0.6143 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=62, [6] pred=0 true=1 t=122, [8] pred=1 true=0 t=66, [9] pred=1 true=0 t=56
+  Batch  61 | t=[8,134] | loss=0.4705 | acc=12/16 | MISCLASSIFIED: [5] pred=0 true=1 t=134, [6] pred=0 true=1 t=76, [11] pred=1 true=0 t=84, [12] pred=1 true=0 t=105
+  Batch  62 | t=[4,161] | loss=0.4896 | acc=13/16 | MISCLASSIFIED: [3] pred=0 true=1 t=50, [8] pred=0 true=1 t=142, [14] pred=1 true=0 t=22
+  Batch  63 | t=[3,155] | loss=0.5040 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=155, [6] pred=0 true=1 t=135, [9] pred=1 true=0 t=139, [11] pred=1 true=0 t=55
+  Batch  64 | t=[17,150] | loss=0.4167 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=142, [10] pred=0 true=1 t=31, [11] pred=0 true=1 t=135
+  Batch  65 | t=[15,159] | loss=0.7052 | acc=10/16 | MISCLASSIFIED: [5] pred=0 true=1 t=157, [6] pred=1 true=0 t=159, [10] pred=1 true=0 t=73, [12] pred=0 true=1 t=150, [14] pred=1 true=0 t=41, [15] pred=0 true=1 t=158
+  Batch  66 | t=[0,134] | loss=0.5941 | acc=10/16 | MISCLASSIFIED: [0] pred=0 true=1 t=75, [1] pred=0 true=1 t=61, [7] pred=1 true=0 t=76, [8] pred=0 true=1 t=0, [13] pred=1 true=0 t=3, [14] pred=0 true=1 t=131
+  Batch  67 | t=[18,153] | loss=0.3166 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=25, [7] pred=0 true=1 t=73
+  Batch  68 | t=[6,157] | loss=0.5288 | acc=12/16 | MISCLASSIFIED: [6] pred=0 true=1 t=135, [7] pred=0 true=1 t=6, [12] pred=0 true=1 t=72, [15] pred=0 true=1 t=109
+  Batch  69 | t=[4,162] | loss=0.5313 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=149, [6] pred=0 true=1 t=118, [9] pred=0 true=1 t=140, [12] pred=0 true=1 t=120
+  Batch  70 | t=[15,153] | loss=0.2811 | acc=14/16 | MISCLASSIFIED: [6] pred=0 true=1 t=153, [7] pred=0 true=1 t=52
+  Batch  71 | t=[0,161] | loss=0.4381 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=56, [7] pred=0 true=1 t=98, [15] pred=1 true=0 t=161
+  Batch  72 | t=[2,158] | loss=0.4576 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=99, [2] pred=1 true=0 t=19, [15] pred=1 true=0 t=92
+  Batch  73 | t=[3,158] | loss=0.4078 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=153, [10] pred=1 true=0 t=91, [13] pred=0 true=1 t=45
+  Batch  74 | t=[10,164] | loss=0.2735 | acc=16/16
+  Batch  75 | t=[17,155] | loss=0.3696 | acc=13/16 | MISCLASSIFIED: [6] pred=0 true=1 t=57, [7] pred=1 true=0 t=155, [13] pred=1 true=0 t=104
+  Batch  76 | t=[10,149] | loss=0.3965 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=149, [4] pred=1 true=0 t=44, [8] pred=0 true=1 t=117
+  Batch  77 | t=[25,153] | loss=0.6196 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=87, [7] pred=0 true=1 t=100, [13] pred=1 true=0 t=141
+  Batch  78 | t=[5,152] | loss=0.2951 | acc=5/6 | MISCLASSIFIED: [0] pred=1 true=0 t=43
+Epoch 33 [warmup] | Loss: 0.4321 | Val Loss: 0.4334 | Val Acc: 83.2% | LR: 3.04e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+--- Saved model to checkpoints/robust_classification/guide_fits_best/state.pt ---
+  ** New best metric: 83.2% — saved to checkpoints/robust_classification/guide_fits_best
+  Batch   0 | t=[3,168] | loss=0.3897 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=155, [4] pred=0 true=1 t=162, [14] pred=1 true=0 t=118
+  Batch   1 | t=[30,168] | loss=0.3765 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=130, [3] pred=0 true=1 t=74, [13] pred=0 true=1 t=122
+  Batch   2 | t=[4,150] | loss=0.3392 | acc=14/16 | MISCLASSIFIED: [4] pred=1 true=0 t=129, [6] pred=0 true=1 t=136
+  Batch   3 | t=[12,155] | loss=0.4544 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=128
+  Batch   4 | t=[0,150] | loss=0.4644 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=9, [5] pred=1 true=0 t=150, [6] pred=0 true=1 t=129, [11] pred=1 true=0 t=94
+  Batch   5 | t=[2,151] | loss=0.4170 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=2, [4] pred=1 true=0 t=107, [13] pred=1 true=0 t=151
+  Batch   6 | t=[10,163] | loss=0.3053 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=117, [10] pred=0 true=1 t=121
+  Batch   7 | t=[7,163] | loss=0.3559 | acc=15/16 | MISCLASSIFIED: [2] pred=1 true=0 t=91
+  Batch   8 | t=[10,167] | loss=0.3916 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=129, [10] pred=1 true=0 t=157, [14] pred=1 true=0 t=48
+  Batch   9 | t=[1,154] | loss=0.5542 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=147, [6] pred=0 true=1 t=136, [15] pred=0 true=1 t=132
+  Batch  10 | t=[34,169] | loss=0.3215 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=127, [8] pred=1 true=0 t=121
+  Batch  11 | t=[1,153] | loss=0.3507 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=125, [10] pred=1 true=0 t=71, [14] pred=1 true=0 t=98
+  Batch  12 | t=[16,163] | loss=0.5895 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=105, [7] pred=0 true=1 t=150, [8] pred=0 true=1 t=65, [10] pred=0 true=1 t=111, [13] pred=0 true=1 t=151
+  Batch  13 | t=[9,157] | loss=0.4442 | acc=12/16 | MISCLASSIFIED: [7] pred=1 true=0 t=76, [10] pred=1 true=0 t=74, [12] pred=1 true=0 t=136, [14] pred=1 true=0 t=157
+  Batch  14 | t=[2,146] | loss=0.5429 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=47, [1] pred=1 true=0 t=81, [2] pred=1 true=0 t=137, [5] pred=1 true=0 t=125
+  Batch  15 | t=[16,156] | loss=0.2723 | acc=16/16
+  Batch  16 | t=[2,146] | loss=0.3623 | acc=13/16 | MISCLASSIFIED: [7] pred=1 true=0 t=2, [11] pred=1 true=0 t=139, [15] pred=1 true=0 t=38
+  Batch  17 | t=[3,166] | loss=0.2699 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=73
+  Batch  18 | t=[5,164] | loss=0.4799 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=157, [10] pred=1 true=0 t=78, [14] pred=1 true=0 t=111, [15] pred=1 true=0 t=149
+  Batch  19 | t=[4,158] | loss=0.6700 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=49, [2] pred=1 true=0 t=102, [4] pred=0 true=1 t=94, [7] pred=1 true=0 t=91, [15] pred=0 true=1 t=62
+  Batch  20 | t=[8,164] | loss=0.2114 | acc=16/16
+  Batch  21 | t=[0,148] | loss=0.8538 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=148, [4] pred=1 true=0 t=120, [7] pred=1 true=0 t=128, [13] pred=0 true=1 t=27
+  Batch  22 | t=[0,159] | loss=0.4063 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=0, [1] pred=0 true=1 t=69, [12] pred=0 true=1 t=33
+  Batch  23 | t=[6,153] | loss=0.6137 | acc=9/16 | MISCLASSIFIED: [1] pred=1 true=0 t=80, [2] pred=0 true=1 t=122, [5] pred=1 true=0 t=67, [9] pred=0 true=1 t=125, [12] pred=1 true=0 t=59, [13] pred=0 true=1 t=81, [14] pred=1 true=0 t=153
+  Batch  24 | t=[5,160] | loss=0.5472 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=155, [6] pred=0 true=1 t=18, [8] pred=1 true=0 t=40
+  Batch  25 | t=[10,167] | loss=0.2536 | acc=15/16 | MISCLASSIFIED: [0] pred=1 true=0 t=148
+  Batch  26 | t=[9,166] | loss=0.5202 | acc=13/16 | MISCLASSIFIED: [6] pred=0 true=1 t=127, [11] pred=0 true=1 t=76, [14] pred=0 true=1 t=88
+  Batch  27 | t=[0,160] | loss=0.3396 | acc=15/16 | MISCLASSIFIED: [14] pred=1 true=0 t=49
+  Batch  28 | t=[4,162] | loss=0.3114 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=158, [6] pred=1 true=0 t=7, [11] pred=1 true=0 t=114
+  Batch  29 | t=[0,165] | loss=0.4456 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=123, [10] pred=0 true=1 t=29, [14] pred=1 true=0 t=165
+  Batch  30 | t=[1,167] | loss=0.5246 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=38, [9] pred=1 true=0 t=66, [15] pred=1 true=0 t=137
+  Batch  31 | t=[6,169] | loss=0.3771 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=153, [6] pred=0 true=1 t=169
+  Batch  32 | t=[1,148] | loss=0.2843 | acc=14/16 | MISCLASSIFIED: [5] pred=1 true=0 t=148, [6] pred=1 true=0 t=101
+  Batch  33 | t=[0,152] | loss=0.5989 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=0, [5] pred=1 true=0 t=88, [7] pred=1 true=0 t=123, [10] pred=0 true=1 t=88
+  Batch  34 | t=[0,159] | loss=0.3941 | acc=14/16 | MISCLASSIFIED: [7] pred=1 true=0 t=11, [13] pred=1 true=0 t=44
+  Batch  35 | t=[1,165] | loss=0.4597 | acc=12/16 | MISCLASSIFIED: [7] pred=1 true=0 t=81, [11] pred=0 true=1 t=148, [14] pred=0 true=1 t=165, [15] pred=1 true=0 t=1
+  Batch  36 | t=[1,157] | loss=0.5174 | acc=11/16 | MISCLASSIFIED: [5] pred=0 true=1 t=79, [6] pred=1 true=0 t=130, [8] pred=0 true=1 t=103, [9] pred=1 true=0 t=126, [14] pred=1 true=0 t=112
+  Batch  37 | t=[0,140] | loss=0.3259 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=118, [12] pred=0 true=1 t=29
+  Batch  38 | t=[6,160] | loss=0.2820 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=159
+  Batch  39 | t=[18,161] | loss=0.4061 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=161, [6] pred=0 true=1 t=121, [9] pred=0 true=1 t=40, [14] pred=1 true=0 t=51
+  Batch  40 | t=[3,166] | loss=0.2429 | acc=16/16
+  Batch  41 | t=[0,166] | loss=0.2879 | acc=14/16 | MISCLASSIFIED: [12] pred=1 true=0 t=139, [15] pred=1 true=0 t=0
+  Batch  42 | t=[3,166] | loss=0.4359 | acc=14/16 | MISCLASSIFIED: [13] pred=1 true=0 t=35, [14] pred=1 true=0 t=160
+  Batch  43 | t=[22,162] | loss=0.4562 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=40, [4] pred=1 true=0 t=35, [7] pred=1 true=0 t=24, [13] pred=1 true=0 t=117
+  Batch  44 | t=[8,159] | loss=0.5837 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=133, [8] pred=1 true=0 t=23, [13] pred=0 true=1 t=67
+  Batch  45 | t=[7,156] | loss=0.5291 | acc=11/16 | MISCLASSIFIED: [5] pred=0 true=1 t=40, [6] pred=1 true=0 t=135, [9] pred=0 true=1 t=87, [12] pred=1 true=0 t=95, [14] pred=1 true=0 t=144
+  Batch  46 | t=[0,147] | loss=0.4590 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=0, [8] pred=0 true=1 t=102, [15] pred=1 true=0 t=92
+  Batch  47 | t=[17,163] | loss=0.4464 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=62, [7] pred=0 true=1 t=79
+  Batch  48 | t=[18,165] | loss=0.2820 | acc=15/16 | MISCLASSIFIED: [13] pred=1 true=0 t=137
+  Batch  49 | t=[1,141] | loss=0.4938 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=21
+  Batch  50 | t=[18,169] | loss=0.3537 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=147, [13] pred=1 true=0 t=169
+  Batch  51 | t=[2,159] | loss=0.2398 | acc=15/16 | MISCLASSIFIED: [12] pred=1 true=0 t=12
+  Batch  52 | t=[2,165] | loss=0.3135 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=164
+  Batch  53 | t=[1,159] | loss=0.2551 | acc=16/16
+  Batch  54 | t=[5,163] | loss=0.4416 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=101, [11] pred=0 true=1 t=99
+  Batch  55 | t=[13,166] | loss=0.3607 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=79, [11] pred=1 true=0 t=88
+  Batch  56 | t=[4,158] | loss=0.4746 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=137, [6] pred=0 true=1 t=36
+  Batch  57 | t=[30,169] | loss=0.3948 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=145, [1] pred=0 true=1 t=163, [2] pred=1 true=0 t=137
+  Batch  58 | t=[8,150] | loss=0.3201 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=93, [12] pred=1 true=0 t=48
+  Batch  59 | t=[3,167] | loss=0.5432 | acc=12/16 | MISCLASSIFIED: [2] pred=1 true=0 t=103, [3] pred=0 true=1 t=135, [4] pred=0 true=1 t=155, [11] pred=1 true=0 t=31
+  Batch  60 | t=[4,160] | loss=0.4885 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=37, [5] pred=1 true=0 t=103, [11] pred=1 true=0 t=139
+  Batch  61 | t=[11,166] | loss=0.4937 | acc=12/16 | MISCLASSIFIED: [2] pred=0 true=1 t=157, [4] pred=1 true=0 t=16, [8] pred=0 true=1 t=146, [10] pred=0 true=1 t=166
+  Batch  62 | t=[11,169] | loss=0.5831 | acc=10/16 | MISCLASSIFIED: [3] pred=1 true=0 t=42, [4] pred=1 true=0 t=130, [5] pred=0 true=1 t=38, [6] pred=1 true=0 t=151, [7] pred=0 true=1 t=114, [8] pred=1 true=0 t=87
+  Batch  63 | t=[5,168] | loss=0.4334 | acc=12/16 | MISCLASSIFIED: [4] pred=1 true=0 t=107, [7] pred=0 true=1 t=129, [8] pred=1 true=0 t=52, [10] pred=1 true=0 t=126
+  Batch  64 | t=[3,166] | loss=0.4990 | acc=11/16 | MISCLASSIFIED: [1] pred=1 true=0 t=58, [3] pred=1 true=0 t=40, [4] pred=1 true=0 t=156, [9] pred=0 true=1 t=145, [15] pred=0 true=1 t=21
+  Batch  65 | t=[10,165] | loss=0.3780 | acc=14/16 | MISCLASSIFIED: [7] pred=0 true=1 t=123, [13] pred=0 true=1 t=165
+  Batch  66 | t=[21,163] | loss=0.3387 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=84
+  Batch  67 | t=[0,164] | loss=0.4701 | acc=13/16 | MISCLASSIFIED: [8] pred=0 true=1 t=122, [12] pred=0 true=1 t=158, [13] pred=1 true=0 t=155
+  Batch  68 | t=[20,156] | loss=0.4908 | acc=11/16 | MISCLASSIFIED: [5] pred=0 true=1 t=96, [8] pred=0 true=1 t=143, [10] pred=1 true=0 t=156, [11] pred=1 true=0 t=120, [12] pred=0 true=1 t=82
+  Batch  69 | t=[1,147] | loss=0.6012 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=70, [5] pred=0 true=1 t=96, [9] pred=0 true=1 t=147, [11] pred=1 true=0 t=43
+  Batch  70 | t=[22,168] | loss=0.3946 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=68, [5] pred=0 true=1 t=168
+  Batch  71 | t=[0,162] | loss=0.2698 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=0
+  Batch  72 | t=[0,157] | loss=0.3001 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=95
+  Batch  73 | t=[0,165] | loss=0.3813 | acc=14/16 | MISCLASSIFIED: [10] pred=1 true=0 t=87, [11] pred=0 true=1 t=17
+  Batch  74 | t=[5,159] | loss=0.4772 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=146, [8] pred=0 true=1 t=44, [9] pred=0 true=1 t=108, [11] pred=0 true=1 t=70
+  Batch  75 | t=[7,166] | loss=0.4725 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=13, [3] pred=0 true=1 t=91, [13] pred=0 true=1 t=18
+  Batch  76 | t=[12,148] | loss=0.4215 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=143, [10] pred=1 true=0 t=148, [14] pred=0 true=1 t=117
+  Batch  77 | t=[23,158] | loss=0.3803 | acc=15/16 | MISCLASSIFIED: [12] pred=1 true=0 t=57
+  Batch  78 | t=[9,166] | loss=0.8145 | acc=3/6 | MISCLASSIFIED: [1] pred=1 true=0 t=166, [4] pred=1 true=0 t=43, [5] pred=1 true=0 t=164
+Epoch 34 [warmup] | Loss: 0.4257 | Val Loss: 0.5196 | Val Acc: 80.4% | LR: 3.03e-03
+--- Saved model to checkpoints/robust_classification/guide_fits/state.pt ---
+  Batch   0 | t=[4,142] | loss=0.4577 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=128, [15] pred=1 true=0 t=127
+  Batch   1 | t=[16,158] | loss=0.2987 | acc=16/16
+  Batch   2 | t=[18,171] | loss=0.3116 | acc=15/16 | MISCLASSIFIED: [8] pred=1 true=0 t=170
+  Batch   3 | t=[4,161] | loss=0.4940 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=55, [2] pred=1 true=0 t=140, [4] pred=0 true=1 t=94, [14] pred=0 true=1 t=111
+  Batch   4 | t=[9,165] | loss=0.2651 | acc=16/16
+  Batch   5 | t=[21,173] | loss=0.5530 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=43, [12] pred=0 true=1 t=42
+  Batch   6 | t=[26,160] | loss=0.4736 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=31, [6] pred=0 true=1 t=160, [7] pred=0 true=1 t=120, [13] pred=1 true=0 t=108
+  Batch   7 | t=[0,161] | loss=0.3380 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=110, [6] pred=0 true=1 t=161
+  Batch   8 | t=[2,159] | loss=0.4433 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=137, [4] pred=0 true=1 t=132, [13] pred=0 true=1 t=137
+  Batch   9 | t=[2,151] | loss=0.2921 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=138, [10] pred=0 true=1 t=120
+  Batch  10 | t=[8,155] | loss=0.2815 | acc=16/16
+  Batch  11 | t=[8,170] | loss=0.6160 | acc=11/16 | MISCLASSIFIED: [0] pred=0 true=1 t=128, [6] pred=1 true=0 t=85, [7] pred=0 true=1 t=106, [8] pred=0 true=1 t=72, [15] pred=1 true=0 t=36
+  Batch  12 | t=[1,162] | loss=0.8291 | acc=11/16 | MISCLASSIFIED: [4] pred=0 true=1 t=98, [5] pred=0 true=1 t=143, [11] pred=0 true=1 t=13, [12] pred=1 true=0 t=1, [15] pred=1 true=0 t=9
+  Batch  13 | t=[18,164] | loss=0.3875 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=161, [8] pred=0 true=1 t=66
+  Batch  14 | t=[14,154] | loss=0.6352 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=108, [4] pred=0 true=1 t=39, [5] pred=1 true=0 t=116, [8] pred=1 true=0 t=54, [13] pred=0 true=1 t=92
+  Batch  15 | t=[2,153] | loss=0.3942 | acc=13/16 | MISCLASSIFIED: [1] pred=1 true=0 t=26, [2] pred=1 true=0 t=131, [9] pred=1 true=0 t=42
+  Batch  16 | t=[6,161] | loss=0.4474 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=77, [9] pred=1 true=0 t=20, [15] pred=1 true=0 t=148
+  Batch  17 | t=[6,167] | loss=0.5146 | acc=13/16 | MISCLASSIFIED: [5] pred=1 true=0 t=167, [6] pred=1 true=0 t=130, [7] pred=1 true=0 t=131
+  Batch  18 | t=[1,160] | loss=0.5927 | acc=10/16 | MISCLASSIFIED: [0] pred=0 true=1 t=1, [3] pred=1 true=0 t=52, [4] pred=1 true=0 t=87, [7] pred=1 true=0 t=52, [9] pred=1 true=0 t=135, [14] pred=1 true=0 t=160
+  Batch  19 | t=[0,168] | loss=0.5217 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=154, [9] pred=1 true=0 t=71, [11] pred=1 true=0 t=1
+  Batch  20 | t=[1,169] | loss=0.3450 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=85
+  Batch  21 | t=[0,168] | loss=0.3736 | acc=13/16 | MISCLASSIFIED: [5] pred=0 true=1 t=100, [12] pred=0 true=1 t=146, [14] pred=0 true=1 t=89
+  Batch  22 | t=[2,163] | loss=0.5545 | acc=12/16 | MISCLASSIFIED: [8] pred=1 true=0 t=163, [9] pred=1 true=0 t=89, [13] pred=0 true=1 t=88, [15] pred=1 true=0 t=91
+  Batch  23 | t=[12,161] | loss=0.4539 | acc=14/16 | MISCLASSIFIED: [12] pred=1 true=0 t=42, [14] pred=0 true=1 t=12
+  Batch  24 | t=[0,144] | loss=0.3872 | acc=13/16 | MISCLASSIFIED: [4] pred=1 true=0 t=144, [5] pred=1 true=0 t=34, [8] pred=1 true=0 t=133
+  Batch  25 | t=[5,169] | loss=0.2583 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=162
+  Batch  26 | t=[5,157] | loss=0.4161 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=106, [8] pred=1 true=0 t=5
+  Batch  27 | t=[48,173] | loss=0.2944 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=148
+  Batch  28 | t=[23,169] | loss=0.4782 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=169, [11] pred=1 true=0 t=61, [14] pred=0 true=1 t=23
+  Batch  29 | t=[4,152] | loss=0.4423 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=13, [13] pred=0 true=1 t=134
+  Batch  30 | t=[6,166] | loss=0.9199 | acc=9/16 | MISCLASSIFIED: [0] pred=0 true=1 t=151, [1] pred=0 true=1 t=159, [5] pred=0 true=1 t=55, [6] pred=0 true=1 t=6, [9] pred=1 true=0 t=150, [10] pred=1 true=0 t=76, [15] pred=0 true=1 t=166
+  Batch  31 | t=[4,164] | loss=0.3768 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=122, [10] pred=1 true=0 t=14, [12] pred=0 true=1 t=11
+  Batch  32 | t=[10,167] | loss=0.5548 | acc=11/16 | MISCLASSIFIED: [0] pred=0 true=1 t=135, [5] pred=0 true=1 t=133, [6] pred=1 true=0 t=83, [8] pred=0 true=1 t=27, [11] pred=0 true=1 t=42
+  Batch  33 | t=[21,168] | loss=0.6120 | acc=11/16 | MISCLASSIFIED: [3] pred=0 true=1 t=72, [6] pred=0 true=1 t=168, [9] pred=0 true=1 t=148, [13] pred=1 true=0 t=46, [15] pred=1 true=0 t=122
+  Batch  34 | t=[10,159] | loss=0.3106 | acc=15/16 | MISCLASSIFIED: [5] pred=1 true=0 t=132
+  Batch  35 | t=[3,156] | loss=0.4105 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=156, [7] pred=0 true=1 t=115
+  Batch  36 | t=[4,146] | loss=0.5604 | acc=13/16 | MISCLASSIFIED: [12] pred=1 true=0 t=63, [13] pred=0 true=1 t=34, [15] pred=1 true=0 t=146
+  Batch  37 | t=[10,167] | loss=0.2345 | acc=16/16
+  Batch  38 | t=[4,150] | loss=0.4774 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=46, [2] pred=0 true=1 t=134, [10] pred=0 true=1 t=127, [11] pred=0 true=1 t=59
+  Batch  39 | t=[4,168] | loss=0.3851 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=55, [11] pred=0 true=1 t=111, [15] pred=1 true=0 t=4
+  Batch  40 | t=[7,173] | loss=0.3640 | acc=14/16 | MISCLASSIFIED: [7] pred=1 true=0 t=173, [8] pred=0 true=1 t=7
+  Batch  41 | t=[17,160] | loss=0.4562 | acc=12/16 | MISCLASSIFIED: [0] pred=1 true=0 t=122, [4] pred=0 true=1 t=35, [5] pred=1 true=0 t=137, [15] pred=0 true=1 t=129
+  Batch  42 | t=[8,161] | loss=0.7490 | acc=9/16 | MISCLASSIFIED: [4] pred=1 true=0 t=15, [6] pred=1 true=0 t=85, [10] pred=0 true=1 t=64, [11] pred=1 true=0 t=24, [12] pred=1 true=0 t=30, [13] pred=0 true=1 t=104, [14] pred=0 true=1 t=155
+  Batch  43 | t=[6,162] | loss=0.2814 | acc=14/16 | MISCLASSIFIED: [8] pred=1 true=0 t=82, [14] pred=0 true=1 t=80
+  Batch  44 | t=[9,170] | loss=0.7008 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=35, [6] pred=1 true=0 t=15, [11] pred=1 true=0 t=84, [13] pred=1 true=0 t=20, [14] pred=1 true=0 t=43
+  Batch  45 | t=[23,162] | loss=0.6623 | acc=12/16 | MISCLASSIFIED: [4] pred=1 true=0 t=23, [10] pred=0 true=1 t=78, [11] pred=1 true=0 t=155, [14] pred=1 true=0 t=32
+  Batch  46 | t=[2,171] | loss=0.4296 | acc=12/16 | MISCLASSIFIED: [1] pred=1 true=0 t=107, [10] pred=1 true=0 t=171, [13] pred=1 true=0 t=167, [14] pred=1 true=0 t=147
+  Batch  47 | t=[16,162] | loss=0.3489 | acc=15/16 | MISCLASSIFIED: [9] pred=1 true=0 t=121
+  Batch  48 | t=[14,169] | loss=0.4618 | acc=15/16 | MISCLASSIFIED: [13] pred=1 true=0 t=14
+  Batch  49 | t=[13,154] | loss=0.4706 | acc=13/16 | MISCLASSIFIED: [6] pred=1 true=0 t=145, [11] pred=1 true=0 t=129, [14] pred=0 true=1 t=68
+  Batch  50 | t=[14,165] | loss=0.3476 | acc=15/16 | MISCLASSIFIED: [7] pred=1 true=0 t=140
+  Batch  51 | t=[4,143] | loss=0.3434 | acc=14/16 | MISCLASSIFIED: [2] pred=1 true=0 t=17, [8] pred=1 true=0 t=136
+  Batch  52 | t=[17,169] | loss=0.4568 | acc=12/16 | MISCLASSIFIED: [3] pred=1 true=0 t=150, [5] pred=1 true=0 t=17, [7] pred=1 true=0 t=111, [10] pred=0 true=1 t=169
+  Batch  53 | t=[1,165] | loss=0.3523 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=165, [9] pred=1 true=0 t=148, [11] pred=1 true=0 t=132
+  Batch  54 | t=[7,174] | loss=0.6176 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=154, [1] pred=0 true=1 t=49, [2] pred=1 true=0 t=48, [3] pred=1 true=0 t=23, [4] pred=0 true=1 t=145
+  Batch  55 | t=[20,171] | loss=0.5325 | acc=9/16 | MISCLASSIFIED: [0] pred=1 true=0 t=68, [2] pred=0 true=1 t=87, [5] pred=0 true=1 t=118, [8] pred=0 true=1 t=126, [12] pred=1 true=0 t=85, [14] pred=0 true=1 t=171, [15] pred=1 true=0 t=26
+  Batch  56 | t=[10,168] | loss=0.3948 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=55, [5] pred=0 true=1 t=168, [11] pred=1 true=0 t=92
+  Batch  57 | t=[6,158] | loss=0.3870 | acc=13/16 | MISCLASSIFIED: [1] pred=0 true=1 t=158, [2] pred=1 true=0 t=114, [13] pred=0 true=1 t=97
+  Batch  58 | t=[22,166] | loss=0.5025 | acc=12/16 | MISCLASSIFIED: [0] pred=0 true=1 t=128, [5] pred=1 true=0 t=123, [7] pred=1 true=0 t=154, [13] pred=0 true=1 t=166
+  Batch  59 | t=[2,166] | loss=0.3977 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=122, [5] pred=0 true=1 t=148, [7] pred=1 true=0 t=166
+  Batch  60 | t=[5,160] | loss=0.4345 | acc=12/16 | MISCLASSIFIED: [8] pred=1 true=0 t=137, [9] pred=0 true=1 t=92, [11] pred=0 true=1 t=160, [13] pred=0 true=1 t=35
+  Batch  61 | t=[20,172] | loss=0.4343 | acc=14/16 | MISCLASSIFIED: [1] pred=1 true=0 t=82, [8] pred=1 true=0 t=126
+  Batch  62 | t=[4,172] | loss=0.5316 | acc=12/16 | MISCLASSIFIED: [1] pred=0 true=1 t=50, [4] pred=0 true=1 t=68, [14] pred=0 true=1 t=43, [15] pred=0 true=1 t=115
+  Batch  63 | t=[3,172] | loss=0.3564 | acc=14/16 | MISCLASSIFIED: [0] pred=1 true=0 t=113, [12] pred=0 true=1 t=172
+  Batch  64 | t=[7,174] | loss=0.3874 | acc=13/16 | MISCLASSIFIED: [9] pred=0 true=1 t=110, [14] pred=0 true=1 t=7, [15] pred=0 true=1 t=116
+  Batch  65 | t=[20,166] | loss=0.3482 | acc=15/16 | MISCLASSIFIED: [2] pred=1 true=0 t=128
+  Batch  66 | t=[28,167] | loss=0.5386 | acc=11/16 | MISCLASSIFIED: [0] pred=1 true=0 t=100, [2] pred=0 true=1 t=167, [4] pred=1 true=0 t=165, [5] pred=1 true=0 t=59, [13] pred=0 true=1 t=132
+  Batch  67 | t=[7,173] | loss=0.4929 | acc=11/16 | MISCLASSIFIED: [0] pred=0 true=1 t=39, [2] pred=1 true=0 t=53, [4] pred=1 true=0 t=106, [11] pred=0 true=1 t=38, [15] pred=0 true=1 t=40
+  Batch  68 | t=[4,164] | loss=0.4208 | acc=12/16 | MISCLASSIFIED: [5] pred=0 true=1 t=18, [8] pred=1 true=0 t=112, [13] pred=1 true=0 t=120, [15] pred=0 true=1 t=4
+  Batch  69 | t=[24,166] | loss=0.6387 | acc=11/16 | MISCLASSIFIED: [2] pred=1 true=0 t=166, [4] pred=1 true=0 t=155, [7] pred=0 true=1 t=45, [8] pred=0 true=1 t=142, [15] pred=0 true=1 t=135
+  Batch  70 | t=[2,172] | loss=0.5140 | acc=13/16 | MISCLASSIFIED: [7] pred=0 true=1 t=46, [8] pred=1 true=0 t=53, [13] pred=1 true=0 t=11
+  Batch  71 | t=[1,173] | loss=0.3530 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=170, [4] pred=1 true=0 t=157, [5] pred=0 true=1 t=53
+  Batch  72 | t=[15,145] | loss=0.4302 | acc=13/16 | MISCLASSIFIED: [2] pred=1 true=0 t=119, [6] pred=0 true=1 t=92, [7] pred=1 true=0 t=113
+  Batch  73 | t=[20,174] | loss=0.3642 | acc=14/16 | MISCLASSIFIED: [3] pred=1 true=0 t=146, [11] pred=1 true=0 t=114
+  Batch  74 | t=[3,157] | loss=0.5432 | acc=13/16 | MISCLASSIFIED: [0] pred=0 true=1 t=151, [2] pred=1 true=0 t=85, [14] pred=1 true=0 t=140
+  Batch  75 | t=[2,169] | loss=0.6747 | acc=9/16 | MISCLASSIFIED: [0] pred=1 true=0 t=169, [1] pred=1 true=0 t=39, [2] pred=1 true=0 t=70, [5] pred=1 true=0 t=154, [9] pred=0 true=1 t=93, [12] pred=0 true=1 t=100, [15] pred=1 true=0 t=119
+  Batch  76 | t=[6,165] | loss=0.3049 | acc=16/16
+  Batch  77 | t=[2,171] | loss=0.5378 | acc=12/16 | MISCLASSIFIED: [5] pred=1 true=0 t=16, [9] pred=1 true=0 t=171, [10] pred=1 true=0 t=34, [14] pred=0 true=1 t=121
+  Batch  78 | t=[3,160] | loss=0.2699 | acc=5/6 | MISCLASSIFIED: [0] pred=1 true=0 t=160
