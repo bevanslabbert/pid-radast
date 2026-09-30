@@ -19,6 +19,8 @@ edm_baseline's checkpoints across multiple seeds, classifies them, and reports:
 EDM 3.0, DDPM/CGD 7.5) so models can be compared at matched guidance.
 --classifier-scale overrides CGD's classifier-gradient strength (config
 training.classifier_scale, 1.0); 0 disables the gradient. Other models ignore it.
+--guidance-classifier / --guidance-classifier-type override which frozen classifier
+guides CGD (config model.classifier_checkpoint / model.classifier_type).
 
 Samples are generated in micro-batches of --batch-size per class (CFG doubles each
 forward pass, so large single batches OOM on an 11.9GB GPU) until --num-samples
@@ -156,7 +158,7 @@ def generate_in_batches(generate_fn, config, tag, num_classes, num_samples, batc
 
 
 def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_samples, batch_size,
-                   guidance_scale, classifier_scale, device, shape):
+                   guidance_scale, classifier_scale, guidance_classifier, guidance_classifier_type, device, shape):
     config_path, generate_fn = MODEL_SPECS[model_type]
     config = load_config(config_path)
     config['data']['num_classes'] = num_classes
@@ -164,6 +166,10 @@ def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_sam
         config['training']['guidance_scale'] = guidance_scale
     if classifier_scale is not None:
         config['training']['classifier_scale'] = classifier_scale
+    if guidance_classifier is not None:
+        config['model']['classifier_checkpoint'] = guidance_classifier
+    if guidance_classifier_type is not None:
+        config['model']['classifier_type'] = guidance_classifier_type
 
     accuracies, confidences, per_class_accs, fids, kids = [], [], [], [], []
     for tag in tags:
@@ -185,6 +191,7 @@ def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_sam
         'tags': tags,
         'guidance_scale': float(config['training']['guidance_scale']),
         'classifier_scale': config['training'].get('classifier_scale'),
+        'guidance_classifier': config['model'].get('classifier_checkpoint'),
         'fid_per_seed': fids,
         'kid_per_seed': kids,
         'class_accuracy_per_seed': accuracies,
@@ -218,6 +225,10 @@ def main():
                         help="Override every model's CFG scale (default: each model's config value).")
     parser.add_argument('--classifier-scale', type=float, default=None,
                         help="Override CGD's classifier-gradient strength (default: config value, 1.0). 0 disables it.")
+    parser.add_argument('--guidance-classifier', default=None,
+                        help="Override CGD's guidance classifier checkpoint dir (default: config model.classifier_checkpoint).")
+    parser.add_argument('--guidance-classifier-type', default=None, choices=['classification', 'robust_classification'],
+                        help="Architecture of --guidance-classifier (default: config model.classifier_type).")
     parser.add_argument('--num-classes', type=int, default=2)
     parser.add_argument('--input-size', type=int, default=150)
     parser.add_argument('--output', default='results/generation_classifier_eval')
@@ -244,7 +255,8 @@ def main():
         print(f"\nEvaluating {model_type} ({len(tags)} seeds)...")
         results[model_type] = evaluate_model(
             model_type, tags, classifier, valloader, args.num_classes, args.num_samples, args.batch_size,
-            args.guidance_scale, args.classifier_scale, device, shape,
+            args.guidance_scale, args.classifier_scale, args.guidance_classifier, args.guidance_classifier_type,
+            device, shape,
         )
         results[model_type]['classifier_tag'] = args.classifier_tag
 

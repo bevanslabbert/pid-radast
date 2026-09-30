@@ -1,0 +1,32 @@
+seed: 42
+
+data:
+  dataset: crumb_fits
+  batch_size: 16
+
+training:
+  learning_rate: 0.003197267211783691
+  weight_decay: 0.0027584890854206985
+  momentum: 0.9116646213437151
+  warmup_epochs: 30
+  transition_epochs: 15
+  trades_beta: 3.577679870970874
+  pgd:
+    epsilon: 0.09220277726992455
+    alpha: 0.0012337144983744607
+    num_steps: 40
+    random_start: true # random delta initialisation (stronger attacks; recommended)
+
+  epochs: 200
+  label_smoothing: 0.05 # reduced from 0.1; small dataset benefits from less smoothing
+  num_timesteps: 1000
+
+optimization:
+  max_trials: 25
+  parameters:
+    learning_rate: { min: 0.0001, max: 0.1, log: true }
+    weight_decay: { min: 0.00001, max: 0.01, log: true }
+    momentum: { min: 0.85, max: 0.99 }
+    "pgd.epsilon": { min: 0.01, max: 0.1, log: true }
+    "pgd.alpha": { min: 0.001, max: 0.02, log: true }
+    "pgd.num_steps": { choices: [10, 20, 40] }

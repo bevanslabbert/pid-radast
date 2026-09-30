@@ -74,6 +74,9 @@ def main():
     parser.add_argument('--tag', default='cls_guided_diffusion_crumb_fits_seed42')
     parser.add_argument('--num-samples', type=int, default=16, help="Samples per class for the sampling check.")
     parser.add_argument('--guidance-scale', type=float, default=3.0)
+    parser.add_argument('--guidance-classifier', default=None,
+                        help="Override the guidance classifier checkpoint dir (default: config model.classifier_checkpoint).")
+    parser.add_argument('--guidance-classifier-type', default=None, choices=['classification', 'robust_classification'])
     parser.add_argument('--num-classes', type=int, default=2)
     parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--output', default='results/cgd_guidance_diagnostics')
@@ -85,6 +88,10 @@ def main():
 
     config = load_config('config/classifier_guided_diffusion.yaml')
     config['data']['num_classes'] = args.num_classes
+    if args.guidance_classifier is not None:
+        config['model']['classifier_checkpoint'] = args.guidance_classifier
+    if args.guidance_classifier_type is not None:
+        config['model']['classifier_type'] = args.guidance_classifier_type
     classifier, time_aware = _load_guidance_classifier(config, device)
     unet, scheduler, class_emb, _ = build_diffusion_components(config, {}, device)
     _, valloader, _, _ = get_data_loaders('crumb_fits', None, batch_size=32)

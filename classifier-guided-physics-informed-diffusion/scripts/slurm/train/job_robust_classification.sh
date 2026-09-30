@@ -20,4 +20,6 @@ python main.py train \
     --seed ${SEED:-42} \
     --runs 1 \
     --checkpoint True \
-    ${TAG:+--tag $TAG}
+    ${TAG:+--tag $TAG} \
+    ${CONFIG:+--config $CONFIG} \
+    ${RESUME:+--resume $RESUME}
