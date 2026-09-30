@@ -8,7 +8,7 @@ training:
   learning_rate: 0.003197267211783691
   weight_decay: 0.0027584890854206985
   momentum: 0.9116646213437151
-  warmup_epochs: 30
+  warmup_epochs: 200 # = epochs: noise-aware training only, no PGD phase (adversarial epochs ~40x slower, ~5 days)
   transition_epochs: 15
   trades_beta: 3.577679870970874
   pgd:
