@@ -39,3 +39,18 @@ Loaded guidance classifier (classification) from checkpoints/classification/eval
 Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
 Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
 Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45]  class_accuracy=0.9102  mean_confidence=0.8458  (FR-I=0.8281  FR-II=0.9922)  fid=64.81  kid=0.0454
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed46]  class_accuracy=0.7500  mean_confidence=0.6858  (FR-I=0.7031  FR-II=0.7969)  fid=65.33  kid=0.0508
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+classifier_guided_diffusion     acc=0.8430 +/- 0.0535   conf=0.7902 +/- 0.0552   fid=57.97 +/- 6.83   kid=0.0395 +/- 0.0091   (cfg=3.0)
+
+Saved to results/generation_classifier_eval/eval_cgd_cfg3.0_s44cls0/classifier_eval_metrics.json

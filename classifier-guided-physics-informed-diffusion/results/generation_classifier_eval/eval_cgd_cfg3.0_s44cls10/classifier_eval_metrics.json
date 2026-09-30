@@ -1,0 +1,67 @@
+{
+  "classifier_guided_diffusion": {
+    "tags": [
+      "cls_guided_diffusion_crumb_fits_seed42",
+      "cls_guided_diffusion_crumb_fits_seed43",
+      "cls_guided_diffusion_crumb_fits_seed44",
+      "cls_guided_diffusion_crumb_fits_seed45",
+      "cls_guided_diffusion_crumb_fits_seed46"
+    ],
+    "guidance_scale": 3.0,
+    "classifier_scale": 10.0,
+    "guidance_classifier": "checkpoints/classification/eval_fits_bs8_seed44",
+    "fid_per_seed": [
+      59.69329833984375,
+      52.879417419433594,
+      48.4048957824707,
+      63.0804328918457,
+      65.61770629882812
+    ],
+    "kid_per_seed": [
+      0.043637294322252274,
+      0.028442582115530968,
+      0.02914547175168991,
+      0.042482033371925354,
+      0.0509805753827095
+    ],
+    "class_accuracy_per_seed": [
+      0.92578125,
+      0.93359375,
+      0.9375,
+      0.953125,
+      0.8515625
+    ],
+    "mean_confidence_per_seed": [
+      0.8590389490127563,
+      0.8608142733573914,
+      0.872428834438324,
+      0.8863618969917297,
+      0.7533577680587769
+    ],
+    "per_class_accuracy_per_seed": {
+      "FR-I": [
+        0.8671875,
+        0.8671875,
+        0.8984375,
+        0.90625,
+        0.8203125
+      ],
+      "FR-II": [
+        0.984375,
+        1.0,
+        0.9765625,
+        1.0,
+        0.8828125
+      ]
+    },
+    "class_accuracy_mean": 0.9203125,
+    "class_accuracy_std": 0.03551036930426098,
+    "mean_confidence_mean": 0.8464003443717957,
+    "mean_confidence_std": 0.04753698489802516,
+    "fid_mean": 57.935150146484375,
+    "fid_std": 6.402700528427276,
+    "kid_mean": 0.0389375913888216,
+    "kid_std": 0.008783103856217141,
+    "classifier_tag": "eval_fits_bs8_seed42"
+  }
+}
