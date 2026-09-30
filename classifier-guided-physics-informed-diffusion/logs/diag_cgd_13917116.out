@@ -1,0 +1,15 @@
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Guidance classifier: checkpoints/classification/scratch (classification, time-aware=False)
+
+[1+2] Guidance classifier on real crumb_fits val images, clean (t=0) and noised:
+  t=   0  accuracy=0.420  p_target=0.447  predicted FR-II=0.000
+  t=  25  accuracy=0.420  p_target=0.438  predicted FR-II=0.000
+  t=  50  accuracy=0.420  p_target=0.436  predicted FR-II=0.000
+  t= 100  accuracy=0.420  p_target=0.436  predicted FR-II=0.000
+  t= 200  accuracy=0.420  p_target=0.436  predicted FR-II=0.000
+  t= 400  accuracy=0.420  p_target=0.435  predicted FR-II=0.000
+  t= 600  accuracy=0.420  p_target=0.436  predicted FR-II=0.000
+  t= 800  accuracy=0.420  p_target=0.436  predicted FR-II=0.000

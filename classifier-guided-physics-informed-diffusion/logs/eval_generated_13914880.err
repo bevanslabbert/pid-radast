@@ -1,2 +1,3 @@
 /idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
   warnings.warn(*args, **kwargs)
+[2026-09-30T17:26:03.735] error: *** JOB 13914880 ON gpu-002 CANCELLED AT 2026-09-30T17:26:03 DUE to SIGNAL Terminated ***
