@@ -21,6 +21,8 @@ EDM 3.0, DDPM/CGD 7.5) so models can be compared at matched guidance.
 training.classifier_scale, 1.0); 0 disables the gradient. Other models ignore it.
 --guidance-classifier / --guidance-classifier-type override which frozen classifier
 guides CGD (config model.classifier_checkpoint / model.classifier_type).
+--guided-diffusion-tags applies that same inference-time guidance to DDPM (`diffusion`)
+checkpoints, separating the guidance method from which checkpoints it is applied to.
 
 Samples are generated in micro-batches of --batch-size per class (CFG doubles each
 forward pass, so large single batches OOM on an 11.9GB GPU) until --num-samples
@@ -103,11 +105,11 @@ def generate_diffusion(config, tag, num_classes, num_samples, device, shape):
         )
 
 
-def generate_cgd(config, tag, num_classes, num_samples, device, shape):
+def _generate_classifier_guided(checkpoint_subdir, config, tag, num_classes, num_samples, device, shape):
     from src.pipelines.train_pipeline import _load_guidance_classifier
 
     unet, scheduler, class_emb, _ = build_diffusion_components(config, {}, device)
-    ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/classifier_guided_diffusion/{tag}', device)
+    ckpt = load_checkpoint(f'{CHECKPOINT_DIR}/{checkpoint_subdir}/{tag}', device)
     unet.load_state_dict(ckpt['model_state_dict'])
     class_emb.load_state_dict(ckpt['class_emb_state_dict'])
     unet.to(device).eval()
@@ -122,6 +124,15 @@ def generate_cgd(config, tag, num_classes, num_samples, device, shape):
             classifier=guidance_classifier, classifier_time_aware=time_aware,
             shape=shape, guidance_scale=guidance_scale, classifier_scale=classifier_scale,
         )
+
+
+def generate_cgd(config, tag, num_classes, num_samples, device, shape):
+    return _generate_classifier_guided('classifier_guided_diffusion', config, tag, num_classes, num_samples, device, shape)
+
+
+def generate_diffusion_classifier_guided(config, tag, num_classes, num_samples, device, shape):
+    """DDPM checkpoints sampled with CGD's inference-time classifier guidance (same UNet architecture)."""
+    return _generate_classifier_guided('diffusion', config, tag, num_classes, num_samples, device, shape)
 
 
 def generate_edm(config, tag, num_classes, num_samples, device, shape):
@@ -141,6 +152,7 @@ def generate_edm(config, tag, num_classes, num_samples, device, shape):
 MODEL_SPECS = {
     'diffusion': ('config/diffusion.yaml', generate_diffusion),
     'classifier_guided_diffusion': ('config/classifier_guided_diffusion.yaml', generate_cgd),
+    'diffusion_classifier_guided': ('config/diffusion.yaml', generate_diffusion_classifier_guided),
     'edm_baseline': ('config/edm_baseline.yaml', generate_edm),
 }
 
@@ -215,6 +227,9 @@ def main():
     parser.add_argument('--diffusion-tags', nargs='+', default=[])
     parser.add_argument('--cgd-tags', nargs='+', default=[])
     parser.add_argument('--edm-tags', nargs='+', default=[])
+    parser.add_argument('--guided-diffusion-tags', nargs='+', default=[],
+                        help="DDPM (diffusion) checkpoints sampled with classifier guidance; "
+                             "needs --guidance-classifier / --guidance-classifier-type.")
     parser.add_argument('--classifier-tag', default='eval',
                          help="checkpoints/classification/<tag> -- must be trained separately "
                               "from any classifier used to guide classifier_guided_diffusion.")
@@ -249,6 +264,7 @@ def main():
         ('diffusion', args.diffusion_tags),
         ('classifier_guided_diffusion', args.cgd_tags),
         ('edm_baseline', args.edm_tags),
+        ('diffusion_classifier_guided', args.guided_diffusion_tags),
     ]:
         if not tags:
             continue

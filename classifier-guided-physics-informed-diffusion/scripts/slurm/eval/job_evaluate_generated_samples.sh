@@ -25,6 +25,7 @@ python scripts/evaluate_generated_samples.py \
     ${DIFFUSION_TAGS:+--diffusion-tags $DIFFUSION_TAGS} \
     ${CGD_TAGS:+--cgd-tags $CGD_TAGS} \
     ${EDM_TAGS:+--edm-tags $EDM_TAGS} \
+    ${GUIDED_DIFFUSION_TAGS:+--guided-diffusion-tags $GUIDED_DIFFUSION_TAGS} \
     --output results/generation_classifier_eval/${SLURM_JOB_NAME:-all} \
     --classifier-tag ${CLASSIFIER_TAG:-eval} \
     --num-samples ${NUM_SAMPLES:-128} \
