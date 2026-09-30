@@ -12,3 +12,12 @@ Loaded guidance classifier (classification) from checkpoints/classification/scra
 Loaded guidance classifier (classification) from checkpoints/classification/scratch
 Loaded guidance classifier (classification) from checkpoints/classification/scratch
 Loaded guidance classifier (classification) from checkpoints/classification/scratch
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42]  class_accuracy=0.8516  mean_confidence=0.7971  (FR-I=0.7344  FR-II=0.9688)  fid=58.64  kid=0.0426
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
