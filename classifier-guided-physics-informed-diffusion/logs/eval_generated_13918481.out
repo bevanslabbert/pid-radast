@@ -1,0 +1,56 @@
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+Evaluating classifier_guided_diffusion (5 seeds)...
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42]  class_accuracy=0.9023  mean_confidence=0.8256  (FR-I=0.8203  FR-II=0.9844)  fid=58.29  kid=0.0410
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed43]  class_accuracy=0.8633  mean_confidence=0.8229  (FR-I=0.7266  FR-II=1.0000)  fid=52.87  kid=0.0288
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed44]  class_accuracy=0.9180  mean_confidence=0.8527  (FR-I=0.8516  FR-II=0.9844)  fid=48.20  kid=0.0304
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45]  class_accuracy=0.9102  mean_confidence=0.8583  (FR-I=0.8203  FR-II=1.0000)  fid=64.85  kid=0.0439
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed46]  class_accuracy=0.8242  mean_confidence=0.7373  (FR-I=0.7656  FR-II=0.8828)  fid=62.88  kid=0.0477
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+classifier_guided_diffusion     acc=0.8836 +/- 0.0351   conf=0.8194 +/- 0.0434   fid=57.42 +/- 6.19   kid=0.0384 +/- 0.0075   (cfg=3.0)
+
+Saved to results/generation_classifier_eval/eval_cgd_cfg3.0_robcls1/classifier_eval_metrics.json
