@@ -11,6 +11,13 @@ edm_baseline's checkpoints across multiple seeds, classifies them, and reports:
   - mean_confidence: mean softmax probability assigned to the intended class
   - per-class accuracy (FR-I / FR-II), so a model that collapses onto one class
     shows up as ~1.0 / ~0.0 rather than hiding behind a 0.5 overall accuracy
+  - FID / KID of the same samples vs the real crumb_fits validation split (the
+    split training-time FID uses), so class fidelity and realism are measured
+    on identical images
+
+--guidance-scale overrides every model's CFG scale (config training.guidance_scale:
+EDM 3.0, DDPM/CGD 7.5) so models can be compared at matched guidance. CGD's
+separate classifier_scale is left unchanged.
 
 Samples are generated in micro-batches of --batch-size per class (CFG doubles each
 forward pass, so large single batches OOM on an 11.9GB GPU) until --num-samples
@@ -24,7 +31,8 @@ Usage:
         --cgd-tags exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46 \
         --edm-tags exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46 \
         --classifier-tag eval \
-        --num-samples 128 --batch-size 16
+        --num-samples 128 --batch-size 16 \
+        --guidance-scale 3.0
 """
 import argparse
 import json
@@ -41,7 +49,8 @@ from src.utils.checkpoint import load_checkpoint
 from src.models.simple_cnn import SimpleCNN
 from src.models.diffusion import build_diffusion_components
 from src.models.edm import build_edm_components, generate_class_samples_edm
-from src.utils.metrics import generate_class_samples, generate_class_samples_guided
+from src.utils.metrics import generate_class_samples, generate_class_samples_guided, compute_fid_kid
+from src.utils.data import get_data_loaders
 
 CHECKPOINT_DIR = 'checkpoints'
 CLASS_NAMES = ['FR-I', 'FR-II']
@@ -145,25 +154,35 @@ def generate_in_batches(generate_fn, config, tag, num_classes, num_samples, batc
     return torch.cat(gen_0), torch.cat(gen_1)
 
 
-def evaluate_model(model_type, tags, classifier, num_classes, num_samples, batch_size, device, shape):
+def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_samples, batch_size,
+                   guidance_scale, device, shape):
     config_path, generate_fn = MODEL_SPECS[model_type]
     config = load_config(config_path)
     config['data']['num_classes'] = num_classes
+    if guidance_scale is not None:
+        config['training']['guidance_scale'] = guidance_scale
 
-    accuracies, confidences, per_class_accs = [], [], []
+    accuracies, confidences, per_class_accs, fids, kids = [], [], [], [], []
     for tag in tags:
         gen_0, gen_1 = generate_in_batches(
             generate_fn, config, tag, num_classes, num_samples, batch_size, device, shape,
         )
         acc, conf, per_class = classify_generated(classifier, gen_0, gen_1, device)
+        fid, kid = compute_fid_kid(gen_0, gen_1, valloader, device)
         per_class_str = '  '.join(f"{n}={a:.4f}" for n, a in zip(CLASS_NAMES, per_class))
-        print(f"  [{model_type}/{tag}]  class_accuracy={acc:.4f}  mean_confidence={conf:.4f}  ({per_class_str})")
+        print(f"  [{model_type}/{tag}]  class_accuracy={acc:.4f}  mean_confidence={conf:.4f}  ({per_class_str})"
+              f"  fid={fid:.2f}  kid={kid:.4f}")
         accuracies.append(acc)
         confidences.append(conf)
         per_class_accs.append(per_class)
+        fids.append(fid)
+        kids.append(kid)
 
     return {
         'tags': tags,
+        'guidance_scale': float(config['training']['guidance_scale']),
+        'fid_per_seed': fids,
+        'kid_per_seed': kids,
         'class_accuracy_per_seed': accuracies,
         'mean_confidence_per_seed': confidences,
         'per_class_accuracy_per_seed': {
@@ -173,6 +192,10 @@ def evaluate_model(model_type, tags, classifier, num_classes, num_samples, batch
         'class_accuracy_std': float(np.std(accuracies)),
         'mean_confidence_mean': float(np.mean(confidences)),
         'mean_confidence_std': float(np.std(confidences)),
+        'fid_mean': float(np.mean(fids)),
+        'fid_std': float(np.std(fids)),
+        'kid_mean': float(np.mean(kids)),
+        'kid_std': float(np.std(kids)),
     }
 
 
@@ -187,6 +210,8 @@ def main():
     parser.add_argument('--num-samples', type=int, default=128, help="Generated samples per class per seed.")
     parser.add_argument('--batch-size', type=int, default=16, help="Samples per class per generation call (OOM guard).")
     parser.add_argument('--seed', type=int, default=0, help="Sampling noise seed, for reproducible scores.")
+    parser.add_argument('--guidance-scale', type=float, default=None,
+                        help="Override every model's CFG scale (default: each model's config value).")
     parser.add_argument('--num-classes', type=int, default=2)
     parser.add_argument('--input-size', type=int, default=150)
     parser.add_argument('--output', default='results/generation_classifier_eval')
@@ -199,6 +224,8 @@ def main():
 
     classifier = load_eval_classifier(args.num_classes, device, args.classifier_tag)
     shape = (1, args.input_size, args.input_size)
+    # Real reference set for FID/KID: the crumb_fits validation split training-time FID uses.
+    _, valloader, _, _ = get_data_loaders('crumb_fits', None, batch_size=32)
 
     results = {}
     for model_type, tags in [
@@ -210,13 +237,17 @@ def main():
             continue
         print(f"\nEvaluating {model_type} ({len(tags)} seeds)...")
         results[model_type] = evaluate_model(
-            model_type, tags, classifier, args.num_classes, args.num_samples, args.batch_size, device, shape,
+            model_type, tags, classifier, valloader, args.num_classes, args.num_samples, args.batch_size,
+            args.guidance_scale, device, shape,
         )
+        results[model_type]['classifier_tag'] = args.classifier_tag
 
     print("\n=== Summary (class_accuracy: predicted-as-intended-class rate) ===")
     for model_type, r in results.items():
         print(f"{model_type:30s}  acc={r['class_accuracy_mean']:.4f} +/- {r['class_accuracy_std']:.4f}"
-              f"   conf={r['mean_confidence_mean']:.4f} +/- {r['mean_confidence_std']:.4f}")
+              f"   conf={r['mean_confidence_mean']:.4f} +/- {r['mean_confidence_std']:.4f}"
+              f"   fid={r['fid_mean']:.2f} +/- {r['fid_std']:.2f}   kid={r['kid_mean']:.4f} +/- {r['kid_std']:.4f}"
+              f"   (cfg={r['guidance_scale']})")
 
     out_path = os.path.join(args.output, 'classifier_eval_metrics.json')
     with open(out_path, 'w') as f:
