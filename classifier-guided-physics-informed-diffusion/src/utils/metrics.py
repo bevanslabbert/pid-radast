@@ -46,7 +46,7 @@ def generate_class_samples(unet, scheduler, class_emb, num_classes, num_samples,
 
 def generate_class_samples_guided(unet, scheduler, class_emb, num_classes, num_samples, device, *,
                                    classifier, classifier_time_aware, shape=(1, 150, 150),
-                                   guidance_scale=7.5, classifier_scale=1.0):
+                                   guidance_scale=7.5, classifier_scale=1.0, diagnostics=None):
     """Generate CFG images for class 0 and class 1, nudged by classifier guidance.
 
     Standard inference-time classifier guidance (Dhariwal & Nichol, 2021): at each
@@ -56,6 +56,11 @@ def generate_class_samples_guided(unet, scheduler, class_emb, num_classes, num_s
     weights), this only perturbs each sample's own trajectory — the classifier never
     touches the UNet's weights, so it can't collapse every sample of a class onto one
     canonical, classifier-maximising image.
+
+    If `diagnostics` is a list, one dict per (class, step) is appended with the size of
+    the classifier nudge relative to the CFG noise prediction and the classifier's
+    belief in the target class on x_t. The gradient is then computed even at
+    classifier_scale=0 (for measurement only; it is applied only when scale > 0).
     """
     unet.eval()
     alphas_cumprod = scheduler.alphas_cumprod.to(device)
@@ -82,7 +87,7 @@ def generate_class_samples_guided(unet, scheduler, class_emb, num_classes, num_s
                 # exaggerate the difference by nudging further in that direction
                 noise_pred = noise_uncond + guidance_scale * (noise_cond - noise_uncond)
 
-            if classifier_scale > 0:
+            if classifier_scale > 0 or diagnostics is not None:
                 x_t = images.detach().requires_grad_(True)
                 with torch.enable_grad():
                     # pass timestep too if classifier was trained to be noise-level-aware
@@ -102,9 +107,24 @@ def generate_class_samples_guided(unet, scheduler, class_emb, num_classes, num_s
                     grad = torch.autograd.grad(selected, x_t)[0]
 
                 alpha_bar_t = alphas_cumprod[t].view(1, 1, 1, 1)
+                unit_nudge = (1.0 - alpha_bar_t).sqrt() * grad
+
+                if diagnostics is not None:
+                    probs = log_probs.detach().exp()
+                    noise_norm = noise_pred.flatten(1).norm(dim=1).mean().item()
+                    nudge_norm = unit_nudge.flatten(1).norm(dim=1).mean().item()
+                    diagnostics.append({
+                        'class': class_idx,
+                        't': int(t),
+                        'noise_pred_norm': noise_norm,
+                        'unit_nudge_norm': nudge_norm,  # nudge at classifier_scale = 1
+                        'nudge_ratio': nudge_norm / noise_norm,
+                        'p_target': probs[:, class_idx].mean().item(),
+                        'frac_pred_target': (probs.argmax(dim=1) == class_idx).float().mean().item(),
+                    })
 
                 # use the gradient to nudge each pixel of the noise in the direction of the correct classification
-                noise_pred = noise_pred - classifier_scale * (1.0 - alpha_bar_t).sqrt() * grad
+                noise_pred = noise_pred - classifier_scale * unit_nudge
 
             with torch.no_grad():
                 images = scheduler.step(noise_pred, t, images).prev_sample
