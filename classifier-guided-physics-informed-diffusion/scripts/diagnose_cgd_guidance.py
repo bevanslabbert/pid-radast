@@ -52,6 +52,7 @@ def check_real(classifier, time_aware, scheduler, valloader, device):
     results = []
     for t in NOISE_TIMESTEPS:
         correct, p_target, pred_1, n = 0.0, 0.0, 0.0, 0
+        class_correct, class_n = [0.0, 0.0], [0, 0]
         for images, labels in valloader:
             images, labels = images.to(device), labels.to(device)
             if t > 0:
@@ -64,8 +65,18 @@ def check_real(classifier, time_aware, scheduler, valloader, device):
             p_target += probs.gather(1, labels.unsqueeze(1)).sum().item()
             pred_1 += (preds == 1).sum().item()
             n += labels.shape[0]
-        results.append({'t': t, 'accuracy': correct / n, 'p_target': p_target / n, 'frac_pred_FR-II': pred_1 / n})
-        print(f"  t={t:4d}  accuracy={correct / n:.3f}  p_target={p_target / n:.3f}  predicted FR-II={pred_1 / n:.3f}")
+            for c in (0, 1):
+                class_correct[c] += ((preds == labels) & (labels == c)).sum().item()
+                class_n[c] += (labels == c).sum().item()
+        frac_fr2 = pred_1 / n
+        # A classifier predicting one class for (almost) everything gives no useful guidance gradient.
+        collapsed = frac_fr2 < 0.05 or frac_fr2 > 0.95
+        results.append({'t': t, 'accuracy': correct / n, 'acc_FR-I': class_correct[0] / class_n[0],
+                        'acc_FR-II': class_correct[1] / class_n[1], 'p_target': p_target / n,
+                        'frac_pred_FR-II': frac_fr2, 'collapsed': collapsed})
+        print(f"  t={t:4d}  accuracy={correct / n:.3f}  (FR-I={class_correct[0] / class_n[0]:.3f}  "
+              f"FR-II={class_correct[1] / class_n[1]:.3f})  p_target={p_target / n:.3f}  "
+              f"predicted FR-II={frac_fr2:.3f}{'  <-- COLLAPSED' if collapsed else ''}")
     return results
 
 
@@ -100,6 +111,8 @@ def main():
 
     print("\n[1+2] Guidance classifier on real crumb_fits val images, clean (t=0) and noised:")
     real = check_real(classifier, time_aware, scheduler, valloader, device)
+    useful = [r['t'] for r in real if not r['collapsed'] and r['accuracy'] >= 0.6]
+    print(f"  -> not collapsed and >=60% accurate at t = {useful if useful else 'none'}")
 
     print(f"\n[3] Sampling {args.tag} at CFG {args.guidance_scale}, classifier_scale 1.0:")
     ckpt = load_checkpoint(f'checkpoints/classifier_guided_diffusion/{args.tag}', device)
