@@ -148,6 +148,30 @@ table(s, [
 caption(s, "Over 5 seeds CGD is level with DDPM (seed 42's FID 66.8 was its best seed; others 72.9-80.5). Both beat EDM on "
            "FID/KID; EDM keeps the best pixel-PDF W. DDPM best on VQ-VAE reconstruction fidelity.")
 
+# ---------------------------------------------------------------- 3b classifier on generated samples
+s = slide()
+title(s, "Classifier accuracy on generated samples",
+      "Does the model generate the class it was asked for?  128 samples per class per seed, scored by a held-out classifier")
+table(s, [
+    ["Model", "Seeds", "Class accuracy", "FR-I", "FR-II", "Mean confidence"],
+    ["Real CRUMB test images  (reference)", "-", "78.1 %", "84.6 %", "73.0 %", "-"],
+    ["EDM baseline", "5", "80.7 ± 1.8 %", "71.6 ± 6.5 %", "89.8 ± 3.5 %", "0.743 ± 0.014"],
+    ["diffusion (DDPM+CFG)", "4", "96.5 ± 1.5 %", "93.0 ± 2.9 %", "100.0 ± 0.0 %", "0.910 ± 0.015"],
+    ["CGD", "5", "97.1 ± 2.4 %", "95.3 ± 2.9 %", "98.9 ± 2.0 %", "0.891 ± 0.049"],
+], top=1.6, height=2.4, col_widths=[3.6, 0.9, 2.1, 1.9, 1.9, 1.9], font=13)
+tb = s.shapes.add_textbox(Inches(0.5), Inches(4.2), Inches(12.3), Inches(2.7))
+tb.text_frame.word_wrap = True
+for txt in [
+    "A model matching real data would score like the reference row, not 100%. DDPM/CGD overshoot on both classes: their samples are more clear-cut than real galaxies.",
+    "EDM is close to real overall but reverses the per-class pattern (FR-I 72% vs real 85%, FR-II 90% vs 73%): its FR-I samples often look FR-II.",
+    "DDPM and CGD are indistinguishable; CGD seed 46 is the outlier under both scoring classifiers, so it is a model effect.",
+    "Confound: EDM samples at CFG 3.0, DDPM/CGD at 7.5 - stronger guidance exaggerates class features.",
+]:
+    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
+    r.font.size = Pt(13); r.font.color.rgb = GREY; p.space_after = Pt(8)
+caption(s, "Scored by eval_fits_bs8_seed42 (SimpleCNN, crumb_fits domain, never used to guide CGD; real-test reference from its confusion matrix, n=178). "
+           "Mean ± sample std across seeds. DDPM seed 46 incomplete.")
+
 # ---------------------------------------------------------------- 4 comparison graph
 s = slide()
 title(s, "Metrics vs epoch")
