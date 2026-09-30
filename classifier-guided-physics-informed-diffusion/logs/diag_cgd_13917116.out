@@ -13,3 +13,29 @@ Guidance classifier: checkpoints/classification/scratch (classification, time-aw
   t= 400  accuracy=0.420  p_target=0.435  predicted FR-II=0.000
   t= 600  accuracy=0.420  p_target=0.436  predicted FR-II=0.000
   t= 800  accuracy=0.420  p_target=0.436  predicted FR-II=0.000
+  t= 999  accuracy=0.420  p_target=0.436  predicted FR-II=0.000
+
+[3] Sampling cls_guided_diffusion_crumb_fits_seed42 at CFG 3.0, classifier_scale 1.0:
+  class=0  t= 980  nudge_ratio=1.02e-04  p_target=0.904  frac_pred_target=1.00
+  class=0  t= 880  nudge_ratio=1.07e-04  p_target=0.900  frac_pred_target=1.00
+  class=0  t= 780  nudge_ratio=1.07e-04  p_target=0.900  frac_pred_target=1.00
+  class=0  t= 680  nudge_ratio=1.01e-04  p_target=0.905  frac_pred_target=1.00
+  class=0  t= 580  nudge_ratio=1.04e-04  p_target=0.901  frac_pred_target=1.00
+  class=0  t= 480  nudge_ratio=1.04e-04  p_target=0.899  frac_pred_target=1.00
+  class=0  t= 380  nudge_ratio=1.03e-04  p_target=0.903  frac_pred_target=1.00
+  class=0  t= 280  nudge_ratio=9.78e-05  p_target=0.904  frac_pred_target=1.00
+  class=0  t= 180  nudge_ratio=8.66e-05  p_target=0.909  frac_pred_target=1.00
+  class=0  t=  80  nudge_ratio=6.21e-05  p_target=0.916  frac_pred_target=1.00
+  class=1  t= 980  nudge_ratio=9.62e-04  p_target=0.097  frac_pred_target=0.00
+  class=1  t= 880  nudge_ratio=9.36e-04  p_target=0.100  frac_pred_target=0.00
+  class=1  t= 780  nudge_ratio=9.57e-04  p_target=0.100  frac_pred_target=0.00
+  class=1  t= 680  nudge_ratio=9.53e-04  p_target=0.101  frac_pred_target=0.00
+  class=1  t= 580  nudge_ratio=9.65e-04  p_target=0.101  frac_pred_target=0.00
+  class=1  t= 480  nudge_ratio=9.52e-04  p_target=0.099  frac_pred_target=0.00
+  class=1  t= 380  nudge_ratio=9.37e-04  p_target=0.099  frac_pred_target=0.00
+  class=1  t= 280  nudge_ratio=9.33e-04  p_target=0.096  frac_pred_target=0.00
+  class=1  t= 180  nudge_ratio=8.70e-04  p_target=0.093  frac_pred_target=0.00
+  class=1  t=  80  nudge_ratio=6.87e-04  p_target=0.095  frac_pred_target=0.00
+  nudge_ratio over all steps: median=1.07e-04  max=9.71e-04
+
+Saved to results/cgd_guidance_diagnostics/

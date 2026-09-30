@@ -1,0 +1,15 @@
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Guidance classifier: checkpoints/classification/eval_fits_bs8_seed44 (classification, time-aware=False)
+
+[1+2] Guidance classifier on real crumb_fits val images, clean (t=0) and noised:
+  t=   0  accuracy=0.765  p_target=0.680  predicted FR-II=0.552
+  t=  25  accuracy=0.641  p_target=0.594  predicted FR-II=0.429
+  t=  50  accuracy=0.580  p_target=0.577  predicted FR-II=1.000
+  t= 100  accuracy=0.580  p_target=0.580  predicted FR-II=1.000
+  t= 200  accuracy=0.580  p_target=0.580  predicted FR-II=1.000
+  t= 400  accuracy=0.580  p_target=0.580  predicted FR-II=1.000
+  t= 600  accuracy=0.580  p_target=0.580  predicted FR-II=1.000
+  t= 800  accuracy=0.580  p_target=0.580  predicted FR-II=1.000
