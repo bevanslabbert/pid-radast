@@ -17,6 +17,11 @@ source .venv/bin/activate
 
 # Diagnoses why CGD's classifier gradient barely changes its samples.
 # TAG (optional) picks the CGD checkpoint; GUIDANCE_SCALE (optional) the CFG scale.
+# GUIDANCE_CLASSIFIER / GUIDANCE_CLASSIFIER_TYPE (optional) test a different guidance classifier;
+# set OUTPUT too so results don't overwrite results/cgd_guidance_diagnostics/.
 python scripts/diagnose_cgd_guidance.py \
     ${TAG:+--tag $TAG} \
-    ${GUIDANCE_SCALE:+--guidance-scale $GUIDANCE_SCALE}
+    ${GUIDANCE_SCALE:+--guidance-scale $GUIDANCE_SCALE} \
+    ${GUIDANCE_CLASSIFIER:+--guidance-classifier $GUIDANCE_CLASSIFIER} \
+    ${GUIDANCE_CLASSIFIER_TYPE:+--guidance-classifier-type $GUIDANCE_CLASSIFIER_TYPE} \
+    ${OUTPUT:+--output $OUTPUT}

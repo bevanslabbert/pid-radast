@@ -20,6 +20,7 @@ source .venv/bin/activate
 # Any of the three may be left unset to evaluate a subset of models (one job per model).
 # GUIDANCE_SCALE (optional) overrides every model's CFG scale for a matched-guidance comparison.
 # CLASSIFIER_SCALE (optional) overrides CGD's classifier-gradient strength (0 disables it).
+# GUIDANCE_CLASSIFIER / GUIDANCE_CLASSIFIER_TYPE (optional) swap CGD's guidance classifier.
 python scripts/evaluate_generated_samples.py \
     ${DIFFUSION_TAGS:+--diffusion-tags $DIFFUSION_TAGS} \
     ${CGD_TAGS:+--cgd-tags $CGD_TAGS} \
@@ -29,4 +30,6 @@ python scripts/evaluate_generated_samples.py \
     --num-samples ${NUM_SAMPLES:-128} \
     --batch-size ${BATCH_SIZE:-16} \
     ${GUIDANCE_SCALE:+--guidance-scale $GUIDANCE_SCALE} \
-    ${CLASSIFIER_SCALE:+--classifier-scale $CLASSIFIER_SCALE}
+    ${CLASSIFIER_SCALE:+--classifier-scale $CLASSIFIER_SCALE} \
+    ${GUIDANCE_CLASSIFIER:+--guidance-classifier $GUIDANCE_CLASSIFIER} \
+    ${GUIDANCE_CLASSIFIER_TYPE:+--guidance-classifier-type $GUIDANCE_CLASSIFIER_TYPE}
