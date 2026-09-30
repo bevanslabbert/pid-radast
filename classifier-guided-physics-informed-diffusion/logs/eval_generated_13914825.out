@@ -1,0 +1,8 @@
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+
+Saved to results/generation_classifier_eval/eval_cgd_cfg3.0_cls0/classifier_eval_metrics.json
