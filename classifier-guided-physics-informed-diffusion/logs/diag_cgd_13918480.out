@@ -1,0 +1,10 @@
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Guidance classifier: checkpoints/robust_classification/guide_fits (robust_classification, time-aware=True)
+
+[1+2] Guidance classifier on real crumb_fits val images, clean (t=0) and noised:
+  t=   0  accuracy=0.751  (FR-I=0.787  FR-II=0.725)  p_target=0.728  predicted FR-II=0.510
+  t=  25  accuracy=0.762  (FR-I=0.800  FR-II=0.734)  p_target=0.720  predicted FR-II=0.510
+  t=  50  accuracy=0.714  (FR-I=0.813  FR-II=0.643)  p_target=0.693  predicted FR-II=0.451

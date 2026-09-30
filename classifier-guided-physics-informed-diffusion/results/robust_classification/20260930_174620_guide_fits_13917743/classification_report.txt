@@ -1,0 +1,32 @@
+Clean accuracy (t=0): 83.15%
+
+--- Clean Classification Report ---
+              precision    recall  f1-score   support
+
+        FR-I      0.761     0.897     0.824        78
+       FR-II      0.907     0.780     0.839       100
+
+    accuracy                          0.831       178
+   macro avg      0.834     0.839     0.831       178
+weighted avg      0.843     0.831     0.832       178
+
+Robustness curve (accuracy vs noise level):
+  t=   0  acc=82.58%
+  t= 100  acc=73.03%
+  t= 200  acc=67.98%
+  t= 300  acc=53.37%
+  t= 500  acc=57.87%
+  t= 700  acc=54.49%
+  t= 900  acc=53.93%
+
+Adversarial accuracy (PGD ε=0.09220277726992455, steps=40): 3.93%
+
+--- Adversarial Classification Report ---
+              precision    recall  f1-score   support
+
+        FR-I      0.040     0.051     0.045        78
+       FR-II      0.039     0.030     0.034       100
+
+    accuracy                          0.039       178
+   macro avg      0.039     0.041     0.039       178
+weighted avg      0.039     0.039     0.039       178
