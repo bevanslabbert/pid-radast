@@ -33,4 +33,5 @@ python scripts/evaluate_generated_samples.py \
     ${GUIDANCE_SCALE:+--guidance-scale $GUIDANCE_SCALE} \
     ${CLASSIFIER_SCALE:+--classifier-scale $CLASSIFIER_SCALE} \
     ${GUIDANCE_CLASSIFIER:+--guidance-classifier $GUIDANCE_CLASSIFIER} \
-    ${GUIDANCE_CLASSIFIER_TYPE:+--guidance-classifier-type $GUIDANCE_CLASSIFIER_TYPE}
+    ${GUIDANCE_CLASSIFIER_TYPE:+--guidance-classifier-type $GUIDANCE_CLASSIFIER_TYPE} \
+    ${SAVE_GRID:+--save-grid}

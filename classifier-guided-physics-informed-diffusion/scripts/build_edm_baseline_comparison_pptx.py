@@ -112,7 +112,7 @@ table(s, [
     ["Noise process", "continuous sigma (Karras)", "1000-step discrete, linear beta", "1000-step discrete, linear beta"],
     ["Target / loss", "clean image / sigma-weighted L2", "noise (epsilon) / plain MSE", "noise (epsilon) / plain MSE"],
     ["Sampler", "Heun ODE, 25 steps, EMA", "ancestral DDPM, 50 steps", "ancestral DDPM, 50 steps"],
-    ["Guidance", "CFG (3.0)", "CFG (7.5)", "CFG (7.5) + frozen-classifier\ngradient at low noise"],
+    ["Guidance", "CFG (3.0)", "CFG (7.5)", "CFG + noise-aware classifier\ngradient (strength 3)"],
 ], top=1.5, height=4.6, col_widths=[1.9, 3.5, 3.6, 3.3], font=12)
 caption(s, "Shared: task, CRUMB FITS pipeline, symmetric-log-SNR normalisation, CFG-style class conditioning, FID/KID/PDF evaluation.")
 
@@ -127,11 +127,12 @@ table(s, [
     ["Model", "FID ↓", "KID ↓", "pixel-PDF W ↓", "Epochs"],
     ["EDM baseline  (mean ± std, n=5: seeds 42-46)", "87.3 ± 5.0", "0.048 ± 0.005", "0.0036 ± 0.0009", "400\n(complete)"],
     ["diffusion (DDPM+CFG)  (mean ± std, n=4: seeds 42-45)", "73.4 ± 1.4", "0.021 ± 0.003", "0.0077 ± 0.0021", "400\n(complete)"],
-    ["CGD  (mean ± std, n=5: seeds 42-46)", "74.4 ± 5.2", "0.024 ± 0.005", "0.0078 ± 0.0009", "400\n(complete)"],
+    ["CGD*  (mean ± std, n=5: seeds 42-46)", "74.4 ± 5.2", "0.024 ± 0.005", "0.0078 ± 0.0009", "400\n(complete)"],
 ], top=1.7, height=1.8, col_widths=[4.6, 1.8, 2.0, 2.4, 1.5], font=12)
 tb = s.shapes.add_textbox(Inches(0.5), Inches(3.55), Inches(11.5), Inches(0.35))
 r = tb.text_frame.paragraphs[0].add_run()
-r.text = "EDM and CGD have all 5 seeds; DDPM has 4 (seed 46 hit its time limit at epoch 260). Std is the sample std across seeds."
+r.text = ("EDM and CGD have all 5 seeds; DDPM has 4 (seed 46 hit its time limit at epoch 260). Std is the sample std across seeds.  "
+          "*CGD sampled with its original, broken guidance classifier - effectively CFG only (see slide 6).")
 r.font.size = Pt(10); r.font.italic = True; r.font.color.rgb = GREY
 
 tb = s.shapes.add_textbox(Inches(0.5), Inches(4.3), Inches(9), Inches(0.3))
@@ -145,8 +146,8 @@ table(s, [
     ["DDPM-generated", "16", "0.00174", "0.771"],
     ["CGD-generated (latest, ep 290)", "32", "0.00300", "0.725"],
 ], top=4.65, height=2.0, col_widths=[5.2, 1.3, 3.0, 3.0], font=12)
-caption(s, "Over 5 seeds CGD is level with DDPM (seed 42's FID 66.8 was its best seed; others 72.9-80.5). Both beat EDM on "
-           "FID/KID; EDM keeps the best pixel-PDF W. DDPM best on VQ-VAE reconstruction fidelity.")
+caption(s, "DDPM and (unguided) CGD beat EDM on FID/KID; EDM keeps the best pixel-PDF W. DDPM best on VQ-VAE reconstruction fidelity. "
+           "Working-guidance CGD results: slides 6-8.")
 
 # ---------------------------------------------------------------- 3b classifier on generated samples
 s = slide()
@@ -157,14 +158,14 @@ table(s, [
     ["Real CRUMB test images  (reference)", "-", "78.1 %", "84.6 %", "73.0 %", "-"],
     ["EDM baseline", "5", "80.7 ± 1.8 %", "71.6 ± 6.5 %", "89.8 ± 3.5 %", "0.743 ± 0.014"],
     ["diffusion (DDPM+CFG)", "4", "96.5 ± 1.5 %", "93.0 ± 2.9 %", "100.0 ± 0.0 %", "0.910 ± 0.015"],
-    ["CGD", "5", "97.1 ± 2.4 %", "95.3 ± 2.9 %", "98.9 ± 2.0 %", "0.891 ± 0.049"],
+    ["CGD*  (broken guidance classifier)", "5", "97.1 ± 2.4 %", "95.3 ± 2.9 %", "98.9 ± 2.0 %", "0.891 ± 0.049"],
 ], top=1.6, height=2.4, col_widths=[3.6, 0.9, 2.1, 1.9, 1.9, 1.9], font=13)
 tb = s.shapes.add_textbox(Inches(0.5), Inches(4.2), Inches(12.3), Inches(2.7))
 tb.text_frame.word_wrap = True
 for txt in [
     "A model matching real data would score like the reference row, not 100%. DDPM/CGD overshoot on both classes: their samples are more clear-cut than real galaxies.",
     "EDM is close to real overall, but every model reverses the real per-class pattern (real FR-I 85% > FR-II 73%) at every guidance scale - EDM most strongly (FR-I 72%, FR-II 90%).",
-    "DDPM and CGD are indistinguishable; CGD seed 46 is the outlier under both scoring classifiers, so it is a model effect.",
+    "*CGD here is effectively CFG only: its guidance classifier was broken (slide 6). With a working one it improves (slides 7-8).",
     "Confound: EDM samples at CFG 3.0, DDPM/CGD at 7.5 - stronger guidance exaggerates class features.",
 ]:
     p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
@@ -181,12 +182,74 @@ tb = s.shapes.add_textbox(Inches(0.5), Inches(5.55), Inches(12.3), Inches(1.4))
 tb.text_frame.word_wrap = True
 for txt in [
     "At every matched scale DDPM beats EDM on FID (50.9 vs 65.5, 50.4 vs 68.4, 61.0 vs 94.1) and on class accuracy up to 3.0 - the lead is architectural, not guidance.",
-    "CFG 7.5 costs every model FID; 3.0 is the better operating point (best FID, accuracy nearest real). CGD's classifier gradient adds nothing over DDPM at any scale.",
+    "CFG 7.5 costs every model FID; 3.0 is the better operating point (best FID, accuracy nearest real). CGD line: broken guidance classifier (effectively CFG only).",
 ]:
     p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
     r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(4)
 caption(s, "FID from 256 generated images per seed vs the 357-image crumb_fits val split - not comparable in absolute terms to the training-time FID table.",
         top=7.05)
+
+# ---------------------------------------------------------------- 3d CGD guidance classifier diagnosis
+s = slide()
+title(s, "CGD's guidance classifier was broken",
+      "Guidance queries the classifier on noisy, half-formed images at every sampling step - it must work under noise")
+table(s, [
+    ["Guidance classifier", "Trained on", "Noise-aware", "Clean acc", "Acc @ t=100", "Acc @ t=200", "Behaviour during sampling"],
+    ["scratch  (original CGD)", "linear crumb  (wrong domain)", "no", "42 %", "42 %", "42 %", "predicts FR-I for every image: gradient ~0"],
+    ["SimpleCNN, crumb_fits  (quick fix)", "crumb_fits", "no", "77 %", "58 %", "58 %", "predicts FR-II for all t > 50: last ~2 steps only"],
+    ["ResNet50 + timestep  (robust)", "crumb_fits + DDPM noise", "yes", "75 %", "73 %", "63 %", "tracks the requested class, 0.5 -> 0.9"],
+], top=1.6, height=2.3, col_widths=[2.9, 2.2, 1.1, 1.0, 1.1, 1.1, 2.9], font=11)
+tb = s.shapes.add_textbox(Inches(0.5), Inches(4.3), Inches(12.3), Inches(2.4))
+tb.text_frame.word_wrap = True
+for txt in [
+    "All earlier CGD results used 'scratch': collapsed to a constant prediction on crumb_fits images, so its gradient was 0.01-0.1% of the update - CGD was effectively DDPM + CFG.",
+    "A correct-domain classifier trained on clean images still collapses once noise is added (t >= 50 of 1000), so it can only steer the final steps.",
+    "Fix: noise-aware classifier (Dhariwal & Nichol 2021) - ResNet50 trained on crumb_fits images noised with the diffusion schedule, given t as input. Clean test acc 83.2 %.",
+    "CGD checkpoints are unchanged - guidance acts only at sampling time, so no diffusion retraining was needed.",
+]:
+    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
+    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(6)
+caption(s, "Accuracy on real crumb_fits validation images noised to timestep t (diagnose_cgd_guidance.py). Chance ~ 56 % (majority class).")
+
+# ---------------------------------------------------------------- 3e CGD guidance strength
+s = slide()
+title(s, "CGD with a working guidance classifier",
+      "Robust classifier guidance at CFG 3.0 - classifier-guidance strength sweep")
+pic(s, os.path.join(RES, "edm_baseline/cgd_guidance_strength.png"), 1.15, 1.3, 11.0)
+tb = s.shapes.add_textbox(Inches(0.5), Inches(5.55), Inches(12.3), Inches(1.4))
+tb.text_frame.word_wrap = True
+for txt in [
+    "Strength 3: class accuracy 84.3 -> 91.4 %, FR-I 74.1 -> 84.1 % (real 84.6 %), FID 58.0 -> 56.9, KID 0.039 -> 0.037 - no quality cost.",
+    "Plateau at 3-10; FID degrades from 30; at 100 guidance overwhelms the model (FID 84.9) and accuracy falls back to unguided.",
+]:
+    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
+    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(4)
+caption(s, "Guide (ResNet50, noise-aware) and scorer (SimpleCNN) are independent architectures, so the gain is not the guide fooling a copy of itself.",
+        top=7.05)
+
+# ---------------------------------------------------------------- 3f comparison at matched settings
+s = slide()
+title(s, "All models at CFG 3.0",
+      "Same scoring classifier, same real reference, 128 samples per class per seed")
+table(s, [
+    ["Model", "Seeds", "Class acc", "FR-I", "FR-II", "FID ↓", "KID ↓"],
+    ["Real CRUMB test images  (reference)", "-", "78.1 %", "84.6 %", "73.0 %", "-", "-"],
+    ["EDM baseline", "5", "80.7 ± 1.8 %", "71.6 %", "89.8 %", "68.4 ± 3.7", "0.056"],
+    ["DDPM", "4", "87.5 ± 2.9 %", "79.5 %", "95.5 %", "50.4 ± 6.2", "0.033"],
+    ["DDPM + robust guidance (strength 10)  - prelim.", "1 of 4", "96.9 %  (89.8)", "93.8 %  (85.9)", "100 %  (93.8)", "55.6  (55.9)", "0.031  (0.036)"],
+    ["CGD, unguided", "5", "84.3 ± 6.0 %", "74.1 %", "94.5 %", "58.0 ± 7.6", "0.039"],
+    ["CGD + robust guidance (strength 3)", "5", "91.4 ± 3.3 %", "84.1 %", "98.8 %", "56.9 ± 6.3", "0.037"],
+    ["DDPM at CFG 7.5  (raising the CFG scale instead)", "4", "96.5 ± 1.5 %", "93.0 %", "100 %", "61.0 ± 5.2", "0.037"],
+], top=1.6, height=3.4, col_widths=[4.3, 0.9, 1.6, 1.5, 1.4, 1.4, 1.2], font=11)
+tb = s.shapes.add_textbox(Inches(0.5), Inches(5.2), Inches(12.3), Inches(1.7))
+tb.text_frame.word_wrap = True
+for txt in [
+    "Classifier guidance raises class fidelity without the FID cost of a higher CFG scale: CGD +7 pts at -1 FID, vs DDPM CFG 3 -> 7.5 +9 pts at +10.6 FID.",
+    "CGD's remaining FID gap to DDPM is inherited from its weaker checkpoints, not caused by guidance. DDPM + guidance (seed 42) keeps DDPM's FID - remaining seeds pending.",
+]:
+    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
+    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(6)
+caption(s, "Prelim. row: one seed; bracketed values are the same seed unguided. Mean ± sample std across seeds. FID from 256 samples/seed vs 357 real val images.")
 
 # ---------------------------------------------------------------- 4 comparison graph
 s = slide()
