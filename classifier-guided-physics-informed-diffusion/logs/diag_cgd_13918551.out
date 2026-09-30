@@ -1,0 +1,42 @@
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Guidance classifier: checkpoints/robust_classification/guide_fits (robust_classification, time-aware=True)
+
+[1+2] Guidance classifier on real crumb_fits val images, clean (t=0) and noised:
+  t=   0  accuracy=0.706  (FR-I=0.847  FR-II=0.604)  p_target=0.645  predicted FR-II=0.415
+  t=  25  accuracy=0.686  (FR-I=0.807  FR-II=0.599)  p_target=0.637  predicted FR-II=0.429
+  t=  50  accuracy=0.664  (FR-I=0.827  FR-II=0.546)  p_target=0.623  predicted FR-II=0.389
+  t= 100  accuracy=0.669  (FR-I=0.873  FR-II=0.522)  p_target=0.613  predicted FR-II=0.356
+  t= 200  accuracy=0.585  (FR-I=0.860  FR-II=0.386)  p_target=0.544  predicted FR-II=0.283
+  t= 400  accuracy=0.532  (FR-I=0.700  FR-II=0.411)  p_target=0.513  predicted FR-II=0.364
+  t= 600  accuracy=0.468  (FR-I=0.753  FR-II=0.261)  p_target=0.496  predicted FR-II=0.255
+  t= 800  accuracy=0.434  (FR-I=0.953  FR-II=0.058)  p_target=0.487  predicted FR-II=0.053
+  t= 999  accuracy=0.417  (FR-I=0.973  FR-II=0.014)  p_target=0.488  predicted FR-II=0.020  <-- COLLAPSED
+  -> not collapsed and >=60% accurate at t = [0, 25, 50, 100]
+
+[3] Sampling cls_guided_diffusion_crumb_fits_seed42 at CFG 3.0, classifier_scale 1.0:
+  class=0  t= 980  nudge_ratio=5.94e-04  p_target=0.577  frac_pred_target=1.00
+  class=0  t= 880  nudge_ratio=7.95e-04  p_target=0.561  frac_pred_target=1.00
+  class=0  t= 780  nudge_ratio=7.62e-04  p_target=0.568  frac_pred_target=0.94
+  class=0  t= 680  nudge_ratio=8.54e-04  p_target=0.596  frac_pred_target=0.94
+  class=0  t= 580  nudge_ratio=8.15e-04  p_target=0.559  frac_pred_target=0.94
+  class=0  t= 480  nudge_ratio=1.01e-03  p_target=0.551  frac_pred_target=0.94
+  class=0  t= 380  nudge_ratio=1.55e-03  p_target=0.559  frac_pred_target=0.81
+  class=0  t= 280  nudge_ratio=1.73e-03  p_target=0.675  frac_pred_target=0.94
+  class=0  t= 180  nudge_ratio=1.19e-03  p_target=0.854  frac_pred_target=1.00
+  class=0  t=  80  nudge_ratio=5.50e-04  p_target=0.909  frac_pred_target=0.94
+  class=1  t= 980  nudge_ratio=8.36e-04  p_target=0.421  frac_pred_target=0.00
+  class=1  t= 880  nudge_ratio=9.70e-04  p_target=0.447  frac_pred_target=0.00
+  class=1  t= 780  nudge_ratio=1.13e-03  p_target=0.422  frac_pred_target=0.00
+  class=1  t= 680  nudge_ratio=1.49e-03  p_target=0.404  frac_pred_target=0.00
+  class=1  t= 580  nudge_ratio=1.25e-03  p_target=0.457  frac_pred_target=0.12
+  class=1  t= 480  nudge_ratio=1.76e-03  p_target=0.527  frac_pred_target=0.44
+  class=1  t= 380  nudge_ratio=1.69e-03  p_target=0.610  frac_pred_target=0.75
+  class=1  t= 280  nudge_ratio=1.63e-03  p_target=0.670  frac_pred_target=0.88
+  class=1  t= 180  nudge_ratio=2.17e-03  p_target=0.657  frac_pred_target=0.75
+  class=1  t=  80  nudge_ratio=7.12e-04  p_target=0.756  frac_pred_target=0.94
+  nudge_ratio over all steps: median=1.07e-03  max=2.17e-03
+
+Saved to results/cgd_guidance_diagnostics_robust_early/
