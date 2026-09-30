@@ -163,7 +163,7 @@ tb = s.shapes.add_textbox(Inches(0.5), Inches(4.2), Inches(12.3), Inches(2.7))
 tb.text_frame.word_wrap = True
 for txt in [
     "A model matching real data would score like the reference row, not 100%. DDPM/CGD overshoot on both classes: their samples are more clear-cut than real galaxies.",
-    "EDM is close to real overall but reverses the per-class pattern (FR-I 72% vs real 85%, FR-II 90% vs 73%): its FR-I samples often look FR-II.",
+    "EDM is close to real overall, but every model reverses the real per-class pattern (real FR-I 85% > FR-II 73%) at every guidance scale - EDM most strongly (FR-I 72%, FR-II 90%).",
     "DDPM and CGD are indistinguishable; CGD seed 46 is the outlier under both scoring classifiers, so it is a model effect.",
     "Confound: EDM samples at CFG 3.0, DDPM/CGD at 7.5 - stronger guidance exaggerates class features.",
 ]:
@@ -171,6 +171,22 @@ for txt in [
     r.font.size = Pt(13); r.font.color.rgb = GREY; p.space_after = Pt(8)
 caption(s, "Scored by eval_fits_bs8_seed42 (SimpleCNN, crumb_fits domain, never used to guide CGD; real-test reference from its confusion matrix, n=178). "
            "Mean ± sample std across seeds. DDPM seed 46 incomplete.")
+
+# ---------------------------------------------------------------- 3c matched-guidance sweep
+s = slide()
+title(s, "Matched guidance: accuracy and FID vs CFG scale",
+      "Same checkpoints re-sampled at CFG 1.0 / 3.0 / 7.5 - separates architecture from guidance strength")
+pic(s, os.path.join(RES, "edm_baseline/guidance_sweep.png"), 1.15, 1.35, 11.0)
+tb = s.shapes.add_textbox(Inches(0.5), Inches(5.55), Inches(12.3), Inches(1.4))
+tb.text_frame.word_wrap = True
+for txt in [
+    "At every matched scale DDPM beats EDM on FID (50.9 vs 65.5, 50.4 vs 68.4, 61.0 vs 94.1) and on class accuracy up to 3.0 - the lead is architectural, not guidance.",
+    "CFG 7.5 costs every model FID; 3.0 is the better operating point (best FID, accuracy nearest real). CGD's classifier gradient adds nothing over DDPM at any scale.",
+]:
+    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
+    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(4)
+caption(s, "FID from 256 generated images per seed vs the 357-image crumb_fits val split - not comparable in absolute terms to the training-time FID table.",
+        top=7.05)
 
 # ---------------------------------------------------------------- 4 comparison graph
 s = slide()

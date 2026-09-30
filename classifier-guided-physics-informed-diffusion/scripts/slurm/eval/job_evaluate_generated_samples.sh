@@ -19,6 +19,7 @@ source .venv/bin/activate
 # e.g. --export=ALL,DIFFUSION_TAGS="exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46"
 # Any of the three may be left unset to evaluate a subset of models (one job per model).
 # GUIDANCE_SCALE (optional) overrides every model's CFG scale for a matched-guidance comparison.
+# CLASSIFIER_SCALE (optional) overrides CGD's classifier-gradient strength (0 disables it).
 python scripts/evaluate_generated_samples.py \
     ${DIFFUSION_TAGS:+--diffusion-tags $DIFFUSION_TAGS} \
     ${CGD_TAGS:+--cgd-tags $CGD_TAGS} \
@@ -27,4 +28,5 @@ python scripts/evaluate_generated_samples.py \
     --classifier-tag ${CLASSIFIER_TAG:-eval} \
     --num-samples ${NUM_SAMPLES:-128} \
     --batch-size ${BATCH_SIZE:-16} \
-    ${GUIDANCE_SCALE:+--guidance-scale $GUIDANCE_SCALE}
+    ${GUIDANCE_SCALE:+--guidance-scale $GUIDANCE_SCALE} \
+    ${CLASSIFIER_SCALE:+--classifier-scale $CLASSIFIER_SCALE}
