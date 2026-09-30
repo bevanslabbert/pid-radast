@@ -1,0 +1,15 @@
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+Evaluating diffusion (4 seeds)...
+  [diffusion/diffusion_crumb_fits]  class_accuracy=0.7031  mean_confidence=0.6508  (FR-I=0.6719  FR-II=0.7344)  fid=61.02  kid=0.0446
+  [diffusion/diffusion_crumb_fits_seed43]  class_accuracy=0.6484  mean_confidence=0.6179  (FR-I=0.4766  FR-II=0.8203)  fid=46.36  kid=0.0295
+  [diffusion/diffusion_crumb_fits_seed44]  class_accuracy=0.6914  mean_confidence=0.6378  (FR-I=0.5859  FR-II=0.7969)  fid=42.05  kid=0.0249
+  [diffusion/diffusion_crumb_fits_seed45]  class_accuracy=0.6641  mean_confidence=0.6356  (FR-I=0.4766  FR-II=0.8516)  fid=54.18  kid=0.0391
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+diffusion                       acc=0.6768 +/- 0.0216   conf=0.6355 +/- 0.0117   fid=50.90 +/- 7.28   kid=0.0345 +/- 0.0077   (cfg=1.0)
+
+Saved to results/generation_classifier_eval/eval_ddpm_cfg1.0/classifier_eval_metrics.json

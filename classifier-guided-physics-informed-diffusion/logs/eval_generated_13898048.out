@@ -1,0 +1,56 @@
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+Evaluating classifier_guided_diffusion (5 seeds)...
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42]  class_accuracy=0.8477  mean_confidence=0.7961  (FR-I=0.7344  FR-II=0.9609)  fid=59.08  kid=0.0434
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed43]  class_accuracy=0.8320  mean_confidence=0.8002  (FR-I=0.6641  FR-II=1.0000)  fid=52.67  kid=0.0283
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed44]  class_accuracy=0.8750  mean_confidence=0.8240  (FR-I=0.7734  FR-II=0.9766)  fid=47.85  kid=0.0290
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45]  class_accuracy=0.9102  mean_confidence=0.8460  (FR-I=0.8281  FR-II=0.9922)  fid=64.96  kid=0.0455
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+Loaded guidance classifier (classification) from checkpoints/classification/scratch
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed46]  class_accuracy=0.7500  mean_confidence=0.6866  (FR-I=0.7031  FR-II=0.7969)  fid=65.19  kid=0.0505
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+classifier_guided_diffusion     acc=0.8430 +/- 0.0535   conf=0.7906 +/- 0.0550   fid=57.95 +/- 6.82   kid=0.0393 +/- 0.0090   (cfg=3.0)
+
+Saved to results/generation_classifier_eval/eval_cgd_cfg3.0/classifier_eval_metrics.json

@@ -1,0 +1,16 @@
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+Evaluating edm_baseline (5 seeds)...
+  [edm_baseline/my_run_tag]  class_accuracy=0.6211  mean_confidence=0.5908  (FR-I=0.4766  FR-II=0.7656)  fid=63.16  kid=0.0544
+  [edm_baseline/my_run_tag_seed43]  class_accuracy=0.6328  mean_confidence=0.6180  (FR-I=0.4766  FR-II=0.7891)  fid=65.94  kid=0.0537
+  [edm_baseline/my_run_tag_seed44]  class_accuracy=0.6484  mean_confidence=0.5999  (FR-I=0.4844  FR-II=0.8125)  fid=62.65  kid=0.0505
+  [edm_baseline/my_run_tag_seed45]  class_accuracy=0.5703  mean_confidence=0.5798  (FR-I=0.4062  FR-II=0.7344)  fid=64.95  kid=0.0543
+  [edm_baseline/my_run_tag_seed46]  class_accuracy=0.6250  mean_confidence=0.5999  (FR-I=0.4453  FR-II=0.8047)  fid=70.95  kid=0.0618
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+edm_baseline                    acc=0.6195 +/- 0.0263   conf=0.5977 +/- 0.0126   fid=65.53 +/- 2.96   kid=0.0549 +/- 0.0037   (cfg=1.0)
+
+Saved to results/generation_classifier_eval/eval_edm_cfg1.0/classifier_eval_metrics.json
