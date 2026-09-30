@@ -30,3 +30,12 @@ Loaded guidance classifier (classification) from checkpoints/classification/eval
 Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
 Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
 Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed44]  class_accuracy=0.9375  mean_confidence=0.8724  (FR-I=0.8984  FR-II=0.9766)  fid=48.40  kid=0.0291
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
+Loaded guidance classifier (classification) from checkpoints/classification/eval_fits_bs8_seed44
