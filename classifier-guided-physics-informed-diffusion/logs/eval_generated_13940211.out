@@ -3,7 +3,7 @@ Getting data loader crumb_fits
 Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
 Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
 
-Evaluating diffusion_classifier_guided (4 seeds)...
+Evaluating classifier_guided_diffusion (5 seeds)...
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
@@ -12,7 +12,7 @@ Loaded guidance classifier (robust_classification) from checkpoints/robust_class
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
-  [diffusion_classifier_guided/diffusion_crumb_fits]  class_accuracy=0.9688  mean_confidence=0.8803  (FR-I=0.9375  FR-II=1.0000)  fid=55.62  kid=0.0311
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed42]  class_accuracy=0.8477  mean_confidence=0.7959  (FR-I=0.7344  FR-II=0.9609)  fid=59.22  kid=0.0424  conc(FR-I/FR-II)=0.103/0.122
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
@@ -21,7 +21,7 @@ Loaded guidance classifier (robust_classification) from checkpoints/robust_class
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
-  [diffusion_classifier_guided/diffusion_crumb_fits_seed43]  class_accuracy=0.8906  mean_confidence=0.8313  (FR-I=0.7891  FR-II=0.9922)  fid=49.58  kid=0.0293
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed43]  class_accuracy=0.8320  mean_confidence=0.7998  (FR-I=0.6641  FR-II=1.0000)  fid=52.60  kid=0.0289  conc(FR-I/FR-II)=0.096/0.134
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
@@ -30,7 +30,7 @@ Loaded guidance classifier (robust_classification) from checkpoints/robust_class
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
-  [diffusion_classifier_guided/diffusion_crumb_fits_seed44]  class_accuracy=0.9648  mean_confidence=0.8818  (FR-I=0.9297  FR-II=1.0000)  fid=43.68  kid=0.0236
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed44]  class_accuracy=0.8750  mean_confidence=0.8237  (FR-I=0.7734  FR-II=0.9766)  fid=47.89  kid=0.0303  conc(FR-I/FR-II)=0.088/0.117
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
@@ -39,9 +39,19 @@ Loaded guidance classifier (robust_classification) from checkpoints/robust_class
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
-  [diffusion_classifier_guided/diffusion_crumb_fits_seed45]  class_accuracy=0.8867  mean_confidence=0.8395  (FR-I=0.7734  FR-II=1.0000)  fid=53.80  kid=0.0357
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed45]  class_accuracy=0.9102  mean_confidence=0.8458  (FR-I=0.8281  FR-II=0.9922)  fid=64.81  kid=0.0435  conc(FR-I/FR-II)=0.085/0.126
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+  [classifier_guided_diffusion/cls_guided_diffusion_crumb_fits_seed46]  class_accuracy=0.7500  mean_confidence=0.6858  (FR-I=0.7031  FR-II=0.7969)  fid=65.33  kid=0.0508  conc(FR-I/FR-II)=0.098/0.111
 
 === Summary (class_accuracy: predicted-as-intended-class rate) ===
-diffusion_classifier_guided     acc=0.9277 +/- 0.0391   conf=0.8582 +/- 0.0230   fid=50.67 +/- 4.59   kid=0.0299 +/- 0.0043   (cfg=3.0)
+classifier_guided_diffusion     acc=0.8430 +/- 0.0535   conf=0.7902 +/- 0.0552   fid=57.97 +/- 6.83   kid=0.0392 +/- 0.0083   (cfg=3.0)
+Real crumb_fits val concentration (FR-I/FR-II): 0.076/0.080
 
-Saved to results/generation_classifier_eval/eval_ddpm_cfg3.0_robcls10/classifier_eval_metrics.json
+Saved to results/generation_classifier_eval/eval_cgd_cfg3.0_robcls0_v2/classifier_eval_metrics.json

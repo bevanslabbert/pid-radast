@@ -1,0 +1,87 @@
+{
+  "classifier_guided_diffusion": {
+    "tags": [
+      "cls_guided_diffusion_crumb_fits_seed42",
+      "cls_guided_diffusion_crumb_fits_seed43",
+      "cls_guided_diffusion_crumb_fits_seed44",
+      "cls_guided_diffusion_crumb_fits_seed45",
+      "cls_guided_diffusion_crumb_fits_seed46"
+    ],
+    "guidance_scale": 3.0,
+    "classifier_scale": 0.0,
+    "guidance_classifier": "checkpoints/robust_classification/guide_fits",
+    "fid_per_seed": [
+      59.2209587097168,
+      52.60307312011719,
+      47.885353088378906,
+      64.81045532226562,
+      65.33271026611328
+    ],
+    "concentration_per_seed": {
+      "FR-I": [
+        0.10339617729187012,
+        0.0959005355834961,
+        0.08765795081853867,
+        0.08539578318595886,
+        0.09782615303993225
+      ],
+      "FR-II": [
+        0.12218207865953445,
+        0.1336306780576706,
+        0.11706572771072388,
+        0.1264784038066864,
+        0.11077799648046494
+      ]
+    },
+    "kid_per_seed": [
+      0.0423978790640831,
+      0.02891845442354679,
+      0.03034789301455021,
+      0.04348481073975563,
+      0.05076688528060913
+    ],
+    "class_accuracy_per_seed": [
+      0.84765625,
+      0.83203125,
+      0.875,
+      0.91015625,
+      0.75
+    ],
+    "mean_confidence_per_seed": [
+      0.7958508729934692,
+      0.7998197078704834,
+      0.8237280249595642,
+      0.8457809686660767,
+      0.6857700943946838
+    ],
+    "per_class_accuracy_per_seed": {
+      "FR-I": [
+        0.734375,
+        0.6640625,
+        0.7734375,
+        0.828125,
+        0.703125
+      ],
+      "FR-II": [
+        0.9609375,
+        1.0,
+        0.9765625,
+        0.9921875,
+        0.796875
+      ]
+    },
+    "class_accuracy_mean": 0.84296875,
+    "class_accuracy_std": 0.053525603540501995,
+    "mean_confidence_mean": 0.7901899337768554,
+    "mean_confidence_std": 0.055214940656929654,
+    "fid_mean": 57.97051010131836,
+    "fid_std": 6.827448064059061,
+    "kid_mean": 0.03918318450450897,
+    "kid_std": 0.008324030663048867,
+    "classifier_tag": "eval_fits_bs8_seed42"
+  },
+  "real_crumb_val_concentration": {
+    "FR-I": 0.07605303386847179,
+    "FR-II": 0.0801593804381032
+  }
+}

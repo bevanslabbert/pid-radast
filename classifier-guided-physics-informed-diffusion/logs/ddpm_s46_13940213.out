@@ -1,0 +1,499 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 1789
+Total batches: 157 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=46  |  tag=diffusion_crumb_fits_seed46  |  results -> results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213
+============================================================
+
+Training diffusion for 400 epochs
+Resumed from checkpoint: diffusion/diffusion_crumb_fits_seed46 (epoch 260)
+Epoch 260
+Epoch 260 | Loss: 0.024880 | Val: 0.129185
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 260...
+  FID: 107.9100 | KID: 0.076125
+  Pixel PDF W-dist: 0.0313
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 261
+Epoch 261 | Loss: 0.020659 | Val: 0.127594
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 262
+Epoch 262 | Loss: 0.025680 | Val: 0.128411
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 263
+Epoch 263 | Loss: 0.023132 | Val: 0.128192
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 264
+Epoch 264 | Loss: 0.020864 | Val: 0.128162
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 265
+Epoch 265 | Loss: 0.027181 | Val: 0.128629
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 266
+Epoch 266 | Loss: 0.020967 | Val: 0.129335
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 267
+Epoch 267 | Loss: 0.021200 | Val: 0.129837
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 268
+Epoch 268 | Loss: 0.018074 | Val: 0.130700
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 269
+Epoch 269 | Loss: 0.022029 | Val: 0.128795
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 270
+Epoch 270 | Loss: 0.027569 | Val: 0.128730
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 270...
+  FID: 90.6224 | KID: 0.044325
+  Pixel PDF W-dist: 0.0138
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 271
+Epoch 271 | Loss: 0.021375 | Val: 0.128642
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 272
+Epoch 272 | Loss: 0.027178 | Val: 0.129991
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 273
+Epoch 273 | Loss: 0.021088 | Val: 0.128741
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 274
+Epoch 274 | Loss: 0.018508 | Val: 0.127985
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 275
+Epoch 275 | Loss: 0.023816 | Val: 0.128862
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 276
+Epoch 276 | Loss: 0.024070 | Val: 0.129023
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 277
+Epoch 277 | Loss: 0.027310 | Val: 0.128169
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 278
+Epoch 278 | Loss: 0.024741 | Val: 0.129323
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 279
+Epoch 279 | Loss: 0.023439 | Val: 0.128112
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 280
+Epoch 280 | Loss: 0.025857 | Val: 0.128970
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 280...
+  FID: 84.7805 | KID: 0.039668
+  Pixel PDF W-dist: 0.0204
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 281
+Epoch 281 | Loss: 0.024648 | Val: 0.128895
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 282
+Epoch 282 | Loss: 0.022795 | Val: 0.128689
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 283
+Epoch 283 | Loss: 0.021901 | Val: 0.129432
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 284
+Epoch 284 | Loss: 0.021177 | Val: 0.129043
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 285
+Epoch 285 | Loss: 0.020019 | Val: 0.128660
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 286
+Epoch 286 | Loss: 0.022999 | Val: 0.129666
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 287
+Epoch 287 | Loss: 0.021250 | Val: 0.128547
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 288
+Epoch 288 | Loss: 0.022351 | Val: 0.127936
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 289
+Epoch 289 | Loss: 0.021756 | Val: 0.128561
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 290
+Epoch 290 | Loss: 0.020910 | Val: 0.129193
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 290...
+  FID: 97.9668 | KID: 0.042708
+  Pixel PDF W-dist: 0.0170
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 291
+Epoch 291 | Loss: 0.022561 | Val: 0.129880
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 292
+Epoch 292 | Loss: 0.022221 | Val: 0.131679
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 293
+Epoch 293 | Loss: 0.023063 | Val: 0.130785
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 294
+Epoch 294 | Loss: 0.023400 | Val: 0.128642
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 295
+Epoch 295 | Loss: 0.023345 | Val: 0.131310
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 296
+Epoch 296 | Loss: 0.023521 | Val: 0.129682
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 297
+Epoch 297 | Loss: 0.022659 | Val: 0.130786
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 298
+Epoch 298 | Loss: 0.023929 | Val: 0.128416
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 299
+Epoch 299 | Loss: 0.021956 | Val: 0.129112
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 300
+Epoch 300 | Loss: 0.028342 | Val: 0.129259
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 300...
+  FID: 90.6229 | KID: 0.025732
+  Pixel PDF W-dist: 0.0181
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 301
+Epoch 301 | Loss: 0.023384 | Val: 0.129355
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 302
+Epoch 302 | Loss: 0.021458 | Val: 0.129190
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 303
+Epoch 303 | Loss: 0.022841 | Val: 0.129664
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 304
+Epoch 304 | Loss: 0.021464 | Val: 0.128326
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 305
+Epoch 305 | Loss: 0.019942 | Val: 0.128542
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 306
+Epoch 306 | Loss: 0.020384 | Val: 0.128965
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 307
+Epoch 307 | Loss: 0.029434 | Val: 0.128861
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 308
+Epoch 308 | Loss: 0.020435 | Val: 0.128361
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 309
+Epoch 309 | Loss: 0.023141 | Val: 0.129085
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 310
+Epoch 310 | Loss: 0.022120 | Val: 0.129199
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 310...
+  FID: 73.4953 | KID: 0.014244
+  Pixel PDF W-dist: 0.0174
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 311
+Epoch 311 | Loss: 0.019390 | Val: 0.129504
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 312
+Epoch 312 | Loss: 0.020338 | Val: 0.128572
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 313
+Epoch 313 | Loss: 0.019758 | Val: 0.129017
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 314
+Epoch 314 | Loss: 0.025245 | Val: 0.128985
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 315
+Epoch 315 | Loss: 0.024334 | Val: 0.128385
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 316
+Epoch 316 | Loss: 0.019728 | Val: 0.128746
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 317
+Epoch 317 | Loss: 0.018415 | Val: 0.130703
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 318
+Epoch 318 | Loss: 0.019687 | Val: 0.129888
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 319
+Epoch 319 | Loss: 0.021492 | Val: 0.129125
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 320
+Epoch 320 | Loss: 0.019934 | Val: 0.128871
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 320...
+  FID: 95.1943 | KID: 0.050789
+  Pixel PDF W-dist: 0.0141
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 321
+Epoch 321 | Loss: 0.026304 | Val: 0.128938
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 322
+Epoch 322 | Loss: 0.021017 | Val: 0.129025
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 323
+Epoch 323 | Loss: 0.022680 | Val: 0.128643
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 324
+Epoch 324 | Loss: 0.022026 | Val: 0.129056
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 325
+Epoch 325 | Loss: 0.025062 | Val: 0.128726
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 326
+Epoch 326 | Loss: 0.024961 | Val: 0.128975
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 327
+Epoch 327 | Loss: 0.018516 | Val: 0.129498
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 328
+Epoch 328 | Loss: 0.020378 | Val: 0.129149
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 329
+Epoch 329 | Loss: 0.023656 | Val: 0.129282
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 330
+Epoch 330 | Loss: 0.022971 | Val: 0.128503
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 330...
+  FID: 112.6027 | KID: 0.055658
+  Pixel PDF W-dist: 0.0081
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 331
+Epoch 331 | Loss: 0.021232 | Val: 0.129303
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 332
+Epoch 332 | Loss: 0.022180 | Val: 0.129254
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 333
+Epoch 333 | Loss: 0.021302 | Val: 0.128557
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 334
+Epoch 334 | Loss: 0.024712 | Val: 0.128745
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 335
+Epoch 335 | Loss: 0.023829 | Val: 0.128823
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 336
+Epoch 336 | Loss: 0.024216 | Val: 0.129583
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 337
+Epoch 337 | Loss: 0.021665 | Val: 0.128848
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 338
+Epoch 338 | Loss: 0.021992 | Val: 0.130649
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 339
+Epoch 339 | Loss: 0.022083 | Val: 0.128892
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 340
+Epoch 340 | Loss: 0.024380 | Val: 0.129062
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 340...
+  FID: 81.5370 | KID: 0.037325
+  Pixel PDF W-dist: 0.0179
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 341
+Epoch 341 | Loss: 0.018452 | Val: 0.128826
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 342
+Epoch 342 | Loss: 0.023913 | Val: 0.129117
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 343
+Epoch 343 | Loss: 0.022494 | Val: 0.128918
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 344
+Epoch 344 | Loss: 0.017970 | Val: 0.128963
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 345
+Epoch 345 | Loss: 0.024338 | Val: 0.129349
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 346
+Epoch 346 | Loss: 0.020131 | Val: 0.129914
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 347
+Epoch 347 | Loss: 0.023821 | Val: 0.128953
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 348
+Epoch 348 | Loss: 0.023429 | Val: 0.129110
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 349
+Epoch 349 | Loss: 0.021873 | Val: 0.128854
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 350
+Epoch 350 | Loss: 0.021940 | Val: 0.129006
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 350...
+  FID: 76.6357 | KID: 0.015701
+  Pixel PDF W-dist: 0.0184
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 351
+Epoch 351 | Loss: 0.021527 | Val: 0.130656
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 352
+Epoch 352 | Loss: 0.023574 | Val: 0.128929
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 353
+Epoch 353 | Loss: 0.020578 | Val: 0.128983
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 354
+Epoch 354 | Loss: 0.030162 | Val: 0.128732
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 355
+Epoch 355 | Loss: 0.021479 | Val: 0.128914
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 356
+Epoch 356 | Loss: 0.018213 | Val: 0.128343
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 357
+Epoch 357 | Loss: 0.023341 | Val: 0.129331
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 358
+Epoch 358 | Loss: 0.023036 | Val: 0.128937
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 359
+Epoch 359 | Loss: 0.021740 | Val: 0.129239
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 360
+Epoch 360 | Loss: 0.023534 | Val: 0.129289
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 360...
+  FID: 81.9341 | KID: 0.022682
+  Pixel PDF W-dist: 0.0172
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 361
+Epoch 361 | Loss: 0.023120 | Val: 0.130182
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 362
+Epoch 362 | Loss: 0.024118 | Val: 0.131850
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 363
+Epoch 363 | Loss: 0.021280 | Val: 0.129090
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 364
+Epoch 364 | Loss: 0.025703 | Val: 0.128859
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 365
+Epoch 365 | Loss: 0.021822 | Val: 0.130320
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 366
+Epoch 366 | Loss: 0.023397 | Val: 0.129374
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 367
+Epoch 367 | Loss: 0.021655 | Val: 0.128518
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 368
+Epoch 368 | Loss: 0.022292 | Val: 0.129694
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 369
+Epoch 369 | Loss: 0.023345 | Val: 0.128609
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 370
+Epoch 370 | Loss: 0.024144 | Val: 0.129890
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 370...
+  FID: 85.0275 | KID: 0.029640
+  Pixel PDF W-dist: 0.0121
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 371
+Epoch 371 | Loss: 0.024440 | Val: 0.129468
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 372
+Epoch 372 | Loss: 0.021492 | Val: 0.128980
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 373
+Epoch 373 | Loss: 0.020095 | Val: 0.129211
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 374
+Epoch 374 | Loss: 0.022633 | Val: 0.128195
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 375
+Epoch 375 | Loss: 0.019023 | Val: 0.130217
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 376
+Epoch 376 | Loss: 0.021962 | Val: 0.130356
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 377
+Epoch 377 | Loss: 0.029306 | Val: 0.129269
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 378
+Epoch 378 | Loss: 0.022059 | Val: 0.129284
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 379
+Epoch 379 | Loss: 0.027149 | Val: 0.128502
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 380
+Epoch 380 | Loss: 0.022168 | Val: 0.128996
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 380...
+  FID: 82.7403 | KID: 0.028580
+  Pixel PDF W-dist: 0.0098
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 381
+Epoch 381 | Loss: 0.020313 | Val: 0.129566
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 382
+Epoch 382 | Loss: 0.020452 | Val: 0.129628
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 383
+Epoch 383 | Loss: 0.019165 | Val: 0.129610
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 384
+Epoch 384 | Loss: 0.022012 | Val: 0.129212
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 385
+Epoch 385 | Loss: 0.024509 | Val: 0.129223
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 386
+Epoch 386 | Loss: 0.024665 | Val: 0.129790
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 387
+Epoch 387 | Loss: 0.023875 | Val: 0.129065
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 388
+Epoch 388 | Loss: 0.022848 | Val: 0.128527
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 389
+Epoch 389 | Loss: 0.020279 | Val: 0.128471
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 390
+Epoch 390 | Loss: 0.023469 | Val: 0.128750
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Computing FID/KID/PDF at epoch 390...
+  FID: 114.5107 | KID: 0.087836
+  Pixel PDF W-dist: 0.0052
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 391
+Epoch 391 | Loss: 0.023692 | Val: 0.128751
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 392
+Epoch 392 | Loss: 0.020794 | Val: 0.129519
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 393
+Epoch 393 | Loss: 0.025631 | Val: 0.128841
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 394
+Epoch 394 | Loss: 0.023196 | Val: 0.129043
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 395
+Epoch 395 | Loss: 0.021463 | Val: 0.129362
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 396
+Epoch 396 | Loss: 0.022989 | Val: 0.129864
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 397
+Epoch 397 | Loss: 0.017089 | Val: 0.129404
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 398
+Epoch 398 | Loss: 0.023003 | Val: 0.130914
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+Epoch 399
+Epoch 399 | Loss: 0.023966 | Val: 0.128863
+--- Saved model to checkpoints/diffusion/diffusion_crumb_fits_seed46/state.pt ---
+FITS files saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generated_fits
+Generated images saved.
+Loss graph saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/training_metrics.png
+Generative metrics plot saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/generative_metrics.png
+Pixel PDF history plot saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/pixel_pdf_history.png
+Testing model
+Generated test images saved to results/diffusion/20260930_222135_diffusion_crumb_fits_seed46_13940213/

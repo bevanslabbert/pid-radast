@@ -1,0 +1,21 @@
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+Evaluating diffusion_classifier_guided (1 seeds)...
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+  [diffusion_classifier_guided/diffusion_crumb_fits_seed46]  class_accuracy=0.9648  mean_confidence=0.8918  (FR-I=0.9375  FR-II=0.9922)  fid=51.62  kid=0.0345  conc(FR-I/FR-II)=0.087/0.122
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+diffusion_classifier_guided     acc=0.9648 +/- 0.0000   conf=0.8918 +/- 0.0000   fid=51.62 +/- 0.00   kid=0.0345 +/- 0.0000   (cfg=3.0)
+Real crumb_fits val concentration (FR-I/FR-II): 0.076/0.080
+
+Saved to results/generation_classifier_eval/eval_ddpm46_cfg3.0_robcls3/classifier_eval_metrics.json

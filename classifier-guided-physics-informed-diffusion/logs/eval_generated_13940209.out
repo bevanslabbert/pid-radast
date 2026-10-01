@@ -12,7 +12,7 @@ Loaded guidance classifier (robust_classification) from checkpoints/robust_class
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
-  [diffusion_classifier_guided/diffusion_crumb_fits]  class_accuracy=0.9688  mean_confidence=0.8803  (FR-I=0.9375  FR-II=1.0000)  fid=55.62  kid=0.0311
+  [diffusion_classifier_guided/diffusion_crumb_fits]  class_accuracy=0.8984  mean_confidence=0.8146  (FR-I=0.8594  FR-II=0.9375)  fid=55.87  kid=0.0360  conc(FR-I/FR-II)=0.098/0.139
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
@@ -21,7 +21,7 @@ Loaded guidance classifier (robust_classification) from checkpoints/robust_class
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
-  [diffusion_classifier_guided/diffusion_crumb_fits_seed43]  class_accuracy=0.8906  mean_confidence=0.8313  (FR-I=0.7891  FR-II=0.9922)  fid=49.58  kid=0.0293
+  [diffusion_classifier_guided/diffusion_crumb_fits_seed43]  class_accuracy=0.8477  mean_confidence=0.7827  (FR-I=0.7344  FR-II=0.9609)  fid=47.55  kid=0.0292  conc(FR-I/FR-II)=0.091/0.113
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
@@ -30,7 +30,7 @@ Loaded guidance classifier (robust_classification) from checkpoints/robust_class
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
-  [diffusion_classifier_guided/diffusion_crumb_fits_seed44]  class_accuracy=0.9648  mean_confidence=0.8818  (FR-I=0.9297  FR-II=1.0000)  fid=43.68  kid=0.0236
+  [diffusion_classifier_guided/diffusion_crumb_fits_seed44]  class_accuracy=0.9023  mean_confidence=0.8196  (FR-I=0.8516  FR-II=0.9531)  fid=42.96  kid=0.0258  conc(FR-I/FR-II)=0.085/0.101
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
@@ -39,9 +39,10 @@ Loaded guidance classifier (robust_classification) from checkpoints/robust_class
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
 Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
-  [diffusion_classifier_guided/diffusion_crumb_fits_seed45]  class_accuracy=0.8867  mean_confidence=0.8395  (FR-I=0.7734  FR-II=1.0000)  fid=53.80  kid=0.0357
+  [diffusion_classifier_guided/diffusion_crumb_fits_seed45]  class_accuracy=0.8516  mean_confidence=0.8003  (FR-I=0.7344  FR-II=0.9688)  fid=55.05  kid=0.0398  conc(FR-I/FR-II)=0.095/0.136
 
 === Summary (class_accuracy: predicted-as-intended-class rate) ===
-diffusion_classifier_guided     acc=0.9277 +/- 0.0391   conf=0.8582 +/- 0.0230   fid=50.67 +/- 4.59   kid=0.0299 +/- 0.0043   (cfg=3.0)
+diffusion_classifier_guided     acc=0.8750 +/- 0.0255   conf=0.8043 +/- 0.0144   fid=50.36 +/- 5.36   kid=0.0327 +/- 0.0055   (cfg=3.0)
+Real crumb_fits val concentration (FR-I/FR-II): 0.076/0.080
 
-Saved to results/generation_classifier_eval/eval_ddpm_cfg3.0_robcls10/classifier_eval_metrics.json
+Saved to results/generation_classifier_eval/eval_ddpm_cfg3.0_robcls0_v2/classifier_eval_metrics.json
