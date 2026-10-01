@@ -11,9 +11,6 @@ edm_baseline's checkpoints across multiple seeds, classifies them, and reports:
   - mean_confidence: mean softmax probability assigned to the intended class
   - per-class accuracy (FR-I / FR-II), so a model that collapses onto one class
     shows up as ~1.0 / ~0.0 rather than hiding behind a 0.5 overall accuracy
-  - concentration index per class (src/models/pid.py: fraction of |pixel| flux inside
-    the central disk) -- a classifier-free morphology check (FR-I core-brightened ->
-    high, FR-II edge-brightened -> low), with the real val split as reference
   - FID / KID of the same samples vs the real crumb_fits validation split (the
     split training-time FID uses), so class fidelity and realism are measured
     on identical images
@@ -38,7 +35,7 @@ Usage:
         --diffusion-tags exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46 \
         --cgd-tags exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46 \
         --edm-tags exp_seed42 exp_seed43 exp_seed44 exp_seed45 exp_seed46 \
-        --classifier-tag eval \
+        --classifier-tag eval_fits_bs8_seed42 \
         --num-samples 128 --batch-size 16 \
         --guidance-scale 3.0
 """
@@ -62,7 +59,6 @@ from src.models.diffusion import build_diffusion_components
 from src.models.edm import build_edm_components, generate_class_samples_edm
 from src.utils.metrics import generate_class_samples, generate_class_samples_guided, compute_fid_kid
 from src.utils.data import get_data_loaders
-from src.models.pid import concentration_index
 
 CHECKPOINT_DIR = 'checkpoints'
 CLASS_NAMES = ['FR-I', 'FR-II']
@@ -182,7 +178,7 @@ def save_sample_grid(gen_0, gen_1, path, n=8):
     for row, (gen, name) in enumerate([(gen_0, 'FR-I'), (gen_1, 'FR-II')]):
         for col in range(n):
             ax = axes[row, col]
-            ax.imshow(gen[col, 0].numpy(), cmap='inferno', vmin=-1, vmax=1)
+            ax.imshow(gen[col, 0].numpy(), cmap='gray', vmin=-1, vmax=1)
             ax.set_xticks([]); ax.set_yticks([])
         axes[row, 0].set_ylabel(name, fontsize=11)
     fig.tight_layout()
@@ -190,24 +186,16 @@ def save_sample_grid(gen_0, gen_1, path, n=8):
     plt.close(fig)
 
 
-def real_concentration(valloader):
-    """Mean concentration index of real val images per class (reference for generated samples)."""
-    per_class = {c: [] for c in range(len(CLASS_NAMES))}
-    for images, labels in valloader:
-        conc = concentration_index(images)
-        for c in per_class:
-            per_class[c].extend(conc[labels == c].tolist())
-    return {name: float(np.mean(per_class[c])) for c, name in enumerate(CLASS_NAMES)}
-
-
 def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_samples, batch_size,
                    guidance_scale, classifier_scale, guidance_classifier, guidance_classifier_type, device, shape,
-                   grid_dir=None):
+                   grid_dir=None, fits_dataset=None, fits_dir=None):
     config_path, generate_fn = MODEL_SPECS[model_type]
     config = load_config(config_path)
     config['data']['num_classes'] = num_classes
     if guidance_scale is not None:
         config['training']['guidance_scale'] = guidance_scale
+    # diffusion.yaml has no guidance_scale; the generators then fall back to 7.5
+    config['training'].setdefault('guidance_scale', 7.5)
     if classifier_scale is not None:
         config['training']['classifier_scale'] = classifier_scale
     if guidance_classifier is not None:
@@ -216,21 +204,21 @@ def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_sam
         config['model']['classifier_type'] = guidance_classifier_type
 
     accuracies, confidences, per_class_accs, fids, kids = [], [], [], [], []
-    concentrations = {name: [] for name in CLASS_NAMES}
     for tag in tags:
         gen_0, gen_1 = generate_in_batches(
             generate_fn, config, tag, num_classes, num_samples, batch_size, device, shape,
         )
         acc, conf, per_class = classify_generated(classifier, gen_0, gen_1, device)
         fid, kid = compute_fid_kid(gen_0, gen_1, valloader, device)
-        conc = [concentration_index(g).mean().item() for g in (gen_0, gen_1)]
-        for name, c in zip(CLASS_NAMES, conc):
-            concentrations[name].append(c)
         if grid_dir is not None:
             save_sample_grid(gen_0, gen_1, os.path.join(grid_dir, f'samples_{model_type}_{tag}.png'))
+        if fits_dir is not None:
+            # same FITS layout as training (generated_fits/generated_class{c}_{i:03d}.fits), for ../vqvae/apply_vqvae_to_*.py
+            from src.pipelines.train_pipeline import _save_fits_dir
+            _save_fits_dir([(0, gen_0), (1, gen_1)], fits_dataset, os.path.join(fits_dir, f'fits_{model_type}_{tag}'))
         per_class_str = '  '.join(f"{n}={a:.4f}" for n, a in zip(CLASS_NAMES, per_class))
         print(f"  [{model_type}/{tag}]  class_accuracy={acc:.4f}  mean_confidence={conf:.4f}  ({per_class_str})"
-              f"  fid={fid:.2f}  kid={kid:.4f}  conc(FR-I/FR-II)={conc[0]:.3f}/{conc[1]:.3f}")
+              f"  fid={fid:.2f}  kid={kid:.4f}")
         accuracies.append(acc)
         confidences.append(conf)
         per_class_accs.append(per_class)
@@ -243,7 +231,6 @@ def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_sam
         'classifier_scale': config['training'].get('classifier_scale'),
         'guidance_classifier': config['model'].get('classifier_checkpoint'),
         'fid_per_seed': fids,
-        'concentration_per_seed': concentrations,
         'kid_per_seed': kids,
         'class_accuracy_per_seed': accuracies,
         'mean_confidence_per_seed': confidences,
@@ -269,7 +256,7 @@ def main():
     parser.add_argument('--guided-diffusion-tags', nargs='+', default=[],
                         help="DDPM (diffusion) checkpoints sampled with classifier guidance; "
                              "needs --guidance-classifier / --guidance-classifier-type.")
-    parser.add_argument('--classifier-tag', default='eval',
+    parser.add_argument('--classifier-tag', default='eval_fits_bs8_seed42',
                          help="checkpoints/classification/<tag> -- must be trained separately "
                               "from any classifier used to guide classifier_guided_diffusion.")
     parser.add_argument('--num-samples', type=int, default=128, help="Generated samples per class per seed.")
@@ -285,6 +272,8 @@ def main():
                         help="Architecture of --guidance-classifier (default: config model.classifier_type).")
     parser.add_argument('--save-grid', action='store_true',
                         help="Save an 8-per-class sample grid PNG per seed into --output.")
+    parser.add_argument('--save-fits', action='store_true',
+                        help="Write each seed's samples as FITS into --output/fits_<model>_<tag>/generated_fits/.")
     parser.add_argument('--num-classes', type=int, default=2)
     parser.add_argument('--input-size', type=int, default=150)
     parser.add_argument('--output', default='results/generation_classifier_eval')
@@ -298,7 +287,7 @@ def main():
     classifier = load_eval_classifier(args.num_classes, device, args.classifier_tag)
     shape = (1, args.input_size, args.input_size)
     # Real reference set for FID/KID: the crumb_fits validation split training-time FID uses.
-    _, valloader, _, _ = get_data_loaders('crumb_fits', None, batch_size=32)
+    _, valloader, _, fits_dataset = get_data_loaders('crumb_fits', None, batch_size=32)
 
     results = {}
     for model_type, tags in [
@@ -314,6 +303,7 @@ def main():
             model_type, tags, classifier, valloader, args.num_classes, args.num_samples, args.batch_size,
             args.guidance_scale, args.classifier_scale, args.guidance_classifier, args.guidance_classifier_type,
             device, shape, grid_dir=args.output if args.save_grid else None,
+            fits_dataset=fits_dataset, fits_dir=args.output if args.save_fits else None,
         )
         results[model_type]['classifier_tag'] = args.classifier_tag
 
@@ -323,11 +313,6 @@ def main():
               f"   conf={r['mean_confidence_mean']:.4f} +/- {r['mean_confidence_std']:.4f}"
               f"   fid={r['fid_mean']:.2f} +/- {r['fid_std']:.2f}   kid={r['kid_mean']:.4f} +/- {r['kid_std']:.4f}"
               f"   (cfg={r['guidance_scale']})")
-
-    # Added after the summary loop: the per-model entries above stay first in the JSON.
-    results['real_crumb_val_concentration'] = real_concentration(valloader)
-    print(f"Real crumb_fits val concentration (FR-I/FR-II): "
-          f"{results['real_crumb_val_concentration']['FR-I']:.3f}/{results['real_crumb_val_concentration']['FR-II']:.3f}")
 
     out_path = os.path.join(args.output, 'classifier_eval_metrics.json')
     with open(out_path, 'w') as f:

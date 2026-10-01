@@ -1,6 +1,6 @@
-"""Class accuracy and FID vs CFG guidance scale, for EDM / DDPM / CGD.
+"""Class accuracy and FID vs CFG guidance scale, for EDM / DDPM.
 
-Reads results/generation_classifier_eval/eval_{edm,ddpm,cgd}_cfg{s}/classifier_eval_metrics.json
+Reads results/generation_classifier_eval/eval_{edm,ddpm}_cfg{s}/classifier_eval_metrics.json
 (scripts/evaluate_generated_samples.py with --guidance-scale s) and writes
 results/edm_baseline/guidance_sweep.png for the comparison deck.
 """
@@ -23,7 +23,6 @@ REAL_ACC = 78.1  # eval_fits_bs8_seed42 on real crumb_fits test images
 models = {
     "EDM baseline": ("edm", "#c44", "o"),
     "DDPM (diffusion)": ("ddpm", "#48a", "s"),
-    "CGD": ("cgd", "#2a2", "^"),
 }
 
 
@@ -56,7 +55,7 @@ axes[0].text(7.4, REAL_ACC - 3.5, f"real CRUMB test images ({REAL_ACC}%)", ha="r
 handles, labels = axes[0].get_legend_handles_labels()
 fig.legend(handles, labels, loc="upper center", ncol=3, fontsize=11, frameon=False)
 fig.text(0.5, 0.005, "Mean ± 1 sample std across seeds; 128 samples per class per seed. "
-         "Native settings: EDM 3.0, DDPM/CGD 7.5.", ha="center", fontsize=10, color="#555")
+         "Native settings: EDM 3.0, DDPM 7.5.", ha="center", fontsize=10, color="#555")
 fig.tight_layout(rect=(0, 0.03, 1, 0.9))
 fig.savefig(OUT, dpi=150)
 print("wrote", OUT)

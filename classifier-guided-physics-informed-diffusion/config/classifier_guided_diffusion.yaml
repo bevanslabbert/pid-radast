@@ -9,11 +9,12 @@ model:
   embedding_dim: 256
   # loads from checkpoints/diffusion by default; override to use a different starting point
   pretrained_checkpoint: checkpoints/diffusion_crumb_fits
-  # which classifier architecture guides training: classification (resnet18, no
-  # timestep input) or robust_classification (TimeDependentResNet). Defaults to
-  # robust_classification if omitted.
-  classifier_type: classification
-  classifier_checkpoint: checkpoints/classification/scratch
+  # frozen classifier that guides sampling: robust_classification (TimeDependentResNet,
+  # noise-aware, trained by config/robust_classification_fits.yaml) or classification
+  # (SimpleCNN, clean images only -- collapses on noisy x_t, so its gradient is ~0).
+  # checkpoints/classification/scratch (the old default) is trained on the wrong domain.
+  classifier_type: robust_classification
+  classifier_checkpoint: checkpoints/robust_classification/guide_fits
 
 training:
   epochs: 400
@@ -24,8 +25,9 @@ training:
   # standard inference-time classifier guidance (Dhariwal & Nichol, 2021): scales the
   # frozen classifier's gradient w.r.t. x_t added to the noise prediction at each
   # sampling step. Applied only at generation time (see generate_class_samples_guided),
-  # not baked into the training loss -- 0 disables it.
-  classifier_scale: 1.0
+  # not baked into the training loss -- 0 disables it. 3.0 chosen by sweep (0-100):
+  # best FID with class accuracy at its plateau.
+  classifier_scale: 3.0
 
   guidance_scale: 7.5
 

@@ -1,5 +1,5 @@
 """Combined FID / KID / pixel-PDF-Wasserstein vs epoch for EDM baseline,
-DDPM diffusion, and CGD -- one figure for the comparison deck."""
+and DDPM diffusion -- one figure for the comparison deck."""
 import os
 import re
 
@@ -51,14 +51,6 @@ models = {
          ["slurm-921091.out"],
          ["slurm-921092.out"]],
         "#48a",
-    ),
-    "CGD": (
-        [["slurm-321045.out", "slurm-912852.out", "slurm-921074.out"],
-         ["slurm-921094.out"],
-         ["slurm-921095.out", "slurm-13877273.out"],
-         ["slurm-921096.out", "slurm-13877274.out"],
-         ["slurm-921097.out", "slurm-13877275.out"]],
-        "#2a2",
     ),
 }
 

@@ -44,13 +44,13 @@ series = [
 ]
 for label, get, color, marker in series:
     m, s = zip(*[stats(get(r), 100) for r in runs])
-    axes[0].errorbar(x, m, yerr=s, color=color, marker=marker, ms=8, lw=2, capsize=4, label=f"CGD {label}")
+    axes[0].errorbar(x, m, yerr=s, color=color, marker=marker, ms=8, lw=2, capsize=4, label=label)
 axes[0].axhline(stats(ddpm["class_accuracy_per_seed"], 100)[0], color="#48a", ls="--", lw=1.5, label="DDPM unguided, class acc")
 axes[0].axhline(REAL_FRI, color="#888", ls=":", lw=1.5, label=f"real CRUMB FR-I ({REAL_FRI}%)")
 axes[0].set_title("Class accuracy (%)", fontsize=13)
 
 m, s = zip(*[stats(r["fid_per_seed"]) for r in runs])
-axes[1].errorbar(x, m, yerr=s, color="#2a2", marker="o", ms=8, lw=2, capsize=4, label="CGD")
+axes[1].errorbar(x, m, yerr=s, color="#2a2", marker="o", ms=8, lw=2, capsize=4, label="guided")
 axes[1].axhline(stats(ddpm["fid_per_seed"])[0], color="#48a", ls="--", lw=1.5, label="DDPM unguided")
 axes[1].set_title("FID  (lower is better)", fontsize=13)
 

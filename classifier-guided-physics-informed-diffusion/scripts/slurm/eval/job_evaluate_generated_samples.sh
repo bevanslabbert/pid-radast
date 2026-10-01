@@ -27,11 +27,12 @@ python scripts/evaluate_generated_samples.py \
     ${EDM_TAGS:+--edm-tags $EDM_TAGS} \
     ${GUIDED_DIFFUSION_TAGS:+--guided-diffusion-tags $GUIDED_DIFFUSION_TAGS} \
     --output results/generation_classifier_eval/${SLURM_JOB_NAME:-all} \
-    --classifier-tag ${CLASSIFIER_TAG:-eval} \
+    --classifier-tag ${CLASSIFIER_TAG:-eval_fits_bs8_seed42} \
     --num-samples ${NUM_SAMPLES:-128} \
     --batch-size ${BATCH_SIZE:-16} \
     ${GUIDANCE_SCALE:+--guidance-scale $GUIDANCE_SCALE} \
     ${CLASSIFIER_SCALE:+--classifier-scale $CLASSIFIER_SCALE} \
     ${GUIDANCE_CLASSIFIER:+--guidance-classifier $GUIDANCE_CLASSIFIER} \
     ${GUIDANCE_CLASSIFIER_TYPE:+--guidance-classifier-type $GUIDANCE_CLASSIFIER_TYPE} \
-    ${SAVE_GRID:+--save-grid}
+    ${SAVE_GRID:+--save-grid} \
+    ${SAVE_FITS:+--save-fits}

@@ -689,13 +689,13 @@ def _train_diffusion_loop(
 # ---------------------------------------------------------------------------
 
 def _load_guidance_classifier(config, device):
-    """Loads the frozen classifier used to guide classifier_guided_diffusion training.
+    """Loads the frozen classifier that guides classifier_guided_diffusion sampling.
 
     `model.classifier_type` selects the architecture ('classification' -> SimpleCNN
     as trained by train_classification; 'robust_classification' -> TimeDependentResNet
-    as trained by train_robust_classification). Only TimeDependentResNet takes a timestep
-    argument, but the guidance loss always calls the classifier at t=0 on the estimated
-    clean image, so a plain SimpleCNN classifier works too — just called without t.
+    as trained by train_robust_classification). Guidance queries the classifier on the
+    noisy x_t at every sampling step, so it must be noise-aware: only TimeDependentResNet
+    (trained on DDPM-noised images, given t) keeps a useful gradient there.
     """
     classifier_type = config['model'].get('classifier_type', 'robust_classification')
     num_classes = config['data']['num_classes']

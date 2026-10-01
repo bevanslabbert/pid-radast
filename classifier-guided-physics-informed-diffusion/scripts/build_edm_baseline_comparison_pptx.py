@@ -1,14 +1,15 @@
 """Rebuild EDM_baseline_comparison.pptx  -- lean version.
 
-EDM literature baseline (Vicanek Martinez et al. 2024) vs this project's
-DDPM `diffusion` model (the CRUMB-dataset baseline) vs
-`classifier_guided_diffusion` (CGD). Differences table + all available
-results (metric tables, metric-vs-epoch graphs) + sample grids including
-real CRUMB ground truth.
+EDM literature baseline (Vicanek Martinez et al. 2024) vs this project's DDPM
+`diffusion` model vs CGD = the same DDPM checkpoints sampled with noise-aware
+classifier guidance (robust guidance classifier, strength 3, CFG 3.0).
 
 Prereqs (run first):
   python scripts/make_crumb_groundtruth_grid.py
   python scripts/make_edm_comparison_metric_plot.py
+  python scripts/make_guidance_sweep_plot.py
+  python scripts/make_cgd_strength_plot.py
+  python scripts/make_recon_grid.py
 """
 import os
 
@@ -90,219 +91,151 @@ def caption(s, text, top=7.0):
 
 RES = os.path.join(ROOT, "results")
 
+
+EVAL = os.path.join(RES, "generation_classifier_eval")
+
+
+def bullets(s, items, top, size=14, height=1.5):
+    tb = s.shapes.add_textbox(Inches(0.5), Inches(top), Inches(12.3), Inches(height))
+    tb.text_frame.word_wrap = True
+    for txt in items:
+        p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
+        r.font.size = Pt(size); r.font.color.rgb = GREY; p.space_after = Pt(6)
+
+
 # ---------------------------------------------------------------- 1 title
 s = slide()
 tb = s.shapes.add_textbox(Inches(0.8), Inches(2.8), Inches(11.7), Inches(2.0))
 tf = tb.text_frame; tf.word_wrap = True
 r = tf.paragraphs[0].add_run()
-r.text = "EDM Baseline  vs  CRUMB DDPM  vs  Classifier-Guided Diffusion"
+r.text = "EDM Baseline  vs  DDPM  vs  Classifier-Guided Diffusion"
 r.font.size = Pt(32); r.font.bold = True; r.font.color.rgb = NAVY
 p = tf.add_paragraph(); r = p.add_run()
 r.text = "Class-conditional FR-I / FR-II radio-galaxy generation  ·  CRUMB FITS, 150x150"
 r.font.size = Pt(15); r.font.color.rgb = GREY
 
-# ---------------------------------------------------------------- 2 differences
+# ---------------------------------------------------------------- 2 models
 s = slide()
-title(s, "Key differences")
+title(s, "The three models")
 table(s, [
-    ["", "EDM baseline", "diffusion (DDPM)", "CGD"],
-    ["Role", "literature reference\n(Vicanek Martinez 2024)", "this project's\nCRUMB-dataset baseline", "DDPM + external steer"],
-    ["U-Net", "UNet2DModel, ~29.8M", "UNet2DConditionModel, ~95.9M", "same as DDPM"],
-    ["Conditioning", "additive class embedding", "cross-attention (dim 256)", "cross-attention (dim 256)"],
-    ["Noise process", "continuous sigma (Karras)", "1000-step discrete, linear beta", "1000-step discrete, linear beta"],
-    ["Target / loss", "clean image / sigma-weighted L2", "noise (epsilon) / plain MSE", "noise (epsilon) / plain MSE"],
-    ["Sampler", "Heun ODE, 25 steps, EMA", "ancestral DDPM, 50 steps", "ancestral DDPM, 50 steps"],
-    ["Guidance", "CFG (3.0)", "CFG (7.5)", "CFG + noise-aware classifier\ngradient (strength 3)"],
-], top=1.5, height=4.6, col_widths=[1.9, 3.5, 3.6, 3.3], font=12)
-caption(s, "Shared: task, CRUMB FITS pipeline, symmetric-log-SNR normalisation, CFG-style class conditioning, FID/KID/PDF evaluation.")
+    ["", "EDM baseline", "DDPM", "CGD"],
+    ["What it is", "literature reference\n(Vicanek Martinez 2024)", "this project's baseline", "DDPM + classifier guidance\nat sampling time"],
+    ["Network", "UNet2DModel, ~29.8M", "UNet2DConditionModel, ~95.9M", "same checkpoints as DDPM"],
+    ["Sampler", "Heun ODE, 25 steps", "DDPM, 50 steps", "DDPM, 50 steps"],
+    ["Class steering", "CFG", "CFG", "CFG + gradient of a frozen,\nnoise-aware classifier"],
+], top=1.5, height=3.6, col_widths=[2.0, 3.4, 3.4, 3.5], font=14)
+caption(s, "All results use CFG 3.0 unless noted. CGD needs no retraining - guidance only changes sampling.", top=5.6)
 
-# ---------------------------------------------------------------- 3 results tables
+# ---------------------------------------------------------------- 3 training-time quality
 s = slide()
-title(s, "Results")
-tb = s.shapes.add_textbox(Inches(0.5), Inches(1.35), Inches(6), Inches(0.3))
-tb.text_frame.paragraphs[0].add_run().text = "Distributional metrics (best over training)"
-tb.text_frame.paragraphs[0].runs[0].font.bold = True
-tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
+title(s, "Image quality during training")
+t = table(s, [
+    ["Model  (best over 400 epochs)", "FID ↓", "KID ↓", "pixel-PDF W ↓"],
+    ["EDM baseline  (5 seeds)", "87.3 ± 5.0", "0.048 ± 0.005", "0.0036 ± 0.0009"],
+    ["DDPM  (4 seeds)", "73.4 ± 1.4", "0.021 ± 0.003", "0.0077 ± 0.0021"],
+    ["CGD", "same training as DDPM - guidance is added at sampling (slide 7)", "", ""],
+], top=1.3, height=1.45, col_widths=[4.6, 2.4, 2.6, 2.7], font=13)
+t.cell(3, 1).merge(t.cell(3, 3))
+pic(s, os.path.join(RES, "edm_baseline/metric_comparison.png"), 0.85, 2.95, 11.6)
+caption(s, "DDPM wins FID/KID; EDM matches the pixel-intensity distribution best.")
+
+# ---------------------------------------------------------------- 4 CFG scale
+s = slide()
+title(s, "CFG scale: class fidelity vs image quality")
+pic(s, os.path.join(RES, "edm_baseline/guidance_sweep.png"), 1.15, 1.3, 11.0)
+bullets(s, [
+    "Higher CFG = more class-typical samples, but worse FID. CFG 3.0 is the best trade-off.",
+    "DDPM beats EDM on FID at every matched scale.",
+], top=5.6)
+
+# ---------------------------------------------------------------- 5 guidance classifier
+s = slide()
+title(s, "Classifier guidance needs a noise-aware classifier",
+      "The classifier is queried on noisy, half-formed images at every sampling step")
 table(s, [
-    ["Model", "FID ↓", "KID ↓", "pixel-PDF W ↓", "Epochs"],
-    ["EDM baseline  (mean ± std, n=5: seeds 42-46)", "87.3 ± 5.0", "0.048 ± 0.005", "0.0036 ± 0.0009", "400\n(complete)"],
-    ["diffusion (DDPM+CFG)  (mean ± std, n=4: seeds 42-45)", "73.4 ± 1.4", "0.021 ± 0.003", "0.0077 ± 0.0021", "400\n(complete)"],
-    ["CGD*  (mean ± std, n=5: seeds 42-46)", "74.4 ± 5.2", "0.024 ± 0.005", "0.0078 ± 0.0009", "400\n(complete)"],
-], top=1.7, height=1.8, col_widths=[4.6, 1.8, 2.0, 2.4, 1.5], font=12)
-tb = s.shapes.add_textbox(Inches(0.5), Inches(3.55), Inches(11.5), Inches(0.35))
-r = tb.text_frame.paragraphs[0].add_run()
-r.text = ("EDM and CGD have all 5 seeds; DDPM has 4 (seed 46 hit its time limit at epoch 260). Std is the sample std across seeds.  "
-          "*CGD sampled with its original, broken guidance classifier - effectively CFG only (see slide 6).")
-r.font.size = Pt(10); r.font.italic = True; r.font.color.rgb = GREY
+    ["Guidance classifier", "Works on noisy images?", "Effect on samples"],
+    ["Original (wrong data domain)", "no - always predicts FR-I", "none"],
+    ["Clean-image classifier", "no - collapses once noise is added", "last 1-2 steps only"],
+    ["Noise-aware ResNet50 (used)", "yes - 73 % at t=100, 63 % at t=200", "steers the second half of sampling"],
+], top=1.7, height=2.3, col_widths=[4.0, 4.4, 3.9], font=14)
+bullets(s, [
+    "Earlier CGD results used the broken original classifier, so they were effectively plain DDPM.",
+], top=4.5)
 
-tb = s.shapes.add_textbox(Inches(0.5), Inches(4.3), Inches(9), Inches(0.3))
-tb.text_frame.paragraphs[0].add_run().text = "CRUMB VQ-VAE reconstruction fidelity  (VQ-VAE trained only on real CRUMB)"
-tb.text_frame.paragraphs[0].runs[0].font.bold = True
-tb.text_frame.paragraphs[0].runs[0].font.size = Pt(13)
-table(s, [
-    ["Passed through the CRUMB VQ-VAE", "N", "Recon MSE ↓", "Recon NCC ↑"],
-    ["Real held-out CRUMB  (reference)", "178", "0.00377", "0.652"],
-    ["EDM-generated (latest, final)", "32", "0.00271", "0.763"],
-    ["DDPM-generated", "16", "0.00174", "0.771"],
-    ["CGD-generated (latest, ep 290)", "32", "0.00300", "0.725"],
-], top=4.65, height=2.0, col_widths=[5.2, 1.3, 3.0, 3.0], font=12)
-caption(s, "DDPM and (unguided) CGD beat EDM on FID/KID; EDM keeps the best pixel-PDF W. DDPM best on VQ-VAE reconstruction fidelity. "
-           "Working-guidance CGD results: slides 6-8.")
-
-# ---------------------------------------------------------------- 3b classifier on generated samples
+# ---------------------------------------------------------------- 6 guidance strength
 s = slide()
-title(s, "Classifier accuracy on generated samples",
-      "Does the model generate the class it was asked for?  128 samples per class per seed, scored by a held-out classifier")
-table(s, [
-    ["Model", "Seeds", "Class accuracy", "FR-I", "FR-II", "Mean confidence"],
-    ["Real CRUMB test images  (reference)", "-", "78.1 %", "84.6 %", "73.0 %", "-"],
-    ["EDM baseline", "5", "80.7 ± 1.8 %", "71.6 ± 6.5 %", "89.8 ± 3.5 %", "0.743 ± 0.014"],
-    ["diffusion (DDPM+CFG)", "4", "96.5 ± 1.5 %", "93.0 ± 2.9 %", "100.0 ± 0.0 %", "0.910 ± 0.015"],
-    ["CGD*  (broken guidance classifier)", "5", "97.1 ± 2.4 %", "95.3 ± 2.9 %", "98.9 ± 2.0 %", "0.891 ± 0.049"],
-], top=1.6, height=2.4, col_widths=[3.6, 0.9, 2.1, 1.9, 1.9, 1.9], font=13)
-tb = s.shapes.add_textbox(Inches(0.5), Inches(4.2), Inches(12.3), Inches(2.7))
-tb.text_frame.word_wrap = True
-for txt in [
-    "A model matching real data would score like the reference row, not 100%. DDPM/CGD overshoot on both classes: their samples are more clear-cut than real galaxies.",
-    "EDM is close to real overall, but every model reverses the real per-class pattern (real FR-I 85% > FR-II 73%) at every guidance scale - EDM most strongly (FR-I 72%, FR-II 90%).",
-    "*CGD here is effectively CFG only: its guidance classifier was broken (slide 6). With a working one it improves (slides 7-8).",
-    "Confound: EDM samples at CFG 3.0, DDPM/CGD at 7.5 - stronger guidance exaggerates class features.",
-]:
-    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
-    r.font.size = Pt(13); r.font.color.rgb = GREY; p.space_after = Pt(8)
-caption(s, "Scored by eval_fits_bs8_seed42 (SimpleCNN, crumb_fits domain, never used to guide CGD; real-test reference from its confusion matrix, n=178). "
-           "Mean ± sample std across seeds. DDPM seed 46 incomplete.")
-
-# ---------------------------------------------------------------- 3c matched-guidance sweep
-s = slide()
-title(s, "Matched guidance: accuracy and FID vs CFG scale",
-      "Same checkpoints re-sampled at CFG 1.0 / 3.0 / 7.5 - separates architecture from guidance strength")
-pic(s, os.path.join(RES, "edm_baseline/guidance_sweep.png"), 1.15, 1.35, 11.0)
-tb = s.shapes.add_textbox(Inches(0.5), Inches(5.55), Inches(12.3), Inches(1.4))
-tb.text_frame.word_wrap = True
-for txt in [
-    "At every matched scale DDPM beats EDM on FID (50.9 vs 65.5, 50.4 vs 68.4, 61.0 vs 94.1) and on class accuracy up to 3.0 - the lead is architectural, not guidance.",
-    "CFG 7.5 costs every model FID; 3.0 is the better operating point (best FID, accuracy nearest real). CGD line: broken guidance classifier (effectively CFG only).",
-]:
-    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
-    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(4)
-caption(s, "FID from 256 generated images per seed vs the 357-image crumb_fits val split - not comparable in absolute terms to the training-time FID table.",
-        top=7.05)
-
-# ---------------------------------------------------------------- 3d CGD guidance classifier diagnosis
-s = slide()
-title(s, "CGD's guidance classifier was broken",
-      "Guidance queries the classifier on noisy, half-formed images at every sampling step - it must work under noise")
-table(s, [
-    ["Guidance classifier", "Trained on", "Noise-aware", "Clean acc", "Acc @ t=100", "Acc @ t=200", "Behaviour during sampling"],
-    ["scratch  (original CGD)", "linear crumb  (wrong domain)", "no", "42 %", "42 %", "42 %", "predicts FR-I for every image: gradient ~0"],
-    ["SimpleCNN, crumb_fits  (quick fix)", "crumb_fits", "no", "77 %", "58 %", "58 %", "predicts FR-II for all t > 50: last ~2 steps only"],
-    ["ResNet50 + timestep  (robust)", "crumb_fits + DDPM noise", "yes", "75 %", "73 %", "63 %", "tracks the requested class, 0.5 -> 0.9"],
-], top=1.6, height=2.3, col_widths=[2.9, 2.2, 1.1, 1.0, 1.1, 1.1, 2.9], font=11)
-tb = s.shapes.add_textbox(Inches(0.5), Inches(4.3), Inches(12.3), Inches(2.4))
-tb.text_frame.word_wrap = True
-for txt in [
-    "All earlier CGD results used 'scratch': collapsed to a constant prediction on crumb_fits images, so its gradient was 0.01-0.1% of the update - CGD was effectively DDPM + CFG.",
-    "A correct-domain classifier trained on clean images still collapses once noise is added (t >= 50 of 1000), so it can only steer the final steps.",
-    "Fix: noise-aware classifier (Dhariwal & Nichol 2021) - ResNet50 trained on crumb_fits images noised with the diffusion schedule, given t as input. Clean test acc 83.2 %.",
-    "CGD checkpoints are unchanged - guidance acts only at sampling time, so no diffusion retraining was needed.",
-]:
-    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
-    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(6)
-caption(s, "Accuracy on real crumb_fits validation images noised to timestep t (diagnose_cgd_guidance.py). Chance ~ 56 % (majority class).")
-
-# ---------------------------------------------------------------- 3e CGD guidance strength
-s = slide()
-title(s, "CGD with a working guidance classifier",
-      "Robust classifier guidance at CFG 3.0 - classifier-guidance strength sweep")
+title(s, "Choosing the guidance strength")
 pic(s, os.path.join(RES, "edm_baseline/cgd_guidance_strength.png"), 1.15, 1.3, 11.0)
-tb = s.shapes.add_textbox(Inches(0.5), Inches(5.55), Inches(12.3), Inches(1.4))
-tb.text_frame.word_wrap = True
-for txt in [
-    "Strength 3: class accuracy 84.3 -> 91.4 %, FR-I 74.1 -> 84.1 % (real 84.6 %), FID 58.0 -> 56.9, KID 0.039 -> 0.037 - no quality cost.",
-    "Plateau at 3-10; FID degrades from 30; at 100 guidance overwhelms the model (FID 84.9) and accuracy falls back to unguided.",
-]:
-    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
-    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(4)
-caption(s, "Guide (ResNet50, noise-aware) and scorer (SimpleCNN) are independent architectures, so the gain is not the guide fooling a copy of itself.",
-        top=7.05)
+bullets(s, [
+    "Accuracy plateaus at 3-10 with no FID cost; too strong (100) breaks the samples. Chosen: 3.",
+], top=5.6)
+caption(s, "Swept on a second, independently trained set of DDPM checkpoints.", top=6.6)
 
-# ---------------------------------------------------------------- 3f comparison at matched settings
+# ---------------------------------------------------------------- 7 main results
 s = slide()
-title(s, "All models at CFG 3.0",
-      "Same scoring classifier, same real reference, 128 samples per class per seed")
+title(s, "Results at CFG 3.0", "128 samples per class per seed, scored by a separate held-out classifier")
 table(s, [
-    ["Model", "Seeds", "Class acc", "FR-I", "FR-II", "FID ↓", "KID ↓"],
-    ["Real CRUMB test images  (reference)", "-", "78.1 %", "84.6 %", "73.0 %", "-", "-"],
+    ["Model", "Seeds", "Class accuracy", "FR-I", "FR-II", "FID ↓", "KID ↓"],
+    ["Real CRUMB images  (target)", "-", "78.1 %", "84.6 %", "73.0 %", "-", "-"],
     ["EDM baseline", "5", "80.7 ± 1.8 %", "71.6 %", "89.8 %", "68.4 ± 3.7", "0.056"],
-    ["DDPM", "4", "87.5 ± 2.9 %", "79.5 %", "95.5 %", "50.4 ± 6.2", "0.033"],
-    ["DDPM + robust guidance (strength 10)  - prelim.", "1 of 4", "96.9 %  (89.8)", "93.8 %  (85.9)", "100 %  (93.8)", "55.6  (55.9)", "0.031  (0.036)"],
-    ["CGD, unguided", "5", "84.3 ± 6.0 %", "74.1 %", "94.5 %", "58.0 ± 7.6", "0.039"],
-    ["CGD + robust guidance (strength 3)", "5", "91.4 ± 3.3 %", "84.1 %", "98.8 %", "56.9 ± 6.3", "0.037"],
-    ["DDPM at CFG 7.5  (raising the CFG scale instead)", "4", "96.5 ± 1.5 %", "93.0 %", "100 %", "61.0 ± 5.2", "0.037"],
-], top=1.6, height=3.4, col_widths=[4.3, 0.9, 1.6, 1.5, 1.4, 1.4, 1.2], font=11)
-tb = s.shapes.add_textbox(Inches(0.5), Inches(5.2), Inches(12.3), Inches(1.7))
-tb.text_frame.word_wrap = True
-for txt in [
-    "Classifier guidance raises class fidelity without the FID cost of a higher CFG scale: CGD +7 pts at -1 FID, vs DDPM CFG 3 -> 7.5 +9 pts at +10.6 FID.",
-    "CGD's remaining FID gap to DDPM is inherited from its weaker checkpoints, not caused by guidance. DDPM + guidance (seed 42) keeps DDPM's FID - remaining seeds pending.",
-]:
-    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
-    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(6)
-caption(s, "Prelim. row: one seed; bracketed values are the same seed unguided. Mean ± sample std across seeds. FID from 256 samples/seed vs 357 real val images.")
+    ["DDPM", "5", "89.0 ± 4.2 %", "81.5 %", "96.4 %", "50.6 ± 5.4", "0.033"],
+    ["CGD  (DDPM + guidance)", "5", "92.8 ± 3.4 %", "87.4 %", "98.3 %", "50.5 ± 5.3", "0.031"],
+], top=1.7, height=2.5, col_widths=[3.8, 0.9, 2.0, 1.4, 1.4, 1.6, 1.2], font=14)
+bullets(s, [
+    "Guidance improves every seed (+3.8 pts, FR-I +5.9) at no FID cost.",
+    "Raising CFG to 7.5 instead buys similar accuracy but costs +10.6 FID.",
+    "Same result on a second training run: 84.3 -> 91.4 %.",
+], top=4.5)
 
-# ---------------------------------------------------------------- 4 comparison graph
+# ---------------------------------------------------------------- 8 guidance samples
 s = slide()
-title(s, "Metrics vs epoch")
-pic(s, os.path.join(RES, "edm_baseline/metric_comparison.png"), 0.4, 2.1, 12.6)
+title(s, "What guidance changes", "Same model and starting noise - only the guidance differs (DDPM seed 44)")
+# DDPM seed 44, CFG 3.0, classifier_scale 0 vs 3 (eval_ddpm_cfg3.0_robcls{0,3}_v2), greyscale
+for label, fig, top in [("DDPM\n(no guidance)", "guidance_samples_off.png", 1.45),
+                        ("CGD\n(guided)", "guidance_samples_on.png", 4.2)]:
+    tb = s.shapes.add_textbox(Inches(0.4), Inches(top + 1.0), Inches(2.3), Inches(0.5))
+    r = tb.text_frame.paragraphs[0].add_run(); r.text = label
+    r.font.size = Pt(14); r.font.bold = True; r.font.color.rgb = NAVY
+    pic(s, os.path.join(RES, "edm_baseline", fig), 2.9, top, 9.8)
+caption(s, "Guidance refines details (e.g. sharper FR-II cores) rather than redrawing the galaxy.")
 
-# ---------------------------------------------------------------- 6 reconstruction overview + metrics
+# ---------------------------------------------------------------- 9 samples vs real
 s = slide()
-title(s, "CRUMB VQ-VAE reconstruction",
-      "Generated images passed through a VQ-VAE trained only on real CRUMB - does their structure lie on the CRUMB manifold?")
-pic(s, os.path.join(RES, "edm_baseline/recon_overview.png"), 0.35, 1.55, 0, height=4.1)
-table(s, [
-    ["", "MSE ↓", "NCC ↑"],
-    ["Real CRUMB (reference)", "0.00377", "0.652"],
-    ["EDM-generated (latest, final)", "0.00271", "0.763"],
-    ["DDPM-generated", "0.00174", "0.771"],
-    ["CGD-generated (latest, ep 290)", "0.00300", "0.725"],
-], top=6.0, left=0.5, width=7.0, height=1.3, col_widths=[3.4, 1.8, 1.8], font=11)
-tb = s.shapes.add_textbox(Inches(8.0), Inches(2.0), Inches(4.9), Inches(4.5))
-tb.text_frame.word_wrap = True
-for txt in [
-    "One example pair per model (col 1 input, col 2 reconstruction).",
-    "All models reconstruct at least as well as real held-out CRUMB.",
-    "DDPM has the highest NCC this round - most CRUMB-like morphology.",
-    "MSE flatters all models: generated fields are smoother than real CRUMB.",
-    "Per-model example galleries on the following slides.",
-]:
-    p = tb.text_frame.add_paragraph(); r = p.add_run(); r.text = "- " + txt
-    r.font.size = Pt(12); r.font.color.rgb = GREY; p.space_after = Pt(8)
-
-# ---------------------------------------------------------------- 6b per-model reconstruction galleries
-for key, lbl in [("crumb", "Real CRUMB"), ("edm", "EDM-generated"),
-                 ("ddpm", "DDPM-generated"), ("cgd", "CGD-generated")]:
-    s = slide()
-    title(s, "Reconstruction examples - %s" % lbl,
-          "col 1 = input   ·   col 2 = CRUMB VQ-VAE reconstruction")
-    pic(s, os.path.join(RES, "edm_baseline/recon_%s.png" % key), 3.4, 1.35, 0, height=6.0)
-
-# ---------------------------------------------------------------- 7 samples
-s = slide()
-title(s, "Samples  (left cols FR-I  ·  right cols FR-II)")
-rows = [
-    ("Real CRUMB  (ground truth)", os.path.join(RES, "edm_baseline/crumb_groundtruth_samples.png")),
-    ("EDM baseline (latest, 400 ep) - epoch 320", os.path.join(RES, "edm_baseline/20260917_161506_my_run_tag_913384/comparison_epoch_320.png")),
-    ("DDPM (latest, 400 ep) - epoch 390", os.path.join(RES, "diffusion/20260917_161506_diffusion_crumb_fits_913386/comparison_epoch_390.png")),
-    ("CGD (latest, 400 ep) - epoch 390", os.path.join(RES, "classifier_guided_diffusion/20260920_172407_cls_guided_diffusion_crumb_fits_seed42_921074/comparison_epoch_390.png")),
+title(s, "Samples vs real")
+panels = [  # (label, path, x, y, width)
+    ("Real CRUMB  (left cols FR-I · right cols FR-II)", os.path.join(RES, "edm_baseline/crumb_groundtruth_samples.png"), 1.0, 1.15, 5.0),
+    ("EDM baseline  (left cols FR-I · right cols FR-II)", os.path.join(RES, "edm_baseline/20260917_161506_my_run_tag_913384/comparison_epoch_320.png"), 7.2, 1.15, 5.0),
+    ("DDPM  (top FR-I · bottom FR-II)", os.path.join(RES, "edm_baseline/guidance_samples_off.png"), 0.6, 4.75, 6.0),
+    ("CGD  (top FR-I · bottom FR-II)", os.path.join(RES, "edm_baseline/guidance_samples_on.png"), 6.8, 4.75, 6.0),
 ]
-pos = [(0.9, 1.25), (7.1, 1.25), (0.9, 4.6), (7.1, 4.6)]
-for (label, path), (x, yy) in zip(rows, pos):
-    tb = s.shapes.add_textbox(Inches(x), Inches(yy), Inches(5.3), Inches(0.3))
+for label, path, x, yy, w in panels:
+    tb = s.shapes.add_textbox(Inches(x), Inches(yy), Inches(w), Inches(0.3))
     r = tb.text_frame.paragraphs[0].add_run(); r.text = label
     r.font.size = Pt(12); r.font.bold = True; r.font.color.rgb = NAVY
-    pic(s, path, x, yy + 0.3, 5.3)
+    pic(s, path, x, yy + 0.3, w)
+
+# ---------------------------------------------------------------- 10 VQ-VAE reconstruction
+s = slide()
+title(s, "Do samples look like CRUMB?", "Passed through a VQ-VAE trained only on real CRUMB")
+pic(s, os.path.join(RES, "edm_baseline/recon_overview.png"), 0.65, 1.5, 12.0)
+table(s, [
+    ["", "Recon MSE ↓", "Recon NCC ↑"],
+    ["Real CRUMB  (reference)", "0.00377", "0.652"],
+    ["EDM-generated", "0.00271", "0.763"],
+    ["DDPM-generated", "0.00174", "0.771"],
+], top=4.7, left=3.15, width=7.0, height=1.6, col_widths=[3.4, 1.8, 1.8], font=13)
+caption(s, "Both reconstruct at least as well as real CRUMB (generated fields are smoother). Seed 42, unguided.")
+
+# ---------------------------------------------------------------- 11 takeaways
+s = slide()
+title(s, "Takeaways")
+bullets(s, [
+    "DDPM beats the EDM baseline on FID and KID; EDM matches pixel intensities best.",
+    "CFG 3.0 is the best operating point - higher CFG trades image quality for class fidelity.",
+    "Classifier guidance only works with a noise-aware classifier.",
+    "With one, CGD raises class fidelity (FR-I closest to real) at no cost in image quality.",
+    "Every model still over-produces clear-cut FR-II and finds FR-I hardest.",
+], top=1.6, size=18, height=4.5)
 
 prs.save(OUT)
 print("wrote", OUT)

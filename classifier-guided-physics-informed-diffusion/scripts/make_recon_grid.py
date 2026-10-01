@@ -21,7 +21,6 @@ STRIPS = [
     ("crumb", "Real CRUMB", os.path.join(V, "crumb_reconstructions.png"), 8),
     ("edm", "EDM-generated", os.path.join(V, "edm_outputs/edm_reconstructions.png"), 32),
     ("ddpm", "DDPM-generated", os.path.join(V, "diffusion_outputs/diffusion_reconstructions.png"), 16),
-    ("cgd", "CGD-generated", os.path.join(V, "cgd_outputs/cgd_reconstructions.png"), 32),
 ]
 HEADER = 60  # px of "Original / Reconstruction" caption at the top of each strip
 
@@ -54,7 +53,7 @@ def montage(imgs, title, out, ncols=2):
 
 # ---- overview: first pair of each model
 first = [(lbl, pairs(p, n)[0]) for _, lbl, p, n in STRIPS]
-fig, axes = plt.subplots(2, 2, figsize=(11, 6))
+fig, axes = plt.subplots(1, 3, figsize=(15, 3.6))
 for ax, (lbl, img) in zip(axes.flat, first):
     ax.imshow(img); ax.set_xticks([]); ax.set_yticks([])
     ax.set_xlabel(lbl, fontsize=13, fontweight="bold")
