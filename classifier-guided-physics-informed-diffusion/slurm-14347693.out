@@ -18,3 +18,13 @@ Epoch 0
   deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
 /idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
   hidden_states = F.scaled_dot_product_attention(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 0 | Loss: 0.069929 | Val: 0.149740
+FITS files saved to results/diffusion/20261019_170040_mgcls_asinh_14347693/generated_fits
+Computing FID/KID/PDF at epoch 0...
+  FID: 184.9356 | KID: 0.216707
+  Pixel PDF W-dist: 0.0699
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 1
+[2026-10-19T17:06:45.049] error: *** JOB 14347693 ON gpu-002 CANCELLED AT 2026-10-19T17:06:45 DUE to SIGNAL Terminated ***
