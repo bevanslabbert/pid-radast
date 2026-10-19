@@ -1,0 +1,285 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mgcls_png
+MGCLS (asinh) classes ['typical', 'exotic']: [2049, 29] images per class
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 2078
+Total batches: 46 (at batch size 32)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=mgcls_asinh  |  results -> results/classification/20261019_173319_mgcls_asinh_14348368
+============================================================
+
+Training classification for 300 epochs
+Epoch 0
+Epoch 0, Training Loss: 0.1159, Validation Loss: 0.0687 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 1
+Epoch 1, Training Loss: 0.0879, Validation Loss: 0.0693
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 2
+Epoch 2, Training Loss: 0.0908, Validation Loss: 0.0685 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 3
+Epoch 3, Training Loss: 0.0852, Validation Loss: 0.0686
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 4
+Epoch 4, Training Loss: 0.0819, Validation Loss: 0.0681 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 5
+Epoch 5, Training Loss: 0.0871, Validation Loss: 0.0672 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 6
+Epoch 6, Training Loss: 0.0881, Validation Loss: 0.0676
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 7
+Epoch 7, Training Loss: 0.0934, Validation Loss: 0.0668 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 8
+Epoch 8, Training Loss: 0.0815, Validation Loss: 0.0666 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 9
+Epoch 9, Training Loss: 0.0857, Validation Loss: 0.0673
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 10
+Epoch 10, Training Loss: 0.0864, Validation Loss: 0.0663 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 11
+Epoch 11, Training Loss: 0.0853, Validation Loss: 0.0663 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 12
+Epoch 12, Training Loss: 0.0861, Validation Loss: 0.0650 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 13
+Epoch 13, Training Loss: 0.0833, Validation Loss: 0.0645 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 14
+Epoch 14, Training Loss: 0.0849, Validation Loss: 0.0649
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 15
+Epoch 15, Training Loss: 0.0860, Validation Loss: 0.0648
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 16
+Epoch 16, Training Loss: 0.0860, Validation Loss: 0.0636 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 17
+Epoch 17, Training Loss: 0.0843, Validation Loss: 0.0678
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 18
+Epoch 18, Training Loss: 0.0827, Validation Loss: 0.0640
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 19
+Epoch 19, Training Loss: 0.0816, Validation Loss: 0.0631 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 20
+Epoch 20, Training Loss: 0.0819, Validation Loss: 0.0637
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 21
+Epoch 21, Training Loss: 0.0775, Validation Loss: 0.0624 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 22
+Epoch 22, Training Loss: 0.0833, Validation Loss: 0.0625
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 23
+Epoch 23, Training Loss: 0.0813, Validation Loss: 0.0640
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 24
+Epoch 24, Training Loss: 0.0783, Validation Loss: 0.0626
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 25
+Epoch 25, Training Loss: 0.0804, Validation Loss: 0.0616 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 26
+Epoch 26, Training Loss: 0.0783, Validation Loss: 0.0648
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 27
+Epoch 27, Training Loss: 0.0820, Validation Loss: 0.0624
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 28
+Epoch 28, Training Loss: 0.0828, Validation Loss: 0.0623
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 29
+Epoch 29, Training Loss: 0.0766, Validation Loss: 0.0627
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 30
+Epoch 30, Training Loss: 0.0738, Validation Loss: 0.0617
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 31
+Epoch 31, Training Loss: 0.0790, Validation Loss: 0.0621
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 32
+Epoch 32, Training Loss: 0.0753, Validation Loss: 0.0611 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 33
+Epoch 33, Training Loss: 0.0785, Validation Loss: 0.0630
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 34
+Epoch 34, Training Loss: 0.0821, Validation Loss: 0.0650
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 35
+Epoch 35, Training Loss: 0.0754, Validation Loss: 0.0620
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 36
+Epoch 36, Training Loss: 0.0743, Validation Loss: 0.0602 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 37
+Epoch 37, Training Loss: 0.0756, Validation Loss: 0.0769
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 38
+Epoch 38, Training Loss: 0.0702, Validation Loss: 0.0624
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 39
+Epoch 39, Training Loss: 0.0761, Validation Loss: 0.0710
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 40
+Epoch 40, Training Loss: 0.0703, Validation Loss: 0.0784
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 41
+Epoch 41, Training Loss: 0.0691, Validation Loss: 0.0675
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 42
+Epoch 42, Training Loss: 0.0708, Validation Loss: 0.0614
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 43
+Epoch 43, Training Loss: 0.0755, Validation Loss: 0.0607
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 44
+Epoch 44, Training Loss: 0.0722, Validation Loss: 0.0782
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 45
+Epoch 45, Training Loss: 0.0688, Validation Loss: 0.0819
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 46
+Epoch 46, Training Loss: 0.0699, Validation Loss: 0.0619
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 47
+Epoch 47, Training Loss: 0.0689, Validation Loss: 0.0622
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 48
+Epoch 48, Training Loss: 0.0738, Validation Loss: 0.0671
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 49
+Epoch 49, Training Loss: 0.0734, Validation Loss: 0.0900
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 50
+Epoch 50, Training Loss: 0.0681, Validation Loss: 0.0790
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 51
+Epoch 51, Training Loss: 0.0745, Validation Loss: 0.0761
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 52
+Epoch 52, Training Loss: 0.0699, Validation Loss: 0.0687
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 53
+Epoch 53, Training Loss: 0.0711, Validation Loss: 0.0899
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 54
+Epoch 54, Training Loss: 0.0727, Validation Loss: 0.0692
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 55
+Epoch 55, Training Loss: 0.0702, Validation Loss: 0.0609
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 56
+Epoch 56, Training Loss: 0.0687, Validation Loss: 0.0633
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 57
+Epoch 57, Training Loss: 0.0752, Validation Loss: 0.0768
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 58
+Epoch 58, Training Loss: 0.0730, Validation Loss: 0.0611
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 59
+Epoch 59, Training Loss: 0.0702, Validation Loss: 0.0595 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 60
+Epoch 60, Training Loss: 0.0703, Validation Loss: 0.0687
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 61
+Epoch 61, Training Loss: 0.0646, Validation Loss: 0.0699
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 62
+Epoch 62, Training Loss: 0.0678, Validation Loss: 0.0701
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 63
+Epoch 63, Training Loss: 0.0650, Validation Loss: 0.0798
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 64
+Epoch 64, Training Loss: 0.0682, Validation Loss: 0.0614
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 65
+Epoch 65, Training Loss: 0.0714, Validation Loss: 0.1151
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 66
+Epoch 66, Training Loss: 0.0742, Validation Loss: 0.0688
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 67
+Epoch 67, Training Loss: 0.0671, Validation Loss: 0.0631
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 68
+Epoch 68, Training Loss: 0.0703, Validation Loss: 0.0623
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 69
+Epoch 69, Training Loss: 0.0688, Validation Loss: 0.0632
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 70
+Epoch 70, Training Loss: 0.0729, Validation Loss: 0.0615
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 71
+Epoch 71, Training Loss: 0.0692, Validation Loss: 0.0889
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 72
+Epoch 72, Training Loss: 0.0667, Validation Loss: 0.0818
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 73
+Epoch 73, Training Loss: 0.0666, Validation Loss: 0.0698
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 74
+Epoch 74, Training Loss: 0.0704, Validation Loss: 0.0736
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 75
+Epoch 75, Training Loss: 0.0673, Validation Loss: 0.0792
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 76
+Epoch 76, Training Loss: 0.0680, Validation Loss: 0.0597
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 77
+Epoch 77, Training Loss: 0.0687, Validation Loss: 0.0600
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 78
+Epoch 78, Training Loss: 0.0705, Validation Loss: 0.0723
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 79
+Epoch 79, Training Loss: 0.0633, Validation Loss: 0.0738
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 80
+Epoch 80, Training Loss: 0.0661, Validation Loss: 0.0757
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 81
+Epoch 81, Training Loss: 0.0676, Validation Loss: 0.0751
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 82
+Epoch 82, Training Loss: 0.0688, Validation Loss: 0.0683
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 83
+Epoch 83, Training Loss: 0.0699, Validation Loss: 0.0742
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 84
+Epoch 84, Training Loss: 0.0624, Validation Loss: 0.0591 (best)
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 85
+Epoch 85, Training Loss: 0.0635, Validation Loss: 0.0830
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 86
+Epoch 86, Training Loss: 0.0674, Validation Loss: 0.0809
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 87
+Epoch 87, Training Loss: 0.0637, Validation Loss: 0.0800
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 88
+Epoch 88, Training Loss: 0.0650, Validation Loss: 0.0708
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 89
+Epoch 89, Training Loss: 0.0649, Validation Loss: 0.0618
+--- Saved model to checkpoints/classification/mgcls_asinh/state.pt ---
+Epoch 90

@@ -1,0 +1,1900 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mgcls_png
+MGCLS (asinh) classes ['typical', 'exotic']: [2049, 29] images per class
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 2078
+Total batches: 92 (at batch size 16)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=mgcls_asinh  |  results -> results/robust_classification/20261019_173319_mgcls_asinh_14348371
+============================================================
+
+Training robust_classification for 200 epochs
+  Batch   0 | t=[0,0] | loss=0.6898 | acc=8/16 | MISCLASSIFIED: [0] pred=1 true=0 t=0, [2] pred=1 true=0 t=0, [5] pred=1 true=0 t=0, [8] pred=1 true=0 t=0, [10] pred=1 true=0 t=0, [12] pred=1 true=0 t=0, [13] pred=1 true=0 t=0, [14] pred=1 true=0 t=0
+  Batch   1 | t=[0,0] | loss=0.5191 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=0
+  Batch   2 | t=[0,0] | loss=0.4209 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=0
+  Batch   3 | t=[0,0] | loss=0.2832 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=0
+  Batch   4 | t=[0,0] | loss=0.2768 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=0
+  Batch   5 | t=[0,0] | loss=0.1184 | acc=16/16
+  Batch   6 | t=[0,0] | loss=0.1238 | acc=16/16
+  Batch   7 | t=[0,0] | loss=0.4597 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=0
+  Batch   8 | t=[0,0] | loss=0.1395 | acc=16/16
+  Batch   9 | t=[0,0] | loss=0.1465 | acc=16/16
+  Batch  10 | t=[0,0] | loss=0.1528 | acc=16/16
+  Batch  11 | t=[0,0] | loss=0.1566 | acc=16/16
+  Batch  12 | t=[0,0] | loss=0.1609 | acc=16/16
+  Batch  13 | t=[0,0] | loss=0.1637 | acc=16/16
+  Batch  14 | t=[0,0] | loss=0.1664 | acc=16/16
+  Batch  15 | t=[0,0] | loss=0.4783 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=0
+  Batch  16 | t=[0,0] | loss=0.1659 | acc=16/16
+  Batch  17 | t=[0,0] | loss=0.1639 | acc=16/16
+  Batch  18 | t=[0,0] | loss=0.1610 | acc=16/16
+  Batch  19 | t=[0,0] | loss=0.1589 | acc=16/16
+  Batch  20 | t=[0,0] | loss=0.1558 | acc=16/16
+  Batch  21 | t=[0,0] | loss=0.5067 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=0
+  Batch  22 | t=[0,0] | loss=0.4004 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=0
+  Batch  23 | t=[0,0] | loss=0.1411 | acc=16/16
+  Batch  24 | t=[0,0] | loss=0.1365 | acc=16/16
+  Batch  25 | t=[0,0] | loss=0.1309 | acc=16/16
+  Batch  26 | t=[0,0] | loss=0.1269 | acc=16/16
+  Batch  27 | t=[0,0] | loss=0.1226 | acc=16/16
+  Batch  28 | t=[0,0] | loss=0.1195 | acc=16/16
+  Batch  29 | t=[0,0] | loss=0.1194 | acc=16/16
+  Batch  30 | t=[0,0] | loss=0.1186 | acc=16/16
+  Batch  31 | t=[0,0] | loss=0.1189 | acc=16/16
+  Batch  32 | t=[0,0] | loss=0.1249 | acc=16/16
+  Batch  33 | t=[0,0] | loss=0.3324 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=0
+  Batch  34 | t=[0,0] | loss=0.1295 | acc=16/16
+  Batch  35 | t=[0,0] | loss=0.1369 | acc=16/16
+  Batch  36 | t=[0,0] | loss=0.1364 | acc=16/16
+  Batch  37 | t=[0,0] | loss=0.2257 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=0
+  Batch  38 | t=[0,0] | loss=0.1380 | acc=16/16
+  Batch  39 | t=[0,0] | loss=0.1347 | acc=16/16
+  Batch  40 | t=[0,0] | loss=0.1401 | acc=16/16
+  Batch  41 | t=[0,0] | loss=0.2864 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=0
+  Batch  42 | t=[0,0] | loss=0.1291 | acc=16/16
+  Batch  43 | t=[0,0] | loss=0.1232 | acc=16/16
+  Batch  44 | t=[0,0] | loss=0.1285 | acc=16/16
+  Batch  45 | t=[0,0] | loss=0.1243 | acc=16/16
+  Batch  46 | t=[0,0] | loss=0.4363 | acc=14/16 | MISCLASSIFIED: [3] pred=0 true=1 t=0, [9] pred=0 true=1 t=0
+  Batch  47 | t=[0,0] | loss=0.4240 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=0, [4] pred=0 true=1 t=0
+  Batch  48 | t=[0,0] | loss=0.1252 | acc=16/16
+  Batch  49 | t=[0,0] | loss=0.1294 | acc=16/16
+  Batch  50 | t=[0,0] | loss=0.1302 | acc=16/16
+  Batch  51 | t=[0,0] | loss=0.1329 | acc=16/16
+  Batch  52 | t=[0,0] | loss=0.1333 | acc=16/16
+  Batch  53 | t=[0,0] | loss=0.1356 | acc=16/16
+  Batch  54 | t=[0,0] | loss=0.3346 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=0, [7] pred=0 true=1 t=0
+  Batch  55 | t=[0,0] | loss=0.1307 | acc=16/16
+  Batch  56 | t=[0,0] | loss=0.1335 | acc=16/16
+  Batch  57 | t=[0,0] | loss=0.1271 | acc=16/16
+  Batch  58 | t=[0,0] | loss=0.1312 | acc=16/16
+  Batch  59 | t=[0,0] | loss=0.1228 | acc=16/16
+  Batch  60 | t=[0,0] | loss=0.1286 | acc=16/16
+  Batch  61 | t=[0,0] | loss=0.3369 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=0
+  Batch  62 | t=[0,0] | loss=0.1223 | acc=16/16
+  Batch  63 | t=[0,0] | loss=0.1239 | acc=16/16
+  Batch  64 | t=[0,0] | loss=0.1325 | acc=16/16
+  Batch  65 | t=[0,0] | loss=0.1271 | acc=16/16
+  Batch  66 | t=[0,0] | loss=0.1271 | acc=16/16
+  Batch  67 | t=[0,0] | loss=0.1248 | acc=16/16
+  Batch  68 | t=[0,0] | loss=0.1245 | acc=16/16
+  Batch  69 | t=[0,0] | loss=0.3783 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=0
+  Batch  70 | t=[0,0] | loss=0.2994 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=0
+  Batch  71 | t=[0,0] | loss=0.1229 | acc=16/16
+  Batch  72 | t=[0,0] | loss=0.1194 | acc=16/16
+  Batch  73 | t=[0,0] | loss=0.1260 | acc=16/16
+  Batch  74 | t=[0,0] | loss=0.2468 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=0
+  Batch  75 | t=[0,0] | loss=0.1235 | acc=16/16
+  Batch  76 | t=[0,0] | loss=0.1224 | acc=16/16
+  Batch  77 | t=[0,0] | loss=0.1250 | acc=16/16
+  Batch  78 | t=[0,0] | loss=0.1214 | acc=16/16
+  Batch  79 | t=[0,0] | loss=0.2425 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=0
+  Batch  80 | t=[0,0] | loss=0.1301 | acc=16/16
+  Batch  81 | t=[0,0] | loss=0.1268 | acc=16/16
+  Batch  82 | t=[0,0] | loss=0.1222 | acc=16/16
+  Batch  83 | t=[0,0] | loss=0.1270 | acc=16/16
+  Batch  84 | t=[0,0] | loss=0.1300 | acc=16/16
+  Batch  85 | t=[0,0] | loss=0.1248 | acc=16/16
+  Batch  86 | t=[0,0] | loss=0.1258 | acc=16/16
+  Batch  87 | t=[0,0] | loss=0.1246 | acc=16/16
+  Batch  88 | t=[0,0] | loss=0.1213 | acc=16/16
+  Batch  89 | t=[0,0] | loss=0.1213 | acc=16/16
+  Batch  90 | t=[0,0] | loss=0.1200 | acc=16/16
+  Batch  91 | t=[0,0] | loss=0.1175 | acc=2/2
+Epoch 0 [warmup] | Loss: 0.1857 | Val Loss: 0.1605 | Val Acc: 98.8% | LR: 6.39e-04
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+--- Saved model to checkpoints/robust_classification/mgcls_asinh_best/state.pt ---
+  ** New best metric: 98.8% — saved to checkpoints/robust_classification/mgcls_asinh_best
+  Batch   0 | t=[0,4] | loss=0.2531 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=2
+  Batch   1 | t=[0,4] | loss=0.1196 | acc=16/16
+  Batch   2 | t=[0,4] | loss=0.1228 | acc=16/16
+  Batch   3 | t=[0,4] | loss=0.1203 | acc=16/16
+  Batch   4 | t=[0,4] | loss=0.1241 | acc=16/16
+  Batch   5 | t=[0,4] | loss=0.1242 | acc=16/16
+  Batch   6 | t=[0,4] | loss=0.1201 | acc=16/16
+  Batch   7 | t=[0,3] | loss=0.1222 | acc=16/16
+  Batch   8 | t=[0,4] | loss=0.1224 | acc=16/16
+  Batch   9 | t=[0,4] | loss=0.1204 | acc=16/16
+  Batch  10 | t=[0,4] | loss=0.1186 | acc=16/16
+  Batch  11 | t=[0,4] | loss=0.1214 | acc=16/16
+  Batch  12 | t=[0,4] | loss=0.1214 | acc=16/16
+  Batch  13 | t=[0,4] | loss=0.3490 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=1
+  Batch  14 | t=[0,4] | loss=0.1230 | acc=16/16
+  Batch  15 | t=[0,4] | loss=0.1194 | acc=16/16
+  Batch  16 | t=[0,4] | loss=0.1239 | acc=16/16
+  Batch  17 | t=[0,4] | loss=0.2685 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=4
+  Batch  18 | t=[0,4] | loss=0.1225 | acc=16/16
+  Batch  19 | t=[0,4] | loss=0.1229 | acc=16/16
+  Batch  20 | t=[0,4] | loss=0.2197 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=3
+  Batch  21 | t=[0,4] | loss=0.1313 | acc=16/16
+  Batch  22 | t=[0,4] | loss=0.1300 | acc=16/16
+  Batch  23 | t=[0,3] | loss=0.1247 | acc=16/16
+  Batch  24 | t=[1,4] | loss=0.1290 | acc=16/16
+  Batch  25 | t=[0,4] | loss=0.2659 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=1
+  Batch  26 | t=[0,4] | loss=0.1240 | acc=16/16
+  Batch  27 | t=[0,4] | loss=0.1227 | acc=16/16
+  Batch  28 | t=[0,4] | loss=0.2372 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=2
+  Batch  29 | t=[0,4] | loss=0.1200 | acc=16/16
+  Batch  30 | t=[0,4] | loss=0.1217 | acc=16/16
+  Batch  31 | t=[0,4] | loss=0.1205 | acc=16/16
+  Batch  32 | t=[0,4] | loss=0.1233 | acc=16/16
+  Batch  33 | t=[0,3] | loss=0.2708 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=1
+  Batch  34 | t=[0,4] | loss=0.1205 | acc=16/16
+  Batch  35 | t=[0,4] | loss=0.1242 | acc=16/16
+  Batch  36 | t=[0,4] | loss=0.1208 | acc=16/16
+  Batch  37 | t=[0,4] | loss=0.2975 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=3
+  Batch  38 | t=[0,4] | loss=0.2362 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=0
+  Batch  39 | t=[0,4] | loss=0.1276 | acc=16/16
+  Batch  40 | t=[0,4] | loss=0.2731 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=4
+  Batch  41 | t=[0,4] | loss=0.1506 | acc=16/16
+  Batch  42 | t=[0,4] | loss=0.2865 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=0
+  Batch  43 | t=[0,4] | loss=0.1537 | acc=16/16
+  Batch  44 | t=[0,3] | loss=0.1396 | acc=16/16
+  Batch  45 | t=[0,4] | loss=0.1387 | acc=16/16
+  Batch  46 | t=[0,4] | loss=0.1366 | acc=16/16
+  Batch  47 | t=[0,4] | loss=0.1240 | acc=16/16
+  Batch  48 | t=[0,4] | loss=0.1266 | acc=16/16
+  Batch  49 | t=[0,4] | loss=0.2130 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=1
+  Batch  50 | t=[0,4] | loss=0.2193 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=3
+  Batch  51 | t=[0,4] | loss=0.1205 | acc=16/16
+  Batch  52 | t=[0,4] | loss=0.3705 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=3
+  Batch  53 | t=[0,4] | loss=0.1242 | acc=16/16
+  Batch  54 | t=[0,4] | loss=0.1232 | acc=16/16
+  Batch  55 | t=[0,4] | loss=0.1316 | acc=16/16
+  Batch  56 | t=[0,4] | loss=0.1287 | acc=16/16
+  Batch  57 | t=[0,4] | loss=0.2952 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=0
+  Batch  58 | t=[0,4] | loss=0.1360 | acc=16/16
+  Batch  59 | t=[0,3] | loss=0.1316 | acc=16/16
+  Batch  60 | t=[0,4] | loss=0.1374 | acc=16/16
+  Batch  61 | t=[0,4] | loss=0.2126 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=3
+  Batch  62 | t=[0,4] | loss=0.1322 | acc=16/16
+  Batch  63 | t=[0,4] | loss=0.1303 | acc=16/16
+  Batch  64 | t=[0,4] | loss=0.1271 | acc=16/16
+  Batch  65 | t=[0,4] | loss=0.1241 | acc=16/16
+  Batch  66 | t=[0,3] | loss=0.1264 | acc=16/16
+  Batch  67 | t=[0,4] | loss=0.1193 | acc=16/16
+  Batch  68 | t=[0,4] | loss=0.1232 | acc=16/16
+  Batch  69 | t=[0,4] | loss=0.1253 | acc=16/16
+  Batch  70 | t=[0,4] | loss=0.1228 | acc=16/16
+  Batch  71 | t=[0,4] | loss=0.3985 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=3, [11] pred=0 true=1 t=0
+  Batch  72 | t=[0,4] | loss=0.1197 | acc=16/16
+  Batch  73 | t=[0,4] | loss=0.1223 | acc=16/16
+  Batch  74 | t=[0,4] | loss=0.1223 | acc=16/16
+  Batch  75 | t=[0,4] | loss=0.1239 | acc=16/16
+  Batch  76 | t=[1,4] | loss=0.1215 | acc=16/16
+  Batch  77 | t=[0,4] | loss=0.1235 | acc=16/16
+  Batch  78 | t=[0,4] | loss=0.1298 | acc=16/16
+  Batch  79 | t=[0,4] | loss=0.1263 | acc=16/16
+  Batch  80 | t=[0,4] | loss=0.1277 | acc=16/16
+  Batch  81 | t=[0,4] | loss=0.1210 | acc=16/16
+  Batch  82 | t=[0,4] | loss=0.3595 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=2
+  Batch  83 | t=[0,4] | loss=0.1192 | acc=16/16
+  Batch  84 | t=[0,4] | loss=0.1224 | acc=16/16
+  Batch  85 | t=[0,4] | loss=0.1241 | acc=16/16
+  Batch  86 | t=[0,4] | loss=0.2569 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=2
+  Batch  87 | t=[0,4] | loss=0.3118 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=1
+  Batch  88 | t=[0,4] | loss=0.1253 | acc=16/16
+  Batch  89 | t=[0,4] | loss=0.1262 | acc=16/16
+  Batch  90 | t=[0,4] | loss=0.2646 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=2
+  Batch  91 | t=[2,3] | loss=0.1264 | acc=2/2
+Epoch 1 [warmup] | Loss: 0.1607 | Val Loss: 0.1749 | Val Acc: 98.8% | LR: 1.28e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[1,9] | loss=0.1378 | acc=16/16
+  Batch   1 | t=[0,9] | loss=0.2136 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=4
+  Batch   2 | t=[1,9] | loss=0.2806 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=2
+  Batch   3 | t=[1,9] | loss=0.1393 | acc=16/16
+  Batch   4 | t=[0,9] | loss=0.1370 | acc=16/16
+  Batch   5 | t=[0,9] | loss=0.1259 | acc=16/16
+  Batch   6 | t=[0,9] | loss=0.1253 | acc=16/16
+  Batch   7 | t=[1,8] | loss=0.1249 | acc=16/16
+  Batch   8 | t=[0,9] | loss=0.3420 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=6
+  Batch   9 | t=[0,9] | loss=0.1197 | acc=16/16
+  Batch  10 | t=[1,8] | loss=0.1189 | acc=16/16
+  Batch  11 | t=[0,9] | loss=0.1204 | acc=16/16
+  Batch  12 | t=[0,9] | loss=0.1255 | acc=16/16
+  Batch  13 | t=[0,9] | loss=0.1213 | acc=16/16
+  Batch  14 | t=[1,9] | loss=0.1252 | acc=16/16
+  Batch  15 | t=[1,9] | loss=0.1220 | acc=16/16
+  Batch  16 | t=[0,9] | loss=0.1194 | acc=16/16
+  Batch  17 | t=[0,8] | loss=0.1234 | acc=16/16
+  Batch  18 | t=[0,9] | loss=0.1233 | acc=16/16
+  Batch  19 | t=[0,9] | loss=0.1205 | acc=16/16
+  Batch  20 | t=[0,9] | loss=0.1182 | acc=16/16
+  Batch  21 | t=[0,9] | loss=0.2755 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=9
+  Batch  22 | t=[0,9] | loss=0.1200 | acc=16/16
+  Batch  23 | t=[0,8] | loss=0.1213 | acc=16/16
+  Batch  24 | t=[0,9] | loss=0.1286 | acc=16/16
+  Batch  25 | t=[0,9] | loss=0.1221 | acc=16/16
+  Batch  26 | t=[0,7] | loss=0.1219 | acc=16/16
+  Batch  27 | t=[0,9] | loss=0.1238 | acc=16/16
+  Batch  28 | t=[0,9] | loss=0.1211 | acc=16/16
+  Batch  29 | t=[0,9] | loss=0.1224 | acc=16/16
+  Batch  30 | t=[0,9] | loss=0.1212 | acc=16/16
+  Batch  31 | t=[0,9] | loss=0.1208 | acc=16/16
+  Batch  32 | t=[1,9] | loss=0.1203 | acc=16/16
+  Batch  33 | t=[0,8] | loss=0.3192 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=7
+  Batch  34 | t=[2,9] | loss=0.2816 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=6
+  Batch  35 | t=[0,9] | loss=0.1232 | acc=16/16
+  Batch  36 | t=[0,9] | loss=0.1202 | acc=16/16
+  Batch  37 | t=[0,9] | loss=0.2223 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=0
+  Batch  38 | t=[0,9] | loss=0.1328 | acc=16/16
+  Batch  39 | t=[0,9] | loss=0.1392 | acc=16/16
+  Batch  40 | t=[0,8] | loss=0.3027 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=7
+  Batch  41 | t=[0,9] | loss=0.1414 | acc=16/16
+  Batch  42 | t=[0,9] | loss=0.1325 | acc=16/16
+  Batch  43 | t=[0,9] | loss=0.1288 | acc=16/16
+  Batch  44 | t=[0,8] | loss=0.1192 | acc=16/16
+  Batch  45 | t=[0,9] | loss=0.1265 | acc=16/16
+  Batch  46 | t=[0,9] | loss=0.2609 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=3
+  Batch  47 | t=[0,7] | loss=0.1226 | acc=16/16
+  Batch  48 | t=[1,8] | loss=0.1224 | acc=16/16
+  Batch  49 | t=[1,9] | loss=0.1199 | acc=16/16
+  Batch  50 | t=[0,8] | loss=0.1206 | acc=16/16
+  Batch  51 | t=[0,9] | loss=0.3973 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=6
+  Batch  52 | t=[0,9] | loss=0.1202 | acc=16/16
+  Batch  53 | t=[0,9] | loss=0.2632 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=3
+  Batch  54 | t=[0,9] | loss=0.1325 | acc=16/16
+  Batch  55 | t=[0,9] | loss=0.1503 | acc=16/16
+  Batch  56 | t=[0,9] | loss=0.2211 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=5
+  Batch  57 | t=[1,9] | loss=0.1774 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=1
+  Batch  58 | t=[0,8] | loss=0.3370 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=8
+  Batch  59 | t=[0,9] | loss=0.1520 | acc=16/16
+  Batch  60 | t=[0,9] | loss=0.1611 | acc=16/16
+  Batch  61 | t=[0,9] | loss=0.1533 | acc=16/16
+  Batch  62 | t=[0,9] | loss=0.1210 | acc=16/16
+  Batch  63 | t=[0,9] | loss=0.1240 | acc=16/16
+  Batch  64 | t=[0,9] | loss=0.1229 | acc=16/16
+  Batch  65 | t=[0,9] | loss=0.1250 | acc=16/16
+  Batch  66 | t=[0,9] | loss=0.3179 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=7
+  Batch  67 | t=[0,7] | loss=0.1306 | acc=16/16
+  Batch  68 | t=[1,6] | loss=0.3721 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=3
+  Batch  69 | t=[0,9] | loss=0.3237 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=9
+  Batch  70 | t=[0,9] | loss=0.1259 | acc=16/16
+  Batch  71 | t=[0,9] | loss=0.1256 | acc=16/16
+  Batch  72 | t=[0,9] | loss=0.1288 | acc=16/16
+  Batch  73 | t=[1,9] | loss=0.1411 | acc=16/16
+  Batch  74 | t=[0,9] | loss=0.3380 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=0, [15] pred=0 true=1 t=2
+  Batch  75 | t=[0,9] | loss=0.1915 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=7
+  Batch  76 | t=[0,9] | loss=0.1792 | acc=16/16
+  Batch  77 | t=[0,9] | loss=0.1732 | acc=16/16
+  Batch  78 | t=[0,9] | loss=0.1516 | acc=16/16
+  Batch  79 | t=[0,9] | loss=0.1357 | acc=16/16
+  Batch  80 | t=[0,9] | loss=0.1378 | acc=16/16
+  Batch  81 | t=[0,9] | loss=0.1237 | acc=16/16
+  Batch  82 | t=[1,8] | loss=0.1272 | acc=16/16
+  Batch  83 | t=[1,8] | loss=0.1332 | acc=16/16
+  Batch  84 | t=[0,8] | loss=0.4860 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=1
+  Batch  85 | t=[0,9] | loss=0.1371 | acc=16/16
+  Batch  86 | t=[0,9] | loss=0.1350 | acc=16/16
+  Batch  87 | t=[0,8] | loss=0.1317 | acc=16/16
+  Batch  88 | t=[0,9] | loss=0.1284 | acc=16/16
+  Batch  89 | t=[0,9] | loss=0.1248 | acc=16/16
+  Batch  90 | t=[1,9] | loss=0.3175 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=9
+  Batch  91 | t=[1,9] | loss=0.1186 | acc=2/2
+Epoch 2 [warmup] | Loss: 0.1678 | Val Loss: 0.1618 | Val Acc: 98.8% | LR: 1.92e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[4,14] | loss=0.1218 | acc=16/16
+  Batch   1 | t=[1,14] | loss=0.4319 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=9, [10] pred=0 true=1 t=7
+  Batch   2 | t=[1,14] | loss=0.1680 | acc=16/16
+  Batch   3 | t=[1,14] | loss=0.1884 | acc=16/16
+  Batch   4 | t=[1,14] | loss=0.1819 | acc=16/16
+  Batch   5 | t=[0,13] | loss=0.1341 | acc=16/16
+  Batch   6 | t=[0,13] | loss=0.2403 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=13
+  Batch   7 | t=[0,14] | loss=0.1261 | acc=16/16
+  Batch   8 | t=[3,14] | loss=0.1264 | acc=16/16
+  Batch   9 | t=[0,14] | loss=0.3397 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=6
+  Batch  10 | t=[0,13] | loss=0.1277 | acc=16/16
+  Batch  11 | t=[1,13] | loss=0.1279 | acc=16/16
+  Batch  12 | t=[3,14] | loss=0.1271 | acc=16/16
+  Batch  13 | t=[0,14] | loss=0.1301 | acc=16/16
+  Batch  14 | t=[0,14] | loss=0.1291 | acc=16/16
+  Batch  15 | t=[4,14] | loss=0.1269 | acc=16/16
+  Batch  16 | t=[0,13] | loss=0.1219 | acc=16/16
+  Batch  17 | t=[0,14] | loss=0.2906 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=1
+  Batch  18 | t=[0,14] | loss=0.1364 | acc=16/16
+  Batch  19 | t=[1,13] | loss=0.1238 | acc=16/16
+  Batch  20 | t=[0,14] | loss=0.2188 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=12
+  Batch  21 | t=[0,13] | loss=0.1347 | acc=16/16
+  Batch  22 | t=[1,13] | loss=0.1316 | acc=16/16
+  Batch  23 | t=[2,14] | loss=0.3238 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=13
+  Batch  24 | t=[0,14] | loss=0.1494 | acc=16/16
+  Batch  25 | t=[0,14] | loss=0.1263 | acc=16/16
+  Batch  26 | t=[1,13] | loss=0.4040 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=3, [12] pred=0 true=1 t=7
+  Batch  27 | t=[0,13] | loss=0.1270 | acc=16/16
+  Batch  28 | t=[0,12] | loss=0.1255 | acc=16/16
+  Batch  29 | t=[0,14] | loss=0.1371 | acc=16/16
+  Batch  30 | t=[1,13] | loss=0.1339 | acc=16/16
+  Batch  31 | t=[1,13] | loss=0.1343 | acc=16/16
+  Batch  32 | t=[1,13] | loss=0.1220 | acc=16/16
+  Batch  33 | t=[0,14] | loss=0.3541 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=6
+  Batch  34 | t=[0,14] | loss=0.2109 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=14
+  Batch  35 | t=[0,12] | loss=0.1298 | acc=16/16
+  Batch  36 | t=[2,13] | loss=0.2376 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=4
+  Batch  37 | t=[0,14] | loss=0.1608 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=5
+  Batch  38 | t=[0,13] | loss=0.2502 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=11
+  Batch  39 | t=[0,13] | loss=0.1833 | acc=15/16 | MISCLASSIFIED: [2] pred=1 true=0 t=12
+  Batch  40 | t=[0,14] | loss=0.1512 | acc=16/16
+  Batch  41 | t=[0,14] | loss=0.3234 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=7
+  Batch  42 | t=[0,13] | loss=0.1329 | acc=16/16
+  Batch  43 | t=[0,14] | loss=0.1304 | acc=16/16
+  Batch  44 | t=[0,12] | loss=0.1370 | acc=16/16
+  Batch  45 | t=[2,14] | loss=0.1290 | acc=16/16
+  Batch  46 | t=[0,14] | loss=0.1272 | acc=16/16
+  Batch  47 | t=[0,14] | loss=0.1291 | acc=16/16
+  Batch  48 | t=[0,14] | loss=0.1362 | acc=16/16
+  Batch  49 | t=[1,14] | loss=0.5526 | acc=14/16 | MISCLASSIFIED: [8] pred=0 true=1 t=8, [14] pred=0 true=1 t=2
+  Batch  50 | t=[0,14] | loss=0.1347 | acc=16/16
+  Batch  51 | t=[0,14] | loss=0.1221 | acc=16/16
+  Batch  52 | t=[0,14] | loss=0.1205 | acc=16/16
+  Batch  53 | t=[0,13] | loss=0.1424 | acc=16/16
+  Batch  54 | t=[0,14] | loss=0.1353 | acc=16/16
+  Batch  55 | t=[0,13] | loss=0.1562 | acc=16/16
+  Batch  56 | t=[1,14] | loss=0.1400 | acc=16/16
+  Batch  57 | t=[0,13] | loss=0.1417 | acc=16/16
+  Batch  58 | t=[0,12] | loss=0.1208 | acc=16/16
+  Batch  59 | t=[0,14] | loss=0.1193 | acc=16/16
+  Batch  60 | t=[0,12] | loss=0.1259 | acc=16/16
+  Batch  61 | t=[1,14] | loss=0.3509 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=13
+  Batch  62 | t=[0,13] | loss=0.1232 | acc=16/16
+  Batch  63 | t=[2,14] | loss=0.1211 | acc=16/16
+  Batch  64 | t=[1,14] | loss=0.1191 | acc=16/16
+  Batch  65 | t=[0,14] | loss=0.1189 | acc=16/16
+  Batch  66 | t=[1,12] | loss=0.2741 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=7
+  Batch  67 | t=[0,13] | loss=0.1238 | acc=16/16
+  Batch  68 | t=[1,12] | loss=0.2871 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=2
+  Batch  69 | t=[0,14] | loss=0.1356 | acc=16/16
+  Batch  70 | t=[0,13] | loss=0.1448 | acc=16/16
+  Batch  71 | t=[1,14] | loss=0.1458 | acc=16/16
+  Batch  72 | t=[2,12] | loss=0.1345 | acc=16/16
+  Batch  73 | t=[1,13] | loss=0.2449 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=3
+  Batch  74 | t=[1,12] | loss=0.1197 | acc=16/16
+  Batch  75 | t=[1,14] | loss=0.1184 | acc=16/16
+  Batch  76 | t=[0,13] | loss=0.1195 | acc=16/16
+  Batch  77 | t=[1,14] | loss=0.1227 | acc=16/16
+  Batch  78 | t=[0,14] | loss=0.1230 | acc=16/16
+  Batch  79 | t=[0,14] | loss=0.1261 | acc=16/16
+  Batch  80 | t=[0,13] | loss=0.1236 | acc=16/16
+  Batch  81 | t=[0,14] | loss=0.1231 | acc=16/16
+  Batch  82 | t=[0,11] | loss=0.1236 | acc=16/16
+  Batch  83 | t=[0,14] | loss=0.1231 | acc=16/16
+  Batch  84 | t=[0,14] | loss=0.1198 | acc=16/16
+  Batch  85 | t=[0,12] | loss=0.1193 | acc=16/16
+  Batch  86 | t=[1,12] | loss=0.1195 | acc=16/16
+  Batch  87 | t=[0,14] | loss=0.2164 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=9
+  Batch  88 | t=[1,14] | loss=0.1248 | acc=16/16
+  Batch  89 | t=[0,14] | loss=0.1251 | acc=16/16
+  Batch  90 | t=[3,12] | loss=0.1289 | acc=16/16
+  Batch  91 | t=[6,14] | loss=0.1225 | acc=2/2
+Epoch 3 [warmup] | Loss: 0.1666 | Val Loss: 0.1588 | Val Acc: 98.8% | LR: 2.56e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[3,19] | loss=0.1231 | acc=16/16
+  Batch   1 | t=[0,18] | loss=0.1231 | acc=16/16
+  Batch   2 | t=[1,18] | loss=0.1232 | acc=16/16
+  Batch   3 | t=[0,19] | loss=0.1196 | acc=16/16
+  Batch   4 | t=[0,19] | loss=0.1223 | acc=16/16
+  Batch   5 | t=[1,18] | loss=0.1218 | acc=16/16
+  Batch   6 | t=[0,18] | loss=0.1228 | acc=16/16
+  Batch   7 | t=[2,17] | loss=0.1274 | acc=16/16
+  Batch   8 | t=[1,19] | loss=0.2915 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=6
+  Batch   9 | t=[1,17] | loss=0.2727 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=12
+  Batch  10 | t=[0,19] | loss=0.1249 | acc=16/16
+  Batch  11 | t=[0,18] | loss=0.1357 | acc=16/16
+  Batch  12 | t=[1,19] | loss=0.1416 | acc=16/16
+  Batch  13 | t=[0,19] | loss=0.2315 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=3
+  Batch  14 | t=[0,19] | loss=0.1659 | acc=16/16
+  Batch  15 | t=[0,17] | loss=0.1290 | acc=16/16
+  Batch  16 | t=[1,19] | loss=0.1242 | acc=16/16
+  Batch  17 | t=[1,19] | loss=0.1222 | acc=16/16
+  Batch  18 | t=[2,16] | loss=0.2226 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=12
+  Batch  19 | t=[0,19] | loss=0.4241 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=5
+  Batch  20 | t=[1,19] | loss=0.1237 | acc=16/16
+  Batch  21 | t=[0,18] | loss=0.1239 | acc=16/16
+  Batch  22 | t=[0,19] | loss=0.1556 | acc=16/16
+  Batch  23 | t=[1,19] | loss=0.1609 | acc=16/16
+  Batch  24 | t=[0,17] | loss=0.1421 | acc=16/16
+  Batch  25 | t=[0,19] | loss=0.1489 | acc=16/16
+  Batch  26 | t=[1,19] | loss=0.2027 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=18
+  Batch  27 | t=[0,19] | loss=0.1340 | acc=16/16
+  Batch  28 | t=[1,19] | loss=0.1299 | acc=16/16
+  Batch  29 | t=[1,19] | loss=0.1208 | acc=16/16
+  Batch  30 | t=[1,17] | loss=0.1290 | acc=16/16
+  Batch  31 | t=[0,17] | loss=0.1239 | acc=16/16
+  Batch  32 | t=[0,19] | loss=0.1253 | acc=16/16
+  Batch  33 | t=[2,19] | loss=0.1261 | acc=16/16
+  Batch  34 | t=[0,19] | loss=0.1274 | acc=16/16
+  Batch  35 | t=[1,17] | loss=0.3732 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=13
+  Batch  36 | t=[0,19] | loss=0.3385 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=2
+  Batch  37 | t=[0,18] | loss=0.1292 | acc=16/16
+  Batch  38 | t=[0,19] | loss=0.1399 | acc=16/16
+  Batch  39 | t=[0,19] | loss=0.1635 | acc=16/16
+  Batch  40 | t=[1,19] | loss=0.2921 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=12
+  Batch  41 | t=[1,19] | loss=0.1500 | acc=16/16
+  Batch  42 | t=[1,18] | loss=0.1253 | acc=16/16
+  Batch  43 | t=[0,19] | loss=0.1233 | acc=16/16
+  Batch  44 | t=[1,19] | loss=0.1194 | acc=16/16
+  Batch  45 | t=[0,19] | loss=0.1228 | acc=16/16
+  Batch  46 | t=[0,17] | loss=0.1263 | acc=16/16
+  Batch  47 | t=[0,17] | loss=0.2742 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=12
+  Batch  48 | t=[0,19] | loss=0.4115 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=15
+  Batch  49 | t=[1,19] | loss=0.3346 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=3
+  Batch  50 | t=[1,18] | loss=0.1264 | acc=16/16
+  Batch  51 | t=[1,19] | loss=0.1411 | acc=16/16
+  Batch  52 | t=[0,18] | loss=0.1574 | acc=16/16
+  Batch  53 | t=[0,19] | loss=0.1540 | acc=16/16
+  Batch  54 | t=[1,19] | loss=0.1495 | acc=16/16
+  Batch  55 | t=[0,16] | loss=0.1525 | acc=16/16
+  Batch  56 | t=[0,19] | loss=0.3122 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=0
+  Batch  57 | t=[0,18] | loss=0.3136 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=5
+  Batch  58 | t=[2,19] | loss=0.2373 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=14
+  Batch  59 | t=[0,19] | loss=0.3087 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=6
+  Batch  60 | t=[0,17] | loss=0.1537 | acc=16/16
+  Batch  61 | t=[0,18] | loss=0.1872 | acc=16/16
+  Batch  62 | t=[3,19] | loss=0.1673 | acc=16/16
+  Batch  63 | t=[4,19] | loss=0.1369 | acc=16/16
+  Batch  64 | t=[2,18] | loss=0.1247 | acc=16/16
+  Batch  65 | t=[2,19] | loss=0.1242 | acc=16/16
+  Batch  66 | t=[1,19] | loss=0.1314 | acc=16/16
+  Batch  67 | t=[4,18] | loss=0.1327 | acc=16/16
+  Batch  68 | t=[0,19] | loss=0.1373 | acc=16/16
+  Batch  69 | t=[1,19] | loss=0.1405 | acc=16/16
+  Batch  70 | t=[1,19] | loss=0.1402 | acc=16/16
+  Batch  71 | t=[0,19] | loss=0.1382 | acc=16/16
+  Batch  72 | t=[1,18] | loss=0.1340 | acc=16/16
+  Batch  73 | t=[0,18] | loss=0.1294 | acc=16/16
+  Batch  74 | t=[0,19] | loss=0.1273 | acc=16/16
+  Batch  75 | t=[0,19] | loss=0.3126 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=0
+  Batch  76 | t=[0,19] | loss=0.2982 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=0
+  Batch  77 | t=[0,17] | loss=0.1511 | acc=16/16
+  Batch  78 | t=[0,16] | loss=0.1715 | acc=16/16
+  Batch  79 | t=[0,17] | loss=0.1559 | acc=16/16
+  Batch  80 | t=[1,18] | loss=0.2876 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=8
+  Batch  81 | t=[0,18] | loss=0.1277 | acc=16/16
+  Batch  82 | t=[0,19] | loss=0.1273 | acc=16/16
+  Batch  83 | t=[1,19] | loss=0.1246 | acc=16/16
+  Batch  84 | t=[1,19] | loss=0.1232 | acc=16/16
+  Batch  85 | t=[0,18] | loss=0.1273 | acc=16/16
+  Batch  86 | t=[0,19] | loss=0.1280 | acc=16/16
+  Batch  87 | t=[2,19] | loss=0.1302 | acc=16/16
+  Batch  88 | t=[0,19] | loss=0.1323 | acc=16/16
+  Batch  89 | t=[0,19] | loss=0.1300 | acc=16/16
+  Batch  90 | t=[3,17] | loss=0.2837 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=12
+  Batch  91 | t=[2,16] | loss=0.1288 | acc=2/2
+Epoch 4 [warmup] | Loss: 0.1714 | Val Loss: 0.1610 | Val Acc: 98.8% | LR: 3.20e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[1,23] | loss=0.1195 | acc=16/16
+  Batch   1 | t=[0,24] | loss=0.3166 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=0
+  Batch   2 | t=[4,23] | loss=0.1346 | acc=16/16
+  Batch   3 | t=[0,24] | loss=0.1630 | acc=16/16
+  Batch   4 | t=[1,24] | loss=0.1500 | acc=16/16
+  Batch   5 | t=[0,23] | loss=0.1417 | acc=16/16
+  Batch   6 | t=[2,24] | loss=0.1267 | acc=16/16
+  Batch   7 | t=[1,24] | loss=0.3934 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=24, [8] pred=0 true=1 t=12
+  Batch   8 | t=[0,23] | loss=0.1226 | acc=16/16
+  Batch   9 | t=[1,21] | loss=0.1207 | acc=16/16
+  Batch  10 | t=[0,24] | loss=0.1238 | acc=16/16
+  Batch  11 | t=[0,22] | loss=0.1203 | acc=16/16
+  Batch  12 | t=[7,24] | loss=0.4379 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=13, [13] pred=0 true=1 t=9
+  Batch  13 | t=[3,23] | loss=0.1263 | acc=16/16
+  Batch  14 | t=[3,24] | loss=0.1285 | acc=16/16
+  Batch  15 | t=[0,24] | loss=0.1454 | acc=16/16
+  Batch  16 | t=[1,22] | loss=0.1502 | acc=16/16
+  Batch  17 | t=[1,24] | loss=0.2502 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=8
+  Batch  18 | t=[3,20] | loss=0.2012 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=9
+  Batch  19 | t=[0,23] | loss=0.1431 | acc=16/16
+  Batch  20 | t=[0,23] | loss=0.3428 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=8, [14] pred=0 true=1 t=15
+  Batch  21 | t=[1,23] | loss=0.1333 | acc=16/16
+  Batch  22 | t=[2,24] | loss=0.1282 | acc=16/16
+  Batch  23 | t=[1,23] | loss=0.3305 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=10
+  Batch  24 | t=[0,21] | loss=0.1569 | acc=16/16
+  Batch  25 | t=[0,24] | loss=0.4110 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=12, [11] pred=0 true=1 t=10
+  Batch  26 | t=[3,23] | loss=0.1716 | acc=16/16
+  Batch  27 | t=[0,22] | loss=0.1507 | acc=16/16
+  Batch  28 | t=[0,23] | loss=0.4800 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=17, [13] pred=0 true=1 t=8
+  Batch  29 | t=[0,22] | loss=0.2109 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=19
+  Batch  30 | t=[0,24] | loss=0.1963 | acc=15/16 | MISCLASSIFIED: [9] pred=1 true=0 t=11
+  Batch  31 | t=[0,21] | loss=0.1432 | acc=16/16
+  Batch  32 | t=[0,22] | loss=0.1307 | acc=16/16
+  Batch  33 | t=[0,23] | loss=0.1251 | acc=16/16
+  Batch  34 | t=[0,23] | loss=0.1260 | acc=16/16
+  Batch  35 | t=[3,20] | loss=0.1267 | acc=16/16
+  Batch  36 | t=[2,24] | loss=0.1304 | acc=16/16
+  Batch  37 | t=[0,23] | loss=0.1320 | acc=16/16
+  Batch  38 | t=[1,23] | loss=0.3912 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=9
+  Batch  39 | t=[0,21] | loss=0.1260 | acc=16/16
+  Batch  40 | t=[1,23] | loss=0.1226 | acc=16/16
+  Batch  41 | t=[1,24] | loss=0.1255 | acc=16/16
+  Batch  42 | t=[4,22] | loss=0.1274 | acc=16/16
+  Batch  43 | t=[1,24] | loss=0.1228 | acc=16/16
+  Batch  44 | t=[1,24] | loss=0.1324 | acc=16/16
+  Batch  45 | t=[0,24] | loss=0.1262 | acc=16/16
+  Batch  46 | t=[1,23] | loss=0.1242 | acc=16/16
+  Batch  47 | t=[1,23] | loss=0.2962 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=16
+  Batch  48 | t=[0,24] | loss=0.1234 | acc=16/16
+  Batch  49 | t=[0,23] | loss=0.1227 | acc=16/16
+  Batch  50 | t=[0,23] | loss=0.1204 | acc=16/16
+  Batch  51 | t=[1,23] | loss=0.1203 | acc=16/16
+  Batch  52 | t=[2,23] | loss=0.1203 | acc=16/16
+  Batch  53 | t=[1,23] | loss=0.1206 | acc=16/16
+  Batch  54 | t=[0,24] | loss=0.1210 | acc=16/16
+  Batch  55 | t=[0,23] | loss=0.1215 | acc=16/16
+  Batch  56 | t=[1,22] | loss=0.1217 | acc=16/16
+  Batch  57 | t=[0,23] | loss=0.1200 | acc=16/16
+  Batch  58 | t=[0,20] | loss=0.1202 | acc=16/16
+  Batch  59 | t=[0,22] | loss=0.1217 | acc=16/16
+  Batch  60 | t=[1,22] | loss=0.1213 | acc=16/16
+  Batch  61 | t=[0,22] | loss=0.1202 | acc=16/16
+  Batch  62 | t=[0,22] | loss=0.1195 | acc=16/16
+  Batch  63 | t=[3,23] | loss=0.1220 | acc=16/16
+  Batch  64 | t=[2,23] | loss=0.1184 | acc=16/16
+  Batch  65 | t=[1,23] | loss=0.1183 | acc=16/16
+  Batch  66 | t=[0,24] | loss=0.1192 | acc=16/16
+  Batch  67 | t=[1,24] | loss=0.2602 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=6
+  Batch  68 | t=[0,24] | loss=0.2845 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=13
+  Batch  69 | t=[1,23] | loss=0.2734 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=10
+  Batch  70 | t=[0,21] | loss=0.1447 | acc=16/16
+  Batch  71 | t=[0,21] | loss=0.1516 | acc=16/16
+  Batch  72 | t=[1,23] | loss=0.1477 | acc=16/16
+  Batch  73 | t=[0,23] | loss=0.2689 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=18
+  Batch  74 | t=[0,22] | loss=0.1253 | acc=16/16
+  Batch  75 | t=[0,22] | loss=0.1220 | acc=16/16
+  Batch  76 | t=[1,24] | loss=0.1283 | acc=16/16
+  Batch  77 | t=[2,22] | loss=0.1247 | acc=16/16
+  Batch  78 | t=[0,24] | loss=0.1238 | acc=16/16
+  Batch  79 | t=[0,21] | loss=0.1309 | acc=16/16
+  Batch  80 | t=[0,24] | loss=0.1282 | acc=16/16
+  Batch  81 | t=[1,21] | loss=0.4163 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=19
+  Batch  82 | t=[1,24] | loss=0.1284 | acc=16/16
+  Batch  83 | t=[1,23] | loss=0.1243 | acc=16/16
+  Batch  84 | t=[3,24] | loss=0.1283 | acc=16/16
+  Batch  85 | t=[4,24] | loss=0.1251 | acc=16/16
+  Batch  86 | t=[2,21] | loss=0.1303 | acc=16/16
+  Batch  87 | t=[1,23] | loss=0.1302 | acc=16/16
+  Batch  88 | t=[0,21] | loss=0.1276 | acc=16/16
+  Batch  89 | t=[2,24] | loss=0.1234 | acc=16/16
+  Batch  90 | t=[0,24] | loss=0.1260 | acc=16/16
+  Batch  91 | t=[11,13] | loss=0.1192 | acc=2/2
+Epoch 5 [warmup] | Loss: 0.1665 | Val Loss: 0.1599 | Val Acc: 98.8% | LR: 3.20e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[0,29] | loss=0.1207 | acc=16/16
+  Batch   1 | t=[0,29] | loss=0.1241 | acc=16/16
+  Batch   2 | t=[0,29] | loss=0.3044 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=8
+  Batch   3 | t=[0,28] | loss=0.1237 | acc=16/16
+  Batch   4 | t=[0,29] | loss=0.1196 | acc=16/16
+  Batch   5 | t=[0,28] | loss=0.1211 | acc=16/16
+  Batch   6 | t=[0,29] | loss=0.1188 | acc=16/16
+  Batch   7 | t=[1,28] | loss=0.1187 | acc=16/16
+  Batch   8 | t=[2,28] | loss=0.1251 | acc=16/16
+  Batch   9 | t=[1,25] | loss=0.1221 | acc=16/16
+  Batch  10 | t=[2,20] | loss=0.1242 | acc=16/16
+  Batch  11 | t=[4,28] | loss=0.1208 | acc=16/16
+  Batch  12 | t=[0,28] | loss=0.1206 | acc=16/16
+  Batch  13 | t=[3,29] | loss=0.1197 | acc=16/16
+  Batch  14 | t=[0,27] | loss=0.1234 | acc=16/16
+  Batch  15 | t=[1,26] | loss=0.1194 | acc=16/16
+  Batch  16 | t=[5,29] | loss=0.1192 | acc=16/16
+  Batch  17 | t=[3,29] | loss=0.1217 | acc=16/16
+  Batch  18 | t=[2,29] | loss=0.1211 | acc=16/16
+  Batch  19 | t=[2,29] | loss=0.3358 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=6
+  Batch  20 | t=[0,29] | loss=0.1184 | acc=16/16
+  Batch  21 | t=[0,29] | loss=0.1189 | acc=16/16
+  Batch  22 | t=[1,29] | loss=0.1211 | acc=16/16
+  Batch  23 | t=[0,25] | loss=0.1253 | acc=16/16
+  Batch  24 | t=[1,27] | loss=0.1269 | acc=16/16
+  Batch  25 | t=[0,29] | loss=0.4247 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=1, [3] pred=0 true=1 t=7
+  Batch  26 | t=[0,27] | loss=0.1296 | acc=16/16
+  Batch  27 | t=[2,28] | loss=0.1365 | acc=16/16
+  Batch  28 | t=[3,25] | loss=0.1347 | acc=16/16
+  Batch  29 | t=[2,29] | loss=0.1265 | acc=16/16
+  Batch  30 | t=[0,24] | loss=0.1230 | acc=16/16
+  Batch  31 | t=[0,27] | loss=0.1191 | acc=16/16
+  Batch  32 | t=[0,28] | loss=0.2944 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=0
+  Batch  33 | t=[0,29] | loss=0.1234 | acc=16/16
+  Batch  34 | t=[0,28] | loss=0.3548 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=23
+  Batch  35 | t=[0,27] | loss=0.3122 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=15
+  Batch  36 | t=[0,28] | loss=0.1316 | acc=16/16
+  Batch  37 | t=[1,29] | loss=0.1338 | acc=16/16
+  Batch  38 | t=[8,28] | loss=0.1437 | acc=16/16
+  Batch  39 | t=[2,28] | loss=0.1399 | acc=16/16
+  Batch  40 | t=[0,29] | loss=0.1372 | acc=16/16
+  Batch  41 | t=[1,28] | loss=0.1256 | acc=16/16
+  Batch  42 | t=[0,29] | loss=0.1222 | acc=16/16
+  Batch  43 | t=[0,28] | loss=0.2724 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=10
+  Batch  44 | t=[0,29] | loss=0.1208 | acc=16/16
+  Batch  45 | t=[4,26] | loss=0.1212 | acc=16/16
+  Batch  46 | t=[0,23] | loss=0.1228 | acc=16/16
+  Batch  47 | t=[6,28] | loss=0.1242 | acc=16/16
+  Batch  48 | t=[1,27] | loss=0.1227 | acc=16/16
+  Batch  49 | t=[2,28] | loss=0.1248 | acc=16/16
+  Batch  50 | t=[0,29] | loss=0.2715 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=0
+  Batch  51 | t=[0,26] | loss=0.3013 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=25
+  Batch  52 | t=[1,28] | loss=0.1720 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=13
+  Batch  53 | t=[1,27] | loss=0.1429 | acc=16/16
+  Batch  54 | t=[4,28] | loss=0.1556 | acc=16/16
+  Batch  55 | t=[3,27] | loss=0.2437 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=7
+  Batch  56 | t=[0,27] | loss=0.1382 | acc=16/16
+  Batch  57 | t=[1,26] | loss=0.1313 | acc=16/16
+  Batch  58 | t=[6,27] | loss=0.1291 | acc=16/16
+  Batch  59 | t=[0,28] | loss=0.1246 | acc=16/16
+  Batch  60 | t=[1,27] | loss=0.1244 | acc=16/16
+  Batch  61 | t=[0,24] | loss=0.1298 | acc=16/16
+  Batch  62 | t=[1,28] | loss=0.1326 | acc=16/16
+  Batch  63 | t=[2,28] | loss=0.1362 | acc=16/16
+  Batch  64 | t=[2,29] | loss=0.1345 | acc=16/16
+  Batch  65 | t=[0,23] | loss=0.1341 | acc=16/16
+  Batch  66 | t=[4,29] | loss=0.1344 | acc=16/16
+  Batch  67 | t=[0,29] | loss=0.1272 | acc=16/16
+  Batch  68 | t=[1,28] | loss=0.1287 | acc=16/16
+  Batch  69 | t=[0,28] | loss=0.1232 | acc=16/16
+  Batch  70 | t=[0,27] | loss=0.1248 | acc=16/16
+  Batch  71 | t=[3,29] | loss=0.3091 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=21
+  Batch  72 | t=[1,29] | loss=0.1258 | acc=16/16
+  Batch  73 | t=[1,26] | loss=0.1308 | acc=16/16
+  Batch  74 | t=[1,29] | loss=0.4140 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=5, [7] pred=0 true=1 t=24
+  Batch  75 | t=[0,27] | loss=0.1779 | acc=16/16
+  Batch  76 | t=[0,25] | loss=0.2975 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=19
+  Batch  77 | t=[0,29] | loss=0.1723 | acc=16/16
+  Batch  78 | t=[0,29] | loss=0.1351 | acc=16/16
+  Batch  79 | t=[0,29] | loss=0.1257 | acc=16/16
+  Batch  80 | t=[1,29] | loss=0.1223 | acc=16/16
+  Batch  81 | t=[2,29] | loss=0.1245 | acc=16/16
+  Batch  82 | t=[2,28] | loss=0.1314 | acc=16/16
+  Batch  83 | t=[2,28] | loss=0.3151 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=2
+  Batch  84 | t=[2,27] | loss=0.3515 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=19
+  Batch  85 | t=[4,27] | loss=0.1291 | acc=16/16
+  Batch  86 | t=[2,26] | loss=0.2215 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=2
+  Batch  87 | t=[6,26] | loss=0.2201 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=20
+  Batch  88 | t=[4,28] | loss=0.3167 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=17
+  Batch  89 | t=[0,24] | loss=0.1780 | acc=16/16
+  Batch  90 | t=[3,28] | loss=0.1964 | acc=16/16
+  Batch  91 | t=[6,21] | loss=1.2154 | acc=1/2 | MISCLASSIFIED: [0] pred=0 true=1 t=21
+Epoch 6 [warmup] | Loss: 0.1772 | Val Loss: 0.5764 | Val Acc: 80.7% | LR: 3.20e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[3,33] | loss=0.6372 | acc=9/16 | MISCLASSIFIED: [0] pred=1 true=0 t=6, [1] pred=1 true=0 t=14, [6] pred=1 true=0 t=32, [8] pred=1 true=0 t=10, [11] pred=1 true=0 t=20, [12] pred=1 true=0 t=33, [13] pred=1 true=0 t=11
+  Batch   1 | t=[0,33] | loss=0.5104 | acc=13/16 | MISCLASSIFIED: [0] pred=1 true=0 t=0, [2] pred=1 true=0 t=11, [5] pred=1 true=0 t=33
+  Batch   2 | t=[5,34] | loss=0.3463 | acc=14/16 | MISCLASSIFIED: [1] pred=0 true=1 t=13, [3] pred=0 true=1 t=22
+  Batch   3 | t=[3,34] | loss=0.1227 | acc=16/16
+  Batch   4 | t=[0,34] | loss=0.1528 | acc=16/16
+  Batch   5 | t=[4,33] | loss=0.1749 | acc=16/16
+  Batch   6 | t=[0,32] | loss=0.1954 | acc=16/16
+  Batch   7 | t=[1,34] | loss=0.2153 | acc=16/16
+  Batch   8 | t=[3,34] | loss=0.7726 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=20, [12] pred=0 true=1 t=16
+  Batch   9 | t=[0,34] | loss=0.2363 | acc=16/16
+  Batch  10 | t=[0,31] | loss=0.2267 | acc=16/16
+  Batch  11 | t=[1,34] | loss=0.2247 | acc=16/16
+  Batch  12 | t=[0,31] | loss=0.6966 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=6
+  Batch  13 | t=[3,34] | loss=0.2015 | acc=16/16
+  Batch  14 | t=[0,34] | loss=0.1809 | acc=16/16
+  Batch  15 | t=[0,34] | loss=0.4262 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=33
+  Batch  16 | t=[0,33] | loss=0.1401 | acc=16/16
+  Batch  17 | t=[1,34] | loss=0.1316 | acc=16/16
+  Batch  18 | t=[0,33] | loss=0.1321 | acc=16/16
+  Batch  19 | t=[1,31] | loss=0.1695 | acc=16/16
+  Batch  20 | t=[0,34] | loss=0.2052 | acc=16/16
+  Batch  21 | t=[2,29] | loss=0.2348 | acc=16/16
+  Batch  22 | t=[0,33] | loss=0.1550 | acc=16/16
+  Batch  23 | t=[0,34] | loss=0.1352 | acc=16/16
+  Batch  24 | t=[0,33] | loss=0.2658 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=29
+  Batch  25 | t=[4,33] | loss=0.2746 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=33
+  Batch  26 | t=[0,32] | loss=0.1433 | acc=16/16
+  Batch  27 | t=[1,33] | loss=0.1492 | acc=16/16
+  Batch  28 | t=[3,34] | loss=0.1560 | acc=16/16
+  Batch  29 | t=[4,33] | loss=0.3394 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=15
+  Batch  30 | t=[1,33] | loss=0.1407 | acc=16/16
+  Batch  31 | t=[0,32] | loss=0.1330 | acc=16/16
+  Batch  32 | t=[2,34] | loss=0.1495 | acc=16/16
+  Batch  33 | t=[2,33] | loss=0.1469 | acc=16/16
+  Batch  34 | t=[1,29] | loss=0.1352 | acc=16/16
+  Batch  35 | t=[1,32] | loss=0.1524 | acc=16/16
+  Batch  36 | t=[1,34] | loss=0.1548 | acc=16/16
+  Batch  37 | t=[2,34] | loss=0.1314 | acc=16/16
+  Batch  38 | t=[2,33] | loss=0.1400 | acc=16/16
+  Batch  39 | t=[2,33] | loss=0.1286 | acc=16/16
+  Batch  40 | t=[2,34] | loss=0.1474 | acc=16/16
+  Batch  41 | t=[1,34] | loss=0.1498 | acc=16/16
+  Batch  42 | t=[1,31] | loss=0.1281 | acc=16/16
+  Batch  43 | t=[2,32] | loss=0.1308 | acc=16/16
+  Batch  44 | t=[0,33] | loss=0.1351 | acc=16/16
+  Batch  45 | t=[4,33] | loss=0.1306 | acc=16/16
+  Batch  46 | t=[2,32] | loss=0.3306 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=25
+  Batch  47 | t=[0,32] | loss=0.3389 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=29
+  Batch  48 | t=[3,32] | loss=0.1285 | acc=16/16
+  Batch  49 | t=[0,31] | loss=0.1254 | acc=16/16
+  Batch  50 | t=[1,32] | loss=0.1270 | acc=16/16
+  Batch  51 | t=[1,30] | loss=0.1367 | acc=16/16
+  Batch  52 | t=[1,34] | loss=0.3192 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=6
+  Batch  53 | t=[1,33] | loss=0.3264 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=8
+  Batch  54 | t=[1,34] | loss=0.1500 | acc=16/16
+  Batch  55 | t=[3,34] | loss=0.1564 | acc=16/16
+  Batch  56 | t=[0,33] | loss=0.3057 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=30
+  Batch  57 | t=[3,34] | loss=0.1281 | acc=16/16
+  Batch  58 | t=[0,32] | loss=0.1206 | acc=16/16
+  Batch  59 | t=[3,29] | loss=0.1327 | acc=16/16
+  Batch  60 | t=[0,33] | loss=0.1755 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=22
+  Batch  61 | t=[2,32] | loss=0.3551 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=10
+  Batch  62 | t=[2,31] | loss=0.1285 | acc=16/16
+  Batch  63 | t=[2,33] | loss=0.1258 | acc=16/16
+  Batch  64 | t=[0,34] | loss=0.1250 | acc=16/16
+  Batch  65 | t=[4,33] | loss=0.1410 | acc=16/16
+  Batch  66 | t=[2,34] | loss=0.1277 | acc=16/16
+  Batch  67 | t=[0,33] | loss=0.1278 | acc=16/16
+  Batch  68 | t=[1,32] | loss=0.2662 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=26
+  Batch  69 | t=[7,33] | loss=0.2652 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=33
+  Batch  70 | t=[2,34] | loss=0.3045 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=29
+  Batch  71 | t=[3,34] | loss=0.1324 | acc=16/16
+  Batch  72 | t=[0,29] | loss=0.1421 | acc=16/16
+  Batch  73 | t=[1,34] | loss=0.2942 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=10
+  Batch  74 | t=[3,34] | loss=0.1534 | acc=16/16
+  Batch  75 | t=[0,34] | loss=0.1384 | acc=16/16
+  Batch  76 | t=[8,33] | loss=0.1300 | acc=16/16
+  Batch  77 | t=[0,34] | loss=0.1244 | acc=16/16
+  Batch  78 | t=[1,32] | loss=0.1282 | acc=16/16
+  Batch  79 | t=[4,31] | loss=0.1345 | acc=16/16
+  Batch  80 | t=[1,31] | loss=0.1270 | acc=16/16
+  Batch  81 | t=[1,34] | loss=0.1322 | acc=16/16
+  Batch  82 | t=[2,33] | loss=0.1277 | acc=16/16
+  Batch  83 | t=[10,32] | loss=0.4021 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=31, [2] pred=0 true=1 t=18
+  Batch  84 | t=[0,34] | loss=0.1245 | acc=16/16
+  Batch  85 | t=[5,34] | loss=0.1265 | acc=16/16
+  Batch  86 | t=[1,33] | loss=0.1229 | acc=16/16
+  Batch  87 | t=[5,32] | loss=0.1474 | acc=16/16
+  Batch  88 | t=[0,33] | loss=0.1255 | acc=16/16
+  Batch  89 | t=[4,33] | loss=0.1294 | acc=16/16
+  Batch  90 | t=[1,30] | loss=0.1307 | acc=16/16
+  Batch  91 | t=[6,30] | loss=0.1192 | acc=2/2
+Epoch 7 [warmup] | Loss: 0.1994 | Val Loss: 0.1574 | Val Acc: 98.8% | LR: 3.20e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[1,39] | loss=0.1306 | acc=16/16
+  Batch   1 | t=[8,34] | loss=0.1255 | acc=16/16
+  Batch   2 | t=[3,35] | loss=0.1227 | acc=16/16
+  Batch   3 | t=[2,39] | loss=0.1257 | acc=16/16
+  Batch   4 | t=[4,32] | loss=0.1233 | acc=16/16
+  Batch   5 | t=[0,35] | loss=0.1229 | acc=16/16
+  Batch   6 | t=[1,38] | loss=0.1271 | acc=16/16
+  Batch   7 | t=[0,35] | loss=0.1239 | acc=16/16
+  Batch   8 | t=[0,39] | loss=0.1246 | acc=16/16
+  Batch   9 | t=[0,39] | loss=0.3551 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=14
+  Batch  10 | t=[1,39] | loss=0.1207 | acc=16/16
+  Batch  11 | t=[1,37] | loss=0.2269 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=35
+  Batch  12 | t=[4,36] | loss=0.1284 | acc=16/16
+  Batch  13 | t=[5,34] | loss=0.1290 | acc=16/16
+  Batch  14 | t=[0,33] | loss=0.1379 | acc=16/16
+  Batch  15 | t=[1,39] | loss=0.1290 | acc=16/16
+  Batch  16 | t=[1,38] | loss=0.1351 | acc=16/16
+  Batch  17 | t=[4,39] | loss=0.1222 | acc=16/16
+  Batch  18 | t=[0,36] | loss=0.1246 | acc=16/16
+  Batch  19 | t=[2,38] | loss=0.1216 | acc=16/16
+  Batch  20 | t=[0,37] | loss=0.1227 | acc=16/16
+  Batch  21 | t=[4,32] | loss=0.1281 | acc=16/16
+  Batch  22 | t=[4,38] | loss=0.1307 | acc=16/16
+  Batch  23 | t=[0,39] | loss=0.1306 | acc=16/16
+  Batch  24 | t=[1,38] | loss=0.1290 | acc=16/16
+  Batch  25 | t=[7,38] | loss=0.1273 | acc=16/16
+  Batch  26 | t=[3,36] | loss=0.1261 | acc=16/16
+  Batch  27 | t=[1,39] | loss=0.1240 | acc=16/16
+  Batch  28 | t=[3,37] | loss=0.1212 | acc=16/16
+  Batch  29 | t=[0,37] | loss=0.3054 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=37
+  Batch  30 | t=[1,39] | loss=0.1284 | acc=16/16
+  Batch  31 | t=[9,39] | loss=0.1328 | acc=16/16
+  Batch  32 | t=[0,39] | loss=0.1370 | acc=16/16
+  Batch  33 | t=[0,37] | loss=0.1249 | acc=16/16
+  Batch  34 | t=[4,38] | loss=0.1289 | acc=16/16
+  Batch  35 | t=[4,39] | loss=0.3334 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=10
+  Batch  36 | t=[11,37] | loss=0.1246 | acc=16/16
+  Batch  37 | t=[2,39] | loss=0.4749 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=39, [13] pred=0 true=1 t=9
+  Batch  38 | t=[0,39] | loss=0.1217 | acc=16/16
+  Batch  39 | t=[6,39] | loss=0.1311 | acc=16/16
+  Batch  40 | t=[1,36] | loss=0.2648 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=8
+  Batch  41 | t=[1,37] | loss=0.2578 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=12
+  Batch  42 | t=[1,37] | loss=0.3508 | acc=14/16 | MISCLASSIFIED: [11] pred=0 true=1 t=37, [14] pred=0 true=1 t=21
+  Batch  43 | t=[1,37] | loss=0.1433 | acc=16/16
+  Batch  44 | t=[2,36] | loss=0.1494 | acc=16/16
+  Batch  45 | t=[1,39] | loss=0.1418 | acc=16/16
+  Batch  46 | t=[4,39] | loss=0.1474 | acc=16/16
+  Batch  47 | t=[0,38] | loss=0.1285 | acc=16/16
+  Batch  48 | t=[5,36] | loss=0.1195 | acc=16/16
+  Batch  49 | t=[2,39] | loss=0.1337 | acc=16/16
+  Batch  50 | t=[1,39] | loss=0.1476 | acc=16/16
+  Batch  51 | t=[1,39] | loss=0.2633 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=9
+  Batch  52 | t=[1,39] | loss=0.1415 | acc=16/16
+  Batch  53 | t=[2,37] | loss=0.1348 | acc=16/16
+  Batch  54 | t=[0,34] | loss=0.3863 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=0
+  Batch  55 | t=[3,33] | loss=0.1279 | acc=16/16
+  Batch  56 | t=[0,32] | loss=0.1234 | acc=16/16
+  Batch  57 | t=[1,39] | loss=0.1363 | acc=16/16
+  Batch  58 | t=[2,38] | loss=0.1481 | acc=16/16
+  Batch  59 | t=[1,36] | loss=0.1747 | acc=16/16
+  Batch  60 | t=[2,34] | loss=0.1502 | acc=16/16
+  Batch  61 | t=[1,35] | loss=0.1729 | acc=16/16
+  Batch  62 | t=[1,35] | loss=0.3226 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=9
+  Batch  63 | t=[5,35] | loss=0.1370 | acc=16/16
+  Batch  64 | t=[2,39] | loss=0.1348 | acc=16/16
+  Batch  65 | t=[0,37] | loss=0.1842 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=4
+  Batch  66 | t=[0,36] | loss=0.1338 | acc=16/16
+  Batch  67 | t=[0,38] | loss=0.1238 | acc=16/16
+  Batch  68 | t=[5,38] | loss=0.1229 | acc=16/16
+  Batch  69 | t=[0,38] | loss=0.1241 | acc=16/16
+  Batch  70 | t=[3,39] | loss=0.1228 | acc=16/16
+  Batch  71 | t=[0,34] | loss=0.3130 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=30
+  Batch  72 | t=[0,39] | loss=0.1348 | acc=16/16
+  Batch  73 | t=[0,38] | loss=0.1208 | acc=16/16
+  Batch  74 | t=[4,35] | loss=0.3470 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=33
+  Batch  75 | t=[0,36] | loss=0.1274 | acc=16/16
+  Batch  76 | t=[1,39] | loss=0.1412 | acc=16/16
+  Batch  77 | t=[2,39] | loss=0.1359 | acc=16/16
+  Batch  78 | t=[4,38] | loss=0.3457 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=35
+  Batch  79 | t=[0,36] | loss=0.1477 | acc=16/16
+  Batch  80 | t=[6,36] | loss=0.1288 | acc=16/16
+  Batch  81 | t=[7,37] | loss=0.1269 | acc=16/16
+  Batch  82 | t=[2,35] | loss=0.1224 | acc=16/16
+  Batch  83 | t=[3,32] | loss=0.2146 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=32
+  Batch  84 | t=[0,39] | loss=0.1236 | acc=16/16
+  Batch  85 | t=[4,39] | loss=0.1284 | acc=16/16
+  Batch  86 | t=[3,33] | loss=0.2737 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=9
+  Batch  87 | t=[3,38] | loss=0.3134 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=29
+  Batch  88 | t=[0,33] | loss=0.1225 | acc=16/16
+  Batch  89 | t=[0,39] | loss=0.1301 | acc=16/16
+  Batch  90 | t=[1,38] | loss=0.1318 | acc=16/16
+  Batch  91 | t=[16,28] | loss=0.1300 | acc=2/2
+Epoch 8 [warmup] | Loss: 0.1658 | Val Loss: 0.1626 | Val Acc: 98.6% | LR: 3.20e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[4,42] | loss=0.1338 | acc=16/16
+  Batch   1 | t=[2,43] | loss=0.2279 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=36
+  Batch   2 | t=[3,32] | loss=0.1288 | acc=16/16
+  Batch   3 | t=[6,44] | loss=0.1307 | acc=16/16
+  Batch   4 | t=[0,43] | loss=0.2987 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=3
+  Batch   5 | t=[0,39] | loss=0.1257 | acc=16/16
+  Batch   6 | t=[2,44] | loss=0.2662 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=19
+  Batch   7 | t=[2,39] | loss=0.1251 | acc=16/16
+  Batch   8 | t=[0,42] | loss=0.1285 | acc=16/16
+  Batch   9 | t=[3,42] | loss=0.1240 | acc=16/16
+  Batch  10 | t=[0,42] | loss=0.1464 | acc=16/16
+  Batch  11 | t=[0,39] | loss=0.1274 | acc=16/16
+  Batch  12 | t=[2,44] | loss=0.1269 | acc=16/16
+  Batch  13 | t=[0,36] | loss=0.2154 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=11
+  Batch  14 | t=[0,44] | loss=0.2034 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=28
+  Batch  15 | t=[3,43] | loss=0.3111 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=40
+  Batch  16 | t=[6,41] | loss=0.1360 | acc=16/16
+  Batch  17 | t=[0,32] | loss=0.1360 | acc=16/16
+  Batch  18 | t=[0,44] | loss=0.1484 | acc=16/16
+  Batch  19 | t=[2,44] | loss=0.1308 | acc=16/16
+  Batch  20 | t=[2,42] | loss=0.1394 | acc=16/16
+  Batch  21 | t=[3,34] | loss=0.1358 | acc=16/16
+  Batch  22 | t=[1,42] | loss=0.1477 | acc=16/16
+  Batch  23 | t=[2,44] | loss=0.1298 | acc=16/16
+  Batch  24 | t=[7,44] | loss=0.1267 | acc=16/16
+  Batch  25 | t=[0,44] | loss=0.1454 | acc=16/16
+  Batch  26 | t=[1,44] | loss=0.1304 | acc=16/16
+  Batch  27 | t=[0,38] | loss=0.1387 | acc=16/16
+  Batch  28 | t=[5,40] | loss=0.1342 | acc=16/16
+  Batch  29 | t=[3,38] | loss=0.1360 | acc=16/16
+  Batch  30 | t=[2,36] | loss=0.1272 | acc=16/16
+  Batch  31 | t=[3,41] | loss=0.1288 | acc=16/16
+  Batch  32 | t=[0,35] | loss=0.3083 | acc=14/16 | MISCLASSIFIED: [6] pred=1 true=0 t=21, [12] pred=0 true=1 t=22
+  Batch  33 | t=[0,44] | loss=0.1233 | acc=16/16
+  Batch  34 | t=[0,43] | loss=0.1211 | acc=16/16
+  Batch  35 | t=[0,44] | loss=0.1281 | acc=16/16
+  Batch  36 | t=[0,44] | loss=0.1214 | acc=16/16
+  Batch  37 | t=[0,41] | loss=0.1252 | acc=16/16
+  Batch  38 | t=[2,42] | loss=0.1220 | acc=16/16
+  Batch  39 | t=[6,44] | loss=0.1207 | acc=16/16
+  Batch  40 | t=[0,30] | loss=0.1205 | acc=16/16
+  Batch  41 | t=[1,43] | loss=0.1214 | acc=16/16
+  Batch  42 | t=[1,44] | loss=0.1188 | acc=16/16
+  Batch  43 | t=[0,42] | loss=0.1213 | acc=16/16
+  Batch  44 | t=[0,42] | loss=0.3962 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=24
+  Batch  45 | t=[4,27] | loss=0.1192 | acc=16/16
+  Batch  46 | t=[1,42] | loss=0.1191 | acc=16/16
+  Batch  47 | t=[4,42] | loss=0.1195 | acc=16/16
+  Batch  48 | t=[3,43] | loss=0.1217 | acc=16/16
+  Batch  49 | t=[1,43] | loss=0.1207 | acc=16/16
+  Batch  50 | t=[3,43] | loss=0.1207 | acc=16/16
+  Batch  51 | t=[3,41] | loss=0.1210 | acc=16/16
+  Batch  52 | t=[0,42] | loss=0.2871 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=27
+  Batch  53 | t=[2,44] | loss=0.3021 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=33
+  Batch  54 | t=[3,42] | loss=0.1248 | acc=16/16
+  Batch  55 | t=[3,42] | loss=0.1315 | acc=16/16
+  Batch  56 | t=[7,42] | loss=0.1662 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=21
+  Batch  57 | t=[0,43] | loss=0.1288 | acc=16/16
+  Batch  58 | t=[3,44] | loss=0.1308 | acc=16/16
+  Batch  59 | t=[0,37] | loss=0.4476 | acc=14/16 | MISCLASSIFIED: [9] pred=0 true=1 t=0, [15] pred=0 true=1 t=24
+  Batch  60 | t=[5,43] | loss=0.1257 | acc=16/16
+  Batch  61 | t=[2,42] | loss=0.2479 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=41
+  Batch  62 | t=[0,44] | loss=0.1261 | acc=16/16
+  Batch  63 | t=[7,43] | loss=0.1320 | acc=16/16
+  Batch  64 | t=[0,41] | loss=0.1271 | acc=16/16
+  Batch  65 | t=[3,42] | loss=0.2022 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=42
+  Batch  66 | t=[2,39] | loss=0.2832 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=34
+  Batch  67 | t=[0,43] | loss=0.3322 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=16
+  Batch  68 | t=[0,44] | loss=0.1301 | acc=16/16
+  Batch  69 | t=[1,40] | loss=0.1423 | acc=16/16
+  Batch  70 | t=[1,42] | loss=0.1417 | acc=16/16
+  Batch  71 | t=[0,42] | loss=0.2306 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=42
+  Batch  72 | t=[2,44] | loss=0.1308 | acc=16/16
+  Batch  73 | t=[0,34] | loss=0.1321 | acc=16/16
+  Batch  74 | t=[2,43] | loss=0.1321 | acc=16/16
+  Batch  75 | t=[3,41] | loss=0.1284 | acc=16/16
+  Batch  76 | t=[4,43] | loss=0.1336 | acc=16/16
+  Batch  77 | t=[1,42] | loss=0.1409 | acc=16/16
+  Batch  78 | t=[2,43] | loss=0.1270 | acc=16/16
+  Batch  79 | t=[5,44] | loss=0.1258 | acc=16/16
+  Batch  80 | t=[0,38] | loss=0.3108 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=38
+  Batch  81 | t=[4,44] | loss=0.1325 | acc=16/16
+  Batch  82 | t=[3,40] | loss=0.3220 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=38
+  Batch  83 | t=[0,43] | loss=0.1296 | acc=16/16
+  Batch  84 | t=[3,44] | loss=0.1235 | acc=16/16
+  Batch  85 | t=[3,44] | loss=0.1264 | acc=16/16
+  Batch  86 | t=[3,34] | loss=0.1427 | acc=16/16
+  Batch  87 | t=[1,43] | loss=0.1343 | acc=16/16
+  Batch  88 | t=[2,44] | loss=0.1267 | acc=16/16
+  Batch  89 | t=[1,44] | loss=0.1253 | acc=16/16
+  Batch  90 | t=[1,42] | loss=0.1297 | acc=16/16
+  Batch  91 | t=[5,11] | loss=0.1206 | acc=2/2
+Epoch 9 [warmup] | Loss: 0.1608 | Val Loss: 0.1631 | Val Acc: 98.8% | LR: 3.19e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[4,45] | loss=0.1226 | acc=16/16
+  Batch   1 | t=[3,48] | loss=0.2956 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=36
+  Batch   2 | t=[2,49] | loss=0.1258 | acc=16/16
+  Batch   3 | t=[3,48] | loss=0.1210 | acc=16/16
+  Batch   4 | t=[6,47] | loss=0.1271 | acc=16/16
+  Batch   5 | t=[3,49] | loss=0.1205 | acc=16/16
+  Batch   6 | t=[9,47] | loss=0.2929 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=17
+  Batch   7 | t=[1,44] | loss=0.1227 | acc=16/16
+  Batch   8 | t=[8,49] | loss=0.1278 | acc=16/16
+  Batch   9 | t=[0,49] | loss=0.5147 | acc=14/16 | MISCLASSIFIED: [5] pred=0 true=1 t=6, [12] pred=0 true=1 t=11
+  Batch  10 | t=[0,49] | loss=0.1415 | acc=16/16
+  Batch  11 | t=[3,49] | loss=0.1423 | acc=16/16
+  Batch  12 | t=[0,48] | loss=0.1566 | acc=16/16
+  Batch  13 | t=[1,46] | loss=0.1364 | acc=16/16
+  Batch  14 | t=[0,49] | loss=0.2426 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=9
+  Batch  15 | t=[0,48] | loss=0.2815 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=0
+  Batch  16 | t=[3,49] | loss=0.1207 | acc=16/16
+  Batch  17 | t=[2,45] | loss=0.1208 | acc=16/16
+  Batch  18 | t=[3,47] | loss=0.1268 | acc=16/16
+  Batch  19 | t=[0,46] | loss=0.1270 | acc=16/16
+  Batch  20 | t=[8,49] | loss=0.1888 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=12
+  Batch  21 | t=[1,46] | loss=0.1239 | acc=16/16
+  Batch  22 | t=[5,43] | loss=0.2531 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=25
+  Batch  23 | t=[2,48] | loss=0.1192 | acc=16/16
+  Batch  24 | t=[8,49] | loss=0.1270 | acc=16/16
+  Batch  25 | t=[4,47] | loss=0.1249 | acc=16/16
+  Batch  26 | t=[7,49] | loss=0.1334 | acc=16/16
+  Batch  27 | t=[1,48] | loss=0.1278 | acc=16/16
+  Batch  28 | t=[2,48] | loss=0.1303 | acc=16/16
+  Batch  29 | t=[5,49] | loss=0.1217 | acc=16/16
+  Batch  30 | t=[4,43] | loss=0.1205 | acc=16/16
+  Batch  31 | t=[0,44] | loss=0.1271 | acc=16/16
+  Batch  32 | t=[3,46] | loss=0.1265 | acc=16/16
+  Batch  33 | t=[1,44] | loss=0.1242 | acc=16/16
+  Batch  34 | t=[7,49] | loss=0.1258 | acc=16/16
+  Batch  35 | t=[0,45] | loss=0.1261 | acc=16/16
+  Batch  36 | t=[3,49] | loss=0.1693 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=6
+  Batch  37 | t=[4,48] | loss=0.1272 | acc=16/16
+  Batch  38 | t=[5,49] | loss=0.4106 | acc=14/16 | MISCLASSIFIED: [11] pred=0 true=1 t=7, [14] pred=0 true=1 t=25
+  Batch  39 | t=[9,48] | loss=0.1296 | acc=16/16
+  Batch  40 | t=[7,49] | loss=0.1472 | acc=16/16
+  Batch  41 | t=[2,49] | loss=0.2184 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=37
+  Batch  42 | t=[0,48] | loss=0.1450 | acc=16/16
+  Batch  43 | t=[5,45] | loss=0.2091 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=7
+  Batch  44 | t=[5,46] | loss=0.2967 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=19
+  Batch  45 | t=[0,47] | loss=0.1382 | acc=16/16
+  Batch  46 | t=[7,49] | loss=0.1357 | acc=16/16
+  Batch  47 | t=[0,43] | loss=0.1276 | acc=16/16
+  Batch  48 | t=[6,48] | loss=0.1394 | acc=16/16
+  Batch  49 | t=[5,48] | loss=0.1221 | acc=16/16
+  Batch  50 | t=[2,49] | loss=0.1230 | acc=16/16
+  Batch  51 | t=[1,48] | loss=0.1259 | acc=16/16
+  Batch  52 | t=[7,46] | loss=0.1304 | acc=16/16
+  Batch  53 | t=[2,42] | loss=0.1285 | acc=16/16
+  Batch  54 | t=[0,48] | loss=0.1301 | acc=16/16
+  Batch  55 | t=[4,49] | loss=0.1351 | acc=16/16
+  Batch  56 | t=[2,49] | loss=0.1281 | acc=16/16
+  Batch  57 | t=[3,49] | loss=0.1235 | acc=16/16
+  Batch  58 | t=[1,40] | loss=0.1224 | acc=16/16
+  Batch  59 | t=[2,43] | loss=0.1245 | acc=16/16
+  Batch  60 | t=[0,48] | loss=0.1200 | acc=16/16
+  Batch  61 | t=[5,49] | loss=0.1192 | acc=16/16
+  Batch  62 | t=[0,49] | loss=0.1264 | acc=16/16
+  Batch  63 | t=[12,46] | loss=0.1218 | acc=16/16
+  Batch  64 | t=[1,44] | loss=0.1221 | acc=16/16
+  Batch  65 | t=[1,47] | loss=0.2606 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=29
+  Batch  66 | t=[0,41] | loss=0.1276 | acc=16/16
+  Batch  67 | t=[5,46] | loss=0.1223 | acc=16/16
+  Batch  68 | t=[3,46] | loss=0.1239 | acc=16/16
+  Batch  69 | t=[1,46] | loss=0.2696 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=2
+  Batch  70 | t=[1,45] | loss=0.1214 | acc=16/16
+  Batch  71 | t=[3,47] | loss=0.1233 | acc=16/16
+  Batch  72 | t=[8,49] | loss=0.1221 | acc=16/16
+  Batch  73 | t=[1,43] | loss=0.1200 | acc=16/16
+  Batch  74 | t=[0,49] | loss=0.2830 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=45
+  Batch  75 | t=[0,41] | loss=0.1211 | acc=16/16
+  Batch  76 | t=[4,42] | loss=0.1189 | acc=16/16
+  Batch  77 | t=[2,46] | loss=0.1215 | acc=16/16
+  Batch  78 | t=[6,49] | loss=0.1952 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=36
+  Batch  79 | t=[0,48] | loss=0.1212 | acc=16/16
+  Batch  80 | t=[3,46] | loss=0.1342 | acc=16/16
+  Batch  81 | t=[4,46] | loss=0.1281 | acc=16/16
+  Batch  82 | t=[5,48] | loss=0.1211 | acc=16/16
+  Batch  83 | t=[1,44] | loss=0.1192 | acc=16/16
+  Batch  84 | t=[0,49] | loss=0.1236 | acc=16/16
+  Batch  85 | t=[4,49] | loss=0.2813 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=33
+  Batch  86 | t=[5,49] | loss=0.3145 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=36
+  Batch  87 | t=[2,48] | loss=0.1224 | acc=16/16
+  Batch  88 | t=[2,46] | loss=0.1240 | acc=16/16
+  Batch  89 | t=[1,45] | loss=0.3041 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=30
+  Batch  90 | t=[1,47] | loss=0.2738 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=15
+  Batch  91 | t=[17,45] | loss=0.1406 | acc=2/2
+Epoch 10 [warmup] | Loss: 0.1598 | Val Loss: 0.1718 | Val Acc: 98.1% | LR: 3.19e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[0,53] | loss=0.1595 | acc=16/16
+  Batch   1 | t=[0,54] | loss=0.1364 | acc=16/16
+  Batch   2 | t=[1,53] | loss=0.1267 | acc=16/16
+  Batch   3 | t=[3,52] | loss=0.1233 | acc=16/16
+  Batch   4 | t=[0,54] | loss=0.1237 | acc=16/16
+  Batch   5 | t=[5,49] | loss=0.3386 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=14
+  Batch   6 | t=[0,50] | loss=0.1239 | acc=16/16
+  Batch   7 | t=[2,50] | loss=0.1254 | acc=16/16
+  Batch   8 | t=[4,53] | loss=0.1256 | acc=16/16
+  Batch   9 | t=[0,53] | loss=0.1265 | acc=16/16
+  Batch  10 | t=[0,52] | loss=0.1231 | acc=16/16
+  Batch  11 | t=[0,52] | loss=0.2453 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=23
+  Batch  12 | t=[18,51] | loss=0.1241 | acc=16/16
+  Batch  13 | t=[4,54] | loss=0.1292 | acc=16/16
+  Batch  14 | t=[5,54] | loss=0.1222 | acc=16/16
+  Batch  15 | t=[15,53] | loss=0.1286 | acc=16/16
+  Batch  16 | t=[2,51] | loss=0.1307 | acc=16/16
+  Batch  17 | t=[0,53] | loss=0.1255 | acc=16/16
+  Batch  18 | t=[4,54] | loss=0.1260 | acc=16/16
+  Batch  19 | t=[0,44] | loss=0.1230 | acc=16/16
+  Batch  20 | t=[2,54] | loss=0.1208 | acc=16/16
+  Batch  21 | t=[2,53] | loss=0.1288 | acc=16/16
+  Batch  22 | t=[4,53] | loss=0.1263 | acc=16/16
+  Batch  23 | t=[11,53] | loss=0.3054 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=29
+  Batch  24 | t=[4,51] | loss=0.1203 | acc=16/16
+  Batch  25 | t=[5,50] | loss=0.3132 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=29
+  Batch  26 | t=[1,54] | loss=0.1265 | acc=16/16
+  Batch  27 | t=[1,53] | loss=0.1267 | acc=16/16
+  Batch  28 | t=[2,54] | loss=0.1320 | acc=16/16
+  Batch  29 | t=[0,47] | loss=0.1419 | acc=16/16
+  Batch  30 | t=[0,54] | loss=0.1316 | acc=16/16
+  Batch  31 | t=[3,54] | loss=0.1255 | acc=16/16
+  Batch  32 | t=[2,48] | loss=0.1220 | acc=16/16
+  Batch  33 | t=[0,49] | loss=0.2677 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=33
+  Batch  34 | t=[1,54] | loss=0.1189 | acc=16/16
+  Batch  35 | t=[8,52] | loss=0.2839 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=21
+  Batch  36 | t=[5,53] | loss=0.1207 | acc=16/16
+  Batch  37 | t=[3,47] | loss=0.1218 | acc=16/16
+  Batch  38 | t=[10,45] | loss=0.1250 | acc=16/16
+  Batch  39 | t=[1,51] | loss=0.1205 | acc=16/16
+  Batch  40 | t=[1,48] | loss=0.1233 | acc=16/16
+  Batch  41 | t=[0,54] | loss=0.1225 | acc=16/16
+  Batch  42 | t=[0,45] | loss=0.1208 | acc=16/16
+  Batch  43 | t=[0,50] | loss=0.1219 | acc=16/16
+  Batch  44 | t=[3,54] | loss=0.1220 | acc=16/16
+  Batch  45 | t=[0,53] | loss=0.1199 | acc=16/16
+  Batch  46 | t=[1,53] | loss=0.1197 | acc=16/16
+  Batch  47 | t=[4,50] | loss=0.1210 | acc=16/16
+  Batch  48 | t=[0,50] | loss=0.1213 | acc=16/16
+  Batch  49 | t=[5,51] | loss=0.1192 | acc=16/16
+  Batch  50 | t=[0,54] | loss=0.1193 | acc=16/16
+  Batch  51 | t=[8,49] | loss=0.1193 | acc=16/16
+  Batch  52 | t=[1,52] | loss=0.4747 | acc=14/16 | MISCLASSIFIED: [12] pred=0 true=1 t=11, [13] pred=0 true=1 t=9
+  Batch  53 | t=[7,53] | loss=0.1231 | acc=16/16
+  Batch  54 | t=[4,52] | loss=0.2637 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=36
+  Batch  55 | t=[4,48] | loss=0.1416 | acc=16/16
+  Batch  56 | t=[5,51] | loss=0.2583 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=49
+  Batch  57 | t=[1,53] | loss=0.1573 | acc=16/16
+  Batch  58 | t=[5,53] | loss=0.1408 | acc=16/16
+  Batch  59 | t=[0,54] | loss=0.2834 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=53
+  Batch  60 | t=[1,50] | loss=0.2193 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=50
+  Batch  61 | t=[1,51] | loss=0.1266 | acc=16/16
+  Batch  62 | t=[2,50] | loss=0.3007 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=50
+  Batch  63 | t=[7,50] | loss=0.1314 | acc=16/16
+  Batch  64 | t=[0,53] | loss=0.1635 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=35
+  Batch  65 | t=[5,51] | loss=0.1352 | acc=16/16
+  Batch  66 | t=[6,54] | loss=0.1344 | acc=16/16
+  Batch  67 | t=[1,50] | loss=0.1396 | acc=16/16
+  Batch  68 | t=[4,46] | loss=0.1566 | acc=16/16
+  Batch  69 | t=[0,54] | loss=0.1331 | acc=16/16
+  Batch  70 | t=[6,49] | loss=0.1238 | acc=16/16
+  Batch  71 | t=[5,52] | loss=0.2248 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=47
+  Batch  72 | t=[0,47] | loss=0.1349 | acc=16/16
+  Batch  73 | t=[0,50] | loss=0.3324 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=3
+  Batch  74 | t=[2,52] | loss=0.1334 | acc=16/16
+  Batch  75 | t=[1,52] | loss=0.1484 | acc=16/16
+  Batch  76 | t=[0,50] | loss=0.1395 | acc=16/16
+  Batch  77 | t=[2,51] | loss=0.1294 | acc=16/16
+  Batch  78 | t=[0,53] | loss=0.2889 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=18
+  Batch  79 | t=[17,42] | loss=0.1214 | acc=16/16
+  Batch  80 | t=[7,49] | loss=0.2823 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=49
+  Batch  81 | t=[0,50] | loss=0.1323 | acc=16/16
+  Batch  82 | t=[2,46] | loss=0.1668 | acc=16/16
+  Batch  83 | t=[6,54] | loss=0.2678 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=8
+  Batch  84 | t=[2,52] | loss=0.1292 | acc=16/16
+  Batch  85 | t=[5,54] | loss=0.1270 | acc=16/16
+  Batch  86 | t=[0,51] | loss=0.1318 | acc=16/16
+  Batch  87 | t=[0,54] | loss=0.1238 | acc=16/16
+  Batch  88 | t=[3,54] | loss=0.1213 | acc=16/16
+  Batch  89 | t=[4,54] | loss=0.1216 | acc=16/16
+  Batch  90 | t=[2,54] | loss=0.1226 | acc=16/16
+  Batch  91 | t=[31,39] | loss=0.1229 | acc=2/2
+Epoch 11 [warmup] | Loss: 0.1590 | Val Loss: 0.1637 | Val Acc: 98.6% | LR: 3.19e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[7,55] | loss=0.2937 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=12
+  Batch   1 | t=[3,57] | loss=0.1215 | acc=16/16
+  Batch   2 | t=[1,53] | loss=0.1200 | acc=16/16
+  Batch   3 | t=[7,58] | loss=0.2974 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=50
+  Batch   4 | t=[0,57] | loss=0.1211 | acc=16/16
+  Batch   5 | t=[4,59] | loss=0.1270 | acc=16/16
+  Batch   6 | t=[0,59] | loss=0.1283 | acc=16/16
+  Batch   7 | t=[2,59] | loss=0.1286 | acc=16/16
+  Batch   8 | t=[3,57] | loss=0.1300 | acc=16/16
+  Batch   9 | t=[1,58] | loss=0.1264 | acc=16/16
+  Batch  10 | t=[1,49] | loss=0.1257 | acc=16/16
+  Batch  11 | t=[3,57] | loss=0.1271 | acc=16/16
+  Batch  12 | t=[5,58] | loss=0.2940 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=39
+  Batch  13 | t=[12,56] | loss=0.1212 | acc=16/16
+  Batch  14 | t=[1,50] | loss=0.1199 | acc=16/16
+  Batch  15 | t=[0,59] | loss=0.2708 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=36
+  Batch  16 | t=[0,54] | loss=0.3019 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=38
+  Batch  17 | t=[0,52] | loss=0.1240 | acc=16/16
+  Batch  18 | t=[17,59] | loss=0.1382 | acc=16/16
+  Batch  19 | t=[5,53] | loss=0.1372 | acc=16/16
+  Batch  20 | t=[0,54] | loss=0.1407 | acc=16/16
+  Batch  21 | t=[1,58] | loss=0.1327 | acc=16/16
+  Batch  22 | t=[1,58] | loss=0.1231 | acc=16/16
+  Batch  23 | t=[1,57] | loss=0.1231 | acc=16/16
+  Batch  24 | t=[3,52] | loss=0.1207 | acc=16/16
+  Batch  25 | t=[6,59] | loss=0.1210 | acc=16/16
+  Batch  26 | t=[0,58] | loss=0.1256 | acc=16/16
+  Batch  27 | t=[1,59] | loss=0.1278 | acc=16/16
+  Batch  28 | t=[1,54] | loss=0.2832 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=18
+  Batch  29 | t=[0,56] | loss=0.2333 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=45
+  Batch  30 | t=[4,56] | loss=0.1229 | acc=16/16
+  Batch  31 | t=[0,46] | loss=0.1206 | acc=16/16
+  Batch  32 | t=[3,54] | loss=0.1238 | acc=16/16
+  Batch  33 | t=[0,58] | loss=0.1245 | acc=16/16
+  Batch  34 | t=[8,59] | loss=0.1284 | acc=16/16
+  Batch  35 | t=[1,58] | loss=0.2587 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=44
+  Batch  36 | t=[0,57] | loss=0.2535 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=36
+  Batch  37 | t=[1,54] | loss=0.1378 | acc=16/16
+  Batch  38 | t=[2,56] | loss=0.1327 | acc=16/16
+  Batch  39 | t=[9,58] | loss=0.1387 | acc=16/16
+  Batch  40 | t=[0,59] | loss=0.1312 | acc=16/16
+  Batch  41 | t=[1,51] | loss=0.1214 | acc=16/16
+  Batch  42 | t=[0,56] | loss=0.1256 | acc=16/16
+  Batch  43 | t=[0,52] | loss=0.1224 | acc=16/16
+  Batch  44 | t=[0,56] | loss=0.1259 | acc=16/16
+  Batch  45 | t=[2,57] | loss=0.1282 | acc=16/16
+  Batch  46 | t=[1,59] | loss=0.1277 | acc=16/16
+  Batch  47 | t=[4,47] | loss=0.1267 | acc=16/16
+  Batch  48 | t=[0,59] | loss=0.3132 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=17
+  Batch  49 | t=[2,57] | loss=0.1244 | acc=16/16
+  Batch  50 | t=[7,58] | loss=0.1220 | acc=16/16
+  Batch  51 | t=[1,59] | loss=0.1210 | acc=16/16
+  Batch  52 | t=[0,59] | loss=0.1978 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=29
+  Batch  53 | t=[2,58] | loss=0.1286 | acc=16/16
+  Batch  54 | t=[0,52] | loss=0.1243 | acc=16/16
+  Batch  55 | t=[6,59] | loss=0.2450 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=41
+  Batch  56 | t=[5,59] | loss=0.1346 | acc=16/16
+  Batch  57 | t=[4,53] | loss=0.1536 | acc=16/16
+  Batch  58 | t=[2,57] | loss=0.1312 | acc=16/16
+  Batch  59 | t=[7,59] | loss=0.2668 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=9
+  Batch  60 | t=[5,55] | loss=0.3349 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=7
+  Batch  61 | t=[3,58] | loss=0.1286 | acc=16/16
+  Batch  62 | t=[5,57] | loss=0.1414 | acc=16/16
+  Batch  63 | t=[5,58] | loss=0.1237 | acc=16/16
+  Batch  64 | t=[1,55] | loss=0.1237 | acc=16/16
+  Batch  65 | t=[12,58] | loss=0.1220 | acc=16/16
+  Batch  66 | t=[0,55] | loss=0.1612 | acc=16/16
+  Batch  67 | t=[1,54] | loss=0.1257 | acc=16/16
+  Batch  68 | t=[4,51] | loss=0.2424 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=4
+  Batch  69 | t=[4,56] | loss=0.1242 | acc=16/16
+  Batch  70 | t=[2,55] | loss=0.3206 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=26
+  Batch  71 | t=[2,54] | loss=0.1252 | acc=16/16
+  Batch  72 | t=[2,57] | loss=0.2283 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=13
+  Batch  73 | t=[8,50] | loss=0.1380 | acc=16/16
+  Batch  74 | t=[0,59] | loss=0.1405 | acc=16/16
+  Batch  75 | t=[4,57] | loss=0.1364 | acc=16/16
+  Batch  76 | t=[0,55] | loss=0.1347 | acc=16/16
+  Batch  77 | t=[0,57] | loss=0.1336 | acc=16/16
+  Batch  78 | t=[1,57] | loss=0.1248 | acc=16/16
+  Batch  79 | t=[0,58] | loss=0.2275 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=18
+  Batch  80 | t=[4,59] | loss=0.1275 | acc=16/16
+  Batch  81 | t=[4,58] | loss=0.1278 | acc=16/16
+  Batch  82 | t=[2,58] | loss=0.1251 | acc=16/16
+  Batch  83 | t=[6,54] | loss=0.1237 | acc=16/16
+  Batch  84 | t=[0,44] | loss=0.1286 | acc=16/16
+  Batch  85 | t=[2,59] | loss=0.1295 | acc=16/16
+  Batch  86 | t=[2,59] | loss=0.2369 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=19
+  Batch  87 | t=[1,48] | loss=0.1291 | acc=16/16
+  Batch  88 | t=[6,52] | loss=0.2185 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=52
+  Batch  89 | t=[1,54] | loss=0.1292 | acc=16/16
+  Batch  90 | t=[0,58] | loss=0.1737 | acc=15/16 | MISCLASSIFIED: [5] pred=1 true=0 t=21
+  Batch  91 | t=[6,26] | loss=0.1196 | acc=2/2
+Epoch 12 [warmup] | Loss: 0.1588 | Val Loss: 0.1784 | Val Acc: 97.8% | LR: 3.19e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[1,58] | loss=0.1263 | acc=16/16
+  Batch   1 | t=[1,63] | loss=0.1254 | acc=16/16
+  Batch   2 | t=[4,64] | loss=0.2903 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=28
+  Batch   3 | t=[3,56] | loss=0.1230 | acc=16/16
+  Batch   4 | t=[1,52] | loss=0.1986 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=9
+  Batch   5 | t=[4,57] | loss=0.3376 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=57
+  Batch   6 | t=[2,51] | loss=0.1347 | acc=16/16
+  Batch   7 | t=[2,62] | loss=0.2331 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=52
+  Batch   8 | t=[4,51] | loss=0.1367 | acc=16/16
+  Batch   9 | t=[23,62] | loss=0.1405 | acc=16/16
+  Batch  10 | t=[1,61] | loss=0.1261 | acc=16/16
+  Batch  11 | t=[2,63] | loss=0.1249 | acc=16/16
+  Batch  12 | t=[1,62] | loss=0.2878 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=26
+  Batch  13 | t=[0,55] | loss=0.2275 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=40
+  Batch  14 | t=[7,58] | loss=0.1230 | acc=16/16
+  Batch  15 | t=[3,62] | loss=0.1296 | acc=16/16
+  Batch  16 | t=[9,64] | loss=0.1219 | acc=16/16
+  Batch  17 | t=[4,55] | loss=0.1325 | acc=16/16
+  Batch  18 | t=[3,61] | loss=0.1232 | acc=16/16
+  Batch  19 | t=[1,64] | loss=0.1253 | acc=16/16
+  Batch  20 | t=[2,64] | loss=0.1321 | acc=16/16
+  Batch  21 | t=[7,64] | loss=0.1227 | acc=16/16
+  Batch  22 | t=[1,64] | loss=0.1241 | acc=16/16
+  Batch  23 | t=[0,55] | loss=0.1453 | acc=16/16
+  Batch  24 | t=[1,63] | loss=0.1315 | acc=16/16
+  Batch  25 | t=[1,60] | loss=0.1270 | acc=16/16
+  Batch  26 | t=[2,64] | loss=0.1602 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=30
+  Batch  27 | t=[1,55] | loss=0.2802 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=55
+  Batch  28 | t=[10,60] | loss=0.1278 | acc=16/16
+  Batch  29 | t=[0,62] | loss=0.1237 | acc=16/16
+  Batch  30 | t=[0,63] | loss=0.1315 | acc=16/16
+  Batch  31 | t=[1,64] | loss=0.1269 | acc=16/16
+  Batch  32 | t=[5,64] | loss=0.1370 | acc=16/16
+  Batch  33 | t=[10,61] | loss=0.1224 | acc=16/16
+  Batch  34 | t=[0,53] | loss=0.1232 | acc=16/16
+  Batch  35 | t=[1,58] | loss=0.3028 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=7
+  Batch  36 | t=[2,57] | loss=0.1206 | acc=16/16
+  Batch  37 | t=[4,64] | loss=0.1315 | acc=16/16
+  Batch  38 | t=[0,64] | loss=0.1240 | acc=16/16
+  Batch  39 | t=[3,61] | loss=0.1239 | acc=16/16
+  Batch  40 | t=[5,64] | loss=0.2344 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=36
+  Batch  41 | t=[1,64] | loss=0.1220 | acc=16/16
+  Batch  42 | t=[6,62] | loss=0.1276 | acc=16/16
+  Batch  43 | t=[1,62] | loss=0.1462 | acc=16/16
+  Batch  44 | t=[5,63] | loss=0.1201 | acc=16/16
+  Batch  45 | t=[5,62] | loss=0.1230 | acc=16/16
+  Batch  46 | t=[5,54] | loss=0.1223 | acc=16/16
+  Batch  47 | t=[2,53] | loss=0.1253 | acc=16/16
+  Batch  48 | t=[3,61] | loss=0.1220 | acc=16/16
+  Batch  49 | t=[7,60] | loss=0.1748 | acc=15/16 | MISCLASSIFIED: [8] pred=1 true=0 t=22
+  Batch  50 | t=[9,61] | loss=0.1683 | acc=15/16 | MISCLASSIFIED: [6] pred=1 true=0 t=16
+  Batch  51 | t=[3,64] | loss=0.1226 | acc=16/16
+  Batch  52 | t=[13,64] | loss=0.1379 | acc=16/16
+  Batch  53 | t=[4,57] | loss=0.1239 | acc=16/16
+  Batch  54 | t=[2,56] | loss=0.1264 | acc=16/16
+  Batch  55 | t=[3,61] | loss=0.3072 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=31
+  Batch  56 | t=[1,62] | loss=0.1265 | acc=16/16
+  Batch  57 | t=[0,58] | loss=0.2584 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=46
+  Batch  58 | t=[0,61] | loss=0.1185 | acc=16/16
+  Batch  59 | t=[13,63] | loss=0.2827 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=56
+  Batch  60 | t=[8,62] | loss=0.1272 | acc=16/16
+  Batch  61 | t=[3,63] | loss=0.1488 | acc=16/16
+  Batch  62 | t=[4,64] | loss=0.1473 | acc=16/16
+  Batch  63 | t=[3,61] | loss=0.1340 | acc=16/16
+  Batch  64 | t=[2,60] | loss=0.1331 | acc=16/16
+  Batch  65 | t=[0,58] | loss=0.1408 | acc=16/16
+  Batch  66 | t=[1,61] | loss=0.1186 | acc=16/16
+  Batch  67 | t=[5,63] | loss=0.1229 | acc=16/16
+  Batch  68 | t=[0,64] | loss=0.1281 | acc=16/16
+  Batch  69 | t=[4,61] | loss=0.2950 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=55
+  Batch  70 | t=[1,64] | loss=0.1271 | acc=16/16
+  Batch  71 | t=[3,64] | loss=0.1275 | acc=16/16
+  Batch  72 | t=[2,53] | loss=0.1252 | acc=16/16
+  Batch  73 | t=[10,62] | loss=0.1238 | acc=16/16
+  Batch  74 | t=[1,55] | loss=0.1215 | acc=16/16
+  Batch  75 | t=[4,64] | loss=0.1217 | acc=16/16
+  Batch  76 | t=[13,62] | loss=0.1184 | acc=16/16
+  Batch  77 | t=[0,61] | loss=0.3454 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=0
+  Batch  78 | t=[5,64] | loss=0.2357 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=64
+  Batch  79 | t=[3,62] | loss=0.1250 | acc=16/16
+  Batch  80 | t=[1,52] | loss=0.1410 | acc=16/16
+  Batch  81 | t=[0,62] | loss=0.1332 | acc=16/16
+  Batch  82 | t=[6,64] | loss=0.1306 | acc=16/16
+  Batch  83 | t=[7,64] | loss=0.1245 | acc=16/16
+  Batch  84 | t=[5,62] | loss=0.2376 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=17
+  Batch  85 | t=[5,52] | loss=0.1194 | acc=16/16
+  Batch  86 | t=[5,61] | loss=0.2958 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=21
+  Batch  87 | t=[6,60] | loss=0.1194 | acc=16/16
+  Batch  88 | t=[0,62] | loss=0.1233 | acc=16/16
+  Batch  89 | t=[2,64] | loss=0.1216 | acc=16/16
+  Batch  90 | t=[3,61] | loss=0.1216 | acc=16/16
+  Batch  91 | t=[26,33] | loss=0.1191 | acc=2/2
+Epoch 13 [warmup] | Loss: 0.1558 | Val Loss: 0.1586 | Val Acc: 98.8% | LR: 3.18e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[1,62] | loss=0.1222 | acc=16/16
+  Batch   1 | t=[0,67] | loss=0.1222 | acc=16/16
+  Batch   2 | t=[7,67] | loss=0.1218 | acc=16/16
+  Batch   3 | t=[14,66] | loss=0.1208 | acc=16/16
+  Batch   4 | t=[2,63] | loss=0.1187 | acc=16/16
+  Batch   5 | t=[6,59] | loss=0.1199 | acc=16/16
+  Batch   6 | t=[6,69] | loss=0.2947 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=6
+  Batch   7 | t=[4,65] | loss=0.1197 | acc=16/16
+  Batch   8 | t=[3,67] | loss=0.1213 | acc=16/16
+  Batch   9 | t=[8,67] | loss=0.1258 | acc=16/16
+  Batch  10 | t=[3,61] | loss=0.2540 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=49
+  Batch  11 | t=[3,65] | loss=0.1245 | acc=16/16
+  Batch  12 | t=[2,67] | loss=0.4141 | acc=14/16 | MISCLASSIFIED: [10] pred=0 true=1 t=2, [12] pred=0 true=1 t=60
+  Batch  13 | t=[0,65] | loss=0.1377 | acc=16/16
+  Batch  14 | t=[8,60] | loss=0.1415 | acc=16/16
+  Batch  15 | t=[12,61] | loss=0.1521 | acc=16/16
+  Batch  16 | t=[2,65] | loss=0.1369 | acc=16/16
+  Batch  17 | t=[1,64] | loss=0.1305 | acc=16/16
+  Batch  18 | t=[4,65] | loss=0.1271 | acc=16/16
+  Batch  19 | t=[0,67] | loss=0.1310 | acc=16/16
+  Batch  20 | t=[19,66] | loss=0.1230 | acc=16/16
+  Batch  21 | t=[5,59] | loss=0.1278 | acc=16/16
+  Batch  22 | t=[4,68] | loss=0.2348 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=13
+  Batch  23 | t=[4,62] | loss=0.1311 | acc=16/16
+  Batch  24 | t=[2,68] | loss=0.1262 | acc=16/16
+  Batch  25 | t=[0,60] | loss=0.1284 | acc=16/16
+  Batch  26 | t=[2,63] | loss=0.2457 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=34
+  Batch  27 | t=[4,69] | loss=0.1283 | acc=16/16
+  Batch  28 | t=[1,68] | loss=0.2255 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=37
+  Batch  29 | t=[1,67] | loss=0.1272 | acc=16/16
+  Batch  30 | t=[11,68] | loss=0.1234 | acc=16/16
+  Batch  31 | t=[2,60] | loss=0.2259 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=5
+  Batch  32 | t=[1,63] | loss=0.1507 | acc=16/16
+  Batch  33 | t=[2,67] | loss=0.1402 | acc=16/16
+  Batch  34 | t=[8,67] | loss=0.1515 | acc=16/16
+  Batch  35 | t=[2,69] | loss=0.2249 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=69
+  Batch  36 | t=[3,68] | loss=0.1342 | acc=16/16
+  Batch  37 | t=[0,68] | loss=0.1354 | acc=16/16
+  Batch  38 | t=[1,68] | loss=0.1265 | acc=16/16
+  Batch  39 | t=[3,69] | loss=0.1356 | acc=16/16
+  Batch  40 | t=[0,66] | loss=0.1260 | acc=16/16
+  Batch  41 | t=[9,62] | loss=0.1299 | acc=16/16
+  Batch  42 | t=[2,61] | loss=0.1291 | acc=16/16
+  Batch  43 | t=[5,67] | loss=0.1311 | acc=16/16
+  Batch  44 | t=[4,66] | loss=0.1248 | acc=16/16
+  Batch  45 | t=[14,61] | loss=0.1290 | acc=16/16
+  Batch  46 | t=[10,69] | loss=0.1234 | acc=16/16
+  Batch  47 | t=[4,66] | loss=0.1308 | acc=16/16
+  Batch  48 | t=[0,68] | loss=0.2824 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=10
+  Batch  49 | t=[9,61] | loss=0.1272 | acc=16/16
+  Batch  50 | t=[7,69] | loss=0.1215 | acc=16/16
+  Batch  51 | t=[11,55] | loss=0.1276 | acc=16/16
+  Batch  52 | t=[0,62] | loss=0.1320 | acc=16/16
+  Batch  53 | t=[4,60] | loss=0.2374 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=25
+  Batch  54 | t=[0,67] | loss=0.2514 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=44
+  Batch  55 | t=[6,68] | loss=0.1361 | acc=16/16
+  Batch  56 | t=[0,64] | loss=0.1325 | acc=16/16
+  Batch  57 | t=[10,59] | loss=0.1294 | acc=16/16
+  Batch  58 | t=[2,64] | loss=0.1283 | acc=16/16
+  Batch  59 | t=[6,65] | loss=0.1236 | acc=16/16
+  Batch  60 | t=[1,61] | loss=0.1222 | acc=16/16
+  Batch  61 | t=[0,66] | loss=0.1253 | acc=16/16
+  Batch  62 | t=[3,68] | loss=0.1250 | acc=16/16
+  Batch  63 | t=[3,68] | loss=0.1220 | acc=16/16
+  Batch  64 | t=[2,68] | loss=0.1240 | acc=16/16
+  Batch  65 | t=[3,67] | loss=0.3352 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=32
+  Batch  66 | t=[10,63] | loss=0.1211 | acc=16/16
+  Batch  67 | t=[2,64] | loss=0.2533 | acc=15/16 | MISCLASSIFIED: [6] pred=0 true=1 t=25
+  Batch  68 | t=[1,68] | loss=0.4280 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=65, [14] pred=0 true=1 t=47
+  Batch  69 | t=[3,63] | loss=0.1353 | acc=16/16
+  Batch  70 | t=[11,63] | loss=0.2520 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=47
+  Batch  71 | t=[0,69] | loss=0.1804 | acc=16/16
+  Batch  72 | t=[0,65] | loss=0.1668 | acc=16/16
+  Batch  73 | t=[1,60] | loss=0.1421 | acc=16/16
+  Batch  74 | t=[10,67] | loss=0.1346 | acc=16/16
+  Batch  75 | t=[0,67] | loss=0.1253 | acc=16/16
+  Batch  76 | t=[6,63] | loss=0.3790 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=36
+  Batch  77 | t=[3,68] | loss=0.1322 | acc=16/16
+  Batch  78 | t=[5,61] | loss=0.1348 | acc=16/16
+  Batch  79 | t=[0,68] | loss=0.1365 | acc=16/16
+  Batch  80 | t=[2,66] | loss=0.1333 | acc=16/16
+  Batch  81 | t=[4,69] | loss=0.1308 | acc=16/16
+  Batch  82 | t=[3,68] | loss=0.1285 | acc=16/16
+  Batch  83 | t=[3,67] | loss=0.1274 | acc=16/16
+  Batch  84 | t=[3,64] | loss=0.1500 | acc=16/16
+  Batch  85 | t=[2,69] | loss=0.3864 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=69
+  Batch  86 | t=[10,69] | loss=0.1238 | acc=16/16
+  Batch  87 | t=[2,67] | loss=0.1241 | acc=16/16
+  Batch  88 | t=[16,68] | loss=0.2207 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=25
+  Batch  89 | t=[0,68] | loss=0.1493 | acc=16/16
+  Batch  90 | t=[0,69] | loss=0.1475 | acc=16/16
+  Batch  91 | t=[14,16] | loss=0.1433 | acc=2/2
+Epoch 14 [warmup] | Loss: 0.1617 | Val Loss: 0.1643 | Val Acc: 98.6% | LR: 3.18e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[3,73] | loss=0.1472 | acc=16/16
+  Batch   1 | t=[1,74] | loss=0.1350 | acc=16/16
+  Batch   2 | t=[3,58] | loss=0.1331 | acc=16/16
+  Batch   3 | t=[8,63] | loss=0.1289 | acc=16/16
+  Batch   4 | t=[5,67] | loss=0.1215 | acc=16/16
+  Batch   5 | t=[0,67] | loss=0.1302 | acc=16/16
+  Batch   6 | t=[0,72] | loss=0.1286 | acc=16/16
+  Batch   7 | t=[7,58] | loss=0.1278 | acc=16/16
+  Batch   8 | t=[9,64] | loss=0.1296 | acc=16/16
+  Batch   9 | t=[0,69] | loss=0.1300 | acc=16/16
+  Batch  10 | t=[8,74] | loss=0.1286 | acc=16/16
+  Batch  11 | t=[6,69] | loss=0.1258 | acc=16/16
+  Batch  12 | t=[9,67] | loss=0.1225 | acc=16/16
+  Batch  13 | t=[5,69] | loss=0.2566 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=65
+  Batch  14 | t=[0,71] | loss=0.1192 | acc=16/16
+  Batch  15 | t=[1,71] | loss=0.1186 | acc=16/16
+  Batch  16 | t=[3,74] | loss=0.1241 | acc=16/16
+  Batch  17 | t=[7,53] | loss=0.1252 | acc=16/16
+  Batch  18 | t=[8,69] | loss=0.1272 | acc=16/16
+  Batch  19 | t=[0,73] | loss=0.1278 | acc=16/16
+  Batch  20 | t=[0,71] | loss=0.1231 | acc=16/16
+  Batch  21 | t=[2,57] | loss=0.1260 | acc=16/16
+  Batch  22 | t=[3,74] | loss=0.1200 | acc=16/16
+  Batch  23 | t=[1,63] | loss=0.1203 | acc=16/16
+  Batch  24 | t=[3,74] | loss=0.1433 | acc=16/16
+  Batch  25 | t=[3,74] | loss=0.3093 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=41
+  Batch  26 | t=[0,71] | loss=0.1946 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=36
+  Batch  27 | t=[0,72] | loss=0.3225 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=0
+  Batch  28 | t=[19,73] | loss=0.1233 | acc=16/16
+  Batch  29 | t=[3,71] | loss=0.2692 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=23
+  Batch  30 | t=[3,73] | loss=0.1487 | acc=16/16
+  Batch  31 | t=[1,70] | loss=0.2481 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=18
+  Batch  32 | t=[2,73] | loss=0.1461 | acc=16/16
+  Batch  33 | t=[2,73] | loss=0.2629 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=65
+  Batch  34 | t=[8,74] | loss=0.1360 | acc=16/16
+  Batch  35 | t=[11,69] | loss=0.1326 | acc=16/16
+  Batch  36 | t=[0,72] | loss=0.1224 | acc=16/16
+  Batch  37 | t=[1,73] | loss=0.1972 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=59
+  Batch  38 | t=[3,72] | loss=0.1281 | acc=16/16
+  Batch  39 | t=[6,67] | loss=0.1237 | acc=16/16
+  Batch  40 | t=[8,67] | loss=0.1946 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=38
+  Batch  41 | t=[5,71] | loss=0.1230 | acc=16/16
+  Batch  42 | t=[10,67] | loss=0.1292 | acc=16/16
+  Batch  43 | t=[2,72] | loss=0.1294 | acc=16/16
+  Batch  44 | t=[4,72] | loss=0.3274 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=12
+  Batch  45 | t=[4,61] | loss=0.1241 | acc=16/16
+  Batch  46 | t=[6,68] | loss=0.1441 | acc=16/16
+  Batch  47 | t=[2,68] | loss=0.1484 | acc=16/16
+  Batch  48 | t=[2,72] | loss=0.2621 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=2
+  Batch  49 | t=[1,74] | loss=0.1662 | acc=16/16
+  Batch  50 | t=[8,71] | loss=0.2399 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=34
+  Batch  51 | t=[9,69] | loss=0.1587 | acc=16/16
+  Batch  52 | t=[0,65] | loss=0.1337 | acc=16/16
+  Batch  53 | t=[6,67] | loss=0.1341 | acc=16/16
+  Batch  54 | t=[4,73] | loss=0.2796 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=73
+  Batch  55 | t=[12,68] | loss=0.1294 | acc=16/16
+  Batch  56 | t=[3,63] | loss=0.1327 | acc=16/16
+  Batch  57 | t=[17,74] | loss=0.1606 | acc=15/16 | MISCLASSIFIED: [14] pred=1 true=0 t=39
+  Batch  58 | t=[1,68] | loss=0.1353 | acc=16/16
+  Batch  59 | t=[0,74] | loss=0.1271 | acc=16/16
+  Batch  60 | t=[0,71] | loss=0.3410 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=47
+  Batch  61 | t=[3,74] | loss=0.2033 | acc=15/16 | MISCLASSIFIED: [0] pred=1 true=0 t=74
+  Batch  62 | t=[1,72] | loss=0.1261 | acc=16/16
+  Batch  63 | t=[5,64] | loss=0.1285 | acc=16/16
+  Batch  64 | t=[1,69] | loss=0.1661 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=41
+  Batch  65 | t=[2,73] | loss=0.2685 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=12
+  Batch  66 | t=[7,74] | loss=0.2500 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=56
+  Batch  67 | t=[1,73] | loss=0.1416 | acc=16/16
+  Batch  68 | t=[7,74] | loss=0.1312 | acc=16/16
+  Batch  69 | t=[4,72] | loss=0.1308 | acc=16/16
+  Batch  70 | t=[2,62] | loss=0.1309 | acc=16/16
+  Batch  71 | t=[11,65] | loss=0.1358 | acc=16/16
+  Batch  72 | t=[7,74] | loss=0.1300 | acc=16/16
+  Batch  73 | t=[1,66] | loss=0.1217 | acc=16/16
+  Batch  74 | t=[1,69] | loss=0.1212 | acc=16/16
+  Batch  75 | t=[6,69] | loss=0.2052 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=50
+  Batch  76 | t=[0,60] | loss=0.1303 | acc=16/16
+  Batch  77 | t=[3,73] | loss=0.1256 | acc=16/16
+  Batch  78 | t=[0,74] | loss=0.1203 | acc=16/16
+  Batch  79 | t=[0,74] | loss=0.1246 | acc=16/16
+  Batch  80 | t=[2,69] | loss=0.1223 | acc=16/16
+  Batch  81 | t=[1,61] | loss=0.1249 | acc=16/16
+  Batch  82 | t=[1,69] | loss=0.1212 | acc=16/16
+  Batch  83 | t=[3,74] | loss=0.1190 | acc=16/16
+  Batch  84 | t=[9,73] | loss=0.1182 | acc=16/16
+  Batch  85 | t=[0,72] | loss=0.2572 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=5
+  Batch  86 | t=[1,74] | loss=0.1198 | acc=16/16
+  Batch  87 | t=[3,72] | loss=0.1234 | acc=16/16
+  Batch  88 | t=[1,73] | loss=0.2850 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=23
+  Batch  89 | t=[4,69] | loss=0.1285 | acc=16/16
+  Batch  90 | t=[1,63] | loss=0.1277 | acc=16/16
+  Batch  91 | t=[43,46] | loss=0.1239 | acc=2/2
+Epoch 15 [warmup] | Loss: 0.1584 | Val Loss: 0.1688 | Val Acc: 98.6% | LR: 3.18e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[1,76] | loss=0.1286 | acc=16/16
+  Batch   1 | t=[3,69] | loss=0.1219 | acc=16/16
+  Batch   2 | t=[5,75] | loss=0.1221 | acc=16/16
+  Batch   3 | t=[26,77] | loss=0.1223 | acc=16/16
+  Batch   4 | t=[8,75] | loss=0.4299 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=28, [2] pred=0 true=1 t=10
+  Batch   5 | t=[1,76] | loss=0.1207 | acc=16/16
+  Batch   6 | t=[15,75] | loss=0.1232 | acc=16/16
+  Batch   7 | t=[16,73] | loss=0.2785 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=27
+  Batch   8 | t=[8,75] | loss=0.1233 | acc=16/16
+  Batch   9 | t=[8,77] | loss=0.1234 | acc=16/16
+  Batch  10 | t=[7,77] | loss=0.1291 | acc=16/16
+  Batch  11 | t=[2,77] | loss=0.1331 | acc=16/16
+  Batch  12 | t=[7,74] | loss=0.1284 | acc=16/16
+  Batch  13 | t=[2,79] | loss=0.1280 | acc=16/16
+  Batch  14 | t=[1,77] | loss=0.1192 | acc=16/16
+  Batch  15 | t=[3,78] | loss=0.1210 | acc=16/16
+  Batch  16 | t=[7,79] | loss=0.1213 | acc=16/16
+  Batch  17 | t=[2,71] | loss=0.1211 | acc=16/16
+  Batch  18 | t=[2,72] | loss=0.2763 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=2
+  Batch  19 | t=[5,73] | loss=0.1236 | acc=16/16
+  Batch  20 | t=[5,79] | loss=0.1197 | acc=16/16
+  Batch  21 | t=[11,71] | loss=0.3418 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=53
+  Batch  22 | t=[3,74] | loss=0.1206 | acc=16/16
+  Batch  23 | t=[5,78] | loss=0.2076 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=37
+  Batch  24 | t=[0,69] | loss=0.2114 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=8
+  Batch  25 | t=[2,77] | loss=0.1420 | acc=16/16
+  Batch  26 | t=[0,76] | loss=0.1469 | acc=16/16
+  Batch  27 | t=[4,79] | loss=0.1478 | acc=16/16
+  Batch  28 | t=[8,76] | loss=0.1601 | acc=16/16
+  Batch  29 | t=[1,78] | loss=0.1287 | acc=16/16
+  Batch  30 | t=[6,79] | loss=0.2760 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=51
+  Batch  31 | t=[8,64] | loss=0.1260 | acc=16/16
+  Batch  32 | t=[1,74] | loss=0.2505 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=55
+  Batch  33 | t=[2,67] | loss=0.2298 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=18
+  Batch  34 | t=[2,78] | loss=0.1262 | acc=16/16
+  Batch  35 | t=[0,74] | loss=0.1288 | acc=16/16
+  Batch  36 | t=[3,78] | loss=0.1327 | acc=16/16
+  Batch  37 | t=[5,77] | loss=0.1289 | acc=16/16
+  Batch  38 | t=[4,78] | loss=0.1293 | acc=16/16
+  Batch  39 | t=[2,77] | loss=0.1376 | acc=16/16
+  Batch  40 | t=[10,79] | loss=0.1312 | acc=16/16
+  Batch  41 | t=[5,79] | loss=0.1249 | acc=16/16
+  Batch  42 | t=[0,70] | loss=0.1397 | acc=16/16
+  Batch  43 | t=[2,79] | loss=0.1255 | acc=16/16
+  Batch  44 | t=[7,69] | loss=0.1263 | acc=16/16
+  Batch  45 | t=[0,73] | loss=0.2275 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=25
+  Batch  46 | t=[5,76] | loss=0.3354 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=45
+  Batch  47 | t=[1,78] | loss=0.1212 | acc=16/16
+  Batch  48 | t=[5,78] | loss=0.1326 | acc=16/16
+  Batch  49 | t=[1,77] | loss=0.1345 | acc=16/16
+  Batch  50 | t=[5,74] | loss=0.1300 | acc=16/16
+  Batch  51 | t=[0,75] | loss=0.1362 | acc=16/16
+  Batch  52 | t=[4,78] | loss=0.2198 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=18
+  Batch  53 | t=[0,78] | loss=0.1368 | acc=16/16
+  Batch  54 | t=[2,77] | loss=0.1246 | acc=16/16
+  Batch  55 | t=[0,74] | loss=0.1850 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=38
+  Batch  56 | t=[10,79] | loss=0.1334 | acc=16/16
+  Batch  57 | t=[3,73] | loss=0.1195 | acc=16/16
+  Batch  58 | t=[0,64] | loss=0.1263 | acc=16/16
+  Batch  59 | t=[20,78] | loss=0.2352 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=54
+  Batch  60 | t=[3,76] | loss=0.1199 | acc=16/16
+  Batch  61 | t=[1,73] | loss=0.1208 | acc=16/16
+  Batch  62 | t=[1,79] | loss=0.1203 | acc=16/16
+  Batch  63 | t=[1,76] | loss=0.1246 | acc=16/16
+  Batch  64 | t=[19,79] | loss=0.1263 | acc=16/16
+  Batch  65 | t=[9,78] | loss=0.1227 | acc=16/16
+  Batch  66 | t=[4,78] | loss=0.1190 | acc=16/16
+  Batch  67 | t=[9,68] | loss=0.1199 | acc=16/16
+  Batch  68 | t=[12,78] | loss=0.1210 | acc=16/16
+  Batch  69 | t=[4,79] | loss=0.1198 | acc=16/16
+  Batch  70 | t=[2,77] | loss=0.1201 | acc=16/16
+  Batch  71 | t=[13,71] | loss=0.3408 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=48
+  Batch  72 | t=[3,77] | loss=0.1191 | acc=16/16
+  Batch  73 | t=[3,71] | loss=0.1257 | acc=16/16
+  Batch  74 | t=[5,79] | loss=0.1232 | acc=16/16
+  Batch  75 | t=[1,72] | loss=0.1280 | acc=16/16
+  Batch  76 | t=[10,77] | loss=0.2436 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=23
+  Batch  77 | t=[5,78] | loss=0.1273 | acc=16/16
+  Batch  78 | t=[1,76] | loss=0.1214 | acc=16/16
+  Batch  79 | t=[21,72] | loss=0.3115 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=23
+  Batch  80 | t=[0,79] | loss=0.1270 | acc=16/16
+  Batch  81 | t=[1,79] | loss=0.2327 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=66
+  Batch  82 | t=[9,74] | loss=0.1280 | acc=16/16
+  Batch  83 | t=[3,79] | loss=0.1251 | acc=16/16
+  Batch  84 | t=[1,77] | loss=0.1305 | acc=16/16
+  Batch  85 | t=[3,68] | loss=0.1283 | acc=16/16
+  Batch  86 | t=[10,75] | loss=0.1336 | acc=16/16
+  Batch  87 | t=[2,75] | loss=0.1272 | acc=16/16
+  Batch  88 | t=[0,77] | loss=0.1817 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=46
+  Batch  89 | t=[0,73] | loss=0.1273 | acc=16/16
+  Batch  90 | t=[0,78] | loss=0.1225 | acc=16/16
+  Batch  91 | t=[8,63] | loss=0.1199 | acc=2/2
+Epoch 16 [warmup] | Loss: 0.1554 | Val Loss: 0.1642 | Val Acc: 98.3% | LR: 3.17e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[0,79] | loss=0.1372 | acc=16/16
+  Batch   1 | t=[8,83] | loss=0.1191 | acc=16/16
+  Batch   2 | t=[4,78] | loss=0.1268 | acc=16/16
+  Batch   3 | t=[11,83] | loss=0.1269 | acc=16/16
+  Batch   4 | t=[10,81] | loss=0.3260 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=10
+  Batch   5 | t=[2,84] | loss=0.2178 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=27
+  Batch   6 | t=[2,81] | loss=0.1305 | acc=16/16
+  Batch   7 | t=[10,82] | loss=0.1563 | acc=16/16
+  Batch   8 | t=[0,84] | loss=0.1363 | acc=16/16
+  Batch   9 | t=[0,79] | loss=0.1401 | acc=16/16
+  Batch  10 | t=[4,80] | loss=0.1258 | acc=16/16
+  Batch  11 | t=[2,79] | loss=0.1388 | acc=16/16
+  Batch  12 | t=[2,79] | loss=0.3062 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=61
+  Batch  13 | t=[0,81] | loss=0.1202 | acc=16/16
+  Batch  14 | t=[2,83] | loss=0.1232 | acc=16/16
+  Batch  15 | t=[9,84] | loss=0.1223 | acc=16/16
+  Batch  16 | t=[1,80] | loss=0.1207 | acc=16/16
+  Batch  17 | t=[8,71] | loss=0.1251 | acc=16/16
+  Batch  18 | t=[5,81] | loss=0.1198 | acc=16/16
+  Batch  19 | t=[2,64] | loss=0.3069 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=2
+  Batch  20 | t=[1,78] | loss=0.1214 | acc=16/16
+  Batch  21 | t=[7,84] | loss=0.1208 | acc=16/16
+  Batch  22 | t=[7,84] | loss=0.1300 | acc=16/16
+  Batch  23 | t=[2,77] | loss=0.1214 | acc=16/16
+  Batch  24 | t=[3,82] | loss=0.1298 | acc=16/16
+  Batch  25 | t=[2,70] | loss=0.4175 | acc=14/16 | MISCLASSIFIED: [13] pred=0 true=1 t=42, [14] pred=1 true=0 t=5
+  Batch  26 | t=[4,78] | loss=0.2910 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=23
+  Batch  27 | t=[9,83] | loss=0.1272 | acc=16/16
+  Batch  28 | t=[4,83] | loss=0.1450 | acc=16/16
+  Batch  29 | t=[14,84] | loss=0.1362 | acc=16/16
+  Batch  30 | t=[4,79] | loss=0.1240 | acc=16/16
+  Batch  31 | t=[1,82] | loss=0.1200 | acc=16/16
+  Batch  32 | t=[10,84] | loss=0.2591 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=73
+  Batch  33 | t=[3,84] | loss=0.1199 | acc=16/16
+  Batch  34 | t=[16,70] | loss=0.1194 | acc=16/16
+  Batch  35 | t=[7,84] | loss=0.1207 | acc=16/16
+  Batch  36 | t=[0,82] | loss=0.1217 | acc=16/16
+  Batch  37 | t=[0,80] | loss=0.3111 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=0
+  Batch  38 | t=[1,81] | loss=0.2453 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=77
+  Batch  39 | t=[3,82] | loss=0.1212 | acc=16/16
+  Batch  40 | t=[4,83] | loss=0.1283 | acc=16/16
+  Batch  41 | t=[6,81] | loss=0.1318 | acc=16/16
+  Batch  42 | t=[0,78] | loss=0.1296 | acc=16/16
+  Batch  43 | t=[2,84] | loss=0.3907 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=69, [6] pred=0 true=1 t=76
+  Batch  44 | t=[9,83] | loss=0.1326 | acc=16/16
+  Batch  45 | t=[1,81] | loss=0.1313 | acc=16/16
+  Batch  46 | t=[2,84] | loss=0.2211 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=39
+  Batch  47 | t=[7,82] | loss=0.1260 | acc=16/16
+  Batch  48 | t=[3,82] | loss=0.1353 | acc=16/16
+  Batch  49 | t=[0,80] | loss=0.1214 | acc=16/16
+  Batch  50 | t=[8,74] | loss=0.2186 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=47
+  Batch  51 | t=[0,74] | loss=0.1232 | acc=16/16
+  Batch  52 | t=[7,77] | loss=0.1220 | acc=16/16
+  Batch  53 | t=[12,82] | loss=0.1203 | acc=16/16
+  Batch  54 | t=[0,71] | loss=0.1253 | acc=16/16
+  Batch  55 | t=[7,74] | loss=0.1212 | acc=16/16
+  Batch  56 | t=[10,68] | loss=0.2080 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=67
+  Batch  57 | t=[1,82] | loss=0.1222 | acc=16/16
+  Batch  58 | t=[7,82] | loss=0.3171 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=28
+  Batch  59 | t=[2,73] | loss=0.1228 | acc=16/16
+  Batch  60 | t=[0,80] | loss=0.1254 | acc=16/16
+  Batch  61 | t=[0,75] | loss=0.2091 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=47
+  Batch  62 | t=[3,78] | loss=0.1413 | acc=16/16
+  Batch  63 | t=[0,78] | loss=0.1328 | acc=16/16
+  Batch  64 | t=[16,82] | loss=0.1427 | acc=16/16
+  Batch  65 | t=[0,82] | loss=0.1237 | acc=16/16
+  Batch  66 | t=[1,70] | loss=0.1303 | acc=16/16
+  Batch  67 | t=[4,81] | loss=0.1295 | acc=16/16
+  Batch  68 | t=[13,78] | loss=0.1310 | acc=16/16
+  Batch  69 | t=[11,84] | loss=0.1241 | acc=16/16
+  Batch  70 | t=[9,79] | loss=0.1309 | acc=16/16
+  Batch  71 | t=[1,80] | loss=0.1273 | acc=16/16
+  Batch  72 | t=[11,81] | loss=0.1271 | acc=16/16
+  Batch  73 | t=[31,84] | loss=0.3290 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=84
+  Batch  74 | t=[0,84] | loss=0.1234 | acc=16/16
+  Batch  75 | t=[2,80] | loss=0.1260 | acc=16/16
+  Batch  76 | t=[12,82] | loss=0.1230 | acc=16/16
+  Batch  77 | t=[4,84] | loss=0.1360 | acc=16/16
+  Batch  78 | t=[7,82] | loss=0.1302 | acc=16/16
+  Batch  79 | t=[1,57] | loss=0.3306 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=21
+  Batch  80 | t=[5,77] | loss=0.1262 | acc=16/16
+  Batch  81 | t=[2,82] | loss=0.1255 | acc=16/16
+  Batch  82 | t=[8,82] | loss=0.1281 | acc=16/16
+  Batch  83 | t=[1,80] | loss=0.1273 | acc=16/16
+  Batch  84 | t=[0,77] | loss=0.1232 | acc=16/16
+  Batch  85 | t=[2,79] | loss=0.1205 | acc=16/16
+  Batch  86 | t=[2,80] | loss=0.1197 | acc=16/16
+  Batch  87 | t=[1,84] | loss=0.1186 | acc=16/16
+  Batch  88 | t=[1,78] | loss=0.1182 | acc=16/16
+  Batch  89 | t=[5,76] | loss=0.3188 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=15
+  Batch  90 | t=[2,84] | loss=0.1239 | acc=16/16
+  Batch  91 | t=[8,47] | loss=0.1197 | acc=2/2
+Epoch 17 [warmup] | Loss: 0.1589 | Val Loss: 0.1575 | Val Acc: 98.8% | LR: 3.17e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[6,89] | loss=0.1193 | acc=16/16
+  Batch   1 | t=[0,82] | loss=0.3721 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=64, [13] pred=0 true=1 t=52
+  Batch   2 | t=[14,88] | loss=0.1224 | acc=16/16
+  Batch   3 | t=[6,87] | loss=0.1287 | acc=16/16
+  Batch   4 | t=[12,82] | loss=0.1336 | acc=16/16
+  Batch   5 | t=[8,89] | loss=0.1366 | acc=16/16
+  Batch   6 | t=[2,82] | loss=0.1288 | acc=16/16
+  Batch   7 | t=[8,88] | loss=0.1229 | acc=16/16
+  Batch   8 | t=[7,85] | loss=0.1526 | acc=16/16
+  Batch   9 | t=[13,89] | loss=0.1199 | acc=16/16
+  Batch  10 | t=[4,84] | loss=0.1198 | acc=16/16
+  Batch  11 | t=[7,85] | loss=0.1189 | acc=16/16
+  Batch  12 | t=[4,86] | loss=0.1208 | acc=16/16
+  Batch  13 | t=[3,88] | loss=0.1455 | acc=16/16
+  Batch  14 | t=[0,88] | loss=0.1206 | acc=16/16
+  Batch  15 | t=[6,83] | loss=0.3015 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=8
+  Batch  16 | t=[5,74] | loss=0.1268 | acc=16/16
+  Batch  17 | t=[3,88] | loss=0.1208 | acc=16/16
+  Batch  18 | t=[1,87] | loss=0.1295 | acc=16/16
+  Batch  19 | t=[1,88] | loss=0.3052 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=76
+  Batch  20 | t=[3,86] | loss=0.1202 | acc=16/16
+  Batch  21 | t=[4,81] | loss=0.1241 | acc=16/16
+  Batch  22 | t=[7,89] | loss=0.1269 | acc=16/16
+  Batch  23 | t=[2,76] | loss=0.1297 | acc=16/16
+  Batch  24 | t=[1,87] | loss=0.2576 | acc=15/16 | MISCLASSIFIED: [2] pred=0 true=1 t=61
+  Batch  25 | t=[0,87] | loss=0.1353 | acc=16/16
+  Batch  26 | t=[12,73] | loss=0.1242 | acc=16/16
+  Batch  27 | t=[9,89] | loss=0.1318 | acc=16/16
+  Batch  28 | t=[0,89] | loss=0.1214 | acc=16/16
+  Batch  29 | t=[1,87] | loss=0.1209 | acc=16/16
+  Batch  30 | t=[5,88] | loss=0.1240 | acc=16/16
+  Batch  31 | t=[2,87] | loss=0.3230 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=17
+  Batch  32 | t=[0,86] | loss=0.1205 | acc=16/16
+  Batch  33 | t=[1,83] | loss=0.2373 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=1
+  Batch  34 | t=[15,82] | loss=0.1220 | acc=16/16
+  Batch  35 | t=[15,88] | loss=0.1216 | acc=16/16
+  Batch  36 | t=[21,87] | loss=0.2888 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=42
+  Batch  37 | t=[1,87] | loss=0.1265 | acc=16/16
+  Batch  38 | t=[0,87] | loss=0.2697 | acc=15/16 | MISCLASSIFIED: [11] pred=0 true=1 t=37
+  Batch  39 | t=[3,89] | loss=0.1433 | acc=16/16
+  Batch  40 | t=[3,89] | loss=0.1604 | acc=16/16
+  Batch  41 | t=[1,89] | loss=0.2508 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=12
+  Batch  42 | t=[1,67] | loss=0.1387 | acc=16/16
+  Batch  43 | t=[2,86] | loss=0.1323 | acc=16/16
+  Batch  44 | t=[0,70] | loss=0.1237 | acc=16/16
+  Batch  45 | t=[4,86] | loss=0.1207 | acc=16/16
+  Batch  46 | t=[1,82] | loss=0.1277 | acc=16/16
+  Batch  47 | t=[11,83] | loss=0.2737 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=35
+  Batch  48 | t=[1,78] | loss=0.2489 | acc=15/16 | MISCLASSIFIED: [4] pred=0 true=1 t=49
+  Batch  49 | t=[2,81] | loss=0.1245 | acc=16/16
+  Batch  50 | t=[0,82] | loss=0.1237 | acc=16/16
+  Batch  51 | t=[4,88] | loss=0.3255 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=61
+  Batch  52 | t=[7,82] | loss=0.1235 | acc=16/16
+  Batch  53 | t=[1,89] | loss=0.2338 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=9
+  Batch  54 | t=[10,88] | loss=0.1377 | acc=16/16
+  Batch  55 | t=[5,87] | loss=0.1414 | acc=16/16
+  Batch  56 | t=[3,83] | loss=0.1349 | acc=16/16
+  Batch  57 | t=[2,84] | loss=0.1389 | acc=16/16
+  Batch  58 | t=[13,63] | loss=0.1324 | acc=16/16
+  Batch  59 | t=[7,88] | loss=0.1305 | acc=16/16
+  Batch  60 | t=[13,78] | loss=0.1207 | acc=16/16
+  Batch  61 | t=[2,72] | loss=0.1308 | acc=16/16
+  Batch  62 | t=[14,87] | loss=0.1231 | acc=16/16
+  Batch  63 | t=[0,89] | loss=0.1270 | acc=16/16
+  Batch  64 | t=[1,87] | loss=0.1265 | acc=16/16
+  Batch  65 | t=[1,84] | loss=0.1292 | acc=16/16
+  Batch  66 | t=[12,85] | loss=0.1290 | acc=16/16
+  Batch  67 | t=[0,81] | loss=0.1264 | acc=16/16
+  Batch  68 | t=[11,85] | loss=0.1254 | acc=16/16
+  Batch  69 | t=[1,79] | loss=0.1249 | acc=16/16
+  Batch  70 | t=[4,86] | loss=0.1246 | acc=16/16
+  Batch  71 | t=[7,89] | loss=0.3869 | acc=14/16 | MISCLASSIFIED: [4] pred=0 true=1 t=86, [10] pred=0 true=1 t=26
+  Batch  72 | t=[7,79] | loss=0.1233 | acc=16/16
+  Batch  73 | t=[2,85] | loss=0.1277 | acc=16/16
+  Batch  74 | t=[2,89] | loss=0.2778 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=78
+  Batch  75 | t=[0,84] | loss=0.2877 | acc=15/16 | MISCLASSIFIED: [14] pred=0 true=1 t=84
+  Batch  76 | t=[0,75] | loss=0.1738 | acc=16/16
+  Batch  77 | t=[7,82] | loss=0.1643 | acc=16/16
+  Batch  78 | t=[14,89] | loss=0.2585 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=16
+  Batch  79 | t=[2,87] | loss=0.1446 | acc=16/16
+  Batch  80 | t=[11,87] | loss=0.1260 | acc=16/16
+  Batch  81 | t=[3,86] | loss=0.1233 | acc=16/16
+  Batch  82 | t=[2,71] | loss=0.1219 | acc=16/16
+  Batch  83 | t=[2,88] | loss=0.1244 | acc=16/16
+  Batch  84 | t=[6,86] | loss=0.1312 | acc=16/16
+  Batch  85 | t=[3,79] | loss=0.1334 | acc=16/16
+  Batch  86 | t=[9,87] | loss=0.1329 | acc=16/16
+  Batch  87 | t=[2,81] | loss=0.1361 | acc=16/16
+  Batch  88 | t=[9,88] | loss=0.1318 | acc=16/16
+  Batch  89 | t=[2,88] | loss=0.1318 | acc=16/16
+  Batch  90 | t=[1,79] | loss=0.3620 | acc=14/16 | MISCLASSIFIED: [2] pred=0 true=1 t=45, [8] pred=0 true=1 t=55
+  Batch  91 | t=[34,80] | loss=0.1229 | acc=2/2
+Epoch 18 [warmup] | Loss: 0.1614 | Val Loss: 0.1618 | Val Acc: 98.8% | LR: 3.16e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
+  Batch   0 | t=[2,90] | loss=0.1201 | acc=16/16
+  Batch   1 | t=[7,87] | loss=0.1233 | acc=16/16
+  Batch   2 | t=[5,93] | loss=0.1260 | acc=16/16
+  Batch   3 | t=[18,93] | loss=0.1293 | acc=16/16
+  Batch   4 | t=[4,86] | loss=0.1345 | acc=16/16
+  Batch   5 | t=[6,79] | loss=0.1330 | acc=16/16
+  Batch   6 | t=[10,93] | loss=0.1358 | acc=16/16
+  Batch   7 | t=[5,81] | loss=0.1247 | acc=16/16
+  Batch   8 | t=[0,94] | loss=0.1253 | acc=16/16
+  Batch   9 | t=[4,80] | loss=0.1223 | acc=16/16
+  Batch  10 | t=[2,88] | loss=0.1294 | acc=16/16
+  Batch  11 | t=[0,89] | loss=0.1253 | acc=16/16
+  Batch  12 | t=[15,93] | loss=0.1238 | acc=16/16
+  Batch  13 | t=[4,79] | loss=0.1237 | acc=16/16
+  Batch  14 | t=[1,91] | loss=0.1244 | acc=16/16
+  Batch  15 | t=[0,94] | loss=0.1275 | acc=16/16
+  Batch  16 | t=[5,94] | loss=0.1241 | acc=16/16
+  Batch  17 | t=[19,73] | loss=0.1311 | acc=16/16
+  Batch  18 | t=[0,92] | loss=0.1225 | acc=16/16
+  Batch  19 | t=[1,84] | loss=0.1239 | acc=16/16
+  Batch  20 | t=[0,82] | loss=0.1977 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=37
+  Batch  21 | t=[20,94] | loss=0.2158 | acc=15/16 | MISCLASSIFIED: [15] pred=0 true=1 t=84
+  Batch  22 | t=[10,92] | loss=0.1234 | acc=16/16
+  Batch  23 | t=[4,85] | loss=0.1229 | acc=16/16
+  Batch  24 | t=[1,93] | loss=0.1305 | acc=16/16
+  Batch  25 | t=[1,77] | loss=0.1377 | acc=16/16
+  Batch  26 | t=[2,93] | loss=0.1548 | acc=16/16
+  Batch  27 | t=[9,85] | loss=0.1782 | acc=15/16 | MISCLASSIFIED: [3] pred=1 true=0 t=34
+  Batch  28 | t=[2,92] | loss=0.1205 | acc=16/16
+  Batch  29 | t=[1,91] | loss=0.1222 | acc=16/16
+  Batch  30 | t=[7,85] | loss=0.1186 | acc=16/16
+  Batch  31 | t=[7,81] | loss=0.3318 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=51
+  Batch  32 | t=[3,86] | loss=0.1193 | acc=16/16
+  Batch  33 | t=[2,92] | loss=0.2383 | acc=15/16 | MISCLASSIFIED: [12] pred=0 true=1 t=11
+  Batch  34 | t=[14,94] | loss=0.1196 | acc=16/16
+  Batch  35 | t=[3,92] | loss=0.2570 | acc=15/16 | MISCLASSIFIED: [13] pred=0 true=1 t=79
+  Batch  36 | t=[3,82] | loss=0.1913 | acc=15/16 | MISCLASSIFIED: [3] pred=0 true=1 t=53
+  Batch  37 | t=[10,92] | loss=0.1307 | acc=16/16
+  Batch  38 | t=[25,94] | loss=0.1292 | acc=16/16
+  Batch  39 | t=[0,86] | loss=0.2416 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=30
+  Batch  40 | t=[18,91] | loss=0.1346 | acc=16/16
+  Batch  41 | t=[18,89] | loss=0.1352 | acc=16/16
+  Batch  42 | t=[14,92] | loss=0.1313 | acc=16/16
+  Batch  43 | t=[0,94] | loss=0.1276 | acc=16/16
+  Batch  44 | t=[3,93] | loss=0.1224 | acc=16/16
+  Batch  45 | t=[15,94] | loss=0.3846 | acc=14/16 | MISCLASSIFIED: [0] pred=0 true=1 t=85, [1] pred=0 true=1 t=83
+  Batch  46 | t=[6,87] | loss=0.1234 | acc=16/16
+  Batch  47 | t=[2,85] | loss=0.1256 | acc=16/16
+  Batch  48 | t=[3,90] | loss=0.1386 | acc=16/16
+  Batch  49 | t=[0,90] | loss=0.1240 | acc=16/16
+  Batch  50 | t=[7,94] | loss=0.1222 | acc=16/16
+  Batch  51 | t=[4,94] | loss=0.1198 | acc=16/16
+  Batch  52 | t=[11,90] | loss=0.1207 | acc=16/16
+  Batch  53 | t=[11,77] | loss=0.1347 | acc=16/16
+  Batch  54 | t=[6,94] | loss=0.2506 | acc=15/16 | MISCLASSIFIED: [8] pred=0 true=1 t=63
+  Batch  55 | t=[0,72] | loss=0.1261 | acc=16/16
+  Batch  56 | t=[5,91] | loss=0.1283 | acc=16/16
+  Batch  57 | t=[4,93] | loss=0.1209 | acc=16/16
+  Batch  58 | t=[4,94] | loss=0.1239 | acc=16/16
+  Batch  59 | t=[2,91] | loss=0.1197 | acc=16/16
+  Batch  60 | t=[13,85] | loss=0.1216 | acc=16/16
+  Batch  61 | t=[4,84] | loss=0.1220 | acc=16/16
+  Batch  62 | t=[2,94] | loss=0.1263 | acc=16/16
+  Batch  63 | t=[5,82] | loss=0.1259 | acc=16/16
+  Batch  64 | t=[5,81] | loss=0.1241 | acc=16/16
+  Batch  65 | t=[0,74] | loss=0.1360 | acc=16/16
+  Batch  66 | t=[3,82] | loss=0.1224 | acc=16/16
+  Batch  67 | t=[0,87] | loss=0.2392 | acc=15/16 | MISCLASSIFIED: [0] pred=0 true=1 t=84
+  Batch  68 | t=[5,93] | loss=0.1206 | acc=16/16
+  Batch  69 | t=[9,86] | loss=0.1192 | acc=16/16
+  Batch  70 | t=[3,93] | loss=0.1210 | acc=16/16
+  Batch  71 | t=[0,90] | loss=0.1209 | acc=16/16
+  Batch  72 | t=[1,91] | loss=0.2756 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=74
+  Batch  73 | t=[4,81] | loss=0.1239 | acc=16/16
+  Batch  74 | t=[2,92] | loss=0.1242 | acc=16/16
+  Batch  75 | t=[3,92] | loss=0.1330 | acc=16/16
+  Batch  76 | t=[3,90] | loss=0.2458 | acc=15/16 | MISCLASSIFIED: [10] pred=0 true=1 t=3
+  Batch  77 | t=[0,92] | loss=0.1300 | acc=16/16
+  Batch  78 | t=[0,85] | loss=0.2468 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=52
+  Batch  79 | t=[0,94] | loss=0.2081 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=89
+  Batch  80 | t=[0,94] | loss=0.1285 | acc=16/16
+  Batch  81 | t=[6,94] | loss=0.1372 | acc=16/16
+  Batch  82 | t=[0,89] | loss=0.1382 | acc=16/16
+  Batch  83 | t=[6,93] | loss=0.3006 | acc=15/16 | MISCLASSIFIED: [9] pred=0 true=1 t=33
+  Batch  84 | t=[5,92] | loss=0.3043 | acc=15/16 | MISCLASSIFIED: [7] pred=0 true=1 t=81
+  Batch  85 | t=[0,89] | loss=0.2984 | acc=15/16 | MISCLASSIFIED: [1] pred=0 true=1 t=28
+  Batch  86 | t=[12,94] | loss=0.1287 | acc=16/16
+  Batch  87 | t=[0,91] | loss=0.1360 | acc=16/16
+  Batch  88 | t=[1,91] | loss=0.1255 | acc=16/16
+  Batch  89 | t=[0,88] | loss=0.1963 | acc=15/16 | MISCLASSIFIED: [5] pred=0 true=1 t=24
+  Batch  90 | t=[5,89] | loss=0.1314 | acc=16/16
+  Batch  91 | t=[42,88] | loss=0.1175 | acc=2/2
+Epoch 19 [warmup] | Loss: 0.1528 | Val Loss: 0.1627 | Val Acc: 98.8% | LR: 3.16e-03
+--- Saved model to checkpoints/robust_classification/mgcls_asinh/state.pt ---
