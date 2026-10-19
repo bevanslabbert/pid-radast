@@ -17,3 +17,236 @@ Epoch 0
   deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
 /idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
   hidden_states = F.scaled_dot_product_attention(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 0 | Loss: 0.061141 | Val: 0.097659
+Computing FID/KID/PDF at epoch 0...
+  FID: 322.8487 | KID: 0.360471
+  Pixel PDF W-dist: 0.1552
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 1
+Epoch 1 | Loss: 0.016033 | Val: 0.072657
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 2
+Epoch 2 | Loss: 0.010781 | Val: 0.067732
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 3
+Epoch 3 | Loss: 0.009872 | Val: 0.059012
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 4
+Epoch 4 | Loss: 0.009196 | Val: 0.049691
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 5
+Epoch 5 | Loss: 0.007692 | Val: 0.048660
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 6
+Epoch 6 | Loss: 0.007719 | Val: 0.045254
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 7
+Epoch 7 | Loss: 0.006157 | Val: 0.050519
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 8
+Epoch 8 | Loss: 0.007484 | Val: 0.050050
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 9
+Epoch 9 | Loss: 0.006930 | Val: 0.044025
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 10
+Epoch 10 | Loss: 0.006112 | Val: 0.044820
+Computing FID/KID/PDF at epoch 10...
+  FID: 239.0247 | KID: 0.189876
+  Pixel PDF W-dist: 0.2542
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 11
+Epoch 11 | Loss: 0.007266 | Val: 0.054315
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 12
+Epoch 12 | Loss: 0.008140 | Val: 0.046238
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 13
+Epoch 13 | Loss: 0.006230 | Val: 0.048014
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 14
+Epoch 14 | Loss: 0.007049 | Val: 0.040315
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 15
+Epoch 15 | Loss: 0.005348 | Val: 0.041958
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 16
+Epoch 16 | Loss: 0.006825 | Val: 0.041250
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 17
+Epoch 17 | Loss: 0.005477 | Val: 0.038831
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 18
+Epoch 18 | Loss: 0.005544 | Val: 0.042327
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 19
+Epoch 19 | Loss: 0.005147 | Val: 0.035118
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 20
+Epoch 20 | Loss: 0.006029 | Val: 0.044075
+Computing FID/KID/PDF at epoch 20...
+  FID: 230.9031 | KID: 0.154853
+  Pixel PDF W-dist: 0.2148
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 21
+Epoch 21 | Loss: 0.005458 | Val: 0.039936
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 22
+Epoch 22 | Loss: 0.005884 | Val: 0.040278
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 23
+Epoch 23 | Loss: 0.004484 | Val: 0.034908
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 24
+Epoch 24 | Loss: 0.005798 | Val: 0.038640
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 25
+Epoch 25 | Loss: 0.005591 | Val: 0.030182
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 26
+Epoch 26 | Loss: 0.006137 | Val: 0.034535
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 27
+Epoch 27 | Loss: 0.006006 | Val: 0.034336
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 28
+Epoch 28 | Loss: 0.006285 | Val: 0.041145
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 29
+Epoch 29 | Loss: 0.004456 | Val: 0.034734
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 30
+Epoch 30 | Loss: 0.006572 | Val: 0.036948
+Computing FID/KID/PDF at epoch 30...
+  FID: 246.3687 | KID: 0.188782
+  Pixel PDF W-dist: 0.3110
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 31
+Epoch 31 | Loss: 0.006148 | Val: 0.039667
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 32
+Epoch 32 | Loss: 0.006856 | Val: 0.034103
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 33
+Epoch 33 | Loss: 0.003938 | Val: 0.031427
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 34
+Epoch 34 | Loss: 0.005448 | Val: 0.031905
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 35
+Epoch 35 | Loss: 0.005413 | Val: 0.041285
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 36
+Epoch 36 | Loss: 0.005689 | Val: 0.037149
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 37
+Epoch 37 | Loss: 0.005335 | Val: 0.033875
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 38
+Epoch 38 | Loss: 0.005033 | Val: 0.034963
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 39
+Epoch 39 | Loss: 0.005562 | Val: 0.035873
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 40
+Epoch 40 | Loss: 0.006236 | Val: 0.038202
+Computing FID/KID/PDF at epoch 40...
+  FID: 207.2695 | KID: 0.117590
+  Pixel PDF W-dist: 0.4425
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 41
+Epoch 41 | Loss: 0.005840 | Val: 0.035244
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 42
+Epoch 42 | Loss: 0.006022 | Val: 0.037005
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 43
+Epoch 43 | Loss: 0.004705 | Val: 0.035907
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 44
+Epoch 44 | Loss: 0.004730 | Val: 0.039990
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 45
+Epoch 45 | Loss: 0.005151 | Val: 0.028496
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 46
+Epoch 46 | Loss: 0.004434 | Val: 0.029971
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 47
+Epoch 47 | Loss: 0.005751 | Val: 0.031435
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 48
+Epoch 48 | Loss: 0.006000 | Val: 0.029688
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 49
+Epoch 49 | Loss: 0.005559 | Val: 0.033471
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 50
+Epoch 50 | Loss: 0.004827 | Val: 0.035633
+Computing FID/KID/PDF at epoch 50...
+  FID: 194.8500 | KID: 0.092363
+  Pixel PDF W-dist: 0.1860
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 51
+Epoch 51 | Loss: 0.006866 | Val: 0.035107
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 52
+Epoch 52 | Loss: 0.006778 | Val: 0.036400
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 53
+Epoch 53 | Loss: 0.005468 | Val: 0.032695
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 54
+Epoch 54 | Loss: 0.005965 | Val: 0.037331
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 55
+Epoch 55 | Loss: 0.005897 | Val: 0.033009
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 56
+Epoch 56 | Loss: 0.004131 | Val: 0.038725
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 57
+Epoch 57 | Loss: 0.005559 | Val: 0.032628
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 58
+Epoch 58 | Loss: 0.005754 | Val: 0.034846
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 59
+Epoch 59 | Loss: 0.004883 | Val: 0.035598
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 60
+Epoch 60 | Loss: 0.004150 | Val: 0.031109
+Computing FID/KID/PDF at epoch 60...
+  FID: 229.1803 | KID: 0.156528
+  Pixel PDF W-dist: 0.8153
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 61
+Epoch 61 | Loss: 0.006609 | Val: 0.028040
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 62
+Epoch 62 | Loss: 0.004917 | Val: 0.032640
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 63
+Epoch 63 | Loss: 0.005009 | Val: 0.040176
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 64
+Epoch 64 | Loss: 0.006878 | Val: 0.028325
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 65
+Epoch 65 | Loss: 0.005406 | Val: 0.041605
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 66
+Epoch 66 | Loss: 0.005144 | Val: 0.032019
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 67
+Epoch 67 | Loss: 0.004894 | Val: 0.039228
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 68
+Epoch 68 | Loss: 0.004541 | Val: 0.029572
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 69
+Epoch 69 | Loss: 0.005469 | Val: 0.035897
+--- Saved model to checkpoints/diffusion/mgcls_asinh/state.pt ---
+Epoch 70
