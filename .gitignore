@@ -13,3 +13,5 @@ __pycache__/
 
 # Editor/backup files
 *.bak
+# MGCLS PNGs (large; sync to cluster separately)
+classifier-guided-physics-informed-diffusion/src/datasets/mgcls/png/

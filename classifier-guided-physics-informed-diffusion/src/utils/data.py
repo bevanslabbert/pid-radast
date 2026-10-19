@@ -1,3 +1,4 @@
+import os
 import random
 import matplotlib.pyplot as plt
 import torch
@@ -9,6 +10,7 @@ from src.datasets.crumb.CRUMB import CRUMB, correct_crumb_test_labels, correct_c
 from src.datasets.mirabest.MiraBest import MiraBest
 from src.datasets.mirabest.MiraBestFITS import MiraBestFITS
 from src.datasets.mirabest.MiraBestPNG import MiraBestPNG
+from src.datasets.mgcls.MGCLSPNG import MGCLSPNG
 import torchvision
 import numpy as np
 
@@ -23,13 +25,16 @@ def _seed_worker(worker_id):
     random.seed(worker_seed)
 
 
-def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_transform=None) -> Tuple[DataLoader, DataLoader, DataLoader]:
+def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_transform=None,
+                     stretch='asinh', classes=('typical', 'exotic')) -> Tuple[DataLoader, DataLoader, DataLoader]:
     """
     Returns trainloader, valloader, and testloader.
     - transform is applied to the training loader (with augmentation).
     - eval_transform, if provided, is applied to val and test loaders (deterministic).
       Falls back to transform when not given.
     - Train/val split uses a fixed seed so results are reproducible across runs.
+    - stretch / classes only apply to mgcls_png (PNG stretch directory and the
+      class subdirectories to load, label = index in classes).
     """
     _eval = eval_transform if eval_transform is not None else transform
 
@@ -198,6 +203,35 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         train_idx = indices[:train_size]
         val_idx   = indices[train_size:train_size + val_size]
         test_idx  = indices[train_size + val_size:]
+
+        trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
+        valloader   = DataLoader(Subset(eval_dataset,  val_idx),   batch_size=batch_size, shuffle=False, num_workers=2)
+        testloader  = DataLoader(Subset(eval_dataset,  test_idx),  batch_size=batch_size, shuffle=False, num_workers=2)
+
+        return trainloader, valloader, testloader
+
+    if dataset.lower() == 'mgcls_png':
+        png_dir = os.path.join('src/datasets/mgcls/png', stretch)
+        train_dataset = MGCLSPNG(root=png_dir, classes=classes, transform=transform)
+        eval_dataset  = MGCLSPNG(root=png_dir, classes=classes, transform=_eval)
+
+        # Stratified per class: exotic has only ~30 images, so a plain shuffle
+        # could leave val/test with almost none of them.
+        rng = np.random.default_rng(42)
+        targets = np.array(train_dataset.targets)
+        train_idx, val_idx, test_idx = [], [], []
+        for label in range(len(classes)):
+            class_indices = np.flatnonzero(targets == label)
+            rng.shuffle(class_indices)
+            n_val  = int(len(class_indices) * val_split)
+            n_test = int(len(class_indices) * 0.1)
+            n_train = len(class_indices) - n_val - n_test
+            train_idx += class_indices[:n_train].tolist()
+            val_idx   += class_indices[n_train:n_train + n_val].tolist()
+            test_idx  += class_indices[n_train + n_val:].tolist()
+
+        print(f"MGCLS ({stretch}) classes {list(classes)}: "
+              f"{np.bincount(targets, minlength=len(classes)).tolist()} images per class")
 
         trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
         valloader   = DataLoader(Subset(eval_dataset,  val_idx),   batch_size=batch_size, shuffle=False, num_workers=2)

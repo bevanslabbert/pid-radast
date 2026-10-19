@@ -2,6 +2,9 @@ seed: 42
 
 data:
   dataset: crumb
+  # dataset: mgcls_png
+  # stretch: asinh            # mgcls_png only: asinh | linear | log
+  # classes: [typical, exotic] # mgcls_png only: label = list index
   batch_size: 32
 
 training:

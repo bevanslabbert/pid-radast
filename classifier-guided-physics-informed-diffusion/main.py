@@ -153,7 +153,9 @@ def main():
         cfg['data']['dataset'],
         transform=train_transform,
         eval_transform=eval_transform,
-        batch_size=cfg['data']['batch_size']
+        batch_size=cfg['data']['batch_size'],
+        stretch=cfg['data'].get('stretch', 'asinh'),
+        classes=cfg['data'].get('classes', ['typical', 'exotic'])
     )
     # mirabest_fits returns a 4th value (the dataset object) for FITS inverse scaling
     if len(result) == 4:
