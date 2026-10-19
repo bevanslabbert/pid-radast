@@ -1,0 +1,10 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 221, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 90, in main
+    cfg = load_config(args.config)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/config.py", line 14, in load_config
+    raise FileNotFoundError(f"Config file not found: {path}")
+FileNotFoundError: Config file not found: config/robust_classification_mgcls.yaml
