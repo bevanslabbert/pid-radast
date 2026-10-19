@@ -1,0 +1,47 @@
+seed: 42
+
+data:
+  dataset: mgcls_png
+  stretch: asinh             # asinh | linear | log
+  classes: [typical, exotic] # label = list index
+  batch_size: 8
+  input_size: 150
+
+model:
+  embedding_dim: 256
+  # MGCLS DDPM to start from: train diffusion with TAG=mgcls_asinh first
+  pretrained_checkpoint: checkpoints/diffusion/mgcls_asinh
+  # frozen classifier that guides sampling: robust_classification (TimeDependentResNet,
+  # noise-aware, trained by config/robust_classification_fits.yaml) or classification
+  # (SimpleCNN, clean images only -- collapses on noisy x_t, so its gradient is ~0).
+  # checkpoints/classification/scratch (the old default) is trained on the wrong domain.
+  classifier_type: robust_classification
+  # MGCLS noise-aware guide: train robust_classification with
+  # CONFIG=config/robust_classification_mgcls.yaml TAG=mgcls_asinh first
+  classifier_checkpoint: checkpoints/robust_classification/mgcls_asinh
+
+training:
+  epochs: 400
+  learning_rate: 0.00005
+  label_dropout: 0.29869287822764246
+  num_train_timesteps: 1000
+
+  # standard inference-time classifier guidance (Dhariwal & Nichol, 2021): scales the
+  # frozen classifier's gradient w.r.t. x_t added to the noise prediction at each
+  # sampling step. Applied only at generation time (see generate_class_samples_guided),
+  # not baked into the training loss -- 0 disables it. 3.0 chosen by sweep (0-100):
+  # best FID with class accuracy at its plateau.
+  classifier_scale: 3.0
+
+  guidance_scale: 7.5
+
+  weight_decay: 0.01
+  eval_interval: 10
+  eval_num_samples: 16
+
+optimization:
+  max_trials: 25
+  parameters:
+    learning_rate: { min: 0.000001, max: 0.0001, log: true }
+    weight_decay: { min: 0.00001, max: 0.1, log: true }
+    label_dropout: { min: 0.05, max: 0.30 }

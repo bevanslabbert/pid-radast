@@ -21,4 +21,5 @@ python main.py train \
     --runs ${RUNS:-1} \
     --checkpoint True \
     ${TAG:+--tag $TAG} \
+    ${CONFIG:+--config $CONFIG} \
     ${RESUME:+--resume $RESUME}
