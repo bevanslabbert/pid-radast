@@ -1,0 +1,16 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mgcls_png
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 223, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/main.py", line 152, in main
+    result = get_data_loaders(
+             ^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/utils/data.py", line 215, in get_data_loaders
+    train_dataset = MGCLSPNG(root=png_dir, classes=classes, transform=transform)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/src/datasets/mgcls/MGCLSPNG.py", line 32, in __init__
+    for fname in sorted(f for f in os.listdir(class_dir) if f.endswith('.png')):
+                                   ^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/datasets/mgcls/png/asinh/typical'
