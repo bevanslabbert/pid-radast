@@ -2,7 +2,7 @@ import os
 import random
 import matplotlib.pyplot as plt
 import torch
-from torch.utils.data import DataLoader, Subset
+from torch.utils.data import DataLoader, Subset, WeightedRandomSampler
 from typing import Tuple
 from torch.utils.data import random_split
 import torchvision.transforms as transforms
@@ -26,15 +26,16 @@ def _seed_worker(worker_id):
 
 
 def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_transform=None,
-                     stretch='asinh', classes=('typical', 'exotic')) -> Tuple[DataLoader, DataLoader, DataLoader]:
+                     stretch='asinh', classes=('typical', 'exotic'), balance=False) -> Tuple[DataLoader, DataLoader, DataLoader]:
     """
     Returns trainloader, valloader, and testloader.
     - transform is applied to the training loader (with augmentation).
     - eval_transform, if provided, is applied to val and test loaders (deterministic).
       Falls back to transform when not given.
     - Train/val split uses a fixed seed so results are reproducible across runs.
-    - stretch / classes only apply to mgcls_png (PNG stretch directory and the
-      class subdirectories to load, label = index in classes).
+    - stretch / classes / balance only apply to mgcls_png (PNG stretch directory,
+      the class subdirectories to load with label = index in classes, and whether
+      to oversample minority classes in the train loader).
     """
     _eval = eval_transform if eval_transform is not None else transform
 
@@ -233,7 +234,20 @@ def get_data_loaders(dataset, transform, batch_size=2, val_split=0.2, eval_trans
         print(f"MGCLS ({stretch}) classes {list(classes)}: "
               f"{np.bincount(targets, minlength=len(classes)).tolist()} images per class")
 
-        trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
+        if balance:
+            # typical:exotic is ~70:1, so an unweighted loader lets models ignore
+            # exotic entirely. Draw each train image with probability inversely
+            # proportional to its class size so every class is ~equally likely
+            # per batch; exotic repeats are varied by the random augmentations.
+            train_targets = targets[train_idx]
+            class_counts = np.bincount(train_targets, minlength=len(classes))
+            sample_weights = torch.as_tensor(1.0 / class_counts[train_targets], dtype=torch.double)
+            sampler = WeightedRandomSampler(sample_weights, num_samples=len(train_idx), replacement=True)
+            print(f"Balancing MGCLS train loader: {class_counts.tolist()} train images per class "
+                  f"oversampled to ~equal frequency")
+            trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, sampler=sampler, num_workers=2, worker_init_fn=_seed_worker)
+        else:
+            trainloader = DataLoader(Subset(train_dataset, train_idx), batch_size=batch_size, shuffle=True,  num_workers=2, worker_init_fn=_seed_worker)
         valloader   = DataLoader(Subset(eval_dataset,  val_idx),   batch_size=batch_size, shuffle=False, num_workers=2)
         testloader  = DataLoader(Subset(eval_dataset,  test_idx),  batch_size=batch_size, shuffle=False, num_workers=2)
 

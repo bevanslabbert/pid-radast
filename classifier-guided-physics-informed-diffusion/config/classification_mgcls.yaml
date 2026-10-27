@@ -4,6 +4,7 @@ data:
   dataset: mgcls_png
   stretch: asinh             # asinh | linear | log
   classes: [typical, exotic] # label = list index
+  balance: true              # oversample exotic to ~50/50 in the train loader
   batch_size: 32
 
 training:
