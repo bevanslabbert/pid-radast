@@ -41,6 +41,8 @@ def _eval_accuracy(model, loader, device, t_fixed=None, alphas_cumprod=None):
 # evaluate model performance
 def test_model(model_type, config, testloader, device, result_directory, model=None, tag=None):
     print(f'Testing model')
+    # only MGCLS configs set data.classes; CRUMB/MiraBest keep the FR labels
+    class_names = config['data'].get('classes', ['FR-I', 'FR-II'])
     if model_type == 'robust_classification':
         num_classes = config['data']['num_classes']
         num_timesteps = config['training'].get('num_timesteps', 1000)
@@ -68,12 +70,12 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
         # during diffusion training always uses t=0.
         clean_acc, clean_preds, clean_labels = _eval_accuracy(rob_model, testloader, device)
         clean_report = classification_report(clean_labels, clean_preds,
-                                             target_names=['FR-I', 'FR-II'], digits=3)
+                                             target_names=class_names, digits=3)
         print(f"\nClean accuracy (t=0): {clean_acc:.2f}%")
         print(clean_report)
 
         cm = confusion_matrix(clean_labels, clean_preds)
-        disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['FR-I', 'FR-II'])
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
         disp.plot(cmap='Blues')
         plt.title(f"Confusion Matrix — clean (t=0)  acc={clean_acc:.1f}%")
         plt.savefig(f'{result_directory}/confusion_matrix_clean.png', bbox_inches='tight')
@@ -129,12 +131,12 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
 
         adv_acc = 100.0 * adv_correct / adv_total
         adv_report = classification_report(adv_labels_all, adv_preds,
-                                           target_names=['FR-I', 'FR-II'], digits=3)
+                                           target_names=class_names, digits=3)
         print(f"\nAdversarial accuracy (PGD ε={pgd_epsilon}, steps={pgd_num_steps}): {adv_acc:.2f}%")
         print(adv_report)
 
         cm_adv = confusion_matrix(adv_labels_all, adv_preds)
-        disp_adv = ConfusionMatrixDisplay(confusion_matrix=cm_adv, display_labels=['FR-I', 'FR-II'])
+        disp_adv = ConfusionMatrixDisplay(confusion_matrix=cm_adv, display_labels=class_names)
         disp_adv.plot(cmap='Oranges')
         plt.title(f"Confusion Matrix — adversarial (PGD)  acc={adv_acc:.1f}%")
         plt.savefig(f'{result_directory}/confusion_matrix_adversarial.png', bbox_inches='tight')
@@ -191,7 +193,7 @@ def test_model(model_type, config, testloader, device, result_directory, model=N
                 json.dump({'test_accuracy': accuracy}, f, indent=2)
 
             cm = confusion_matrix(all_labels, all_preds)
-            disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+            disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
             disp.plot(cmap='Blues', xticks_rotation=45)
             plt.title(f"Confusion Matrix — acc={accuracy:.1f}%")
             plt.savefig(f'{result_directory}/confusion_matrix.png')

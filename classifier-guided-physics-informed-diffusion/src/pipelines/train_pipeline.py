@@ -523,6 +523,8 @@ def _train_diffusion_loop(
     label_dropout = config['training']['label_dropout']
     guidance_scale = float(config['training'].get('guidance_scale', 7.5))
     eval_interval = int(config['training'].get('eval_interval', 5))
+    # only MGCLS configs set data.classes; CRUMB/MiraBest keep the FR labels
+    class_names = config['data'].get('classes', ['FR-I', 'FR-II'])
     eval_num_samples = int(config['training'].get('eval_num_samples', 16))
     extra_keys = extra_keys or []
 
@@ -618,7 +620,7 @@ def _train_diffusion_loop(
                     guidance_scale=guidance_scale,
                 )
 
-            save_comparison_grid(gen_0[:4], gen_1[:4], epoch, result_dir)
+            save_comparison_grid(gen_0[:4], gen_1[:4], epoch, result_dir, class_names)
 
             if isinstance(dataset, MiraBestFITS):
                 _save_fits_dir([(0, gen_0), (1, gen_1)], dataset, result_dir, f'_{epoch}')
@@ -630,7 +632,8 @@ def _train_diffusion_loop(
             fid_epochs.append(epoch)
             print(f'  FID: {fid_score:.4f} | KID: {kid_score:.6f}')
 
-            pdf_score = compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_dir, epoch)
+            pdf_score = compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_dir, epoch,
+                                          class_names=class_names)
             pdf_history.append(pdf_score)
             print(f'  Pixel PDF W-dist: {pdf_score:.4f}')
             _prune_epoch_snapshots(result_dir, fid_epochs, fid_history)
@@ -897,6 +900,8 @@ def train_edm_baseline(config, trainloader, valloader, testloader, device, resul
     guidance_scale = float(config['training'].get('guidance_scale', 3.0))
     num_sampling_steps = int(config['training'].get('num_sampling_steps', 25))
     eval_interval = int(config['training'].get('eval_interval', 5))
+    # only MGCLS configs set data.classes; CRUMB/MiraBest keep the FR labels
+    class_names = config['data'].get('classes', ['FR-I', 'FR-II'])
     eval_num_samples = int(config['training'].get('eval_num_samples', 16))
     input_size = config['data']['input_size']
 
@@ -963,7 +968,7 @@ def train_edm_baseline(config, trainloader, valloader, testloader, device, resul
 
         if epoch % eval_interval == 0:
             gen_0, gen_1 = sample_fn()
-            save_comparison_grid(gen_0[:4], gen_1[:4], epoch, result_directory)
+            save_comparison_grid(gen_0[:4], gen_1[:4], epoch, result_directory, class_names)
             if isinstance(dataset, MiraBestFITS):
                 _save_fits_dir([(0, gen_0), (1, gen_1)], dataset, result_directory, f'_{epoch}')
 
@@ -974,7 +979,8 @@ def train_edm_baseline(config, trainloader, valloader, testloader, device, resul
             fid_epochs.append(epoch)
             print(f'  FID: {fid_score:.4f} | KID: {kid_score:.6f}')
 
-            pdf_score = compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_directory, epoch)
+            pdf_score = compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_directory, epoch,
+                                          class_names=class_names)
             pdf_history.append(pdf_score)
             print(f'  Pixel PDF W-dist: {pdf_score:.4f}')
             _prune_epoch_snapshots(result_directory, fid_epochs, fid_history)

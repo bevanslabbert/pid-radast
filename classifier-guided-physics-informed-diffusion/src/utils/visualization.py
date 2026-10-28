@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import torchvision
 
 
-def save_comparison_grid(zero_images, one_images, epoch, result_dir):
+def save_comparison_grid(zero_images, one_images, epoch, result_dir, class_names=('FR-I', 'FR-II')):
     """Save a side-by-side class-0 / class-1 comparison PNG."""
     fig, axes = plt.subplots(1, 2, figsize=(10, 5))
 
@@ -13,10 +13,10 @@ def save_comparison_grid(zero_images, one_images, epoch, result_dir):
         return grid.permute(1, 2, 0).cpu().numpy()
 
     axes[0].imshow(_to_numpy(zero_images), cmap='gray')
-    axes[0].set_title(f"Class 0 FR-I (Epoch {epoch})")
+    axes[0].set_title(f"Class 0 {class_names[0]} (Epoch {epoch})")
     axes[0].axis('off')
     axes[1].imshow(_to_numpy(one_images), cmap='gray')
-    axes[1].set_title(f"Class 1 FR-II (Epoch {epoch})")
+    axes[1].set_title(f"Class 1 {class_names[1]} (Epoch {epoch})")
     axes[1].axis('off')
 
     plt.tight_layout()

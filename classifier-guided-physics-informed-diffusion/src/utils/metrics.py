@@ -178,7 +178,8 @@ def compute_fid_kid(gen_0, gen_1, valloader, device):
     return fid_score, kid_mean.item()
 
 
-def compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_dir, epoch, n_bins=100):
+def compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_dir, epoch, n_bins=100,
+                      class_names=('FR-I', 'FR-II')):
     """Compare pixel intensity PDFs of generated vs real validation images.
 
     Pixel values in normalised log-SNR space map directly to physical flux
@@ -215,7 +216,6 @@ def compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_dir, epoch, n
     }
 
     color_pairs = {0: ('tab:blue', 'tab:cyan'), 1: ('tab:red', 'tab:orange')}
-    class_names = {0: 'FR-I', 1: 'FR-II'}
 
     w_dists = []
     fig, axes = plt.subplots(1, num_classes, figsize=(7 * num_classes, 5))
@@ -226,7 +226,7 @@ def compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, result_dir, epoch, n
     for c in range(num_classes):
         ax = axes[c]
         real_col, gen_col = color_pairs.get(c, ('tab:blue', 'tab:cyan'))
-        cls_name = class_names.get(c, f'Class {c}')
+        cls_name = class_names[c] if c < len(class_names) else f'Class {c}'
 
         real_arr = np.concatenate(real_pixels[c]) if real_pixels[c] else np.array([])
         if len(real_arr) == 0:
