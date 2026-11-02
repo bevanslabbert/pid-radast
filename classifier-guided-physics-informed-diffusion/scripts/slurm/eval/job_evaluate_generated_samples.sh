@@ -36,3 +36,10 @@ python scripts/evaluate_generated_samples.py \
     ${GUIDANCE_CLASSIFIER_TYPE:+--guidance-classifier-type $GUIDANCE_CLASSIFIER_TYPE} \
     ${SAVE_GRID:+--save-grid} \
     ${SAVE_FITS:+--save-fits}
+
+# VQVAE=1 (needs SAVE_FITS=1): score the saved FITS samples with the CRUMB VQ-VAE.
+# Runs in its own TensorFlow venv at the repo root (../.venv-vqvae), on the CPU.
+if [ -n "$VQVAE" ]; then
+    CUDA_VISIBLE_DEVICES="" ../.venv-vqvae/bin/python ../vqvae/score_generated_fits.py \
+        --eval-dir results/generation_classifier_eval/${SLURM_JOB_NAME:-all}
+fi

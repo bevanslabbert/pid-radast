@@ -13,3 +13,5 @@ __pycache__/
 
 # Editor/backup files
 *.bak
+# Generated FITS from evaluate_generated_samples.py --save-fits (~4k files per run; kept on the cluster)
+classifier-guided-physics-informed-diffusion/results/generation_classifier_eval/*/fits_*/

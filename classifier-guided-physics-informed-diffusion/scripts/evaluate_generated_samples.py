@@ -57,7 +57,8 @@ from src.utils.checkpoint import load_checkpoint
 from src.models.simple_cnn import SimpleCNN
 from src.models.diffusion import build_diffusion_components
 from src.models.edm import build_edm_components, generate_class_samples_edm
-from src.utils.metrics import generate_class_samples, generate_class_samples_guided, compute_fid_kid
+from src.utils.metrics import (generate_class_samples, generate_class_samples_guided, compute_fid_kid,
+                               compute_pixel_pdf)
 from src.utils.data import get_data_loaders
 
 CHECKPOINT_DIR = 'checkpoints'
@@ -188,7 +189,7 @@ def save_sample_grid(gen_0, gen_1, path, n=8):
 
 def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_samples, batch_size,
                    guidance_scale, classifier_scale, guidance_classifier, guidance_classifier_type, device, shape,
-                   grid_dir=None, fits_dataset=None, fits_dir=None):
+                   pdf_dir, grid_dir=None, fits_dataset=None, fits_dir=None):
     config_path, generate_fn = MODEL_SPECS[model_type]
     config = load_config(config_path)
     config['data']['num_classes'] = num_classes
@@ -203,13 +204,16 @@ def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_sam
     if guidance_classifier_type is not None:
         config['model']['classifier_type'] = guidance_classifier_type
 
-    accuracies, confidences, per_class_accs, fids, kids = [], [], [], [], []
+    accuracies, confidences, per_class_accs, fids, kids, pixel_ws = [], [], [], [], [], []
     for tag in tags:
         gen_0, gen_1 = generate_in_batches(
             generate_fn, config, tag, num_classes, num_samples, batch_size, device, shape,
         )
         acc, conf, per_class = classify_generated(classifier, gen_0, gen_1, device)
         fid, kid = compute_fid_kid(gen_0, gen_1, valloader, device)
+        # same pixel-PDF Wasserstein metric as training time, on the same samples as acc/FID/KID
+        pixel_w = compute_pixel_pdf(gen_0, gen_1, valloader, num_classes, pdf_dir, f'{model_type}_{tag}',
+                                    class_names=CLASS_NAMES)
         if grid_dir is not None:
             save_sample_grid(gen_0, gen_1, os.path.join(grid_dir, f'samples_{model_type}_{tag}.png'))
         if fits_dir is not None:
@@ -218,12 +222,13 @@ def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_sam
             _save_fits_dir([(0, gen_0), (1, gen_1)], fits_dataset, os.path.join(fits_dir, f'fits_{model_type}_{tag}'))
         per_class_str = '  '.join(f"{n}={a:.4f}" for n, a in zip(CLASS_NAMES, per_class))
         print(f"  [{model_type}/{tag}]  class_accuracy={acc:.4f}  mean_confidence={conf:.4f}  ({per_class_str})"
-              f"  fid={fid:.2f}  kid={kid:.4f}")
+              f"  fid={fid:.2f}  kid={kid:.4f}  pixel_w={pixel_w:.5f}")
         accuracies.append(acc)
         confidences.append(conf)
         per_class_accs.append(per_class)
         fids.append(fid)
         kids.append(kid)
+        pixel_ws.append(pixel_w)
 
     return {
         'tags': tags,
@@ -232,6 +237,7 @@ def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_sam
         'guidance_classifier': config['model'].get('classifier_checkpoint'),
         'fid_per_seed': fids,
         'kid_per_seed': kids,
+        'pixel_pdf_w_per_seed': pixel_ws,
         'class_accuracy_per_seed': accuracies,
         'mean_confidence_per_seed': confidences,
         'per_class_accuracy_per_seed': {
@@ -245,6 +251,8 @@ def evaluate_model(model_type, tags, classifier, valloader, num_classes, num_sam
         'fid_std': float(np.std(fids)),
         'kid_mean': float(np.mean(kids)),
         'kid_std': float(np.std(kids)),
+        'pixel_pdf_w_mean': float(np.mean(pixel_ws)),
+        'pixel_pdf_w_std': float(np.std(pixel_ws)),
     }
 
 
@@ -302,7 +310,7 @@ def main():
         results[model_type] = evaluate_model(
             model_type, tags, classifier, valloader, args.num_classes, args.num_samples, args.batch_size,
             args.guidance_scale, args.classifier_scale, args.guidance_classifier, args.guidance_classifier_type,
-            device, shape, grid_dir=args.output if args.save_grid else None,
+            device, shape, pdf_dir=args.output, grid_dir=args.output if args.save_grid else None,
             fits_dataset=fits_dataset, fits_dir=args.output if args.save_fits else None,
         )
         results[model_type]['classifier_tag'] = args.classifier_tag
@@ -312,6 +320,7 @@ def main():
         print(f"{model_type:30s}  acc={r['class_accuracy_mean']:.4f} +/- {r['class_accuracy_std']:.4f}"
               f"   conf={r['mean_confidence_mean']:.4f} +/- {r['mean_confidence_std']:.4f}"
               f"   fid={r['fid_mean']:.2f} +/- {r['fid_std']:.2f}   kid={r['kid_mean']:.4f} +/- {r['kid_std']:.4f}"
+              f"   pixel_w={r['pixel_pdf_w_mean']:.5f} +/- {r['pixel_pdf_w_std']:.5f}"
               f"   (cfg={r['guidance_scale']})")
 
     out_path = os.path.join(args.output, 'classifier_eval_metrics.json')
