@@ -2,3 +2,76 @@
   warnings.warn(
 /idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
   warnings.warn(msg)
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+Evaluating diffusion_classifier_guided (5 seeds)...
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+FITS files saved to results/generation_classifier_eval/final_cgd/fits_diffusion_classifier_guided_diffusion_crumb_fits/generated_fits
+  [diffusion_classifier_guided/diffusion_crumb_fits]  class_accuracy=0.9336  mean_confidence=0.8585  (FR-I=0.8906  FR-II=0.9766)  fid=55.90  kid=0.0339  pixel_w=0.01886
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+FITS files saved to results/generation_classifier_eval/final_cgd/fits_diffusion_classifier_guided_diffusion_crumb_fits_seed43/generated_fits
+  [diffusion_classifier_guided/diffusion_crumb_fits_seed43]  class_accuracy=0.8867  mean_confidence=0.8158  (FR-I=0.7969  FR-II=0.9766)  fid=47.94  kid=0.0293  pixel_w=0.01860
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+FITS files saved to results/generation_classifier_eval/final_cgd/fits_diffusion_classifier_guided_diffusion_crumb_fits_seed44/generated_fits
+  [diffusion_classifier_guided/diffusion_crumb_fits_seed44]  class_accuracy=0.9531  mean_confidence=0.8647  (FR-I=0.9297  FR-II=0.9766)  fid=42.67  kid=0.0238  pixel_w=0.01283
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+FITS files saved to results/generation_classifier_eval/final_cgd/fits_diffusion_classifier_guided_diffusion_crumb_fits_seed45/generated_fits
+  [diffusion_classifier_guided/diffusion_crumb_fits_seed45]  class_accuracy=0.8945  mean_confidence=0.8365  (FR-I=0.7969  FR-II=0.9922)  fid=54.36  kid=0.0377  pixel_w=0.02033
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+Loaded guidance classifier (robust_classification) from checkpoints/robust_classification/guide_fits
+FITS files saved to results/generation_classifier_eval/final_cgd/fits_diffusion_classifier_guided_diffusion_crumb_fits_seed46/generated_fits
+  [diffusion_classifier_guided/diffusion_crumb_fits_seed46]  class_accuracy=0.9688  mean_confidence=0.8825  (FR-I=0.9375  FR-II=1.0000)  fid=54.64  kid=0.0377  pixel_w=0.02027
+
+=== Summary (class_accuracy: predicted-as-intended-class rate) ===
+diffusion_classifier_guided     acc=0.9273 +/- 0.0321   conf=0.8516 +/- 0.0232   fid=51.10 +/- 5.05   kid=0.0325 +/- 0.0053   pixel_w=0.01818 +/- 0.00277   (cfg=3.0)
+
+Saved to results/generation_classifier_eval/final_cgd/classifier_eval_metrics.json
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793690145.071264 2737482 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[fits_diffusion_classifier_guided_diffusion_crumb_fits] n=256  MSE=0.001208  NCC=0.8354
+[fits_diffusion_classifier_guided_diffusion_crumb_fits_seed43] n=256  MSE=0.001331  NCC=0.7844
+[fits_diffusion_classifier_guided_diffusion_crumb_fits_seed44] n=256  MSE=0.001606  NCC=0.7733
+[fits_diffusion_classifier_guided_diffusion_crumb_fits_seed45] n=256  MSE=0.001118  NCC=0.8304
+[fits_diffusion_classifier_guided_diffusion_crumb_fits_seed46] n=256  MSE=0.001162  NCC=0.7941
+diffusion_classifier_guided: MSE=0.001285 +/- 0.000196  NCC=0.8035 +/- 0.0279  (5 seeds)
+Saved to results/generation_classifier_eval/final_cgd/vqvae_metrics.json
