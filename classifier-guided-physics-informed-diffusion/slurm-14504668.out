@@ -1,0 +1,1344 @@
+CUDA Memory Cleared. Current VRAM Usage: 0.00 MB
+On device cuda
+Getting data loader mgcls_png
+MGCLS (asinh) classes ['typical', 'exotic']: [2049, 29] images per class
+Balancing MGCLS train loader: [1436, 22] train images per class oversampled to ~equal frequency
+Total unique classes found: 2
+Label IDs: [0, 1]
+Total images in dataset: 2078
+Total batches: 183 (at batch size 8)
+
+============================================================
+Run 1/1  |  seed=42  |  tag=mgcls_asinh  |  results -> results/edm_baseline/20261027_185256_mgcls_asinh_14504668
+============================================================
+
+Training edm_baseline for 400 epochs
+Epoch 0
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/diffusers/models/attention_processor.py:1259: UserWarning: Memory Efficient attention is a non-deterministic algorithm. To explicitly disable Memory Efficient attention call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at ../aten/src/ATen/native/transformers/cuda/sdp_utils.h:419.)
+  hidden_states = F.scaled_dot_product_attention(
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+Epoch 0 | Loss: 0.436437 | Val: 0.258447
+Computing FID/KID/PDF at epoch 0...
+  FID: 369.0968 | KID: 0.413925
+  Pixel PDF W-dist: 0.2240
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 1
+Epoch 1 | Loss: 0.288915 | Val: 0.276510
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 2
+Epoch 2 | Loss: 0.245376 | Val: 0.168575
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 3
+Epoch 3 | Loss: 0.252502 | Val: 0.210758
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 4
+Epoch 4 | Loss: 0.226026 | Val: 0.174783
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 5
+Epoch 5 | Loss: 0.228563 | Val: 0.204017
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 6
+Epoch 6 | Loss: 0.234660 | Val: 0.168751
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 7
+Epoch 7 | Loss: 0.210527 | Val: 0.162904
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 8
+Epoch 8 | Loss: 0.213833 | Val: 0.187358
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 9
+Epoch 9 | Loss: 0.208792 | Val: 0.162264
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 10
+Epoch 10 | Loss: 0.195414 | Val: 0.147729
+Computing FID/KID/PDF at epoch 10...
+  FID: 352.1859 | KID: 0.385780
+  Pixel PDF W-dist: 0.2294
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 11
+Epoch 11 | Loss: 0.192854 | Val: 0.136705
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 12
+Epoch 12 | Loss: 0.186656 | Val: 0.155424
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 13
+Epoch 13 | Loss: 0.194215 | Val: 0.134110
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 14
+Epoch 14 | Loss: 0.199689 | Val: 0.124400
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 15
+Epoch 15 | Loss: 0.192422 | Val: 0.114333
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 16
+Epoch 16 | Loss: 0.194394 | Val: 0.121284
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 17
+Epoch 17 | Loss: 0.188022 | Val: 0.120788
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 18
+Epoch 18 | Loss: 0.191551 | Val: 0.108384
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 19
+Epoch 19 | Loss: 0.183996 | Val: 0.105305
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 20
+Epoch 20 | Loss: 0.179188 | Val: 0.128722
+Computing FID/KID/PDF at epoch 20...
+  FID: 355.0820 | KID: 0.353808
+  Pixel PDF W-dist: 0.3470
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 21
+Epoch 21 | Loss: 0.169573 | Val: 0.118978
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 22
+Epoch 22 | Loss: 0.179841 | Val: 0.101870
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 23
+Epoch 23 | Loss: 0.176990 | Val: 0.110505
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 24
+Epoch 24 | Loss: 0.180048 | Val: 0.138324
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 25
+Epoch 25 | Loss: 0.166893 | Val: 0.123382
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 26
+Epoch 26 | Loss: 0.169627 | Val: 0.105901
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 27
+Epoch 27 | Loss: 0.169007 | Val: 0.105364
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 28
+Epoch 28 | Loss: 0.179688 | Val: 0.135147
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 29
+Epoch 29 | Loss: 0.165697 | Val: 0.109482
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 30
+Epoch 30 | Loss: 0.171030 | Val: 0.093707
+Computing FID/KID/PDF at epoch 30...
+  FID: 377.1941 | KID: 0.354149
+  Pixel PDF W-dist: 0.4351
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 31
+Epoch 31 | Loss: 0.171564 | Val: 0.110952
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 32
+Epoch 32 | Loss: 0.170642 | Val: 0.110435
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 33
+Epoch 33 | Loss: 0.170020 | Val: 0.113308
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 34
+Epoch 34 | Loss: 0.163814 | Val: 0.086785
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 35
+Epoch 35 | Loss: 0.156505 | Val: 0.102409
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 36
+Epoch 36 | Loss: 0.152214 | Val: 0.103308
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 37
+Epoch 37 | Loss: 0.171496 | Val: 0.087264
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 38
+Epoch 38 | Loss: 0.171736 | Val: 0.083549
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 39
+Epoch 39 | Loss: 0.152517 | Val: 0.105322
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 40
+Epoch 40 | Loss: 0.163922 | Val: 0.085470
+Computing FID/KID/PDF at epoch 40...
+  FID: 374.7181 | KID: 0.341486
+  Pixel PDF W-dist: 0.4637
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 41
+Epoch 41 | Loss: 0.162105 | Val: 0.095807
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 42
+Epoch 42 | Loss: 0.168557 | Val: 0.112502
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 43
+Epoch 43 | Loss: 0.152584 | Val: 0.100625
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 44
+Epoch 44 | Loss: 0.164493 | Val: 0.104827
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 45
+Epoch 45 | Loss: 0.170488 | Val: 0.115644
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 46
+Epoch 46 | Loss: 0.161802 | Val: 0.142217
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 47
+Epoch 47 | Loss: 0.162018 | Val: 0.088278
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 48
+Epoch 48 | Loss: 0.155565 | Val: 0.069925
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 49
+Epoch 49 | Loss: 0.159279 | Val: 0.103465
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 50
+Epoch 50 | Loss: 0.149419 | Val: 0.095900
+Computing FID/KID/PDF at epoch 50...
+  FID: 321.3362 | KID: 0.258921
+  Pixel PDF W-dist: 0.4514
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 51
+Epoch 51 | Loss: 0.147342 | Val: 0.084984
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 52
+Epoch 52 | Loss: 0.148848 | Val: 0.115574
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 53
+Epoch 53 | Loss: 0.154109 | Val: 0.101969
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 54
+Epoch 54 | Loss: 0.154818 | Val: 0.093048
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 55
+Epoch 55 | Loss: 0.155796 | Val: 0.091702
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 56
+Epoch 56 | Loss: 0.167565 | Val: 0.117209
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 57
+Epoch 57 | Loss: 0.155529 | Val: 0.090087
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 58
+Epoch 58 | Loss: 0.157667 | Val: 0.110514
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 59
+Epoch 59 | Loss: 0.147319 | Val: 0.079016
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 60
+Epoch 60 | Loss: 0.152561 | Val: 0.076824
+Computing FID/KID/PDF at epoch 60...
+  FID: 310.0181 | KID: 0.276619
+  Pixel PDF W-dist: 0.4009
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 61
+Epoch 61 | Loss: 0.154057 | Val: 0.105081
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 62
+Epoch 62 | Loss: 0.143777 | Val: 0.094274
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 63
+Epoch 63 | Loss: 0.152220 | Val: 0.088844
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 64
+Epoch 64 | Loss: 0.149966 | Val: 0.092356
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 65
+Epoch 65 | Loss: 0.145790 | Val: 0.075634
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 66
+Epoch 66 | Loss: 0.156439 | Val: 0.117978
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 67
+Epoch 67 | Loss: 0.141304 | Val: 0.086631
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 68
+Epoch 68 | Loss: 0.142769 | Val: 0.083526
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 69
+Epoch 69 | Loss: 0.146637 | Val: 0.081665
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 70
+Epoch 70 | Loss: 0.147254 | Val: 0.072770
+Computing FID/KID/PDF at epoch 70...
+  FID: 321.2278 | KID: 0.309621
+  Pixel PDF W-dist: 0.3748
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 71
+Epoch 71 | Loss: 0.147312 | Val: 0.102585
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 72
+Epoch 72 | Loss: 0.147414 | Val: 0.086338
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 73
+Epoch 73 | Loss: 0.149091 | Val: 0.097747
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 74
+Epoch 74 | Loss: 0.157207 | Val: 0.110634
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 75
+Epoch 75 | Loss: 0.155385 | Val: 0.103915
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 76
+Epoch 76 | Loss: 0.149355 | Val: 0.075881
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 77
+Epoch 77 | Loss: 0.145093 | Val: 0.098970
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 78
+Epoch 78 | Loss: 0.140658 | Val: 0.103021
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 79
+Epoch 79 | Loss: 0.147117 | Val: 0.102215
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 80
+Epoch 80 | Loss: 0.136839 | Val: 0.091058
+Computing FID/KID/PDF at epoch 80...
+  FID: 336.3609 | KID: 0.330877
+  Pixel PDF W-dist: 0.3592
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 81
+Epoch 81 | Loss: 0.160053 | Val: 0.089464
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 82
+Epoch 82 | Loss: 0.139486 | Val: 0.075710
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 83
+Epoch 83 | Loss: 0.147414 | Val: 0.088955
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 84
+Epoch 84 | Loss: 0.142903 | Val: 0.084724
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 85
+Epoch 85 | Loss: 0.141168 | Val: 0.102121
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 86
+Epoch 86 | Loss: 0.140920 | Val: 0.071392
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 87
+Epoch 87 | Loss: 0.148135 | Val: 0.098733
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 88
+Epoch 88 | Loss: 0.135448 | Val: 0.116178
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 89
+Epoch 89 | Loss: 0.140629 | Val: 0.111954
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 90
+Epoch 90 | Loss: 0.139449 | Val: 0.076636
+Computing FID/KID/PDF at epoch 90...
+  FID: 311.6048 | KID: 0.295658
+  Pixel PDF W-dist: 0.3350
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 91
+Epoch 91 | Loss: 0.142588 | Val: 0.098361
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 92
+Epoch 92 | Loss: 0.145655 | Val: 0.094720
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 93
+Epoch 93 | Loss: 0.140551 | Val: 0.100148
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 94
+Epoch 94 | Loss: 0.138990 | Val: 0.069622
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 95
+Epoch 95 | Loss: 0.142692 | Val: 0.110875
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 96
+Epoch 96 | Loss: 0.135479 | Val: 0.107660
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 97
+Epoch 97 | Loss: 0.141380 | Val: 0.092166
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 98
+Epoch 98 | Loss: 0.139441 | Val: 0.081323
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 99
+Epoch 99 | Loss: 0.134220 | Val: 0.078807
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 100
+Epoch 100 | Loss: 0.139663 | Val: 0.082229
+Computing FID/KID/PDF at epoch 100...
+  FID: 282.5371 | KID: 0.246807
+  Pixel PDF W-dist: 0.3321
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 101
+Epoch 101 | Loss: 0.140413 | Val: 0.095282
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 102
+Epoch 102 | Loss: 0.143485 | Val: 0.093298
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 103
+Epoch 103 | Loss: 0.136612 | Val: 0.107502
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 104
+Epoch 104 | Loss: 0.140030 | Val: 0.077831
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 105
+Epoch 105 | Loss: 0.141089 | Val: 0.090080
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 106
+Epoch 106 | Loss: 0.137708 | Val: 0.085676
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 107
+Epoch 107 | Loss: 0.142706 | Val: 0.085041
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 108
+Epoch 108 | Loss: 0.141706 | Val: 0.087460
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 109
+Epoch 109 | Loss: 0.131321 | Val: 0.077897
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 110
+Epoch 110 | Loss: 0.149190 | Val: 0.087131
+Computing FID/KID/PDF at epoch 110...
+  FID: 268.6526 | KID: 0.218302
+  Pixel PDF W-dist: 0.2973
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 111
+Epoch 111 | Loss: 0.145759 | Val: 0.077736
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 112
+Epoch 112 | Loss: 0.144270 | Val: 0.077965
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 113
+Epoch 113 | Loss: 0.150604 | Val: 0.085150
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 114
+Epoch 114 | Loss: 0.140477 | Val: 0.071239
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 115
+Epoch 115 | Loss: 0.137223 | Val: 0.075895
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 116
+Epoch 116 | Loss: 0.149648 | Val: 0.087870
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 117
+Epoch 117 | Loss: 0.138074 | Val: 0.073514
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 118
+Epoch 118 | Loss: 0.130146 | Val: 0.083477
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 119
+Epoch 119 | Loss: 0.135023 | Val: 0.078251
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 120
+Epoch 120 | Loss: 0.136006 | Val: 0.089997
+Computing FID/KID/PDF at epoch 120...
+  FID: 249.2571 | KID: 0.187375
+  Pixel PDF W-dist: 0.2719
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 121
+Epoch 121 | Loss: 0.139753 | Val: 0.084586
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 122
+Epoch 122 | Loss: 0.122723 | Val: 0.097914
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 123
+Epoch 123 | Loss: 0.132655 | Val: 0.092268
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 124
+Epoch 124 | Loss: 0.141529 | Val: 0.081273
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 125
+Epoch 125 | Loss: 0.146215 | Val: 0.108776
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 126
+Epoch 126 | Loss: 0.139232 | Val: 0.069616
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 127
+Epoch 127 | Loss: 0.138985 | Val: 0.095687
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 128
+Epoch 128 | Loss: 0.128826 | Val: 0.070204
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 129
+Epoch 129 | Loss: 0.138205 | Val: 0.098084
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 130
+Epoch 130 | Loss: 0.141042 | Val: 0.101235
+Computing FID/KID/PDF at epoch 130...
+  FID: 230.0651 | KID: 0.151265
+  Pixel PDF W-dist: 0.2657
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 131
+Epoch 131 | Loss: 0.136837 | Val: 0.100118
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 132
+Epoch 132 | Loss: 0.123435 | Val: 0.089530
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 133
+Epoch 133 | Loss: 0.137640 | Val: 0.087058
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 134
+Epoch 134 | Loss: 0.124677 | Val: 0.081984
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 135
+Epoch 135 | Loss: 0.133222 | Val: 0.088410
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 136
+Epoch 136 | Loss: 0.129283 | Val: 0.101003
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 137
+Epoch 137 | Loss: 0.137680 | Val: 0.087409
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 138
+Epoch 138 | Loss: 0.131783 | Val: 0.092419
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 139
+Epoch 139 | Loss: 0.129064 | Val: 0.089973
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 140
+Epoch 140 | Loss: 0.128534 | Val: 0.092720
+Computing FID/KID/PDF at epoch 140...
+  FID: 215.3408 | KID: 0.141776
+  Pixel PDF W-dist: 0.2457
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 141
+Epoch 141 | Loss: 0.128513 | Val: 0.107806
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 142
+Epoch 142 | Loss: 0.138032 | Val: 0.061202
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 143
+Epoch 143 | Loss: 0.134638 | Val: 0.078505
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 144
+Epoch 144 | Loss: 0.135831 | Val: 0.083058
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 145
+Epoch 145 | Loss: 0.140930 | Val: 0.080109
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 146
+Epoch 146 | Loss: 0.130926 | Val: 0.084381
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 147
+Epoch 147 | Loss: 0.131825 | Val: 0.105566
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 148
+Epoch 148 | Loss: 0.138663 | Val: 0.095857
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 149
+Epoch 149 | Loss: 0.129417 | Val: 0.086771
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 150
+Epoch 150 | Loss: 0.143739 | Val: 0.081973
+Computing FID/KID/PDF at epoch 150...
+  FID: 204.0103 | KID: 0.123421
+  Pixel PDF W-dist: 0.2174
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 151
+Epoch 151 | Loss: 0.137295 | Val: 0.088993
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 152
+Epoch 152 | Loss: 0.131496 | Val: 0.078313
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 153
+Epoch 153 | Loss: 0.126729 | Val: 0.110473
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 154
+Epoch 154 | Loss: 0.132742 | Val: 0.083896
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 155
+Epoch 155 | Loss: 0.129480 | Val: 0.071949
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 156
+Epoch 156 | Loss: 0.138519 | Val: 0.090361
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 157
+Epoch 157 | Loss: 0.127873 | Val: 0.062885
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 158
+Epoch 158 | Loss: 0.131153 | Val: 0.085876
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 159
+Epoch 159 | Loss: 0.136848 | Val: 0.084526
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 160
+Epoch 160 | Loss: 0.136960 | Val: 0.072523
+Computing FID/KID/PDF at epoch 160...
+  FID: 196.3252 | KID: 0.112200
+  Pixel PDF W-dist: 0.2283
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 161
+Epoch 161 | Loss: 0.129583 | Val: 0.086761
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 162
+Epoch 162 | Loss: 0.131049 | Val: 0.090667
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 163
+Epoch 163 | Loss: 0.136396 | Val: 0.071721
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 164
+Epoch 164 | Loss: 0.129542 | Val: 0.072713
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 165
+Epoch 165 | Loss: 0.125853 | Val: 0.079391
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 166
+Epoch 166 | Loss: 0.129975 | Val: 0.078727
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 167
+Epoch 167 | Loss: 0.134509 | Val: 0.101331
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 168
+Epoch 168 | Loss: 0.133221 | Val: 0.079106
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 169
+Epoch 169 | Loss: 0.127440 | Val: 0.096617
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 170
+Epoch 170 | Loss: 0.138085 | Val: 0.089895
+Computing FID/KID/PDF at epoch 170...
+  FID: 195.9660 | KID: 0.106910
+  Pixel PDF W-dist: 0.2078
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 171
+Epoch 171 | Loss: 0.126664 | Val: 0.070889
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 172
+Epoch 172 | Loss: 0.139502 | Val: 0.084035
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 173
+Epoch 173 | Loss: 0.128653 | Val: 0.078177
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 174
+Epoch 174 | Loss: 0.132225 | Val: 0.110796
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 175
+Epoch 175 | Loss: 0.132133 | Val: 0.065783
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 176
+Epoch 176 | Loss: 0.125091 | Val: 0.088388
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 177
+Epoch 177 | Loss: 0.136708 | Val: 0.087870
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 178
+Epoch 178 | Loss: 0.117442 | Val: 0.074065
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 179
+Epoch 179 | Loss: 0.127781 | Val: 0.076269
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 180
+Epoch 180 | Loss: 0.125503 | Val: 0.075134
+Computing FID/KID/PDF at epoch 180...
+  FID: 205.4357 | KID: 0.112804
+  Pixel PDF W-dist: 0.1854
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 181
+Epoch 181 | Loss: 0.128758 | Val: 0.078502
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 182
+Epoch 182 | Loss: 0.132904 | Val: 0.085221
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 183
+Epoch 183 | Loss: 0.127227 | Val: 0.083862
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 184
+Epoch 184 | Loss: 0.122188 | Val: 0.094646
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 185
+Epoch 185 | Loss: 0.129434 | Val: 0.077323
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 186
+Epoch 186 | Loss: 0.128082 | Val: 0.077034
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 187
+Epoch 187 | Loss: 0.125085 | Val: 0.085966
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 188
+Epoch 188 | Loss: 0.128428 | Val: 0.072118
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 189
+Epoch 189 | Loss: 0.127091 | Val: 0.061110
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 190
+Epoch 190 | Loss: 0.122188 | Val: 0.090927
+Computing FID/KID/PDF at epoch 190...
+  FID: 176.9247 | KID: 0.078877
+  Pixel PDF W-dist: 0.1896
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 191
+Epoch 191 | Loss: 0.123364 | Val: 0.096595
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 192
+Epoch 192 | Loss: 0.127047 | Val: 0.088486
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 193
+Epoch 193 | Loss: 0.122107 | Val: 0.085986
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 194
+Epoch 194 | Loss: 0.119660 | Val: 0.074982
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 195
+Epoch 195 | Loss: 0.133041 | Val: 0.080436
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 196
+Epoch 196 | Loss: 0.132016 | Val: 0.078185
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 197
+Epoch 197 | Loss: 0.121859 | Val: 0.071826
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 198
+Epoch 198 | Loss: 0.123758 | Val: 0.089361
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 199
+Epoch 199 | Loss: 0.129735 | Val: 0.076167
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 200
+Epoch 200 | Loss: 0.118734 | Val: 0.079735
+Computing FID/KID/PDF at epoch 200...
+  FID: 195.5558 | KID: 0.104727
+  Pixel PDF W-dist: 0.1894
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 201
+Epoch 201 | Loss: 0.121066 | Val: 0.080025
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 202
+Epoch 202 | Loss: 0.134249 | Val: 0.099552
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 203
+Epoch 203 | Loss: 0.127520 | Val: 0.077439
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 204
+Epoch 204 | Loss: 0.128557 | Val: 0.083707
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 205
+Epoch 205 | Loss: 0.119535 | Val: 0.081942
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 206
+Epoch 206 | Loss: 0.126219 | Val: 0.093600
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 207
+Epoch 207 | Loss: 0.131262 | Val: 0.065256
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 208
+Epoch 208 | Loss: 0.122480 | Val: 0.066321
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 209
+Epoch 209 | Loss: 0.131739 | Val: 0.096115
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 210
+Epoch 210 | Loss: 0.121978 | Val: 0.096939
+Computing FID/KID/PDF at epoch 210...
+  FID: 169.9263 | KID: 0.078449
+  Pixel PDF W-dist: 0.1545
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 211
+Epoch 211 | Loss: 0.125026 | Val: 0.090068
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 212
+Epoch 212 | Loss: 0.125582 | Val: 0.088691
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 213
+Epoch 213 | Loss: 0.123869 | Val: 0.095201
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 214
+Epoch 214 | Loss: 0.124115 | Val: 0.086763
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 215
+Epoch 215 | Loss: 0.124261 | Val: 0.084522
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 216
+Epoch 216 | Loss: 0.127592 | Val: 0.074659
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 217
+Epoch 217 | Loss: 0.129267 | Val: 0.069783
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 218
+Epoch 218 | Loss: 0.123953 | Val: 0.079781
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 219
+Epoch 219 | Loss: 0.138192 | Val: 0.111317
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 220
+Epoch 220 | Loss: 0.124439 | Val: 0.064833
+Computing FID/KID/PDF at epoch 220...
+  FID: 186.4726 | KID: 0.085910
+  Pixel PDF W-dist: 0.1871
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 221
+Epoch 221 | Loss: 0.119948 | Val: 0.080229
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 222
+Epoch 222 | Loss: 0.129347 | Val: 0.076405
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 223
+Epoch 223 | Loss: 0.128073 | Val: 0.077290
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 224
+Epoch 224 | Loss: 0.121755 | Val: 0.071288
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 225
+Epoch 225 | Loss: 0.123528 | Val: 0.090630
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 226
+Epoch 226 | Loss: 0.132579 | Val: 0.070623
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 227
+Epoch 227 | Loss: 0.121940 | Val: 0.068515
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 228
+Epoch 228 | Loss: 0.134244 | Val: 0.083358
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 229
+Epoch 229 | Loss: 0.116251 | Val: 0.075815
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 230
+Epoch 230 | Loss: 0.122601 | Val: 0.075794
+Computing FID/KID/PDF at epoch 230...
+  FID: 203.5056 | KID: 0.100625
+  Pixel PDF W-dist: 0.1962
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 231
+Epoch 231 | Loss: 0.125032 | Val: 0.090832
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 232
+Epoch 232 | Loss: 0.123355 | Val: 0.072247
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 233
+Epoch 233 | Loss: 0.122942 | Val: 0.100552
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 234
+Epoch 234 | Loss: 0.133375 | Val: 0.082207
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 235
+Epoch 235 | Loss: 0.125491 | Val: 0.088782
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 236
+Epoch 236 | Loss: 0.124640 | Val: 0.078598
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 237
+Epoch 237 | Loss: 0.121233 | Val: 0.077219
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 238
+Epoch 238 | Loss: 0.122049 | Val: 0.091954
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 239
+Epoch 239 | Loss: 0.127561 | Val: 0.077013
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 240
+Epoch 240 | Loss: 0.124855 | Val: 0.086417
+Computing FID/KID/PDF at epoch 240...
+  FID: 187.8350 | KID: 0.085862
+  Pixel PDF W-dist: 0.1740
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 241
+Epoch 241 | Loss: 0.122872 | Val: 0.078764
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 242
+Epoch 242 | Loss: 0.117399 | Val: 0.064234
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 243
+Epoch 243 | Loss: 0.127666 | Val: 0.083311
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 244
+Epoch 244 | Loss: 0.124311 | Val: 0.076562
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 245
+Epoch 245 | Loss: 0.123629 | Val: 0.087822
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 246
+Epoch 246 | Loss: 0.115347 | Val: 0.079815
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 247
+Epoch 247 | Loss: 0.116405 | Val: 0.083751
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 248
+Epoch 248 | Loss: 0.132485 | Val: 0.086832
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 249
+Epoch 249 | Loss: 0.119420 | Val: 0.074367
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 250
+Epoch 250 | Loss: 0.118764 | Val: 0.076403
+Computing FID/KID/PDF at epoch 250...
+  FID: 185.2469 | KID: 0.080887
+  Pixel PDF W-dist: 0.1709
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 251
+Epoch 251 | Loss: 0.120632 | Val: 0.081562
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 252
+Epoch 252 | Loss: 0.120712 | Val: 0.080994
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 253
+Epoch 253 | Loss: 0.116204 | Val: 0.077528
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 254
+Epoch 254 | Loss: 0.121634 | Val: 0.065043
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 255
+Epoch 255 | Loss: 0.127714 | Val: 0.085939
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 256
+Epoch 256 | Loss: 0.119570 | Val: 0.095215
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 257
+Epoch 257 | Loss: 0.125455 | Val: 0.074779
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 258
+Epoch 258 | Loss: 0.114475 | Val: 0.084373
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 259
+Epoch 259 | Loss: 0.112241 | Val: 0.062860
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 260
+Epoch 260 | Loss: 0.120638 | Val: 0.090251
+Computing FID/KID/PDF at epoch 260...
+  FID: 175.2763 | KID: 0.080430
+  Pixel PDF W-dist: 0.1747
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 261
+Epoch 261 | Loss: 0.111823 | Val: 0.085763
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 262
+Epoch 262 | Loss: 0.124374 | Val: 0.092882
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 263
+Epoch 263 | Loss: 0.122435 | Val: 0.055145
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 264
+Epoch 264 | Loss: 0.122234 | Val: 0.080460
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 265
+Epoch 265 | Loss: 0.112482 | Val: 0.056674
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 266
+Epoch 266 | Loss: 0.120879 | Val: 0.087026
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 267
+Epoch 267 | Loss: 0.118503 | Val: 0.079680
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 268
+Epoch 268 | Loss: 0.106979 | Val: 0.076390
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 269
+Epoch 269 | Loss: 0.119228 | Val: 0.086806
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 270
+Epoch 270 | Loss: 0.116173 | Val: 0.084363
+Computing FID/KID/PDF at epoch 270...
+  FID: 190.4217 | KID: 0.091041
+  Pixel PDF W-dist: 0.1724
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 271
+Epoch 271 | Loss: 0.120553 | Val: 0.078554
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 272
+Epoch 272 | Loss: 0.121537 | Val: 0.077277
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 273
+Epoch 273 | Loss: 0.117879 | Val: 0.080497
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 274
+Epoch 274 | Loss: 0.130194 | Val: 0.079506
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 275
+Epoch 275 | Loss: 0.117232 | Val: 0.094186
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 276
+Epoch 276 | Loss: 0.118297 | Val: 0.094072
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 277
+Epoch 277 | Loss: 0.125044 | Val: 0.090809
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 278
+Epoch 278 | Loss: 0.119783 | Val: 0.078787
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 279
+Epoch 279 | Loss: 0.122108 | Val: 0.068996
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 280
+Epoch 280 | Loss: 0.119916 | Val: 0.066802
+Computing FID/KID/PDF at epoch 280...
+  FID: 174.8756 | KID: 0.074638
+  Pixel PDF W-dist: 0.1371
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 281
+Epoch 281 | Loss: 0.122436 | Val: 0.100455
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 282
+Epoch 282 | Loss: 0.120993 | Val: 0.079080
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 283
+Epoch 283 | Loss: 0.122924 | Val: 0.082000
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 284
+Epoch 284 | Loss: 0.119290 | Val: 0.079911
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 285
+Epoch 285 | Loss: 0.118399 | Val: 0.070250
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 286
+Epoch 286 | Loss: 0.114156 | Val: 0.072139
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 287
+Epoch 287 | Loss: 0.121124 | Val: 0.078244
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 288
+Epoch 288 | Loss: 0.113809 | Val: 0.072069
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 289
+Epoch 289 | Loss: 0.120367 | Val: 0.063744
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 290
+Epoch 290 | Loss: 0.116806 | Val: 0.082193
+Computing FID/KID/PDF at epoch 290...
+  FID: 159.8629 | KID: 0.062065
+  Pixel PDF W-dist: 0.1618
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 291
+Epoch 291 | Loss: 0.133317 | Val: 0.072495
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 292
+Epoch 292 | Loss: 0.118624 | Val: 0.080107
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 293
+Epoch 293 | Loss: 0.121033 | Val: 0.079193
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 294
+Epoch 294 | Loss: 0.124597 | Val: 0.089712
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 295
+Epoch 295 | Loss: 0.119386 | Val: 0.083881
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 296
+Epoch 296 | Loss: 0.116864 | Val: 0.090077
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 297
+Epoch 297 | Loss: 0.120592 | Val: 0.067025
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 298
+Epoch 298 | Loss: 0.119769 | Val: 0.082239
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 299
+Epoch 299 | Loss: 0.121213 | Val: 0.062006
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 300
+Epoch 300 | Loss: 0.117127 | Val: 0.063187
+Computing FID/KID/PDF at epoch 300...
+  FID: 161.6857 | KID: 0.055787
+  Pixel PDF W-dist: 0.1668
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 301
+Epoch 301 | Loss: 0.118977 | Val: 0.066691
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 302
+Epoch 302 | Loss: 0.118429 | Val: 0.089383
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 303
+Epoch 303 | Loss: 0.112955 | Val: 0.071515
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 304
+Epoch 304 | Loss: 0.123470 | Val: 0.079326
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 305
+Epoch 305 | Loss: 0.118617 | Val: 0.070717
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 306
+Epoch 306 | Loss: 0.116113 | Val: 0.084482
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 307
+Epoch 307 | Loss: 0.114166 | Val: 0.074746
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 308
+Epoch 308 | Loss: 0.115444 | Val: 0.070883
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 309
+Epoch 309 | Loss: 0.113599 | Val: 0.088363
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 310
+Epoch 310 | Loss: 0.117071 | Val: 0.092920
+Computing FID/KID/PDF at epoch 310...
+  FID: 183.6661 | KID: 0.073067
+  Pixel PDF W-dist: 0.1564
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 311
+Epoch 311 | Loss: 0.120146 | Val: 0.075323
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 312
+Epoch 312 | Loss: 0.125906 | Val: 0.077733
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 313
+Epoch 313 | Loss: 0.114914 | Val: 0.074387
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 314
+Epoch 314 | Loss: 0.113710 | Val: 0.086952
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 315
+Epoch 315 | Loss: 0.119339 | Val: 0.067375
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 316
+Epoch 316 | Loss: 0.110411 | Val: 0.097421
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 317
+Epoch 317 | Loss: 0.114017 | Val: 0.074336
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 318
+Epoch 318 | Loss: 0.120699 | Val: 0.072716
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 319
+Epoch 319 | Loss: 0.122239 | Val: 0.071419
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 320
+Epoch 320 | Loss: 0.119277 | Val: 0.080048
+Computing FID/KID/PDF at epoch 320...
+  FID: 178.7210 | KID: 0.075401
+  Pixel PDF W-dist: 0.1224
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 321
+Epoch 321 | Loss: 0.120858 | Val: 0.080916
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 322
+Epoch 322 | Loss: 0.117168 | Val: 0.084608
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 323
+Epoch 323 | Loss: 0.120459 | Val: 0.066257
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 324
+Epoch 324 | Loss: 0.113429 | Val: 0.083748
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 325
+Epoch 325 | Loss: 0.112354 | Val: 0.067589
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 326
+Epoch 326 | Loss: 0.112575 | Val: 0.074242
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 327
+Epoch 327 | Loss: 0.121345 | Val: 0.087867
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 328
+Epoch 328 | Loss: 0.111849 | Val: 0.088018
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 329
+Epoch 329 | Loss: 0.115976 | Val: 0.103189
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 330
+Epoch 330 | Loss: 0.116363 | Val: 0.062785
+Computing FID/KID/PDF at epoch 330...
+  FID: 171.6850 | KID: 0.064540
+  Pixel PDF W-dist: 0.1399
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 331
+Epoch 331 | Loss: 0.112765 | Val: 0.075508
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 332
+Epoch 332 | Loss: 0.109211 | Val: 0.084806
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 333
+Epoch 333 | Loss: 0.111869 | Val: 0.087259
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 334
+Epoch 334 | Loss: 0.116968 | Val: 0.084593
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 335
+Epoch 335 | Loss: 0.111736 | Val: 0.073493
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 336
+Epoch 336 | Loss: 0.112384 | Val: 0.088578
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 337
+Epoch 337 | Loss: 0.120012 | Val: 0.086433
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 338
+Epoch 338 | Loss: 0.123562 | Val: 0.069764
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 339
+Epoch 339 | Loss: 0.114848 | Val: 0.081675
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 340
+Epoch 340 | Loss: 0.113865 | Val: 0.072922
+Computing FID/KID/PDF at epoch 340...
+  FID: 173.6478 | KID: 0.065203
+  Pixel PDF W-dist: 0.1491
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 341
+Epoch 341 | Loss: 0.111091 | Val: 0.075024
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 342
+Epoch 342 | Loss: 0.120205 | Val: 0.069218
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 343
+Epoch 343 | Loss: 0.112213 | Val: 0.080512
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 344
+Epoch 344 | Loss: 0.118004 | Val: 0.084691
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 345
+Epoch 345 | Loss: 0.116166 | Val: 0.089566
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 346
+Epoch 346 | Loss: 0.107321 | Val: 0.080439
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 347
+Epoch 347 | Loss: 0.103796 | Val: 0.083137
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 348
+Epoch 348 | Loss: 0.119412 | Val: 0.067896
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 349
+Epoch 349 | Loss: 0.114143 | Val: 0.080046
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 350
+Epoch 350 | Loss: 0.119983 | Val: 0.094589
+Computing FID/KID/PDF at epoch 350...
+  FID: 156.3289 | KID: 0.055025
+  Pixel PDF W-dist: 0.1332
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 351
+Epoch 351 | Loss: 0.114175 | Val: 0.084892
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 352
+Epoch 352 | Loss: 0.114418 | Val: 0.078574
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 353
+Epoch 353 | Loss: 0.103202 | Val: 0.071656
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 354
+Epoch 354 | Loss: 0.115775 | Val: 0.074492
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 355
+Epoch 355 | Loss: 0.114483 | Val: 0.080002
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 356
+Epoch 356 | Loss: 0.119210 | Val: 0.092710
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 357
+Epoch 357 | Loss: 0.111922 | Val: 0.080397
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 358
+Epoch 358 | Loss: 0.111586 | Val: 0.067647
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 359
+Epoch 359 | Loss: 0.117983 | Val: 0.073902
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 360
+Epoch 360 | Loss: 0.114812 | Val: 0.082873
+Computing FID/KID/PDF at epoch 360...
+  FID: 170.3899 | KID: 0.072392
+  Pixel PDF W-dist: 0.1765
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 361
+Epoch 361 | Loss: 0.112008 | Val: 0.060705
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 362
+Epoch 362 | Loss: 0.121653 | Val: 0.074121
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 363
+Epoch 363 | Loss: 0.121474 | Val: 0.088924
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 364
+Epoch 364 | Loss: 0.107437 | Val: 0.071735
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 365
+Epoch 365 | Loss: 0.108475 | Val: 0.078981
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 366
+Epoch 366 | Loss: 0.116176 | Val: 0.075127
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 367
+Epoch 367 | Loss: 0.116900 | Val: 0.092060
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 368
+Epoch 368 | Loss: 0.119525 | Val: 0.084311
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 369
+Epoch 369 | Loss: 0.114820 | Val: 0.075657
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 370
+Epoch 370 | Loss: 0.109705 | Val: 0.067286
+Computing FID/KID/PDF at epoch 370...
+  FID: 156.2645 | KID: 0.051101
+  Pixel PDF W-dist: 0.1487
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 371
+Epoch 371 | Loss: 0.117991 | Val: 0.073590
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 372
+Epoch 372 | Loss: 0.113300 | Val: 0.073005
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 373
+Epoch 373 | Loss: 0.103811 | Val: 0.070228
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 374
+Epoch 374 | Loss: 0.110106 | Val: 0.070909
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 375
+Epoch 375 | Loss: 0.107479 | Val: 0.073052
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 376
+Epoch 376 | Loss: 0.123648 | Val: 0.056666
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 377
+Epoch 377 | Loss: 0.116708 | Val: 0.073401
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 378
+Epoch 378 | Loss: 0.112288 | Val: 0.066883
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 379
+Epoch 379 | Loss: 0.114215 | Val: 0.078165
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 380
+Epoch 380 | Loss: 0.109128 | Val: 0.069251
+Computing FID/KID/PDF at epoch 380...
+  FID: 185.1710 | KID: 0.079801
+  Pixel PDF W-dist: 0.1921
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 381
+Epoch 381 | Loss: 0.104304 | Val: 0.079234
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 382
+Epoch 382 | Loss: 0.103173 | Val: 0.075908
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 383
+Epoch 383 | Loss: 0.108357 | Val: 0.082590
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 384
+Epoch 384 | Loss: 0.104944 | Val: 0.086758
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 385
+Epoch 385 | Loss: 0.117380 | Val: 0.082029
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 386
+Epoch 386 | Loss: 0.106819 | Val: 0.061631
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 387
+Epoch 387 | Loss: 0.104100 | Val: 0.079117
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 388
+Epoch 388 | Loss: 0.112818 | Val: 0.070087
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 389
+Epoch 389 | Loss: 0.110351 | Val: 0.074899
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 390
+Epoch 390 | Loss: 0.115788 | Val: 0.084379
+Computing FID/KID/PDF at epoch 390...
+  FID: 169.2201 | KID: 0.058163
+  Pixel PDF W-dist: 0.1675
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 391
+Epoch 391 | Loss: 0.113852 | Val: 0.070362
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 392
+Epoch 392 | Loss: 0.110197 | Val: 0.062241
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 393
+Epoch 393 | Loss: 0.111520 | Val: 0.078808
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 394
+Epoch 394 | Loss: 0.106658 | Val: 0.088075
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 395
+Epoch 395 | Loss: 0.110002 | Val: 0.068517
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 396
+Epoch 396 | Loss: 0.115872 | Val: 0.069448
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 397
+Epoch 397 | Loss: 0.111394 | Val: 0.079533
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 398
+Epoch 398 | Loss: 0.107951 | Val: 0.068892
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Epoch 399
+Epoch 399 | Loss: 0.109750 | Val: 0.068322
+--- Saved model to checkpoints/edm_baseline/mgcls_asinh/state.pt ---
+Loss graph saved to results/edm_baseline/20261027_185256_mgcls_asinh_14504668/training_metrics.png
+Generative metrics plot saved to results/edm_baseline/20261027_185256_mgcls_asinh_14504668/generative_metrics.png
+Pixel PDF history plot saved to results/edm_baseline/20261027_185256_mgcls_asinh_14504668/pixel_pdf_history.png
+Testing model
+Generated test images saved to results/edm_baseline/20261027_185256_mgcls_asinh_14504668/
