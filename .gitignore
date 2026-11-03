@@ -1,4 +1,5 @@
 .venv
+.venv-vqvae/
 venv
 # classifier-guided-physics-informed-diffusion/checkpoints/**
 *.pth
