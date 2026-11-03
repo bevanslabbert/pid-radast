@@ -1,0 +1,38 @@
+/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/.venv/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Metric `Kernel Inception Distance` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)
+On device cuda
+Getting data loader crumb_fits
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+Loaded FITS stats: noise_rms=0.000324, peak_log=4.066700
+
+Evaluating edm_baseline (5 seeds)...
+FITS files saved to results/generation_classifier_eval/final_edm/fits_edm_baseline_my_run_tag/generated_fits
+  [edm_baseline/my_run_tag]  class_accuracy=0.8047  mean_confidence=0.7231  (FR-I=0.7500  FR-II=0.8594)  fid=65.42  kid=0.0552  pixel_w=0.00874
+FITS files saved to results/generation_classifier_eval/final_edm/fits_edm_baseline_my_run_tag_seed43/generated_fits
+  [edm_baseline/my_run_tag_seed43]  class_accuracy=0.8086  mean_confidence=0.7457  (FR-I=0.7344  FR-II=0.8828)  fid=68.99  kid=0.0548  pixel_w=0.00929
+FITS files saved to results/generation_classifier_eval/final_edm/fits_edm_baseline_my_run_tag_seed44/generated_fits
+  [edm_baseline/my_run_tag_seed44]  class_accuracy=0.8203  mean_confidence=0.7637  (FR-I=0.7344  FR-II=0.9062)  fid=65.44  kid=0.0521  pixel_w=0.00949
+FITS files saved to results/generation_classifier_eval/final_edm/fits_edm_baseline_my_run_tag_seed45/generated_fits
+  [edm_baseline/my_run_tag_seed45]  class_accuracy=0.8242  mean_confidence=0.7518  (FR-I=0.7578  FR-II=0.8906)  fid=67.86  kid=0.0540  pixel_w=0.00949
+FITS files saved to results/generation_classifier_eval/final_edm/fits_edm_baseline_my_run_tag_seed46/generated_fits
+  [edm_baseline/my_run_tag_seed46]  class_accuracy=0.7773  mean_confidence=0.7324  (FR-I=0.6016  FR-II=0.9531)  fid=74.36  kid=0.0642  pixel_w=0.00930
+Traceback (most recent call last):
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 333, in <module>
+    main()
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 310, in main
+    results[model_type] = evaluate_model(
+                          ^^^^^^^^^^^^^^^
+  File "/idia/users/bevan/pid-radast/classifier-guided-physics-informed-diffusion/scripts/evaluate_generated_samples.py", line 237, in evaluate_model
+    'guidance_classifier': config['model'].get('classifier_checkpoint'),
+                           ~~~~~~^^^^^^^^^
+KeyError: 'model'
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793695878.470009 2780130 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[fits_edm_baseline_my_run_tag] n=256  MSE=0.003380  NCC=0.7128
+[fits_edm_baseline_my_run_tag_seed43] n=256  MSE=0.003510  NCC=0.7114
+[fits_edm_baseline_my_run_tag_seed44] n=256  MSE=0.003554  NCC=0.7008
+[fits_edm_baseline_my_run_tag_seed45] n=256  MSE=0.003559  NCC=0.7047
+[fits_edm_baseline_my_run_tag_seed46] n=256  MSE=0.003630  NCC=0.7107
+edm_baseline: MSE=0.003527 +/- 0.000093  NCC=0.7081 +/- 0.0051  (5 seeds)
+Saved to results/generation_classifier_eval/final_edm/vqvae_metrics.json
